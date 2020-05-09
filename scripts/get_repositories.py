@@ -1,3 +1,4 @@
+import base64
 import json
 import math
 import requests
@@ -6,7 +7,7 @@ import sys
 import time
 
 
-requests_cache.install_cache("github_cache", backend="sqlite", expire_after=86400)
+requests_cache.install_cache("github_cache", backend="sqlite", expire_after=604800)
 
 
 class colors:
@@ -25,8 +26,11 @@ def get(url, params={}):
         print("\nRequest for url:", url, "...")
         response = requests.get(url, params=params, timeout=TIMEOUT)
         print("Response status:", response.status_code)
-        print("Request used cache: {0}".format(response.from_cache))
         response.raise_for_status()
+        used_cache = response.from_cache
+        print("Request used cache: {0}".format(used_cache))
+        if not used_cache:
+            time.sleep(10)
         data = response.json()
         print(f"{colors.SUCCESS}Successfully fetched data:{colors.NORMAL}\n",)
         return data
@@ -78,8 +82,28 @@ def search_repositories():
     return total_count, repositories
 
 
+def decode_file_content(data):
+    base64_bytes = data.encode("utf-8")
+    bytes = base64.b64decode(base64_bytes)
+    return bytes.decode("utf-8")
+
+
+def add_readme_file(repository):
+    get_readme_path = f"repos/{repository['owner']}/{repository['name']}/readme"
+    url = f"{BASE_URL}/{get_readme_path}"
+
+    data = get(url)
+
+    readme_content = decode_file_content(data["content"])
+
+    return {**repository, "readme": readme_content}
+
+
 if __name__ == "__main__":
     total_count, repositories = search_repositories()
 
     print("total_count:", total_count)
     print("repositories count:", len(repositories))
+
+    for repository in repositories:
+        repository = add_readme_file(repository)
