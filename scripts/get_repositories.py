@@ -121,6 +121,14 @@ def find_image_urls(readme):
     return re.findall(r"(https?:\/\/.*\.(?:png|jpg|jpeg|webp|gif))", readme)
 
 
+def save_repository_file(repository):
+    output_file = open(
+        f"data/{repository['owner']['name']}__{repository['name']}.json", "w"
+    )
+    json.dump(repository, output_file, indent=2)
+    output_file.close()
+
+
 if __name__ == "__main__":
     total_count, repositories = search_repositories()
 
@@ -128,6 +136,8 @@ if __name__ == "__main__":
     print("repositories count:", len(repositories))
 
     for index, repository in enumerate(repositories):
-        repository["readme"] = get_readme_file(repository["owner"]["name"], repository["name"])
+        repository["readme"] = get_readme_file(
+            repository["owner"]["name"], repository["name"]
+        )
         repository["image_urls"] = find_image_urls(repository["readme"])
-        print(repository)
+        save_repository_file(repository)

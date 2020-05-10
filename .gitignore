@@ -130,3 +130,6 @@ dmypy.json
 
 # Github API Cache db
 github_cache.sqlite
+
+# Data files
+data/*
