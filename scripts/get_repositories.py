@@ -13,6 +13,7 @@ requests_cache.install_cache("github_cache", backend="sqlite", expire_after=6048
 class colors:
     SUCCESS = "\033[92m"
     ERROR = "\033[91m"
+    WARNING = "\033[33m"
     NORMAL = "\033[0m"
 
 
@@ -27,14 +28,22 @@ def get(url, params={}):
         response = requests.get(url, params=params, timeout=TIMEOUT)
         print("Response status:", response.status_code)
         response.raise_for_status()
+
         used_cache = response.from_cache
-        print("Request used cache: {0}".format(used_cache))
-        if not used_cache:
-            time.sleep(10)
+        print(f"Request used cache: {used_cache}")
+
         data = response.json()
-        print(f"{colors.SUCCESS}Successfully fetched data:{colors.NORMAL}\n",)
+        print(f"{colors.SUCCESS}Successfully fetched data{colors.NORMAL}\n",)
+
+        if not used_cache:
+            print("Sleeping a little...")
+            time.sleep(10)
+
         return data
     except requests.exceptions.HTTPError as errh:
+        if response.status_code == 404:
+            print(f"{colors.WARNING}Warning: 404 Not found for {url}{colors.NORMAL}")
+            return None
         print(f"{colors.ERROR}Http Error:{colors.NORMAL}", errh)
     except requests.exceptions.ConnectionError as errc:
         print(f"{colors.ERROR}Error Connecting:{colors.NORMAL}", errc)
@@ -93,6 +102,9 @@ def add_readme_file(repository):
     url = f"{BASE_URL}/{get_readme_path}"
 
     data = get(url)
+
+    if not data:
+        return {**repository, "readme": ""}
 
     readme_content = decode_file_content(data["content"])
 
