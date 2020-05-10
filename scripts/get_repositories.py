@@ -64,7 +64,14 @@ def map_response_item_to_repository(response_item):
     return {
         "id": response_item["id"],
         "name": response_item["name"],
-        "owner": response_item["owner"]["login"],
+        "description": response_item["description"],
+        "github_url": response_item["html_url"],
+        "homepage_url": response_item["homepage"],
+        "stargazers_count": response_item["stargazers_count"],
+        "owner": {
+            "name": response_item["owner"]["login"],
+            "avatar_url": response_item["owner"]["avatar_url"],
+        },
     }
 
 
@@ -121,6 +128,6 @@ if __name__ == "__main__":
     print("repositories count:", len(repositories))
 
     for index, repository in enumerate(repositories):
-        repository["readme"] = get_readme_file(repository["owner"], repository["name"])
+        repository["readme"] = get_readme_file(repository["owner"]["name"], repository["name"])
         repository["image_urls"] = find_image_urls(repository["readme"])
         print(repository)
