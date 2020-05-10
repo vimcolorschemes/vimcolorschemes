@@ -1,13 +1,14 @@
 import base64
 import json
 import math
+import re
 import requests
 import requests_cache
 import sys
 import time
 
 
-requests_cache.install_cache("github_cache", backend="sqlite", expire_after=604800)
+requests_cache.install_cache("github_cache", backend="sqlite")
 
 
 class colors:
@@ -97,18 +98,20 @@ def decode_file_content(data):
     return bytes.decode("utf-8")
 
 
-def add_readme_file(repository):
-    get_readme_path = f"repos/{repository['owner']}/{repository['name']}/readme"
+def get_readme_file(owner, name):
+    get_readme_path = f"repos/{owner}/{name}/readme"
     url = f"{BASE_URL}/{get_readme_path}"
 
     data = get(url)
 
     if not data:
-        return {**repository, "readme": ""}
+        return ""
 
-    readme_content = decode_file_content(data["content"])
+    return decode_file_content(data["content"])
 
-    return {**repository, "readme": readme_content}
+
+def find_image_urls(readme):
+    return re.findall(r"(https?:\/\/.*\.(?:png|jpg|jpeg|webp|gif))", readme)
 
 
 if __name__ == "__main__":
@@ -117,5 +120,7 @@ if __name__ == "__main__":
     print("total_count:", total_count)
     print("repositories count:", len(repositories))
 
-    for repository in repositories:
-        repository = add_readme_file(repository)
+    for index, repository in enumerate(repositories):
+        repository["readme"] = get_readme_file(repository["owner"], repository["name"])
+        repository["image_urls"] = find_image_urls(repository["readme"])
+        print(repository)
