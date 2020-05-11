@@ -1,0 +1,16 @@
+.header {
+  background: rebeccapurple;
+  margin-bottom: 1.45rem;
+  &__content {
+    margin: 0 auto;
+    max-width: 960px;
+    padding: 1.45rem 1.0875rem;
+  }
+  &__title {
+    margin: 0;
+  }
+  &__title-link {
+    color: #fff;
+    text-decoration: none;
+  }
+}
