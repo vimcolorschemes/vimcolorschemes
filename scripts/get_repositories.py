@@ -19,6 +19,7 @@ class colors:
 
 
 TIMEOUT = 5
+SLEEP_TIME = 70
 
 BASE_URL = "https://api.github.com"
 
@@ -38,7 +39,12 @@ def get(url, params={}):
 
         if not used_cache:
             print("Sleeping a little...")
-            time.sleep(10)
+            for i in range(1, SLEEP_TIME + 1):
+                print(f"{i}/{SLEEP_TIME}")
+                sys.stdout.write("\033[F")
+                time.sleep(1)
+            sys.stdout.write("\033[F")
+            sys.stdout.write("\033[F")
 
         return data
     except requests.exceptions.HTTPError as errh:
