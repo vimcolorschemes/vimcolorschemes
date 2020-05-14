@@ -79,6 +79,7 @@ exports.sourceNodes = async ({
 };
 
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
+const fetch = require("node-fetch");
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
@@ -89,7 +90,25 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
-exports.onCreateNode = async ({
+const urlIsImage = async (url, callback) => {
+  try {
+    const response = await fetch(url);
+    if (!!response && response.ok) {
+      const contentType = response.headers.get("Content-Type");
+      return callback(contentType.includes("image"));
+    }
+    return callback(false);
+  } catch {
+    return callback(false);
+  }
+};
+
+const isImageUrl = url => {
+  const regex = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg|webp)$/;
+  return !!url && url.match(regex);
+};
+
+exports.onCreateNode = ({
   node,
   actions: { createNode },
   store,
@@ -103,17 +122,25 @@ exports.onCreateNode = async ({
     imageUrls.length > 0
   ) {
     const imageUrl = imageUrls[0];
-
-    let fileNode = await createRemoteFileNode({
-      url: imageUrl,
-      parentNodeId: node.id,
-      createNode,
-      createNodeId,
-      cache,
-      store,
-    });
-    if (fileNode) {
-      node.image___NODE = fileNode.id;
+    try {
+      if (isImageUrl(imageUrl))
+        urlIsImage(imageUrl, async exists => {
+          if (exists) {
+            let fileNode = await createRemoteFileNode({
+              url: imageUrl,
+              parentNodeId: node.id,
+              createNode,
+              createNodeId,
+              cache,
+              store,
+            });
+            if (fileNode) {
+              node.image___NODE = fileNode.id;
+            }
+          }
+        });
+    } catch (e) {
+      console.error(e);
     }
   }
 };
