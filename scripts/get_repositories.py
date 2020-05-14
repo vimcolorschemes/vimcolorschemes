@@ -24,11 +24,21 @@ SLEEP_TIME = 70
 
 BASE_URL = "https://api.github.com"
 
+GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+
 
 def get(url, params={}):
     try:
         print("\nRequest for url:", url, "...")
-        response = requests.get(url, params=params, timeout=TIMEOUT)
+        response = requests.get(
+            url,
+            params=params,
+            timeout=TIMEOUT,
+            auth=requests.auth.HTTPBasicAuth(GITHUB_USERNAME, GITHUB_TOKEN)
+            if GITHUB_USERNAME and GITHUB_TOKEN
+            else None,
+        )
         print("Response status:", response.status_code)
         response.raise_for_status()
 
