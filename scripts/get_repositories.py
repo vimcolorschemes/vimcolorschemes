@@ -6,9 +6,10 @@ import requests
 import requests_cache
 import sys
 import time
+import os
 
 
-requests_cache.install_cache("github_cache", backend="sqlite")
+requests_cache.install_cache("github_cache", backend="sqlite", expire_after=3600)
 
 
 class colors:
@@ -36,15 +37,6 @@ def get(url, params={}):
 
         data = response.json()
         print(f"{colors.SUCCESS}Successfully fetched data{colors.NORMAL}\n",)
-
-        if not used_cache:
-            print("Sleeping a little...")
-            for i in range(1, SLEEP_TIME + 1):
-                print(f"{i}/{SLEEP_TIME}")
-                sys.stdout.write("\033[F")
-                time.sleep(1)
-            sys.stdout.write("\033[F")
-            sys.stdout.write("\033[F")
 
         return data
     except requests.exceptions.HTTPError as errh:
@@ -95,9 +87,16 @@ def search_repositories():
 
     page_count = math.ceil(total_count / items_per_page)
 
+    remaining_calls, reset = get_rate_limit()
+
     for page in range(2, page_count + 1):
+        if remaining_calls <= 1:
+            sleep_until_reset(reset)
+
         data = get(url, {"q": query, "page": page, **base_search_params})
         items.extend(data["items"])
+
+        remaining_calls = remaining_calls - 1
 
     map_result = map(map_response_item_to_repository, items)
     repositories = list(map_result)
@@ -128,22 +127,65 @@ def find_image_urls(readme):
 
 
 def save_repository_file(repository):
-    output_file = open(
-        f"data/{repository['owner']['name']}__{repository['name']}.json", "w"
-    )
+    file_name = f"{repository['owner']['name']}__{repository['name']}.json"
+    print(f"Writing {file_name} ...")
+    output_file = open(f"data/{file_name}", "w")
     json.dump(repository, output_file, indent=2)
     output_file.close()
+    print(f"{colors.SUCCESS}Successfully wrote {file_name}{colors.NORMAL}")
+
+
+def get_rate_limit():
+    data = get(f"{BASE_URL}/rate_limit")
+    remaining_calls = data["resources"]["core"]["remaining"]
+    reset = data["resources"]["core"]["reset"]
+    print("Remaining calls for Github API:", remaining_calls)
+    return remaining_calls, reset
+
+
+def start_sleeping(sleep_time):
+    print("Sleeping a little...")
+    for i in range(1, sleep_time + 1):
+        print(f"{i}/{sleep_time}")
+        sys.stdout.write("\033[F")
+        time.sleep(1)
+    sys.stdout.write("\033[F")
+    sys.stdout.write("\033[F")
+
+
+def sleep_until_reset(reset):
+    remaining_calls = 1
+
+    while remaining_calls <= 1:
+        now = int(time.time())
+        time_until_reset = reset - now
+        start_sleeping(time_until_reset + 100)
+        remaining_calls, reset = get_rate_limit()
+
+    return remaining_calls
 
 
 if __name__ == "__main__":
+    remaining_calls, reset = get_rate_limit()
+
+    if remaining_calls <= 1:
+        remaining_calls = sleep_until_reset(reset)
+
     total_count, repositories = search_repositories()
 
-    print("total_count:", total_count)
-    print("repositories count:", len(repositories))
+    remaining_calls = remaining_calls - 1
+
+    print("Total repo count:", total_count)
 
     for index, repository in enumerate(repositories):
+        if remaining_calls <= 1:
+            remaining_calls = sleep_until_reset(reset)
+
         repository["readme"] = get_readme_file(
             repository["owner"]["name"], repository["name"]
         )
+
+        remaining_calls = remaining_calls - 1
+
         repository["image_urls"] = find_image_urls(repository["readme"])
         save_repository_file(repository)
