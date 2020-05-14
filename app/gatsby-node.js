@@ -104,7 +104,7 @@ const urlIsImage = async (url, callback) => {
 };
 
 const isImageUrl = url => {
-  const regex = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|jpeg|webp)$/;
+  const regex = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|jpeg|webp)$/;
   return !!url && url.match(regex);
 };
 
