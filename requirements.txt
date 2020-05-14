@@ -7,19 +7,25 @@
 appdirs==1.4.3            # via black
 attrs==19.3.0             # via black
 black==19.10b0            # via -r requirements.in
+boto3==1.13.9             # via -r requirements.in
+botocore==1.16.9          # via boto3, s3transfer
 certifi==2020.4.5.1       # via requests
 chardet==3.0.4            # via requests
 click==7.1.2              # via black, pip-tools
+docutils==0.15.2          # via botocore
 idna==2.9                 # via requests
+jmespath==0.10.0          # via boto3, botocore
 pathspec==0.8.0           # via black
 pip-tools==5.1.2          # via -r requirements.in
+python-dateutil==2.8.1    # via botocore
 regex==2020.5.7           # via black
 requests-cache==0.5.2     # via -r requirements.in
 requests==2.23.0          # via -r requirements.in, requests-cache
-six==1.14.0               # via pip-tools
+s3transfer==0.3.3         # via boto3
+six==1.14.0               # via pip-tools, python-dateutil
 toml==0.10.0              # via black
 typed-ast==1.4.1          # via black
-urllib3==1.25.9           # via requests
+urllib3==1.25.9           # via botocore, requests
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
