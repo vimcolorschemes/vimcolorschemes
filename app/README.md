@@ -4,7 +4,7 @@
   </a>
 </p>
 <h1 align="center">
-  Vim colorschemes
+  Vim color schemes
 </h1>
 
 Gatsby generated stuff below...

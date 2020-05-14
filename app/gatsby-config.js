@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Vim colorschemes`,
+    title: `Vim color schemes`,
     description: `Great and simple app to navigate vim colorschemes`,
     author: `@reobin`,
   },
