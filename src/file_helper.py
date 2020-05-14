@@ -9,4 +9,5 @@ def decode_file_content(data):
 
 
 def find_image_urls(file_content):
-    return re.findall(r"(https?:\/\/.*\.(?:png|jpg|jpeg|webp))", file_content)
+    regex = r"\b(https?:\/\/\S+(?:png|jpe?g|webp))\b"
+    return re.findall(regex, file_content)

@@ -105,7 +105,7 @@ const urlIsImage = async (url, callback) => {
 
 const isImageUrl = url => {
   const regex = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|jpeg|webp)$/;
-  return !!url && url.match(regex);
+  return !!url && regex.test(url);
 };
 
 exports.onCreateNode = ({

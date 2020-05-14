@@ -23,25 +23,23 @@ const IndexPage = ({ data }) => {
       <br />
       <div>
         {!!repositories &&
-          repositories.map((repository, index) => {
-            return (
-              <div
-                key={`repository__${repository.owner?.name || index}__${
-                  repository.name || index
-                }`}
-              >
-                {repository.owner?.name || ""}
-                {!!repository.owner?.name ? "/" : ""}
-                {repository.name}
-                {!!repository.image?.childImageSharp?.fluid && (
-                  <Img
-                    fluid={repository.image.childImageSharp.fluid}
-                    alt={`vim color scheme repository ${repository.name}`}
-                  />
-                )}
-              </div>
-            );
-          })}
+          repositories.map((repository, index) => (
+            <div
+              key={`repository__${repository.owner?.name || index}__${
+                repository.name || index
+              }`}
+            >
+              {repository.owner?.name || ""}
+              {!!repository.owner?.name ? "/" : ""}
+              {repository.name}
+              {!!repository.image?.childImageSharp?.fluid && (
+                <Img
+                  fluid={repository.image?.childImageSharp?.fluid}
+                  alt={`vim color scheme repository ${repository.name}`}
+                />
+              )}
+            </div>
+          ))}
       </div>
       <br />
     </Layout>
