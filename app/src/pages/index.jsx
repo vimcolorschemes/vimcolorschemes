@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 import "../style/index.scss";
 
 const IndexPage = ({ data }) => {
-  const { totalCount, repositories } = data?.jsonData;
+  const { totalCount, repositories } = data?.repositoriesData;
 
   if (totalCount == null || repositories == null) return;
 
@@ -43,15 +43,16 @@ const IndexPage = ({ data }) => {
 
 export const query = graphql`
   query RepositoryListQuery {
-    jsonData: allDataJson {
+    repositoriesData: allRepository(
+      sort: { fields: stargazers_count, order: DESC }
+    ) {
       totalCount
       repositories: nodes {
+        name
         description
         owner {
           name
         }
-        image_urls
-        name
         startgazersCounts: stargazers_count
       }
     }
