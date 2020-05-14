@@ -77,3 +77,43 @@ exports.sourceNodes = async ({
     console.error(e);
   }
 };
+
+const { createRemoteFileNode } = require("gatsby-source-filesystem");
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  createTypes(`
+    type Repository implements Node {
+      image: File @link(from: "image___NODE")
+    }
+  `);
+};
+
+exports.onCreateNode = async ({
+  node,
+  actions: { createNode },
+  store,
+  cache,
+  createNodeId,
+}) => {
+  const imageUrls = node.image_urls;
+  if (
+    node.internal.type === "Repository" &&
+    imageUrls !== null &&
+    imageUrls.length > 0
+  ) {
+    const imageUrl = imageUrls[0];
+
+    let fileNode = await createRemoteFileNode({
+      url: imageUrl,
+      parentNodeId: node.id,
+      createNode,
+      createNodeId,
+      cache,
+      store,
+    });
+    if (fileNode) {
+      node.image___NODE = fileNode.id;
+    }
+  }
+};

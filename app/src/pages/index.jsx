@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
+import Img from "gatsby-image";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -32,6 +33,12 @@ const IndexPage = ({ data }) => {
                 {repository.owner?.name || ""}
                 {!!repository.owner?.name ? "/" : ""}
                 {repository.name}
+                {!!repository.image?.childImageSharp?.fluid && (
+                  <Img
+                    fluid={repository.image.childImageSharp.fluid}
+                    alt={`vim color scheme repository ${repository.name}`}
+                  />
+                )}
               </div>
             );
           })}
@@ -54,6 +61,13 @@ export const query = graphql`
           name
         }
         startgazersCounts: stargazers_count
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
