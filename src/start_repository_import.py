@@ -12,7 +12,9 @@ from github_helper import (
     list_repositories,
     get_rate_limit,
     get_readme_file,
+    list_repository_image_urls,
     ITEMS_PER_PAGE,
+    sleep_until_reset
 )
 
 
@@ -36,24 +38,12 @@ def search_repositories(remaining_calls, reset):
 
         remaining_calls = remaining_calls - 1
 
-    return total_count, repositories
+    return repositories, total_count
 
 
 def upload_repository_file(repository):
     file_name = f"{repository['owner']['name']}__{repository['name']}.json"
     upload_file(file_name, json.dumps(repository))
-
-
-def sleep_until_reset(reset):
-    remaining_calls = 1
-
-    while remaining_calls <= 1:
-        now = int(time.time())
-        time_until_reset = reset - now
-        start_sleeping(time_until_reset + 100)
-        remaining_calls, reset = get_rate_limit()
-
-    return remaining_calls
 
 
 if __name__ == "__main__":
@@ -62,7 +52,7 @@ if __name__ == "__main__":
     if remaining_calls <= 1:
         remaining_calls = sleep_until_reset(reset)
 
-    total_count, repositories = search_repositories(remaining_calls, reset)
+    repositories, total_count = search_repositories(remaining_calls, reset)
 
     remaining_calls = remaining_calls - 1
 
@@ -73,8 +63,16 @@ if __name__ == "__main__":
             remaining_calls = sleep_until_reset(reset)
 
         repository["readme"] = get_readme_file(repository)
-        repository["image_urls"] = find_image_urls(repository["readme"])
+        readme_image_urls = find_image_urls(repository["readme"])
 
         remaining_calls = remaining_calls - 1
+        if remaining_calls <= 1:
+            remaining_calls = sleep_until_reset(reset)
+
+        repository_image_urls, remaining_calls = list_repository_image_urls(
+            repository, remaining_calls, reset
+        )
+
+        repository["image_urls"] = readme_image_urls + repository_image_urls
 
         upload_repository_file(repository)
