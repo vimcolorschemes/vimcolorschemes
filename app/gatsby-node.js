@@ -16,41 +16,65 @@ AWS.config.update({
 });
 const s3 = new AWS.S3();
 
+const listRepositories = async () => {
+  const data = await s3
+    .listObjects({
+      Bucket: awsS3BucketName,
+      Prefix: `${awsS3DirectoryName}/`,
+    })
+    .promise();
+
+  const repositoryPromises = data.Contents.filter(item =>
+    item.Key.endsWith(".json"),
+  ).map(async item => {
+    try {
+      const data = await s3
+        .getObject({
+          Bucket: awsS3BucketName,
+          Key: item.Key,
+        })
+        .promise();
+      return JSON.parse(data.Body.toString());
+    } catch (e) {
+      console.error(e);
+      return undefined;
+    }
+  });
+
+  const repositories = (await Promise.all(repositoryPromises)).filter(
+    repository => !!repository,
+  );
+  return repositories;
+};
+
 exports.sourceNodes = async ({
   actions,
   createNodeId,
   createContentDigest,
+  cache,
 }) => {
-  const { createNode } = actions;
-
   try {
-    const data = await s3
-      .listObjects({
-        Bucket: awsS3BucketName,
-        Prefix: `${awsS3DirectoryName}/`,
-      })
-      .promise();
+    const cacheKey = "s3-repositories";
+    let obj = await cache.get(cacheKey);
 
-    const repositoryPromises = data.Contents.filter(item =>
-      item.Key.endsWith(".json"),
-    ).map(async item => {
-      try {
-        const data = await s3
-          .getObject({
-            Bucket: awsS3BucketName,
-            Key: item.Key,
-          })
-          .promise();
-        return JSON.parse(data.Body.toString());
-      } catch (e) {
-        console.error(e);
-        return undefined;
-      }
-    });
+    let repositories = null;
 
-    const repositories = (await Promise.all(repositoryPromises)).filter(
-      repository => !!repository,
-    );
+    if (!obj) {
+      obj = { created: Date.now() };
+      repositories = await listRepositories();
+      obj.data = repositories;
+    } else if (Date.now() > obj.lastChecked + 3600000) {
+      repositories = await listRepositories();
+      obj.data = repositories;
+    } else {
+      console.log("INFO: Used nodes cache");
+      repositories = obj.data;
+    }
+    obj.lastChecked = Date.now();
+
+    await cache.set(cacheKey, obj);
+
+    const { createNode } = actions;
 
     repositories.forEach(repository => {
       try {
@@ -98,8 +122,7 @@ const urlIsImage = async url => {
       return contentType.includes("image");
     }
     return false;
-  } catch (e) {
-    console.log(e);
+  } catch {
     return false;
   }
 };
