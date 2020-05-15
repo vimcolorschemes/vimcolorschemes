@@ -90,25 +90,21 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
-const urlIsImage = async (url, callback) => {
+const urlIsImage = async url => {
   try {
     const response = await fetch(url);
     if (!!response && response.ok) {
       const contentType = response.headers.get("Content-Type");
-      return callback(contentType.includes("image"));
+      return contentType.includes("image");
     }
-    return callback(false);
-  } catch {
-    return callback(false);
+    return false;
+  } catch (e) {
+    console.log(e);
+    return false;
   }
 };
 
-const isImageUrl = url => {
-  const regex = /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|png|jpeg|webp)$/;
-  return !!url && regex.test(url);
-};
-
-exports.onCreateNode = ({
+exports.onCreateNode = async ({
   node,
   actions: { createNode },
   store,
@@ -121,24 +117,27 @@ exports.onCreateNode = ({
     imageUrls !== null &&
     imageUrls.length > 0
   ) {
-    const imageUrl = imageUrls[0];
     try {
-      if (isImageUrl(imageUrl))
-        urlIsImage(imageUrl, async exists => {
-          if (exists) {
-            let fileNode = await createRemoteFileNode({
-              url: imageUrl,
-              parentNodeId: node.id,
-              createNode,
-              createNodeId,
-              cache,
-              store,
-            });
-            if (fileNode) {
-              node.image___NODE = fileNode.id;
-            }
-          }
-        });
+      let index = 0;
+      let fileNode = null;
+      let imageUrl = null;
+      while (imageUrls.length > index && !fileNode) {
+        imageUrl = imageUrls[index];
+        if (await urlIsImage(imageUrl)) {
+          fileNode = await createRemoteFileNode({
+            url: imageUrl,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          });
+        }
+        index++;
+      }
+      if (fileNode) {
+        node.image___NODE = fileNode.id;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -147,7 +146,8 @@ exports.onCreateNode = ({
 
 const path = require(`path`);
 
-const URLify = value => !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
+const URLify = value =>
+  !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;

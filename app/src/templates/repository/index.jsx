@@ -15,6 +15,19 @@ const RepoPage = ({ data }) => {
         <br />
         <p>{repository.description}</p>
         <br />
+        {repository.githubUrl && (
+          <>
+            <a
+              href={repository.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Github home
+            </a>
+            <br />
+            <br />
+          </>
+        )}
       </div>
       <Link to="/">back home</Link>
       <br />
@@ -28,6 +41,7 @@ export const query = graphql`
     repository(owner: { name: { eq: $ownerName } }, name: { eq: $name }) {
       name
       description
+      githubUrl: github_url
       owner {
         name
       }
