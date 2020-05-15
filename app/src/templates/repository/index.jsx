@@ -4,7 +4,7 @@ import { graphql, Link } from "gatsby";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
-const RepoPage = ({ data }) => {
+const RepositoryPage = ({ data }) => {
   const repository = data.repository;
   return (
     <Layout>
@@ -49,4 +49,4 @@ export const query = graphql`
   }
 `;
 
-export default RepoPage;
+export default RepositoryPage;

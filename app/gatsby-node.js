@@ -172,10 +172,8 @@ const path = require(`path`);
 const URLify = value =>
   !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
 
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions;
-  const result = await graphql(`
-    query {
+const allRepositoryQuery = `
+    {
       allRepository {
         nodes {
           name
@@ -185,8 +183,11 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `);
-  result.data.allRepository.nodes.forEach(repository => {
+  `;
+
+const createRepositoryPage = ({ allRepository }, createPage) => {
+  console.log(allRepository.nodes);
+  return allRepository.nodes.map(repository =>
     createPage({
       path: `${URLify(repository.owner.name)}/${URLify(repository.name)}`,
       component: path.resolve(`./src/templates/repository/index.jsx`),
@@ -194,6 +195,32 @@ exports.createPages = async ({ graphql, actions }) => {
         ownerName: repository.owner.name,
         name: repository.name,
       },
-    });
-  });
+    }),
+  );
+};
+
+const pageSize = 20;
+const createRepositoryPaginatedPages = ({ allRepository }, createPage) => {
+  const pageCount = Math.ceil(allRepository.nodes.length / pageSize);
+
+  return Array.from({ length: pageCount }).map((_, index) =>
+    createPage({
+      path: `/repositories/${index + 1}`,
+      component: path.resolve(`./src/templates/repositories/index.jsx`),
+      context: {
+        skip: index * pageSize,
+        limit: pageSize,
+        pageCount,
+        currentPage: index + 1,
+      },
+    }),
+  );
+};
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const { data } = await graphql(allRepositoryQuery);
+  createRepositoryPage(data, createPage);
+  createRepositoryPaginatedPages(data, createPage);
 };
