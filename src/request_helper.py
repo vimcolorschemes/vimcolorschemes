@@ -1,3 +1,4 @@
+import os
 import requests
 import requests_cache
 
@@ -5,7 +6,10 @@ from print_helper import colors
 
 TIMEOUT = 5
 
-requests_cache.install_cache("github_cache", backend="sqlite", expire_after=3600)
+USE_CACHE = os.getenv("USE_CACHE")
+
+if USE_CACHE:
+    requests_cache.install_cache("github_cache", backend="sqlite", expire_after=3600)
 
 
 def get(url, params={}, auth=None):
@@ -15,8 +19,9 @@ def get(url, params={}, auth=None):
         print("Response status:", response.status_code)
         response.raise_for_status()
 
-        used_cache = response.from_cache
-        print(f"Request used cache: {used_cache}")
+        if USE_CACHE:
+            used_cache = response.from_cache
+            print(f"Request used cache: {used_cache}")
 
         data = response.json()
         print(f"{colors.SUCCESS}Successfully fetched data{colors.NORMAL}\n",)
