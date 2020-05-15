@@ -1,6 +1,8 @@
 import React from "react";
-import { graphql } from "gatsby";
+import { graphql, Link } from "gatsby";
 import Img from "gatsby-image";
+
+import { URLify } from "../utils/string";
 
 import Layout from "../components/layout";
 import SEO from "../components/seo";
@@ -22,24 +24,21 @@ const IndexPage = ({ data }) => {
       </p>
       <br />
       <div>
-        {!!repositories &&
-          repositories.map((repository, index) => (
-            <div
-              key={`repository__${repository.owner?.name || index}__${
-                repository.name || index
-              }`}
-            >
-              {repository.owner?.name || ""}
-              {!!repository.owner?.name ? "/" : ""}
-              {repository.name}
-              {!!repository.image?.childImageSharp?.fluid && (
-                <Img
-                  fluid={repository.image?.childImageSharp?.fluid}
-                  alt={`vim color scheme repository ${repository.name}`}
-                />
-              )}
-            </div>
-          ))}
+        {repositories.map(repository => (
+          <Link
+            key={`repository__${repository.owner.name}__${repository.name}`}
+            to={URLify(`${repository.owner.name}/${repository.name}`)}
+          >
+            {repository.owner.name}/{repository.name}
+            {!!repository.image?.childImageSharp?.fluid && (
+              <Img
+                fluid={repository.image?.childImageSharp?.fluid}
+                alt={`vim color scheme repository ${repository.name}`}
+              />
+            )}
+            <br />
+          </Link>
+        ))}
       </div>
       <br />
     </Layout>

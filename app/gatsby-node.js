@@ -144,3 +144,33 @@ exports.onCreateNode = ({
     }
   }
 };
+
+const path = require(`path`);
+
+const URLify = value => !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+  const result = await graphql(`
+    query {
+      allRepository {
+        nodes {
+          name
+          owner {
+            name
+          }
+        }
+      }
+    }
+  `);
+  result.data.allRepository.nodes.forEach(repository => {
+    createPage({
+      path: `${URLify(repository.owner.name)}/${URLify(repository.name)}`,
+      component: path.resolve(`./src/templates/repository/index.jsx`),
+      context: {
+        ownerName: repository.owner.name,
+        name: repository.name,
+      },
+    });
+  });
+};
