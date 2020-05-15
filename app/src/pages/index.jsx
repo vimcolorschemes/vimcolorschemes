@@ -4,6 +4,7 @@ import Img from "gatsby-image";
 
 import { URLify } from "../utils/string";
 
+import Grid from "../components/grid";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
@@ -23,7 +24,7 @@ const IndexPage = ({ data }) => {
         <b>{totalCount}</b> repos
       </p>
       <br />
-      <div>
+      <Grid>
         {repositories.map(repository => (
           <Link
             key={`repository__${repository.owner.name}__${repository.name}`}
@@ -39,7 +40,7 @@ const IndexPage = ({ data }) => {
             <br />
           </Link>
         ))}
-      </div>
+      </Grid>
       <br />
     </Layout>
   );
