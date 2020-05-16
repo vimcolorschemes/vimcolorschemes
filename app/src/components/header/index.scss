@@ -1,10 +1,15 @@
+@import "../../style/mixins/breakpoints";
+@import "../../style/mixins/index";
+
 .header {
   background: rebeccapurple;
   margin-bottom: 1.45rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
   &__content {
-    margin: 0 auto;
-    max-width: 960px;
-    padding: 1.45rem 1.0875rem;
+    width: 100%;
+    @include container-layout;
   }
   &__title {
     margin: 0;

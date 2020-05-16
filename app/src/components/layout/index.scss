@@ -1,5 +1,6 @@
+@import "../../style/mixins/index";
+
 .main-container {
-  margin: 0 auto;
-  max-width: 960px;
-  padding: 0 1.0875rem 1.45rem;
+  @include container-layout;
+  padding-bottom: 1.45rem;
 }

@@ -1,1 +1,17 @@
 @import "./reset.css";
+@import "./constants.scss";
+@import "./mixins/breakpoints";
+
+body {
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  @include md {
+    font-size: $base-font-size * 1.2;
+  }
+  @include lg {
+    font-size: $base-font-size * 1.3;
+  }
+  @include xl {
+    font-size: $base-font-size * 1.4;
+  }
+}

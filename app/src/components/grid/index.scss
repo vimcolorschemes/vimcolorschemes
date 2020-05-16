@@ -2,9 +2,12 @@
 
 .grid {
   display: grid;
-  grid-column-gap: 5rem;
-  grid-row-gap: 5rem;
-  @include lg {
-    grid-template-columns: auto auto;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2rem;
+}
+
+@include lg {
+  .grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

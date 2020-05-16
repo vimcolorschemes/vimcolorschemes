@@ -1,0 +1,14 @@
+@import "./breakpoints";
+
+@mixin container-layout {
+  padding: 0 4%;
+  @include md {
+    padding: 0 8%;
+  }
+  @include lg {
+    padding: 0 12%;
+  }
+  @include xl {
+    padding: 0 18%;
+  }
+}
