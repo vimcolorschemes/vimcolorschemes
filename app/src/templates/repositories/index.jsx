@@ -39,7 +39,8 @@ const RepositoriesPage = ({ data, pageContext }) => {
               key={`repository__${repositoryKey}`}
               linkTo={`/${URLify(repositoryKey)}`}
               linkState={{ pageNumber: currentPage }}
-              title={repositoryKey}
+              title={repository.name}
+              subtitle={repository.owner.name}
               description={repository.description}
               image={repository.image}
             />

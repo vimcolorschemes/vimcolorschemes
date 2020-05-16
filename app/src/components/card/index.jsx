@@ -7,6 +7,7 @@ import "./index.scss";
 
 const Card = ({
   title,
+  subtitle,
   description,
   image,
   metaContent,
@@ -42,6 +43,7 @@ const Card = ({
           />
         )}
       </div>
+      {!!subtitle && <h2 className="card__subtitle">{subtitle}</h2>}
       <h1 className="card__title">{title}</h1>
       <p className="card__description">{description}</p>
       {!!metaContent && metaContent}
@@ -51,6 +53,7 @@ const Card = ({
 
 Card.propTypes = {
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.shape({
     childImageSharp: PropTypes.shape({
