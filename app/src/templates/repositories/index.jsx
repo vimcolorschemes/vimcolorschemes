@@ -8,8 +8,16 @@ import Grid from "../../components/grid";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
-const RepositoriesPage = ({ data }) => {
+import "../../style/index.scss";
+
+const RepositoriesPage = ({ data, pageContext }) => {
   const { totalCount, repositories } = data?.repositoriesData;
+
+  const { currentPage, pageCount } = pageContext;
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === pageCount;
+  const prevPage = currentPage - 1 === 1 ? "/" : (currentPage - 1).toString();
+  const nextPage = (currentPage + 1).toString();
 
   if (totalCount == null || repositories == null) return;
 
@@ -27,6 +35,7 @@ const RepositoriesPage = ({ data }) => {
           <Link
             key={`repository__${repository.owner.name}__${repository.name}`}
             to={URLify(`${repository.owner.name}/${repository.name}`)}
+            state={{ pageNumber: currentPage }}
           >
             {repository.owner.name}/{repository.name}
             {!!repository.image?.childImageSharp?.fluid && (
@@ -40,6 +49,11 @@ const RepositoriesPage = ({ data }) => {
         ))}
       </Grid>
       <br />
+      <div style={{ display: "flex" }}>
+        {!isFirstPage && <Link to={prevPage}>Previous page</Link>}
+        <p>{currentPage}</p>
+        {!isLastPage && <Link to={nextPage}>Next page</Link>}
+      </div>
     </Layout>
   );
 };

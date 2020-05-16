@@ -4,7 +4,9 @@ import { graphql, Link } from "gatsby";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
-const RepositoryPage = ({ data }) => {
+const RepositoryPage = ({ data, location }) => {
+  const pageNumber = location?.state?.pageNumber;
+
   const repository = data.repository;
   return (
     <Layout>
@@ -29,7 +31,9 @@ const RepositoryPage = ({ data }) => {
           </>
         )}
       </div>
-      <Link to="/">back home</Link>
+      <Link to={!!pageNumber && pageNumber > 1 ? pageNumber : "/"}>
+        back home
+      </Link>
       <br />
       <br />
     </Layout>

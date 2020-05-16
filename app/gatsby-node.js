@@ -186,7 +186,6 @@ const allRepositoryQuery = `
   `;
 
 const createRepositoryPage = ({ allRepository }, createPage) => {
-  console.log(allRepository.nodes);
   return allRepository.nodes.map(repository =>
     createPage({
       path: `${URLify(repository.owner.name)}/${URLify(repository.name)}`,
@@ -205,7 +204,7 @@ const createRepositoryPaginatedPages = ({ allRepository }, createPage) => {
 
   return Array.from({ length: pageCount }).map((_, index) =>
     createPage({
-      path: `/repositories/${index + 1}`,
+      path: index === 0 ? "/" : `/${index + 1}`,
       component: path.resolve(`./src/templates/repositories/index.jsx`),
       context: {
         skip: index * pageSize,
