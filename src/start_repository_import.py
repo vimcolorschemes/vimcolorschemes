@@ -1,22 +1,24 @@
 import json
 import math
+import os
 import re
-import time
 import sys
+import time
 
 from file_helper import find_image_urls
-from request_helper import get
-from print_helper import start_sleeping
-from s3_helper import upload_file
 from github_helper import (
     list_repositories,
     get_rate_limit,
     get_readme_file,
     list_repository_image_urls,
     ITEMS_PER_PAGE,
-    sleep_until_reset
+    sleep_until_reset,
 )
+from print_helper import start_sleeping
+from request_helper import get
+from s3_helper import upload_file
 
+IS_DEV = os.getenv("IS_DEV")
 
 BASE_URL = "https://api.github.com"
 
@@ -27,7 +29,7 @@ def search_repositories(remaining_calls, reset):
     first_page_repositories, total_count = list_repositories()
     repositories.extend(first_page_repositories)
 
-    page_count = math.ceil(total_count / ITEMS_PER_PAGE)
+    page_count = 1 if IS_DEV == "True" else math.ceil(total_count / ITEMS_PER_PAGE)
 
     for page in range(2, page_count + 1):
         if remaining_calls <= 1:
