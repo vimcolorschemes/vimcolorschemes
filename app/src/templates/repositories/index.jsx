@@ -35,17 +35,14 @@ const RepositoriesPage = ({ data, pageContext }) => {
         {repositories.map(repository => {
           const repositoryKey = `${repository.owner.name}/${repository.name}`;
           return (
-            <Link
+            <Card
               key={`repository__${repositoryKey}`}
-              to={`/${URLify(repositoryKey)}`}
-              state={{ pageNumber: currentPage }}
-            >
-              <Card
-                title={repositoryKey}
-                description={repository.description}
-                image={repository.image}
-              />
-            </Link>
+              linkTo={`/${URLify(repositoryKey)}`}
+              linkState={{ pageNumber: currentPage }}
+              title={repositoryKey}
+              description={repository.description}
+              image={repository.image}
+            />
           );
         })}
       </Grid>

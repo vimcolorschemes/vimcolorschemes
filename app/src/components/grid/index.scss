@@ -8,6 +8,6 @@
 
 @include lg {
   .grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
   }
 }
