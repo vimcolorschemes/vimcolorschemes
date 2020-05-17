@@ -16,7 +16,7 @@ from github_helper import (
 )
 from print_helper import start_sleeping
 from request_helper import get
-from s3_helper import upload_file
+from s3_helper import upload_file, empty_bucket
 
 IS_DEV = os.getenv("IS_DEV")
 
@@ -59,6 +59,9 @@ if __name__ == "__main__":
     remaining_calls = remaining_calls - 1
 
     print("Total repo count:", total_count)
+
+    if IS_DEV:
+        empty_bucket()
 
     for index, repository in enumerate(repositories):
         if remaining_calls <= 1:
