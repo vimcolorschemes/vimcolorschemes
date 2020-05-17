@@ -1,8 +1,10 @@
 import React from "react";
+import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
 import Layout from "../../components/layout";
+import Mosaic from "../../components/mosaic";
 import SEO from "../../components/seo";
 
 const RepositoryPage = ({ data, location }) => {
@@ -12,12 +14,20 @@ const RepositoryPage = ({ data, location }) => {
   return (
     <Layout>
       <SEO title={`${repository.owner.name} ${repository.name}`} />
-      <div>
-        <br />
-        <h1>{repository.name}</h1>
-        <br />
+      <div className="repository">
+        <p className="repository__owner-name">{repository.owner.name}</p>
+        <h1 className="repository__name">{repository.name}</h1>
+        {!!repository.featuredImage?.childImageSharp?.fluid && (
+          <Img
+            fluid={repository.featuredImage.childImageSharp.fluid}
+            alt={`${repository.owner.name} ${repository.name}`}
+            className="repository__featured-image"
+          />
+        )}
         <p>{repository.description}</p>
-        <br />
+        {!!repository.images && repository.images.length > 0 && (
+          <Mosaic images={repository.images} />
+        )}
         {repository.githubUrl && (
           <>
             <a
@@ -27,16 +37,12 @@ const RepositoryPage = ({ data, location }) => {
             >
               Github home
             </a>
-            <br />
-            <br />
           </>
         )}
+        <Link to={!!pageNumber && pageNumber > 1 ? `/${pageNumber}` : "/"}>
+          back home
+        </Link>
       </div>
-      <Link to={!!pageNumber && pageNumber > 1 ? `/${pageNumber}` : "/"}>
-        back home
-      </Link>
-      <br />
-      <br />
     </Layout>
   );
 };
@@ -50,6 +56,18 @@ RepositoryPage.propTypes = {
       owner: PropTypes.shape({
         name: PropTypes.string.isRequired,
       }).isRequired,
+      featuredImage: PropTypes.shape({
+        childImageSharp: PropTypes.shape({
+          fluid: PropTypes.shape({}).isRequired,
+        }).isRequired,
+      }),
+      images: PropTypes.arrayOf(
+        PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            fluid: PropTypes.shape({}).isRequired,
+          }).isRequired,
+        }).isRequired,
+      ),
     }),
   }),
 };
@@ -62,6 +80,20 @@ export const query = graphql`
       githubUrl: github_url
       owner {
         name
+      }
+      featuredImage {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      images {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
       }
     }
   }

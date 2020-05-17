@@ -12,7 +12,9 @@ from print_helper import start_sleeping
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
-ITEMS_PER_PAGE = 100
+IS_DEV = os.getenv("IS_DEV")
+
+ITEMS_PER_PAGE = 50 if IS_DEV == "True" else 100
 BASE_URL = "https://api.github.com"
 
 VIM_COLOR_SCHEME_QUERY = "vim color scheme language:vim sort:stars"

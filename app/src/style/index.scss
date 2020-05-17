@@ -19,3 +19,10 @@ body {
 a {
   text-decoration: none;
 }
+
+.button {
+  &--no-style {
+    border: none;
+    padding: 0;
+  }
+}

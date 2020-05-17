@@ -109,7 +109,8 @@ exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
     type Repository implements Node {
-      image: File @link(from: "image___NODE")
+      featuredImage: File @link
+      images: [File]
     }
   `);
 };
@@ -140,12 +141,12 @@ exports.onCreateNode = async ({
     imageUrls !== null &&
     imageUrls.length > 0
   ) {
+    const firstImageUrls = imageUrls.slice(0, 7);
+
+    let index = 0;
     try {
-      let index = 0;
-      let fileNode = null;
-      let imageUrl = null;
-      while (imageUrls.length > index && !fileNode) {
-        imageUrl = imageUrls[index];
+      for (const imageUrl of firstImageUrls) {
+        let fileNode = null;
         if (await urlIsImage(imageUrl)) {
           fileNode = await createRemoteFileNode({
             url: imageUrl,
@@ -156,10 +157,11 @@ exports.onCreateNode = async ({
             store,
           });
         }
-        index++;
-      }
-      if (fileNode) {
-        node.image___NODE = fileNode.id;
+        if (fileNode) {
+          if (index === 0) node.featuredImage = fileNode.id;
+          else node.images = [...(node.images || []), fileNode];
+          index++;
+        }
       }
     } catch (e) {
       console.error(e);

@@ -42,7 +42,7 @@ const RepositoriesPage = ({ data, pageContext }) => {
               title={repository.name}
               subtitle={repository.owner.name}
               description={repository.description}
-              image={repository.image}
+              image={repository.featuredImage}
             />
           );
         })}
@@ -68,7 +68,7 @@ RepositoriesPage.propTypes = {
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
           }).isRequired,
-          image: PropTypes.shape({
+          featuredImage: PropTypes.shape({
             childImageSharp: PropTypes.shape({
               fluid: PropTypes.shape({}).isRequired,
             }).isRequired,
@@ -99,7 +99,7 @@ export const query = graphql`
         owner {
           name
         }
-        image {
+        featuredImage {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
