@@ -13,7 +13,7 @@ import SEO from "../../components/seo";
 import "../../style/index.scss";
 import "./index.scss";
 
-const RepositoriesPage = ({ data, pageContext }) => {
+const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
 
   const { currentPage, pageCount } = pageContext;
@@ -22,7 +22,7 @@ const RepositoriesPage = ({ data, pageContext }) => {
   const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
   const nextPage = (currentPage + 1).toString();
 
-  const currentPath = window.location.pathname || "";
+  const currentPath = location.pathname || "";
   const activeAction =
     Object.values(ACTIONS).find(
       action =>
