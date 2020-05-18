@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
+import { ACTIONS } from "../../constants/actions";
 import { URLify } from "../../utils/string";
 
 import Card from "../../components/card";
@@ -10,6 +11,7 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
 import "../../style/index.scss";
+import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext }) => {
   const { totalCount, repositories } = data?.repositoriesData;
@@ -20,17 +22,33 @@ const RepositoriesPage = ({ data, pageContext }) => {
   const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
   const nextPage = (currentPage + 1).toString();
 
+  const currentPath = window.location.pathname || "";
+  const activeAction =
+    Object.values(ACTIONS).find(
+      action =>
+        currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
+    ) || ACTIONS.DEFAULT;
+
   if (totalCount == null || repositories == null) return;
 
   return (
     <Layout>
       <SEO title="Home" />
       <h1>Hi people</h1>
-      <br />
-      <p>
-        <b>{totalCount}</b> repos
-      </p>
-      <br />
+      <p>{totalCount} repos</p>
+      <div className="actions">
+        {Object.values(ACTIONS).map((action, index) => (
+          <Link
+            key={`${action.route}-${index}`}
+            to={action.route}
+            className={`button actions__button ${
+              activeAction === action ? "actions__button--active" : ""
+            }`}
+          >
+            {action.label}
+          </Link>
+        ))}
+      </div>
       <Grid>
         {repositories.map(repository => {
           const repositoryKey = `${repository.owner.name}/${repository.name}`;
@@ -43,15 +61,20 @@ const RepositoriesPage = ({ data, pageContext }) => {
               subtitle={repository.owner.name}
               description={repository.description}
               image={repository.featuredImage}
+              metaContent={<p>{repository.stargazersCount}</p>}
             />
           );
         })}
       </Grid>
       <br />
       <div style={{ display: "flex" }}>
-        {!isFirstPage && <Link to={`/${prevPage}`}>Previous page</Link>}
+        {!isFirstPage && (
+          <Link to={`${activeAction.route}${prevPage}`}>Previous page</Link>
+        )}
         <p>{currentPage}</p>
-        {!isLastPage && <Link to={`/${nextPage}`}>Next page</Link>}
+        {!isLastPage && (
+          <Link to={`${activeAction.route}${nextPage}`}>Next page</Link>
+        )}
       </div>
     </Layout>
   );
@@ -65,6 +88,7 @@ RepositoriesPage.propTypes = {
         PropTypes.shape({
           name: PropTypes.string.isRequired,
           description: PropTypes.string.isRequired,
+          stargazersCount: PropTypes.number.isRequired,
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
           }).isRequired,
@@ -86,9 +110,14 @@ RepositoriesPage.propTypes = {
 };
 
 export const query = graphql`
-  query($skip: Int!, $limit: Int!) {
+  query(
+    $skip: Int!
+    $limit: Int!
+    $sortField: [RepositoryFieldsEnum]!
+    $sortOrder: [SortOrderEnum]!
+  ) {
     repositoriesData: allRepository(
-      sort: { fields: stargazers_count, order: DESC }
+      sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip
     ) {
@@ -96,6 +125,7 @@ export const query = graphql`
       repositories: nodes {
         name
         description
+        stargazersCount: stargazers_count
         owner {
           name
         }

@@ -204,24 +204,39 @@ const pageSize = 20;
 const createRepositoryPaginatedPages = ({ allRepository }, createPage) => {
   const pageCount = Math.ceil(allRepository.nodes.length / pageSize);
 
-  return Array.from({ length: pageCount }).map((_, index) =>
+  return Array.from({ length: pageCount }).map((_, index) => {
     createPage({
       path: index === 0 ? "/" : `/${index + 1}`,
       component: path.resolve(`./src/templates/repositories/index.jsx`),
       context: {
         skip: index * pageSize,
         limit: pageSize,
+        sortField: ["stargazers_count"],
+        sortOrder: ["DESC"],
         pageCount,
         currentPage: index + 1,
       },
-    }),
-  );
+    });
+    createPage({
+      path: index === 0 ? "/stars/asc/" : `/stars/asc/${index + 1}`,
+      component: path.resolve(`./src/templates/repositories/index.jsx`),
+      context: {
+        skip: index * pageSize,
+        limit: pageSize,
+        sortField: ["stargazers_count"],
+        sortOrder: ["ASC"],
+        pageCount,
+        currentPage: index + 1,
+      },
+    });
+  });
 };
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const { data } = await graphql(allRepositoryQuery);
+
   createRepositoryPage(data, createPage);
   createRepositoryPaginatedPages(data, createPage);
 };
