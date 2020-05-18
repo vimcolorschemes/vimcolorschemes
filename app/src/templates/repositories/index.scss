@@ -1,0 +1,16 @@
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem 0;
+  &__button {
+    margin-right: 1rem;
+    &:last-of-type {
+      margin-right: 0;
+    }
+    &--active {
+      background-color: rebeccapurple;
+      color: #fff;
+    }
+  }
+}
