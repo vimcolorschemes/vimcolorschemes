@@ -14,7 +14,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 IS_DEV = os.getenv("IS_DEV")
 
-ITEMS_PER_PAGE = 50 if IS_DEV == "True" else 100
+ITEMS_PER_PAGE = 25 if IS_DEV == "True" else 100
 BASE_URL = "https://api.github.com"
 
 VIM_COLOR_SCHEME_QUERY = "vim color scheme language:vim sort:stars"
