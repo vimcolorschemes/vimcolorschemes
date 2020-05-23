@@ -27,9 +27,12 @@ AUTH = (
 )
 
 
-def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1):
+def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1, remaining_calls=0, reset=0):
     search_path = "search/repositories"
     base_search_params = {"per_page": ITEMS_PER_PAGE}
+
+    if remaining_calls <= 1:
+        remaining_calls, reset = sleep_until_reset(reset)
 
     data = get(
         f"{BASE_URL}/{search_path}",
@@ -37,10 +40,12 @@ def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1):
         auth=AUTH,
     )
 
+    remaining_calls = remaining_calls - 1
+
     repositories = list(map(map_response_item_to_repository, data["items"]))
     total_count = data["total_count"]
 
-    return repositories, total_count
+    return repositories, total_count, remaining_calls, reset
 
 
 def map_response_item_to_repository(response_item):
@@ -60,23 +65,33 @@ def map_response_item_to_repository(response_item):
     }
 
 
-def list_objects_of_tree(repository, tree_sha=None):
-    if not tree_sha:
-        tree_sha = repository["default_branch"]
-
+def list_objects_of_tree(repository, tree_sha, remaining_calls, reset):
     tree_path = (
         f"repos/{repository['owner']['name']}/{repository['name']}/git/trees/{tree_sha}"
     )
+
+    if remaining_calls <= 1:
+        remaining_calls, reset = sleep_until_reset(reset)
+
     data = get(f"{BASE_URL}/{tree_path}", auth=AUTH)
-    return data["tree"]
+
+    remaining_calls = remaining_calls - 1
+
+    return data["tree"], remaining_calls, reset
 
 
-def get_latest_commit_at(repository):
+def get_latest_commit_at(repository, remaining_calls, reset):
     commits_path = f"repos/{repository['owner']['name']}/{repository['name']}/commits"
+
+    if remaining_calls <= 1:
+        remaining_calls, reset = sleep_until_reset(reset)
+
     commits = get(f"{BASE_URL}/{commits_path}", auth=AUTH)
 
+    remaining_calls = remaining_calls - 1
+
     if not commits or len(commits) == 0:
-        return None
+        return None, remaining_calls, reset
 
     latest_commit_data = commits[0]
 
@@ -85,9 +100,9 @@ def get_latest_commit_at(repository):
         and "author" in latest_commit_data["commit"]
         and "date" in latest_commit_data["commit"]["author"]
     ):
-        return latest_commit_data["commit"]["author"]["date"]
+        return latest_commit_data["commit"]["author"]["date"], remaining_calls, reset
 
-    return None
+    return None, remaining_calls, reset
 
 
 def get_raw_github_image_url(tree_object, repository):
@@ -112,19 +127,17 @@ def find_image_urls_in_tree_objects(tree_objects, repository):
 
 
 def list_repository_image_urls(repository, remaining_calls, reset):
-    tree_objects = list_objects_of_tree(repository)
-
-    if remaining_calls <= 1:
-        remaining_calls = sleep_until_reset(reset)
+    tree_objects, remaining_calls, reset = list_objects_of_tree(
+        repository, repository["default_branch"], remaining_calls, reset
+    )
 
     tree_objects_to_search = tree_objects
 
     for object in tree_objects:
         if object["type"] == "tree":
-            tree_objects_of_tree = list_objects_of_tree(repository, object["sha"])
-
-            if remaining_calls <= 1:
-                remaining_calls = sleep_until_reset(reset)
+            tree_objects_of_tree, remaining_calls, reset = list_objects_of_tree(
+                repository, object["sha"], remaining_calls, reset
+            )
 
             tree_objects_of_tree = list(
                 map(
@@ -137,25 +150,31 @@ def list_repository_image_urls(repository, remaining_calls, reset):
     return (
         find_image_urls_in_tree_objects(tree_objects_to_search, repository),
         remaining_calls,
+        reset,
     )
 
 
-def get_readme_file(repository):
+def get_readme_file(repository, remaining_calls, reset):
     owner_name = repository["owner"]["name"]
     name = repository["name"]
 
     if not owner_name or not name:
-        return ""
+        return "", remaining_calls, reset
 
     get_readme_path = f"repos/{owner_name}/{name}/readme"
     url = f"{BASE_URL}/{get_readme_path}"
 
+    if remaining_calls <= 1:
+        remaining_calls, reset = sleep_until_reset(reset)
+
     data = get(url, auth=AUTH)
 
-    if not data:
-        return ""
+    remaining_calls = remaining_calls - 1
 
-    return decode_file_content(data["content"])
+    if not data:
+        return "", remaining_calls, reset
+
+    return decode_file_content(data["content"]), remaining_calls, reset
 
 
 def get_rate_limit():
@@ -179,4 +198,4 @@ def sleep_until_reset(reset):
         start_sleeping(time_until_reset + 100)
         remaining_calls, reset = get_rate_limit()
 
-    return remaining_calls
+    return remaining_calls, reset

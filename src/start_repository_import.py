@@ -16,7 +16,6 @@ from github_helper import (
     sleep_until_reset,
 )
 from print_helper import start_sleeping
-from request_helper import get
 from s3_helper import upload_file, empty_bucket
 
 IS_DEV = os.getenv("IS_DEV")
@@ -27,21 +26,23 @@ BASE_URL = "https://api.github.com"
 def search_repositories(remaining_calls, reset):
     repositories = []
 
-    first_page_repositories, total_count = list_repositories()
+    first_page_repositories, total_count, remaining_calls, reset = list_repositories(
+        page=1, remaining_calls=remaining_calls, reset=reset
+    )
     repositories.extend(first_page_repositories)
 
     page_count = 1 if IS_DEV == "True" else math.ceil(total_count / ITEMS_PER_PAGE)
 
     for page in range(2, page_count + 1):
-        if remaining_calls <= 1:
-            sleep_until_reset(reset)
-
-        current_page_repositories, total_count = list_repositories(page=page)
+        (
+            current_page_repositories,
+            total_count,
+            remaining_calls,
+            reset,
+        ) = list_repositories(page=page, remaining_calls=remaining_calls, reset=reset)
         repositories.extend(current_page_repositories)
 
-        remaining_calls = remaining_calls - 1
-
-    return repositories, total_count
+    return repositories, total_count, remaining_calls, reset
 
 
 def upload_repository_file(repository):
@@ -53,9 +54,11 @@ if __name__ == "__main__":
     remaining_calls, reset = get_rate_limit()
 
     if remaining_calls <= 1:
-        remaining_calls = sleep_until_reset(reset)
+        remaining_calls, reset = sleep_until_reset(reset)
 
-    repositories, total_count = search_repositories(remaining_calls, reset)
+    repositories, total_count, remaining_calls, reset = search_repositories(
+        remaining_calls, reset
+    )
 
     remaining_calls = remaining_calls - 1
 
@@ -65,19 +68,20 @@ if __name__ == "__main__":
         empty_bucket()
 
     for index, repository in enumerate(repositories):
+        print("Remaining calls:", remaining_calls)
         if remaining_calls <= 1:
-            remaining_calls = sleep_until_reset(reset)
+            remaining_calls, reset = sleep_until_reset(reset)
 
-        repository["readme"] = get_readme_file(repository)
+        repository["readme"], remaining_calls, reset = get_readme_file(
+            repository, remaining_calls, reset
+        )
         readme_image_urls = find_image_urls(repository["readme"])
 
-        remaining_calls = remaining_calls - 1
-        if remaining_calls <= 1:
-            remaining_calls = sleep_until_reset(reset)
+        repository["latest_commit_at"], remaining_calls, reset = get_latest_commit_at(
+            repository, remaining_calls, reset
+        )
 
-        repository["latest_commit_at"] = get_latest_commit_at(repository)
-
-        repository_image_urls, remaining_calls = list_repository_image_urls(
+        repository_image_urls, remaining_calls, reset = list_repository_image_urls(
             repository, remaining_calls, reset
         )
 
