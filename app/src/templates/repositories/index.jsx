@@ -61,7 +61,12 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
               subtitle={repository.owner.name}
               description={repository.description}
               image={repository.featuredImage}
-              metaContent={<p>{repository.stargazersCount}</p>}
+              metaContent={
+                <div>
+                  <p>{repository.stargazersCount}</p>
+                  <p>{repository.latestCommitAt}</p>
+                </div>
+              }
             />
           );
         })}
@@ -89,6 +94,7 @@ RepositoriesPage.propTypes = {
           name: PropTypes.string.isRequired,
           description: PropTypes.string.isRequired,
           stargazersCount: PropTypes.number.isRequired,
+          latestCommitAt: PropTypes.instanceOf(Date).isRequired,
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
           }).isRequired,
@@ -126,6 +132,7 @@ export const query = graphql`
         name
         description
         stargazersCount: stargazers_count
+        latestCommitAt: latest_commit_at
         owner {
           name
         }
