@@ -52,6 +52,7 @@ def map_response_item_to_repository(response_item):
         "github_url": response_item["html_url"],
         "homepage_url": response_item["homepage"],
         "stargazers_count": response_item["stargazers_count"],
+        "pushed_at": response_item["pushed_at"],
         "owner": {
             "name": response_item["owner"]["login"],
             "avatar_url": response_item["owner"]["avatar_url"],
@@ -68,6 +69,25 @@ def list_objects_of_tree(repository, tree_sha=None):
     )
     data = get(f"{BASE_URL}/{tree_path}", auth=AUTH)
     return data["tree"]
+
+
+def get_latest_commit_at(repository):
+    commits_path = f"repos/{repository['owner']['name']}/{repository['name']}/commits"
+    commits = get(f"{BASE_URL}/{commits_path}", auth=AUTH)
+
+    if not commits or len(commits) == 0:
+        return None
+
+    latest_commit_data = commits[0]
+
+    if (
+        "commit" in latest_commit_data
+        and "author" in latest_commit_data["commit"]
+        and "date" in latest_commit_data["commit"]["author"]
+    ):
+        return latest_commit_data["commit"]["author"]["date"]
+
+    return None
 
 
 def get_raw_github_image_url(tree_object, repository):

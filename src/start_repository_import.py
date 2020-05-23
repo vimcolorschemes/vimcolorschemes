@@ -7,11 +7,12 @@ import time
 
 from file_helper import find_image_urls
 from github_helper import (
-    list_repositories,
+    ITEMS_PER_PAGE,
+    get_latest_commit_at,
     get_rate_limit,
     get_readme_file,
+    list_repositories,
     list_repository_image_urls,
-    ITEMS_PER_PAGE,
     sleep_until_reset,
 )
 from print_helper import start_sleeping
@@ -73,6 +74,8 @@ if __name__ == "__main__":
         remaining_calls = remaining_calls - 1
         if remaining_calls <= 1:
             remaining_calls = sleep_until_reset(reset)
+
+        repository["latest_commit_at"] = get_latest_commit_at(repository)
 
         repository_image_urls, remaining_calls = list_repository_image_urls(
             repository, remaining_calls, reset

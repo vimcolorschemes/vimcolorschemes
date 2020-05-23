@@ -229,6 +229,30 @@ const createRepositoryPaginatedPages = ({ allRepository }, createPage) => {
         currentPage: index + 1,
       },
     });
+    createPage({
+      path: index === 0 ? "/updated/asc/" : `/updated/asc/${index + 1}`,
+      component: path.resolve(`./src/templates/repositories/index.jsx`),
+      context: {
+        skip: index * pageSize,
+        limit: pageSize,
+        sortField: ["latest_commit_at"],
+        sortOrder: ["ASC"],
+        pageCount,
+        currentPage: index + 1,
+      },
+    });
+    createPage({
+      path: index === 0 ? "/updated/desc/" : `/updated/desc/${index + 1}`,
+      component: path.resolve(`./src/templates/repositories/index.jsx`),
+      context: {
+        skip: index * pageSize,
+        limit: pageSize,
+        sortField: ["latest_commit_at"],
+        sortOrder: ["DESC"],
+        pageCount,
+        currentPage: index + 1,
+      },
+    });
   });
 };
 
