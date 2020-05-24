@@ -23,26 +23,19 @@ IS_DEV = os.getenv("IS_DEV")
 BASE_URL = "https://api.github.com"
 
 
-def search_repositories(remaining_calls, reset):
+def search_repositories():
     repositories = []
 
-    first_page_repositories, total_count, remaining_calls, reset = list_repositories(
-        page=1, remaining_calls=remaining_calls, reset=reset
-    )
+    first_page_repositories, total_count = list_repositories()
     repositories.extend(first_page_repositories)
 
     page_count = 1 if IS_DEV == "True" else math.ceil(total_count / ITEMS_PER_PAGE)
 
     for page in range(2, page_count + 1):
-        (
-            current_page_repositories,
-            total_count,
-            remaining_calls,
-            reset,
-        ) = list_repositories(page=page, remaining_calls=remaining_calls, reset=reset)
+        (current_page_repositories, total_count) = list_repositories(page=page)
         repositories.extend(current_page_repositories)
 
-    return repositories, total_count, remaining_calls, reset
+    return repositories, total_count
 
 
 def upload_repository_file(repository):
@@ -51,39 +44,19 @@ def upload_repository_file(repository):
 
 
 if __name__ == "__main__":
-    remaining_calls, reset = get_rate_limit()
-
-    if remaining_calls <= 1:
-        remaining_calls, reset = sleep_until_reset(reset)
-
-    repositories, total_count, remaining_calls, reset = search_repositories(
-        remaining_calls, reset
-    )
-
-    remaining_calls = remaining_calls - 1
-
+    repositories, total_count = search_repositories()
     print("Total repo count:", total_count)
 
     if IS_DEV:
         empty_bucket()
 
     for index, repository in enumerate(repositories):
-        print("Remaining calls:", remaining_calls)
-        if remaining_calls <= 1:
-            remaining_calls, reset = sleep_until_reset(reset)
-
-        repository["readme"], remaining_calls, reset = get_readme_file(
-            repository, remaining_calls, reset
-        )
+        repository["readme"] = get_readme_file(repository)
         readme_image_urls = find_image_urls(repository["readme"])
 
-        repository["latest_commit_at"], remaining_calls, reset = get_latest_commit_at(
-            repository, remaining_calls, reset
-        )
+        repository["latest_commit_at"] = get_latest_commit_at(repository)
 
-        repository_image_urls, remaining_calls, reset = list_repository_image_urls(
-            repository, remaining_calls, reset
-        )
+        repository_image_urls = list_repository_image_urls(repository)
 
         repository["image_urls"] = readme_image_urls + repository_image_urls
 

@@ -1,6 +1,7 @@
 import base64
 import os
 import re
+import sys
 import time
 
 from requests.auth import HTTPBasicAuth
@@ -20,32 +21,65 @@ BASE_URL = "https://api.github.com"
 VIM_COLOR_SCHEME_QUERY = "vim color scheme language:vim sort:stars"
 
 
-AUTH = (
+GITHUB_BASIC_AUTH = (
     HTTPBasicAuth(GITHUB_USERNAME, GITHUB_TOKEN)
     if GITHUB_USERNAME and GITHUB_TOKEN
     else None
 )
 
+this = sys.modules[__name__]
+this.remaining_github_api_calls = None
+this.github_api_rate_limit_reset = None
 
-def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1, remaining_calls=0, reset=0):
+
+def get_rate_limit():
+    rate_limit_path = "rate_limit"
+    data = get(f"{BASE_URL}/{rate_limit_path}", auth=GITHUB_BASIC_AUTH)
+
+    this.remaining_github_api_calls = data["resources"]["core"]["remaining"]
+    this.github_api_rate_limit_reset = data["resources"]["core"]["reset"]
+    print("Github API calls left:", this.remaining_github_api_calls)
+
+
+def sleep_until_reset():
+    while this.remaining_github_api_calls <= 1:
+        time_until_reset = this.github_api_rate_limit_reset - int(time.time())
+        start_sleeping(time_until_reset + 100)
+        get_rate_limit()
+
+
+# This calls the basic request helper's function get, but also handles the Github API's rate limit check
+def github_core_get(url, params=None):
+    if (
+        this.remaining_github_api_calls is None
+        or this.github_api_rate_limit_reset is None
+    ):
+        get_rate_limit()
+
+    if this.github_api_rate_limit_reset <= 1:
+        sleep_until_reset()
+
+    data = get(url=url, params=params, auth=GITHUB_BASIC_AUTH)
+
+    this.remaining_github_api_calls = this.remaining_github_api_calls - 1
+    print("Github API calls left:", this.remaining_github_api_calls)
+
+    return data
+
+
+def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1):
     search_path = "search/repositories"
     base_search_params = {"per_page": ITEMS_PER_PAGE}
 
-    if remaining_calls <= 1:
-        remaining_calls, reset = sleep_until_reset(reset)
-
-    data = get(
-        f"{BASE_URL}/{search_path}",
+    data = github_core_get(
+        url=f"{BASE_URL}/{search_path}",
         params={"q": query, "page": page, **base_search_params},
-        auth=AUTH,
     )
-
-    remaining_calls = remaining_calls - 1
 
     repositories = list(map(map_response_item_to_repository, data["items"]))
     total_count = data["total_count"]
 
-    return repositories, total_count, remaining_calls, reset
+    return repositories, total_count
 
 
 def map_response_item_to_repository(response_item):
@@ -65,33 +99,23 @@ def map_response_item_to_repository(response_item):
     }
 
 
-def list_objects_of_tree(repository, tree_sha, remaining_calls, reset):
+def list_objects_of_tree(repository, tree_sha):
     tree_path = (
         f"repos/{repository['owner']['name']}/{repository['name']}/git/trees/{tree_sha}"
     )
 
-    if remaining_calls <= 1:
-        remaining_calls, reset = sleep_until_reset(reset)
+    data = github_core_get(f"{BASE_URL}/{tree_path}")
 
-    data = get(f"{BASE_URL}/{tree_path}", auth=AUTH)
-
-    remaining_calls = remaining_calls - 1
-
-    return data["tree"], remaining_calls, reset
+    return data["tree"]
 
 
-def get_latest_commit_at(repository, remaining_calls, reset):
+def get_latest_commit_at(repository):
     commits_path = f"repos/{repository['owner']['name']}/{repository['name']}/commits"
 
-    if remaining_calls <= 1:
-        remaining_calls, reset = sleep_until_reset(reset)
-
-    commits = get(f"{BASE_URL}/{commits_path}", auth=AUTH)
-
-    remaining_calls = remaining_calls - 1
+    commits = github_core_get(f"{BASE_URL}/{commits_path}")
 
     if not commits or len(commits) == 0:
-        return None, remaining_calls, reset
+        return None
 
     latest_commit_data = commits[0]
 
@@ -100,9 +124,9 @@ def get_latest_commit_at(repository, remaining_calls, reset):
         and "author" in latest_commit_data["commit"]
         and "date" in latest_commit_data["commit"]["author"]
     ):
-        return latest_commit_data["commit"]["author"]["date"], remaining_calls, reset
+        return latest_commit_data["commit"]["author"]["date"]
 
-    return None, remaining_calls, reset
+    return None
 
 
 def get_raw_github_image_url(tree_object, repository):
@@ -113,6 +137,9 @@ def get_raw_github_image_url(tree_object, repository):
     ):
         parent_path = f"{tree_object['parent_tree_object']['path']}/"
     image_path = f"{parent_path}{tree_object['path']}"
+
+    # TODO Investigate a better way to come up with this url
+    # without making an additional call
     return f"https://raw.githubusercontent.com/{repository['owner']['name']}/{repository['name']}/{repository['default_branch']}/{image_path}"
 
 
@@ -126,18 +153,14 @@ def find_image_urls_in_tree_objects(tree_objects, repository):
     return image_urls
 
 
-def list_repository_image_urls(repository, remaining_calls, reset):
-    tree_objects, remaining_calls, reset = list_objects_of_tree(
-        repository, repository["default_branch"], remaining_calls, reset
-    )
+def list_repository_image_urls(repository):
+    tree_objects = list_objects_of_tree(repository, repository["default_branch"])
 
     tree_objects_to_search = tree_objects
 
     for object in tree_objects:
         if object["type"] == "tree":
-            tree_objects_of_tree, remaining_calls, reset = list_objects_of_tree(
-                repository, object["sha"], remaining_calls, reset
-            )
+            tree_objects_of_tree = list_objects_of_tree(repository, object["sha"])
 
             tree_objects_of_tree = list(
                 map(
@@ -147,55 +170,22 @@ def list_repository_image_urls(repository, remaining_calls, reset):
             )
             tree_objects_to_search.extend(tree_objects_of_tree)
 
-    return (
-        find_image_urls_in_tree_objects(tree_objects_to_search, repository),
-        remaining_calls,
-        reset,
-    )
+    return (find_image_urls_in_tree_objects(tree_objects_to_search, repository),)
 
 
-def get_readme_file(repository, remaining_calls, reset):
+def get_readme_file(repository):
     owner_name = repository["owner"]["name"]
     name = repository["name"]
 
     if not owner_name or not name:
-        return "", remaining_calls, reset
+        return ""
 
-    get_readme_path = f"repos/{owner_name}/{name}/readme"
+    get_readme_path = f"repos/{repository['owner']['name']}/{repository['name']}/readme"
     url = f"{BASE_URL}/{get_readme_path}"
 
-    if remaining_calls <= 1:
-        remaining_calls, reset = sleep_until_reset(reset)
+    readme_data = github_core_get(url)
 
-    data = get(url, auth=AUTH)
+    if not readme_data:
+        return ""
 
-    remaining_calls = remaining_calls - 1
-
-    if not data:
-        return "", remaining_calls, reset
-
-    return decode_file_content(data["content"]), remaining_calls, reset
-
-
-def get_rate_limit():
-    rate_limit_path = "rate_limit"
-    data = get(f"{BASE_URL}/{rate_limit_path}", auth=AUTH)
-
-    remaining_calls = data["resources"]["core"]["remaining"]
-    reset = data["resources"]["core"]["reset"]
-
-    print("Remaining calls for Github API:", remaining_calls)
-
-    return remaining_calls, reset
-
-
-def sleep_until_reset(reset):
-    remaining_calls = 1
-
-    while remaining_calls <= 1:
-        now = int(time.time())
-        time_until_reset = reset - now
-        start_sleeping(time_until_reset + 100)
-        remaining_calls, reset = get_rate_limit()
-
-    return remaining_calls, reset
+    return decode_file_content(readme_data["content"])
