@@ -14,19 +14,12 @@ if USE_CACHE:
 
 def get(url, params={}, auth=None):
     try:
-        print("\nRequest for url:", url, "...")
         response = requests.get(url, params=params, timeout=TIMEOUT, auth=auth)
-        print("Response status:", response.status_code)
         response.raise_for_status()
-
         used_cache = False
         if USE_CACHE:
             used_cache = response.from_cache
-            print(f"Request used cache: {used_cache}")
-
         data = response.json()
-        print(f"{colors.SUCCESS}Successfully fetched data{colors.NORMAL}\n",)
-
         return data, used_cache
     except requests.exceptions.HTTPError as errh:
         if response.status_code == 404:

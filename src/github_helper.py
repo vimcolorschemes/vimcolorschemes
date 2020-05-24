@@ -1,4 +1,3 @@
-import base64
 import math
 import os
 import re
@@ -8,7 +7,7 @@ import time
 from requests.auth import HTTPBasicAuth
 
 from file_helper import decode_file_content
-from print_helper import start_sleeping
+from print_helper import start_sleeping, colors
 from request_helper import get
 
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
@@ -35,36 +34,42 @@ this.github_api_rate_limit_reset = None
 
 
 def get_rate_limit():
-    rate_limit_path = "rate_limit"
-    data, _used_cache = get(f"{BASE_URL}/{rate_limit_path}", auth=GITHUB_BASIC_AUTH)
-
+    data, used_cache = get(f"{BASE_URL}/rate_limit", auth=GITHUB_BASIC_AUTH)
+    print(f"\n{colors.INFO}GET{colors.NORMAL} rate limit (used_cache={used_cache})")
     this.remaining_github_api_calls = data["resources"]["core"]["remaining"]
     this.github_api_rate_limit_reset = data["resources"]["core"]["reset"]
-    print("Github API calls left:", this.remaining_github_api_calls)
+    print(f"{this.remaining_github_api_calls} remaining calls for Github API\n")
 
 
 def sleep_until_reset():
     while this.remaining_github_api_calls <= 1:
-        time_until_reset = this.github_api_rate_limit_reset - int(time.time())
-        start_sleeping(time_until_reset + 100)
+        now = int(time.time())
+        time_until_reset = max(0, this.github_api_rate_limit_reset - now)
+        safety_buffer = 100
+        sleep_time = time_until_reset + safety_buffer
+        print(
+            f"\n{colors.WARNING}Github API's rate limit reached. Sleeping until for {sleep_time} seconds.{colors.NORMAL}"
+        )
+        start_sleeping(sleep_time)
         get_rate_limit()
 
 
 # This calls the basic request helper's function get, but also handles the Github API's rate limit check
-def github_core_get(url, params=None):
+def github_core_get(url, params=None, call_name=None):
     if (
         this.remaining_github_api_calls is None
         or this.github_api_rate_limit_reset is None
     ):
         get_rate_limit()
 
-    if this.github_api_rate_limit_reset <= 1:
+    if this.remaining_github_api_calls <= 1:
         sleep_until_reset()
 
     data, used_cache = get(url=url, params=params, auth=GITHUB_BASIC_AUTH)
+    if call_name:
+        print(f"{colors.INFO}GET{colors.NORMAL} {call_name} (used_cache={used_cache})")
     if not used_cache:
         this.remaining_github_api_calls = this.remaining_github_api_calls - 1
-    print("Github API calls left:", this.remaining_github_api_calls)
 
     return data
 
@@ -81,6 +86,7 @@ def list_repositories_of_page(query=VIM_COLOR_SCHEME_QUERY, page=1):
     data = github_core_get(
         url=f"{BASE_URL}/{search_path}",
         params={"q": query, "page": page, **base_search_params},
+        call_name=f"repository list page {page}",
     )
 
     repositories = list(map(map_response_item_to_repository, data["items"]))
@@ -102,15 +108,15 @@ def search_repositories():
         if REPOSITORY_LIMIT is not None
         else total_count
     )
-    print(f"{fetched_repository_count} repositories will be fetched")
+    print(f"\n{fetched_repository_count} repositories will be fetched\n")
 
     page_count = math.ceil(fetched_repository_count / ITEMS_PER_PAGE)
 
     for page in range(2, page_count + 1):
-        (current_page_repositories, total_count) = list_repositories_of_page(page=page)
+        current_page_repositories, _total_count = list_repositories_of_page(page=page)
         repositories.extend(current_page_repositories)
 
-    return repositories, total_count
+    return repositories
 
 
 # Keeps only the stuff we need for the app
@@ -131,20 +137,15 @@ def map_response_item_to_repository(response_item):
     }
 
 
-def list_objects_of_tree(repository, tree_sha):
-    tree_path = (
-        f"repos/{repository['owner']['name']}/{repository['name']}/git/trees/{tree_sha}"
-    )
-
-    data = github_core_get(f"{BASE_URL}/{tree_path}")
-
-    return data["tree"]
-
-
 def get_latest_commit_at(repository):
-    commits_path = f"repos/{repository['owner']['name']}/{repository['name']}/commits"
+    owner_name = repository["owner"]["name"]
+    name = repository["name"]
 
-    commits = github_core_get(f"{BASE_URL}/{commits_path}")
+    commits_path = f"repos/{owner_name}/{name}/commits"
+
+    commits = github_core_get(
+        f"{BASE_URL}/{commits_path}", call_name=f"{owner_name}/{name} latest commit at"
+    )
 
     if not commits or len(commits) == 0:
         return None
@@ -185,18 +186,39 @@ def find_image_urls_in_tree_objects(tree_objects, repository):
     return image_urls
 
 
+def list_objects_of_tree(repository, tree_sha, path):
+    owner_name = repository["owner"]["name"]
+    name = repository["name"]
+
+    tree_path = (
+        f"repos/{repository['owner']['name']}/{repository['name']}/git/trees/{tree_sha}"
+    )
+    data = github_core_get(
+        f"{BASE_URL}/{tree_path}",
+        call_name=f"{owner_name}/{name} objects of tree {path}",
+    )
+    return data["tree"]
+
+
 def list_repository_image_urls(repository):
-    tree_objects = list_objects_of_tree(repository, repository["default_branch"])
+    tree_objects = list_objects_of_tree(
+        repository, repository["default_branch"], repository["default_branch"]
+    )
 
     tree_objects_to_search = tree_objects
 
-    for object in tree_objects:
-        if object["type"] == "tree":
-            tree_objects_of_tree = list_objects_of_tree(repository, object["sha"])
+    for tree_object in tree_objects:
+        if tree_object["type"] == "tree":
+            tree_objects_of_tree = list_objects_of_tree(
+                repository, tree_object["sha"], tree_object["path"]
+            )
 
             tree_objects_of_tree = list(
                 map(
-                    lambda child_object: {**child_object, "parent_tree_object": object},
+                    lambda child_object: {
+                        **child_object,
+                        "parent_tree_object": tree_object,
+                    },
                     tree_objects_of_tree,
                 )
             )
@@ -212,10 +234,11 @@ def get_readme_file(repository):
     if not owner_name or not name:
         return ""
 
-    get_readme_path = f"repos/{repository['owner']['name']}/{repository['name']}/readme"
-    url = f"{BASE_URL}/{get_readme_path}"
+    get_readme_path = f"repos/{owner_name}/{name}/readme"
 
-    readme_data = github_core_get(url)
+    readme_data = github_core_get(
+        f"{BASE_URL}/{get_readme_path}", call_name=f"{owner_name}/{name} readme"
+    )
 
     if not readme_data:
         return ""

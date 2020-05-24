@@ -8,13 +8,17 @@ from github_helper import (
     list_repository_image_urls,
     search_repositories,
 )
+from print_helper import colors
 from s3_helper import upload_file
 
+
 if __name__ == "__main__":
-    repositories, total_count = search_repositories()
-    print("Total repo count:", total_count)
+    repositories = search_repositories()
 
     for index, repository in enumerate(repositories):
+        print(
+            f"{colors.INFO}# {repository['owner']['name']}/{repository['name']}{colors.NORMAL}"
+        )
         repository["readme"] = get_readme_file(repository)
         readme_image_urls = find_image_urls(repository["readme"])
 
