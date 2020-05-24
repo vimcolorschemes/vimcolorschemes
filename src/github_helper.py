@@ -1,4 +1,5 @@
 import base64
+import math
 import os
 import re
 import sys
@@ -6,9 +7,9 @@ import time
 
 from requests.auth import HTTPBasicAuth
 
-from request_helper import get
 from file_helper import decode_file_content
 from print_helper import start_sleeping
+from request_helper import get
 
 GITHUB_USERNAME = os.getenv("GITHUB_USERNAME")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -25,6 +26,9 @@ GITHUB_BASIC_AUTH = (
     else None
 )
 
+REPOSITORY_LIMIT = os.getenv("REPOSITORY_LIMIT")
+REPOSITORY_LIMIT = int(REPOSITORY_LIMIT) if REPOSITORY_LIMIT is not None else None
+
 this = sys.modules[__name__]
 this.remaining_github_api_calls = None
 this.github_api_rate_limit_reset = None
@@ -32,7 +36,7 @@ this.github_api_rate_limit_reset = None
 
 def get_rate_limit():
     rate_limit_path = "rate_limit"
-    data = get(f"{BASE_URL}/{rate_limit_path}", auth=GITHUB_BASIC_AUTH)
+    data, _used_cache = get(f"{BASE_URL}/{rate_limit_path}", auth=GITHUB_BASIC_AUTH)
 
     this.remaining_github_api_calls = data["resources"]["core"]["remaining"]
     this.github_api_rate_limit_reset = data["resources"]["core"]["reset"]
@@ -57,17 +61,22 @@ def github_core_get(url, params=None):
     if this.github_api_rate_limit_reset <= 1:
         sleep_until_reset()
 
-    data = get(url=url, params=params, auth=GITHUB_BASIC_AUTH)
-
-    this.remaining_github_api_calls = this.remaining_github_api_calls - 1
+    data, used_cache = get(url=url, params=params, auth=GITHUB_BASIC_AUTH)
+    if not used_cache:
+        this.remaining_github_api_calls = this.remaining_github_api_calls - 1
     print("Github API calls left:", this.remaining_github_api_calls)
 
     return data
 
 
-def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1):
+def list_repositories_of_page(query=VIM_COLOR_SCHEME_QUERY, page=1):
+    items_per_page = (
+        min(REPOSITORY_LIMIT, ITEMS_PER_PAGE)
+        if REPOSITORY_LIMIT is not None
+        else ITEMS_PER_PAGE
+    )
     search_path = "search/repositories"
-    base_search_params = {"per_page": ITEMS_PER_PAGE}
+    base_search_params = {"per_page": items_per_page}
 
     data = github_core_get(
         url=f"{BASE_URL}/{search_path}",
@@ -80,6 +89,31 @@ def list_repositories(query=VIM_COLOR_SCHEME_QUERY, page=1):
     return repositories, total_count
 
 
+# Fetches github repositories with a defined query.
+# If more than 100 repositories, it will search all pages one by one.
+def search_repositories():
+    repositories = []
+
+    first_page_repositories, total_count = list_repositories_of_page()
+    repositories.extend(first_page_repositories)
+
+    fetched_repository_count = (
+        min(REPOSITORY_LIMIT, total_count)
+        if REPOSITORY_LIMIT is not None
+        else total_count
+    )
+    print(f"{fetched_repository_count} repositories will be fetched")
+
+    page_count = math.ceil(fetched_repository_count / ITEMS_PER_PAGE)
+
+    for page in range(2, page_count + 1):
+        (current_page_repositories, total_count) = list_repositories_of_page(page=page)
+        repositories.extend(current_page_repositories)
+
+    return repositories, total_count
+
+
+# Keeps only the stuff we need for the app
 def map_response_item_to_repository(response_item):
     return {
         "id": response_item["id"],
@@ -168,7 +202,7 @@ def list_repository_image_urls(repository):
             )
             tree_objects_to_search.extend(tree_objects_of_tree)
 
-    return (find_image_urls_in_tree_objects(tree_objects_to_search, repository),)
+    return find_image_urls_in_tree_objects(tree_objects_to_search, repository)
 
 
 def get_readme_file(repository):
