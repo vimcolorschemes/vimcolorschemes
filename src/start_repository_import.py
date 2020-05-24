@@ -18,8 +18,6 @@ from github_helper import (
 from print_helper import start_sleeping
 from s3_helper import upload_file, empty_bucket
 
-IS_DEV = os.getenv("IS_DEV")
-
 BASE_URL = "https://api.github.com"
 
 
@@ -29,7 +27,7 @@ def search_repositories():
     first_page_repositories, total_count = list_repositories()
     repositories.extend(first_page_repositories)
 
-    page_count = 1 if IS_DEV == "True" else math.ceil(total_count / ITEMS_PER_PAGE)
+    page_count = math.ceil(total_count / ITEMS_PER_PAGE)
 
     for page in range(2, page_count + 1):
         (current_page_repositories, total_count) = list_repositories(page=page)
@@ -46,9 +44,6 @@ def upload_repository_file(repository):
 if __name__ == "__main__":
     repositories, total_count = search_repositories()
     print("Total repo count:", total_count)
-
-    if IS_DEV:
-        empty_bucket()
 
     for index, repository in enumerate(repositories):
         repository["readme"] = get_readme_file(repository)
