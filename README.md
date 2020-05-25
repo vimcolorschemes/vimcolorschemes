@@ -57,13 +57,26 @@ Create a `.env` file at project root and put them in there like this:
 GITHUB_USERNAME="reobin"
 export GITHUB_USERNAME
 
-GITHUB_TOKEN="fake_token_blab_bla"
+GITHUB_TOKEN="fake_token"
 export GITHUB_TOKEN
+
+REPOSITORY_LIMIT=25
+export REPOSITORY_LIMIT
+
+USE_CACHE=1
+export USE_CACHE
+
+CACHE_EXPIRE_AFTER=3600
+export CACHE_EXPIRE_AFTER
 ```
+>Note: The non-Github stuff is a set of recommended values to make development effective. They can be altered with.
+
 Then source it:
 ```shell
 source .env
 ```
+
+Start the script with `python3 src/start_repository_import.py`
 
 
 ### Work on the app
