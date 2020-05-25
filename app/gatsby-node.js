@@ -7,16 +7,18 @@ const {
   awsSecretAccessKey,
   awsS3BucketName,
   awsS3DirectoryName,
+  isProduction,
 } = process.env;
 
-const AWS = require("aws-sdk");
-AWS.config.update({
-  accessKeyId: awsAccessKeyId,
-  secretAccessKey: awsSecretAccessKey,
-});
-const s3 = new AWS.S3();
+const AWS = isProduction ? require("aws-sdk") : null;
+if (AWS)
+  AWS.config.update({
+    accessKeyId: awsAccessKeyId,
+    secretAccessKey: awsSecretAccessKey,
+  });
+const s3 = isProduction ? new AWS.S3() : null;
 
-const listRepositories = async () => {
+const listRemoteRepositories = async () => {
   const data = await s3
     .listObjects({
       Bucket: awsS3BucketName,
@@ -41,10 +43,37 @@ const listRepositories = async () => {
     }
   });
 
-  const repositories = (await Promise.all(repositoryPromises)).filter(
-    repository => !!repository,
-  );
+  const repositories =
+    (await Promise.all(repositoryPromises)).filter(
+      repository => !!repository,
+    ) || [];
   return repositories;
+};
+
+const listLocalRepositories = () => {
+  const fs = require("fs");
+  const directory = "../data/";
+
+  const fileNames = fs.readdirSync(directory) || [];
+
+  const repositories = fileNames
+    .filter(fileName => fileName.endsWith(".json"))
+    .map(fileName => {
+      const fileContent = fs.readFileSync(`${directory}${fileName}`, "utf8");
+      return JSON.parse(fileContent);
+    });
+
+  return repositories;
+};
+
+const listRepositories = async () => {
+  if (isProduction) {
+    console.log("Fetching remote repositories...");
+    return listRemoteRepositories();
+  } else {
+    console.log("Fetching local repositories...");
+    return listLocalRepositories();
+  }
 };
 
 exports.sourceNodes = async ({

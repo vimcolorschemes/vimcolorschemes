@@ -13,7 +13,7 @@ if USE_CACHE:
     requests_cache.install_cache(
         "github_cache",
         backend="sqlite",
-        expire_after=CACHE_EXPIRE_AFTER if CACHE_EXPIRE_AFTER is not None else 3600,
+        expire_after=int(CACHE_EXPIRE_AFTER) if CACHE_EXPIRE_AFTER is not None else 3600,
     )
 
 

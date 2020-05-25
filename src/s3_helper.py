@@ -13,7 +13,7 @@ s3 = session.resource("s3")
 
 def empty_bucket():
     try:
-        print(f"\n{colors.INFO}DELETE{colors.NORMAL} content of {S3_BUCKET_NAME} s3 bucket...")
+        print(f"{colors.INFO}DELETE{colors.NORMAL} content of {S3_BUCKET_NAME} s3 bucket...")
         bucket = s3.Bucket(S3_BUCKET_NAME)
         bucket.objects.all().delete()
         print("")
