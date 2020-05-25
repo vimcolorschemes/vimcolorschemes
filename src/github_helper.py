@@ -200,6 +200,15 @@ def list_objects_of_tree(repository, tree_sha, path):
     return data["tree"]
 
 
+def get_tree_path(tree_object):
+    path = tree_object["path"]
+    current_tree = tree_object
+    while "parent_tree_object" in current_tree:
+        current_tree = current_tree["parent_tree_object"]
+        path = f"{current_tree['path']}/{path}"
+    return path
+
+
 def list_repository_image_urls(repository):
     tree_objects = list_objects_of_tree(
         repository, repository["default_branch"], repository["default_branch"]
@@ -210,7 +219,7 @@ def list_repository_image_urls(repository):
     for tree_object in tree_objects:
         if tree_object["type"] == "tree":
             tree_objects_of_tree = list_objects_of_tree(
-                repository, tree_object["sha"], tree_object["path"]
+                repository, tree_object["sha"], get_tree_path(tree_object)
             )
 
             tree_objects_of_tree = list(
