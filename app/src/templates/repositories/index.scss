@@ -3,14 +3,20 @@
   display: flex;
   justify-content: flex-end;
   margin: 1rem 0;
-  &__button {
-    margin-right: 1rem;
-    &:last-of-type {
-      margin-right: 0;
-    }
-    &--active {
-      background-color: rebeccapurple;
-      color: #fff;
-    }
+}
+
+.actions__button {
+  border-right: 1px solid black;
+  padding: 0 1rem;
+  &:last-of-type {
+    border-right: none;
+  }
+  &:hover,
+  &:focus {
+    background-color: grey;
+  }
+  &--active {
+    background-color: black;
+    color: white;
   }
 }
