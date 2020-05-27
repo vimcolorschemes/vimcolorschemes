@@ -41,7 +41,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           <Link
             key={`${action.route}-${index}`}
             to={action.route}
-            className={`button actions__button ${
+            className={`actions__button ${
               activeAction === action ? "actions__button--active" : ""
             }`}
           >
@@ -64,7 +64,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
               metaContent={
                 <div>
                   <p>{repository.stargazersCount}</p>
-                  <p>{repository.latestCommitAt}</p>
+                  <p>created at: {repository.createdAt}</p>
+                  <p>latest commit at: {repository.latestCommitAt}</p>
                 </div>
               }
             />
@@ -95,6 +96,7 @@ RepositoriesPage.propTypes = {
           description: PropTypes.string.isRequired,
           stargazersCount: PropTypes.number.isRequired,
           latestCommitAt: PropTypes.instanceOf(Date).isRequired,
+          createdAt: PropTypes.instanceOf(Date).isRequired,
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
           }).isRequired,
@@ -133,6 +135,7 @@ export const query = graphql`
         description
         stargazersCount: stargazers_count
         latestCommitAt: latest_commit_at
+        createdAt: created_at
         owner {
           name
         }

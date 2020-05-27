@@ -130,6 +130,7 @@ def map_response_item_to_repository(response_item):
         "homepage_url": response_item["homepage"],
         "stargazers_count": response_item["stargazers_count"],
         "pushed_at": response_item["pushed_at"],
+        "created_at": response_item["created_at"],
         "owner": {
             "name": response_item["owner"]["login"],
             "avatar_url": response_item["owner"]["avatar_url"],
@@ -178,10 +179,10 @@ def get_raw_github_image_url(tree_object, repository):
 
 def find_image_urls_in_tree_objects(tree_objects, repository):
     image_urls = []
-    for object in tree_objects:
+    for tree_object in tree_objects:
         basic_image_regex = r"^.*\.(png|jpe?g|webp)$"
-        if re.match(basic_image_regex, object["path"]):
-            image_url = get_raw_github_image_url(object, repository)
+        if re.match(basic_image_regex, tree_object["path"]):
+            image_url = get_raw_github_image_url(tree_object, repository)
             image_urls.append(image_url)
     return image_urls
 
@@ -209,14 +210,23 @@ def get_tree_path(tree_object):
     return path
 
 
-def list_repository_image_urls(repository):
+def list_repository_image_urls(repository, readme_images_count, max_image_count):
+    if readme_images_count >= max_image_count:
+        return []
+
+    image_count_to_find = max_image_count - readme_images_count
+    image_urls = []
+
     tree_objects = list_objects_of_tree(
         repository, repository["default_branch"], repository["default_branch"]
     )
 
-    tree_objects_to_search = tree_objects
+    image_urls.extend(find_image_urls_in_tree_objects(tree_objects, repository))
 
     for tree_object in tree_objects:
+        if len(image_urls) >= max_image_count:
+            break
+
         if tree_object["type"] == "tree":
             tree_objects_of_tree = list_objects_of_tree(
                 repository, tree_object["sha"], get_tree_path(tree_object)
@@ -231,9 +241,12 @@ def list_repository_image_urls(repository):
                     tree_objects_of_tree,
                 )
             )
-            tree_objects_to_search.extend(tree_objects_of_tree)
 
-    return find_image_urls_in_tree_objects(tree_objects_to_search, repository)
+            image_urls.extend(
+                find_image_urls_in_tree_objects(tree_objects_of_tree, repository)
+            )
+
+    return image_urls[:max_image_count]
 
 
 def get_readme_file(repository):

@@ -170,11 +170,9 @@ exports.onCreateNode = async ({
     imageUrls !== null &&
     imageUrls.length > 0
   ) {
-    const firstImageUrls = imageUrls.slice(0, 7);
-
     let index = 0;
     try {
-      for (const imageUrl of firstImageUrls) {
+      for (const imageUrl of imageUrls) {
         let fileNode = null;
         if (await urlIsImage(imageUrl)) {
           fileNode = await createRemoteFileNode({
@@ -233,54 +231,36 @@ const pageSize = 20;
 const createRepositoryPaginatedPages = ({ allRepository }, createPage) => {
   const pageCount = Math.ceil(allRepository.nodes.length / pageSize);
 
+  const sortOrders = [
+    { value: "DESC", path: "desc/", isDefault: true },
+    { value: "ASC", path: "asc/" },
+  ];
+  const sortableFields = [
+    { fieldName: "stargazers_count", path: "stars/", isDefault: true },
+    { fieldName: "latest_commit_at", path: "updated/" },
+    { fieldName: "created_at", path: "created/" },
+  ];
   return Array.from({ length: pageCount }).map((_, index) => {
-    createPage({
-      path: index === 0 ? "/" : `/${index + 1}`,
-      component: path.resolve(`./src/templates/repositories/index.jsx`),
-      context: {
-        skip: index * pageSize,
-        limit: pageSize,
-        sortField: ["stargazers_count"],
-        sortOrder: ["DESC"],
-        pageCount,
-        currentPage: index + 1,
-      },
-    });
-    createPage({
-      path: index === 0 ? "/stars/asc/" : `/stars/asc/${index + 1}`,
-      component: path.resolve(`./src/templates/repositories/index.jsx`),
-      context: {
-        skip: index * pageSize,
-        limit: pageSize,
-        sortField: ["stargazers_count"],
-        sortOrder: ["ASC"],
-        pageCount,
-        currentPage: index + 1,
-      },
-    });
-    createPage({
-      path: index === 0 ? "/updated/asc/" : `/updated/asc/${index + 1}`,
-      component: path.resolve(`./src/templates/repositories/index.jsx`),
-      context: {
-        skip: index * pageSize,
-        limit: pageSize,
-        sortField: ["latest_commit_at"],
-        sortOrder: ["ASC"],
-        pageCount,
-        currentPage: index + 1,
-      },
-    });
-    createPage({
-      path: index === 0 ? "/updated/desc/" : `/updated/desc/${index + 1}`,
-      component: path.resolve(`./src/templates/repositories/index.jsx`),
-      context: {
-        skip: index * pageSize,
-        limit: pageSize,
-        sortField: ["latest_commit_at"],
-        sortOrder: ["DESC"],
-        pageCount,
-        currentPage: index + 1,
-      },
+    sortableFields.forEach(field => {
+      sortOrders.forEach(sortOrder => {
+        const sortPath =
+          field.isDefault && sortOrder.isDefault
+            ? ""
+            : `${field.path}${sortOrder.path}`;
+
+        createPage({
+          path: index === 0 ? `/${sortPath}` : `/${sortPath}${index + 1}`,
+          component: path.resolve(`./src/templates/repositories/index.jsx`),
+          context: {
+            skip: index * pageSize,
+            limit: pageSize,
+            sortField: [field.fieldName],
+            sortOrder: [sortOrder.value],
+            pageCount,
+            currentPage: index + 1,
+          },
+        });
+      });
     });
   });
 };

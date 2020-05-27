@@ -1,18 +1,26 @@
 export const ACTIONS = {
   DEFAULT: {
-    label: "Sort by stars DESC",
+    label: "Most starred",
     route: "/",
   },
   SORT_BY_STARS_ASC: {
-    label: "Sort by stars ASC",
+    label: "Least starred",
     route: "/stars/asc/",
   },
   SORT_BY_UPDATED_ASC: {
-    label: "Sort by updated ASC",
+    label: "Updated least recently",
     route: "/updated/asc/",
   },
   SORT_BY_UPDATED_DESC: {
-    label: "Sort by updated DESC",
+    label: "Updated most recently",
     route: "/updated/desc/",
+  },
+  SORT_BY_CREATED_ASC: {
+    label: "Oldest",
+    route: "/created/asc/",
+  },
+  SORT_BY_CREATED_DESC: {
+    label: "Newest",
+    route: "/created/desc/",
   },
 };
