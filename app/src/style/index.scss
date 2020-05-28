@@ -1,4 +1,3 @@
-@import "./reset.css";
 @import "./constants.scss";
 @import "./mixins/breakpoints";
 
@@ -16,13 +15,20 @@ body {
   }
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-}
-
 a {
   text-decoration: none;
+}
+
+.heading-1 {
+  color: #000;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.heading-2 {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .button {

@@ -10,7 +10,6 @@ import Grid from "../../components/grid";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
-import "../../style/index.scss";
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
