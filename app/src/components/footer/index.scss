@@ -1,0 +1,9 @@
+@import "../../style/mixins/index";
+
+.footer {
+  background-color: rebeccapurple;
+  @include container-layout;
+  color: white;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}

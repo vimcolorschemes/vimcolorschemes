@@ -1,6 +1,26 @@
 @import "../../style/mixins/index";
 
-.main-container {
+html,
+body,
+body,
+#___gatsby,
+#___gatsby > div {
+  height: 100%;
+}
+
+#___gatsby > div {
+  display: flex;
+  flex-direction: column;
+  & > * {
+    flex-shrink: 0;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
   @include container-layout;
-  padding-bottom: 1.45rem;
+  flex: 1;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

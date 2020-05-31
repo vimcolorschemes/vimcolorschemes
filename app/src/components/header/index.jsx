@@ -7,11 +7,16 @@ import "./index.scss";
 const Header = ({ siteTitle }) => (
   <header className="header">
     <div className="header__content">
-      <h1 className="header__title">
-        <Link to="/" className="header__title-link">
-          {siteTitle}
-        </Link>
-      </h1>
+      <Link to="/" className="header__title">
+        {siteTitle}
+      </Link>
+      <nav>
+        <ul>
+          <Link to="/about/" className="header__link">
+            About vimcs
+          </Link>
+        </ul>
+      </nav>
     </div>
   </header>
 );

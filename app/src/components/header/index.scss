@@ -3,19 +3,21 @@
 
 .header {
   background: rebeccapurple;
-  margin-bottom: 1.45rem;
   height: 5rem;
   display: flex;
   align-items: center;
   &__content {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
     @include container-layout;
   }
   &__title {
     margin: 0;
-  }
-  &__title-link {
     color: #fff;
     text-decoration: none;
+  }
+  &__link {
+    color: #fff;
   }
 }

@@ -8,19 +8,15 @@ import { URLify } from "../../utils/string";
 import Card from "../../components/card";
 import Grid from "../../components/grid";
 import Layout from "../../components/layout";
+import Pagination from "../../components/pagination";
 import SEO from "../../components/seo";
 
-import "../../style/index.scss";
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
 
   const { currentPage, pageCount } = pageContext;
-  const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === pageCount;
-  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -73,15 +69,11 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         })}
       </Grid>
       <br />
-      <div style={{ display: "flex" }}>
-        {!isFirstPage && (
-          <Link to={`${activeAction.route}${prevPage}`}>Previous page</Link>
-        )}
-        <p>{currentPage}</p>
-        {!isLastPage && (
-          <Link to={`${activeAction.route}${nextPage}`}>Next page</Link>
-        )}
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        pageCount={pageCount}
+        activeActionRoute={activeAction.route}
+      />
     </Layout>
   );
 };
@@ -95,8 +87,8 @@ RepositoriesPage.propTypes = {
           name: PropTypes.string.isRequired,
           description: PropTypes.string.isRequired,
           stargazersCount: PropTypes.number.isRequired,
-          latestCommitAt: PropTypes.instanceOf(Date).isRequired,
-          createdAt: PropTypes.instanceOf(Date).isRequired,
+          latestCommitAt: PropTypes.string.isRequired,
+          createdAt: PropTypes.string.isRequired,
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
           }).isRequired,
