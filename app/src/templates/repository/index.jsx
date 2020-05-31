@@ -13,7 +13,7 @@ import ZoomableImage from "../../components/zoomableImage";
 import "./indes.scss";
 
 const RepositoryPage = ({ data, location }) => {
-  const pageNumber = location?.state?.pageNumber;
+  const fromPath = location?.state?.fromPath;
 
   const {
     ownerName,
@@ -39,9 +39,7 @@ const RepositoryPage = ({ data, location }) => {
         )}
         <p>{description}</p>
         {!!images && images.length > 0 && <Mosaic images={images} />}
-        <Link to={!!pageNumber && pageNumber > 1 ? `/${pageNumber}` : "/"}>
-          back home
-        </Link>
+        <Link to={fromPath || "/"}>back</Link>
       </div>
     </Layout>
   );
@@ -69,6 +67,9 @@ RepositoryPage.propTypes = {
         }).isRequired,
       ),
     }),
+  }),
+  location: PropTypes.shape({
+    fromPath: PropTypes.string,
   }),
 };
 

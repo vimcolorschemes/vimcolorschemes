@@ -60,9 +60,9 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           const repositoryKey = `${ownerName}/${name}`;
           return (
             <Card
-              key={`repository__${repositoryKey}`}
+              key={`repository-card__${repositoryKey}`}
               linkTo={`/${URLify(repositoryKey)}`}
-              linkState={{ pageNumber: currentPage }}
+              linkState={{ fromPath: currentPath }}
               ownerName={ownerName}
               name={name}
               description={description}
