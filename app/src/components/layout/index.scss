@@ -3,9 +3,12 @@
 html,
 body,
 body,
-#___gatsby,
-#___gatsby > div {
+#___gatsby {
   height: 100%;
+}
+
+#___gatsby > div {
+  min-height: 100%;
 }
 
 #___gatsby > div {
