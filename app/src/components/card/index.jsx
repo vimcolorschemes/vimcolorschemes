@@ -3,11 +3,13 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
 
+import RepositoryTitle from "../repositoryTitle";
+
 import "./index.scss";
 
 const Card = ({
-  title,
-  subtitle,
+  ownerName,
+  name,
   description,
   image,
   metaContent,
@@ -38,13 +40,12 @@ const Card = ({
         {!!image && (
           <Img
             fluid={image.childImageSharp.fluid}
-            alt={`${title}`}
+            alt={`${ownerName} ${name}`}
             className="card__image"
           />
         )}
       </div>
-      {!!subtitle && <h2 className="card__subtitle">{subtitle}</h2>}
-      <h1 className="card__title">{title}</h1>
+      <RepositoryTitle ownerName={ownerName} name={name} className="card__repository-title" />
       <p className="card__description">{description}</p>
       {!!metaContent && metaContent}
     </CardContainer>
@@ -52,8 +53,8 @@ const Card = ({
 };
 
 Card.propTypes = {
-  title: PropTypes.string.isRequired,
-  subtitle: PropTypes.string,
+  ownerName: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string,
   image: PropTypes.shape({
     childImageSharp: PropTypes.shape({

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import { ACTIONS } from "../../constants/actions";
 import { URLify } from "../../utils/string";
+import { getRepositoryInfos } from "../../utils/repository";
 
 import Card from "../../components/card";
 import Grid from "../../components/grid";
@@ -47,21 +48,30 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       </div>
       <Grid>
         {repositories.map(repository => {
-          const repositoryKey = `${repository.owner.name}/${repository.name}`;
+          const {
+            ownerName,
+            name,
+            description,
+            featuredImage,
+            stargazersCount,
+            createdAt,
+            latestCommitAt,
+          } = getRepositoryInfos(repository);
+          const repositoryKey = `${ownerName}/${name}`;
           return (
             <Card
               key={`repository__${repositoryKey}`}
               linkTo={`/${URLify(repositoryKey)}`}
               linkState={{ pageNumber: currentPage }}
-              title={repository.name}
-              subtitle={repository.owner.name}
-              description={repository.description}
-              image={repository.featuredImage}
+              ownerName={ownerName}
+              name={name}
+              description={description}
+              image={featuredImage}
               metaContent={
                 <div>
-                  <p>{repository.stargazersCount}</p>
-                  <p>created at: {repository.createdAt}</p>
-                  <p>latest commit at: {repository.latestCommitAt}</p>
+                  <p>{stargazersCount}</p>
+                  <p>created at: {createdAt}</p>
+                  <p>latest commit at: {latestCommitAt}</p>
                 </div>
               }
             />

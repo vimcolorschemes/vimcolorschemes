@@ -1,14 +1,18 @@
 @import "./breakpoints";
 
 @mixin container-layout {
-  padding: 0 4%;
+  padding-left: 4%;
+  padding-right: 4%;
   @include md {
-    padding: 0 8%;
+    padding-left: 8%;
+    padding-right: 8%;
   }
   @include lg {
-    padding: 0 12%;
+    padding-left: 12%;
+    padding-right: 12%;
   }
   @include xl {
-    padding: 0 18%;
+    padding-left: 18%;
+    padding-right: 18%;
   }
 }

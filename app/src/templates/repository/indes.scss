@@ -1,0 +1,27 @@
+@import "../../style/mixins/breakpoints";
+
+.repository__hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.repository__image {
+  padding: 3rem 0;
+}
+
+.repository__owner-name {
+  line-height: 1;
+}
+
+@include md {
+  .repository__image {
+    max-height: 30rem;
+  }
+}
+
+@include lg {
+  .repository__image {
+    max-height: 40rem;
+  }
+}

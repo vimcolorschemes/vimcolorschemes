@@ -16,7 +16,7 @@ from s3_helper import upload_file, empty_bucket
 IS_PRODUCTION = os.getenv("IS_PRODUCTION")
 EMPTY_S3_BUCKET = os.getenv("EMPTY_S3_BUCKET")
 MAX_IMAGE_COUNT = os.getenv("MAX_IMAGE_COUNT")
-MAX_IMAGE_COUNT = MAX_IMAGE_COUNT if MAX_IMAGE_COUNT is not None else 5
+MAX_IMAGE_COUNT = int(MAX_IMAGE_COUNT) if MAX_IMAGE_COUNT is not None else 5
 
 
 def save_local_file(file_name, data):

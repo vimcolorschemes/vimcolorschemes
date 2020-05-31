@@ -1,0 +1,14 @@
+.repository-title {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+}
+
+.repository-title__owner-name {
+  line-height: 1;
+  color: #000;
+}
+
+.repository-title__name {
+  line-height: 1;
+}

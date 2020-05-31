@@ -1,44 +1,44 @@
 import React from "react";
-import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
+import { getRepositoryInfos } from "../../utils/repository";
+
 import Layout from "../../components/layout";
 import Mosaic from "../../components/mosaic";
+import RepositoryTitle from "../../components/repositoryTitle";
 import SEO from "../../components/seo";
+import ZoomableImage from "../../components/zoomableImage";
+
+import "./indes.scss";
 
 const RepositoryPage = ({ data, location }) => {
   const pageNumber = location?.state?.pageNumber;
-  const { repository } = data;
+
+  const {
+    ownerName,
+    name,
+    githubUrl,
+    featuredImage,
+    description,
+    images,
+  } = getRepositoryInfos(data.repository);
 
   return (
     <Layout>
-      <SEO title={`${repository.owner.name} ${repository.name}`} />
+      <SEO title={`${ownerName} ${name}`} />
       <div className="repository">
-        <p className="repository__owner-name">{repository.owner.name}</p>
-        <h1 className="repository__name">{repository.name}</h1>
-        {!!repository.featuredImage?.childImageSharp?.fluid && (
-          <Img
-            fluid={repository.featuredImage.childImageSharp.fluid}
-            alt={`${repository.owner.name} ${repository.name}`}
-            className="repository__featured-image"
-          />
+        <div className="repository__hero">
+          <RepositoryTitle ownerName={ownerName} name={name} isRepositoryPage />
+          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+            Github home
+          </a>
+        </div>
+        {!!featuredImage && (
+          <ZoomableImage image={featuredImage} className="repository__image" />
         )}
-        <p>{repository.description}</p>
-        {!!repository.images && repository.images.length > 0 && (
-          <Mosaic images={repository.images} />
-        )}
-        {repository.githubUrl && (
-          <>
-            <a
-              href={repository.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github home
-            </a>
-          </>
-        )}
+        <p>{description}</p>
+        {!!images && images.length > 0 && <Mosaic images={images} />}
         <Link to={!!pageNumber && pageNumber > 1 ? `/${pageNumber}` : "/"}>
           back home
         </Link>
