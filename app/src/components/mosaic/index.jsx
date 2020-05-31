@@ -7,8 +7,17 @@ import "./index.scss";
 const Mosaic = ({ images }) => {
   return (
     <div className="mosaic">
-      {images.map(image =>
-        !!image.childImageSharp?.fluid ? (
+      {images.map(image => {
+        if (!image.childImageSharp?.fluid) return;
+        const Image = () => (
+          <Img
+            fluid={image.childImageSharp.fluid}
+            alt="TODO"
+            className="mosaic__image"
+            imgStyle={{ objectFit: "contain" }}
+          />
+        );
+        return (
           <label
             key={`repository-image-${image.childImageSharp.fluid.src}`}
             className="mosaic__item"
@@ -19,18 +28,14 @@ const Mosaic = ({ images }) => {
               className="mosaic__image-toggler"
             />
             <div className="mosaic__image-container">
-              <Img
-                fluid={image.childImageSharp.fluid}
-                alt="TODO"
-                className="mosaic__image"
-                imgStyle={{ objectFit: "contain" }}
-              />
+              <Image />
+            </div>
+            <div className="mosaic__image-modal">
+              <Image />
             </div>
           </label>
-        ) : (
-          <></>
-        ),
-      )}
+        );
+      })}
     </div>
   );
 };
