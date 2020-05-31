@@ -1,0 +1,14 @@
+.repository__hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.repository__image {
+  height: 40rem;
+  padding: 3rem 0;
+}
+
+.repository__owner-name {
+  line-height: 1;
+}

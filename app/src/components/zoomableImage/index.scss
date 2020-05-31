@@ -1,0 +1,50 @@
+.zoomable {
+  position: relative;
+  &:hover {
+    z-index: 2;
+    & .zoomable__container {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.zoomable__container {
+  transition: transform 200ms ease;
+}
+
+.zoomable__image {
+  height: 100%;
+}
+
+.zoomable__modal {
+  display: none;
+}
+
+.zoomable__toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  &:focus + .zoomable__container {
+    box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.75);
+  }
+  &:checked ~ .zoomable__modal {
+    display: block;
+    transition: none;
+    transform: scale(1);
+    position: fixed;
+    background-color: rgba(#242424, 0.95);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > .zoomable__image {
+      width: 90%;
+      height: 90%;
+    }
+  }
+}

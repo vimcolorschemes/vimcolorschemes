@@ -1,11 +1,13 @@
 import React from "react";
-import Img from "gatsby-image";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
 import Layout from "../../components/layout";
 import Mosaic from "../../components/mosaic";
 import SEO from "../../components/seo";
+import ZoomableImage from "../../components/zoomableImage";
+
+import "./indes.scss";
 
 const RepositoryPage = ({ data, location }) => {
   const pageNumber = location?.state?.pageNumber;
@@ -15,29 +17,30 @@ const RepositoryPage = ({ data, location }) => {
     <Layout>
       <SEO title={`${repository.owner.name} ${repository.name}`} />
       <div className="repository">
-        <p className="repository__owner-name">{repository.owner.name}</p>
-        <h1 className="repository__name">{repository.name}</h1>
-        {!!repository.featuredImage?.childImageSharp?.fluid && (
-          <Img
-            fluid={repository.featuredImage.childImageSharp.fluid}
-            alt={`${repository.owner.name} ${repository.name}`}
-            className="repository__featured-image"
+        <div className="repository__hero">
+          <div className="repository__header">
+            <h2 className="repository__owner-name">
+              {repository.owner.name}
+            </h2>
+            <h1 className="repository__name title">{repository.name}</h1>
+          </div>
+          <a
+            href={repository.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Github home
+          </a>
+        </div>
+        {!!repository.featuredImage && (
+          <ZoomableImage
+            image={repository.featuredImage}
+            className="repository__image"
           />
         )}
         <p>{repository.description}</p>
         {!!repository.images && repository.images.length > 0 && (
           <Mosaic images={repository.images} />
-        )}
-        {repository.githubUrl && (
-          <>
-            <a
-              href={repository.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Github home
-            </a>
-          </>
         )}
         <Link to={!!pageNumber && pageNumber > 1 ? `/${pageNumber}` : "/"}>
           back home
