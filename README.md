@@ -22,15 +22,12 @@ When you work on the project locally, the files are stored locally, and used by 
 ### Work on the import script
 
 #### Requirements:
-* pip
+* python3
 `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 
-* virtualenv
-`pip install virtualenv`
-
-When the initial setup is done, you need to create your virtual environment at the project root:
+When your machine is ready, you need to create your virtual environment at the project root:
 ```shell
-virtualenv env
+python3 -m venv env
 ```
 
 Then source your virtual env:
