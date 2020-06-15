@@ -1,10 +1,12 @@
 import React from "react";
 
 import Layout from "../components/layout";
+import SEO from "../components/seo";
 
 const AboutPage = () => {
   return (
     <Layout>
+      <SEO title="About" />
       <h1 className="title">About vimcs</h1>
       <h2 className="subtitle">What is it?</h2>
       <p>What vimcs is.</p>

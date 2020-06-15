@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "VimCS",
-    description: "Great and simple app to navigate vim colorschemes",
+    description: "Great and simple app to navigate vim color schemes",
     author: "@reobin",
   },
   plugins: [
@@ -24,7 +24,7 @@ module.exports = {
         background_color: "#000",
         theme_color: "#fff",
         display: "minimal-ui",
-        icon: "src/images/gatsby-icon.png", // This path is relative to the root of the site.
+        icon: "src/images/gatsby-icon.png",
       },
     },
     "gatsby-plugin-sass",

@@ -26,7 +26,7 @@ const RepositoryPage = ({ data, location }) => {
 
   return (
     <Layout>
-      <SEO title={`${ownerName} ${name}`} />
+      <SEO title={`${name} vim color scheme, by ${ownerName}`} />
       <div className="repository">
         <div className="repository__hero">
           <RepositoryTitle ownerName={ownerName} name={name} isRepositoryPage />

@@ -8,11 +8,11 @@ export const ACTIONS = {
     route: "/stars/asc/",
   },
   SORT_BY_UPDATED_ASC: {
-    label: "Updated least recently",
+    label: "Most recently updated",
     route: "/updated/asc/",
   },
   SORT_BY_UPDATED_DESC: {
-    label: "Updated most recently",
+    label: "Least recently updated",
     route: "/updated/desc/",
   },
   SORT_BY_CREATED_ASC: {
