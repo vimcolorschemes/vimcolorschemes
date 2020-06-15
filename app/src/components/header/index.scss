@@ -1,23 +1,41 @@
-@import "../../style/mixins/breakpoints";
 @import "../../style/mixins/index";
 
 .header {
-  background: rebeccapurple;
-  height: 5rem;
+  min-height: 5rem;
   display: flex;
   align-items: center;
+  background: #DEE1E6;
+  color: #333333;
   &__content {
+    @include offset-container-layout;
+
     width: 100%;
     display: flex;
     justify-content: space-between;
-    @include container-layout;
   }
-  &__title {
-    margin: 0;
-    color: #fff;
-    text-decoration: none;
+  &__nav {
+    display: flex;
+    align-items: center;
   }
   &__link {
-    color: #fff;
+    color: #333333;
+  }
+}
+.header__title {
+  font-family: "Major Mono Display", monospace;
+  font-size: 5rem;
+  margin: 0;
+  text-decoration: none;
+  & > span:first-child {
+    color: #333333;
+    font-weight: normal;
+  }
+  & > span:nth-child(2) {
+    color: #D49191;
+    font-weight: bold;
+  }
+  & > span:nth-child(3) {
+    color: #7295A8;
+    font-weight: bold;
   }
 }

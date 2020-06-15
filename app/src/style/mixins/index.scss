@@ -16,3 +16,20 @@
     padding-right: 18%;
   }
 }
+
+@mixin offset-container-layout {
+  padding-left: 2%;
+  padding-right: 2%;
+  @include md {
+    padding-left: 4%;
+    padding-right: 4%;
+  }
+  @include lg {
+    padding-left:6%;
+    padding-right: 6%;
+  }
+  @include xl {
+    padding-left: 9%;
+    padding-right: 9%;
+  }
+}

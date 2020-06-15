@@ -1,6 +1,8 @@
 @import "./constants.scss";
 @import "./mixins/breakpoints";
 
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
 body {
   font-size: $base-font-size;
   line-height: $base-line-height;

@@ -31,7 +31,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   return (
     <Layout>
       <SEO title="Home" />
-      <h1>Hi people</h1>
       <p>{totalCount} repos</p>
       <div className="actions">
         {Object.values(ACTIONS).map((action, index) => (

@@ -4,16 +4,18 @@ import React from "react";
 
 import "./index.scss";
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header className="header">
     <div className="header__content">
       <Link to="/" className="header__title">
-        {siteTitle}
+        <span>Vim</span>
+        <span>C</span>
+        <span>S</span>
       </Link>
-      <nav>
+      <nav className="header__nav">
         <ul>
           <Link to="/about/" className="header__link">
-            About vimcs
+            About VimCS
           </Link>
         </ul>
       </nav>
