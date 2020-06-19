@@ -58,12 +58,12 @@ if __name__ == "__main__":
             f"{colors.INFO}# {repository['owner']['name']}/{repository['name']}{colors.NORMAL}"
         )
         repository["readme"] = get_readme_file(repository)
-        readme_image_urls = find_image_urls(repository["readme"])[:MAX_IMAGE_COUNT]
-
+        readme_image_urls = find_image_urls(repository["readme"], MAX_IMAGE_COUNT)
+        print(f"{colors.INFO}INFO: {colors.NORMAL}Found {len(readme_image_urls)} valid image(s) in the readme file")
         repository_image_urls = list_repository_image_urls(
             repository, len(readme_image_urls), MAX_IMAGE_COUNT
         )
-
+        print(f"{colors.INFO}INFO: {colors.NORMAL}Found {len(repository_image_urls)} valid image(s) in the repository files")
         repository["image_urls"] = readme_image_urls + repository_image_urls
 
         repository["latest_commit_at"] = get_latest_commit_at(repository)

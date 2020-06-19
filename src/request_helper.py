@@ -13,18 +13,20 @@ if USE_CACHE:
     requests_cache.install_cache(
         "github_cache",
         backend="sqlite",
-        expire_after=int(CACHE_EXPIRE_AFTER) if CACHE_EXPIRE_AFTER is not None else 3600,
+        expire_after=int(CACHE_EXPIRE_AFTER)
+        if CACHE_EXPIRE_AFTER is not None
+        else 3600,
     )
 
 
-def get(url, params={}, auth=None):
+def get(url, params={}, auth=None, is_json=True):
     used_cache = False
     try:
         response = requests.get(url, params=params, timeout=TIMEOUT, auth=auth)
         response.raise_for_status()
         if USE_CACHE:
             used_cache = response.from_cache
-        data = response.json()
+        data = response.json() if is_json else response
         return data, used_cache
     except requests.exceptions.HTTPError as errh:
         if response.status_code == 404:
