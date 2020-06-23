@@ -9,12 +9,12 @@ AWS_PROFILE_NAME = os.getenv("AWS_PROFILE_NAME")
 
 session = boto3.session.Session(profile_name=AWS_PROFILE_NAME)
 s3 = session.resource("s3")
+bucket = s3.Bucket(S3_BUCKET_NAME)
 
 
 def empty_bucket():
     try:
         print(f"{colors.INFO}DELETE{colors.NORMAL} content of {S3_BUCKET_NAME} s3 bucket...")
-        bucket = s3.Bucket(S3_BUCKET_NAME)
         bucket.objects.all().delete()
         print("")
     except Exception as e:
@@ -24,7 +24,6 @@ def empty_bucket():
 def upload_file(file_name, data):
     try:
         print(f"{colors.INFO}PUT{colors.NORMAL} file {S3_REPOSITORIES_DIRECTORY_NAME}/{file_name} to s3...")
-        bucket = s3.Bucket(S3_BUCKET_NAME)
         bucket.put_object(
             Key=f"{S3_REPOSITORIES_DIRECTORY_NAME}/{file_name}", Body=data
         )
