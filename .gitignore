@@ -134,4 +134,4 @@ dmypy.json
 github_cache.sqlite
 
 # Data files
-data/*.json
+data/**/*.json
