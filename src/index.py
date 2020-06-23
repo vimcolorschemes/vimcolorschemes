@@ -1,6 +1,7 @@
+import glob
 import json
 import os
-import glob
+import time
 
 from file_helper import find_image_urls
 from github_helper import (
@@ -11,7 +12,6 @@ from github_helper import (
     search_repositories,
 )
 from print_helper import colors
-from s3_helper import upload_file, empty_bucket
 
 IS_PRODUCTION = os.getenv("IS_PRODUCTION")
 EMPTY_S3_BUCKET = os.getenv("EMPTY_S3_BUCKET")
@@ -30,7 +30,7 @@ def save_file(repository, data):
     separator = "/" if IS_PRODUCTION else "__"
     file_name = f"{repository['owner']['name']}{separator}{repository['name']}.json"
     if IS_PRODUCTION:
-        upload_file(file_name, data)
+        s3_helper.upload_file(file_name, data)
     else:
         save_local_file(file_name, data)
 
@@ -45,15 +45,21 @@ def empty_local_data_directory():
 
 
 if __name__ == "__main__":
+    start = time.time()
+
     repositories = search_repositories()
 
     if EMPTY_S3_BUCKET:
-        empty_bucket()
+        s3_helper.empty_bucket()
 
     if not IS_PRODUCTION:
         empty_local_data_directory()
 
     for index, repository in enumerate(repositories):
+        # TODO: Check if last commit is more recent than last import
+        #       if it is, continue
+        #       if not, skip readme and image urls fetching
+
         print(
             f"{colors.INFO}# {repository['owner']['name']}/{repository['name']}{colors.NORMAL}"
         )
@@ -69,3 +75,11 @@ if __name__ == "__main__":
         repository["latest_commit_at"] = get_latest_commit_at(repository)
 
         save_file(repository, json.dumps(repository))
+
+    end = time.time()
+
+    print(f"#########################")
+    print(f"#        Summary        #")
+    print(f"#########################")
+    print("")
+    print(f"Elapsed time: {end-start} seconds")
