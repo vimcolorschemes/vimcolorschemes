@@ -108,7 +108,7 @@ def search_repositories():
         if REPOSITORY_LIMIT is not None
         else total_count
     )
-    print(f"\n{fetched_repository_count} repositories will be fetched\n")
+    print(f"\nMaximum {fetched_repository_count} repositories will be fetched\n")
 
     page_count = math.ceil(fetched_repository_count / ITEMS_PER_PAGE)
 

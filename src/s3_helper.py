@@ -10,7 +10,7 @@ AWS_PROFILE_NAME = os.getenv("AWS_PROFILE_NAME")
 
 session = boto3.session.Session(profile_name=AWS_PROFILE_NAME)
 s3 = session.resource("s3")
-bucket = s3.Bucket(S3_BUCKET_NAME)
+bucket = s3.Bucket(S3_BUCKET_NAME) if S3_BUCKET_NAME else None
 
 
 def empty_bucket():
@@ -32,4 +32,13 @@ def upload_file(file_name, data):
     except Exception as e:
         print(
             f"{colors.ERROR}Error writing file {S3_REPOSITORIES_DIRECTORY_NAME}/{file_name} to s3...\n{e}{colors.NORMAL}"
+        )
+
+
+def list_file_keys(path=""):
+    try:
+        return list(map(lambda file: file.key, bucket.objects.filter(Prefix=path)))
+    except Exception as e:
+        print(
+            f"{colors.ERROR}Error fetching files of {S3_REPOSITORIES_DIRECTORY_NAME} from s3...\n{e}{colors.NORMAL}"
         )
