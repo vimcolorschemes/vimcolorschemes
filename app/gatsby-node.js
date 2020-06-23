@@ -52,7 +52,7 @@ const listRemoteRepositories = async () => {
 
 const listLocalRepositories = () => {
   const fs = require("fs");
-  const directory = "../data/";
+  const directory = "../data/repositories/";
 
   const fileNames = fs.readdirSync(directory) || [];
 
