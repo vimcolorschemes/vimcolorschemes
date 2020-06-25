@@ -5,7 +5,7 @@ import time
 import dateutil.parser as dparser
 from datetime import datetime
 
-from file_helper import find_image_urls
+from file_helper import find_image_urls, read_file, write_file
 from github_helper import (
     get_latest_commit_at,
     get_rate_limit,
@@ -14,7 +14,7 @@ from github_helper import (
     search_repositories,
 )
 from print_helper import colors
-from s3_helper import list_file_keys, empty_bucket, upload_file
+from s3_helper import list_file_keys, empty_bucket, upload_file, get_import_content
 
 IS_PRODUCTION = os.getenv("IS_PRODUCTION")
 EMPTY_S3_BUCKET = os.getenv("EMPTY_S3_BUCKET")
@@ -30,8 +30,7 @@ LOCAL_IMPORTS_DIRECTORY_NAME = "imports"
 def save_local_file(file_name, data):
     file_path = f"data/{file_name}"
     print(f"{colors.INFO}WRITE{colors.NORMAL} to local file {file_path}\n")
-    with open(file_path, "w") as file:
-        file.write(data)
+    write_file(file_path, data)
 
 
 def save_file(file_name, data):
@@ -50,21 +49,28 @@ def empty_local_data_directory():
             print(f"{colors.ERROR}Error deleting {data_file}: {e.strerror}")
 
 
-def get_last_imported_at():
-    import_files = (
+def get_last_import():
+    import_file_names = (
         list_file_keys("imports") if IS_PRODUCTION else glob.glob("data/imports/*.json")
     )
-    dates = list(
-        map(lambda file_name: dparser.parse(file_name, fuzzy=True), import_files)
+    import_file_names.sort()
+    last_import_file_name = (
+        import_file_names[len(import_file_names) - 1]
+        if len(import_file_names) > 0
+        else None
     )
-    dates.sort()
-    return dates[len(dates) - 1] if len(dates) > 0 else None
+    if last_import_file_name is None:
+        return None
+    content = (
+        get_import_content(last_import_file_name)
+        if IS_PRODUCTION
+        else read_file(last_import_file_name)
+    )
+    return json.loads(content)
 
 
 if __name__ == "__main__":
     start = time.time()
-
-    repositories = search_repositories()
 
     if EMPTY_S3_BUCKET:
         empty_bucket()
@@ -72,11 +78,17 @@ if __name__ == "__main__":
     if not IS_PRODUCTION:
         empty_local_data_directory()
 
-    last_imported_at = get_last_imported_at()
-    if last_imported_at:
+    last_import = get_last_import()
+    last_imported_at = None
+    previous_repositories = []
+    if last_import is not None:
+        last_imported_at = dparser.parse(last_import["imported_at"], fuzzy=True)
+        previous_repositories = last_import["repositories"]
         print(
             f"{colors.INFO}INFO: {colors.NORMAL}Last import was done at: {last_imported_at.strftime('%m-%d-%Y')}\n"
         )
+
+    repositories = search_repositories()
 
     def add_repository_infos(repository):
         pushed_at = dparser.parse(repository["pushed_at"], fuzzy=True)
@@ -84,8 +96,27 @@ if __name__ == "__main__":
         print(
             f"{colors.INFO}# {repository['owner']['name']}/{repository['name']}{colors.NORMAL}"
         )
-        if not last_imported_at or naive_pushed_at > last_imported_at:
-            readme_image_urls = find_image_urls(get_readme_file(repository), MAX_IMAGE_COUNT)
+
+        matching_repository = next(
+            (
+                previous_repository
+                for previous_repository in previous_repositories
+                if previous_repository["id"] == repository["id"]
+            ),
+            None,
+        )
+
+        if matching_repository is not None:
+            repository = {**repository, **matching_repository}
+
+        if (
+            not last_imported_at
+            or naive_pushed_at > last_imported_at
+            or matching_repository is None
+        ):
+            readme_image_urls = find_image_urls(
+                get_readme_file(repository), MAX_IMAGE_COUNT
+            )
             print(
                 f"{colors.INFO}INFO: {colors.NORMAL}Found {len(readme_image_urls)} valid image(s) in the readme file"
             )
@@ -112,7 +143,7 @@ if __name__ == "__main__":
     summary = {
         "elapsed_time": elapsed_time,
         "imported_at": now,
-        "repositories": repositories
+        "repositories": repositories,
     }
     summary_file_name = f"{now}.json"
     if IS_PRODUCTION:
