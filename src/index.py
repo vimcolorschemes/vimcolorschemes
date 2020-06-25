@@ -21,7 +21,6 @@ EMPTY_S3_BUCKET = os.getenv("EMPTY_S3_BUCKET")
 MAX_IMAGE_COUNT = os.getenv("MAX_IMAGE_COUNT")
 MAX_IMAGE_COUNT = int(MAX_IMAGE_COUNT) if MAX_IMAGE_COUNT is not None else 5
 
-S3_REPOSITORIES_DIRECTORY_NAME = os.getenv("S3_REPOSITORIES_DIRECTORY_NAME")
 S3_IMPORTS_DIRECTORY_NAME = os.getenv("S3_IMPORTS_DIRECTORY_NAME")
 
 LOCAL_REPOSITORIES_DIRECTORY_NAME = "repositories"
@@ -42,18 +41,6 @@ def save_file(file_name, data):
         save_local_file(file_name, data)
 
 
-def save_repository_file(repository, data):
-    separator = "/" if IS_PRODUCTION else "__"
-    file_name = f"{repository['owner']['name']}{separator}{repository['name']}.json"
-
-    if IS_PRODUCTION:
-        file_name = f"{S3_REPOSITORIES_DIRECTORY_NAME}/{file_name}"
-    else:
-        file_name = f"{LOCAL_REPOSITORIES_DIRECTORY_NAME}/{file_name}"
-
-    save_file(file_name, data)
-
-
 def empty_local_data_directory():
     files = glob.glob("data/repositories/*.json")
     for data_file in files:
@@ -71,7 +58,7 @@ def get_last_imported_at():
         map(lambda file_name: dparser.parse(file_name, fuzzy=True), import_files)
     )
     dates.sort()
-    return dates[0] if len(dates) > 0 else None
+    return dates[len(dates) - 1] if len(dates) > 0 else None
 
 
 if __name__ == "__main__":
@@ -86,19 +73,19 @@ if __name__ == "__main__":
         empty_local_data_directory()
 
     last_imported_at = get_last_imported_at()
-    print(
-        f"{colors.INFO}INFO: {colors.NORMAL}Last import was done at: {last_imported_at.year}-{last_imported_at.month}-{last_imported_at.day}\n"
-    )
+    if last_imported_at:
+        print(
+            f"{colors.INFO}INFO: {colors.NORMAL}Last import was done at: {last_imported_at.strftime('%m-%d-%Y')}\n"
+        )
 
-    for index, repository in enumerate(repositories):
+    def add_repository_infos(repository):
         pushed_at = dparser.parse(repository["pushed_at"], fuzzy=True)
         naive_pushed_at = pushed_at.replace(tzinfo=None)
         print(
             f"{colors.INFO}# {repository['owner']['name']}/{repository['name']}{colors.NORMAL}"
         )
         if not last_imported_at or naive_pushed_at > last_imported_at:
-            repository["readme"] = get_readme_file(repository)
-            readme_image_urls = find_image_urls(repository["readme"], MAX_IMAGE_COUNT)
+            readme_image_urls = find_image_urls(get_readme_file(repository), MAX_IMAGE_COUNT)
             print(
                 f"{colors.INFO}INFO: {colors.NORMAL}Found {len(readme_image_urls)} valid image(s) in the readme file"
             )
@@ -111,17 +98,22 @@ if __name__ == "__main__":
             repository["image_urls"] = readme_image_urls + repository_image_urls
             repository["latest_commit_at"] = get_latest_commit_at(repository)
         else:
-            print(
-                f"{colors.INFO}INFO: {colors.NORMAL}Image urls search was skipped"
-            )
-        save_repository_file(repository, json.dumps(repository))
+            print(f"{colors.INFO}INFO: {colors.NORMAL}Image urls search was skipped")
+        print("")
+        return repository
+
+    repositories = list(map(add_repository_infos, repositories))
 
     end = time.time()
 
     elapsed_time = end - start
 
     now = datetime.utcnow().strftime("%Y-%m-%d_%H:%M:%S")
-    summary = {"elapsed_time": elapsed_time, "imported_at": now}
+    summary = {
+        "elapsed_time": elapsed_time,
+        "imported_at": now,
+        "repositories": repositories
+    }
     summary_file_name = f"{now}.json"
     if IS_PRODUCTION:
         summary_file_name = f"{S3_IMPORTS_DIRECTORY_NAME}/{summary_file_name}"
