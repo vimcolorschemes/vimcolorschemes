@@ -42,3 +42,10 @@ def find_image_urls(file_content, max_image_count):
         index = index + 1
 
     return valid_image_urls
+
+def read_file(path):
+    return open(path, "r").read()
+
+def write_file(path, data):
+    with open(path, "w") as file:
+        file.write(data)
