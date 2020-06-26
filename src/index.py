@@ -69,6 +69,10 @@ def get_last_import():
     return json.loads(content)
 
 
+def urlify(value):
+    return "%20".join(value.split())
+
+
 if __name__ == "__main__":
     start = time.time()
 
@@ -126,7 +130,9 @@ if __name__ == "__main__":
             print(
                 f"{colors.INFO}INFO: {colors.NORMAL}Found {len(repository_image_urls)} valid image(s) in the repository files"
             )
-            repository["image_urls"] = readme_image_urls + repository_image_urls
+            repository["image_urls"] = list(
+                map(urlify, readme_image_urls + repository_image_urls)
+            )
             repository["latest_commit_at"] = get_latest_commit_at(repository)
         else:
             print(f"{colors.INFO}INFO: {colors.NORMAL}Image urls search was skipped")
