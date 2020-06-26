@@ -16,7 +16,7 @@ GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 ITEMS_PER_PAGE = 100
 BASE_URL = "https://api.github.com"
 
-VIM_COLOR_SCHEME_QUERY = "vim color scheme language:vim sort:stars"
+VIM_COLOR_SCHEME_QUERY = "colorscheme OR scheme OR colors language:vim sort:stars"
 
 
 GITHUB_BASIC_AUTH = (
@@ -25,8 +25,10 @@ GITHUB_BASIC_AUTH = (
     else None
 )
 
+GITHUB_API_HARD_LIMIT = 1000
 REPOSITORY_LIMIT = os.getenv("REPOSITORY_LIMIT")
 REPOSITORY_LIMIT = int(REPOSITORY_LIMIT) if REPOSITORY_LIMIT is not None else None
+REPOSITORY_LIMIT = min(GITHUB_API_HARD_LIMIT, REPOSITORY_LIMIT)
 
 this = sys.modules[__name__]
 this.remaining_github_api_calls = None

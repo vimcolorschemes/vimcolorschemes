@@ -153,8 +153,9 @@ if __name__ == "__main__":
 
     save_file(summary_file_name, json.dumps(summary))
 
-    print(f"#########################")
-    print(f"#        Summary        #")
-    print(f"#########################")
+    print(f"##########################################")
+    print(f"#                 Summary                #")
+    print(f"##########################################")
     print("")
     print(f"Elapsed time: {elapsed_time} seconds")
+    print(f"{len(repositories)} repositories fetched")
