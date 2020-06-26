@@ -1,5 +1,0 @@
-black
-boto3
-pip-tools
-requests
-requests-cache
