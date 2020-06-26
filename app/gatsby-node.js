@@ -6,7 +6,7 @@ const {
   awsAccessKeyId,
   awsSecretAccessKey,
   awsS3BucketName,
-  awsS3DirectoryName,
+  awsS3ImportsDirectoryName,
   isProduction,
 } = process.env;
 
@@ -19,51 +19,50 @@ if (AWS)
 const s3 = isProduction ? new AWS.S3() : null;
 
 const listRemoteRepositories = async () => {
-  const data = await s3
-    .listObjects({
-      Bucket: awsS3BucketName,
-      Prefix: `${awsS3DirectoryName}/`,
-    })
-    .promise();
+  try {
+    const data = await s3
+      .listObjects({
+        Bucket: awsS3BucketName,
+        Prefix: `${awsS3ImportsDirectoryName}/`,
+      })
+      .promise();
 
-  const repositoryPromises = data.Contents.filter(item =>
-    item.Key.endsWith(".json"),
-  ).map(async item => {
-    try {
-      const data = await s3
-        .getObject({
-          Bucket: awsS3BucketName,
-          Key: item.Key,
-        })
-        .promise();
-      return JSON.parse(data.Body.toString());
-    } catch (e) {
-      console.error(e);
-      return undefined;
-    }
-  });
+    const lastImport = data.Contents.filter(item =>
+      item.Key.endsWith(".json"),
+    ).sort((a, b) => b.Key - a.Key)[0];
 
-  const repositories =
-    (await Promise.all(repositoryPromises)).filter(
-      repository => !!repository,
-    ) || [];
-  return repositories;
+    const importData = await s3
+      .getObject({
+        Bucket: awsS3BucketName,
+        Key: lastImport.Key,
+      })
+      .promise();
+
+    const importContent = JSON.parse(importData.Body.toString());
+
+    return importContent.repositories || [];
+  } catch (e) {
+    console.error(e);
+    return undefined;
+  }
 };
 
 const listLocalRepositories = () => {
   const fs = require("fs");
-  const directory = "../data/repositories/";
+  const directory = "../data/imports/";
 
   const fileNames = fs.readdirSync(directory) || [];
 
-  const repositories = fileNames
+  const lastImport = fileNames
     .filter(fileName => fileName.endsWith(".json"))
-    .map(fileName => {
-      const fileContent = fs.readFileSync(`${directory}${fileName}`, "utf8");
-      return JSON.parse(fileContent);
-    });
+    .sort((a, b) => b - a)[0];
 
-  return repositories;
+  const content = JSON.parse(
+    fs.readFileSync(`${directory}${lastImport}`, "utf8"),
+  );
+
+  console.log(content.repositories.length);
+  return content.repositories;
 };
 
 const listRepositories = async () => {
