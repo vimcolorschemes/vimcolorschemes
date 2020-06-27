@@ -54,7 +54,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             featuredImage,
             stargazersCount,
             createdAt,
-            latestCommitAt,
+            lastCommitAt,
           } = getRepositoryInfos(repository);
           const repositoryKey = `${ownerName}/${name}`;
           return (
@@ -70,7 +70,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
                 <div>
                   <p>{stargazersCount}</p>
                   <p>created at: {createdAt}</p>
-                  <p>latest commit at: {latestCommitAt}</p>
+                  <p>latest commit at: {lastCommitAt}</p>
                 </div>
               }
             />
@@ -96,7 +96,7 @@ RepositoriesPage.propTypes = {
           name: PropTypes.string.isRequired,
           description: PropTypes.string.isRequired,
           stargazersCount: PropTypes.number.isRequired,
-          latestCommitAt: PropTypes.string.isRequired,
+          lastCommitAt: PropTypes.string.isRequired,
           createdAt: PropTypes.string.isRequired,
           owner: PropTypes.shape({
             name: PropTypes.string.isRequired,
@@ -122,10 +122,10 @@ export const query = graphql`
   query(
     $skip: Int!
     $limit: Int!
-    $sortField: [RepositoryFieldsEnum]!
+    $sortField: [StrapiRepositoryFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
-    repositoriesData: allRepository(
+    repositoriesData: allStrapiRepository(
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip
@@ -135,12 +135,12 @@ export const query = graphql`
         name
         description
         stargazersCount: stargazers_count
-        latestCommitAt: latest_commit_at
+        lastCommitAt: last_commit_at
         createdAt: created_at
         owner {
           name
         }
-        featuredImage {
+        featuredImage: processed_featured_image {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
