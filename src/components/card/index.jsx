@@ -45,7 +45,11 @@ const Card = ({
           />
         )}
       </div>
-      <RepositoryTitle ownerName={ownerName} name={name} className="card__repository-title" />
+      <RepositoryTitle
+        ownerName={ownerName}
+        name={name}
+        className="card__repository-title"
+      />
       <p className="card__description">{description}</p>
       {!!metaContent && metaContent}
     </CardContainer>

@@ -7,7 +7,6 @@
   Vim color schemes
 </h1>
 
-
 ## 🚀 Quick start
 
 To run the app and actually see some repositories, you need the repository data stored under `./data/` or `../data` from the `./app` directory.<br>

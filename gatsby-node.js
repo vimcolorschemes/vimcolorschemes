@@ -38,7 +38,11 @@ exports.onCreateNode = ({
         });
         if (fileNode) {
           if (index === 0) node.processed_featured_image = fileNode.id;
-          else node.processed_images = [...(node.processed_images || []), fileNode];
+          else
+            node.processed_images = [
+              ...(node.processed_images || []),
+              fileNode,
+            ];
           index++;
         }
       });
@@ -50,11 +54,11 @@ exports.onCreateNode = ({
 
 const path = require("path");
 
-const URLify = (value) =>
+const URLify = value =>
   !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
 
 const createRepositoryPages = (repositories, createPage) => {
-  repositories.forEach((repository) =>
+  repositories.forEach(repository =>
     createPage({
       path: `${URLify(repository.owner?.name || "oops")}/${URLify(
         repository.name,
@@ -82,8 +86,8 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
     { fieldName: "created_at", path: "created/" },
   ];
   return Array.from({ length: pageCount }).map((_, index) => {
-    sortableFields.forEach((field) => {
-      sortOrders.forEach((sortOrder) => {
+    sortableFields.forEach(field => {
+      sortOrders.forEach(sortOrder => {
         const sortPath =
           field.isDefault && sortOrder.isDefault
             ? ""
