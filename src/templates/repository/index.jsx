@@ -75,21 +75,24 @@ RepositoryPage.propTypes = {
 
 export const query = graphql`
   query($ownerName: String!, $name: String!) {
-    repository(owner: { name: { eq: $ownerName } }, name: { eq: $name }) {
+    repository: strapiRepository(
+      owner: { name: { eq: $ownerName } }
+      name: { eq: $name }
+    ) {
       name
       description
       githubUrl: github_url
       owner {
         name
       }
-      featuredImage {
+      featuredImage: processed_featured_image {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid
           }
         }
       }
-      images {
+      images: processed_images {
         childImageSharp {
           fluid {
             ...GatsbyImageSharpFluid

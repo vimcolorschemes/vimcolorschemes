@@ -4,7 +4,7 @@
   min-height: 5rem;
   display: flex;
   align-items: center;
-  background: #DEE1E6;
+  background: #dee1e6;
   color: #333333;
   &__content {
     @include offset-container-layout;
@@ -31,11 +31,11 @@
     font-weight: normal;
   }
   & > span:nth-child(2) {
-    color: #D49191;
+    color: #d49191;
     font-weight: bold;
   }
   & > span:nth-child(3) {
-    color: #7295A8;
+    color: #7295a8;
     font-weight: bold;
   }
 }

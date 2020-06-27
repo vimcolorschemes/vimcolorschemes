@@ -18,7 +18,7 @@ RepositoryTitle.propTypes = {
   ownerName: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   isRepositoryPage: PropTypes.bool,
-  className: PropTypes.string
+  className: PropTypes.string,
 };
 
 export default RepositoryTitle;

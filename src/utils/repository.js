@@ -4,5 +4,5 @@ export const getRepositoryInfos = repository => {
   return {
     ...repository,
     ownerName: repository.owner?.name,
-  }
+  };
 };
