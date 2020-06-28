@@ -62,18 +62,19 @@ const URLify = value =>
   !!value ? value.trim().toLowerCase().replace(/\s/g, "%20") : "";
 
 const createRepositoryPages = (repositories, createPage) => {
-  repositories.forEach(repository =>
+  repositories.forEach(repository => {
+    const ownerName = repository.owner ? repository.owner.name : "oops";
+    const { name } = repository;
+    const repositoryPath = URLify(`${ownerName}/${name}`);
     createPage({
-      path: `${URLify(repository.owner?.name || "oops")}/${URLify(
-        repository.name,
-      )}`,
+      path: repositoryPath,
       component: path.resolve(`./src/templates/repository/index.jsx`),
       context: {
-        ownerName: repository.owner?.name || "oops",
-        name: repository.name,
+        ownerName,
+        name,
       },
-    }),
-  );
+    });
+  });
 };
 
 const pageSize = 20;
