@@ -1,5 +1,7 @@
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
+const GATSBY_API_URL = process.env.GATSBY_API_URL || "http://localhost:1337";
+
 // NOTE: Manually processing images won't be necessary after a fix
 // is merged into gatsby-source-strapi:
 // https://github.com/strapi/gatsby-source-strapi/pull/118
@@ -28,8 +30,10 @@ exports.onCreateNode = ({
   ) {
     try {
       node.images.forEach(async (image, index) => {
+        let url = image.url;
+        if (!url.includes("http")) url = `${GATSBY_API_URL}${url}`;
         const fileNode = await createRemoteFileNode({
-          url: `http://localhost:1337${image.url}`,
+          url,
           parentNodeId: node.id,
           createNode,
           createNodeId,

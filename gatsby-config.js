@@ -12,7 +12,7 @@ module.exports = {
     {
       resolve: "gatsby-source-strapi",
       options: {
-        apiURL: "http://localhost:1337",
+        apiURL: process.env.GATSBY_API_URL,
         contentTypes: ["owner", "repository"],
       },
     },
