@@ -14,6 +14,7 @@ module.exports = {
       options: {
         apiURL: process.env.GATSBY_API_URL,
         contentTypes: ["owner", "repository"],
+        queryLimit: 1000,
       },
     },
     {
