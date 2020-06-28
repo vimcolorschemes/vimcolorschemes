@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "VimCS",
+    siteUrl: process.env.GATSBY_SITE_URL || "http://localhost:8000",
     description: "Great and simple app to navigate vim color schemes",
     author: "@reobin",
   },
@@ -12,7 +13,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://vimcolorschemes.com",
+        host: process.env.GATSBY_SITE_URL || "http://localhost:8000",
         env: {
           development: {
             policy: [{ userAgent: "*", disallow: ["/"] }],
