@@ -88,7 +88,7 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
   const sortableFields = [
     { fieldName: "stargazers_count", path: "stars/", isDefault: true },
     { fieldName: "last_commit_at", path: "updated/" },
-    { fieldName: "created_at", path: "created/" },
+    { fieldName: "github_created_at", path: "created/" },
   ];
   return Array.from({ length: pageCount }).map((_, index) => {
     sortableFields.forEach(field => {
