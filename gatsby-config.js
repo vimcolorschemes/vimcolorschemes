@@ -10,6 +10,21 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-sass",
     {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: "https://vimcolorschemes.com",
+        env: {
+          development: {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+          },
+          production: {
+            // will allow everything when ready
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+          },
+        },
+      },
+    },
+    {
       resolve: "gatsby-source-strapi",
       options: {
         apiURL: process.env.GATSBY_API_URL,
