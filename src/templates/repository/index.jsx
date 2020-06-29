@@ -75,7 +75,7 @@ RepositoryPage.propTypes = {
 
 export const query = graphql`
   query($ownerName: String!, $name: String!) {
-    repository: strapiRepository(
+    repository: mongodbVimcsRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }
     ) {

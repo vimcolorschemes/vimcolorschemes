@@ -122,10 +122,10 @@ export const query = graphql`
   query(
     $skip: Int!
     $limit: Int!
-    $sortField: [StrapiRepositoryFieldsEnum]!
+    $sortField: [mongodbVimcsRepositoriesFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
-    repositoriesData: allStrapiRepository(
+    repositoriesData: allMongodbVimcsRepositories(
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip

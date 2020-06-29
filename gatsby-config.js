@@ -26,11 +26,11 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-strapi",
+      resolve: "gatsby-source-mongodb",
       options: {
-        apiURL: process.env.GATSBY_API_URL,
-        contentTypes: ["owner", "repository"],
-        queryLimit: 1000,
+        connectionString: "mongodb://localhost:27017",
+        dbName: "vimcs",
+        collection: ["repositories", "imports"],
       },
     },
     {

@@ -17,7 +17,7 @@
     "gatsby-plugin-sass": "^2.3.1",
     "gatsby-plugin-sharp": "^2.6.2",
     "gatsby-source-filesystem": "^2.3.1",
-    "gatsby-source-strapi": "0.0.12",
+    "gatsby-source-mongodb": "^2.3.6",
     "gatsby-transformer-json": "^2.4.1",
     "gatsby-transformer-sharp": "^2.5.2",
     "node-fetch": "^2.6.0",
