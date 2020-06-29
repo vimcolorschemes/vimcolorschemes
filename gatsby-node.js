@@ -1,15 +1,9 @@
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
-const GATSBY_API_URL = process.env.GATSBY_API_URL || "http://localhost:1337";
-
-// NOTE: Manually processing images won't be necessary after a fix
-// is merged into gatsby-source-strapi:
-// https://github.com/strapi/gatsby-source-strapi/pull/118
-
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
-    type StrapiRepository implements Node {
+    type mongodbVimcsRepositories implements Node {
       processed_featured_image: File @link
       processed_images: [File]
     }
@@ -24,16 +18,14 @@ exports.onCreateNode = ({
   createNodeId,
 }) => {
   if (
-    node.internal.type === "StrapiRepository" &&
-    node.images !== null &&
-    node.images.length > 0
+    node.internal.type === "mongodbVimcsRepositories" &&
+    node.image_urls !== null &&
+    node.image_urls.length > 0
   ) {
     try {
-      node.images.forEach(async (image, index) => {
-        let url = image.url;
-        if (!url.includes("http")) url = `${GATSBY_API_URL}${url}`;
+      node.image_urls.forEach(async (image_url, index) => {
         const fileNode = await createRemoteFileNode({
-          url,
+          url: image_url,
           parentNodeId: node.id,
           createNode,
           createNodeId,
@@ -117,7 +109,7 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
 
 const repositoriesQuery = `
   {
-    allStrapiRepository {
+    allMongodbVimcsRepositories {
       nodes {
         name
         owner {
@@ -133,7 +125,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const {
     data: {
-      allStrapiRepository: { nodes: repositories },
+      allMongodbVimcsRepositories: { nodes: repositories },
     },
   } = await graphql(repositoriesQuery);
 
