@@ -28,9 +28,11 @@ module.exports = {
     {
       resolve: "gatsby-source-mongodb",
       options: {
-        connectionString: "mongodb://localhost:27017",
+        connectionString:
+          process.env.GATSBY_DATABASE_CONNECTION_STRING ||
+          "mongodb://localhost:27017",
         dbName: "vimcs",
-        collection: ["repositories", "imports"],
+        collection: ["repositories"],
       },
     },
     {
