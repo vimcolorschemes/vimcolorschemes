@@ -19,19 +19,26 @@ exports.onCreateNode = ({
 }) => {
   if (
     node.internal.type === "mongodbVimcsRepositories" &&
-    node.image_urls !== null &&
+    node.image_urls &&
     node.image_urls.length > 0
   ) {
     try {
-      node.image_urls.forEach(async (image_url, index) => {
+      const blacklistedImageUrls = node.blacklisted_image_urls || [];
+      const validImageUrls = node.image_urls.filter(
+        url => !blacklistedImageUrls.includes(url),
+      );
+      validImageUrls.forEach(async (url, index) => {
+        if (blacklistedImageUrls.includes(url)) return;
+
         const fileNode = await createRemoteFileNode({
-          url: image_url,
+          url,
           parentNodeId: node.id,
           createNode,
           createNodeId,
           cache,
           store,
         });
+
         if (fileNode) {
           if (index === 0) node.processed_featured_image = fileNode.id;
           else
