@@ -120,7 +120,7 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
 
 const repositoriesQuery = `
   {
-    allMongodbVimcsRepositories {
+    allMongodbVimcsRepositories(filter: {blacklisted: { ne: true }}) {
       nodes {
         name
         owner {

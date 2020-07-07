@@ -126,6 +126,7 @@ export const query = graphql`
     $sortOrder: [SortOrderEnum]!
   ) {
     repositoriesData: allMongodbVimcsRepositories(
+      filter: { blacklisted: { ne: true } }
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip
