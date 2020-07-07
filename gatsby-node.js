@@ -40,7 +40,11 @@ exports.onCreateNode = ({
         });
 
         if (fileNode) {
-          if (index === 0) node.processed_featured_image = fileNode.id;
+          if (
+            (index === 0 && !node.featured_image_url) ||
+            node.featured_image_url === url
+          )
+            node.processed_featured_image = fileNode.id;
           else
             node.processed_images = [
               ...(node.processed_images || []),
