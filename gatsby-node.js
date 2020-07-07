@@ -22,14 +22,14 @@ exports.onCreateNode = ({
     node.image_urls &&
     node.image_urls.length > 0
   ) {
-    try {
-      const blacklistedImageUrls = node.blacklisted_image_urls || [];
-      const validImageUrls = node.image_urls.filter(
-        url => !blacklistedImageUrls.includes(url),
-      );
-      validImageUrls.forEach(async (url, index) => {
-        if (blacklistedImageUrls.includes(url)) return;
+    const blacklistedImageUrls = node.blacklisted_image_urls || [];
+    const validImageUrls = node.image_urls.filter(
+      url => !blacklistedImageUrls.includes(url),
+    );
+    validImageUrls.forEach(async (url, index) => {
+      if (blacklistedImageUrls.includes(url)) return;
 
+      try {
         const fileNode = await createRemoteFileNode({
           url,
           parentNodeId: node.id,
@@ -48,10 +48,10 @@ exports.onCreateNode = ({
             ];
           index++;
         }
-      });
-    } catch (e) {
-      console.error(e);
-    }
+      } catch (e) {
+        console.error(e);
+      }
+    });
   }
 };
 
