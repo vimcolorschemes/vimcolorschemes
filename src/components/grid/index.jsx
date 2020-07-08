@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 
 import "./index.scss";
 
-const Grid = ({ children }) => {
-  return <div className="grid">{children}</div>;
-};
+const Grid = ({ children }) => <ul className="grid">{children}</ul>;
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,
