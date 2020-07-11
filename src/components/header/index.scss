@@ -8,8 +8,6 @@
   color: #333333;
   &__content {
     @include offset-container-layout;
-
-    width: 100%;
     display: flex;
     justify-content: space-between;
   }

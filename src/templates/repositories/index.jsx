@@ -7,7 +7,7 @@ import { URLify } from "../../utils/string";
 import { getRepositoryInfos } from "../../utils/repository";
 
 import Card from "../../components/card";
-import Grid from "../../components/Grid";
+import Grid from "../../components/grid";
 import Layout from "../../components/layout";
 import Pagination from "../../components/pagination";
 import SEO from "../../components/seo";
@@ -101,7 +101,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           return (
             <Card
               key={`repository-${repositoryKey}`}
-              className="repositories__item"
               linkRef={element => {
                 refs.current[index] = element;
               }}

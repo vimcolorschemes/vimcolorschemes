@@ -1,23 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 import "./index.scss";
 
-const RepositoryTitle = ({ ownerName, name, isRepositoryPage, className }) => {
-  const TitleTag = isRepositoryPage ? "h1" : "span";
-
+const RepositoryTitle = ({ ownerName, name, tag, className }) => {
+  const TitleTag = tag ? tag : "h1";
   return (
-    <div className={`repository-title${!!className ? ` ${className}` : ""}`}>
+    <TitleTag className={classnames("repository-title", className)}>
       <span className="repository-title__owner-name">{ownerName}</span>
-      <TitleTag className="repository-title__name title">{name}</TitleTag>
-    </div>
+      <span className="repository-title__name title">{name}</span>
+    </TitleTag>
   );
 };
 
 RepositoryTitle.propTypes = {
   ownerName: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  isRepositoryPage: PropTypes.bool,
+  tag: PropTypes.string,
   className: PropTypes.string,
 };
 

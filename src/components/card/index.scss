@@ -1,18 +1,15 @@
+@import "../../style/constants";
 @import "../../style/mixins/breakpoints";
 
 .card {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   position: relative;
   cursor: pointer;
+  padding: 1rem;
 }
 
 .card__title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #000;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -32,7 +29,8 @@
 }
 
 .card:focus-within {
-  box-shadow: 0 0 0 0.25rem;
+  box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
+  border-radius: 5px;
 }
 
 .card:focus-within a {
@@ -40,15 +38,18 @@
   outline: none;
 }
 
+.card__title > a {
+  display: flex;
+  flex-direction: column;
+}
+
 .card__description {
-  color: #000;
+  color: $TEXT_PALE;
   flex: 1;
 }
 
 .card__image {
   min-height: 20rem;
-  border-radius: 3px;
-  border: 1px solid grey;
   display: flex;
   flex-direction: column;
 }
@@ -57,6 +58,7 @@
   flex: 1;
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 
 @include lg {

@@ -6,6 +6,7 @@
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "aws-sdk": "^2.676.0",
+    "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
     "gatsby": "^2.21.21",
     "gatsby-cli": "^2.12.24",

@@ -1,35 +1,16 @@
 @import "./breakpoints";
 
 @mixin container-layout {
-  padding-left: 4%;
-  padding-right: 4%;
-  @include md {
-    padding-left: 8%;
-    padding-right: 8%;
-  }
-  @include lg {
-    padding-left: 12%;
-    padding-right: 12%;
-  }
-  @include xl {
-    padding-left: 18%;
-    padding-right: 18%;
-  }
+  width: 90%;
+  max-width: 80rem;
+  margin: 0 auto;
 }
 
 @mixin offset-container-layout {
-  padding-left: 2%;
-  padding-right: 2%;
-  @include md {
-    padding-left: 4%;
-    padding-right: 4%;
-  }
-  @include lg {
-    padding-left: 6%;
-    padding-right: 6%;
-  }
+  width: 90%;
   @include xl {
-    padding-left: 9%;
-    padding-right: 9%;
+    width: 95%;
   }
+  max-width: 100rem;
+  margin: 0 auto;
 }

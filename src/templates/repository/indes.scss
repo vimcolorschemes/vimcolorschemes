@@ -13,15 +13,3 @@
 .repository__owner-name {
   line-height: 1;
 }
-
-@include md {
-  .repository__image {
-    max-height: 30rem;
-  }
-}
-
-@include lg {
-  .repository__image {
-    max-height: 40rem;
-  }
-}

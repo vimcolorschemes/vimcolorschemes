@@ -29,7 +29,7 @@ const RepositoryPage = ({ data, location }) => {
       <SEO title={`${name} vim color scheme, by ${ownerName}`} />
       <div className="repository">
         <div className="repository__hero">
-          <RepositoryTitle ownerName={ownerName} name={name} isRepositoryPage />
+          <RepositoryTitle ownerName={ownerName} name={name} />
           <a href={githubUrl} target="_blank" rel="noopener noreferrer">
             Github home
           </a>

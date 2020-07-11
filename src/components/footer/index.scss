@@ -2,8 +2,11 @@
 
 .footer {
   background-color: rebeccapurple;
-  @include container-layout;
   color: white;
   padding-top: 1rem;
   padding-bottom: 1rem;
+}
+
+.footer__content {
+  @include container-layout;
 }
