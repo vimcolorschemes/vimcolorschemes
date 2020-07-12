@@ -14,9 +14,10 @@ const Card = ({
   description,
   image,
   metaContent,
+  linkId,
+  linkTabIndex,
   linkTo,
   linkState,
-  linkRef,
   className,
 }) => {
   return (
@@ -30,7 +31,7 @@ const Card = ({
         )}
       </div>
       <h2 className="card__title">
-        <Link to={linkTo} state={linkState} ref={linkRef}>
+        <Link to={linkTo} state={linkState} id={linkId} tabIndex={linkTabIndex}>
           <RepositoryTitle ownerName={ownerName} name={name} tag="div" />
         </Link>
       </h2>
@@ -50,6 +51,8 @@ Card.propTypes = {
     }).isRequired,
   }),
   metaContent: PropTypes.node,
+  linkId: PropTypes.string.isRequired,
+  linkTabIndex: PropTypes.number.isRequired,
   linkTo: PropTypes.string,
   linkState: PropTypes.object,
   className: PropTypes.string,
