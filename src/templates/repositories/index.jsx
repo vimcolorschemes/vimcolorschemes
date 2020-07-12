@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useMemo } from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
@@ -9,18 +9,18 @@ import { getRepositoryInfos } from "../../utils/repository";
 import Card from "../../components/card";
 import Grid from "../../components/grid";
 import Layout from "../../components/layout";
-import Pagination from "../../components/pagination";
 import SEO from "../../components/seo";
 
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
-  const [focusIndex, setFocusIndex] = useState();
   const { totalCount, repositories } = data?.repositoriesData;
 
-  const refs = useRef([]);
-
-  const { currentPage, pageCount } = pageContext;
+  const { currentPage } = pageContext;
+  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
+  const nextPage = (currentPage + 1).toString();
+  const hasPreviousPageButton = currentPage > 1;
+  const hasNextPageButton = currentPage < pageContext.pageCount;
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -29,47 +29,52 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
     ) || ACTIONS.DEFAULT;
 
-  useEffect(() => {
-    const handleKeyPress = event => {
-      if (focusIndex == null) {
-        setFocusIndex(0);
-        return;
-      }
-      switch (event.key) {
-        case "k":
-          setFocusIndex(index => (index > 1 ? index - 2 : index));
-          break;
-        case "l":
-          setFocusIndex(index => (index % 2 === 0 ? index + 1 : index));
-          break;
-        case "j":
-          setFocusIndex(index =>
-            index < repositories.length - 2 ? index + 2 : index,
-          );
-          break;
-        case "h":
-          setFocusIndex(index => (index % 2 !== 0 ? index - 1 : index));
-          break;
-        default:
-          break;
-      }
-    };
+  const actionTabIndexes = Object.keys(ACTIONS).map((_, index) => index + 2);
+  const repositoryTabIndexes = useMemo(
+    () => repositories.map((_, index) => actionTabIndexes.length + index + 2),
+    [actionTabIndexes.length, repositories],
+  );
+  const paginationTabIndexes = useMemo(
+    () =>
+      [hasPreviousPageButton, hasNextPageButton].reduce((acc, value) => {
+        if (value)
+          return [
+            ...acc,
+            actionTabIndexes.length +
+              repositoryTabIndexes.length +
+              acc.length +
+              2,
+          ];
+        return acc;
+      }, []),
+    [
+      actionTabIndexes.length,
+      repositoryTabIndexes.length,
+      hasPreviousPageButton,
+      hasNextPageButton,
+    ],
+  );
 
+  useEffect(() => {
     if (typeof window !== "undefined") {
-      window.addEventListener("keydown", handleKeyPress);
+      const eventListener = event =>
+        handleKeyPress(
+          event,
+          actionTabIndexes,
+          repositoryTabIndexes,
+          paginationTabIndexes,
+          repositories.length,
+        );
 
-      return () => {
-        window.removeEventListener("keydown", handleKeyPress);
-      };
+      window.addEventListener("keydown", eventListener);
+      return () => window.removeEventListener("keydown", eventListener);
     }
-  }, [repositories.length, focusIndex]);
-
-  useEffect(() => {
-    const focus = index => refs.current[index]?.focus();
-    if (focusIndex != null) focus(focusIndex);
-  }, [focusIndex, refs]);
-
-  if (totalCount == null || repositories == null) return;
+  }, [
+    repositories.length,
+    actionTabIndexes,
+    repositoryTabIndexes,
+    paginationTabIndexes,
+  ]);
 
   return (
     <Layout>
@@ -79,6 +84,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         {Object.values(ACTIONS).map((action, index) => (
           <li key={`${action.route}-${index}`}>
             <Link
+              tabIndex={actionTabIndexes[index]}
+              id={`tabindex-${actionTabIndexes[index]}`}
               to={action.route}
               className={`actions__button ${
                 activeAction === action ? "actions__button--active" : ""
@@ -101,9 +108,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           return (
             <Card
               key={`repository-${repositoryKey}`}
-              linkRef={element => {
-                refs.current[index] = element;
-              }}
+              linkId={`tabindex-${repositoryTabIndexes[index]}`}
+              linkTabIndex={repositoryTabIndexes[index]}
               linkTo={`/${URLify(repositoryKey)}`}
               linkState={{ fromPath: currentPath }}
               ownerName={ownerName}
@@ -114,14 +120,111 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           );
         })}
       </Grid>
-      <br />
-      <Pagination
-        currentPage={currentPage}
-        pageCount={pageCount}
-        activeActionRoute={activeAction.route}
-      />
+      <div>
+        {hasPreviousPageButton && (
+          <Link
+            style={{ marginTop: "1rem" }}
+            to={`${activeAction.route}${prevPage}`}
+            tabIndex={paginationTabIndexes[0]}
+            id={`tabindex-${paginationTabIndexes[0]}`}
+          >
+            Previous
+          </Link>
+        )}
+        {hasNextPageButton && (
+          <Link
+            style={{ marginTop: "1rem" }}
+            to={`${activeAction.route}${nextPage}`}
+            tabIndex={paginationTabIndexes[hasPreviousPageButton ? 1 : 0]}
+            id={`tabindex-${
+              paginationTabIndexes[hasPreviousPageButton ? 1 : 0]
+            }`}
+          >
+            Next
+          </Link>
+        )}
+      </div>
     </Layout>
   );
+};
+
+const Key = {
+  top: "g",
+  bottom: "G",
+  left: "h",
+  down: "j",
+  up: "k",
+  right: "l",
+};
+
+const handleKeyPress = (
+  event,
+  actionTabIndexes,
+  repositoryTabIndexes,
+  paginationTabIndexes,
+  repositoryCount,
+) => {
+  const { key } = event;
+  if (!Object.values(Key).includes(key)) return;
+  const { activeElement } = document;
+  let newTabIndex = 0;
+  if (activeElement.tabIndex === -1) newTabIndex = repositoryTabIndexes[0];
+  else {
+    const onRepositories = repositoryTabIndexes.includes(
+      activeElement.tabIndex,
+    );
+    switch (key) {
+      case Key.top:
+        newTabIndex = repositoryTabIndexes[0];
+        break;
+      case Key.bottom:
+        newTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
+        break;
+      case Key.down:
+        const repositoryCountIsEven = repositoryCount % 2 === 0;
+        const onActions = actionTabIndexes.includes(activeElement.tabIndex);
+        const onLastRepositoryLine = repositoryTabIndexes
+          .filter(
+            (_, index) =>
+              index >=
+              repositoryTabIndexes.length - (repositoryCountIsEven ? 2 : 1),
+          )
+          .includes(activeElement.tabIndex);
+        if (onActions) newTabIndex = repositoryTabIndexes[0];
+        else if (onLastRepositoryLine)
+          newTabIndex = paginationTabIndexes[paginationTabIndexes.length - 1];
+        else if (onRepositories)
+          newTabIndex = Math.min(
+            repositoryTabIndexes[repositoryTabIndexes.length - 1],
+            activeElement.tabIndex + 2,
+          );
+        else newTabIndex = activeElement.tabIndex + 1;
+        break;
+      case Key.up:
+        const onFirstRepositoryLine = repositoryTabIndexes
+          .slice(0, 2)
+          .includes(activeElement.tabIndex);
+        const onPagination = paginationTabIndexes.includes(
+          activeElement.tabIndex,
+        );
+        if (onFirstRepositoryLine) newTabIndex = actionTabIndexes[0];
+        else if (onPagination)
+          newTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
+        else if (onRepositories) newTabIndex = activeElement.tabIndex - 2;
+        else newTabIndex = activeElement.tabIndex - 1;
+        break;
+      case Key.left:
+        newTabIndex = activeElement.tabIndex - 1;
+        break;
+      case Key.right:
+        newTabIndex = activeElement.tabIndex + 1;
+        break;
+      default:
+        break;
+    }
+  }
+  const element = document.getElementById(`tabindex-${newTabIndex}`);
+  if (element) element.focus();
 };
 
 RepositoriesPage.propTypes = {

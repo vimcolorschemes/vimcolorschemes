@@ -7,14 +7,16 @@ import "./index.scss";
 const Header = () => (
   <header className="header">
     <div className="header__content">
-      <Link to="/" className="header__title">
+      {/* eslint-disable-next-line */}
+      <Link to="/" className="header__title" tabIndex={1}>
         <span>Vim</span>
         <span>C</span>
         <span>S</span>
       </Link>
       <nav className="header__nav">
         <ul>
-          <Link to="/about/" className="header__link">
+          {/* eslint-disable-next-line */}
+          <Link to="/about/" className="header__link" tabIndex={1}>
             About VimCS
           </Link>
         </ul>
