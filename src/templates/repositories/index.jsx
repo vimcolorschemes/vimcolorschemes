@@ -3,8 +3,6 @@ import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
 import { ACTIONS } from "../../constants/actions";
-import { URLify } from "../../utils/string";
-import { getRepositoryInfos } from "../../utils/repository";
 
 import Card from "../../components/card";
 import Grid from "../../components/grid";
@@ -79,6 +77,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   return (
     <Layout>
       <SEO title={`${activeAction.label} vim color schemes`} />
+      <p>TIP: Use hjkl to navigate</p>
       <p>{totalCount} repos</p>
       <ul className="actions">
         {Object.values(ACTIONS).map((action, index) => (
@@ -97,28 +96,15 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         ))}
       </ul>
       <Grid className="repositories">
-        {repositories.map((repository, index) => {
-          const {
-            ownerName,
-            name,
-            description,
-            featuredImage,
-          } = getRepositoryInfos(repository);
-          const repositoryKey = `${ownerName}/${name}`;
-          return (
-            <Card
-              key={`repository-${repositoryKey}`}
-              linkId={`tabindex-${repositoryTabIndexes[index]}`}
-              linkTabIndex={repositoryTabIndexes[index]}
-              linkTo={`/${URLify(repositoryKey)}`}
-              linkState={{ fromPath: currentPath }}
-              ownerName={ownerName}
-              name={name}
-              description={description}
-              image={featuredImage}
-            />
-          );
-        })}
+        {repositories.map((repository, index) => (
+          <Card
+            key={`repository-${repository.owner.name}-${repository.name}`}
+            linkId={`tabindex-${repositoryTabIndexes[index]}`}
+            linkTabIndex={repositoryTabIndexes[index]}
+            linkState={{ fromPath: currentPath }}
+            repository={repository}
+          />
+        ))}
       </Grid>
       <div>
         {hasPreviousPageButton && (
