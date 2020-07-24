@@ -1,9 +1,18 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
-import { ACTIONS } from "../../constants/actions";
+import {
+  getDownIndex,
+  getUpIndex,
+  getFirstTabIndexOfSection,
+} from "../../utils/tabIndex";
 
+import { ACTIONS } from "../../constants/actions";
+import { KEYS } from "../../constants/keys";
+import { SECTIONS } from "../../constants/sections";
+
+import Actions from "../../components/actions";
 import Card from "../../components/card";
 import Grid from "../../components/grid";
 import Layout from "../../components/layout";
@@ -27,80 +36,29 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
     ) || ACTIONS.DEFAULT;
 
-  const actionTabIndexes = Object.keys(ACTIONS).map((_, index) => index + 2);
-  const repositoryTabIndexes = useMemo(
-    () => repositories.map((_, index) => actionTabIndexes.length + index + 2),
-    [actionTabIndexes.length, repositories],
-  );
-  const paginationTabIndexes = useMemo(
-    () =>
-      [hasPreviousPageButton, hasNextPageButton].reduce((acc, value) => {
-        if (value)
-          return [
-            ...acc,
-            actionTabIndexes.length +
-              repositoryTabIndexes.length +
-              acc.length +
-              2,
-          ];
-        return acc;
-      }, []),
-    [
-      actionTabIndexes.length,
-      repositoryTabIndexes.length,
-      hasPreviousPageButton,
-      hasNextPageButton,
-    ],
-  );
-
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && typeof document !== "undefined") {
+      const focusables = document.querySelectorAll("*[data-section]");
+
       const eventListener = event =>
-        handleKeyPress(
-          event,
-          actionTabIndexes,
-          repositoryTabIndexes,
-          paginationTabIndexes,
-          repositories.length,
-        );
+        Object.values(KEYS).includes(event.key) &&
+        handleKeyPress(event.key, focusables);
 
       window.addEventListener("keydown", eventListener);
       return () => window.removeEventListener("keydown", eventListener);
     }
-  }, [
-    repositories.length,
-    actionTabIndexes,
-    repositoryTabIndexes,
-    paginationTabIndexes,
-  ]);
+  }, []);
 
   return (
     <Layout>
       <SEO title={`${activeAction.label} vim color schemes`} />
       <p>TIP: Use hjkl to navigate</p>
       <p>{totalCount} repos</p>
-      <ul className="actions">
-        {Object.values(ACTIONS).map((action, index) => (
-          <li key={`${action.route}-${index}`}>
-            <Link
-              tabIndex={actionTabIndexes[index]}
-              id={`tabindex-${actionTabIndexes[index]}`}
-              to={action.route}
-              className={`actions__button ${
-                activeAction === action ? "actions__button--active" : ""
-              }`}
-            >
-              {action.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <Grid className="repositories">
-        {repositories.map((repository, index) => (
+        {repositories.map(repository => (
           <Card
             key={`repository-${repository.owner.name}-${repository.name}`}
-            linkId={`tabindex-${repositoryTabIndexes[index]}`}
-            linkTabIndex={repositoryTabIndexes[index]}
             linkState={{ fromPath: currentPath }}
             repository={repository}
           />
@@ -111,8 +69,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           <Link
             style={{ marginTop: "1rem" }}
             to={`${activeAction.route}${prevPage}`}
-            tabIndex={paginationTabIndexes[0]}
-            id={`tabindex-${paginationTabIndexes[0]}`}
+            data-section={SECTIONS.PAGINATION}
           >
             Previous
           </Link>
@@ -121,10 +78,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           <Link
             style={{ marginTop: "1rem" }}
             to={`${activeAction.route}${nextPage}`}
-            tabIndex={paginationTabIndexes[hasPreviousPageButton ? 1 : 0]}
-            id={`tabindex-${
-              paginationTabIndexes[hasPreviousPageButton ? 1 : 0]
-            }`}
+            data-section={SECTIONS.PAGINATION}
           >
             Next
           </Link>
@@ -134,83 +88,57 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   );
 };
 
-const Key = {
-  top: "g",
-  bottom: "G",
-  left: "h",
-  down: "j",
-  up: "k",
-  right: "l",
+const handleKeyPress = (key, focusables) => {
+  const { activeElement } = document;
+
+  const currentTabIndex = Array.prototype.indexOf.call(
+    focusables,
+    activeElement,
+  );
+
+  if (currentTabIndex === -1) {
+    focus(
+      focusables,
+      getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES),
+    );
+    return;
+  }
+
+  let nextTabIndex;
+
+  switch (key) {
+    case KEYS.UP:
+      nextTabIndex = getUpIndex(
+        currentTabIndex,
+        activeElement.dataset.section,
+        focusables,
+      );
+      break;
+    case KEYS.DOWN:
+      nextTabIndex = getDownIndex(
+        currentTabIndex,
+        activeElement.dataset.section,
+        focusables,
+      );
+      break;
+    case KEYS.LEFT:
+      nextTabIndex = currentTabIndex - 1;
+      break;
+    case KEYS.RIGHT:
+      nextTabIndex = currentTabIndex + 1;
+      break;
+    default:
+      break;
+  }
+
+  if (nextTabIndex == null) return;
+
+  focus(focusables, nextTabIndex);
 };
 
-const handleKeyPress = (
-  event,
-  actionTabIndexes,
-  repositoryTabIndexes,
-  paginationTabIndexes,
-  repositoryCount,
-) => {
-  const { key } = event;
-  if (!Object.values(Key).includes(key)) return;
-  const { activeElement } = document;
-  let newTabIndex = 0;
-  if (activeElement.tabIndex === -1) newTabIndex = repositoryTabIndexes[0];
-  else {
-    const onRepositories = repositoryTabIndexes.includes(
-      activeElement.tabIndex,
-    );
-    switch (key) {
-      case Key.top:
-        newTabIndex = repositoryTabIndexes[0];
-        break;
-      case Key.bottom:
-        newTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
-        break;
-      case Key.down:
-        const repositoryCountIsEven = repositoryCount % 2 === 0;
-        const onActions = actionTabIndexes.includes(activeElement.tabIndex);
-        const onLastRepositoryLine = repositoryTabIndexes
-          .filter(
-            (_, index) =>
-              index >=
-              repositoryTabIndexes.length - (repositoryCountIsEven ? 2 : 1),
-          )
-          .includes(activeElement.tabIndex);
-        if (onActions) newTabIndex = repositoryTabIndexes[0];
-        else if (onLastRepositoryLine)
-          newTabIndex = paginationTabIndexes[paginationTabIndexes.length - 1];
-        else if (onRepositories)
-          newTabIndex = Math.min(
-            repositoryTabIndexes[repositoryTabIndexes.length - 1],
-            activeElement.tabIndex + 2,
-          );
-        else newTabIndex = activeElement.tabIndex + 1;
-        break;
-      case Key.up:
-        const onFirstRepositoryLine = repositoryTabIndexes
-          .slice(0, 2)
-          .includes(activeElement.tabIndex);
-        const onPagination = paginationTabIndexes.includes(
-          activeElement.tabIndex,
-        );
-        if (onFirstRepositoryLine) newTabIndex = actionTabIndexes[0];
-        else if (onPagination)
-          newTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
-        else if (onRepositories) newTabIndex = activeElement.tabIndex - 2;
-        else newTabIndex = activeElement.tabIndex - 1;
-        break;
-      case Key.left:
-        newTabIndex = activeElement.tabIndex - 1;
-        break;
-      case Key.right:
-        newTabIndex = activeElement.tabIndex + 1;
-        break;
-      default:
-        break;
-    }
-  }
-  const element = document.getElementById(`tabindex-${newTabIndex}`);
-  if (element) element.focus();
+const focus = (focusables, index) => {
+  const nextElement = focusables[index];
+  nextElement && nextElement.focus();
 };
 
 RepositoriesPage.propTypes = {

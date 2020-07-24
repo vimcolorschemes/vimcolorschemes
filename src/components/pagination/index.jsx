@@ -11,11 +11,15 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
   return (
     <div style={{ display: "flex" }}>
       {!isFirstPage && (
-        <Link to={`${activeActionRoute}${prevPage}`}>Previous page</Link>
+        <Link to={`${activeActionRoute}${prevPage}`}>
+          Previous page
+        </Link>
       )}
       <p>{currentPage}</p>
       {!isLastPage && (
-        <Link to={`${activeActionRoute}${nextPage}`}>Next page</Link>
+        <Link to={`${activeActionRoute}${nextPage}`}>
+          Next page
+        </Link>
       )}
     </div>
   );

@@ -1,6 +1,8 @@
+import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
-import React from "react";
+
+import { SECTIONS } from "../../constants/sections";
 
 import "./index.scss";
 
@@ -8,7 +10,11 @@ const Header = () => (
   <header className="header">
     <div className="header__content">
       {/* eslint-disable-next-line */}
-      <Link to="/" className="header__title" tabIndex={1}>
+      <Link
+        to="/"
+        className="header__title"
+        data-section={SECTIONS.NAV}
+      >
         <span>Vim</span>
         <span>C</span>
         <span>S</span>
@@ -16,7 +22,11 @@ const Header = () => (
       <nav className="header__nav">
         <ul>
           {/* eslint-disable-next-line */}
-          <Link to="/about/" className="header__link" tabIndex={1}>
+          <Link
+            to="/about/"
+            className="header__link"
+            data-section={SECTIONS.NAV}
+          >
             About VimCS
           </Link>
         </ul>

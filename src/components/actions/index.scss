@@ -1,0 +1,51 @@
+@import "../../style/constants";
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+.actions__item {
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 1rem;
+  position: relative;
+  margin-right: 1rem;
+  &--active {
+    border-radius: 0;
+    box-shadow: 0px 4px 0px -2px $FOCUS_BORDER;
+  }
+  &:hover,
+  &:focus-within {
+    border-radius: 5px;
+    box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
+  }
+}
+
+.actions__item > a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.actions__item > a:focus {
+  outline: none;
+  border: none;
+  text-decoration: underline;
+}
+
+.actions__item:focus-within {
+  box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
+}
+
+.actions__item:focus-within a {
+  outline: none;
+  border: none;
+  text-decoration: none;
+}

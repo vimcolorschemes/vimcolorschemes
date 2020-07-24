@@ -6,6 +6,8 @@ import classnames from "classnames";
 
 import starIcon from "../../images/icons/star.svg";
 
+import { SECTIONS } from "../../constants/sections";
+
 import { URLify } from "../../utils/string";
 import { getRepositoryInfos } from "../../utils/repository";
 
@@ -41,6 +43,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
             state={linkState}
             id={linkId}
             tabIndex={linkTabIndex}
+            data-section={SECTIONS.REPOSITORIES}
           >
             <RepositoryTitle ownerName={ownerName} name={name} tag="div" />
           </Link>
@@ -77,8 +80,6 @@ Card.propTypes = {
     lastCommitAt: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
   }).isRequired,
-  linkId: PropTypes.string.isRequired,
-  linkTabIndex: PropTypes.number.isRequired,
   linkState: PropTypes.object,
   className: PropTypes.string,
 };

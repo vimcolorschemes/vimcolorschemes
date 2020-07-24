@@ -58,12 +58,13 @@
     height: 1.25rem;
   }
   & > span {
+    color: $TEXT;
     font-size: 1rem;
   }
 }
 
 .card__infos {
-  color: $TEXT_PALE;
+  color: $TEXT;
   flex: 1;
   &:first-of-type {
     margin-bottom: 1rem;

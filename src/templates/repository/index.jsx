@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
@@ -24,6 +24,15 @@ const RepositoryPage = ({ data, location }) => {
     images,
   } = getRepositoryInfos(data.repository);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const eventListener = event => handleKeyPress(event);
+
+      window.addEventListener("keydown", eventListener);
+      return () => window.removeEventListener("keydown", eventListener);
+    }
+  }, []);
+
   return (
     <Layout>
       <SEO title={`${name} vim color scheme, by ${ownerName}`} />
@@ -34,10 +43,10 @@ const RepositoryPage = ({ data, location }) => {
             Github home
           </a>
         </div>
+        <p>{description}</p>
         {!!featuredImage && (
           <ZoomableImage image={featuredImage} className="repository__image" />
         )}
-        <p>{description}</p>
         {!!images && images.length > 0 && <Mosaic images={images} />}
         <Link to={fromPath || "/"}>back</Link>
       </div>
@@ -102,5 +111,9 @@ export const query = graphql`
     }
   }
 `;
+
+const handleKeyPress = event => {
+  console.log(event);
+};
 
 export default RepositoryPage;
