@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { LAYOUTS, SECTIONS } from "../../constants";
+
 import ZoomableImage from "../zoomableImage";
 
 import "./index.scss";
@@ -12,6 +14,8 @@ const Mosaic = ({ images }) => (
         key={`repository-image-${image.childImageSharp.fluid.src}`}
         image={image}
         className=""
+        data-section={SECTIONS.REPOSITORY_MOSAIC}
+        data-layout={LAYOUTS.GRID}
       />
     ))}
   </div>

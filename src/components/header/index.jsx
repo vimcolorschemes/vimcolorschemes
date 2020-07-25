@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 
-import { SECTIONS } from "../../constants/sections";
+import { LAYOUTS, SECTIONS } from "../../constants";
 
 import "./index.scss";
 
 const Header = () => (
   <header className="header">
     <div className="header__content">
-      {/* eslint-disable-next-line */}
       <Link
         to="/"
         className="header__title"
         data-section={SECTIONS.NAV}
+        data-layout={LAYOUTS.LIST}
       >
         <span>Vim</span>
         <span>C</span>
@@ -21,11 +21,11 @@ const Header = () => (
       </Link>
       <nav className="header__nav">
         <ul>
-          {/* eslint-disable-next-line */}
           <Link
             to="/about/"
             className="header__link"
             data-section={SECTIONS.NAV}
+            data-layout={LAYOUTS.LIST}
           >
             About VimCS
           </Link>

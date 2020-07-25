@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import "./index.scss";
 
-const ZoomableImage = ({ image, className }) => {
+const ZoomableImage = ({ image, className, ...inputArgs }) => {
   if (!image.childImageSharp?.fluid) return null;
 
   const renderedImage = (
@@ -18,7 +18,12 @@ const ZoomableImage = ({ image, className }) => {
 
   return (
     <label className="zoomable">
-      <input type="checkbox" className="zoomable__toggle" name="image-toggle" />
+      <input
+        type="checkbox"
+        className="zoomable__toggle"
+        name="image-toggle"
+        {...inputArgs}
+      />
       <div
         className={`zoomable__container${!!className ? ` ${className}` : ""}`}
       >

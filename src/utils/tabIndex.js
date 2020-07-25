@@ -1,4 +1,25 @@
-import { SECTIONS } from "../constants/sections";
+import { SECTIONS } from "../constants";
+
+export const getCurrentSectionItems = (focusables, index) => {
+  const { section } = focusables[index].dataset;
+  let startIndex, endIndex;
+
+  for (let i = index; i < focusables.length; i++) {
+    if (focusables[i].dataset.section !== section) {
+      endIndex = i - 1;
+      break;
+    }
+  }
+
+  for (let i = index; i >= 0; i--) {
+    if (focusables[i].dataset.section !== section) {
+      startIndex = i;
+      break;
+    }
+  }
+
+  return Array.prototype.slice.call(focusables, startIndex, endIndex);
+};
 
 export const getTabIndexesOfSection = (focusables, section) =>
   Array.prototype.reduce.call(
@@ -12,6 +33,16 @@ export const getFirstTabIndexOfSection = (focusables, section) =>
   Array.prototype.findIndex.call(
     focusables,
     focusable => focusable.dataset.section === section,
+  );
+
+export const getLastTabIndexOfSection = (focusables, section) =>
+  Array.prototype.reduce.call(
+    focusables,
+    (acc, focusable, index) => {
+      if (focusable.dataset.section === section) acc = index;
+      return acc;
+    },
+    -1,
   );
 
 export const getDownIndex = (currentTabIndex, currentSection, focusables) => {

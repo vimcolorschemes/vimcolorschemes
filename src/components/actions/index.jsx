@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import { SECTIONS } from "../../constants/sections";
+import { LAYOUTS, SECTIONS } from "../../constants";
 
 import "./index.scss";
 
@@ -15,7 +15,11 @@ const Actions = ({ actions, activeAction }) => (
           activeAction === action ? "actions__item--active" : ""
         }`}
       >
-        <Link data-section={SECTIONS.ACTIONS} to={action.route}>
+        <Link
+          data-section={SECTIONS.ACTIONS}
+          data-layout={LAYOUTS.LIST}
+          to={action.route}
+        >
           {action.label}
         </Link>
       </li>

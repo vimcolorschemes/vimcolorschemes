@@ -1,9 +1,12 @@
 import React from "react";
 
+import { useNavigation } from "../hooks/useNavigation";
+
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 
 const AboutPage = () => {
+  useNavigation();
   return (
     <Layout>
       <SEO title="About" />

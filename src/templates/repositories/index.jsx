@@ -1,17 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
-import {
-  getDownIndex,
-  getUpIndex,
-  getFirstTabIndexOfSection,
-  getTabIndexesOfSection,
-} from "../../utils/tabIndex";
+import { useNavigation } from "../../hooks/useNavigation";
 
-import { ACTIONS } from "../../constants/actions";
-import { KEYS } from "../../constants/keys";
-import { SECTIONS } from "../../constants/sections";
+import { ACTIONS, LAYOUTS, SECTIONS } from "../../constants";
 
 import Actions from "../../components/actions";
 import Card from "../../components/card";
@@ -37,18 +30,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
     ) || ACTIONS.DEFAULT;
 
-  useEffect(() => {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-      const focusables = document.querySelectorAll("*[data-section]");
-
-      const eventListener = event =>
-        Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event.key, focusables);
-
-      window.addEventListener("keydown", eventListener);
-      return () => window.removeEventListener("keydown", eventListener);
-    }
-  }, []);
+  useNavigation();
 
   return (
     <Layout>
@@ -71,6 +53,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             style={{ marginTop: "1rem" }}
             to={`${activeAction.route}${prevPage}`}
             data-section={SECTIONS.PAGINATION}
+            data-layout={LAYOUTS.LIST}
           >
             Previous
           </Link>
@@ -80,6 +63,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             style={{ marginTop: "1rem" }}
             to={`${activeAction.route}${nextPage}`}
             data-section={SECTIONS.PAGINATION}
+            data-layout={LAYOUTS.LIST}
           >
             Next
           </Link>
@@ -87,72 +71,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       </div>
     </Layout>
   );
-};
-
-const handleKeyPress = (key, focusables) => {
-  const { activeElement } = document;
-
-  const currentTabIndex = Array.prototype.indexOf.call(
-    focusables,
-    activeElement,
-  );
-
-  if (currentTabIndex === -1) {
-    focus(
-      focusables,
-      getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES),
-    );
-    return;
-  }
-
-  let nextTabIndex;
-
-  switch (key) {
-    case KEYS.UP:
-      nextTabIndex = getUpIndex(
-        currentTabIndex,
-        activeElement.dataset.section,
-        focusables,
-      );
-      break;
-    case KEYS.DOWN:
-      nextTabIndex = getDownIndex(
-        currentTabIndex,
-        activeElement.dataset.section,
-        focusables,
-      );
-      break;
-    case KEYS.LEFT:
-      nextTabIndex = currentTabIndex - 1;
-      break;
-    case KEYS.RIGHT:
-      nextTabIndex = currentTabIndex + 1;
-      break;
-    case KEYS.TOP:
-      nextTabIndex = getTabIndexesOfSection(
-        focusables,
-        SECTIONS.REPOSITORIES,
-      )[0];
-      break;
-    case KEYS.BOTTOM:
-      const repositoryTabIndexes = getTabIndexesOfSection(
-        focusables,
-        SECTIONS.REPOSITORIES,
-      );
-      nextTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
-      break;
-    default:
-      break;
-  }
-
-  if (nextTabIndex == null) return;
-
-  focus(focusables, nextTabIndex);
-};
-
-const focus = (focusables, index) => {
-  const nextElement = focusables[index];
-  nextElement && nextElement.focus();
 };
 
 RepositoriesPage.propTypes = {

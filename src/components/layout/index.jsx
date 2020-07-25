@@ -6,13 +6,15 @@ import Footer from "../footer";
 
 import "./index.scss";
 
-const Layout = ({ children }) => (
-  <>
-    <Header />
-    <main className="main">{children}</main>
-    <Footer />
-  </>
-);
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      <main className="main">{children}</main>
+      <Footer />
+    </>
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,

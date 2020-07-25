@@ -6,7 +6,7 @@ import classnames from "classnames";
 
 import starIcon from "../../images/icons/star.svg";
 
-import { SECTIONS } from "../../constants/sections";
+import { LAYOUTS, SECTIONS } from "../../constants";
 
 import { URLify } from "../../utils/string";
 import { getRepositoryInfos } from "../../utils/repository";
@@ -44,6 +44,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
             id={linkId}
             tabIndex={linkTabIndex}
             data-section={SECTIONS.REPOSITORIES}
+            data-layout={LAYOUTS.GRID}
           >
             <RepositoryTitle ownerName={ownerName} name={name} tag="div" />
           </Link>

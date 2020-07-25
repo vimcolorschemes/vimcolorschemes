@@ -1,6 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
+
+import { LAYOUTS, SECTIONS } from "../../constants";
+
+import { useNavigation } from "../../hooks/useNavigation";
 
 import { getRepositoryInfos } from "../../utils/repository";
 
@@ -24,14 +28,7 @@ const RepositoryPage = ({ data, location }) => {
     images,
   } = getRepositoryInfos(data.repository);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const eventListener = event => handleKeyPress(event);
-
-      window.addEventListener("keydown", eventListener);
-      return () => window.removeEventListener("keydown", eventListener);
-    }
-  }, []);
+  useNavigation();
 
   return (
     <Layout>
@@ -39,16 +36,33 @@ const RepositoryPage = ({ data, location }) => {
       <div className="repository">
         <div className="repository__hero">
           <RepositoryTitle ownerName={ownerName} name={name} />
-          <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-            Github home
+          <a
+            href={githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-section={SECTIONS.REPOSITORY_HEADER}
+            data-layout={LAYOUTS.LIST}
+          >
+            GitHub
           </a>
         </div>
         <p>{description}</p>
         {!!featuredImage && (
-          <ZoomableImage image={featuredImage} className="repository__image" />
+          <ZoomableImage
+            image={featuredImage}
+            className="repository__image"
+            data-section={SECTIONS.REPOSITORY_MAIN_IMAGE}
+            data-layout={LAYOUTS.BLOCK}
+          />
         )}
         {!!images && images.length > 0 && <Mosaic images={images} />}
-        <Link to={fromPath || "/"}>back</Link>
+        <Link
+          to={fromPath || "/"}
+          data-section={SECTIONS.REPOSITORY_NAV}
+          data-layout={LAYOUTS.LIST}
+        >
+          back
+        </Link>
       </div>
     </Layout>
   );
@@ -111,9 +125,5 @@ export const query = graphql`
     }
   }
 `;
-
-const handleKeyPress = event => {
-  console.log(event);
-};
 
 export default RepositoryPage;
