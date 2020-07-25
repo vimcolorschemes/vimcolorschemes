@@ -6,6 +6,7 @@ import {
   getDownIndex,
   getUpIndex,
   getFirstTabIndexOfSection,
+  getTabIndexesOfSection,
 } from "../../utils/tabIndex";
 
 import { ACTIONS } from "../../constants/actions";
@@ -126,6 +127,19 @@ const handleKeyPress = (key, focusables) => {
       break;
     case KEYS.RIGHT:
       nextTabIndex = currentTabIndex + 1;
+      break;
+    case KEYS.TOP:
+      nextTabIndex = getTabIndexesOfSection(
+        focusables,
+        SECTIONS.REPOSITORIES,
+      )[0];
+      break;
+    case KEYS.BOTTOM:
+      const repositoryTabIndexes = getTabIndexesOfSection(
+        focusables,
+        SECTIONS.REPOSITORIES,
+      );
+      nextTabIndex = repositoryTabIndexes[repositoryTabIndexes.length - 1];
       break;
     default:
       break;
