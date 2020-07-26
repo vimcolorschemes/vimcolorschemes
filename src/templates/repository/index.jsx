@@ -42,6 +42,7 @@ const RepositoryPage = ({ data, location }) => {
             rel="noopener noreferrer"
             data-section={SECTIONS.REPOSITORY_HEADER}
             data-layout={LAYOUTS.LIST}
+            className="repository__nav-link"
           >
             GitHub
           </a>
@@ -60,6 +61,7 @@ const RepositoryPage = ({ data, location }) => {
           to={fromPath || "/"}
           data-section={SECTIONS.REPOSITORY_NAV}
           data-layout={LAYOUTS.LIST}
+          className="repository__nav-link"
         >
           back
         </Link>

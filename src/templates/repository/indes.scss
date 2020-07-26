@@ -1,5 +1,3 @@
-@import "../../style/mixins/breakpoints";
-
 .repository__hero {
   display: flex;
   justify-content: space-between;
@@ -12,4 +10,9 @@
 
 .repository__owner-name {
   line-height: 1;
+}
+
+.repository__nav-link {
+  padding: 1rem;
+  margin: -1rem;
 }

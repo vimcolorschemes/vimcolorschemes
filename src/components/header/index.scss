@@ -1,39 +1,54 @@
 @import "../../style/mixins/index";
+@import "../../style/constants";
 
 .header {
   min-height: 5rem;
+  padding: 2rem 0;
   display: flex;
   align-items: center;
-  background: #dee1e6;
-  color: #333333;
-  &__content {
-    @include offset-container-layout;
-    display: flex;
-    justify-content: space-between;
+  background: #fff;
+}
+
+.header__content {
+  @include offset-container-layout;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__link {
+  color: $TEXT;
+  padding: 1rem;
+  margin: -1rem;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin: -1rem;
+  & > img {
+    height: 5rem;
   }
-  &__nav {
-    display: flex;
-    align-items: center;
-  }
-  &__link {
-    color: #333333;
+  & > span {
+    color: $TEXT_PALE;
+    display: none;
+    font-size: 2rem;
+    text-decoration: none;
+    margin: 0;
+    &:first-of-type {
+      color: $TEXT;
+      margin-left: 0.5rem;
+    }
   }
 }
-.header__title {
-  font-family: "Major Mono Display", monospace;
-  font-size: 5rem;
-  margin: 0;
-  text-decoration: none;
-  & > span:first-child {
-    color: #333333;
-    font-weight: normal;
-  }
-  & > span:nth-child(2) {
-    color: #d49191;
-    font-weight: bold;
-  }
-  & > span:nth-child(3) {
-    color: #7295a8;
-    font-weight: bold;
+
+@include lg {
+  .header__logo > span {
+    display: block;
   }
 }

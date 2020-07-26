@@ -1,4 +1,5 @@
 @import "../../style/constants";
+@import "../../style/mixins/index";
 
 .actions {
   width: 100%;
@@ -9,19 +10,15 @@
 }
 
 .actions__item {
-  border-radius: 5px;
   cursor: pointer;
   padding: 1rem;
   position: relative;
   margin-right: 1rem;
   &--active {
-    border-radius: 0;
     box-shadow: 0px 4px 0px -2px $FOCUS_BORDER;
   }
-  &:hover,
   &:focus-within {
-    border-radius: 5px;
-    box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
+    @include focus-border;
   }
 }
 
@@ -37,15 +34,17 @@
 .actions__item > a:focus {
   outline: none;
   border: none;
+  box-shadow: none;
   text-decoration: underline;
 }
 
 .actions__item:focus-within {
-  box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
+  @include focus-border;
 }
 
 .actions__item:focus-within a {
   outline: none;
   border: none;
+  box-shadow: none;
   text-decoration: none;
 }
