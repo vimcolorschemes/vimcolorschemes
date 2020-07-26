@@ -23,14 +23,16 @@ const Header = () => (
       </Link>
       <nav className="header__nav">
         <ul>
-          <Link
-            to="/about/"
-            className="header__link"
-            data-section={SECTIONS.NAV}
-            data-layout={LAYOUTS.LIST}
-          >
-            About VimCS
-          </Link>
+          <li>
+            <Link
+              to="/about/"
+              className="header__link"
+              data-section={SECTIONS.NAV}
+              data-layout={LAYOUTS.LIST}
+            >
+              About VimCS
+            </Link>
+          </li>
         </ul>
       </nav>
     </div>
