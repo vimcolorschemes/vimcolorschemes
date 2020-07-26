@@ -32,6 +32,7 @@ export const LAYOUTS = {
 };
 
 export const KEYS = {
+  SPACE: " ",
   TOP: "g",
   BOTTOM: "G",
   LEFT: "h",
