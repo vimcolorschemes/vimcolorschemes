@@ -47,13 +47,14 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           />
         ))}
       </Grid>
-      <div>
+      <div className="pagination">
         {hasPreviousPageButton && (
           <Link
             style={{ marginTop: "1rem" }}
             to={`${activeAction.route}${prevPage}`}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
+            className="pagination__link"
           >
             Previous
           </Link>
@@ -64,6 +65,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             to={`${activeAction.route}${nextPage}`}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
+            className="pagination__link"
           >
             Next
           </Link>

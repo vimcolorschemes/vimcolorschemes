@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import { LAYOUTS, SECTIONS } from "../../constants";
 
+import logo from "../../images/logo.svg";
+
 import "./index.scss";
 
 const Header = () => (
@@ -11,13 +13,13 @@ const Header = () => (
     <div className="header__content">
       <Link
         to="/"
-        className="header__title"
+        className="header__logo"
         data-section={SECTIONS.NAV}
         data-layout={LAYOUTS.LIST}
       >
-        <span>Vim</span>
-        <span>C</span>
-        <span>S</span>
+        <img src={logo} alt="Vim color schemes logo" />
+        <span>vim</span>
+        <span>colorschemes</span>
       </Link>
       <nav className="header__nav">
         <ul>

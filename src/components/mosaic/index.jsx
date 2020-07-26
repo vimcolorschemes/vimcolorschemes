@@ -9,9 +9,9 @@ import "./index.scss";
 
 const Mosaic = ({ images }) => (
   <div className="mosaic">
-    {images.map(image => (
+    {images.map((image, index) => (
       <ZoomableImage
-        key={`repository-image-${image.childImageSharp.fluid.src}`}
+        key={`repository-image-${image.id}-${index}`}
         image={image}
         className=""
         data-section={SECTIONS.REPOSITORY_MOSAIC}

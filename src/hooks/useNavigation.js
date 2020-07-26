@@ -35,7 +35,9 @@ const handleKeyPress = (key, focusables) => {
 
   let nextTabIndex;
 
-  if (key === KEYS.TOP) {
+  if (key === KEYS.SPACE) {
+    return;
+  } else if (key === KEYS.TOP) {
     nextTabIndex = getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else if (key === KEYS.BOTTOM) {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);

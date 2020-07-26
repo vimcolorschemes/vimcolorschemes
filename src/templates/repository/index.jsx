@@ -12,9 +12,9 @@ import Layout from "../../components/layout";
 import Mosaic from "../../components/mosaic";
 import RepositoryTitle from "../../components/repositoryTitle";
 import SEO from "../../components/seo";
-import ZoomableImage from "../../components/zoomableImage";
 
 import "./indes.scss";
+import ZoomableImage from "../../components/zoomableImage";
 
 const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
@@ -35,21 +35,25 @@ const RepositoryPage = ({ data, location }) => {
       <SEO title={`${name} vim color scheme, by ${ownerName}`} />
       <div className="repository">
         <div className="repository__hero">
-          <RepositoryTitle ownerName={ownerName} name={name} />
-          <a
-            href={githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-section={SECTIONS.REPOSITORY_HEADER}
-            data-layout={LAYOUTS.LIST}
-          >
-            GitHub
-          </a>
+          <div className="repository__header">
+            <RepositoryTitle ownerName={ownerName} name={name} />
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-section={SECTIONS.REPOSITORY_HEADER}
+              data-layout={LAYOUTS.LIST}
+              className="repository__nav-link"
+            >
+              GitHub
+            </a>
+          </div>
+          <p>{description}</p>
         </div>
-        <p>{description}</p>
         {!!featuredImage && (
           <ZoomableImage
             image={featuredImage}
+            alt="featured"
             className="repository__image"
             data-section={SECTIONS.REPOSITORY_MAIN_IMAGE}
             data-layout={LAYOUTS.BLOCK}
@@ -60,6 +64,7 @@ const RepositoryPage = ({ data, location }) => {
           to={fromPath || "/"}
           data-section={SECTIONS.REPOSITORY_NAV}
           data-layout={LAYOUTS.LIST}
+          className="repository__nav-link"
         >
           back
         </Link>
@@ -110,14 +115,15 @@ export const query = graphql`
       }
       featuredImage: processed_featured_image {
         childImageSharp {
-          fluid {
+          fluid(maxWidth: 1280, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }
       }
       images: processed_images {
+        id
         childImageSharp {
-          fluid {
+          fluid(maxWidth: 1280, quality: 80) {
             ...GatsbyImageSharpFluid
           }
         }

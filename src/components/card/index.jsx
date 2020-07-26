@@ -33,6 +33,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           <Img
             fluid={featuredImage.childImageSharp.fluid}
             alt={`${ownerName} ${name}`}
+            imgStyle={{ objectFit: "contain" }}
           />
         )}
       </div>

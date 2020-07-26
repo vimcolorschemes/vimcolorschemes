@@ -1,6 +1,7 @@
 .mosaic {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-row-gap: 1rem;
-  grid-column-gap: 1rem;
+  grid-row-gap: 2rem;
+  grid-column-gap: 2rem;
+  margin-bottom: 2rem;
 }

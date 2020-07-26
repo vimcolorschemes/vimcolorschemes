@@ -1,12 +1,9 @@
 @import "./constants.scss";
 @import "./mixins/breakpoints";
+@import "./mixins/index";
 
 @import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
-
-html {
-  // scroll-behavior: smooth;
-}
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;700&display=swap");
 
 body {
   font-family: $base-font-family;
@@ -20,6 +17,12 @@ body {
 a {
   color: $TEXT;
   text-decoration: none;
+  &:hover {
+    @include hover-border;
+  }
+  &:focus {
+    @include focus-border;
+  }
 }
 
 strong {
@@ -39,12 +42,9 @@ strong {
 .button {
   width: max-content;
   padding: 1rem;
-
   border: 1px solid #000;
-
   background-color: #fff;
   color: #000;
-
   transition: background-color 400ms ease, color 400ms ease;
   &:hover {
     background-color: #000;

@@ -1,15 +1,25 @@
-@import "../../style/mixins/breakpoints";
+@import "../../style/mixins/index";
 
 .repository__hero {
+  margin-bottom: 2rem;
+}
+
+.repository__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .repository__image {
-  padding: 3rem 0;
+  padding: 1rem;
+  margin: -1rem -1rem 2rem -1rem;
 }
 
 .repository__owner-name {
   line-height: 1;
+}
+
+.repository__nav-link {
+  padding: 1rem;
+  margin: -1rem;
 }
