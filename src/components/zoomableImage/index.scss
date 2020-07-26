@@ -42,6 +42,7 @@
     justify-content: center;
     align-items: center;
     & > .zoomable__image {
+      max-width: 1280px;
       width: 90%;
       height: 90%;
     }
