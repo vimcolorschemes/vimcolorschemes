@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { LAYOUTS, KEYS, SECTIONS } from "../constants";
+import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "../constants";
 
 import {
   getFirstTabIndexOfSection,
@@ -35,7 +35,7 @@ const handleKeyPress = (key, focusables, defaultSection) => {
 
   let nextTabIndex;
 
-  if (key === KEYS.SPACE) {
+  if (NON_NAVIGATION_KEYS.includes(key)) {
     return;
   } else if (key === KEYS.TOP) {
     nextTabIndex = getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);

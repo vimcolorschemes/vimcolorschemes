@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import classnames from "classnames";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
 
@@ -29,14 +30,15 @@ const ZoomableImage = ({ image, className, ...inputArgs }) => {
         name="image-toggle"
         onKeyDown={event => {
           event.preventDefault();
-          if (event.key === KEYS.SPACE || event.target?.checked)
+          if (
+            [KEYS.SPACE, KEYS.ENTER].includes(event.key) ||
+            (Object.values(KEYS).includes(event.key) && event.target?.checked)
+          )
             event.target.checked = !event.target.checked;
         }}
         {...inputArgs}
       />
-      <div
-        className={`zoomable__container${!!className ? ` ${className}` : ""}`}
-      >
+      <div className={classnames("zoomable__container", className)}>
         {renderedImage}
       </div>
       <div className="zoomable__modal">{renderedImage}</div>

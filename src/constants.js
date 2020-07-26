@@ -33,6 +33,7 @@ export const LAYOUTS = {
 
 export const KEYS = {
   SPACE: " ",
+  ENTER: "Enter",
   TOP: "g",
   BOTTOM: "G",
   LEFT: "h",
@@ -41,6 +42,8 @@ export const KEYS = {
   RIGHT: "l",
   BACK: "H",
 };
+
+export const NON_NAVIGATION_KEYS = [KEYS.SPACE, KEYS.ENTER];
 
 export const SECTIONS = {
   // general
