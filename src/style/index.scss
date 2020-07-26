@@ -38,20 +38,3 @@ strong {
   font-size: 1.5rem;
   font-weight: bold;
 }
-
-.button {
-  width: max-content;
-  padding: 1rem;
-  border: 1px solid #000;
-  background-color: #fff;
-  color: #000;
-  transition: background-color 400ms ease, color 400ms ease;
-  &:hover {
-    background-color: #000;
-    color: #fff;
-  }
-  &--no-style {
-    border: none;
-    padding: 0;
-  }
-}

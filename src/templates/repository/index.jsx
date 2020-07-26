@@ -28,7 +28,7 @@ const RepositoryPage = ({ data, location }) => {
     images,
   } = getRepositoryInfos(data.repository);
 
-  useNavigation();
+  useNavigation(SECTIONS.REPOSITORY_MAIN_IMAGE);
 
   return (
     <Layout>

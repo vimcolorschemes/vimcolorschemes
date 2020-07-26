@@ -8,22 +8,22 @@ import {
   getLastTabIndexOfSection,
 } from "../utils/tabIndex";
 
-export const useNavigation = () => {
+export const useNavigation = defaultSection => {
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
       const focusables = document.querySelectorAll("*[data-section]");
 
       const eventListener = event =>
         Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event.key, focusables);
+        handleKeyPress(event.key, focusables, defaultSection);
 
       window.addEventListener("keydown", eventListener);
       return () => window.removeEventListener("keydown", eventListener);
     }
-  }, []);
+  }, [defaultSection]);
 };
 
-const handleKeyPress = (key, focusables) => {
+const handleKeyPress = (key, focusables, defaultSection) => {
   const { activeElement } = document;
 
   const currentTabIndex = Array.prototype.indexOf.call(
@@ -43,8 +43,11 @@ const handleKeyPress = (key, focusables) => {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else {
     if (currentTabIndex === -1) {
-      focus(focusables, 0);
-      return;
+      let firstIndex = defaultSection
+        ? getFirstTabIndexOfSection(focusables, defaultSection)
+        : 0;
+      if (firstIndex === -1) firstIndex = 0;
+      nextTabIndex = firstIndex;
     }
     switch (layout) {
       case LAYOUTS.BLOCK:

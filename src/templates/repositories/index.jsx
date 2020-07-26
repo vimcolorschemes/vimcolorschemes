@@ -30,7 +30,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
     ) || ACTIONS.DEFAULT;
 
-  useNavigation();
+  useNavigation(SECTIONS.REPOSITORIES);
 
   return (
     <Layout>
