@@ -10,7 +10,7 @@
 }
 
 .header__content {
-  @include offset-container-layout;
+  @include container-layout;
   display: flex;
   justify-content: space-between;
 }

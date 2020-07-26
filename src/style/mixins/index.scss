@@ -7,15 +7,6 @@
   margin: 0 auto;
 }
 
-@mixin offset-container-layout {
-  width: 90%;
-  @include xl {
-    width: 95%;
-  }
-  max-width: 100rem;
-  margin: 0 auto;
-}
-
 @mixin focus-border {
   box-shadow: 0px 0px 0px 2px $FOCUS_BORDER;
   outline: none;
