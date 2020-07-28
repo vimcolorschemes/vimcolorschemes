@@ -1,5 +1,3 @@
-import { SECTIONS } from "../constants";
-
 export const getCurrentSectionItems = (focusables, index) => {
   const { section } = focusables[index].dataset;
   let startIndex, endIndex;
@@ -29,80 +27,33 @@ export const getTabIndexesOfSection = (focusables, section) =>
     [],
   );
 
-export const getFirstTabIndexOfSection = (focusables, section) =>
-  Array.prototype.findIndex.call(
-    focusables,
-    focusable => focusable.dataset.section === section,
-  );
+const prioritize = (elements, focusables) =>
+  elements.sort((a, b) => {
+    const priorityA = parseInt(focusables[a].dataset.priority) || Infinity;
+    const priorityB = parseInt(focusables[b].dataset.priority) || Infinity;
+    return priorityA - priorityB;
+  });
 
-export const getLastTabIndexOfSection = (focusables, section) =>
+const getSectionIndexes = (focusables, section) =>
   Array.prototype.reduce.call(
     focusables,
-    (acc, focusable, index) => {
-      if (focusable.dataset.section === section) acc = index;
-      return acc;
-    },
-    -1,
+    (indexes, focusable, index) =>
+      focusable.dataset.section === section ? [...indexes, index] : indexes,
+    [],
   );
 
-export const getDownIndex = (currentTabIndex, currentSection, focusables) => {
-  switch (currentSection) {
-    case SECTIONS.NAV:
-      return getFirstTabIndexOfSection(focusables, SECTIONS.ACTIONS);
-    case SECTIONS.ACTIONS:
-      return getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
-    case SECTIONS.REPOSITORIES:
-      const straightDownTabIndex = currentTabIndex + 2;
-      if (
-        focusables[straightDownTabIndex]?.dataset.section ===
-        SECTIONS.REPOSITORIES
-      )
-        return straightDownTabIndex;
-
-      const repositoryTabIndexes = getTabIndexesOfSection(
-        focusables,
-        SECTIONS.REPOSITORIES,
-      );
-
-      if (
-        currentTabIndex ===
-          repositoryTabIndexes[repositoryTabIndexes.length - 2] &&
-        repositoryTabIndexes.length % 2 !== 0
-      )
-        return repositoryTabIndexes[repositoryTabIndexes.length - 1];
-
-      return getFirstTabIndexOfSection(focusables, SECTIONS.PAGINATION);
-    case SECTIONS.PAGINATION:
-      // can't go down
-      return null;
-    default:
-      return null;
-  }
+export const getFirstTabIndexOfSection = (focusables, section) => {
+  const firstIndex = prioritize(
+    getSectionIndexes(focusables, section),
+    focusables,
+  )[0];
+  return firstIndex == null ? -1 : firstIndex;
 };
 
-export const getUpIndex = (currentTabIndex, currentSection, focusables) => {
-  switch (currentSection) {
-    case SECTIONS.NAV:
-      return null;
-    case SECTIONS.ACTIONS:
-      return getFirstTabIndexOfSection(focusables, SECTIONS.NAV);
-    case SECTIONS.REPOSITORIES:
-      const onFirstRow = getTabIndexesOfSection(
-        focusables,
-        SECTIONS.REPOSITORIES,
-      )
-        .slice(0, 2)
-        .includes(currentTabIndex);
-      if (onFirstRow)
-        return getFirstTabIndexOfSection(focusables, SECTIONS.ACTIONS);
-      return currentTabIndex - 2;
-    case SECTIONS.PAGINATION:
-      const repositoryTabIndexes = getTabIndexesOfSection(
-        focusables,
-        SECTIONS.REPOSITORIES,
-      );
-      return repositoryTabIndexes[repositoryTabIndexes.length - 1];
-    default:
-      return null;
-  }
+export const getLastTabIndexOfSection = (focusables, section) => {
+  const sectionIndexes = getSectionIndexes(focusables, section);
+  const lastIndex = prioritize(sectionIndexes, focusables)[
+    sectionIndexes.length - 1
+  ];
+  return lastIndex == null ? -1 : lastIndex;
 };
