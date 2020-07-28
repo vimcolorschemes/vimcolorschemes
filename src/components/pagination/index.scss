@@ -1,0 +1,47 @@
+@import "../../style/mixins/breakpoints";
+
+.pagination {
+  margin-top: 5rem;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pagination__page-status {
+  margin: 0 3rem;
+}
+.pagination__link-block {
+  width: max-content;
+  &:first-of-type > a {
+    text-align: left;
+  }
+  &:last-of-type > a {
+    text-align: right;
+  }
+}
+
+.pagination__link {
+  margin: -1rem;
+  padding: 1rem;
+  &--limit {
+    display: none;
+  }
+}
+
+@include lg {
+  .pagination__link-block {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+  }
+  .pagination__link {
+    &:first-of-type {
+      margin-right: 3rem;
+    }
+  }
+  .pagination__link--limit {
+    display: block;
+  }
+}

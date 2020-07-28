@@ -1,10 +1,10 @@
 import React from "react";
-import { graphql, Link } from "gatsby";
+import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
 import { useNavigation } from "../../hooks/useNavigation";
 
-import { ACTIONS, LAYOUTS, SECTIONS } from "../../constants";
+import { ACTIONS, SECTIONS } from "../../constants";
 
 import Actions from "../../components/actions";
 import Card from "../../components/card";
@@ -13,15 +13,10 @@ import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
 import "./index.scss";
+import Pagination from "../../components/pagination";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
-
-  const { currentPage } = pageContext;
-  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
-  const hasPreviousPageButton = currentPage > 1;
-  const hasNextPageButton = currentPage < pageContext.pageCount;
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -47,30 +42,11 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           />
         ))}
       </Grid>
-      <div className="pagination">
-        {hasPreviousPageButton && (
-          <Link
-            style={{ marginTop: "1rem" }}
-            to={`${activeAction.route}${prevPage}`}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            className="pagination__link"
-          >
-            Previous
-          </Link>
-        )}
-        {hasNextPageButton && (
-          <Link
-            style={{ marginTop: "1rem" }}
-            to={`${activeAction.route}${nextPage}`}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            className="pagination__link"
-          >
-            Next
-          </Link>
-        )}
-      </div>
+      <Pagination
+        currentPage={pageContext.currentPage}
+        pageCount={pageContext.pageCount}
+        activeActionRoute={activeAction.route}
+      />
     </Layout>
   );
 };
