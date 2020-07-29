@@ -11,9 +11,9 @@ import Card from "../../components/card";
 import Grid from "../../components/grid";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
+import Pagination from "../../components/pagination";
 
 import "./index.scss";
-import Pagination from "../../components/pagination";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
@@ -30,7 +30,9 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   return (
     <Layout>
       <SEO title={`${activeAction.label} vim color schemes`} />
-      <p>TIP: Use hjkl to navigate</p>
+      <p>
+        <strong>TIP: Use hjkl to navigate</strong>
+      </p>
       <p>{totalCount} repos</p>
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <Grid className="repositories">

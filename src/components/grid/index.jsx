@@ -1,9 +1,12 @@
 import React from "react";
+import classnames from "classnames";
 import PropTypes from "prop-types";
 
 import "./index.scss";
 
-const Grid = ({ children }) => <ul className="grid">{children}</ul>;
+const Grid = ({ className, children }) => (
+  <ul className={classnames("grid", className)}>{children}</ul>
+);
 
 Grid.propTypes = {
   children: PropTypes.node.isRequired,

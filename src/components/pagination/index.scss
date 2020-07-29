@@ -1,7 +1,7 @@
 @import "../../style/mixins/breakpoints";
 
 .pagination {
-  margin-top: 5rem;
+  margin-top: 3rem;
   width: 100%;
   position: relative;
   display: flex;
@@ -12,6 +12,7 @@
 .pagination__page-status {
   margin: 0 3rem;
 }
+
 .pagination__link-block {
   width: max-content;
   &:first-of-type > a {
