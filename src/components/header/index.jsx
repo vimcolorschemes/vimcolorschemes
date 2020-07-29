@@ -26,18 +26,14 @@ const Header = () => (
       <div className="header__sub-content">
         <ThemeSwitch data-section={SECTIONS.NAV} data-layout={LAYOUTS.LIST} />
         <nav className="header__nav">
-          <ul>
-            <li>
-              <Link
-                to="/about/"
-                className="header__link"
-                data-section={SECTIONS.NAV}
-                data-layout={LAYOUTS.LIST}
-              >
-                About VimCS
-              </Link>
-            </li>
-          </ul>
+          <Link
+            to="/about/"
+            className="header__link"
+            data-section={SECTIONS.NAV}
+            data-layout={LAYOUTS.LIST}
+          >
+            About VimCS
+          </Link>
         </nav>
       </div>
     </div>

@@ -16,21 +16,21 @@ const ThemeSwitch = inputArgs => {
 
   return (
     <label className="theme-switch">
-      <div className="theme-switch__visual-container">
-        <input
-          type="checkbox"
-          className="theme-switch__input"
-          aria-label="Switch between light and dark mode"
-          checked={theme === THEMES.DARK}
-          onChange={event =>
-            window.__setPreferredTheme(
-              event.target.checked ? THEMES.DARK : THEMES.LIGHT,
-            )
-          }
-          {...inputArgs}
-        />
-        <div className="theme-switch__control" />
-      </div>
+      <input
+        type="checkbox"
+        className="theme-switch__input"
+        aria-label="Switch between light and dark mode"
+        checked={theme === THEMES.DARK}
+        onChange={event =>
+          window.__setPreferredTheme(
+            event.target.checked ? THEMES.DARK : THEMES.LIGHT,
+          )
+        }
+        {...inputArgs}
+      />
+      <span>
+        dark theme: <strong>{theme === THEMES.DARK ? "on" : "off"}</strong>
+      </span>
     </label>
   );
 };

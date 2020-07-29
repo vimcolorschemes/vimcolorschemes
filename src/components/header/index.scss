@@ -16,17 +16,21 @@
 
 .header__sub-content {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
   & > * {
-    margin-right: 2rem;
+    margin: -1rem -1rem 1rem -1rem;
     &:last-child {
-      margin-right: 0;
+      margin: -1rem;
     }
   }
 }
 
 .header__nav {
+  padding: 1rem;
+  margin: -1rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
@@ -60,5 +64,15 @@
 @include lg {
   .header__logo > span {
     display: block;
+  }
+  .header__sub-content {
+    flex-direction: row;
+    align-items: center;
+    & > * {
+      margin: -1rem 2rem -1rem -1rem;
+      &:last-child {
+        margin: -1rem;
+      }
+    }
   }
 }
