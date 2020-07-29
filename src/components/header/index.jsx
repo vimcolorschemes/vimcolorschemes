@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import { LAYOUTS, SECTIONS } from "../../constants";
 
+import ThemeSwitch from "../themeSwitch";
+
 import logo from "../../images/logo.svg";
 
 import "./index.scss";
@@ -21,20 +23,19 @@ const Header = () => (
         <span>vim</span>
         <span>colorschemes</span>
       </Link>
-      <nav className="header__nav">
-        <ul>
-          <li>
-            <Link
-              to="/about/"
-              className="header__link"
-              data-section={SECTIONS.NAV}
-              data-layout={LAYOUTS.LIST}
-            >
-              About VimCS
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="header__sub-content">
+        <ThemeSwitch data-section={SECTIONS.NAV} data-layout={LAYOUTS.LIST} />
+        <nav className="header__nav">
+          <Link
+            to="/about/"
+            className="header__link"
+            data-section={SECTIONS.NAV}
+            data-layout={LAYOUTS.LIST}
+          >
+            About VimCS
+          </Link>
+        </nav>
+      </div>
     </div>
   </header>
 );

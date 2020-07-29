@@ -1,4 +1,3 @@
-@import "./constants.scss";
 @import "./mixins/breakpoints";
 @import "./mixins/index";
 
@@ -6,20 +5,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;500;700&display=swap");
 
 body {
-  font-family: $base-font-family;
-  font-size: $base-font-size;
+  --white: #fff;
+  --black: #333333;
+
+  --white-pale: #cccccc;
+  --black-pale: #5c5c5c;
+
+  --font-family: "Source Sans Pro", sans-serif;
+  --font-size: 16px;
+  --line-height: 1.5;
+
+  --text: var(--black);
+  --text-pale: var(--black-pale);
+  --focus-border: var(--black-pale);
+  --background: var(--white);
+
+  &.dark {
+    --text: var(--white);
+    --text-pale: var(--white-pale);
+    --focus-border: var(--white-pale);
+    --background: var(--black);
+  }
+
+  font-family: var(--font-family);
+  font-size: var(--font-size);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  line-height: $base-line-height;
-  color: $base-color;
+  line-height: var(--line-height);
+  color: var(--text);
+  background: var(--background);
+
+  transition: background 300ms ease, color 300ms ease;
 }
 
 a {
-  color: $TEXT;
+  color: var(--text);
   text-decoration: none;
-  &:hover {
-    @include hover-border;
-  }
   &:focus {
     @include focus-border;
   }

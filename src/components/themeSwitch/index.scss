@@ -1,0 +1,16 @@
+@import "../../style/mixins/index";
+
+.theme-switch {
+  padding: 1rem;
+  margin: -1rem;
+}
+
+.theme-switch:focus-within {
+  @include focus-border;
+}
+
+.theme-switch__input {
+  margin: 0;
+  width: 0;
+  opacity: 0;
+}

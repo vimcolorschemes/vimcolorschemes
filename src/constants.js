@@ -60,3 +60,10 @@ export const SECTIONS = {
   REPOSITORY_MOSAIC: "repository_mosaic",
   REPOSITORY_NAV: "repository_nav",
 };
+
+export const THEMES = {
+  DARK: "dark",
+  LIGHT: "light",
+};
+
+export const THEME_KEY = "theme";

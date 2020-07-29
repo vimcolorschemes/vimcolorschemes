@@ -1,27 +1,41 @@
 @import "../../style/mixins/index";
-@import "../../style/constants";
 
 .header {
   min-height: 5rem;
   padding: 2rem 0;
   display: flex;
   align-items: center;
-  background: #fff;
 }
 
 .header__content {
   @include container-layout;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.header__sub-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  & > * {
+    margin: -1rem -1rem 1rem -1rem;
+    &:last-child {
+      margin: -1rem;
+    }
+  }
 }
 
 .header__nav {
+  padding: 1rem;
+  margin: -1rem;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
 }
 
 .header__link {
-  color: $TEXT;
+  color: var(--text);
   padding: 1rem;
   margin: -1rem;
 }
@@ -35,13 +49,13 @@
     height: 5rem;
   }
   & > span {
-    color: $TEXT_PALE;
+    color: var(--text-pale);
     display: none;
     font-size: 2rem;
     text-decoration: none;
     margin: 0;
     &:first-of-type {
-      color: $TEXT;
+      color: var(--text);
       margin-left: 0.5rem;
     }
   }
@@ -50,5 +64,15 @@
 @include lg {
   .header__logo > span {
     display: block;
+  }
+  .header__sub-content {
+    flex-direction: row;
+    align-items: center;
+    & > * {
+      margin: -1rem 2rem -1rem -1rem;
+      &:last-child {
+        margin: -1rem;
+      }
+    }
   }
 }
