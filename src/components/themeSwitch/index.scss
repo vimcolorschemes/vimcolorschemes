@@ -1,0 +1,53 @@
+@import "../../style/mixins/index";
+
+$SWITCH_WIDTH: 4rem;
+$SWITCH_HEIGHT: 2rem;
+
+$CONTROL_WIDTH: 1.5rem;
+$CONTROL_HEIGHT: 1.5rem;
+
+$CONTROL_OFFSET: 0.25rem;
+
+$SWITCH_CENTER_Y: ($SWITCH_HEIGHT / 2) - ($CONTROL_HEIGHT / 2);
+$SWITCH_LEFT_X: $CONTROL_OFFSET;
+$SWITCH_RIGHT_X: ($SWITCH_WIDTH) - ($CONTROL_WIDTH + $CONTROL_OFFSET);
+
+.theme-switch {
+  padding: 1rem;
+}
+
+.theme-switch:focus-within {
+  @include focus-border;
+}
+
+.theme-switch__visual-container {
+  width: $SWITCH_WIDTH;
+  height: $SWITCH_HEIGHT;
+  background: #000;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  border-radius: $SWITCH_HEIGHT;
+}
+
+.theme-switch__control {
+  width: $CONTROL_WIDTH;
+  height: $CONTROL_HEIGHT;
+  background: #fff;
+  border-radius: 50%;
+
+  position: absolute;
+  top: $SWITCH_CENTER_Y;
+  left: $CONTROL_OFFSET;
+
+  transition: left 400ms ease;
+}
+
+.theme-switch__input {
+  width: 0;
+  opacity: 0;
+
+  &:checked + .theme-switch__control {
+    left: $SWITCH_RIGHT_X;
+  }
+}

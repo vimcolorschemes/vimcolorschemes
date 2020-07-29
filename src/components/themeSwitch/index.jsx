@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 
 import { THEMES } from "../../constants";
 
-const ThemeSwitch = () => {
-  const [theme, setTheme] = useState();
+import "./index.scss";
+
+const ThemeSwitch = inputArgs => {
+  const [theme, setTheme] = useState(window?.__theme);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -13,18 +15,23 @@ const ThemeSwitch = () => {
   }, []);
 
   return (
-    <div>
-      <p>hello, theme is {theme}</p>
-      <input
-        type="checkbox"
-        checked={theme === THEMES.DARK}
-        onChange={event =>
-          window.__setPreferredTheme(
-            event.target.checked ? THEMES.DARK : THEMES.LIGHT,
-          )
-        }
-      />
-    </div>
+    <label className="theme-switch">
+      <div className="theme-switch__visual-container">
+        <input
+          type="checkbox"
+          className="theme-switch__input"
+          aria-label="Switch between light and dark mode"
+          checked={theme === THEMES.DARK}
+          onChange={event =>
+            window.__setPreferredTheme(
+              event.target.checked ? THEMES.DARK : THEMES.LIGHT,
+            )
+          }
+          {...inputArgs}
+        />
+        <div className="theme-switch__control" />
+      </div>
+    </label>
   );
 };
 

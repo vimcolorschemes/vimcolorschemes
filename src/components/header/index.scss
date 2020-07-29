@@ -14,6 +14,17 @@
   align-items: center;
 }
 
+.header__sub-content {
+  display: flex;
+  align-items: center;
+  & > * {
+    margin-right: 2rem;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
 .header__nav {
   display: flex;
   align-items: center;

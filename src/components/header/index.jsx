@@ -23,21 +23,23 @@ const Header = () => (
         <span>vim</span>
         <span>colorschemes</span>
       </Link>
-      <ThemeSwitch />
-      <nav className="header__nav">
-        <ul>
-          <li>
-            <Link
-              to="/about/"
-              className="header__link"
-              data-section={SECTIONS.NAV}
-              data-layout={LAYOUTS.LIST}
-            >
-              About VimCS
-            </Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="header__sub-content">
+        <ThemeSwitch data-section={SECTIONS.NAV} data-layout={LAYOUTS.LIST} />
+        <nav className="header__nav">
+          <ul>
+            <li>
+              <Link
+                to="/about/"
+                className="header__link"
+                data-section={SECTIONS.NAV}
+                data-layout={LAYOUTS.LIST}
+              >
+                About VimCS
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
   </header>
 );
