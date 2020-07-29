@@ -5,14 +5,16 @@ import { THEMES } from "../../constants";
 import "./index.scss";
 
 const ThemeSwitch = inputArgs => {
-  const [theme, setTheme] = useState(window?.__theme);
+  const isBrowser = typeof window !== "undefined";
+
+  const [theme, setTheme] = useState(isBrowser ? window.__theme : undefined);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (isBrowser) {
       setTheme(window.__theme);
       window.__onThemeChange = () => setTheme(window.__theme);
     }
-  }, []);
+  }, [isBrowser]);
 
   return (
     <label className="theme-switch">
