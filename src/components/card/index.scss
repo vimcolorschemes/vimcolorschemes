@@ -1,4 +1,3 @@
-@import "../../style/constants";
 @import "../../style/mixins/breakpoints";
 @import "../../style/mixins/index";
 
@@ -60,13 +59,13 @@
     height: 1.25rem;
   }
   & > span {
-    color: $TEXT;
+    color: var(--text);
     font-size: 1rem;
   }
 }
 
 .card__infos {
-  color: $TEXT;
+  color: var(--text);
   flex: 1;
   &:first-of-type {
     margin-bottom: 1rem;
