@@ -3,6 +3,8 @@ import classnames from "classnames";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
 
+import { KEYS } from "../../constants";
+
 import "./index.scss";
 
 const ZoomableImage = ({ image, className, ...inputArgs }) => {
@@ -19,7 +21,6 @@ const ZoomableImage = ({ image, className, ...inputArgs }) => {
     />
   );
 
-  // TODO implement input on Enter key
   return (
     <label className="zoomable">
       <input
@@ -27,6 +28,20 @@ const ZoomableImage = ({ image, className, ...inputArgs }) => {
         type="checkbox"
         className="zoomable__toggle"
         name="image-toggle"
+        onKeyDown={event => {
+          const { key, target } = event;
+          const keyIsHandled = Object.values(KEYS).includes(key);
+
+          if (!keyIsHandled) return;
+          event.preventDefault();
+
+          if ([KEYS.SPACE, KEYS.ENTER].includes(event.key)) {
+            target.checked = !target.checked;
+            return;
+          }
+
+          target.checked = false;
+        }}
         {...inputArgs}
       />
       <div className={classnames("zoomable__container", className)}>
