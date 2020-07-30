@@ -34,6 +34,7 @@ export const LAYOUTS = {
 export const KEYS = {
   SPACE: " ",
   ENTER: "Enter",
+  ESCAPE: "Escape",
   TOP: "g",
   BOTTOM: "G",
   LEFT: "h",
@@ -43,7 +44,7 @@ export const KEYS = {
   BACK: "H",
 };
 
-export const NON_NAVIGATION_KEYS = [KEYS.SPACE, KEYS.ENTER];
+export const NON_NAVIGATION_KEYS = [KEYS.SPACE, KEYS.ENTER, KEYS.ESCAPE];
 
 export const SECTIONS = {
   // general
