@@ -10,6 +10,8 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
+const imagePromises = [];
+
 exports.onCreateNode = ({
   node,
   actions: { createNode },
@@ -19,6 +21,7 @@ exports.onCreateNode = ({
 }) => {
   if (
     node.internal.type === "mongodbVimcsRepositories" &&
+    !node.blacklisted &&
     node.image_urls &&
     node.image_urls.length > 0
   ) {
@@ -30,7 +33,7 @@ exports.onCreateNode = ({
       if (blacklistedImageUrls.includes(url)) return;
 
       try {
-        const fileNode = await createRemoteFileNode({
+        const promise = createRemoteFileNode({
           url,
           parentNodeId: node.id,
           createNode,
@@ -38,6 +41,8 @@ exports.onCreateNode = ({
           cache,
           store,
         });
+        imagePromises.push(promise);
+        const fileNode = await promise;
 
         if (fileNode) {
           if (
@@ -57,6 +62,13 @@ exports.onCreateNode = ({
       }
     });
   }
+};
+
+exports.onPostBootstrap = async () => {
+  const values = await Promise.all(imagePromises);
+  console.log(
+    `\x1b[32msuccess \x1b[0mDone processing ${values.length} images`,
+  );
 };
 
 const path = require("path");
