@@ -14,4 +14,9 @@ export const KEYS = {
   TAB: "Tab",
 };
 
-export const NON_NAVIGATION_KEYS = [KEYS.ENTER, KEYS.ESCAPE, KEYS.SPACE];
+export const NON_NAVIGATION_KEYS = [
+  KEYS.ENTER,
+  KEYS.ESCAPE,
+  KEYS.SPACE,
+  KEYS.TAB,
+];

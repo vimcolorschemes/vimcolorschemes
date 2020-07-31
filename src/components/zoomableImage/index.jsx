@@ -30,16 +30,20 @@ const ZoomableImage = ({ image, className, ...inputArgs }) => {
         name="image-toggle"
         onKeyDown={event => {
           const { key, target } = event;
-          const keyIsHandled = Object.values(KEYS).includes(key);
 
-          if (!keyIsHandled) return;
-          event.preventDefault();
+          // pressed key is not handled by app.
+          // Keeps doing what it was about to do.
+          if (!Object.values(KEYS).includes(key)) return;
 
+          // checkbox toggle keys
           if ([KEYS.SPACE, KEYS.ENTER].includes(event.key)) {
+            event.preventDefault();
             target.checked = !target.checked;
             return;
           }
 
+          // Anything else keeps doing what it was about to do,
+          // but also unchecks the checkbox
           target.checked = false;
         }}
         {...inputArgs}
