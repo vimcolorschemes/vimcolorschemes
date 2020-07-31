@@ -121,7 +121,6 @@ export const query = graphql`
         }
       }
       images: processed_images {
-        id
         childImageSharp {
           fluid(maxWidth: 1280, quality: 80) {
             ...GatsbyImageSharpFluid
