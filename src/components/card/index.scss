@@ -73,7 +73,6 @@
 }
 
 .card__image {
-  min-height: 20rem;
   display: flex;
   flex-direction: column;
 }
@@ -86,7 +85,6 @@
 
 @include lg {
   .card__image {
-    min-height: unset;
     height: 20rem;
   }
 }
