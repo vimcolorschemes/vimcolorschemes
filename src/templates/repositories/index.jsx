@@ -2,9 +2,11 @@ import React from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
-import { useNavigation } from "../../hooks/useNavigation";
+import { RepositoryType } from "../../types";
 
 import { ACTIONS, SECTIONS } from "../../constants";
+
+import { useNavigation } from "../../hooks/useNavigation";
 
 import Actions from "../../components/actions";
 import Card from "../../components/card";
@@ -57,23 +59,7 @@ RepositoriesPage.propTypes = {
   data: PropTypes.shape({
     repositoriesData: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
-      repositories: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string.isRequired,
-          description: PropTypes.string.isRequired,
-          stargazersCount: PropTypes.number.isRequired,
-          lastCommitAt: PropTypes.string.isRequired,
-          createdAt: PropTypes.string.isRequired,
-          owner: PropTypes.shape({
-            name: PropTypes.string.isRequired,
-          }).isRequired,
-          featuredImage: PropTypes.shape({
-            childImageSharp: PropTypes.shape({
-              fluid: PropTypes.shape({}).isRequired,
-            }).isRequired,
-          }),
-        }).isRequired,
-      ).isRequired,
+      repositories: PropTypes.arrayOf(RepositoryType).isRequired,
     }).isRequired,
   }).isRequired,
   pageContext: PropTypes.shape({
