@@ -10,7 +10,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   `);
 };
 
-const promises = [];
+const imagePromises = [];
 
 exports.onCreateNode = ({
   node,
@@ -41,7 +41,7 @@ exports.onCreateNode = ({
           cache,
           store,
         });
-        promises.push(promise);
+        imagePromises.push(promise);
         const fileNode = await promise;
 
         if (fileNode) {
@@ -65,9 +65,10 @@ exports.onCreateNode = ({
 };
 
 exports.onPostBootstrap = async () => {
-  console.log("Waiting for all images to finish processing...");
-  const values = await Promise.all(promises);
-  console.log(`Done processing ${values.length} images`);
+  const values = await Promise.all(imagePromises);
+  console.log(
+    `\x1b[32msuccess \x1b[0mDone processing ${values.length} images`,
+  );
 };
 
 const path = require("path");
