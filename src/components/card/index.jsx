@@ -4,14 +4,13 @@ import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import starIcon from "../../images/icons/star.svg";
-
 import { LAYOUTS, SECTIONS } from "../../constants";
 
 import { URLify } from "../../utils/string";
 import { getRepositoryInfos } from "../../utils/repository";
 
 import RepositoryTitle from "../repositoryTitle";
+import { Star } from "../icons";
 
 import "./index.scss";
 
@@ -51,8 +50,8 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           </Link>
         </h2>
         <div className="card__stargazers">
-          <img src={starIcon} alt="GitHub stargazers" />
-          <span>{stargazersCount}</span>
+          <Star className="card__stargazers-icon" />
+          <span className="card__stargazers-count">{stargazersCount}</span>
         </div>
       </div>
       <p className="card__infos">{description}</p>

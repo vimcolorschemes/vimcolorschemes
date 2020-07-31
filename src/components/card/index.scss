@@ -54,14 +54,17 @@
 .card__stargazers {
   display: flex;
   align-items: center;
-  & > img {
-    margin-right: 0.2rem;
-    height: 1.25rem;
-  }
-  & > span {
-    color: var(--text);
-    font-size: 1rem;
-  }
+}
+
+.card__stargazers-icon {
+  color: var(--text);
+  margin-right: 0.2rem;
+  height: 1.25rem;
+}
+
+.card__stargazers-count {
+  color: var(--text);
+  font-size: 1rem;
 }
 
 .card__infos {
