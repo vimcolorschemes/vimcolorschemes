@@ -2,6 +2,8 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
+import { RepositoryType } from "../../types";
+
 import { LAYOUTS, SECTIONS } from "../../constants";
 
 import { useNavigation } from "../../hooks/useNavigation";
@@ -12,9 +14,9 @@ import Layout from "../../components/layout";
 import Mosaic from "../../components/mosaic";
 import RepositoryTitle from "../../components/repositoryTitle";
 import SEO from "../../components/seo";
+import ZoomableImage from "../../components/zoomableImage";
 
 import "./indes.scss";
-import ZoomableImage from "../../components/zoomableImage";
 
 const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
@@ -75,26 +77,7 @@ const RepositoryPage = ({ data, location }) => {
 
 RepositoryPage.propTypes = {
   data: PropTypes.shape({
-    repository: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      githubUrl: PropTypes.string.isRequired,
-      owner: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      }).isRequired,
-      featuredImage: PropTypes.shape({
-        childImageSharp: PropTypes.shape({
-          fluid: PropTypes.shape({}).isRequired,
-        }).isRequired,
-      }),
-      images: PropTypes.arrayOf(
-        PropTypes.shape({
-          childImageSharp: PropTypes.shape({
-            fluid: PropTypes.shape({}).isRequired,
-          }).isRequired,
-        }).isRequired,
-      ),
-    }),
+    repository: RepositoryType,
   }),
   location: PropTypes.shape({
     fromPath: PropTypes.string,
@@ -110,6 +93,9 @@ export const query = graphql`
       name
       description
       githubUrl: github_url
+      stargazersCount: stargazers_count
+      lastCommitAt: last_commit_at
+      createdAt: github_created_at
       owner {
         name
       }
