@@ -31,7 +31,7 @@ module.exports = {
         connectionString:
           process.env.GATSBY_DATABASE_CONNECTION_STRING ||
           "mongodb://localhost:27017",
-        dbName: "vimcs",
+        dbName: process.env.GATSBY_DATABASE_NAME || "vimcs",
         collection: ["repositories"],
       },
     },
