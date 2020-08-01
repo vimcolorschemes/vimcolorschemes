@@ -1,10 +1,43 @@
 @import "../../style/mixins/index";
+@import "../../style/mixins/breakpoints";
 
 .footer {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  @include container-layout;
+  padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.footer__content {
-  @include container-layout;
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+  & > * {
+    width: min-content;
+    padding: 1rem;
+    margin: 2rem -1rem -1rem -1rem;
+  }
+}
+
+@include lg {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__nav {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    & > * {
+      padding: 1rem;
+      margin: -1rem 2rem -1rem -1rem;
+      &:last-child {
+        margin: -1rem;
+      }
+    }
+  }
 }

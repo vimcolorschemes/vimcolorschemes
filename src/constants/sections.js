@@ -1,6 +1,7 @@
 export const SECTIONS = {
   // general
   NAV: "nav",
+  FOOTER_NAV: "footer_nav",
 
   // repositories
   ACTIONS: "actions",
