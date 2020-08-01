@@ -1,5 +1,22 @@
 const { createRemoteFileNode } = require("gatsby-source-filesystem");
 
+const COLORS = {
+  DEFAULT: "\x1b[0m",
+  BLUE: "\x1b[34m",
+  GREEN: "\x1b[32m",
+  YELLOW: "\x1b[33m",
+  RED: "\x1b[31m",
+};
+
+const info = message =>
+  console.log(`${COLORS.BLUE}info ${COLORS.DEFAULT}${message}`);
+
+const success = message =>
+  console.log(`${COLORS.GREEN}success ${COLORS.DEFAULT}${message}`);
+
+const error = message =>
+  console.log(`${COLORS.RED}error ${COLORS.DEFAULT}${message}`);
+
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
@@ -8,6 +25,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       processed_images: [File]
     }
   `);
+  info("Adding processed image fields to mongodbVimcsRepositories node");
 };
 
 const imagePromises = [];
@@ -29,6 +47,7 @@ exports.onCreateNode = ({
     const validImageUrls = node.image_urls.filter(
       url => !blacklistedImageUrls.includes(url),
     );
+
     validImageUrls.forEach(async (url, index) => {
       if (blacklistedImageUrls.includes(url)) return;
 
@@ -55,10 +74,9 @@ exports.onCreateNode = ({
               ...(node.processed_images || []),
               fileNode,
             ];
-          index++;
         }
       } catch (e) {
-        console.error(e);
+        error(e);
       }
     });
   }
@@ -66,9 +84,7 @@ exports.onCreateNode = ({
 
 exports.onPostBootstrap = async () => {
   const values = await Promise.all(imagePromises);
-  console.log(
-    `\x1b[32msuccess \x1b[0mDone processing ${values.length} images`,
-  );
+  success(`Done processing all ${values.length} images`);
 };
 
 const path = require("path");
@@ -153,5 +169,7 @@ exports.createPages = async ({ graphql, actions }) => {
   } = await graphql(repositoriesQuery);
 
   createRepositoryPages(repositories, createPage);
+  info("Creating repository pages");
   createRepositoryPaginatedPages(repositories, createPage);
+  info("Creating repositories index pages");
 };
