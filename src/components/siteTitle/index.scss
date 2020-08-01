@@ -1,0 +1,33 @@
+@import "../../style/mixins/breakpoints.scss";
+
+.site-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin: -1rem;
+  width: min-content;
+}
+
+.site-title__logo {
+  height: 5rem;
+}
+
+.site-title__name-part {
+  color: var(--text-pale);
+  font-size: 2rem;
+  text-decoration: none;
+  margin: 0;
+  &:first-of-type {
+    color: var(--text);
+  }
+}
+
+@include lg {
+  .site-title:not(.site-title--vertical) {
+    flex-direction: row;
+    & .site-title__name {
+      margin-left: 0.5rem;
+    }
+  }
+}

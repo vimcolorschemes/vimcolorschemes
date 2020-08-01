@@ -40,31 +40,7 @@
   margin: -1rem;
 }
 
-.header__logo {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  margin: -1rem;
-  & > img {
-    height: 5rem;
-  }
-  & > span {
-    color: var(--text-pale);
-    display: none;
-    font-size: 2rem;
-    text-decoration: none;
-    margin: 0;
-    &:first-of-type {
-      color: var(--text);
-      margin-left: 0.5rem;
-    }
-  }
-}
-
 @include lg {
-  .header__logo > span {
-    display: block;
-  }
   .header__sub-content {
     flex-direction: row;
     align-items: center;
