@@ -1,7 +1,9 @@
+const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
+
 module.exports = {
   siteMetadata: {
     title: "VimCS",
-    siteUrl: process.env.GATSBY_SITE_URL || "http://localhost:8000",
+    siteUrl,
     description: "Great and simple app to navigate vim color schemes",
     author: "@reobin",
   },
@@ -10,17 +12,20 @@ module.exports = {
     "gatsby-transformer-sharp",
     "gatsby-plugin-sharp",
     "gatsby-plugin-sass",
+    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: process.env.GATSBY_SITE_URL || "http://localhost:8000",
         env: {
           development: {
             policy: [{ userAgent: "*", disallow: ["/"] }],
           },
           production: {
-            // will allow everything when ready
-            policy: [{ userAgent: "*", disallow: ["/"] }],
+            policy: [
+              process.env.GATSBY_DISABLE_ROBOTS
+                ? { userAgent: "*", disallow: ["/"] }
+                : { userAgent: "*", allow: ["/"] },
+            ],
           },
         },
       },
