@@ -83,8 +83,12 @@ exports.onCreateNode = ({
 };
 
 exports.onPostBootstrap = async () => {
-  const values = await Promise.all(imagePromises);
-  success(`Done processing all ${values.length} images`);
+  try {
+    const values = await Promise.allSettled(imagePromises);
+    success(`Done processing all ${values.length} images`);
+  } catch (e) {
+    error(e);
+  }
 };
 
 const path = require("path");
