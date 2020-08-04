@@ -2,9 +2,9 @@ const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
 
 module.exports = {
   siteMetadata: {
-    title: "VimCS",
+    title: "vimcolorschemes",
     siteUrl,
-    description: "Great and simple app to navigate vim color schemes",
+    description: "Find nice and actively maintained vim color schemes",
     author: "@reobin",
   },
   plugins: [
