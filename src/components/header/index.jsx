@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "gatsby";
 import PropTypes from "prop-types";
 
 import { LAYOUTS, SECTIONS } from "../../constants";
@@ -15,16 +14,6 @@ const Header = () => (
       <SiteTitle />
       <div className="header__sub-content">
         <ThemeSwitch data-section={SECTIONS.NAV} data-layout={LAYOUTS.LIST} />
-        <nav className="header__nav">
-          <Link
-            to="/about/"
-            className="header__link"
-            data-section={SECTIONS.NAV}
-            data-layout={LAYOUTS.LIST}
-          >
-            About VimCS
-          </Link>
-        </nav>
       </div>
     </div>
   </header>
