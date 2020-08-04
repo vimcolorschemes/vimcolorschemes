@@ -1,0 +1,28 @@
+@import "../../style/mixins/breakpoints";
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3rem 0;
+  & > * {
+    text-align: center;
+  }
+  & * + * {
+    margin-top: 1rem;
+  }
+}
+
+.intro__highlight {
+  font-size: 2rem;
+}
+
+.intro__instruction {
+  display: none;
+}
+
+@include lg {
+  .intro__instruction {
+    display: block;
+  }
+}

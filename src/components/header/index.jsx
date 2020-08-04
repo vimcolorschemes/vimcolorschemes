@@ -8,10 +8,10 @@ import ThemeSwitch from "../themeSwitch";
 
 import "./index.scss";
 
-const Header = () => (
+const Header = ({ isHome }) => (
   <header className="header">
     <div className="header__content">
-      <SiteTitle />
+      <SiteTitle isHome={isHome} />
       <div className="header__sub-content">
         <ThemeSwitch data-section={SECTIONS.NAV} data-layout={LAYOUTS.LIST} />
       </div>
@@ -20,11 +20,7 @@ const Header = () => (
 );
 
 Header.propTypes = {
-  siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-  siteTitle: ``,
+  isHome: PropTypes.bool,
 };
 
 export default Header;

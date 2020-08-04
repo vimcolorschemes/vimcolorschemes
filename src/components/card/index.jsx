@@ -37,7 +37,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         )}
       </div>
       <div className="card__header">
-        <h2 className="card__title">
+        <h3 className="card__title">
           <Link
             to={`/${URLify(`${ownerName}/${name}`)}`}
             state={linkState}
@@ -48,7 +48,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           >
             <RepositoryTitle ownerName={ownerName} name={name} tag="div" />
           </Link>
-        </h2>
+        </h3>
         <div className="card__stargazers">
           <Star className="card__stargazers-icon" />
           <span className="card__stargazers-count">{stargazersCount}</span>

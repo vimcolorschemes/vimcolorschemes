@@ -11,6 +11,7 @@ import { useNavigation } from "../../hooks/useNavigation";
 import Actions from "../../components/actions";
 import Card from "../../components/card";
 import Grid from "../../components/grid";
+import Intro from "../../components/intro";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 import Pagination from "../../components/pagination";
@@ -30,13 +31,16 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   useNavigation(SECTIONS.REPOSITORIES);
 
   return (
-    <Layout>
+    <Layout isHome>
       <SEO title={`${activeAction.label} vim color schemes`} />
-      <p>
-        <strong>TIP: Use hjkl to navigate</strong>
-      </p>
-      <p>{totalCount} repos</p>
+      <Intro />
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
+      <p>
+        {(pageContext.currentPage - 1) * repositories.length + 1}
+        {" - "}
+        {pageContext.currentPage * repositories.length} out of{" "}
+        <strong>{totalCount}</strong> repositories
+      </p>
       <Grid className="repositories">
         {repositories.map(repository => (
           <Card
@@ -90,6 +94,7 @@ export const query = graphql`
         stargazersCount: stargazers_count
         lastCommitAt: last_commit_at
         createdAt: github_created_at
+        githubUrl: github_url
         owner {
           name
         }

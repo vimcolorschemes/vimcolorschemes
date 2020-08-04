@@ -6,10 +6,10 @@ import Footer from "../footer";
 
 import "./index.scss";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, isHome }) => {
   return (
     <>
-      <Header />
+      <Header isHome={isHome} />
       <main className="main">{children}</main>
       <Footer />
     </>
@@ -18,6 +18,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
+  isHome: PropTypes.bool,
 };
 
 export default Layout;
