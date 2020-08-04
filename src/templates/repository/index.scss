@@ -19,7 +19,23 @@
   line-height: 1;
 }
 
+.repository__nav {
+  margin-bottom: 2rem;
+  &--bottom {
+    margin-bottom: 0;
+    margin-top: 2rem;
+  }
+}
+
 .repository__nav-link {
   padding: 1rem;
   margin: -1rem;
+  display: flex;
+  align-items: center;
+  width: min-content;
+}
+
+.repository__nav-link-icon {
+  height: 1.2rem;
+  margin-right: 0.1rem;
 }

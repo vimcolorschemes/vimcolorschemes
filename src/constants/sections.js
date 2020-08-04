@@ -13,4 +13,5 @@ export const SECTIONS = {
   REPOSITORY_MAIN_IMAGE: "repository_main_image",
   REPOSITORY_MOSAIC: "repository_mosaic",
   REPOSITORY_NAV: "repository_nav",
+  REPOSITORY_BOTTOM_NAV: "repository_bottom_nav",
 };

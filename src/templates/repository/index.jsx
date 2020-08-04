@@ -1,4 +1,5 @@
 import React from "react";
+import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
@@ -10,13 +11,16 @@ import { useNavigation } from "../../hooks/useNavigation";
 
 import { getRepositoryInfos } from "../../utils/repository";
 
+import { Arrow } from "../../components/icons";
+
+import ExternalLink from "../../components/externalLink";
 import Layout from "../../components/layout";
 import Mosaic from "../../components/mosaic";
 import RepositoryTitle from "../../components/repositoryTitle";
 import SEO from "../../components/seo";
 import ZoomableImage from "../../components/zoomableImage";
 
-import "./indes.scss";
+import "./index.scss";
 
 const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
@@ -32,23 +36,37 @@ const RepositoryPage = ({ data, location }) => {
 
   useNavigation(SECTIONS.REPOSITORY_MAIN_IMAGE);
 
+  const Nav = ({ bottom }) => (
+    <nav className={classnames("repository__nav", { "repository__nav--bottom": bottom })}>
+      <Link
+        to={fromPath || "/"}
+        data-section={
+          bottom ? SECTIONS.REPOSITORY_BOTTOM_NAV : SECTIONS.REPOSITORY_NAV
+        }
+        data-layout={LAYOUTS.LIST}
+        className="repository__nav-link"
+      >
+        <Arrow left className="repository__nav-link-icon" />
+        back
+      </Link>
+    </nav>
+  );
+
   return (
     <Layout>
       <SEO title={`${name} vim color scheme, by ${ownerName}`} />
       <div className="repository">
         <div className="repository__hero">
+          <Nav />
           <div className="repository__header">
             <RepositoryTitle ownerName={ownerName} name={name} />
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <ExternalLink
+              to={githubUrl}
               data-section={SECTIONS.REPOSITORY_HEADER}
               data-layout={LAYOUTS.LIST}
-              className="repository__nav-link"
             >
               GitHub
-            </a>
+            </ExternalLink>
           </div>
           <p>{description}</p>
         </div>
@@ -62,15 +80,8 @@ const RepositoryPage = ({ data, location }) => {
           />
         )}
         {!!images && images.length > 0 && <Mosaic images={images} />}
-        <Link
-          to={fromPath || "/"}
-          data-section={SECTIONS.REPOSITORY_NAV}
-          data-layout={LAYOUTS.LIST}
-          className="repository__nav-link"
-        >
-          back
-        </Link>
       </div>
+      <Nav bottom />
     </Layout>
   );
 };
