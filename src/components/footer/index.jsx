@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "../../constants";
 
+import ExternalLink from "../externalLink";
 import SiteTitle from "../siteTitle";
 
 import "./index.scss";
@@ -18,24 +19,20 @@ const Footer = () => (
       >
         About
       </Link>
-      <Link
+      <ExternalLink
         to="https://github.com/reobin/vimcolorschemes"
-        target="_blank"
-        rel="noreferrer noopener"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >
         GitHub
-      </Link>
-      <Link
+      </ExternalLink>
+      <ExternalLink
         to="https://github.com/reobin/vimcolorschemes/issues"
-        target="_blank"
-        rel="noreferrer noopener"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >
         Issues
-      </Link>
+      </ExternalLink>
       <a
         href="mailto:contact@reobin.dev"
         target="_blank"
