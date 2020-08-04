@@ -5,7 +5,7 @@
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
-  margin: 1rem 0;
+  margin: 1rem -1rem;
 }
 
 .actions__item {
@@ -13,6 +13,9 @@
   padding: 1rem;
   position: relative;
   margin-right: 1rem;
+  &:last-of-type {
+    margin-right: 0;
+  }
   &--active {
     box-shadow: 0px 4px 0px -2px var(--focus-border);
   }
