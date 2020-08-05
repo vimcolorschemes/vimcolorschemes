@@ -1,6 +1,9 @@
 .external-link {
   display: flex;
   align-items: center;
+  &--inline {
+    display: inline;
+  }
 }
 
 .external-link__icon {

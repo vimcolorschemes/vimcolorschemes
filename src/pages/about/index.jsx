@@ -4,6 +4,7 @@ import { SECTIONS, LAYOUTS } from "../../constants";
 
 import { useNavigation } from "../../hooks/useNavigation";
 
+import ExternalLink from "../../components/externalLink";
 import Layout from "../../components/layout";
 import SEO from "../../components/seo";
 
@@ -15,16 +16,15 @@ const AboutPage = () => {
     <Layout>
       <SEO title="About" />
       <div className="about">
-        <h1 className="title">About vimcolorschemes</h1>
-        <h2 className="subtitle" id="what-is-it">
+        <h1 className="title" id="about">
           <a
-            href="#what-is-it"
-            data-section={SECTIONS.ABOUT_TITLE}
+            href="#about"
+            data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            What is it?
+            About vimcolorschemes
           </a>
-        </h2>
+        </h1>
         <p>
           <strong>vimcoloschemes</strong> solves an old problem of mine, which
           is to find the perfect vim color scheme. <strong>Syntax color</strong>{" "}
@@ -45,7 +45,7 @@ const AboutPage = () => {
         <h2 className="subtitle" id="key-features">
           <a
             href="#key-features"
-            data-section={SECTIONS.ABOUT_TITLE}
+            data-section={`${SECTIONS.ABOUT_LINK}-2`}
             data-layout={LAYOUTS.BLOCK}
           >
             Key features{" "}
@@ -56,8 +56,8 @@ const AboutPage = () => {
         </h2>
         <ul>
           <li>
-            <strong>Daily updated</strong> list of more than a thousand vim color scheme
-            repositories
+            <strong>Daily updated</strong> list of more than a thousand vim
+            color scheme repositories
           </li>
           <li>
             <strong>Awesome vim key bindings</strong> to navigate quickly
@@ -67,7 +67,7 @@ const AboutPage = () => {
         <h2 className="subtitle" id="get-involved">
           <a
             href="#get-involved"
-            data-section={SECTIONS.ABOUT_TITLE}
+            data-section={`${SECTIONS.ABOUT_LINK}-3`}
             data-layout={LAYOUTS.BLOCK}
           >
             Get Involved
@@ -84,7 +84,7 @@ const AboutPage = () => {
         <h2 className="subtitle" id="issues">
           <a
             href="#issues"
-            data-section={SECTIONS.ABOUT_TITLE}
+            data-section={`${SECTIONS.ABOUT_LINK}-4`}
             data-layout={LAYOUTS.BLOCK}
           >
             Issues
@@ -95,13 +95,21 @@ const AboutPage = () => {
           feature idea?
         </p>
         <p>
-          Bugs and feature requests are welcome. Make sure to follow the issue
-          template before posting.
+          <ExternalLink
+            to="https://github.com/reobin/vimcolorschemes/issues"
+            data-section={`${SECTIONS.ABOUT_LINK}-5`}
+            data-layout={LAYOUTS.BLOCK}
+            noIcon
+            className="inline-link"
+          >
+            Bugs and feature requests{" "}
+          </ExternalLink>
+          are welcome. Make sure to follow the issue template before posting.
         </p>
         <h2 className="subtitle" id="credits">
           <a
             href="#credits"
-            data-section={SECTIONS.ABOUT_TITLE}
+            data-section={`${SECTIONS.ABOUT_LINK}-6`}
             data-layout={LAYOUTS.BLOCK}
           >
             Credits

@@ -27,6 +27,9 @@
   &:focus + .zoomable__container {
     @include focus-border;
   }
+  &:hover + .zoomable__container {
+    @include hover-border;
+  }
   &:checked ~ .zoomable__modal {
     display: block;
     transition: none;

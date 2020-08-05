@@ -33,6 +33,10 @@
   left: 0;
 }
 
+.actions__item > a:hover {
+  box-shadow: none;
+}
+
 .actions__item > a:focus {
   outline: none;
   border: none;
@@ -42,6 +46,10 @@
 
 .actions__item:focus-within {
   @include focus-border;
+}
+
+.actions__item:hover {
+  @include hover-border;
 }
 
 .actions__item:focus-within a {

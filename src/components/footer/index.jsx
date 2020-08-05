@@ -16,6 +16,7 @@ const Footer = () => (
         to="/about"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
+        data-priority={1}
       >
         About
       </Link>

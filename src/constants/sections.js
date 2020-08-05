@@ -2,7 +2,7 @@ export const SECTIONS = {
   // general
   NAV: "nav",
   FOOTER_NAV: "footer_nav",
-  ABOUT_TITLE: "about_title",
+  ABOUT_LINK: "about_link",
 
   // repositories
   ACTIONS: "actions",

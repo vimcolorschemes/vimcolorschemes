@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.theme-switch:hover {
+  @include hover-border;
+}
+
 .theme-switch:focus-within {
   @include focus-border;
 }

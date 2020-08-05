@@ -15,7 +15,7 @@
 }
 
 .card__title > a::after {
-  content: "";
+  content: " ";
   position: absolute;
   top: 0;
   right: 0;
@@ -27,6 +27,10 @@
   text-decoration: underline;
   outline: none;
   box-shadow: none;
+}
+
+.card:hover {
+  @include hover-border;
 }
 
 .card:focus-within {

@@ -10,3 +10,8 @@
   box-shadow: 0px 0px 0px 2px var(--focus-border);
   outline: none;
 }
+
+@mixin hover-border {
+  box-shadow: 0px 4px 0px -2px var(--focus-border);
+  outline: none;
+}
