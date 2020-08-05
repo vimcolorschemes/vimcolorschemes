@@ -26,7 +26,7 @@ const AboutPage = () => {
           </a>
         </h1>
         <p>
-          <strong>vimcoloschemes</strong> solves an old problem of mine, which
+          <strong>vimcolorschemes</strong> solves an old problem of mine which
           is to find the perfect vim color scheme. <strong>Syntax color</strong>{" "}
           in a coding environment is <strong>a big part</strong> of what makes
           and IDE <strong>yours and yours only</strong>.
@@ -39,8 +39,8 @@ const AboutPage = () => {
         </p>
         <p>
           This is where <strong>vimcolorschemes</strong> comes in. It creates a{" "}
-          <strong>fast</strong> and <strong>fun</strong> gallery to navigate vim
-          color schemes.
+          <strong>fast</strong> and <strong>fun</strong> gallery to navigate
+          through tons of vim color schemes.
         </p>
         <h2 className="subtitle" id="key-features">
           <a
@@ -79,12 +79,22 @@ const AboutPage = () => {
           welcome!
         </p>
         <p>
-          Developers, check out the development guide to start writing code.
+          Developers, check out
+          <ExternalLink
+            to="https://github.com/reobin/vimcolorschemes/wiki/Development-guide"
+            data-section={`${SECTIONS.ABOUT_LINK}-4`}
+            data-layout={LAYOUTS.BLOCK}
+            noIcon
+            className="inline-link"
+          >
+            {" "}the development guide{" "}
+          </ExternalLink>
+          to start writing code.
         </p>
         <h2 className="subtitle" id="issues">
           <a
             href="#issues"
-            data-section={`${SECTIONS.ABOUT_LINK}-4`}
+            data-section={`${SECTIONS.ABOUT_LINK}-5`}
             data-layout={LAYOUTS.BLOCK}
           >
             Issues
@@ -97,7 +107,7 @@ const AboutPage = () => {
         <p>
           <ExternalLink
             to="https://github.com/reobin/vimcolorschemes/issues"
-            data-section={`${SECTIONS.ABOUT_LINK}-5`}
+            data-section={`${SECTIONS.ABOUT_LINK}-6`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
             className="inline-link"
@@ -109,7 +119,7 @@ const AboutPage = () => {
         <h2 className="subtitle" id="credits">
           <a
             href="#credits"
-            data-section={`${SECTIONS.ABOUT_LINK}-6`}
+            data-section={`${SECTIONS.ABOUT_LINK}-7`}
             data-layout={LAYOUTS.BLOCK}
           >
             Credits

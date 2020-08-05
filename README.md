@@ -12,7 +12,7 @@
 
 ## Welcome 🎉
 
-**vimcoloschemes** solves an old problem of mine, which is to find the perfect vim color scheme. Syntax color in a coding environment is a big part of what makes and IDE yours and yours only.
+**vimcolorschemes** solves an old problem of mine, which is to find the perfect vim color scheme. Syntax color in a coding environment is a big part of what makes and IDE yours and yours only.
 
 GitHub is an awesome source for vim color schemes. There are literally thousands of vim color schemes available on the platform. It is not easy to navigate through them, though. Checking out a couple to find a nice one can take a while.
 
