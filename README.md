@@ -20,7 +20,7 @@ This is where **vimcolorschemes** comes in. It creates a **fast** and **fun** ga
 
 ## Key features 🚀
 
-- Thousands of **daily updated** vim color scheme repositories
+- **Daily updated** list of more than a thousand vim color scheme repositories
 - **Awesome vim key bindings** to navigate quickly through the whole site
 
 ## Get Involved

@@ -56,7 +56,7 @@ const AboutPage = () => {
         </h2>
         <ul>
           <li>
-            Thousands of <strong>daily updated</strong> vim color scheme
+            <strong>Daily updated</strong> list of more than a thousand vim color scheme
             repositories
           </li>
           <li>
