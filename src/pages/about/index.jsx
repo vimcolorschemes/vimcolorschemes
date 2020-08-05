@@ -48,7 +48,10 @@ const AboutPage = () => {
             data-section={SECTIONS.ABOUT_TITLE}
             data-layout={LAYOUTS.BLOCK}
           >
-            Key features 🚀
+            Key features{" "}
+            <span role="img" aria-label="rocket">
+              🚀
+            </span>
           </a>
         </h2>
         <ul>
@@ -88,7 +91,8 @@ const AboutPage = () => {
           </a>
         </h2>
         <p>
-          Having issues with this website? Or do you have a game changing feature idea?
+          Having issues with this website? Or do you have a game changing
+          feature idea?
         </p>
         <p>
           Bugs and feature requests are welcome. Make sure to follow the issue
@@ -104,7 +108,10 @@ const AboutPage = () => {
           </a>
         </h2>
         <p>
-          Credit goes to all the creators of vim color schemes around GitHub 🎉
+          Credit goes to all the creators of vim color schemes around GitHub{" "}
+          <span role="img" aria-label="celebration">
+            🎉
+          </span>
         </p>
       </div>
     </Layout>
