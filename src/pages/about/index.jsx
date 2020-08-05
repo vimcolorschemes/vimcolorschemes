@@ -88,6 +88,9 @@ const AboutPage = () => {
           </a>
         </h2>
         <p>
+          Having issues with this website? Or do you have a game changing feature idea?
+        </p>
+        <p>
           Bugs and feature requests are welcome. Make sure to follow the issue
           template before posting.
         </p>

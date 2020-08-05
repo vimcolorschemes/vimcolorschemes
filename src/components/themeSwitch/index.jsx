@@ -23,16 +23,18 @@ const ThemeSwitch = inputArgs => {
         className="theme-switch__input"
         aria-label="Switch between light and dark mode"
         checked={theme === THEMES.DARK}
-        onChange={e => e}
+        onChange={event => {
+          window.__setPreferredTheme(
+            event.target.checked ? THEMES.DARK : THEMES.LIGHT,
+          );
+        }}
         onKeyDown={event => {
           const { key, target } = event;
-
-          // checkbox toggle keys
-          if ([KEYS.SPACE, KEYS.ENTER].includes(key)) {
+          if (KEYS.ENTER === key) {
             event.preventDefault();
             target.checked = !target.checked;
             window.__setPreferredTheme(
-              event.target.checked ? THEMES.DARK : THEMES.LIGHT,
+              target.checked ? THEMES.DARK : THEMES.LIGHT,
             );
             return;
           }
