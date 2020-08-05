@@ -37,7 +37,11 @@ const RepositoryPage = ({ data, location }) => {
   useNavigation(SECTIONS.REPOSITORY_MAIN_IMAGE);
 
   const Nav = ({ bottom }) => (
-    <nav className={classnames("repository__nav", { "repository__nav--bottom": bottom })}>
+    <nav
+      className={classnames("repository__nav", {
+        "repository__nav--bottom": bottom,
+      })}
+    >
       <Link
         to={fromPath || "/"}
         data-section={
@@ -55,8 +59,8 @@ const RepositoryPage = ({ data, location }) => {
   return (
     <Layout>
       <SEO title={`${name} vim color scheme, by ${ownerName}`} />
-      <div className="repository">
-        <div className="repository__hero">
+      <article className="repository">
+        <header className="repository__hero">
           <Nav />
           <div className="repository__header">
             <RepositoryTitle ownerName={ownerName} name={name} />
@@ -64,12 +68,13 @@ const RepositoryPage = ({ data, location }) => {
               to={githubUrl}
               data-section={SECTIONS.REPOSITORY_HEADER}
               data-layout={LAYOUTS.LIST}
+              className="repository__nav-link"
             >
               GitHub
             </ExternalLink>
           </div>
           <p>{description}</p>
-        </div>
+        </header>
         {!!featuredImage && (
           <ZoomableImage
             image={featuredImage}
@@ -80,7 +85,7 @@ const RepositoryPage = ({ data, location }) => {
           />
         )}
         {!!images && images.length > 0 && <Mosaic images={images} />}
-      </div>
+      </article>
       <Nav bottom />
     </Layout>
   );
