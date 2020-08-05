@@ -10,11 +10,11 @@ import SEO from "../../components/seo";
 
 import "./index.scss";
 
-const AboutPage = () => {
+const AboutPage = ({ location }) => {
   useNavigation();
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="About" url={location.origin} />
       <div className="about">
         <h1 className="title" id="about">
           <a
@@ -87,7 +87,8 @@ const AboutPage = () => {
             noIcon
             className="inline-link"
           >
-            {" "}the development guide{" "}
+            {" "}
+            the development guide{" "}
           </ExternalLink>
           to start writing code.
         </p>
