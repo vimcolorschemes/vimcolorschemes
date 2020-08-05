@@ -5,7 +5,7 @@
   vimcolorschemes
 </h1>
 <h2 align="center" style="border:none">
-  Find nice and actively maintained vim color schemes
+  Find the best vim color schemes around
 </h2>
 
 

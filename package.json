@@ -1,7 +1,7 @@
 {
   "name": "vimcolorschemes",
   "private": true,
-  "description": "Great and simple app to navigate vim colorschemes",
+  "description": "Find the best vim color schemes around",
   "version": "0.1.0",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {

@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: "vimcolorschemes",
     siteUrl,
-    description: "Find nice and actively maintained vim color schemes",
+    description: "Find the best vim color schemes around",
     author: "@reobin",
   },
   plugins: [
