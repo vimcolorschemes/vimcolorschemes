@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { THEMES } from "../../constants";
+import { THEMES, KEYS } from "../../constants";
 
 import "./index.scss";
 
@@ -23,11 +23,19 @@ const ThemeSwitch = inputArgs => {
         className="theme-switch__input"
         aria-label="Switch between light and dark mode"
         checked={theme === THEMES.DARK}
-        onChange={event =>
-          window.__setPreferredTheme(
-            event.target.checked ? THEMES.DARK : THEMES.LIGHT,
-          )
-        }
+        onKeyDown={event => {
+          const { key, target } = event;
+
+          // checkbox toggle keys
+          if ([KEYS.SPACE, KEYS.ENTER].includes(key)) {
+            event.preventDefault();
+            target.checked = !target.checked;
+            window.__setPreferredTheme(
+              event.target.checked ? THEMES.DARK : THEMES.LIGHT,
+            );
+            return;
+          }
+        }}
         {...inputArgs}
       />
       <span>
