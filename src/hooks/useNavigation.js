@@ -2,12 +2,6 @@ import { useEffect } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "../constants";
 
-import {
-  getFirstTabIndexOfSection,
-  getCurrentSectionItems,
-  getLastTabIndexOfSection,
-} from "../utils/tabIndex";
-
 export const useNavigation = defaultSection => {
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -24,6 +18,8 @@ export const useNavigation = defaultSection => {
 };
 
 const handleKeyPress = (key, focusables, defaultSection) => {
+  if (NON_NAVIGATION_KEYS.includes(key)) return;
+
   const { activeElement } = document;
 
   const currentTabIndex = Array.prototype.indexOf.call(
@@ -34,130 +30,229 @@ const handleKeyPress = (key, focusables, defaultSection) => {
   const { section, layout } = activeElement.dataset;
 
   let nextTabIndex;
-
-  if (NON_NAVIGATION_KEYS.includes(key)) {
-    return;
-  } else if (key === KEYS.TOP) {
+  if (key === KEYS.TOP) {
     nextTabIndex = getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else if (key === KEYS.BOTTOM) {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else {
     if (currentTabIndex === -1) {
-      let firstIndex = defaultSection
+      nextTabIndex = defaultSection
         ? getFirstTabIndexOfSection(focusables, defaultSection)
         : 0;
-      if (firstIndex === -1) firstIndex = 0;
-      nextTabIndex = firstIndex;
-    }
-    switch (layout) {
-      case LAYOUTS.BLOCK:
-        if ([KEYS.DOWN, KEYS.RIGHT].includes(key))
-          nextTabIndex = currentTabIndex + 1;
-        else nextTabIndex = currentTabIndex - 1;
-        break;
-      case LAYOUTS.LIST:
-        switch (key) {
-          case KEYS.RIGHT:
-            nextTabIndex = currentTabIndex + 1;
-            break;
-          case KEYS.LEFT:
-            nextTabIndex = currentTabIndex - 1;
-            break;
-          case KEYS.DOWN:
-            for (let i = currentTabIndex + 1; i < focusables.length; i++) {
-              if (focusables[i].dataset.section !== section) {
-                nextTabIndex = i;
-                break;
-              }
-            }
-            break;
-          case KEYS.UP:
-            for (let i = currentTabIndex - 1; i >= 0; i--) {
-              if (focusables[i].dataset.section !== section) {
-                const nextLayout = focusables[i].dataset.layout;
-                if (nextLayout === LAYOUTS.GRID) nextTabIndex = i;
-                else
-                  nextTabIndex = getFirstTabIndexOfSection(
-                    focusables,
-                    focusables[i].dataset.section,
-                  );
-                break;
-              }
-            }
-            break;
-          default:
-            break;
-        }
-        break;
-      case LAYOUTS.GRID:
-        switch (key) {
-          case KEYS.RIGHT:
-            nextTabIndex = currentTabIndex + 1;
-            break;
-          case KEYS.LEFT:
-            nextTabIndex = currentTabIndex - 1;
-            break;
-          case KEYS.UP:
-            const isFirstRow =
-              !focusables[currentTabIndex - 1] ||
-              !focusables[currentTabIndex - 2] ||
-              focusables[currentTabIndex - 1].dataset.section !== section ||
-              focusables[currentTabIndex - 2].dataset.section !== section;
-            if (isFirstRow) {
-              for (let i = currentTabIndex - 1; i >= 0; i--) {
-                if (focusables[i].dataset.section !== section) {
-                  nextTabIndex = getFirstTabIndexOfSection(
-                    focusables,
-                    focusables[i].dataset.section,
-                  );
-                  break;
-                }
-              }
-            } else nextTabIndex = currentTabIndex - 2;
-            break;
-          case KEYS.DOWN:
-            const isGridCountOdd =
-              getCurrentSectionItems(focusables, currentTabIndex).length % 2 !==
-              0;
-            if (
-              isGridCountOdd &&
-              focusables[currentTabIndex + 1]?.dataset.section === section &&
-              focusables[currentTabIndex + 2]?.dataset.section !== section
-            )
-              nextTabIndex = currentTabIndex + 1;
-            else {
-              const isLastRow =
-                !focusables[currentTabIndex + 1] ||
-                !focusables[currentTabIndex + 2] ||
-                focusables[currentTabIndex + 1].dataset.section !== section ||
-                focusables[currentTabIndex + 2].dataset.section !== section;
-              if (isLastRow) {
-                for (let i = currentTabIndex + 1; i < focusables.length; i++) {
-                  if (focusables[i].dataset.section !== section) {
-                    nextTabIndex = getFirstTabIndexOfSection(
-                      focusables,
-                      focusables[i].dataset.section,
-                    );
-                    break;
-                  }
-                }
-              } else nextTabIndex = currentTabIndex + 2;
-            }
-            break;
-          default:
-            break;
-        }
-        break;
-      default:
-        break;
+    } else {
+      switch (layout) {
+        case LAYOUTS.BLOCK:
+          nextTabIndex = Block.move(currentTabIndex, key);
+          break;
+        case LAYOUTS.LIST:
+          nextTabIndex = List.move(focusables, currentTabIndex, section, key);
+          break;
+        case LAYOUTS.GRID:
+          nextTabIndex = Grid.move(focusables, currentTabIndex, section, key);
+          break;
+        default:
+          break;
+      }
     }
   }
+
+  if (nextTabIndex === -1) nextTabIndex = 0;
+
   if (nextTabIndex == null) return;
 
   focus(focusables, nextTabIndex);
 };
 
+// 1 per row
+const Block = {
+  move: (currentTabIndex, key) => {
+    if ([KEYS.UP, KEYS.LEFT].includes(key)) return Block.up(currentTabIndex);
+    else return Block.down(currentTabIndex);
+  },
+  up: index => index - 1,
+  down: index => index + 1,
+};
+
+// n per row
+const List = {
+  move: (focusables, currentTabIndex, currentSection, key) => {
+    switch (key) {
+      case KEYS.RIGHT:
+        return List.right(currentTabIndex);
+      case KEYS.LEFT:
+        return List.left(currentTabIndex);
+      case KEYS.DOWN:
+        return List.down(focusables, currentTabIndex, currentSection);
+      case KEYS.UP:
+        return List.up(focusables, currentTabIndex, currentSection);
+      default:
+        return null;
+    }
+  },
+  // to previous section
+  up: (focusables, index, currentSection) =>
+    getNextTabIndexOfPreviousSection(focusables, index, currentSection),
+  // go right
+  right: index => index + 1,
+  // to next section
+  down: (focusables, index, currentSection) =>
+    getFirstTabIndexOfNextSection(focusables, index, currentSection),
+  // go left
+  left: index => index - 1,
+};
+
+const Grid = {
+  move: (focusables, currentTabIndex, currentSection, key) => {
+    switch (key) {
+      case KEYS.RIGHT:
+        return Grid.right(currentTabIndex);
+      case KEYS.LEFT:
+        return Grid.left(currentTabIndex);
+      case KEYS.UP:
+        return Grid.up(focusables, currentTabIndex, currentSection);
+      case KEYS.DOWN:
+        return Grid.down(focusables, currentTabIndex, currentSection);
+      default:
+        return null;
+    }
+  },
+  // to previous section
+  up: (focusables, index, currentSection) => {
+    if (isOnFirstGridRow(focusables, index, currentSection))
+      return getNextTabIndexOfPreviousSection(
+        focusables,
+        index,
+        currentSection,
+      );
+    else return index - 2;
+  },
+  // go right
+  right: index => index + 1,
+  // to next section
+  down: (focusables, index, currentSection) => {
+    if (isGridOddAndOnNextToLast(focusables, index, currentSection))
+      return index + 1;
+    else {
+      if (isOnLastGridRow(focusables, index, currentSection))
+        return getFirstTabIndexOfNextSection(focusables, index, currentSection);
+      else return index + 2;
+    }
+  },
+  // go left
+  left: index => index - 1,
+};
+
+// When grid is odd, if the index is next to the last, it means that it is not on the last row.
+// On down key press, the next focus should be on the last index.
+const isGridOddAndOnNextToLast = (focusables, index, currentSection) =>
+  getCurrentSectionItems(focusables, index).length % 2 !== 0 &&
+  focusables[index + 1]?.dataset.section === currentSection &&
+  focusables[index + 2]?.dataset.section !== currentSection;
+
+// return true if the given index is on the first row
+const isOnFirstGridRow = (focusables, index, currentSection) =>
+  !focusables[index - 1] ||
+  !focusables[index - 2] ||
+  focusables[index - 1].dataset.section !== currentSection ||
+  focusables[index - 2].dataset.section !== currentSection;
+
+// assuming the grid count is even, return true if the given index is on the last row
+const isOnLastGridRow = (focusables, index, currentSection) =>
+  !focusables[index + 1] ||
+  !focusables[index + 2] ||
+  focusables[index + 1].dataset.section !== currentSection ||
+  focusables[index + 2].dataset.section !== currentSection;
+
+// get the first focusable element index of the next section starting from an index
+const getFirstTabIndexOfNextSection = (focusables, index, currentSection) => {
+  for (let i = index + 1; i < focusables.length; i++) {
+    if (focusables[i].dataset.section !== currentSection) {
+      return getFirstTabIndexOfSection(
+        focusables,
+        focusables[i].dataset.section,
+      );
+    }
+  }
+  return null;
+};
+
+// get either the first tab index of the previous section, or the last one if it's a grid
+const getNextTabIndexOfPreviousSection = (
+  focusables,
+  index,
+  currentSection,
+) => {
+  for (let i = index - 1; i >= 0; i--) {
+    const { section, layout } = focusables[i].dataset;
+    if (section !== currentSection) {
+      return layout === LAYOUTS.GRID
+        ? i
+        : getFirstTabIndexOfSection(focusables, focusables[i].dataset.section);
+    }
+  }
+  return null;
+};
+
+// focus on a tab index if the element exists
 const focus = (focusables, index) => {
   const nextElement = focusables[index];
   nextElement && nextElement.focus();
+};
+
+// get all focusable elements of the current tab index's section
+const getCurrentSectionItems = (focusables, index) => {
+  const { section } = focusables[index].dataset;
+  let startIndex, endIndex;
+
+  // going up from current
+  for (let i = index; i < focusables.length; i++) {
+    if (focusables[i].dataset.section !== section) {
+      endIndex = i - 1;
+      break;
+    }
+  }
+
+  // going down from current
+  for (let i = index; i >= 0; i--) {
+    if (focusables[i].dataset.section !== section) {
+      startIndex = i;
+      break;
+    }
+  }
+
+  return Array.prototype.slice.call(focusables, startIndex, endIndex);
+};
+
+// sort by priority if it exists
+const prioritize = (elements, focusables) =>
+  elements.sort((a, b) => {
+    const priorityA = parseInt(focusables[a].dataset.priority) || Infinity;
+    const priorityB = parseInt(focusables[b].dataset.priority) || Infinity;
+    return priorityA - priorityB;
+  });
+
+// get all possible tab indexes of a given section
+const getSectionTabIndexes = (focusables, section) =>
+  Array.prototype.reduce.call(
+    focusables,
+    (indexes, focusable, index) =>
+      focusable.dataset.section === section ? [...indexes, index] : indexes,
+    [],
+  );
+
+// get the first tab index of a given section
+// if an element within the section has priority, it will be returned first
+const getFirstTabIndexOfSection = (focusables, section) => {
+  const firstIndex = prioritize(
+    getSectionTabIndexes(focusables, section),
+    focusables,
+  )[0];
+  return firstIndex == null ? -1 : firstIndex;
+};
+
+// get the last possible tab index of a given section
+const getLastTabIndexOfSection = (focusables, section) => {
+  const sectionIndexes = getSectionTabIndexes(focusables, section);
+  const lastIndex = sectionIndexes[sectionIndexes.length - 1];
+  return lastIndex == null ? -1 : lastIndex;
 };
