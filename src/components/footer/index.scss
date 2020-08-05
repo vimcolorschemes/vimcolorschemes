@@ -11,13 +11,13 @@
 
 .footer__nav {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 2rem;
   width: 100%;
   & > * {
     width: min-content;
     padding: 1rem;
-    margin: 2rem -1rem -1rem -1rem;
+    margin: -1rem;
   }
 }
 
@@ -32,6 +32,7 @@
     flex-direction: row;
     align-items: center;
     width: auto;
+    margin: 0;
     & > * {
       padding: 1rem;
       margin: -1rem 2rem -1rem -1rem;
