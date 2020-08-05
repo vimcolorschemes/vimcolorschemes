@@ -58,10 +58,7 @@ const RepositoryPage = ({ data, location }) => {
 
   return (
     <Layout>
-      <SEO
-        title={`${name} vim color scheme, by ${ownerName}`}
-        url={location.origin}
-      />
+      <SEO title={`${name} vim color scheme, by ${ownerName}`} />
       <article className="repository">
         <header className="repository__hero">
           <Nav />

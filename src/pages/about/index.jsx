@@ -10,11 +10,11 @@ import SEO from "../../components/seo";
 
 import "./index.scss";
 
-const AboutPage = ({ location }) => {
+const AboutPage = () => {
   useNavigation();
   return (
     <Layout>
-      <SEO title="About" url={location.origin} />
+      <SEO title="About" />
       <div className="about">
         <h1 className="title" id="about">
           <a
