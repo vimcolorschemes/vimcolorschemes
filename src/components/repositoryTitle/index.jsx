@@ -8,7 +8,7 @@ const RepositoryTitle = ({ ownerName, name, tag, className }) => {
   const TitleTag = tag ? tag : "h1";
   return (
     <TitleTag className={classnames("repository-title", className)}>
-      <span className="repository-title__owner-name">{ownerName}</span>
+      <span className="repository-title__owner-name">{ownerName} </span>
       <span className="repository-title__name title">{name}</span>
     </TitleTag>
   );
