@@ -42,7 +42,7 @@ const handleKeyPress = (key, focusables, defaultSection) => {
     } else {
       switch (layout) {
         case LAYOUTS.BLOCK:
-          nextTabIndex = Block.move(currentTabIndex, key);
+          nextTabIndex = Block.move(focusables, currentTabIndex, section, key);
           break;
         case LAYOUTS.LIST:
           nextTabIndex = List.move(focusables, currentTabIndex, section, key);
@@ -65,12 +65,30 @@ const handleKeyPress = (key, focusables, defaultSection) => {
 
 // 1 per row
 const Block = {
-  move: (currentTabIndex, key) => {
-    if ([KEYS.UP, KEYS.LEFT].includes(key)) return Block.up(currentTabIndex);
-    else return Block.down(currentTabIndex);
+  move: (focusables, currentTabIndex, currentSection, key) => {
+    switch (key) {
+      case KEYS.RIGHT:
+        return Grid.right(currentTabIndex);
+      case KEYS.LEFT:
+        return Grid.left(currentTabIndex);
+      case KEYS.DOWN:
+        return Grid.down(focusables, currentTabIndex, currentSection);
+      case KEYS.UP:
+        return Grid.up(focusables, currentTabIndex, currentSection);
+      default:
+        return null;
+    }
   },
-  up: index => index - 1,
-  down: index => index + 1,
+  // to previous section
+  up: (focusables, index, currentSection) =>
+    getNextTabIndexOfPreviousSection(focusables, index, currentSection),
+  // go right
+  right: index => index + 1,
+  // to next section
+  down: (focusables, index, currentSection) =>
+    getFirstTabIndexOfNextSection(focusables, index, currentSection),
+  // go left
+  left: index => index - 1,
 };
 
 // n per row
