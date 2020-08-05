@@ -23,6 +23,7 @@ const ThemeSwitch = inputArgs => {
         className="theme-switch__input"
         aria-label="Switch between light and dark mode"
         checked={theme === THEMES.DARK}
+        onChange={e => e}
         onKeyDown={event => {
           const { key, target } = event;
 
