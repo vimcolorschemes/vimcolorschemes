@@ -1,0 +1,30 @@
+@import "../../style/mixins/index";
+
+.about {
+  max-width: 50rem;
+  margin: 0 auto;
+
+  a {
+    padding: 1rem;
+    margin: -1rem;
+  }
+
+  p {
+    margin-bottom: 2rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    padding-left: 2rem;
+  }
+
+  li {
+    list-style: disc;
+  }
+}
