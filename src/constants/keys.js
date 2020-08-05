@@ -1,11 +1,15 @@
 export const KEYS = {
   // custom navigation
-  TOP: "g",
-  RIGHT: "l",
-  BOTTOM: "G",
-  LEFT: "h",
-  DOWN: "j",
   UP: "k",
+  RIGHT: "l",
+  DOWN: "j",
+  LEFT: "h",
+  ARROW_UP: "ArrowUp",
+  ARROW_RIGHT: "ArrowRight",
+  ARROW_DOWN: "ArrowDown",
+  ARROW_LEFT: "ArrowLeft",
+  TOP: "g",
+  BOTTOM: "G",
 
   // non-navigation
   ENTER: "Enter",

@@ -9,7 +9,7 @@ export const useNavigation = defaultSection => {
 
       const eventListener = event =>
         Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event.key, focusables, defaultSection);
+        handleKeyPress(event, focusables, defaultSection);
 
       window.addEventListener("keydown", eventListener);
       return () => window.removeEventListener("keydown", eventListener);
@@ -17,8 +17,21 @@ export const useNavigation = defaultSection => {
   }, [defaultSection]);
 };
 
-const handleKeyPress = (key, focusables, defaultSection) => {
+const handleKeyPress = (event, focusables, defaultSection) => {
+  const { key } = event;
+
   if (NON_NAVIGATION_KEYS.includes(key)) return;
+
+  if (
+    [
+      KEYS.ARROW_UP,
+      KEYS.ARROW_RIGHT,
+      KEYS.ARROW_DOWN,
+      KEYS.ARROW_LEFT,
+    ].includes(key)
+  ) {
+    event.preventDefault();
+  }
 
   const { activeElement } = document;
 
@@ -68,12 +81,16 @@ const Block = {
   move: (focusables, currentTabIndex, currentSection, key) => {
     switch (key) {
       case KEYS.RIGHT:
+      case KEYS.ARROW_RIGHT:
         return Grid.right(currentTabIndex);
       case KEYS.LEFT:
+      case KEYS.ARROW_LEFT:
         return Grid.left(currentTabIndex);
       case KEYS.DOWN:
+      case KEYS.ARROW_DOWN:
         return Grid.down(focusables, currentTabIndex, currentSection);
       case KEYS.UP:
+      case KEYS.ARROW_UP:
         return Grid.up(focusables, currentTabIndex, currentSection);
       default:
         return null;
@@ -96,12 +113,16 @@ const List = {
   move: (focusables, currentTabIndex, currentSection, key) => {
     switch (key) {
       case KEYS.RIGHT:
+      case KEYS.ARROW_RIGHT:
         return List.right(currentTabIndex);
       case KEYS.LEFT:
+      case KEYS.ARROW_LEFT:
         return List.left(currentTabIndex);
       case KEYS.DOWN:
+      case KEYS.ARROW_DOWN:
         return List.down(focusables, currentTabIndex, currentSection);
       case KEYS.UP:
+      case KEYS.ARROW_UP:
         return List.up(focusables, currentTabIndex, currentSection);
       default:
         return null;
@@ -123,12 +144,16 @@ const Grid = {
   move: (focusables, currentTabIndex, currentSection, key) => {
     switch (key) {
       case KEYS.RIGHT:
+      case KEYS.ARROW_RIGHT:
         return Grid.right(currentTabIndex);
       case KEYS.LEFT:
+      case KEYS.ARROW_LEFT:
         return Grid.left(currentTabIndex);
       case KEYS.UP:
+      case KEYS.ARROW_UP:
         return Grid.up(focusables, currentTabIndex, currentSection);
       case KEYS.DOWN:
+      case KEYS.ARROW_DOWN:
         return Grid.down(focusables, currentTabIndex, currentSection);
       default:
         return null;
