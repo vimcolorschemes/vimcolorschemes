@@ -2,19 +2,22 @@
 
 .header {
   min-height: 5rem;
-  padding: 2rem 0;
+  padding: 2rem 0 0;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .header__content {
   @include container-layout;
   display: flex;
+  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
 }
 
 .header__sub-content {
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -41,7 +44,14 @@
 }
 
 @include lg {
+  .header {
+    padding: 2rem 0;
+  }
+  .header__content {
+    flex-direction: row;
+  }
   .header__sub-content {
+    margin-bottom: 0;
     flex-direction: row;
     align-items: center;
     & > * {

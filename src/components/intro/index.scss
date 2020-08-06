@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 3rem 0;
+  margin: 1rem 0;
   & > * {
     text-align: center;
   }
@@ -22,6 +22,9 @@
 }
 
 @include lg {
+  .intro {
+    margin: 3rem 0;
+  }
   .intro__instruction {
     display: block;
   }
