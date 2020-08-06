@@ -43,7 +43,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "seed": "sh ./seed/run.sh"
   },
   "repository": {
     "type": "git",
