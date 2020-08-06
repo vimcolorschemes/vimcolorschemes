@@ -24,4 +24,3 @@ export const ACTIONS = {
     route: "/created/desc/",
   },
 };
-

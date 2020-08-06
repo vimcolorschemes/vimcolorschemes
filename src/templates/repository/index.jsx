@@ -58,7 +58,11 @@ const RepositoryPage = ({ data, location }) => {
 
   return (
     <Layout>
-      <SEO title={`${name} vim color scheme, by ${ownerName}`} />
+      <SEO
+        title={`${name} vim color scheme, by ${ownerName}`}
+        imageURL={featuredImage?.publicURL}
+        path={`/${ownerName}/${name}`}
+      />
       <article className="repository">
         <header className="repository__hero">
           <Nav />
@@ -116,6 +120,7 @@ export const query = graphql`
         name
       }
       featuredImage: processed_featured_image {
+        publicURL
         childImageSharp {
           fluid(maxWidth: 1280, quality: 100) {
             ...GatsbyImageSharpFluid

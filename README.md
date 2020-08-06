@@ -8,8 +8,6 @@
   Find the best vim color schemes around
 </h2>
 
-
-
 ## Welcome 🎉
 
 **vimcolorschemes** solves an old problem of mine, which is to find the perfect vim color scheme. Syntax color in a coding environment is a big part of what makes and IDE yours and yours only.

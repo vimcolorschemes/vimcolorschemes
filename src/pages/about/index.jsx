@@ -14,7 +14,7 @@ const AboutPage = () => {
   useNavigation();
   return (
     <Layout>
-      <SEO title="About" />
+      <SEO title="About vimcolorschemes" path="/about" />
       <div className="about">
         <h1 className="title" id="about">
           <a
