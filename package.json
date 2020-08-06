@@ -1,5 +1,5 @@
 {
-  "name": "colorschemes",
+  "name": "colorschemes.dev",
   "private": true,
   "description": "Find the best color schemes around for virtually any platform",
   "version": "0.1.0",
@@ -44,13 +44,14 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "seed": "sh ./seed/run.sh"
+    "seed": "sh ./seed/run.sh",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reobin/colorschemes"
+    "url": "https://github.com/reobin/colorschemes.dev"
   },
   "bugs": {
-    "url": "https://github.com/reobin/colorschemes/issues"
+    "url": "https://github.com/reobin/colorschemes.dev/issues"
   }
 }

@@ -91,7 +91,7 @@ const AboutPage = ({
         <p>
           Developers, check out
           <ExternalLink
-            to="https://github.com/reobin/colorschemes/wiki/Development-guide"
+            to="https://github.com/reobin/colorschemes.dev/wiki/Development-guide"
             data-section={`${SECTIONS.ABOUT_LINK}-4`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
@@ -117,7 +117,7 @@ const AboutPage = ({
         </p>
         <p>
           <ExternalLink
-            to="https://github.com/reobin/colorschemes/issues"
+            to="https://github.com/reobin/colorschemes.dev/issues"
             data-section={`${SECTIONS.ABOUT_LINK}-6`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
