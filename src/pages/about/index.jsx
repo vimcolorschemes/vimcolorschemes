@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "../../constants";
 
@@ -10,11 +12,17 @@ import SEO from "../../components/seo";
 
 import "./index.scss";
 
-const AboutPage = () => {
+const AboutPage = ({
+  data: {
+    site: {
+      siteMetadata: { platform },
+    },
+  },
+}) => {
   useNavigation();
   return (
     <Layout>
-      <SEO title="About colorschemes" path="/about" />
+      <SEO title={`About ${platform}colorschemes`} path="/about" />
       <div className="about">
         <h1 className="title" id="about">
           <a
@@ -22,15 +30,16 @@ const AboutPage = () => {
             data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            About colorschemes
+            About {platform}colorschemes
           </a>
         </h1>
         <p>
-          <strong>colorschemes</strong> solves an old problem of mine which is
-          to find the perfect color scheme. The project started with vim only
-          but was expanded to any platform. <strong>Syntax color</strong> in a
-          coding environment is <strong>a big part</strong> of what makes and
-          IDE <strong>yours and yours only</strong>.
+          <strong>{platform}colorschemes</strong> solves an old problem of mine
+          which is to find the perfect color scheme. The project started with
+          vim only but was expanded to any platform.{" "}
+          <strong>Syntax color</strong> in a coding environment is{" "}
+          <strong>a big part</strong> of what makes and IDE{" "}
+          <strong>yours and yours only</strong>.
         </p>
         <p>
           GitHub is an awesome source for color schemes. There are literally
@@ -39,9 +48,9 @@ const AboutPage = () => {
           take a while.
         </p>
         <p>
-          This is where <strong>colorschemes</strong> comes in. It creates a{" "}
-          <strong>fast</strong> and <strong>fun</strong> gallery to navigate
-          through tons of color schemes.
+          This is where <strong>{platform}colorschemes</strong> comes in. It
+          creates a <strong>fast</strong> and <strong>fun</strong> gallery to
+          navigate through tons of color schemes.
         </p>
         <h2 className="subtitle" id="key-features">
           <a
@@ -75,8 +84,9 @@ const AboutPage = () => {
           </a>
         </h2>
         <p>
-          <strong>colorschemes</strong> is aimed to be a collaborative project,
-          and you are invited to help. All types of involvement are welcome!
+          <strong>{platform}colorschemes</strong> is aimed to be a collaborative
+          project, and you are invited to help. All types of involvement are
+          welcome!
         </p>
         <p>
           Developers, check out
@@ -136,5 +146,25 @@ const AboutPage = () => {
     </Layout>
   );
 };
+
+AboutPage.propTypes = {
+  data: PropTypes.shape({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        platform: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        platform
+      }
+    }
+  }
+`;
 
 export default AboutPage;

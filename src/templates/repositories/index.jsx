@@ -22,6 +22,9 @@ const REPOSITORY_COUNT_PER_PAGE = 20;
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
+  const {
+    siteMetadata: { platform },
+  } = data?.site;
   const { currentPage, pageCount } = pageContext;
 
   const currentPath = location.pathname || "";
@@ -41,7 +44,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   return (
     <Layout isHome>
-      <SEO title={`${activeAction.label} color schemes`} />
+      <SEO title={`${activeAction.label} ${platform} color schemes`} />
       <Intro />
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <p>
@@ -69,6 +72,11 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
 RepositoriesPage.propTypes = {
   data: PropTypes.shape({
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        platform: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
     repositoriesData: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
@@ -89,6 +97,11 @@ export const query = graphql`
     $sortField: [mongodbColorschemesRepositoriesFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
+    site {
+      siteMetadata {
+        platform
+      }
+    }
     repositoriesData: allMongodbColorschemesRepositories(
       filter: { blacklisted: { ne: true } }
       sort: { fields: $sortField, order: $sortOrder }
