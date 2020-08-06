@@ -2,7 +2,9 @@ const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
 
 module.exports = {
   siteMetadata: {
-    title: "vimcolorschemes",
+    title: "colorschemes",
+    platform: "vim",
+    arrows: "hjkl",
     siteUrl,
     description: "Find the best vim color schemes around",
     author: "@reobin",
@@ -36,7 +38,7 @@ module.exports = {
         connectionString:
           process.env.GATSBY_DATABASE_CONNECTION_STRING ||
           "mongodb://localhost:27017",
-        dbName: process.env.GATSBY_DATABASE_NAME || "vimcs",
+        dbName: process.env.GATSBY_DATABASE_NAME || "colorschemes",
         collection: ["repositories"],
       },
     },

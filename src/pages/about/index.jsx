@@ -14,7 +14,7 @@ const AboutPage = () => {
   useNavigation();
   return (
     <Layout>
-      <SEO title="About vimcolorschemes" path="/about" />
+      <SEO title="About colorschemes" path="/about" />
       <div className="about">
         <h1 className="title" id="about">
           <a
@@ -22,25 +22,26 @@ const AboutPage = () => {
             data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            About vimcolorschemes
+            About colorschemes
           </a>
         </h1>
         <p>
-          <strong>vimcolorschemes</strong> solves an old problem of mine which
-          is to find the perfect vim color scheme. <strong>Syntax color</strong>{" "}
-          in a coding environment is <strong>a big part</strong> of what makes
-          and IDE <strong>yours and yours only</strong>.
+          <strong>colorschemes</strong> solves an old problem of mine which is
+          to find the perfect color scheme. The project started with vim only
+          but was expanded to any platform. <strong>Syntax color</strong> in a
+          coding environment is <strong>a big part</strong> of what makes and
+          IDE <strong>yours and yours only</strong>.
         </p>
         <p>
-          GitHub is an awesome source for vim color schemes. There are literally
-          thousands of vim color schemes available on the platform. It is not
-          easy to navigate through them, though. Checking out a couple to find a
-          nice one can take a while.
+          GitHub is an awesome source for color schemes. There are literally
+          thousands available on the platform. It is not easy to navigate
+          through them, though. Checking out a couple to find a nice one can
+          take a while.
         </p>
         <p>
-          This is where <strong>vimcolorschemes</strong> comes in. It creates a{" "}
+          This is where <strong>colorschemes</strong> comes in. It creates a{" "}
           <strong>fast</strong> and <strong>fun</strong> gallery to navigate
-          through tons of vim color schemes.
+          through tons of color schemes.
         </p>
         <h2 className="subtitle" id="key-features">
           <a
@@ -56,12 +57,12 @@ const AboutPage = () => {
         </h2>
         <ul>
           <li>
-            <strong>Daily updated</strong> list of more than a thousand vim
-            color scheme repositories
+            <strong>Daily updated</strong> list of thousands of color scheme
+            repositories
           </li>
           <li>
-            <strong>Awesome vim key bindings</strong> to navigate quickly
-            through the whole site
+            <strong>Awesome vim key (or arrows) bindings</strong> to navigate
+            quickly through the whole site
           </li>
         </ul>
         <h2 className="subtitle" id="get-involved">
@@ -74,14 +75,13 @@ const AboutPage = () => {
           </a>
         </h2>
         <p>
-          <strong>vimcolorschemes</strong> is aimed to be a collaborative
-          project, and you are invited to help. All types of involvement are
-          welcome!
+          <strong>colorschemes</strong> is aimed to be a collaborative project,
+          and you are invited to help. All types of involvement are welcome!
         </p>
         <p>
           Developers, check out
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/wiki/Development-guide"
+            to="https://github.com/reobin/colorschemes/wiki/Development-guide"
             data-section={`${SECTIONS.ABOUT_LINK}-4`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
@@ -107,7 +107,7 @@ const AboutPage = () => {
         </p>
         <p>
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/issues"
+            to="https://github.com/reobin/colorschemes/issues"
             data-section={`${SECTIONS.ABOUT_LINK}-6`}
             data-layout={LAYOUTS.BLOCK}
             noIcon

@@ -1,1 +1,1 @@
-mongoimport --db vimcs --collection repositories --jsonArray --drop --file $(pwd)/seed/data.json
+mongoimport --db colorschemes --collection repositories --jsonArray --drop --file $(pwd)/seed/data.json

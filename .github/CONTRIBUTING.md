@@ -1,6 +1,6 @@
-# Contributing to vimcolorschemes
+# Contributing to colorschemes
 
-Contributions to vimcolorschemes are more than welcome!
+Contributions to colorschemes are more than welcome!
 They take many form: 
   - Code
   - Bug reports
@@ -10,7 +10,7 @@ They take many form:
 
 ## Code of Conduct
 
-Please follow the guidelines in the [Code of Conduct](https://github.com/reobin/vimcolorschemes/blob/master/.github/CODE_OF_CONDUCT.md).
+Please follow the guidelines in the [Code of Conduct](https://github.com/reobin/colorschemes/blob/master/.github/CODE_OF_CONDUCT.md).
 
 ## How Can I Contribute?
 If you're new to open source, [read about how to contribute to open source](https://opensource.guide/how-to-contribute/).
@@ -19,7 +19,7 @@ If you're new to open source, [read about how to contribute to open source](http
 
 If you'd like to work on an issue, please comment on it to let the maintainers know, so that they can assign it to you. If someone else has already commented and taken up that issue, please refrain from working on it and submitting a PR without asking the maintainers as it leads to unnecessary duplication of effort.
 
-Then, look at the [development guide](https://github.com/reobin/vimcolorschemes/wiki/Development-guide) for instructions on how to install the project locally.
+Then, look at the [development guide](https://github.com/reobin/colorschemes/wiki/Development-guide) for instructions on how to install the project locally.
 
 ### Contribution Guides
 

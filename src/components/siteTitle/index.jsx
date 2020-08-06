@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { Link } from "gatsby";
+import { Link, useStaticQuery, graphql } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "../../constants";
 
@@ -16,6 +16,24 @@ const SiteTitle = ({
   isHome,
 }) => {
   const Heading = isHome ? "h1" : "h2";
+
+  const {
+    site: {
+      siteMetadata: { platform, title },
+    },
+  } = useStaticQuery(
+    graphql`
+      query {
+        site {
+          siteMetadata {
+            title
+            platform
+          }
+        }
+      }
+    `,
+  );
+
   return (
     <Link
       to="/"
@@ -23,14 +41,10 @@ const SiteTitle = ({
       data-section={section}
       data-layout={layout}
     >
-      <img
-        src={logo}
-        alt="Vim color schemes logo"
-        className="site-title__logo"
-      />
+      <img src={logo} alt="colorschemes logo" className="site-title__logo" />
       <Heading className="site-title__name">
-        <span className="site-title__name-part">vim</span>
-        <span className="site-title__name-part">colorschemes</span>
+        <span className="site-title__name-part">{platform}</span>
+        <span className="site-title__name-part">{title}</span>
       </Heading>
     </Link>
   );

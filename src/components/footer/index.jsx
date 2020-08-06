@@ -21,14 +21,14 @@ const Footer = () => (
         About
       </Link>
       <ExternalLink
-        to="https://github.com/reobin/vimcolorschemes"
+        to="https://github.com/reobin/colorschemes"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >
         GitHub
       </ExternalLink>
       <ExternalLink
-        to="https://github.com/reobin/vimcolorschemes/issues"
+        to="https://github.com/reobin/colorschemes/issues"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >

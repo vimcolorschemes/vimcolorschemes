@@ -41,7 +41,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   return (
     <Layout isHome>
-      <SEO title={`${activeAction.label} vim color schemes`} />
+      <SEO title={`${activeAction.label} color schemes`} />
       <Intro />
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <p>
@@ -86,10 +86,10 @@ export const query = graphql`
   query(
     $skip: Int!
     $limit: Int!
-    $sortField: [mongodbVimcsRepositoriesFieldsEnum]!
+    $sortField: [mongodbColorschemesRepositoriesFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
-    repositoriesData: allMongodbVimcsRepositories(
+    repositoriesData: allMongodbColorschemesRepositories(
       filter: { blacklisted: { ne: true } }
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit

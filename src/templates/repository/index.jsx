@@ -59,7 +59,7 @@ const RepositoryPage = ({ data, location }) => {
   return (
     <Layout>
       <SEO
-        title={`${name} vim color scheme, by ${ownerName}`}
+        title={`${name} color scheme, by ${ownerName}`}
         imageURL={featuredImage?.publicURL}
         path={`/${ownerName}/${name}`}
       />
@@ -106,7 +106,7 @@ RepositoryPage.propTypes = {
 
 export const query = graphql`
   query($ownerName: String!, $name: String!) {
-    repository: mongodbVimcsRepositories(
+    repository: mongodbColorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }
     ) {

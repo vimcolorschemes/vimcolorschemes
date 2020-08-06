@@ -20,12 +20,12 @@ const error = message =>
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
-    type mongodbVimcsRepositories implements Node {
+    type mongodbColorschemesRepositories implements Node {
       processed_featured_image: File @link
       processed_images: [File]
     }
   `);
-  info("Adding processed image fields to mongodbVimcsRepositories node");
+  info("Adding processed image fields to mongodbColorschemesRepositories node");
 };
 
 const imagePromises = [];
@@ -38,7 +38,7 @@ exports.onCreateNode = ({
   createNodeId,
 }) => {
   if (
-    node.internal.type === "mongodbVimcsRepositories" &&
+    node.internal.type === "mongodbColorschemesRepositories" &&
     !node.blacklisted &&
     node.image_urls &&
     node.image_urls.length > 0
@@ -152,7 +152,7 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
 
 const repositoriesQuery = `
   {
-    allMongodbVimcsRepositories(filter: {blacklisted: { ne: true }}) {
+    allMongodbColorschemesRepositories(filter: {blacklisted: { ne: true }}) {
       nodes {
         name
         owner {
@@ -168,7 +168,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const {
     data: {
-      allMongodbVimcsRepositories: { nodes: repositories },
+      allMongodbColorschemesRepositories: { nodes: repositories },
     },
   } = await graphql(repositoriesQuery);
 
