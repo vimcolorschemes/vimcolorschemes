@@ -18,8 +18,11 @@ import Pagination from "../../components/pagination";
 
 import "./index.scss";
 
+const REPOSITORY_COUNT_PER_PAGE = 20;
+
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
+  const { currentPage, pageCount } = pageContext;
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -30,16 +33,21 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   useNavigation(SECTIONS.REPOSITORIES);
 
+  const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
+  const endIndex =
+    currentPage === pageCount
+      ? totalCount
+      : currentPage * REPOSITORY_COUNT_PER_PAGE;
+
   return (
     <Layout isHome>
       <SEO title={`${activeAction.label} vim color schemes`} />
       <Intro />
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <p>
-        {(pageContext.currentPage - 1) * repositories.length + 1}
+        {startIndex}
         {" - "}
-        {pageContext.currentPage * repositories.length} out of{" "}
-        <strong>{totalCount}</strong> repositories
+        {endIndex} out of <strong>{totalCount}</strong> repositories
       </p>
       <Grid className="repositories">
         {repositories.map(repository => (
@@ -51,8 +59,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         ))}
       </Grid>
       <Pagination
-        currentPage={pageContext.currentPage}
-        pageCount={pageContext.pageCount}
+        currentPage={currentPage}
+        pageCount={pageCount}
         activeActionRoute={activeAction.route}
       />
     </Layout>
