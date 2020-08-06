@@ -2,8 +2,9 @@ const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
 
 module.exports = {
   siteMetadata: {
-    title: "colorschemes",
-    platform: "vim",
+    title: process.env.GATSBY_SITE_TITLE || "colorschemes",
+    platform: process.env.GATSBY_SITE_PLATFORM || "vim",
+    socialImageUrl: process.env.GATSBY_SOCIAL_IMAGE_URL || "",
     arrows: "hjkl",
     siteUrl,
     description: "Find the best vim color schemes around",

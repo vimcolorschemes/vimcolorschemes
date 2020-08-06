@@ -64,7 +64,7 @@ const RepositoryPage = ({ data, location }) => {
     <Layout>
       <SEO
         title={`${name} ${platform} color scheme, by ${ownerName}`}
-        imageURL={featuredImage?.publicURL}
+        imageUrl={featuredImage?.publicURL}
         path={`/${ownerName}/${name}`}
       />
       <article className="repository">
