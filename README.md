@@ -7,6 +7,11 @@
 
 ## Welcome 🎉
 
+<p align="center">
+  <img src="src/images/demo_light.png" alt="demo light theme" width="49%">
+  <img src="src/images/demo_dark.png" alt="demo dark theme" width="49%">
+</p>
+
 [colorschemes.dev](https://colorschemes.dev) solves an old problem of mine, which is to find the perfect color scheme for my IDE. Syntax color in a coding environment is a big part of what makes and IDE yours and yours only.
 
 The project started with vim only but was expanded to any platform.
