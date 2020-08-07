@@ -24,8 +24,9 @@ const Intro = () => {
         <strong>TIP:</strong> This website is best navigated with the keyboard.
       </p>
       <p className="intro__instruction">
-        Use <strong className="intro__highlight">{site.siteMetadata.arrows}</strong> and{" "}
-        <strong>enter</strong>
+        Use{" "}
+        <strong className="intro__highlight">{site.siteMetadata.arrows}</strong>{" "}
+        and <strong>enter</strong>
       </p>
     </div>
   );
