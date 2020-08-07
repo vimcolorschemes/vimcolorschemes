@@ -21,14 +21,14 @@ const Footer = () => (
         About
       </Link>
       <ExternalLink
-        to="https://github.com/reobin/colorschemes"
+        to="https://github.com/reobin/colorschemes.dev"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >
         GitHub
       </ExternalLink>
       <ExternalLink
-        to="https://github.com/reobin/colorschemes/issues"
+        to="https://github.com/reobin/colorschemes.dev/issues"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
       >
