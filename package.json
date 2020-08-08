@@ -45,7 +45,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "seed": "sh ./seed/run.sh",
-    "test": "jest"
+    "preview::build": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
