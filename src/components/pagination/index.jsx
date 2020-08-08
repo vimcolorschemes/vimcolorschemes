@@ -9,8 +9,10 @@ import "./index.scss";
 const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === pageCount;
-  const prevPage = currentPage - 1 === 1 ? "" : (currentPage - 1).toString();
-  const nextPage = (currentPage + 1).toString();
+
+  const prevPage =
+    currentPage - 1 === 1 ? "" : `page/${(currentPage - 1).toString()}`;
+  const nextPage = `page/${(currentPage + 1).toString()}`;
 
   return (
     <div className="pagination">
@@ -54,7 +56,7 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
         )}
         {!isLastPage && (
           <Link
-            to={`${activeActionRoute}${pageCount}`}
+            to={`${activeActionRoute}page/${pageCount}`}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
             className="pagination__link pagination__link--limit"
