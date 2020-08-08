@@ -112,9 +112,9 @@ const createRepositoryPages = (repositories, createPage) => {
   });
 };
 
-const pageSize = 20;
-const createRepositoryPaginatedPages = (repositories, createPage) => {
-  const pageCount = Math.ceil(repositories.length / pageSize);
+const REPOSITORY_COUNT_PER_PAGE = 20;
+const createRepositoriesPages = (repositories, createPage) => {
+  const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
 
   const sortOrders = [
     { value: "DESC", path: "desc/", isDefault: true },
@@ -134,11 +134,11 @@ const createRepositoryPaginatedPages = (repositories, createPage) => {
             : `${field.path}${sortOrder.path}`;
 
         createPage({
-          path: index === 0 ? `/${sortPath}` : `/${sortPath}${index + 1}`,
+          path: index === 0 ? `/${sortPath}` : `/${sortPath}page/${index + 1}`,
           component: path.resolve(`./src/templates/repositories/index.jsx`),
           context: {
-            skip: index * pageSize,
-            limit: pageSize,
+            skip: index * REPOSITORY_COUNT_PER_PAGE,
+            limit: REPOSITORY_COUNT_PER_PAGE,
             sortField: [field.fieldName],
             sortOrder: [sortOrder.value],
             pageCount,
@@ -174,6 +174,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
   createRepositoryPages(repositories, createPage);
   info("Creating repository pages");
-  createRepositoryPaginatedPages(repositories, createPage);
+  createRepositoriesPages(repositories, createPage);
   info("Creating repositories index pages");
 };
