@@ -7,7 +7,7 @@ module.exports = {
     socialImageUrl: process.env.GATSBY_SOCIAL_IMAGE_URL || "",
     arrows: "hjkl",
     siteUrl,
-    description: "Find the best vim color schemes around",
+    description: process.env.GATSBY_SITE_DESCRIPTION || "Find the best vim color schemes around",
     author: "@reobin",
   },
   plugins: [
