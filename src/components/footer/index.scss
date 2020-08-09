@@ -15,9 +15,11 @@
   margin-top: 2rem;
   width: 100%;
   & > * {
-    width: min-content;
     padding: 1rem;
     margin: -1rem;
+    &.accent {
+      color: var(--link);
+    }
   }
 }
 

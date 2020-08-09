@@ -24,15 +24,9 @@ const Footer = () => (
         to="https://github.com/reobin/colorschemes.dev"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
+        className="accent"
       >
-        GitHub
-      </ExternalLink>
-      <ExternalLink
-        to="https://github.com/reobin/colorschemes.dev/issues"
-        data-section={SECTIONS.FOOTER_NAV}
-        data-layout={LAYOUTS.LIST}
-      >
-        Issues
+        Follow on GitHub
       </ExternalLink>
       <a
         href="mailto:contact@reobin.dev"
