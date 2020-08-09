@@ -15,7 +15,7 @@ import "./index.scss";
 const AboutPage = ({
   data: {
     site: {
-      siteMetadata: { platform },
+      siteMetadata: { title, platform },
     },
   },
 }) => {
@@ -30,32 +30,53 @@ const AboutPage = ({
             data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            About {platform}colorschemes
+            About {platform}
+            {title}
           </a>
         </h1>
         <p>
-          <strong>{platform}colorschemes</strong> solves an old problem of mine
-          which is to find the perfect color scheme. The project started with
-          vim only but was expanded to any platform.{" "}
-          <strong>Syntax color</strong> in a coding environment is{" "}
-          <strong>a big part</strong> of what makes and IDE{" "}
+          <strong>
+            {platform}
+            {title}{" "}
+          </strong>{" "}
+          is one of the active instances of the{" "}
+          <ExternalLink
+            to="https://github.com/reobin/colorschemes.dev"
+            data-section={`${SECTIONS.ABOUT_LINK}-2`}
+            data-layout={LAYOUTS.BLOCK}
+            noIcon
+            className="inline-link"
+          >
+            colorschemes.dev{" "}
+          </ExternalLink>
+          app template. It is a <strong>fun</strong> and <strong>fast</strong>{" "}
+          gallery for {platform} color scheme repositories on GitHub.
+        </p>
+        <p>
+          It solves an old problem of mine, which is to find the perfect{" "}
+          {platform} color scheme. <strong>Syntax color</strong> in a coding
+          environment is <strong>a big part</strong> of what makes it{" "}
           <strong>yours and yours only</strong>.
         </p>
         <p>
-          GitHub is an awesome source for color schemes. There are literally
-          thousands available on the platform. It is not easy to navigate
-          through them, though. Checking out a couple to find a nice one can
-          take a while.
+          GitHub holds an impressive amount of {platform} color schemes. It is
+          not easy to navigate through them, though. Checking out a couple to
+          find a nice one can take a while.
         </p>
         <p>
-          This is where <strong>{platform}colorschemes</strong> comes in. It
-          creates a <strong>fast</strong> and <strong>fun</strong> gallery to
-          navigate through tons of color schemes.
+          This is where{" "}
+          <strong>
+            {platform}
+            {title}
+          </strong>{" "}
+          comes in. It is <strong>minimal</strong>,{" "}
+          <strong>focused on content</strong>, and{" "}
+          <strong>it feels awesome</strong> to navigate through.
         </p>
         <h2 className="subtitle" id="key-features">
           <a
             href="#key-features"
-            data-section={`${SECTIONS.ABOUT_LINK}-2`}
+            data-section={`${SECTIONS.ABOUT_LINK}-3`}
             data-layout={LAYOUTS.BLOCK}
           >
             Key features{" "}
@@ -66,8 +87,8 @@ const AboutPage = ({
         </h2>
         <ul>
           <li>
-            <strong>Daily updated</strong> list of thousands of color scheme
-            repositories
+            <strong>Daily updated</strong> list of thousands of {platform} color
+            scheme repositories
           </li>
           <li>
             <strong>Awesome vim key (or arrows) bindings</strong> to navigate
@@ -77,22 +98,25 @@ const AboutPage = ({
         <h2 className="subtitle" id="get-involved">
           <a
             href="#get-involved"
-            data-section={`${SECTIONS.ABOUT_LINK}-3`}
+            data-section={`${SECTIONS.ABOUT_LINK}-4`}
             data-layout={LAYOUTS.BLOCK}
           >
             Get Involved
           </a>
         </h2>
         <p>
-          <strong>{platform}colorschemes</strong> is aimed to be a collaborative
-          project, and you are invited to help. All types of involvement are
-          welcome!
+          <strong>
+            {platform}
+            {title}
+          </strong>{" "}
+          is aimed to be a collaborative project, and you are invited to help.
+          All types of involvement are welcome!
         </p>
         <p>
           Developers, check out
           <ExternalLink
             to="https://github.com/reobin/colorschemes.dev/wiki/Development-guide"
-            data-section={`${SECTIONS.ABOUT_LINK}-4`}
+            data-section={`${SECTIONS.ABOUT_LINK}-5`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
             className="inline-link"
@@ -105,7 +129,7 @@ const AboutPage = ({
         <h2 className="subtitle" id="issues">
           <a
             href="#issues"
-            data-section={`${SECTIONS.ABOUT_LINK}-5`}
+            data-section={`${SECTIONS.ABOUT_LINK}-6`}
             data-layout={LAYOUTS.BLOCK}
           >
             Issues
@@ -118,7 +142,7 @@ const AboutPage = ({
         <p>
           <ExternalLink
             to="https://github.com/reobin/colorschemes.dev/issues"
-            data-section={`${SECTIONS.ABOUT_LINK}-6`}
+            data-section={`${SECTIONS.ABOUT_LINK}-7`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
             className="inline-link"
@@ -130,7 +154,7 @@ const AboutPage = ({
         <h2 className="subtitle" id="credits">
           <a
             href="#credits"
-            data-section={`${SECTIONS.ABOUT_LINK}-7`}
+            data-section={`${SECTIONS.ABOUT_LINK}-8`}
             data-layout={LAYOUTS.BLOCK}
           >
             Credits
@@ -151,6 +175,7 @@ AboutPage.propTypes = {
   data: PropTypes.shape({
     site: PropTypes.shape({
       siteMetadata: PropTypes.shape({
+        title: PropTypes.string.isRequired,
         platform: PropTypes.string.isRequired,
       }).isRequired,
     }).isRequired,
@@ -161,6 +186,7 @@ export const query = graphql`
   query {
     site {
       siteMetadata {
+        title
         platform
       }
     }
