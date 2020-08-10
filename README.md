@@ -1,9 +1,15 @@
+<br>
+
 <h1 align="center">
-  <img alt="colorschemes.dev" src="src/images/logo_text_horizontal.png" width="500" />
+  <img alt="colorschemes.dev" src="src/images/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
   <b>Find the best color schemes around for <i>virtually</i> any platform</b>
 </p>
+
+<br>
+<br>
+<br>
 
 <p align="center">
   <img src="src/images/demo_light.png" alt="demo light theme" width="49%">
