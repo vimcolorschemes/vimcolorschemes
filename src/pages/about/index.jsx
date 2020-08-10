@@ -39,18 +39,8 @@ const AboutPage = ({
             {platform}
             {title}{" "}
           </strong>{" "}
-          is one of the active instances of the{" "}
-          <ExternalLink
-            to="https://github.com/reobin/colorschemes.dev"
-            data-section={`${SECTIONS.ABOUT_LINK}-2`}
-            data-layout={LAYOUTS.BLOCK}
-            noIcon
-            className="inline-link"
-          >
-            colorschemes.dev{" "}
-          </ExternalLink>
-          app template. It is a <strong>fun</strong> and <strong>fast</strong>{" "}
-          gallery for {platform} color scheme repositories on GitHub.
+          is a <strong>fun</strong> and <strong>fast</strong> gallery for{" "}
+          {platform} color scheme repositories on GitHub.
         </p>
         <p>
           It solves an old problem of mine, which is to find the perfect{" "}
@@ -115,7 +105,7 @@ const AboutPage = ({
         <p>
           Developers, check out
           <ExternalLink
-            to="https://github.com/reobin/colorschemes.dev/wiki/Development-guide"
+            to="https://github.com/reobin/vimcolorschemes/wiki/Development-guide"
             data-section={`${SECTIONS.ABOUT_LINK}-5`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
@@ -141,7 +131,7 @@ const AboutPage = ({
         </p>
         <p>
           <ExternalLink
-            to="https://github.com/reobin/colorschemes.dev/issues"
+            to="https://github.com/reobin/vimcolorschemes/issues"
             data-section={`${SECTIONS.ABOUT_LINK}-7`}
             data-layout={LAYOUTS.BLOCK}
             noIcon

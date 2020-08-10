@@ -21,7 +21,7 @@ const Footer = () => (
         About
       </Link>
       <ExternalLink
-        to="https://github.com/reobin/colorschemes.dev"
+        to="https://github.com/reobin/vimcolorschemes"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
         className="accent"
