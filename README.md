@@ -12,15 +12,19 @@
 
 ## Welcome 🎉
 
-[colorschemes.dev](https://colorschemes.dev) solves an old problem of mine, which is to find the perfect color scheme for my IDE. Syntax color in a coding environment is a big part of what makes it yours and yours only.
+[colorschemes.dev](https://colorschemes.dev) is an app template to create a **fast** and **fun** gallery for color scheme repositories on GitHub.
 
-GitHub is an awesome source for color schemes. There are literally thousands available on the platform. It is not easy to navigate through them, though. Checking out a couple to find a nice one can take a while.
+This solves an old problem of mine, which is to find the **perfect color scheme** for my IDE. Syntax color in a coding environment is a big part of what makes it yours and **yours only**.
 
-This is where [colorschemes.dev](https://colorschemes.dev) comes in. It creates a **fast** and **fun** gallery to navigate color schemes.
+GitHub holds an impressive amount of color schemes. It is not easy to navigate through them, though. Checking out a couple to find a nice one can take a while.
 
-The project started with vim only but was expanded to support any platform.
+This is where [colorschemes.dev](https://colorschemes.dev) steps in. It is **minimal**, **focused on content**, and **it feels awesome** to navigate through.
+
+The project started with vim only but was expanded to support **any platform**.
 
 ## Active instance(s) of colorschemes.dev
+
+> **Pro tip**: Leave your mouse aside and use the **keyboard** to navigate the app
 
 - [vimcolorschemes.com](https://vimcolorschemes.com)
 
