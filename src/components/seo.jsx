@@ -10,6 +10,7 @@ function SEO({ description, lang, meta, title, imageUrl, path }) {
         site {
           siteMetadata {
             title
+            platform
             siteUrl
             description
             author
@@ -36,7 +37,7 @@ function SEO({ description, lang, meta, title, imageUrl, path }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${site.siteMetadata.platform}${site.siteMetadata.title}`}
       meta={[
         {
           name: `description`,
