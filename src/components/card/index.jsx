@@ -46,7 +46,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
             data-section={SECTIONS.REPOSITORIES}
             data-layout={LAYOUTS.GRID}
           >
-            <RepositoryTitle ownerName={ownerName} name={name} tag="div" />
+            <RepositoryTitle ownerName={ownerName} name={name} />
           </Link>
         </h3>
         <div className="card__stargazers">
