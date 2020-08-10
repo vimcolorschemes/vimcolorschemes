@@ -71,7 +71,7 @@ const RepositoryPage = ({ data, location }) => {
         <header className="repository__hero">
           <Nav />
           <div className="repository__header">
-            <RepositoryTitle ownerName={ownerName} name={name} />
+            <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
             <ExternalLink
               to={githubUrl}
               data-section={SECTIONS.REPOSITORY_HEADER}
