@@ -33,6 +33,9 @@ The project started with vim only but was expanded to support **any platform**.
 > **Pro tip**: Leave your mouse aside and use the **keyboard** to navigate the app
 
 - [vimcolorschemes.com](https://vimcolorschemes.com)
+- More coming...
+
+Have an idea? 💡 Create an issue and we'll discuss it.
 
 ## Key features 🚀
 
