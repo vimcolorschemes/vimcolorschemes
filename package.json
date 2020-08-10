@@ -36,7 +36,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
+  "license": "GNU General Public License v3.0",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
