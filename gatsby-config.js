@@ -7,7 +7,9 @@ module.exports = {
     socialImageUrl: process.env.GATSBY_SOCIAL_IMAGE_URL || "",
     arrows: "hjkl",
     siteUrl,
-    description: process.env.GATSBY_SITE_DESCRIPTION || "Find the best vim color schemes around",
+    description:
+      process.env.GATSBY_SITE_DESCRIPTION ||
+      "Find the best vim color schemes around",
     author: "@reobin",
   },
   plugins: [
@@ -53,12 +55,16 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "gatsby-starter-default",
-        short_name: "starter",
+        name: `${process.env.GATSBY_SITE_PLATFORM || "vim"}${
+          process.env.GATSBY_SITE_TITLE || "colorschemes"
+        }`,
+        short_name: `${process.env.GATSBY_SITE_PLATFORM || "vim"}${
+          process.env.GATSBY_SITE_TITLE || "colorschemes"
+        }`,
         start_url: "/",
-        background_color: "#000",
-        theme_color: "#fff",
-        display: "minimal-ui",
+        background_color: "#fff",
+        theme_color: "#333",
+        display: "standalone",
         icon: "src/images/logo.svg",
       },
     },
