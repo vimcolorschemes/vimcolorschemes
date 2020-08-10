@@ -2,7 +2,7 @@
   "name": "colorschemes.dev",
   "private": true,
   "description": "Find the best color schemes around for virtually any platform",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
