@@ -65,7 +65,7 @@ module.exports = {
         background_color: "#fff",
         theme_color: "#333",
         display: "standalone",
-        icon: "src/images/logo.svg",
+        icon: "src/images/logo_square.png",
       },
     },
   ],
