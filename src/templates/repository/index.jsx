@@ -11,7 +11,7 @@ import { useNavigation } from "../../hooks/useNavigation";
 
 import { getRepositoryInfos } from "../../utils/repository";
 
-import { Arrow } from "../../components/icons";
+import { Arrow, GitHub } from "../../components/icons";
 
 import ExternalLink from "../../components/externalLink";
 import Layout from "../../components/layout";
@@ -57,6 +57,17 @@ const RepositoryPage = ({ data, location }) => {
         <Arrow left className="repository__nav-link-icon" />
         back
       </Link>
+      <ExternalLink
+        to={githubUrl}
+        data-section={
+          bottom ? SECTIONS.REPOSITORY_BOTTOM_NAV : SECTIONS.REPOSITORY_NAV
+        }
+        data-layout={LAYOUTS.LIST}
+        className="repository__nav-link"
+        icon={GitHub}
+      >
+        GitHub
+      </ExternalLink>
     </nav>
   );
 
@@ -71,29 +82,21 @@ const RepositoryPage = ({ data, location }) => {
       <article className="repository">
         <header className="repository__hero">
           <Nav />
-          <div className="repository__header">
-            <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
-            <ExternalLink
-              to={githubUrl}
-              data-section={SECTIONS.REPOSITORY_HEADER}
-              data-layout={LAYOUTS.LIST}
-              className="repository__nav-link"
-            >
-              GitHub
-            </ExternalLink>
-          </div>
+          <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
           <p>{description}</p>
         </header>
-        {!!featuredImage && (
-          <ZoomableImage
-            image={featuredImage}
-            alt="featured"
-            className="repository__image"
-            data-section={SECTIONS.REPOSITORY_MAIN_IMAGE}
-            data-layout={LAYOUTS.BLOCK}
-          />
-        )}
-        {!!images && images.length > 0 && <Mosaic images={images} />}
+        <section>
+          {!!featuredImage && (
+            <ZoomableImage
+              image={featuredImage}
+              alt="featured"
+              className="repository__image"
+              data-section={SECTIONS.REPOSITORY_MAIN_IMAGE}
+              data-layout={LAYOUTS.BLOCK}
+            />
+          )}
+          {!!images && images.length > 0 && <Mosaic images={images} />}
+        </section>
       </article>
       <Nav bottom />
     </Layout>

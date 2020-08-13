@@ -4,12 +4,6 @@
   margin-bottom: 2rem;
 }
 
-.repository__header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .repository__image {
   padding: 1rem;
   margin: -1rem -1rem 2rem -1rem;
@@ -20,6 +14,9 @@
 }
 
 .repository__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
   &--bottom {
     margin-bottom: 0;
@@ -33,6 +30,7 @@
   display: flex;
   align-items: center;
   width: min-content;
+  font-weight: bold;
 }
 
 .repository__nav-link-icon {
