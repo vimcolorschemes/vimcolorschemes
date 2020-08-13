@@ -103,7 +103,7 @@ export const query = graphql`
       }
     }
     repositoriesData: allMongodbColorschemesRepositories(
-      filter: { blacklisted: { ne: true } }
+      filter: { valid: { eq: true }, image_urls: { ne: "" } }
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip

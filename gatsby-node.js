@@ -39,7 +39,7 @@ exports.onCreateNode = ({
 }) => {
   if (
     node.internal.type === "mongodbColorschemesRepositories" &&
-    !node.blacklisted &&
+    !!node.valid &&
     node.image_urls &&
     node.image_urls.length > 0
   ) {
@@ -152,7 +152,7 @@ const createRepositoriesPages = (repositories, createPage) => {
 
 const repositoriesQuery = `
   {
-    allMongodbColorschemesRepositories(filter: {blacklisted: { ne: true }}) {
+    allMongodbColorschemesRepositories(filter: {valid: { eq: true }, image_urls: { ne: "" }}) {
       nodes {
         name
         owner {
