@@ -66,7 +66,10 @@ const RepositoryPage = ({ data, location }) => {
         className="repository__nav-link"
         icon={GitHub}
       >
-        GitHub
+        <span>
+          View <strong>{name}</strong> on{" "}
+        </span>
+        <span>GitHub</span>
       </ExternalLink>
     </nav>
   );
