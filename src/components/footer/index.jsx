@@ -3,6 +3,8 @@ import { Link } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "../../constants";
 
+import { GitHub } from "../icons";
+
 import ExternalLink from "../externalLink";
 import SiteTitle from "../siteTitle";
 
@@ -25,6 +27,7 @@ const Footer = () => (
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
         className="accent"
+        icon={GitHub}
       >
         Follow on GitHub
       </ExternalLink>
