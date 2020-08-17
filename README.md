@@ -16,24 +16,20 @@
 
 ## Welcome 🎉
 
-[vimcolorschemes](https://vimcolorschemes.com) is a **minimal** and **fast** gallery for vim color scheme repositories on GitHub.
+[vimcolorschemes](https://vimcolorschemes.com) is a small constellation of projects working on the common goal of building the **ultimate resource** for vim users to find the **perfect color scheme** for their development environment.
 
-This solves an old problem of mine, which is to find the **perfect color scheme** for my vim setup. Syntax color in a coding environment is a big part of what makes it yours and **yours only**.
-
-GitHub holds an impressive amount of vim color schemes. It is not easy to navigate through them, though. Checking out a couple to find a nice one can take a while.
-
-This is where [vimcolorschemes](https://vimcolorschemes.com) steps in. It's **focused on content**, and **it feels awesome** to navigate through.
+The **focus** here is always on the **content**. The **simple design** of the website make the color schemes the focal point of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
 
 ## Key features 🚀
 
-- **Daily updated** list of more than of thousand vim color scheme repositories
-- **Awesome vim (or arrows) key bindings** to navigate quickly through the whole site
+- **Daily updated** list of hundreds of vim color scheme repositories
+- **Awesome vim (or arrows) key bindings** to quickly navigate through the whole site
 
 ## Get Involved
 
-[vimcolorschemes](https://vimcolorschemes.com) is aimed to be a collaborative project, and you are invited to help. All types of involvement are welcome!
+[vimcolorschemes](https://vimcolorschemes.com) is aimed to be a **collaborative** project, and you are invited to help. All types of involvement are welcome!
 
-Developers, check out the [development guide](https://github.com/reobin/vimcolorschemes/wiki/Development-guide) to start writing code.
+Developers, check out the [development guide](https://github.com/reobin/vimcolorschemes/wiki/Development-guide) to start writing code and contribute.
 
 ## Issues
 
