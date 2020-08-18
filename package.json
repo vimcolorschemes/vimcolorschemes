@@ -1,7 +1,7 @@
 {
   "name": "vimcolorschemes",
   "description": "Find the best vim color schemes around",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
@@ -51,6 +51,6 @@
     "url": "https://github.com/reobin/vimcolorschemes"
   },
   "bugs": {
-    "url": "https://github.com/reobin/vimcolorschemes"
+    "url": "https://github.com/reobin/vimcolorschemes/issues"
   }
 }
