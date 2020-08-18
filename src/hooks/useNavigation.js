@@ -237,6 +237,7 @@ const getNextTabIndexOfPreviousSection = (
 };
 
 // return true if the given element is visible in the viewport
+// source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
 const isInViewport = element => {
   const bounding = element.getBoundingClientRect();
   const clientHeight =
