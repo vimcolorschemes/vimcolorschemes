@@ -19,6 +19,7 @@ const Actions = ({ actions, activeAction }) => (
           data-section={SECTIONS.ACTIONS}
           data-layout={LAYOUTS.LIST}
           to={action.route}
+          aria-label={`${action.label} vim color schemes`}
         >
           {action.label}
         </Link>
