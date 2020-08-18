@@ -236,11 +236,29 @@ const getNextTabIndexOfPreviousSection = (
   return null;
 };
 
+// return true if the given element is visible in the viewport
+const isInViewport = element => {
+  const bounding = element.getBoundingClientRect();
+  const clientHeight =
+    window?.innerHeight || document?.documentElement.clientHeight;
+  const clientWidth =
+    window?.innerWidth || document?.documentElement.clientWidth;
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= clientHeight &&
+    bounding.right <= clientWidth
+  );
+};
+
 // focus on a tab index if the element exists
 const focus = (focusables, index) => {
   const nextElement = focusables[index];
   if (nextElement) {
-    nextElement.scrollIntoView({ block: "center" });
+    if (!isInViewport(nextElement)) {
+      console.log("scroll");
+      nextElement.scrollIntoView({ block: "center" });
+    }
     nextElement.focus({ preventScroll: true });
   }
 };
