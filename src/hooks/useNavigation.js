@@ -239,7 +239,10 @@ const getNextTabIndexOfPreviousSection = (
 // focus on a tab index if the element exists
 const focus = (focusables, index) => {
   const nextElement = focusables[index];
-  nextElement && nextElement.focus();
+  if (nextElement) {
+    nextElement.scrollIntoView({ block: "center" });
+    nextElement.focus({ preventScroll: true });
+  }
 };
 
 // get all focusable elements of the current tab index's section

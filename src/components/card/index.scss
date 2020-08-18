@@ -9,26 +9,6 @@
   padding: 1rem;
 }
 
-.card__title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card__title > a::after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.card__title > a:focus {
-  text-decoration: underline;
-  outline: none;
-  box-shadow: none;
-}
-
 .card:hover {
   @include hover-border;
 }
@@ -37,15 +17,26 @@
   @include focus-border;
 }
 
-.card:focus-within a {
+.card > a {
+  display: flex;
+  flex-direction: column;
+  box-shadow: none;
+}
+
+.card > a:focus {
+  text-decoration: underline;
+  outline: none;
+}
+
+.card:focus-within > a {
   text-decoration: none;
   outline: none;
   box-shadow: none;
 }
 
-.card__title > a {
-  display: flex;
-  flex-direction: column;
+.card__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card__header {
