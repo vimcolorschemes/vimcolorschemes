@@ -30,7 +30,7 @@ ExternalLink.propTypes = {
   to: PropTypes.string.isRequired,
   className: PropTypes.string,
   noIcon: PropTypes.bool,
-  icon: PropTypes.object,
+  icon: PropTypes.func,
   args: PropTypes.object,
 };
 
