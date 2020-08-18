@@ -236,10 +236,32 @@ const getNextTabIndexOfPreviousSection = (
   return null;
 };
 
+// return true if the given element is visible in the viewport
+// source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
+const isInViewport = element => {
+  const bounding = element.getBoundingClientRect();
+  const clientHeight =
+    window?.innerHeight || document?.documentElement.clientHeight;
+  const clientWidth =
+    window?.innerWidth || document?.documentElement.clientWidth;
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= clientHeight &&
+    bounding.right <= clientWidth
+  );
+};
+
 // focus on a tab index if the element exists
 const focus = (focusables, index) => {
   const nextElement = focusables[index];
-  nextElement && nextElement.focus();
+  if (nextElement) {
+    if (!isInViewport(nextElement)) {
+      console.log("scroll");
+      nextElement.scrollIntoView({ block: "center" });
+    }
+    nextElement.focus({ preventScroll: true });
+  }
 };
 
 // get all focusable elements of the current tab index's section
