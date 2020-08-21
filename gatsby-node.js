@@ -1,4 +1,4 @@
-const { createRemoteFileNode } = require("gatsby-source-filesystem");
+import { createRemoteFileNode } from "gatsby-source-filesystem";
 
 const COLORS = {
   DEFAULT: "\x1b[0m",
@@ -17,7 +17,7 @@ const success = message =>
 const error = message =>
   console.log(`${COLORS.RED}error ${COLORS.DEFAULT}${message}`);
 
-exports.createSchemaCustomization = ({ actions }) => {
+const createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
   createTypes(`
     type mongodbColorschemesRepositories implements Node {
@@ -30,7 +30,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
 const imagePromises = [];
 
-exports.onCreateNode = ({
+const onCreateNode = ({
   node,
   actions: { createNode },
   store,
@@ -82,7 +82,7 @@ exports.onCreateNode = ({
   }
 };
 
-exports.onPostBootstrap = async () => {
+const onPostBootstrap = async () => {
   try {
     const values = await Promise.allSettled(imagePromises);
     success(`Done processing all ${values.length} images`);
@@ -163,7 +163,7 @@ const repositoriesQuery = `
   }
 `;
 
-exports.createPages = async ({ graphql, actions }) => {
+const createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const {
@@ -176,4 +176,11 @@ exports.createPages = async ({ graphql, actions }) => {
   info("Creating repository pages");
   createRepositoriesPages(repositories, createPage);
   info("Creating repositories index pages");
+};
+
+export {
+  createSchemaCustomization,
+  onCreateNode,
+  onPostBootstrap,
+  createPages,
 };
