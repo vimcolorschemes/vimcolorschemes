@@ -6,6 +6,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "gatsby": "^2.24.23",
     "gatsby-cli": "^2.12.68",
     "gatsby-image": "^2.4.14",
@@ -37,14 +38,14 @@
   ],
   "license": "GNU General Public License v3.0",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
+    "build": "NODE_OPTIONS='-r esm' gatsby build",
+    "develop": "NODE_OPTIONS='-r esm' gatsby develop",
+    "serve": "NODE_OPTIONS='-r esm' gatsby serve",
     "start": "npm run develop",
-    "serve": "gatsby serve",
     "clean": "gatsby clean",
     "seed": "sh ./seed/run.sh",
-    "preview::build": "npm run clean && npm run build"
+    "preview::build": "npm run clean && npm run build",
+    "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\""
   },
   "repository": {
     "type": "git",

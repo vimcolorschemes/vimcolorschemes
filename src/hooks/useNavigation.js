@@ -257,7 +257,6 @@ const focus = (focusables, index) => {
   const nextElement = focusables[index];
   if (nextElement) {
     if (!isInViewport(nextElement)) {
-      console.log("scroll");
       nextElement.scrollIntoView({ block: "center" });
     }
     nextElement.focus({ preventScroll: true });

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { RepositoryType } from "../../types";
 
-import { ACTIONS, SECTIONS } from "../../constants";
+import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "../../constants";
 
 import { useNavigation } from "../../hooks/useNavigation";
 
@@ -17,8 +17,6 @@ import SEO from "../../components/seo";
 import Pagination from "../../components/pagination";
 
 import "./index.scss";
-
-const REPOSITORY_COUNT_PER_PAGE = 20;
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
