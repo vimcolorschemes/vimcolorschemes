@@ -3,6 +3,7 @@ import path from "path";
 import { createRemoteFileNode } from "gatsby-source-filesystem";
 
 import { URLify } from "./src/utils/string";
+import { paginateRoute } from "./src/utils/pagination";
 import Logger from "./src/utils/logger";
 
 import { ACTIONS, REPOSITORY_COUNT_PER_PAGE } from "./src/constants";
@@ -97,11 +98,6 @@ const createRepositoryPages = (repositories, createPage) => {
       },
     });
   });
-};
-
-const paginateRoute = (route = "/", page = 1) => {
-  if (page === 1) return route;
-  return `${route.endsWith("/") ? route : `${route}/`}page/${page}`;
 };
 
 const createRepositoriesPages = (repositories, createPage) => {

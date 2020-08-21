@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 
+import { paginateRoute } from "../../utils/pagination";
+
 import { SECTIONS, LAYOUTS } from "../../constants";
 
 import "./index.scss";
@@ -10,16 +12,15 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === pageCount;
 
-  const prevPage =
-    currentPage - 1 === 1 ? "" : `page/${(currentPage - 1).toString()}`;
-  const nextPage = `page/${(currentPage + 1).toString()}`;
+  const previousPage = currentPage - 1;
+  const nextPage = currentPage + 1;
 
   return (
     <div className="pagination">
       <div className="pagination__link-block">
         {!isFirstPage && (
           <Link
-            to={`${activeActionRoute}`}
+            to={paginateRoute(activeActionRoute, 1)}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
             className="pagination__link pagination__link--limit"
@@ -29,7 +30,7 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
         )}
         {!isFirstPage && (
           <Link
-            to={`${activeActionRoute}${prevPage}`}
+            to={paginateRoute(activeActionRoute, previousPage)}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
             data-priority={2}
@@ -45,7 +46,7 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
       <div className="pagination__link-block">
         {!isLastPage && (
           <Link
-            to={`${activeActionRoute}${nextPage}`}
+            to={paginateRoute(activeActionRoute, nextPage)}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
             data-priority={1}
@@ -56,7 +57,7 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
         )}
         {!isLastPage && (
           <Link
-            to={`${activeActionRoute}page/${pageCount}`}
+            to={paginateRoute(activeActionRoute, pageCount)}
             data-section={SECTIONS.PAGINATION}
             data-layout={LAYOUTS.LIST}
             className="pagination__link pagination__link--limit"
