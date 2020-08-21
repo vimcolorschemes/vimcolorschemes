@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import { ExternalLink as ExternalLinkIcon } from "../icons";
+import { ExternalLink as ExternalLinkIcon } from "src/components/icons";
 
 import "./index.scss";
 

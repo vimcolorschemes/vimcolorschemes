@@ -1,5 +1,5 @@
-@import "./mixins/breakpoints";
-@import "./mixins/index";
+@import "src/style/mixins/breakpoints";
+@import "src/style/mixins/index";
 
 body {
   --white: #fff;

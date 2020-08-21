@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
 
-import { SECTIONS, LAYOUTS } from "../../constants";
+import { SECTIONS, LAYOUTS } from "src/constants";
 
-import { useNavigation } from "../../hooks/useNavigation";
+import { useNavigation } from "src/hooks/useNavigation";
 
-import ExternalLink from "../../components/externalLink";
-import Layout from "../../components/layout";
-import SEO from "../../components/seo";
+import ExternalLink from "src/components/externalLink";
+import Layout from "src/components/layout";
+import SEO from "src/components/seo";
 
 import "./index.scss";
 

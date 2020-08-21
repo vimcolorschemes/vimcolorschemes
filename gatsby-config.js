@@ -1,6 +1,6 @@
 const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
 
-module.exports = {
+export default {
   siteMetadata: {
     title: process.env.GATSBY_SITE_TITLE || "colorschemes",
     platform: process.env.GATSBY_SITE_PLATFORM || "vim",
@@ -14,10 +14,11 @@ module.exports = {
   },
   plugins: [
     "gatsby-plugin-react-helmet",
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
+    "gatsby-plugin-root-import",
     "gatsby-plugin-sass",
+    "gatsby-plugin-sharp",
     "gatsby-plugin-sitemap",
+    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {

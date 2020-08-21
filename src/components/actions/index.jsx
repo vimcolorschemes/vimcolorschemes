@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
-import { LAYOUTS, SECTIONS } from "../../constants";
+import { LAYOUTS, SECTIONS } from "src/constants";
 
 import "./index.scss";
 

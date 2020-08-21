@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { LAYOUTS, SECTIONS } from "../../constants";
+import { LAYOUTS, SECTIONS } from "src/constants";
 
-import ZoomableImage from "../zoomableImage";
+import ZoomableImage from "src/components/zoomableImage";
 
 import "./index.scss";
 

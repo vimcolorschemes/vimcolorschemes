@@ -2,19 +2,19 @@ import React from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
-import { RepositoryType } from "../../types";
+import { RepositoryType } from "src/types";
 
-import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "../../constants";
+import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
 
-import { useNavigation } from "../../hooks/useNavigation";
+import { useNavigation } from "src/hooks/useNavigation";
 
-import Actions from "../../components/actions";
-import Card from "../../components/card";
-import Grid from "../../components/grid";
-import Intro from "../../components/intro";
-import Layout from "../../components/layout";
-import SEO from "../../components/seo";
-import Pagination from "../../components/pagination";
+import Actions from "src/components/actions";
+import Card from "src/components/card";
+import Grid from "src/components/grid";
+import Intro from "src/components/intro";
+import Layout from "src/components/layout";
+import SEO from "src/components/seo";
+import Pagination from "src/components/pagination";
 
 import "./index.scss";
 

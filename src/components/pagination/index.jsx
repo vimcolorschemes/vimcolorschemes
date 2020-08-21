@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 
-import { paginateRoute } from "../../utils/pagination";
+import { paginateRoute } from "src/utils/pagination";
 
-import { SECTIONS, LAYOUTS } from "../../constants";
+import { SECTIONS, LAYOUTS } from "src/constants";
 
 import "./index.scss";
 

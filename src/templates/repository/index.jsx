@@ -3,22 +3,22 @@ import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
 
-import { RepositoryType } from "../../types";
+import { RepositoryType } from "src/types";
 
-import { LAYOUTS, SECTIONS } from "../../constants";
+import { LAYOUTS, SECTIONS } from "src/constants";
 
-import { useNavigation } from "../../hooks/useNavigation";
+import { useNavigation } from "src/hooks/useNavigation";
 
-import { getRepositoryInfos } from "../../utils/repository";
+import { getRepositoryInfos } from "src/utils/repository";
 
-import { Arrow, GitHub } from "../../components/icons";
+import { Arrow, GitHub } from "src/components/icons";
 
-import ExternalLink from "../../components/externalLink";
-import Layout from "../../components/layout";
-import Mosaic from "../../components/mosaic";
-import RepositoryTitle from "../../components/repositoryTitle";
-import SEO from "../../components/seo";
-import ZoomableImage from "../../components/zoomableImage";
+import ExternalLink from "src/components/externalLink";
+import Layout from "src/components/layout";
+import Mosaic from "src/components/mosaic";
+import RepositoryTitle from "src/components/repositoryTitle";
+import SEO from "src/components/seo";
+import ZoomableImage from "src/components/zoomableImage";
 
 import "./index.scss";
 
