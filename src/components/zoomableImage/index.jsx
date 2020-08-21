@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
 
-import { KEYS } from "../../constants";
+import { KEYS } from "src/constants";
 
 import "./index.scss";
 

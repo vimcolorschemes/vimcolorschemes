@@ -4,13 +4,13 @@ import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
-import { LAYOUTS, SECTIONS } from "../../constants";
+import { LAYOUTS, SECTIONS } from "src/constants";
 
-import { URLify } from "../../utils/string";
-import { getRepositoryInfos } from "../../utils/repository";
+import { URLify } from "src/utils/string";
+import { getRepositoryInfos } from "src/utils/repository";
 
-import RepositoryTitle from "../repositoryTitle";
-import { Star } from "../icons";
+import RepositoryTitle from "src/components/repositoryTitle";
+import { Star } from "src/components/icons";
 
 import "./index.scss";
 

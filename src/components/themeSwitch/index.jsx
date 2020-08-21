@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { THEMES, KEYS } from "../../constants";
+import { THEMES, KEYS } from "src/constants";
 
 import "./index.scss";
 

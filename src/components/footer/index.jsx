@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "gatsby";
 
-import { SECTIONS, LAYOUTS } from "../../constants";
+import { SECTIONS, LAYOUTS } from "src/constants";
 
-import { GitHub } from "../icons";
+import { GitHub } from "src/components/icons";
 
-import ExternalLink from "../externalLink";
-import SiteTitle from "../siteTitle";
+import ExternalLink from "src/components/externalLink";
+import SiteTitle from "src/components/siteTitle";
 
 import "./index.scss";
 

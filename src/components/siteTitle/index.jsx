@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Link, useStaticQuery, graphql } from "gatsby";
 
-import { SECTIONS, LAYOUTS } from "../../constants";
+import { SECTIONS, LAYOUTS } from "src/constants";
 
-import logo from "../../images/logo.svg";
+import logo from "src/images/logo.svg";
 
 import "./index.scss";
 

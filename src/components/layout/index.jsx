@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Header from "../header";
-import Footer from "../footer";
+import Header from "src/components/header";
+import Footer from "src/components/footer";
 
 import "./index.scss";
 

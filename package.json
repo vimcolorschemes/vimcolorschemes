@@ -31,6 +31,7 @@
     "typeface-source-sans-pro": "^1.1.5"
   },
   "devDependencies": {
+    "gatsby-plugin-root-import": "^2.0.5",
     "prettier": "2.0.5"
   },
   "keywords": [
