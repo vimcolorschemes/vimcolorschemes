@@ -31,7 +31,10 @@
     "typeface-source-sans-pro": "^1.1.5"
   },
   "devDependencies": {
+    "babel-jest": "^26.3.0",
+    "babel-preset-gatsby": "^0.5.5",
     "gatsby-plugin-root-import": "^2.0.5",
+    "jest": "^26.4.2",
     "prettier": "2.0.5"
   },
   "keywords": [
@@ -46,7 +49,8 @@
     "clean": "gatsby clean",
     "seed": "sh ./seed/run.sh",
     "preview::build": "npm run clean && npm run build",
-    "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\""
+    "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
+    "test": "NODE_OPTIONS='-r esm' jest"
   },
   "repository": {
     "type": "git",
