@@ -1,0 +1,22 @@
+# This workflow will do a clean install of dependencies and run tests
+
+name: jest
+
+on:
+  push:
+    branches:
+    - develop
+    - master
+  pull_request:
+    branches:
+    - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm run test
