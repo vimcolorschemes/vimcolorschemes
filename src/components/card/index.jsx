@@ -7,10 +7,14 @@ import classnames from "classnames";
 import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
-import { getRepositoryInfos } from "src/utils/repository";
+import {
+  getRepositoryInfos,
+  getFirstProcessedFluidImage,
+} from "src/utils/repository";
+
+import { Star } from "src/components/icons";
 
 import RepositoryTitle from "src/components/repositoryTitle";
-import { Star } from "src/components/icons";
 
 import "./index.scss";
 
@@ -26,6 +30,8 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     createdAt,
   } = getRepositoryInfos(repository);
 
+  const fluidImage = getFirstProcessedFluidImage(featuredImage, images);
+
   return (
     <li className={classnames("card", className)}>
       <Link
@@ -38,12 +44,9 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         aria-label={`${name}, by ${ownerName}`}
       >
         <div className="card__image">
-          {(!!featuredImage || (!!images && images.length > 0)) && (
+          {!!fluidImage && (
             <Img
-              fluid={
-                featuredImage.childImageSharp.fluid ||
-                images[0].childImageSharp.fluid
-              }
+              fluid={fluidImage}
               alt={`${ownerName} ${name}`}
               imgStyle={{ objectFit: "contain" }}
             />
