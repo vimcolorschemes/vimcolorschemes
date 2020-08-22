@@ -1,13 +1,20 @@
 import moment from "moment";
 
+const formatDate = date =>
+  date instanceof Date ? moment(date).fromNow() : null;
+
+const conditionalField = (fieldName, value, callback = item => item) => ({
+  ...(!!value ? { [fieldName]: callback(value) } : {}),
+});
+
 export const getRepositoryInfos = repository => {
-  if (!repository) return {};
+  if (!repository || !(repository instanceof Object)) return {};
 
   return {
     ...repository,
-    ownerName: repository.owner?.name,
-    createdAt: moment(repository.createdAt).fromNow(),
-    lastCommitAt: moment(repository.lastCommitAt).fromNow(),
+    ...conditionalField("ownerName", repository.owner?.name),
+    ...conditionalField("createdAt", repository.createdAt, formatDate),
+    ...conditionalField("lastCommitAt", repository.lastCommitAt, formatDate),
   };
 };
 
