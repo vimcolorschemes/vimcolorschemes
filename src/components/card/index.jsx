@@ -12,8 +12,9 @@ import {
   getFirstProcessedFluidImage,
 } from "src/utils/repository";
 
-import RepositoryTitle from "src/components/repositoryTitle";
 import { Star } from "src/components/icons";
+
+import RepositoryTitle from "src/components/repositoryTitle";
 
 import "./index.scss";
 

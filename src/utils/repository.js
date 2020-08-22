@@ -11,12 +11,16 @@ export const getRepositoryInfos = repository => {
   };
 };
 
+const isValidProcessedFluidImage = imageObject =>
+  !!imageObject?.childImageSharp?.fluid;
+
 // Returns the usable first image; that was properly processed at build time
 export const getFirstProcessedFluidImage = (featuredImage, images) => {
-  if (featuredImage?.childImageSharp?.fluid)
+  if (isValidProcessedFluidImage(featuredImage))
     return featuredImage.childImageSharp.fluid;
 
-  if (!images || images.length === 0) return null;
+  if (!images || images.length < 1 || !Array.isArray(images)) return null;
 
-  return images.find(image => !!image?.childImageSharp?.fluid) || null;
+  const fallbackImage = images.find(isValidProcessedFluidImage);
+  return fallbackImage ? fallbackImage.childImageSharp.fluid : null;
 };
