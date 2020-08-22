@@ -102,7 +102,7 @@ const createRepositoryPages = (repositories, createPage) => {
 
 const createRepositoriesPages = (repositories, createPage) => {
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
-  Array.from({ length: 5 }).forEach((_, index) => {
+  Array.from({ length: pageCount }).forEach((_, index) => {
     const page = index + 1;
     Object.values(ACTIONS).forEach(action =>
       createPage({
