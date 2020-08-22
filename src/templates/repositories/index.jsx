@@ -124,6 +124,13 @@ export const query = graphql`
             }
           }
         }
+        images: processed_images {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

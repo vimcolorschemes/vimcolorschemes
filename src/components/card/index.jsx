@@ -20,6 +20,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     name,
     description,
     featuredImage,
+    images,
     stargazersCount,
     lastCommitAt,
     createdAt,
@@ -37,9 +38,12 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         aria-label={`${name}, by ${ownerName}`}
       >
         <div className="card__image">
-          {!!featuredImage && (
+          {(!!featuredImage || (!!images && images.length > 0)) && (
             <Img
-              fluid={featuredImage.childImageSharp.fluid}
+              fluid={
+                featuredImage.childImageSharp.fluid ||
+                images[0].childImageSharp.fluid
+              }
               alt={`${ownerName} ${name}`}
               imgStyle={{ objectFit: "contain" }}
             />
