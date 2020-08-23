@@ -50,7 +50,7 @@
     "seed": "sh ./seed/run.sh",
     "preview::build": "npm run clean && npm run build",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
-    "test": "NODE_OPTIONS='-r esm' jest"
+    "test": "NODE_OPTIONS='-r esm' jest --silent"
   },
   "repository": {
     "type": "git",

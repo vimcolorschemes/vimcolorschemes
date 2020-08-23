@@ -1,7 +1,9 @@
 import moment from "moment";
 
 const formatDate = date =>
-  date instanceof Date ? moment(date).fromNow() : null;
+  typeof date === "string" || date instanceof Date
+    ? moment(date).fromNow()
+    : null;
 
 const conditionalField = (fieldName, value, callback = item => item) => ({
   ...(!!value ? { [fieldName]: callback(value) } : {}),
