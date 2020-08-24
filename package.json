@@ -42,15 +42,15 @@
   ],
   "license": "GNU General Public License v3.0",
   "scripts": {
-    "build": "NODE_OPTIONS='-r esm' gatsby build",
-    "develop": "NODE_OPTIONS='-r esm' gatsby develop",
-    "serve": "NODE_OPTIONS='-r esm' gatsby serve",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "serve": "gatsby serve",
     "start": "npm run develop",
     "clean": "gatsby clean",
     "seed": "sh ./seed/run.sh",
     "preview::build": "npm run clean && npm run build",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
-    "test": "NODE_OPTIONS='-r esm' jest --silent"
+    "test": "jest --silent"
   },
   "repository": {
     "type": "git",
