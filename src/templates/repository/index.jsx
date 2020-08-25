@@ -9,8 +9,6 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 
-import { getRepositoryInfos } from "src/utils/repository";
-
 import { Arrow, GitHub } from "src/components/icons";
 
 import ExternalLink from "src/components/externalLink";
@@ -32,7 +30,7 @@ const RepositoryPage = ({ data, location }) => {
     featuredImage,
     description,
     images,
-  } = getRepositoryInfos(data.repository);
+  } = data.repository;
 
   const {
     siteMetadata: { platform },
