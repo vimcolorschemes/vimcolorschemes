@@ -4,13 +4,12 @@ import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
+import { RepositoryType } from "src/types";
+
 import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
-import {
-  getRepositoryInfos,
-  getFirstProcessedFluidImage,
-} from "src/utils/repository";
+import { getFirstProcessedFluidImage } from "src/utils/repository";
 
 import { Star } from "src/components/icons";
 
@@ -20,7 +19,7 @@ import "./index.scss";
 
 const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
   const {
-    ownerName,
+    owner: { name: ownerName },
     name,
     description,
     featuredImage,
@@ -28,7 +27,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     stargazersCount,
     lastCommitAt,
     createdAt,
-  } = getRepositoryInfos(repository);
+  } = repository;
 
   const fluidImage = getFirstProcessedFluidImage(featuredImage, images);
 
@@ -74,21 +73,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
 };
 
 Card.propTypes = {
-  repository: PropTypes.shape({
-    owner: PropTypes.shape({
-      name: PropTypes.string.isRequired,
-    }).isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    featuredImage: PropTypes.shape({
-      childImageSharp: PropTypes.shape({
-        fluid: PropTypes.shape({}).isRequired,
-      }).isRequired,
-    }),
-    stargazersCount: PropTypes.number.isRequired,
-    lastCommitAt: PropTypes.string.isRequired,
-    createdAt: PropTypes.string.isRequired,
-  }).isRequired,
+  repository: RepositoryType.isRequired,
   linkState: PropTypes.object,
   className: PropTypes.string,
 };

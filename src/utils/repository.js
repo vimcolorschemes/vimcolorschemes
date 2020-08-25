@@ -1,25 +1,3 @@
-import moment from "moment";
-
-const formatDate = date =>
-  typeof date === "string" || date instanceof Date
-    ? moment(date).fromNow()
-    : null;
-
-const conditionalField = (fieldName, value, callback = item => item) => ({
-  ...(!!value ? { [fieldName]: callback(value) } : {}),
-});
-
-export const getRepositoryInfos = repository => {
-  if (!repository || !(repository instanceof Object)) return {};
-
-  return {
-    ...repository,
-    ...conditionalField("ownerName", repository.owner?.name),
-    ...conditionalField("createdAt", repository.createdAt, formatDate),
-    ...conditionalField("lastCommitAt", repository.lastCommitAt, formatDate),
-  };
-};
-
 const isValidProcessedFluidImage = imageObject =>
   !!imageObject?.childImageSharp?.fluid;
 
