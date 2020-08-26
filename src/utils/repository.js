@@ -1,6 +1,3 @@
-const isValidProcessedFluidImage = imageObject =>
-  !!imageObject?.childImageSharp?.fluid;
-
 // Returns the usable first image; that was properly processed at build time
 export const getFirstProcessedFluidImage = (featuredImage, images) => {
   if (isValidProcessedFluidImage(featuredImage))
@@ -11,3 +8,6 @@ export const getFirstProcessedFluidImage = (featuredImage, images) => {
   const fallbackImage = images.find(isValidProcessedFluidImage);
   return fallbackImage ? fallbackImage.childImageSharp.fluid : null;
 };
+
+const isValidProcessedFluidImage = imageObject =>
+  !!imageObject?.childImageSharp?.fluid;

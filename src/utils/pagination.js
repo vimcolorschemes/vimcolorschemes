@@ -1,8 +1,8 @@
 export const paginateRoute = (route, page) => {
-  if (!route) route = "/";
-  if (!page) page = 1;
+  if (route == null || typeof route !== "string") route = "/";
+  if (!page || typeof page !== "number" || page < 1) page = 1;
 
-  const routePath = route.endsWith("/") ? route : `${route}/`;
   const pagePath = page > 1 ? `page/${page}` : "";
+  const routePath = pagePath && !route.endsWith("/") ? `${route}/`: route;
   return `${routePath}${pagePath}`;
 };
