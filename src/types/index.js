@@ -17,6 +17,7 @@ export const RepositoryType = PropTypes.shape({
   owner: RepositoryOwnerType,
   featuredImage: GatsbyImageType,
   stargazersCount: PropTypes.number.isRequired,
+  weekStargazersCount: PropTypes.number,
   images: PropTypes.arrayOf(GatsbyImageType.isRequired),
   lastCommitAt: PropTypes.string.isRequired,
   createdAt: PropTypes.string.isRequired,

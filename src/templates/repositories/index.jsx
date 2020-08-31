@@ -114,6 +114,7 @@ export const query = graphql`
         createdAt: github_created_at(fromNow: true)
         lastCommitAt: last_commit_at(fromNow: true)
         githubUrl: github_url
+        weekStargazersCount: week_stargazers_count
         owner {
           name
         }

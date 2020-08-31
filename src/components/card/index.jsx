@@ -25,6 +25,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     featuredImage,
     images,
     stargazersCount,
+    weekStargazersCount,
     lastCommitAt,
     createdAt,
   } = repository;
@@ -67,6 +68,12 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         <p className="card__infos">
           Last commit <strong>{lastCommitAt}</strong>
         </p>
+        {!!weekStargazersCount && weekStargazersCount > 0 && (
+          <p className="card__infos">
+            {weekStargazersCount} star{weekStargazersCount > 1 ? "s" : ""} in
+            the last week
+          </p>
+        )}
       </Link>
     </li>
   );
