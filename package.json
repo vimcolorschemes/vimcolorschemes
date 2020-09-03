@@ -1,7 +1,7 @@
 {
   "name": "vimcolorschemes",
   "description": "Find the best vim color schemes around",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
