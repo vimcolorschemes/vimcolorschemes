@@ -12,6 +12,15 @@ const HTML = props => (
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
+      {!!process.env.GATSBY_UMAMI_WEBSITE_ID &&
+        !!process.env.GATSBY_UMAMI_SCRIPT_URL && (
+          <script
+            async
+            defer
+            data-website-id={process.env.GATSBY_UMAMI_WEBSITE_ID}
+            src={process.env.GATSBY_UMAMI_SCRIPT_URL}
+          />
+        )}
       {props.headComponents}
     </head>
     <body {...props.bodyAttributes} className={`${THEMES.LIGHT}`}>
