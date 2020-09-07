@@ -11,7 +11,7 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 import { URLify } from "src/utils/string";
 import { getFirstProcessedFluidImage } from "src/utils/repository";
 
-import { Star } from "src/components/icons";
+import { Star, TrendingUp } from "src/components/icons";
 
 import RepositoryTitle from "src/components/repositoryTitle";
 
@@ -56,11 +56,22 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           <h3 className="card__title">
             <RepositoryTitle ownerName={ownerName} name={name} />
           </h3>
-          <div className="card__stargazers">
-            <Star className="card__stargazers-icon" />
-            <span className="card__stargazers-count">{stargazersCount}</span>
+          <div className="card__meta">
+            <div className="card__stargazers">
+              <Star className="card__icon" />
+              <span className="card__stargazers-count">
+                <strong>{stargazersCount}</strong>
+              </span>
+            </div>
+            {!!weekStargazersCount && (
+              <div className="card__trending-stargazers-count">
+                <TrendingUp className="card__icon" />
+                <strong>{weekStargazersCount}</strong>/week
+              </div>
+            )}
           </div>
         </div>
+
         <p className="card__infos">{description}</p>
         <p className="card__infos">
           Created <strong>{createdAt}</strong>
@@ -68,12 +79,6 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         <p className="card__infos">
           Last commit <strong>{lastCommitAt}</strong>
         </p>
-        {!!weekStargazersCount && weekStargazersCount > 0 && (
-          <p className="card__infos">
-            {weekStargazersCount} star{weekStargazersCount > 1 ? "s" : ""} in
-            the last week
-          </p>
-        )}
       </Link>
     </li>
   );
