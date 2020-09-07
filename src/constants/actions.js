@@ -10,7 +10,6 @@ export const ACTIONS = {
     route: "/most-popular",
     field: "stargazers_count",
     order: "DESC",
-    default: true,
   },
   RECENTLY_UPDATED: {
     label: "Most recently updated",
