@@ -44,7 +44,7 @@ export const onCreateNode = ({
       const diff =
         weekStargazersHistory[weekStargazersHistory.length - 1]
           .stargazers_count - weekStargazersHistory[0].stargazers_count;
-      node.week_stargazers_count = diff;
+      node.week_stargazers_count = diff > 0 ? diff : 0;
     }
     if (node.image_urls && node.image_urls.length > 0) {
       const blacklistedImageUrls = node.blacklisted_image_urls || [];
