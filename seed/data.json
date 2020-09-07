@@ -1,1345 +1,3206 @@
-[
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc536"
-    },
-    "name": "solarized",
-    "owner": {
-      "name": "altercation",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/113542?v=4"
-    },
-    "default_branch": "master",
-    "description": "precision color scheme for multiple applications (terminal, vim, etc.) with both dark/light modes",
-    "github_created_at": {
-      "$date": "2011-02-18T05:18:27Z"
-    },
-    "github_id": 1381283,
-    "github_url": "https://github.com/altercation/solarized",
-    "homepage_url": "http://ethanschoonover.com/solarized",
-    "pushed_at": {
-      "$date": "2020-04-27T06:49:07Z"
-    },
-    "stargazers_count": 14514,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:22.772Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2018-04-02T16:05:15Z"
-    },
-    "valid": false,
-    "vim_color_scheme_file_paths": []
+[{
+  "_id": {
+    "$oid": "5f347da61b9bdbc815abbaef"
   },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc538"
-    },
-    "name": "gruvbox",
-    "owner": {
-      "name": "morhetz",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/554231?v=4"
-    },
-    "default_branch": "master",
-    "description": "Retro groove color scheme for Vim",
-    "github_created_at": {
-      "$date": "2012-11-28T00:37:31Z"
-    },
-    "github_id": 6893638,
-    "github_url": "https://github.com/morhetz/gruvbox",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-28T21:26:50Z"
-    },
-    "stargazers_count": 7876,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:26.439Z"
-    },
-    "image_urls": [
-      "http://i.imgur.com/GkIl8Fn.png",
-      "http://i.imgur.com/X75niEa.png",
-      "http://i.imgur.com/wRQceUR.png",
-      "http://i.imgur.com/wa666xg.png",
-      "http://i.imgur.com/49qKyYW.png",
-      "http://i.imgur.com/5MSbe6T.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-07-03T12:42:06Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/gruvbox.vim"]
+  "name": "solarized",
+  "owner": {
+    "name": "altercation",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/113542?v=4"
   },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc53a"
-    },
-    "name": "molokai",
-    "owner": {
-      "name": "tomasr",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/16179?v=4"
-    },
-    "default_branch": "master",
-    "description": "Molokai color scheme for Vim",
-    "github_created_at": {
-      "$date": "2011-02-13T15:14:22Z"
-    },
-    "github_id": 1361963,
-    "github_url": "https://github.com/tomasr/molokai",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-03-19T15:51:32Z"
-    },
-    "stargazers_count": 3136,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:27.940Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2015-11-11T12:17:45Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/molokai.vim"]
+  "default_branch": "master",
+  "description": "precision color scheme for multiple applications (terminal, vim, etc.) with both dark/light modes",
+  "github_created_at": {
+    "$date": "2011-02-18T05:18:27Z"
   },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc53c"
-    },
-    "name": "onedark.vim",
-    "owner": {
-      "name": "joshdick",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/424691?v=4"
-    },
-    "default_branch": "master",
-    "description": "A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.",
-    "github_created_at": {
-      "$date": "2015-10-26T05:08:31Z"
-    },
-    "github_id": 44947263,
-    "github_url": "https://github.com/joshdick/onedark.vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-12T23:30:32Z"
-    },
-    "stargazers_count": 2333,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:33.364Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/readme_header.png",
-      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/color_reference.png",
-      "https://raw.github.com/joshdick/onedark.vim/master/img/preview_lightline.png",
-      "https://raw.github.com/joshdick/onedark.vim/master/img/preview_airline.png",
-      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_colors.png",
-      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_italics.png",
-      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_colors.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-12T23:30:30Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/onedark.vim"]
+  "github_id": 1381283,
+  "github_url": "https://github.com/altercation/solarized",
+  "homepage_url": "http://ethanschoonover.com/solarized",
+  "last_commit_at": {
+    "$date": "2018-04-02T16:05:15Z"
   },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc53e"
-    },
-    "name": "papercolor-theme",
-    "owner": {
-      "name": "NLKNguyen",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/4667129?v=4"
-    },
-    "default_branch": "master",
-    "description": ":art: Light & Dark Vim color schemes inspired by Google's Material Design",
-    "github_created_at": {
-      "$date": "2015-01-24T02:11:16Z"
-    },
-    "github_id": 29762329,
-    "github_url": "https://github.com/NLKNguyen/papercolor-theme",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-06-16T23:14:29Z"
-    },
-    "stargazers_count": 1598,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:35.743Z"
-    },
-    "image_urls": [
-      "https://nlknguyen.files.wordpress.com/2015/05/ruby1.png",
-      "https://nlknguyen.files.wordpress.com/2015/05/dtrace1.png",
-      "https://nlknguyen.files.wordpress.com/2015/05/mysql.png",
-      "https://nlknguyen.files.wordpress.com/2015/05/asm.png",
-      "https://cloud.githubusercontent.com/assets/4667129/24315492/9410c372-10a4-11e7-84c7-8846984bdca0.png",
-      "https://nlknguyen.files.wordpress.com/2015/05/ruby-dark.png",
-      "https://nlknguyen.files.wordpress.com/2015/05/go-dark.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-06-16T23:14:27Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/PaperColor.vim"]
+  "pushed_at": {
+    "$date": "2020-04-27T06:49:07Z"
   },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc540"
-    },
-    "name": "jellybeans.vim",
-    "owner": {
-      "name": "nanotech",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/34699?v=4"
-    },
-    "default_branch": "master",
-    "description": "A colorful, dark color scheme for Vim.",
-    "github_created_at": {
-      "$date": "2009-02-26T02:45:39Z"
-    },
-    "github_id": 137861,
-    "github_url": "https://github.com/nanotech/jellybeans.vim",
-    "homepage_url": "http://www.vim.org/scripts/script.php?script_id=2555",
-    "pushed_at": {
-      "$date": "2019-06-22T00:05:31Z"
-    },
-    "stargazers_count": 1459,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:36.839Z"
-    },
-    "image_urls": [
-      "https://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-06-22T00:05:03Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/jellybeans.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc542"
-    },
-    "name": "vim-hybrid",
-    "owner": {
-      "name": "w0ng",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/960708?v=4"
-    },
-    "default_branch": "master",
-    "description": "A dark color scheme for Vim",
-    "github_created_at": {
-      "$date": "2012-08-06T18:42:46Z"
-    },
-    "github_id": 5317987,
-    "github_url": "https://github.com/w0ng/vim-hybrid",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2017-11-20T03:15:02Z"
-    },
-    "stargazers_count": 1354,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:40.886Z"
-    },
-    "image_urls": ["http://i.imgur.com/wSWCyen.png"],
-    "last_commit_at": {
-      "$date": "2016-01-05T06:14:38Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/hybrid.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc544"
-    },
-    "name": "awesome-vim-colorschemes",
-    "owner": {
-      "name": "rafi",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/147918?v=4"
-    },
-    "default_branch": "master",
-    "description": "Collection of awesome color schemes for Neo/vim, merged for quick use.",
-    "github_created_at": {
-      "$date": "2015-08-08T18:39:14Z"
-    },
-    "github_id": 40412833,
-    "github_url": "https://github.com/rafi/awesome-vim-colorschemes",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-15T15:21:55Z"
-    },
-    "stargazers_count": 1252,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:43.640Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2020-08-15T15:21:03Z"
-    },
-    "valid": false,
-    "vim_color_scheme_file_paths": []
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc546"
-    },
-    "name": "seoul256.vim",
-    "owner": {
-      "name": "junegunn",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/700826?v=4"
-    },
-    "default_branch": "master",
-    "description": ":deciduous_tree: Low-contrast Vim color scheme based on Seoul Colors",
-    "github_created_at": {
-      "$date": "2013-05-31T09:26:26Z"
-    },
-    "github_id": 10401801,
-    "github_url": "https://github.com/junegunn/seoul256.vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-18T09:22:54Z"
-    },
-    "stargazers_count": 1252,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:46.866Z"
-    },
-    "image_urls": [
-      "https://raw.github.com/junegunn/i/master/seoul256.png",
-      "https://raw.github.com/junegunn/i/master/seoul256-light.png",
-      "https://raw.github.com/junegunn/i/master/seoul256-bg.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-06-21T17:14:57Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/seoul256-light.vim",
-      "master/colors/seoul256.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc548"
-    },
-    "name": "vim-monokai",
-    "owner": {
-      "name": "sickill",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/17589?v=4"
-    },
-    "default_branch": "master",
-    "description": "Monokai color scheme for Vim converted from Textmate theme",
-    "github_created_at": {
-      "$date": "2011-10-22T13:32:20Z"
-    },
-    "github_id": 2626112,
-    "github_url": "https://github.com/sickill/vim-monokai",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-03-04T13:02:53Z"
-    },
-    "stargazers_count": 1143,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:47.963Z"
-    },
-    "image_urls": ["https://i.imgur.com/NPX2MXM.png"],
-    "last_commit_at": {
-      "$date": "2019-01-16T08:16:16Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/monokai.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc54a"
-    },
-    "name": "vim-colors-solarized",
-    "owner": {
-      "name": "altercation",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/113542?v=4"
-    },
-    "default_branch": "master",
-    "description": "precision colorscheme for the vim text editor",
-    "github_created_at": {
-      "$date": "2011-02-18T05:16:38Z"
-    },
-    "github_id": 1381275,
-    "github_url": "https://github.com/altercation/vim-colors-solarized",
-    "homepage_url": "http://ethanschoonover.com/solarized",
-    "pushed_at": {
-      "$date": "2020-04-23T09:37:51Z"
-    },
-    "stargazers_count": 6016,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:50.138Z"
-    },
-    "image_urls": [
-      "https://github.com/altercation/solarized/raw/master/img/solarized-vim.png",
-      "https://raw.githubusercontent.com/altercation/vim-colors-solarized/master/bitmaps/togglebg.png"
-    ],
-    "last_commit_at": {
-      "$date": "2011-05-09T21:39:01Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/autoload/togglebg.vim",
-      "master/colors/solarized.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc54c"
-    },
-    "name": "vim-colorschemes",
-    "owner": {
-      "name": "flazz",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/10089?v=4"
-    },
-    "default_branch": "master",
-    "description": "one colorscheme pack to rule them all!",
-    "github_created_at": {
-      "$date": "2011-02-14T13:46:07Z"
-    },
-    "github_id": 1365254,
-    "github_url": "https://github.com/flazz/vim-colorschemes",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-15T09:26:41Z"
-    },
-    "stargazers_count": 2987,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:51.097Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2020-05-15T21:57:00Z"
-    },
-    "valid": false,
-    "vim_color_scheme_file_paths": []
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc550"
-    },
-    "name": "vim-one",
-    "owner": {
-      "name": "rakr",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/110558?v=4"
-    },
-    "default_branch": "master",
-    "description": "Adaptation of one-light and one-dark colorschemes for Vim",
-    "github_created_at": {
-      "$date": "2016-06-23T14:52:10Z"
-    },
-    "github_id": 61813413,
-    "github_url": "https://github.com/rakr/vim-one",
-    "homepage_url": null,
-    "pushed_at": {
-      "$date": "2020-08-10T00:09:54Z"
-    },
-    "stargazers_count": 1424,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:54.149Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/rakr/vim-one/master/screenshots/new-logo.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-09T07:36:40Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/one.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc552"
-    },
-    "name": "nord-vim",
-    "owner": {
-      "name": "arcticicestudio",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/7836623?v=4"
-    },
-    "default_branch": "develop",
-    "description": "An arctic, north-bluish clean and elegant Vim theme.",
-    "github_created_at": {
-      "$date": "2016-11-23T19:59:23Z"
-    },
-    "github_id": 74609695,
-    "github_url": "https://github.com/arcticicestudio/nord-vim",
-    "homepage_url": "https://www.nordtheme.com/ports/vim",
-    "pushed_at": {
-      "$date": "2020-08-15T17:15:15Z"
-    },
-    "stargazers_count": 1314,
-    "fetched_at": {
-      "$date": "2020-08-21T17:48:57.768Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/ports/vim/overview-go.png",
-      "https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/ports/vim/installation-vim-plug.png",
-      "https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/ports/vim/overview-go-nerdtree.png",
-      "https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/ports/vim/editor-search-highlighting.png",
-      "https://raw.githubusercontent.com/arcticicestudio/nord-docs/develop/assets/images/ports/vim/syntax-javascript-react-hook.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-13T09:21:12Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["develop/colors/nord.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc555"
-    },
-    "name": "iceberg.vim",
-    "owner": {
-      "name": "cocopon",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/602961?v=4"
-    },
-    "default_branch": "master",
-    "description": ":antarctica: Bluish color scheme for Vim and Neovim",
-    "github_created_at": {
-      "$date": "2014-01-04T03:00:12Z"
-    },
-    "github_id": 15625247,
-    "github_url": "https://github.com/cocopon/iceberg.vim",
-    "homepage_url": "https://cocopon.github.io/iceberg.vim/",
-    "pushed_at": {
-      "$date": "2020-07-25T04:55:24Z"
-    },
-    "stargazers_count": 1140,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:02.796Z"
-    },
-    "image_urls": [
-      "https://cocopon.github.io/iceberg.vim/assets/github/20180804/cover.png",
-      "https://cocopon.github.io/iceberg.vim/assets/github/screenshot.png",
-      "https://user-images.githubusercontent.com/602961/64060996-407cb080-cc0f-11e9-87dd-e5c535815fab.png",
-      "https://cocopon.github.io/iceberg.vim/assets/github/creating-your-lovely-color-scheme.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-07-20T14:05:57Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/iceberg.vim",
-      "master/src/template.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc557"
-    },
-    "name": "onehalf",
-    "owner": {
-      "name": "sonph",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/2466660?v=4"
-    },
-    "default_branch": "master",
-    "description": "Clean, vibrant and pleasing color schemes for Vim, Sublime Text, iTerm, gnome-terminal and more.",
-    "github_created_at": {
-      "$date": "2016-05-16T17:09:34Z"
-    },
-    "github_id": 58951222,
-    "github_url": "https://github.com/sonph/onehalf",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-20T11:10:52Z"
-    },
-    "stargazers_count": 772,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:07.622Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/dark.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/desktop_dark.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/desktop_light.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_dark.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_light.png",
-      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/iterm.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-06-11T06:28:38Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/vim/colors/onehalfdark.vim",
-      "master/vim/colors/onehalflight.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc559"
-    },
-    "name": "tender.vim",
-    "owner": {
-      "name": "jacoborus",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/829859?v=4"
-    },
-    "default_branch": "master",
-    "description": "A 24bit colorscheme for Vim, Airline and Lightline",
-    "github_created_at": {
-      "$date": "2016-05-03T17:05:18Z"
-    },
-    "github_id": 57986522,
-    "github_url": "https://github.com/jacoborus/tender.vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-06-29T15:45:40Z"
-    },
-    "stargazers_count": 740,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:14.374Z"
-    },
-    "image_urls": [
-      "https://cloud.githubusercontent.com/assets/829859/18413534/f7cb472c-77aa-11e6-86bf-9c790aadd2df.png",
-      "https://cloud.githubusercontent.com/assets/829859/18417365/7780885a-782e-11e6-8e88-150cfc70e35b.png",
-      "https://cloud.githubusercontent.com/assets/829859/18418261/0e0f54f4-7843-11e6-9825-bff197a7f76a.png",
-      "https://cloud.githubusercontent.com/assets/829859/18491051/f81ba21a-7a04-11e6-85c6-e9bc3c98415f.png",
-      "https://cloud.githubusercontent.com/assets/829859/18494378/1590f654-7a16-11e6-8885-c16a41bf5583.png",
-      "https://cloud.githubusercontent.com/assets/829859/18417875/4b3e382e-783c-11e6-94ea-afb9bf0d68f2.png",
-      "https://cloud.githubusercontent.com/assets/829859/18418089/270b409c-7840-11e6-8618-1aa81f612860.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-06-29T15:45:39Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/tender.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc55b"
-    },
-    "name": "falcon",
-    "owner": {
-      "name": "fenetikm",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/2375203?v=4"
-    },
-    "default_branch": "master",
-    "description": "A colour scheme for terminals, Vim and friends.",
-    "github_created_at": {
-      "$date": "2018-01-25T03:24:21Z"
-    },
-    "github_id": 118856585,
-    "github_url": "https://github.com/fenetikm/falcon",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-29T12:53:57Z"
-    },
-    "stargazers_count": 445,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:19.261Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/fenetikm/falcon/master/support/logo2.png",
-      "https://raw.githubusercontent.com/fenetikm/falcon/master/support/hero2.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-04-16T02:40:05Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/falcon.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc56f"
-    },
-    "name": "vim-colors-xcode",
-    "owner": {
-      "name": "arzg",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/31783266?v=4"
-    },
-    "default_branch": "master",
-    "description": "Xcode 11’s dark and light colourschemes, now for Vim!",
-    "github_created_at": {
-      "$date": "2019-12-14T10:33:00Z"
-    },
-    "github_id": 228004868,
-    "github_url": "https://github.com/arzg/vim-colors-xcode",
-    "homepage_url": null,
-    "pushed_at": {
-      "$date": "2020-07-31T12:26:23Z"
-    },
-    "stargazers_count": 283,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:48.773Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/arzg/resources/master/xcodedark.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcodelight.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcodewwdc.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcode-comparison/xcodedark.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcode-comparison/xcodedarkhc.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcode-comparison/xcodelight.png",
-      "https://raw.githubusercontent.com/arzg/resources/master/xcode-comparison/xcodelighthc.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-07-31T12:25:52Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/xcodedark.vim",
-      "master/colors/xcodedarkhc.vim",
-      "master/colors/xcodelight.vim",
-      "master/colors/xcodelighthc.vim",
-      "master/colors/xcodewwdc.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4040c01886e39a30fdc571"
-    },
-    "name": "snow",
-    "owner": {
-      "name": "nightsense",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/11298877?v=4"
-    },
-    "default_branch": "master",
-    "description": "❄ a blue-tinted winter vimscape (low-contrast vim theme/colorscheme)",
-    "github_created_at": {
-      "$date": "2018-06-26T07:55:43Z"
-    },
-    "github_id": 138704130,
-    "github_url": "https://github.com/nightsense/snow",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2019-07-12T03:33:38Z"
-    },
-    "stargazers_count": 234,
-    "fetched_at": {
-      "$date": "2020-08-21T17:49:55.675Z"
-    },
-    "image_urls": [
-      "https://github.com/nightsense/snow/raw/master/images/header.jpg",
-      "https://github.com/nightsense/snow/raw/master/images/screenshot-light.png",
-      "https://github.com/nightsense/snow/raw/master/images/screenshot-dark.png",
-      "http://www.colorhexa.com/fbffff.png",
-      "http://www.colorhexa.com/ae5865.png",
-      "http://www.colorhexa.com/be868c.png",
-      "http://www.colorhexa.com/2c2d30.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-07-12T03:33:35Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/snow.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc692"
-    },
-    "name": "badwolf",
-    "owner": {
-      "name": "sjl",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/58365?v=4"
-    },
-    "default_branch": "master",
-    "description": "A Vim color scheme.",
-    "github_created_at": {
-      "$date": "2012-02-12T20:08:30Z"
-    },
-    "github_id": 3424330,
-    "github_url": "https://github.com/sjl/badwolf",
-    "homepage_url": "http://stevelosh.com/projects/badwolf/",
-    "pushed_at": {
-      "$date": "2020-05-01T07:04:12Z"
-    },
-    "stargazers_count": 1125,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:02.486Z"
-    },
-    "image_urls": [
-      "http://i.imgur.com/fQGGC.png",
-      "http://i.imgur.com/LgLar.png",
-      "http://i.imgur.com/THHz7.png",
-      "http://i.imgur.com/J56VS.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-02-19T02:00:14Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/badwolf.vim",
-      "master/colors/goodwolf.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc694"
-    },
-    "name": "Smyck-Color-Scheme",
-    "owner": {
-      "name": "hukl",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/25157?v=4"
-    },
-    "default_branch": "master",
-    "description": "Color Scheme for Terminal.app, iTerm2, Vim, MacVim, Sublime Text2 and Textmate",
-    "github_created_at": {
-      "$date": "2012-03-11T18:46:41Z"
-    },
-    "github_id": 3688785,
-    "github_url": "https://github.com/hukl/Smyck-Color-Scheme",
-    "homepage_url": "http://color.smyck.org/",
-    "pushed_at": {
-      "$date": "2019-04-27T15:23:26Z"
-    },
-    "stargazers_count": 1116,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:05.015Z"
-    },
-    "image_urls": [
-      "http://smyck.org/smyck/color_1.jpg",
-      "http://smyck.org/smyck/color_2.jpg",
-      "http://smyck.org/smyck/color_4.jpg",
-      "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/diff.png",
-      "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/erlang.png",
-      "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/logo.jpg",
-      "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/ruby.png"
-    ],
-    "last_commit_at": {
-      "$date": "2017-04-10T14:52:56Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/smyck.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc697"
-    },
-    "name": "Zenburn",
-    "owner": {
-      "name": "jnurmine",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/221556?v=4"
-    },
-    "default_branch": "master",
-    "description": "Zenburn is a low-contrast color scheme for Vim.",
-    "github_created_at": {
-      "$date": "2011-06-15T20:33:41Z"
-    },
-    "github_id": 1902415,
-    "github_url": "https://github.com/jnurmine/Zenburn",
-    "homepage_url": "http://kippura.org/zenburnpage",
-    "pushed_at": {
-      "$date": "2020-01-23T21:19:02Z"
-    },
-    "stargazers_count": 675,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:06.023Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2020-01-23T21:18:04Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/zenburn.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc699"
-    },
-    "name": "vim-hybrid-material",
-    "owner": {
-      "name": "kristijanhusak",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1782860?v=4"
-    },
-    "default_branch": "master",
-    "description": "Material color scheme for Vim based on w0ng/vim-hybrid color scheme",
-    "github_created_at": {
-      "$date": "2015-06-24T19:42:08Z"
-    },
-    "github_id": 38006953,
-    "github_url": "https://github.com/kristijanhusak/vim-hybrid-material",
-    "homepage_url": null,
-    "pushed_at": {
-      "$date": "2020-06-16T16:43:57Z"
-    },
-    "stargazers_count": 490,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:08.100Z"
-    },
-    "image_urls": [
-      "https://cloud.githubusercontent.com/assets/1782860/8340203/483e81f2-1abd-11e5-8fc6-b1ca5c646404.png",
-      "https://cloud.githubusercontent.com/assets/1782860/8340291/e046a042-1abd-11e5-82fd-b323ec5fd80c.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-06-16T16:43:56Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/base16-material/base16-material-dark.vim",
-      "master/base16-material/base16-material.vim",
-      "master/colors/hybrid_material.vim",
-      "master/colors/hybrid_reverse.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc69b"
-    },
-    "name": "vim-colors-pencil",
-    "owner": {
-      "name": "reedes",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/6090039?v=4"
-    },
-    "default_branch": "master",
-    "description": "Light (& dark) color scheme inspired by iA Writer",
-    "github_created_at": {
-      "$date": "2014-01-05T01:25:17Z"
-    },
-    "github_id": 15643358,
-    "github_url": "https://github.com/reedes/vim-colors-pencil",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2019-11-22T07:24:34Z"
-    },
-    "stargazers_count": 459,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:10.535Z"
-    },
-    "image_urls": [
-      "http://i.imgur.com/BYLMdx5.jpg",
-      "http://i.imgur.com/V39pwZq.png",
-      "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/airline-example.png",
-      "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/bash-example-dark.png",
-      "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/markdown-example.jpg",
-      "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/vimscript-example.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-11-22T07:24:34Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/pencil.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc69d"
-    },
-    "name": "vim-code-dark",
-    "owner": {
-      "name": "tomasiser",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/10374559?v=4"
-    },
-    "default_branch": "master",
-    "description": "Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code",
-    "github_created_at": {
-      "$date": "2017-02-20T20:41:51Z"
-    },
-    "github_id": 82600564,
-    "github_url": "https://github.com/tomasiser/vim-code-dark",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-18T08:09:35Z"
-    },
-    "stargazers_count": 413,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:17.170Z"
-    },
-    "image_urls": [
-      "https://cloud.githubusercontent.com/assets/10374559/23333137/b86efaa0-fb86-11e6-8c06-813f81c1f9bb.png",
-      "https://cloud.githubusercontent.com/assets/10374559/23344709/459972a2-fc81-11e6-9b50-c432d998caef.png",
-      "https://cloud.githubusercontent.com/assets/10374559/23342967/e61e28c6-fc63-11e6-9ccf-d6189b9e1b61.png",
-      "https://cloud.githubusercontent.com/assets/10374559/23341713/0e8dd778-fc4d-11e6-8430-b11f161305d7.png",
-      "https://cloud.githubusercontent.com/assets/10374559/23341312/1961f416-fc45-11e6-83ba-d7180c5fdd6d.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-17T17:05:22Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/codedark.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc69f"
-    },
-    "name": "palenight.vim",
-    "owner": {
-      "name": "drewtempelmeyer",
-      "avatar_url": "https://avatars2.githubusercontent.com/u/138126?v=4"
-    },
-    "default_branch": "master",
-    "description": "Soothing color scheme for your favorite [best] text editor",
-    "github_created_at": {
-      "$date": "2017-06-20T03:12:19Z"
-    },
-    "github_id": 94844569,
-    "github_url": "https://github.com/drewtempelmeyer/palenight.vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-10T14:57:11Z"
-    },
-    "stargazers_count": 410,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:19.913Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/drewtempelmeyer/palenight.vim/master/images/screenshot.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-10T14:57:10Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/palenight.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6a1"
-    },
-    "name": "vim-deus",
-    "owner": {
-      "name": "ajmwagar",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/25015651?v=4"
-    },
-    "default_branch": "master",
-    "description": "🌙 A better color scheme for the late night coder",
-    "github_created_at": {
-      "$date": "2017-06-20T04:55:27Z"
-    },
-    "github_id": 94851183,
-    "github_url": "https://github.com/ajmwagar/vim-deus",
-    "homepage_url": "http://vimcolors.com/740/deus/dark",
-    "pushed_at": {
-      "$date": "2019-10-22T22:43:37Z"
-    },
-    "stargazers_count": 379,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:25.050Z"
-    },
-    "image_urls": [
-      "https://www.colorhexa.com/eaeaea.png",
-      "https://www.colorhexa.com/2c323b.png",
-      "https://www.colorhexa.com/ffffff.png",
-      "https://www.colorhexa.com/000000.png",
-      "https://www.colorhexa.com/d54e53.png",
-      "https://www.colorhexa.com/98c379.png",
-      "https://www.colorhexa.com/e5c07b.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-10-22T22:43:36Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/deus.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6ad"
-    },
-    "name": "Apprentice",
-    "owner": {
-      "name": "romainl",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/344335?v=4"
-    },
-    "default_branch": "master",
-    "description": "A dark, low-contrast, Vim colorscheme.",
-    "github_created_at": {
-      "$date": "2014-03-25T22:27:45Z"
-    },
-    "github_id": 18118837,
-    "github_url": "https://github.com/romainl/Apprentice",
-    "homepage_url": "http://romainl.github.io/Apprentice/",
-    "pushed_at": {
-      "$date": "2020-08-20T18:29:29Z"
-    },
-    "stargazers_count": 632,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:27.291Z"
-    },
-    "image_urls": [
-      "http://romainl.github.io/Apprentice/images/logo.png",
-      "http://romainl.github.io/Apprentice/images/0macvim.png",
-      "http://romainl.github.io/Apprentice/images/0256term.png",
-      "http://romainl.github.io/Apprentice/images/0256mintty.png",
-      "http://romainl.github.io/Apprentice/images/08termtango.png",
-      "http://romainl.github.io/Apprentice/images/08termapprentice.png",
-      "http://romainl.github.io/Apprentice/images/016console.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-20T18:29:28Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/apprentice.erb",
-      "master/colors/apprentice.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6af"
-    },
-    "name": "vim-solarized8",
-    "owner": {
-      "name": "lifepillar",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1193314?v=4"
-    },
-    "default_branch": "master",
-    "description": "Optimized Solarized colorschemes. Best served with true-color terminals!",
-    "github_created_at": {
-      "$date": "2016-05-16T09:27:10Z"
-    },
-    "github_id": 58920214,
-    "github_url": "https://github.com/lifepillar/vim-solarized8",
-    "homepage_url": null,
-    "pushed_at": {
-      "$date": "2019-12-11T19:33:02Z"
-    },
-    "stargazers_count": 631,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:32.663Z"
-    },
-    "image_urls": [
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_dark_flat.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_light_flat.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_dark_256.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_light_256.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_bw.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8_bw_solarized.png",
-      "https://raw.github.com/lifepillar/Resources/master/solarized8/solarized8-variants.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-12-11T19:05:13Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": [
-      "master/colors/solarized8.vim",
-      "master/colors/solarized8_flat.vim",
-      "master/colors/solarized8_high.vim",
-      "master/colors/solarized8_low.vim"
-    ]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6b1"
-    },
-    "name": "srcery-vim",
-    "owner": {
-      "name": "srcery-colors",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/40723682?v=4"
-    },
-    "default_branch": "master",
-    "description": "Dark colorscheme for gvim and vim",
-    "github_created_at": {
-      "$date": "2016-06-09T20:38:11Z"
-    },
-    "github_id": 60805462,
-    "github_url": "https://github.com/srcery-colors/srcery-vim",
-    "homepage_url": "https://srcery-colors.github.io",
-    "pushed_at": {
-      "$date": "2020-08-19T12:42:29Z"
-    },
-    "stargazers_count": 425,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:36.080Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/airline.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/c_rust.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/git_term.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/lightline.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/lisp.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/py_js.png",
-      "https://raw.githubusercontent.com/srcery-colors/srcery-vim/master/assets/title.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-07-30T15:35:56Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/srcery.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6b4"
-    },
-    "name": "space-vim-dark",
-    "owner": {
-      "name": "liuchengxu",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/8850248?v=4"
-    },
-    "default_branch": "master",
-    "description": ":purple_heart: A dark colorscheme for space-vim, see space-vim-theme for light background support!",
-    "github_created_at": {
-      "$date": "2016-11-06T11:28:25Z"
-    },
-    "github_id": 72986195,
-    "github_url": "https://github.com/liuchengxu/space-vim-dark",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-30T14:01:27Z"
-    },
-    "stargazers_count": 404,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:40.079Z"
-    },
-    "image_urls": [
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim-theme/dark.png",
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim-theme/light.png",
-      "https://user-images.githubusercontent.com/8850248/36429354-75870ba6-168d-11e8-939a-34956e3c24b9.png",
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim-dark/grey-comment.png",
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim/space-vim-gui.png",
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim/space-vim-cterm.png",
-      "https://raw.githubusercontent.com/liuchengxu/img/master/space-vim-dark/space-vim-dark-bg-list.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-12-23T14:21:07Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/space-vim-dark.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6b6"
-    },
-    "name": "vim",
-    "owner": {
-      "name": "challenger-deep-theme",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/34939509?v=4"
-    },
-    "default_branch": "master",
-    "description": "FlatColor vim colorscheme",
-    "github_created_at": {
-      "$date": "2013-11-21T14:49:26Z"
-    },
-    "github_id": 14590264,
-    "github_url": "https://github.com/challenger-deep-theme/vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2019-12-18T09:37:22Z"
-    },
-    "stargazers_count": 374,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:43.397Z"
-    },
-    "image_urls": [
-      "https://challenger-deep-theme.github.io/images/logo.png",
-      "https://challenger-deep-theme.github.io/images/screenshots/vim.png",
-      "https://challenger-deep-theme.github.io/images/screenshots/vim-lightline.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-12-18T09:37:21Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/challenger_deep.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6b8"
-    },
-    "name": "vim-colortemplate",
-    "owner": {
-      "name": "lifepillar",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1193314?v=4"
-    },
-    "default_branch": "master",
-    "description": " The Toolkit for Vim Color Scheme Designers!",
-    "github_created_at": {
-      "$date": "2017-09-23T18:01:21Z"
-    },
-    "github_id": 104588116,
-    "github_url": "https://github.com/lifepillar/vim-colortemplate",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-06T20:46:21Z"
-    },
-    "stargazers_count": 373,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:45.552Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2020-08-06T20:46:15Z"
-    },
-    "valid": false,
-    "vim_color_scheme_file_paths": []
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6ba"
-    },
-    "name": "NeoSolarized",
-    "owner": {
-      "name": "overcache",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/1908329?v=4"
-    },
-    "default_branch": "master",
-    "description": "NeoSolarized: A fixed solarized colorscheme for better truecolor support.",
-    "github_created_at": {
-      "$date": "2016-09-26T05:59:17Z"
-    },
-    "github_id": 69217724,
-    "github_url": "https://github.com/overcache/NeoSolarized",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-08-07T00:39:07Z"
-    },
-    "stargazers_count": 310,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:47.236Z"
-    },
-    "image_urls": [
-      "http://ww3.sinaimg.cn/large/5d4db8f9gw1f88o0e8r6mj21kw11hqcx.jpg",
-      "http://ww3.sinaimg.cn/large/5d4db8f9gw1f8bkj8fnghj21kw11n7et.jpg",
-      "http://ww3.sinaimg.cn/large/5d4db8f9gw1f8into8gvgj20hf00o0sv.jpg"
-    ],
-    "last_commit_at": {
-      "$date": "2020-08-07T00:39:06Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/NeoSolarized.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6bc"
-    },
-    "name": "night-owl.vim",
-    "owner": {
-      "name": "haishanh",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/1166872?v=4"
-    },
-    "default_branch": "master",
-    "description": "A 24bit dark Vim colorscheme based on sdras/night-owl-vscode-theme",
-    "github_created_at": {
-      "$date": "2018-06-21T14:32:54Z"
-    },
-    "github_id": 138182059,
-    "github_url": "https://github.com/haishanh/night-owl.vim",
-    "homepage_url": "",
-    "pushed_at": {
-      "$date": "2020-07-17T03:06:49Z"
-    },
-    "stargazers_count": 288,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:50.727Z"
-    },
-    "image_urls": [
-      "https://user-images.githubusercontent.com/1166872/64192497-645d2200-cead-11e9-9c79-0b5fdc0955c9.png",
-      "https://user-images.githubusercontent.com/1166872/58341756-8f34e480-7e81-11e9-90d1-19775d6020bd.png"
-    ],
-    "last_commit_at": {
-      "$date": "2020-05-29T02:52:51Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/night-owl.vim"]
-  },
-  {
-    "_id": {
-      "$oid": "5f4044fe1886e39a30fdc6be"
-    },
-    "name": "vim-vividchalk",
-    "owner": {
-      "name": "tpope",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/378?v=4"
-    },
-    "default_branch": "master",
-    "description": "vividchalk.vim: a colorscheme strangely reminiscent of Vibrant Ink for a certain OS X editor",
-    "github_created_at": {
-      "$date": "2009-12-13T19:52:35Z"
-    },
-    "github_id": 434332,
-    "github_url": "https://github.com/tpope/vim-vividchalk",
-    "homepage_url": "http://www.vim.org/scripts/script.php?script_id=1891",
-    "pushed_at": {
-      "$date": "2019-11-13T01:32:32Z"
-    },
-    "stargazers_count": 276,
-    "fetched_at": {
-      "$date": "2020-08-21T18:05:52.366Z"
-    },
-    "image_urls": [],
-    "last_commit_at": {
-      "$date": "2019-11-13T01:32:16Z"
-    },
-    "valid": true,
-    "vim_color_scheme_file_paths": ["master/colors/vividchalk.vim"]
+  "stargazers_count": 14539,
+  "valid": false,
+  "cleaned_recently": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 14518
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 14520
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 14519
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 14521
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 14522
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 14523
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 14525
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 14525
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 14526
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 14529
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 14533
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 14535
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 14539
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:08.690Z"
   }
-]
+},{
+  "_id": {
+    "$oid": "5f347dab1b9bdbc815abbcd4"
+  },
+  "name": "gruvbox",
+  "owner": {
+    "name": "morhetz",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/554231?v=4"
+  },
+  "default_branch": "master",
+  "description": "Retro groove color scheme for Vim",
+  "github_created_at": {
+    "$date": "2012-11-28T00:37:31Z"
+  },
+  "github_id": 6893638,
+  "github_url": "https://github.com/morhetz/gruvbox",
+  "homepage_url": "",
+  "image_urls": [
+    "http://i.imgur.com/GkIl8Fn.png",
+    "http://i.imgur.com/X75niEa.png",
+    "http://i.imgur.com/wRQceUR.png",
+    "http://i.imgur.com/wa666xg.png",
+    "http://i.imgur.com/49qKyYW.png",
+    "http://i.imgur.com/5MSbe6T.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-07-03T12:42:06Z"
+  },
+  "pushed_at": {
+    "$date": "2020-07-28T21:26:50Z"
+  },
+  "stargazers_count": 7929,
+  "valid": true,
+  "cleaned_recently": false,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 7885
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 7887
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 7888
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 7894
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 7899
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 7902
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 7908
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 7913
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 7918
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 7923
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 7926
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 7926
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 7929
+    }
+  ],
+  "vim_color_scheme_names": [
+    "gruvbox"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:09.030Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dac1b9bdbc815abbdea"
+  },
+  "name": "molokai",
+  "owner": {
+    "name": "tomasr",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/16179?v=4"
+  },
+  "default_branch": "master",
+  "description": "Molokai color scheme for Vim",
+  "github_created_at": {
+    "$date": "2011-02-13T15:14:22Z"
+  },
+  "github_id": 1361963,
+  "github_url": "https://github.com/tomasr/molokai",
+  "homepage_url": "",
+  "image_urls": [
+    "http://3.bp.blogspot.com/-FYqEtaaJv4g/UCjG0SVk3yI/AAAAAAAABVk/Cj8Aa6nTsOk/s1600/VIM-molokai-colorscheme.png"
+  ],
+  "last_commit_at": {
+    "$date": "2015-11-11T12:17:45Z"
+  },
+  "pushed_at": {
+    "$date": "2020-03-19T15:51:32Z"
+  },
+  "stargazers_count": 3145,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 3138
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 3139
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 3139
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 3139
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 3142
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 3141
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 3142
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 3145
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 3145
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 3144
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 3144
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 3145
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 3145
+    }
+  ],
+  "vim_color_scheme_names": [
+    "molokai"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:09.374Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347db21b9bdbc815abbf1e"
+  },
+  "name": "onedark.vim",
+  "owner": {
+    "name": "joshdick",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/424691?v=4"
+  },
+  "default_branch": "master",
+  "description": "A dark Vim/Neovim color scheme inspired by Atom's One Dark syntax theme.",
+  "github_created_at": {
+    "$date": "2015-10-26T05:08:31Z"
+  },
+  "github_id": 44947263,
+  "github_url": "https://github.com/joshdick/onedark.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/readme_header.png",
+    "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/color_reference.png",
+    "https://raw.github.com/joshdick/onedark.vim/master/img/preview_lightline.png",
+    "https://raw.github.com/joshdick/onedark.vim/master/img/preview_airline.png",
+    "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_colors.png",
+    "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_italics.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-12T23:30:30Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-12T23:30:32Z"
+  },
+  "stargazers_count": 2358,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 2343
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 2345
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 2347
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 2350
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 2351
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 2351
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 2351
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 2353
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 2354
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 2355
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 2356
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 2356
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 2358
+    }
+  ],
+  "vim_color_scheme_names": [
+    "onedark"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:09.795Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347db41b9bdbc815abbf93"
+  },
+  "name": "papercolor-theme",
+  "owner": {
+    "name": "NLKNguyen",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/4667129?v=4"
+  },
+  "default_branch": "master",
+  "description": ":art: Light & Dark Vim color schemes inspired by Google's Material Design",
+  "github_created_at": {
+    "$date": "2015-01-24T02:11:16Z"
+  },
+  "github_id": 29762329,
+  "github_url": "https://github.com/NLKNguyen/papercolor-theme",
+  "homepage_url": "",
+  "image_urls": [
+    "https://nlknguyen.files.wordpress.com/2015/05/ruby1.png",
+    "https://nlknguyen.files.wordpress.com/2015/05/dtrace1.png",
+    "https://nlknguyen.files.wordpress.com/2015/05/mysql.png",
+    "https://nlknguyen.files.wordpress.com/2015/05/asm.png",
+    "https://cloud.githubusercontent.com/assets/4667129/24315492/9410c372-10a4-11e7-84c7-8846984bdca0.png",
+    "https://nlknguyen.files.wordpress.com/2015/05/ruby-dark.png",
+    "https://nlknguyen.files.wordpress.com/2015/05/go-dark.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-06-16T23:14:27Z"
+  },
+  "pushed_at": {
+    "$date": "2020-06-16T23:14:29Z"
+  },
+  "stargazers_count": 1605,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1599
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1600
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1601
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1603
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1603
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1604
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1605
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1605
+    }
+  ],
+  "vim_color_scheme_names": [
+    "PaperColor"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:10.204Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347db61b9bdbc815abbfdf"
+  },
+  "name": "jellybeans.vim",
+  "owner": {
+    "name": "nanotech",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/34699?v=4"
+  },
+  "default_branch": "master",
+  "description": "A colorful, dark color scheme for Vim.",
+  "github_created_at": {
+    "$date": "2009-02-26T02:45:39Z"
+  },
+  "github_id": 137861,
+  "github_url": "https://github.com/nanotech/jellybeans.vim",
+  "homepage_url": "http://www.vim.org/scripts/script.php?script_id=2555",
+  "image_urls": [
+    "https://nanotech.nanotechcorp.net/downloads/jellybeans-preview.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-06-22T00:05:03Z"
+  },
+  "pushed_at": {
+    "$date": "2019-06-22T00:05:31Z"
+  },
+  "stargazers_count": 1460,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1459
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1459
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1458
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1460
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1460
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1459
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1459
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1458
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1458
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1458
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1458
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1459
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1460
+    }
+  ],
+  "vim_color_scheme_names": [
+    "jellybeans"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:10.501Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dba1b9bdbc815abc0a2"
+  },
+  "name": "vim-hybrid",
+  "owner": {
+    "name": "w0ng",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/960708?v=4"
+  },
+  "default_branch": "master",
+  "description": "A dark color scheme for Vim",
+  "github_created_at": {
+    "$date": "2012-08-06T18:42:46Z"
+  },
+  "github_id": 5317987,
+  "github_url": "https://github.com/w0ng/vim-hybrid",
+  "homepage_url": "",
+  "image_urls": [
+    "http://i.imgur.com/wSWCyen.png",
+    "https://user-images.githubusercontent.com/8057916/28242153-398df6c8-69c2-11e7-9537-eb67497f2bfc.png"
+  ],
+  "last_commit_at": {
+    "$date": "2016-01-05T06:14:38Z"
+  },
+  "pushed_at": {
+    "$date": "2017-11-20T03:15:02Z"
+  },
+  "stargazers_count": 1353,
+  "valid": true,
+  "featured_image_url": "https://user-images.githubusercontent.com/8057916/28242153-398df6c8-69c2-11e7-9537-eb67497f2bfc.png",
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1355
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1353
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1353
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1354
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1353
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "hybrid"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:10.869Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dbd1b9bdbc815abc19a"
+  },
+  "name": "seoul256.vim",
+  "owner": {
+    "name": "junegunn",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/700826?v=4"
+  },
+  "default_branch": "master",
+  "description": ":deciduous_tree: Low-contrast Vim color scheme based on Seoul Colors",
+  "github_created_at": {
+    "$date": "2013-05-31T09:26:26Z"
+  },
+  "github_id": 10401801,
+  "github_url": "https://github.com/junegunn/seoul256.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.github.com/junegunn/i/master/seoul256.png",
+    "https://raw.github.com/junegunn/i/master/seoul256-light.png",
+    "https://raw.github.com/junegunn/i/master/seoul256-bg.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-06-21T17:14:57Z"
+  },
+  "pushed_at": {
+    "$date": "2020-07-18T09:22:54Z"
+  },
+  "stargazers_count": 1257,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1252
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1252
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1252
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1253
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1254
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1255
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1255
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1255
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1257
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1257
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "seoul256",
+    "seoul256"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:11.277Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dc01b9bdbc815abc231"
+  },
+  "name": "awesome-vim-colorschemes",
+  "owner": {
+    "name": "rafi",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/147918?v=4"
+  },
+  "default_branch": "master",
+  "description": "Collection of awesome color schemes for Neo/vim, merged for quick use.",
+  "github_created_at": {
+    "$date": "2015-08-08T18:39:14Z"
+  },
+  "github_id": 40412833,
+  "github_url": "https://github.com/rafi/awesome-vim-colorschemes",
+  "homepage_url": "",
+  "last_commit_at": {
+    "$date": "2020-08-26T18:02:43Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-26T18:06:33Z"
+  },
+  "stargazers_count": 1268,
+  "valid": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1256
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1258
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1259
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1262
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1263
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1266
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1265
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1266
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1268
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1268
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1268
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:14.201Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dc11b9bdbc815abc27b"
+  },
+  "name": "vim-monokai",
+  "owner": {
+    "name": "sickill",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/17589?v=4"
+  },
+  "default_branch": "master",
+  "description": "Monokai color scheme for Vim converted from Textmate theme",
+  "github_created_at": {
+    "$date": "2011-10-22T13:32:20Z"
+  },
+  "github_id": 2626112,
+  "github_url": "https://github.com/sickill/vim-monokai",
+  "homepage_url": "",
+  "image_urls": [
+    "https://i.imgur.com/NPX2MXM.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-01-16T08:16:16Z"
+  },
+  "pushed_at": {
+    "$date": "2020-03-04T13:02:53Z"
+  },
+  "stargazers_count": 1145,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1143
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1145
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "monokai"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:15.155Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dc61b9bdbc815abc354"
+  },
+  "name": "iceberg.vim",
+  "owner": {
+    "name": "cocopon",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/602961?v=4"
+  },
+  "default_branch": "master",
+  "description": ":antarctica: Bluish color scheme for Vim and Neovim",
+  "github_created_at": {
+    "$date": "2014-01-04T03:00:12Z"
+  },
+  "github_id": 15625247,
+  "github_url": "https://github.com/cocopon/iceberg.vim",
+  "homepage_url": "https://cocopon.github.io/iceberg.vim/",
+  "image_urls": [
+    "https://cocopon.github.io/iceberg.vim/assets/github/20180804/cover.png",
+    "https://cocopon.github.io/iceberg.vim/assets/github/screenshot.png",
+    "https://user-images.githubusercontent.com/602961/64060996-407cb080-cc0f-11e9-87dd-e5c535815fab.png",
+    "https://cocopon.github.io/iceberg.vim/assets/github/creating-your-lovely-color-scheme.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-07-20T14:05:57Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-26T18:44:47Z"
+  },
+  "stargazers_count": 1155,
+  "valid": true,
+  "featured_image_url": "https://cocopon.github.io/iceberg.vim/assets/github/screenshot.png",
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1142
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1142
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1144
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1146
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1145
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1147
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1146
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1146
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1151
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1151
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1152
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1154
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1155
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "iceberg",
+    "iceberg"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:19.638Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dc81b9bdbc815abc3e0"
+  },
+  "name": "badwolf",
+  "owner": {
+    "name": "sjl",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/58365?v=4"
+  },
+  "default_branch": "master",
+  "description": "A Vim color scheme.",
+  "github_created_at": {
+    "$date": "2012-02-12T20:08:30Z"
+  },
+  "github_id": 3424330,
+  "github_url": "https://github.com/sjl/badwolf",
+  "homepage_url": "http://stevelosh.com/projects/badwolf/",
+  "image_urls": [
+    "http://i.imgur.com/fQGGC.png",
+    "http://i.imgur.com/LgLar.png",
+    "http://i.imgur.com/THHz7.png",
+    "http://i.imgur.com/J56VS.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-02-19T02:00:14Z"
+  },
+  "pushed_at": {
+    "$date": "2020-05-01T07:04:12Z"
+  },
+  "stargazers_count": 1126,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1125
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1125
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1125
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1126
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1126
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "badwolf",
+    "goodwolf"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:21.182Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dcb1b9bdbc815abc47c"
+  },
+  "name": "Smyck-Color-Scheme",
+  "owner": {
+    "name": "hukl",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/25157?v=4"
+  },
+  "default_branch": "master",
+  "description": "Color Scheme for Terminal.app, iTerm2, Vim, MacVim, Sublime Text2 and Textmate",
+  "github_created_at": {
+    "$date": "2012-03-11T18:46:41Z"
+  },
+  "github_id": 3688785,
+  "github_url": "https://github.com/hukl/Smyck-Color-Scheme",
+  "homepage_url": "http://color.smyck.org/",
+  "image_urls": [
+    "http://smyck.org/smyck/color_1.jpg",
+    "http://smyck.org/smyck/color_2.jpg",
+    "http://smyck.org/smyck/color_4.jpg",
+    "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/diff.png",
+    "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/erlang.png",
+    "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/logo.jpg",
+    "https://raw.githubusercontent.com/hukl/Smyck-Color-Scheme/master/html/images/ruby.png"
+  ],
+  "last_commit_at": {
+    "$date": "2017-04-10T14:52:56Z"
+  },
+  "pushed_at": {
+    "$date": "2019-04-27T15:23:26Z"
+  },
+  "stargazers_count": 1117,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 1116
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 1117
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 1117
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 1117
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 1117
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 1117
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "smyck"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:22.902Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dcf1b9bdbc815abc5c8"
+  },
+  "name": "onehalf",
+  "owner": {
+    "name": "sonph",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/2466660?v=4"
+  },
+  "default_branch": "master",
+  "description": "Clean, vibrant and pleasing color schemes for Vim, Sublime Text, iTerm, gnome-terminal and more.",
+  "github_created_at": {
+    "$date": "2016-05-16T17:09:34Z"
+  },
+  "github_id": 58951222,
+  "github_url": "https://github.com/sonph/onehalf",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/dark.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/desktop_dark.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/desktop_light.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_dark.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_light.png",
+    "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/iterm.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-06-11T06:28:38Z"
+  },
+  "pushed_at": {
+    "$date": "2020-07-20T11:10:52Z"
+  },
+  "stargazers_count": 785,
+  "valid": true,
+  "featured_image_url": "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/iterm.png",
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 773
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 773
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 773
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 774
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 775
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 777
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 780
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 779
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 779
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 780
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 781
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 784
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 785
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "onehalfdark",
+    "onehalflight"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:27.942Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dd11b9bdbc815abc65d"
+  },
+  "name": "Zenburn",
+  "owner": {
+    "name": "jnurmine",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/221556?v=4"
+  },
+  "default_branch": "master",
+  "description": "Zenburn is a low-contrast color scheme for Vim.",
+  "github_created_at": {
+    "$date": "2011-06-15T20:33:41Z"
+  },
+  "github_id": 1902415,
+  "github_url": "https://github.com/jnurmine/Zenburn",
+  "homepage_url": "http://kippura.org/zenburnpage",
+  "image_urls": [
+    "https://kippura.org/images/zenburn.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-31T20:25:52Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-31T20:27:07Z"
+  },
+  "stargazers_count": 680,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 676
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 677
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 679
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 680
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 680
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 680
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 680
+    }
+  ],
+  "vim_color_scheme_names": [
+    "zenburn"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:28.290Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dd31b9bdbc815abc6ef"
+  },
+  "name": "vim-hybrid-material",
+  "owner": {
+    "name": "kristijanhusak",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/1782860?v=4"
+  },
+  "default_branch": "master",
+  "description": "Material color scheme for Vim based on w0ng/vim-hybrid color scheme",
+  "github_created_at": {
+    "$date": "2015-06-24T19:42:08Z"
+  },
+  "github_id": 38006953,
+  "github_url": "https://github.com/kristijanhusak/vim-hybrid-material",
+  "homepage_url": null,
+  "image_urls": [
+    "https://cloud.githubusercontent.com/assets/1782860/8340203/483e81f2-1abd-11e5-8fc6-b1ca5c646404.png",
+    "https://cloud.githubusercontent.com/assets/1782860/8340291/e046a042-1abd-11e5-82fd-b323ec5fd80c.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-06-16T16:43:56Z"
+  },
+  "pushed_at": {
+    "$date": "2020-06-16T16:43:57Z"
+  },
+  "stargazers_count": 491,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 490
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 491
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 491
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 491
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 491
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "base16-material-dark",
+    "base16-material",
+    "hybrid_material",
+    "hybrid_reverse"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:30.093Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dd61b9bdbc815abc764"
+  },
+  "name": "vim-colors-pencil",
+  "owner": {
+    "name": "reedes",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/6090039?v=4"
+  },
+  "default_branch": "master",
+  "description": "Light (& dark) color scheme inspired by iA Writer",
+  "github_created_at": {
+    "$date": "2014-01-05T01:25:17Z"
+  },
+  "github_id": 15643358,
+  "github_url": "https://github.com/reedes/vim-colors-pencil",
+  "homepage_url": "",
+  "image_urls": [
+    "http://i.imgur.com/BYLMdx5.jpg",
+    "http://i.imgur.com/V39pwZq.png",
+    "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/airline-example.png",
+    "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/bash-example-dark.png",
+    "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/markdown-example.jpg",
+    "https://raw.githubusercontent.com/reedes/vim-colors-pencil/master/screenshots/vimscript-example.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-11-22T07:24:34Z"
+  },
+  "pushed_at": {
+    "$date": "2019-11-22T07:24:34Z"
+  },
+  "stargazers_count": 462,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 461
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 461
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 463
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 463
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 463
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 462
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 462
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "pencil"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:32.097Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347ddb1b9bdbc815abc83d"
+  },
+  "name": "vim-code-dark",
+  "owner": {
+    "name": "tomasiser",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/10374559?v=4"
+  },
+  "default_branch": "master",
+  "description": "Dark color scheme for Vim and vim-airline, inspired by Dark+ in Visual Studio Code",
+  "github_created_at": {
+    "$date": "2017-02-20T20:41:51Z"
+  },
+  "github_id": 82600564,
+  "github_url": "https://github.com/tomasiser/vim-code-dark",
+  "homepage_url": "",
+  "image_urls": [
+    "https://cloud.githubusercontent.com/assets/10374559/23333137/b86efaa0-fb86-11e6-8c06-813f81c1f9bb.png",
+    "https://cloud.githubusercontent.com/assets/10374559/23344709/459972a2-fc81-11e6-9b50-c432d998caef.png",
+    "https://cloud.githubusercontent.com/assets/10374559/23342967/e61e28c6-fc63-11e6-9ccf-d6189b9e1b61.png",
+    "https://cloud.githubusercontent.com/assets/10374559/23341713/0e8dd778-fc4d-11e6-8430-b11f161305d7.png",
+    "https://cloud.githubusercontent.com/assets/10374559/23341312/1961f416-fc45-11e6-83ba-d7180c5fdd6d.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-26T21:07:20Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-28T10:22:13Z"
+  },
+  "stargazers_count": 418,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 415
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 415
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 415
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 415
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 416
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 416
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 418
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 418
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 419
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 419
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 419
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 418
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 418
+    }
+  ],
+  "vim_color_scheme_names": [
+    "codedark"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:35.967Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dde1b9bdbc815abc8e4"
+  },
+  "name": "palenight.vim",
+  "owner": {
+    "name": "drewtempelmeyer",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/138126?v=4"
+  },
+  "default_branch": "master",
+  "description": "Soothing color scheme for your favorite [best] text editor",
+  "github_created_at": {
+    "$date": "2017-06-20T03:12:19Z"
+  },
+  "github_id": 94844569,
+  "github_url": "https://github.com/drewtempelmeyer/palenight.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/drewtempelmeyer/palenight.vim/master/images/screenshot.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-30T13:47:45Z"
+  },
+  "pushed_at": {
+    "$date": "2020-09-04T19:19:31Z"
+  },
+  "stargazers_count": 418,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 410
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 411
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 411
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 412
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 413
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 414
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 414
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 416
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 417
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 417
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 418
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 418
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 418
+    }
+  ],
+  "vim_color_scheme_names": [
+    "palenight"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:38.857Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347de51b9bdbc815abcac6"
+  },
+  "name": "vim-deus",
+  "owner": {
+    "name": "ajmwagar",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/25015651?v=4"
+  },
+  "default_branch": "master",
+  "description": "🌙 A better color scheme for the late night coder",
+  "github_created_at": {
+    "$date": "2017-06-20T04:55:27Z"
+  },
+  "github_id": 94851183,
+  "github_url": "https://github.com/ajmwagar/vim-deus",
+  "homepage_url": "http://vimcolors.com/740/deus/dark",
+  "image_urls": [
+    "https://www.colorhexa.com/eaeaea.png",
+    "https://www.colorhexa.com/2c323b.png",
+    "https://www.colorhexa.com/ffffff.png",
+    "https://www.colorhexa.com/000000.png",
+    "https://www.colorhexa.com/d54e53.png",
+    "https://www.colorhexa.com/98c379.png",
+    "https://www.colorhexa.com/e5c07b.png",
+    "https://github.com/ajmwagar/vim-deus/raw/master/screencaps/vim-deus.jpg",
+    "https://github.com/ajmwagar/vim-deus/raw/master/screencaps/node.jpg"
+  ],
+  "last_commit_at": {
+    "$date": "2019-10-22T22:43:36Z"
+  },
+  "pushed_at": {
+    "$date": "2019-10-22T22:43:37Z"
+  },
+  "stargazers_count": 381,
+  "valid": true,
+  "featured_image_url": "https://github.com/ajmwagar/vim-deus/raw/master/screencaps/vim-deus.jpg",
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 381
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "deus"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:41.276Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347de71b9bdbc815abccb5"
+  },
+  "name": "vim-colortemplate",
+  "owner": {
+    "name": "lifepillar",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/1193314?v=4"
+  },
+  "default_branch": "master",
+  "description": " The Toolkit for Vim Color Scheme Designers!",
+  "github_created_at": {
+    "$date": "2017-09-23T18:01:21Z"
+  },
+  "github_id": 104588116,
+  "github_url": "https://github.com/lifepillar/vim-colortemplate",
+  "homepage_url": "",
+  "last_commit_at": {
+    "$date": "2020-09-05T07:07:45Z"
+  },
+  "pushed_at": {
+    "$date": "2020-09-05T07:08:03Z"
+  },
+  "stargazers_count": 386,
+  "valid": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 376
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 377
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 377
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 380
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 380
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 381
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 382
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 382
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 386
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 386
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 386
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 386
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 386
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:43.814Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347de91b9bdbc815abcd3b"
+  },
+  "name": "emacs-theme-gruvbox",
+  "owner": {
+    "name": "greduan",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/2314074?v=4"
+  },
+  "default_branch": "master",
+  "description": "Gruvbox is a retro groove color scheme for Emacs. Port of the Vim version.",
+  "github_created_at": {
+    "$date": "2013-11-02T18:19:19Z"
+  },
+  "github_id": 14071986,
+  "github_url": "https://github.com/greduan/emacs-theme-gruvbox",
+  "homepage_url": "https://github.com/morhetz/gruvbox",
+  "last_commit_at": {
+    "$date": "2020-08-07T08:55:28Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-07T08:55:30Z"
+  },
+  "stargazers_count": 369,
+  "valid": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 364
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 365
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 366
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 368
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 369
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 369
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 369
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 369
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:45.145Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dea1b9bdbc815abcd75"
+  },
+  "name": "vim-monokai",
+  "owner": {
+    "name": "crusoexia",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/5928754?v=4"
+  },
+  "default_branch": "master",
+  "description": "Refined Monokai color scheme for vim, inspired by Sublime Text",
+  "github_created_at": {
+    "$date": "2014-09-04T04:36:10Z"
+  },
+  "github_id": 23648555,
+  "github_url": "https://github.com/crusoexia/vim-monokai",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/crusoexia/vim-monokai/master/screenshots/html.png",
+    "https://raw.githubusercontent.com/crusoexia/vim-monokai/master/screenshots/typescript.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-09-05T10:39:30Z"
+  },
+  "pushed_at": {
+    "$date": "2020-09-05T10:39:49Z"
+  },
+  "stargazers_count": 361,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 357
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 357
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 358
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 358
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 358
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 359
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 359
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 359
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 360
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 360
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 361
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 361
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 361
+    }
+  ],
+  "vim_color_scheme_names": [
+    "monokai"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-05T13:00:46.076Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dec1b9bdbc815abcdbe"
+  },
+  "name": "Spacegray.vim",
+  "owner": {
+    "name": "ajh17",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/1159146?v=4"
+  },
+  "default_branch": "master",
+  "description": "A Vim color scheme loosely based on the Spacegray Xcode theme.",
+  "github_created_at": {
+    "$date": "2014-12-14T10:27:15Z"
+  },
+  "github_id": 27990825,
+  "github_url": "https://github.com/ajh17/Spacegray.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/ajh17/Spacegray.vim/master/screenshots/dark.png",
+    "https://raw.githubusercontent.com/ajh17/Spacegray.vim/master/screenshots/hl_groups.png",
+    "https://raw.githubusercontent.com/ajh17/Spacegray.vim/master/screenshots/low_contrast.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-02-23T04:52:36Z"
+  },
+  "pushed_at": {
+    "$date": "2019-02-23T04:52:48Z"
+  },
+  "stargazers_count": 347,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 346
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 346
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 346
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 347
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 347
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 348
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 348
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 348
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 348
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 348
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 347
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 347
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 347
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "spacegray"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:47.276Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347df11b9bdbc815abcefb"
+  },
+  "name": "neodark.vim",
+  "owner": {
+    "name": "KeitaNakamura",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/16015926?v=4"
+  },
+  "default_branch": "master",
+  "description": "A dark color scheme for vim",
+  "github_created_at": {
+    "$date": "2016-10-30T19:18:19Z"
+  },
+  "github_id": 72369955,
+  "github_url": "https://github.com/KeitaNakamura/neodark.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/KeitaNakamura/neodark.vim/master/202020.png",
+    "https://raw.githubusercontent.com/KeitaNakamura/neodark.vim/master/256.png",
+    "https://raw.githubusercontent.com/KeitaNakamura/neodark.vim/master/default.png",
+    "https://raw.githubusercontent.com/KeitaNakamura/neodark.vim/master/tmux.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-12-04T22:35:25Z"
+  },
+  "pushed_at": {
+    "$date": "2019-12-04T22:35:26Z"
+  },
+  "stargazers_count": 321,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 321
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 321
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "neodark"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:50.736Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347df41b9bdbc815abcf80"
+  },
+  "name": "vim-lucius",
+  "owner": {
+    "name": "jonathanfilip",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/966501?v=4"
+  },
+  "default_branch": "master",
+  "description": "Lucius color scheme for vim",
+  "github_created_at": {
+    "$date": "2012-08-23T11:44:52Z"
+  },
+  "github_id": 5524977,
+  "github_url": "https://github.com/jonathanfilip/vim-lucius",
+  "homepage_url": null,
+  "image_urls": [
+    "http://i.imgur.com/LsZbF.png",
+    "http://i.imgur.com/e70i9.png",
+    "http://i.imgur.com/Hmw8s.png",
+    "http://i.imgur.com/iD4ri.png",
+    "http://i.imgur.com/lHvTJ.png",
+    "http://i.imgur.com/oZLkg.png",
+    "http://i.imgur.com/soYD8.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-06-18T20:04:22Z"
+  },
+  "pushed_at": {
+    "$date": "2020-06-18T20:04:23Z"
+  },
+  "stargazers_count": 319,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 320
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 319
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 319
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "lucius"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:54.035Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347df71b9bdbc815abd06f"
+  },
+  "name": "vim-quantum",
+  "owner": {
+    "name": "tyrannicaltoucan",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/18494520?v=4"
+  },
+  "default_branch": "master",
+  "description": "A Material color scheme for Vim.",
+  "github_created_at": {
+    "$date": "2016-10-21T23:51:23Z"
+  },
+  "github_id": 71605313,
+  "github_url": "https://github.com/tyrannicaltoucan/vim-quantum",
+  "homepage_url": "",
+  "image_urls": [
+    "https://i.imgur.com/gdWhDrA.png",
+    "https://i.imgur.com/VzPs0Uf.png"
+  ],
+  "last_commit_at": {
+    "$date": "2018-03-24T00:33:23Z"
+  },
+  "pushed_at": {
+    "$date": "2019-10-25T14:00:41Z"
+  },
+  "stargazers_count": 301,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 300
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 301
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 301
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 301
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "quantum"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:58.154Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347df81b9bdbc815abd0ac"
+  },
+  "name": "vim-hemisu",
+  "owner": {
+    "name": "noahfrederick",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/151598?v=4"
+  },
+  "default_branch": "master",
+  "description": "A Vim color scheme with dark and light variants",
+  "github_created_at": {
+    "$date": "2011-11-20T15:51:02Z"
+  },
+  "github_id": 2814320,
+  "github_url": "https://github.com/noahfrederick/vim-hemisu",
+  "homepage_url": "https://noahfrederick.com/vim-color-scheme-hemisu/",
+  "image_urls": [
+    "http://farm7.static.flickr.com/6101/6342657394_209d6847e8_z.jpg"
+  ],
+  "last_commit_at": {
+    "$date": "2013-09-05T15:01:33Z"
+  },
+  "pushed_at": {
+    "$date": "2013-09-05T15:03:49Z"
+  },
+  "stargazers_count": 268,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 268
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "hemisu"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:53:59.214Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347dfc1b9bdbc815abd160"
+  },
+  "name": "forest-night",
+  "owner": {
+    "name": "sainnhe",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/37491630?v=4"
+  },
+  "default_branch": "master",
+  "description": "🌲 Comfortable & Pleasant Color Scheme for Vim",
+  "github_created_at": {
+    "$date": "2019-03-03T06:10:46Z"
+  },
+  "github_id": 173537943,
+  "github_url": "https://github.com/sainnhe/forest-night",
+  "homepage_url": "https://www.vim.org/scripts/script.php?script_id=5803",
+  "image_urls": [
+    "https://user-images.githubusercontent.com/37491630/74209833-5217b900-4c81-11ea-86e2-3727fdfc3233.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-29T03:05:44Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-29T03:12:24Z"
+  },
+  "stargazers_count": 275,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 269
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 270
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 271
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 272
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 275
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 273
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 274
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 275
+    }
+  ],
+  "vim_color_scheme_names": [
+    "forest-night"
+  ],
+  "cleaned_recently": false,
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:02.872Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e011b9bdbc815abd239"
+  },
+  "name": "material.vim",
+  "owner": {
+    "name": "kaicataldo",
+    "avatar_url": "https://avatars2.githubusercontent.com/u/7041728?v=4"
+  },
+  "default_branch": "main",
+  "description": "🎨 A port of the Material color scheme for Vim/Neovim",
+  "github_created_at": {
+    "$date": "2017-12-15T19:15:55Z"
+  },
+  "github_id": 114403617,
+  "github_url": "https://github.com/kaicataldo/material.vim",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/screenshots/material-all-variants.png",
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Darker.png",
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Default.png",
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Lighter.png",
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Ocean.png",
+    "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Palenight.png"
+  ],
+  "last_commit_at": {
+    "$date": "2020-08-13T21:17:51Z"
+  },
+  "pushed_at": {
+    "$date": "2020-08-13T21:17:52Z"
+  },
+  "stargazers_count": 277,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 266
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 266
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 267
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 268
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 269
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 269
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 269
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 269
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 275
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 277
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 277
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 277
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 277
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "material"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:06.315Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e031b9bdbc815abd296"
+  },
+  "name": "vim-railscasts-theme",
+  "owner": {
+    "name": "jpo",
+    "avatar_url": "https://avatars0.githubusercontent.com/u/28533?v=4"
+  },
+  "default_branch": "master",
+  "description": "A vim color scheme based on the Railscasts Textmate theme.",
+  "github_created_at": {
+    "$date": "2008-10-11T16:47:16Z"
+  },
+  "github_id": 61883,
+  "github_url": "https://github.com/jpo/vim-railscasts-theme",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.github.com/jpo/vim-railscasts-theme/master/screenshot_gui.jpg",
+    "https://raw.github.com/jpo/vim-railscasts-theme/master/screenshot_256.jpg",
+    "https://raw.githubusercontent.com/jpo/vim-railscasts-theme/master/screenshot_256.jpg",
+    "https://raw.githubusercontent.com/jpo/vim-railscasts-theme/master/screenshot_gui.jpg"
+  ],
+  "last_commit_at": {
+    "$date": "2016-06-07T02:15:55Z"
+  },
+  "pushed_at": {
+    "$date": "2016-06-07T02:15:55Z"
+  },
+  "stargazers_count": 255,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 254
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 254
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 255
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 255
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "railscasts"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:07.358Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e041b9bdbc815abd2eb"
+  },
+  "name": "vim-colorscheme-primary",
+  "owner": {
+    "name": "google",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/1342004?v=4"
+  },
+  "default_branch": "master",
+  "description": "Primary, a Vim color scheme based on Google's colors",
+  "github_created_at": {
+    "$date": "2015-04-22T21:56:07Z"
+  },
+  "github_id": 34418107,
+  "github_url": "https://github.com/google/vim-colorscheme-primary",
+  "homepage_url": "",
+  "image_urls": [
+    "https://raw.githubusercontent.com/google/vim-colorscheme-primary/master/screenshots/dark.png",
+    "https://raw.githubusercontent.com/google/vim-colorscheme-primary/master/screenshots/light.png"
+  ],
+  "last_commit_at": {
+    "$date": "2019-06-22T18:10:59Z"
+  },
+  "pushed_at": {
+    "$date": "2019-06-22T18:11:00Z"
+  },
+  "stargazers_count": 245,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 245
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 245
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "primary"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:08.796Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e061b9bdbc815abd343"
+  },
+  "name": "vim-kolor",
+  "owner": {
+    "name": "zeis",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/1945427?v=4"
+  },
+  "default_branch": "master",
+  "description": "Vim color scheme.",
+  "github_created_at": {
+    "$date": "2012-12-03T16:54:23Z"
+  },
+  "github_id": 6985886,
+  "github_url": "https://github.com/zeis/vim-kolor",
+  "homepage_url": "",
+  "image_urls": [
+    "https://lh5.googleusercontent.com/-z7CGCLXhTNQ/UM-4XPy52fI/AAAAAAAAAHo/iCFTSqaoapA/s852/kolor-screenshot.jpg"
+  ],
+  "last_commit_at": {
+    "$date": "2017-06-22T08:16:49Z"
+  },
+  "pushed_at": {
+    "$date": "2017-06-22T08:17:06Z"
+  },
+  "stargazers_count": 243,
+  "valid": true,
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 244
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 243
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 243
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 243
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 243
+    }
+  ],
+  "cleaned_recently": false,
+  "vim_color_scheme_names": [
+    "kolor"
+  ],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:09.986Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e0a1b9bdbc815abd475"
+  },
+  "name": "coloration",
+  "owner": {
+    "name": "sickill",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/17589?v=4"
+  },
+  "default_branch": "master",
+  "description": "Textmate to Vim, JEdit and Kate/KWrite color scheme converter",
+  "github_created_at": {
+    "$date": "2009-12-12T18:05:34Z"
+  },
+  "github_id": 426761,
+  "github_url": "https://github.com/sickill/coloration",
+  "homepage_url": "",
+  "last_commit_at": {
+    "$date": "2015-06-06T21:27:34Z"
+  },
+  "pushed_at": {
+    "$date": "2019-11-02T05:22:41Z"
+  },
+  "stargazers_count": 241,
+  "valid": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 241
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 241
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:14.165Z"
+  }
+},{
+  "_id": {
+    "$oid": "5f347e0c1b9bdbc815abd502"
+  },
+  "name": "estilo",
+  "owner": {
+    "name": "jacoborus",
+    "avatar_url": "https://avatars3.githubusercontent.com/u/829859?v=4"
+  },
+  "default_branch": "master",
+  "description": "Create color schemes for Vim, Airline and Lightline",
+  "github_created_at": {
+    "$date": "2016-04-26T11:50:18Z"
+  },
+  "github_id": 57123963,
+  "github_url": "https://github.com/jacoborus/estilo",
+  "homepage_url": "",
+  "last_commit_at": {
+    "$date": "2020-05-28T04:59:45Z"
+  },
+  "pushed_at": {
+    "$date": "2020-06-19T15:00:34Z"
+  },
+  "stargazers_count": 239,
+  "valid": false,
+  "image_urls": [],
+  "featured_image_url": null,
+  "stargazers_count_history": [
+    {
+      "date": "2020-08-24",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-25",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-26",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-27",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-28",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-29",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-30",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-08-31",
+      "stargazers_count": 237
+    },
+    {
+      "date": "2020-09-01",
+      "stargazers_count": 239
+    },
+    {
+      "date": "2020-09-02",
+      "stargazers_count": 239
+    },
+    {
+      "date": "2020-09-03",
+      "stargazers_count": 239
+    },
+    {
+      "date": "2020-09-04",
+      "stargazers_count": 239
+    },
+    {
+      "date": "2020-09-05",
+      "stargazers_count": 239
+    }
+  ],
+  "vim_color_scheme_names": [],
+  "vim_fetched_at": {
+    "$date": "2020-09-04T15:54:16.645Z"
+  }
+}]

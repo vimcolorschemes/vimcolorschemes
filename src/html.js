@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { THEMES, THEME_KEY } from "./constants";
 
+const { GATSBY_UMAMI_WEBSITE_ID, GATSBY_UMAMI_SCRIPT_URL } = process.env;
+
 const HTML = props => (
   <html {...props.htmlAttributes}>
     <head>
@@ -12,6 +14,14 @@ const HTML = props => (
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no"
       />
+      {!!GATSBY_UMAMI_WEBSITE_ID && !!GATSBY_UMAMI_SCRIPT_URL && (
+        <script
+          async
+          defer
+          data-website-id={GATSBY_UMAMI_WEBSITE_ID}
+          src={GATSBY_UMAMI_SCRIPT_URL}
+        />
+      )}
       {props.headComponents}
     </head>
     <body {...props.bodyAttributes} className={`${THEMES.LIGHT}`}>
