@@ -78,7 +78,7 @@ export const onCreateNode = ({
 export const onPostBootstrap = async () => {
   try {
     const values = await Promise.allSettled(imagePromises);
-    Logger.success(`Done processing all ${values.length} images`);
+    Logger.success(`Done creating remote file nodes for all ${values.length} images`);
   } catch (e) {
     Logger.error(e);
   }

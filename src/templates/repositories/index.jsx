@@ -111,8 +111,8 @@ export const query = graphql`
         name
         description
         stargazersCount: stargazers_count
-        createdAt: github_created_at(fromNow: true)
-        lastCommitAt: last_commit_at(fromNow: true)
+        createdAt: github_created_at
+        lastCommitAt: last_commit_at
         githubUrl: github_url
         owner {
           name
