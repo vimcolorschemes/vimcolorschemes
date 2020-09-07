@@ -29,8 +29,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   const activeAction =
     Object.values(ACTIONS).find(
       action =>
-        currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
-    ) || ACTIONS.DEFAULT;
+        currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
+    ) || ACTIONS.TRENDING;
 
   useNavigation(SECTIONS.REPOSITORIES);
 
@@ -114,6 +114,7 @@ export const query = graphql`
         createdAt: github_created_at
         lastCommitAt: last_commit_at
         githubUrl: github_url
+        weekStargazersCount: week_stargazers_count
         owner {
           name
         }

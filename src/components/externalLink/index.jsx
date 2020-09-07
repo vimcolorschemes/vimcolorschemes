@@ -8,6 +8,7 @@ import "./index.scss";
 
 const ExternalLink = ({ to, className, children, noIcon, icon, ...args }) => {
   const Icon = icon || ExternalLinkIcon;
+
   return (
     <a
       href={to}
@@ -16,8 +17,9 @@ const ExternalLink = ({ to, className, children, noIcon, icon, ...args }) => {
         { "external-link--inline": noIcon },
         className,
       )}
+      // eslint-disable-next-line react/jsx-no-target-blank
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener"
       {...args}
     >
       {children}

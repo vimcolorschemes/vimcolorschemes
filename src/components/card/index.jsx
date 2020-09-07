@@ -12,7 +12,7 @@ import { URLify } from "src/utils/string";
 import { format } from "src/utils/date";
 import { getFirstProcessedFluidImage } from "src/utils/repository";
 
-import { Star } from "src/components/icons";
+import { Star, TrendingUp } from "src/components/icons";
 
 import RepositoryTitle from "src/components/repositoryTitle";
 
@@ -26,6 +26,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     featuredImage,
     images,
     stargazersCount,
+    weekStargazersCount,
     lastCommitAt,
     createdAt,
   } = repository;
@@ -56,11 +57,24 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           <h3 className="card__title">
             <RepositoryTitle ownerName={ownerName} name={name} />
           </h3>
-          <div className="card__stargazers">
-            <Star className="card__stargazers-icon" />
-            <span className="card__stargazers-count">{stargazersCount}</span>
+          <div className="card__meta">
+            <div className="card__stargazers">
+              <Star className="card__icon" />
+              <span className="card__stargazers-count">
+                <strong>{stargazersCount}</strong>
+              </span>
+            </div>
+            {!!weekStargazersCount && (
+              <div className="card__trending-stargazers-count">
+                <TrendingUp className="card__icon" />
+                <span>
+                  <strong>{weekStargazersCount}</strong>/week
+                </span>
+              </div>
+            )}
           </div>
         </div>
+
         <p className="card__infos">{description}</p>
         <p className="card__infos">
           Created <strong>{format(createdAt)}</strong>
