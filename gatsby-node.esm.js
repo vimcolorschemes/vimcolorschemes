@@ -16,6 +16,7 @@ export const createSchemaCustomization = ({ actions }) => {
     type mongodbColorschemesRepositories implements Node {
       processed_featured_image: File @link
       processed_images: [File]
+      week_stargazers_count: Int
     }
   `);
   Logger.info(
@@ -32,53 +33,69 @@ export const onCreateNode = ({
 }) => {
   if (
     node.internal.type === "mongodbColorschemesRepositories" &&
-    !!node.valid &&
-    node.image_urls &&
-    node.image_urls.length > 0
+    !!node.valid
   ) {
-    const blacklistedImageUrls = node.blacklisted_image_urls || [];
-    const validImageUrls = node.image_urls.filter(
-      url => !blacklistedImageUrls.includes(url),
-    );
+    const WEEK_DAYS_COUNT = 7;
+    const { stargazers_count_history: history } = node;
+    if ((history || []).length >= WEEK_DAYS_COUNT) {
+      const weekStargazersHistory = history.slice(
+        history.length - WEEK_DAYS_COUNT,
+      );
+      const lastDayCount =
+        weekStargazersHistory[weekStargazersHistory.length - 1]
+          .stargazers_count;
+      const firstDayCount = weekStargazersHistory[0].stargazers_count;
+      const weekStargazersCount = lastDayCount - firstDayCount;
+      node.week_stargazers_count =
+        weekStargazersCount > 0 ? weekStargazersCount : 0;
+    }
+    if (node.image_urls && node.image_urls.length > 0) {
+      const blacklistedImageUrls = node.blacklisted_image_urls || [];
+      const validImageUrls = node.image_urls.filter(
+        url => !blacklistedImageUrls.includes(url),
+      );
 
-    validImageUrls.forEach(async (url, index) => {
-      if (blacklistedImageUrls.includes(url)) return;
+      validImageUrls.forEach(async (url, index) => {
+        if (blacklistedImageUrls.includes(url)) return;
 
-      try {
-        const promise = createRemoteFileNode({
-          url,
-          parentNodeId: node.id,
-          createNode,
-          createNodeId,
-          cache,
-          store,
-        });
-        imagePromises.push(promise);
-        const fileNode = await promise;
+        try {
+          const promise = createRemoteFileNode({
+            url,
+            parentNodeId: node.id,
+            createNode,
+            createNodeId,
+            cache,
+            store,
+          });
+          imagePromises.push(promise);
+          const fileNode = await promise;
 
-        if (fileNode) {
-          if (
-            (index === 0 && !node.featured_image_url) ||
-            node.featured_image_url === url
-          )
-            node.processed_featured_image = fileNode.id;
-          else
-            node.processed_images = [
-              ...(node.processed_images || []),
-              fileNode,
-            ];
+          if (fileNode) {
+            if (
+              (index === 0 && !node.featured_image_url) ||
+              node.featured_image_url === url
+            )
+              node.processed_featured_image = fileNode.id;
+            else
+              node.processed_images = [
+                ...(node.processed_images || []),
+                fileNode,
+              ];
+          }
+        } catch (e) {
+          Logger.error(e);
         }
-      } catch (e) {
-        Logger.error(e);
-      }
-    });
+      });
+    }
   }
 };
 
 export const onPostBootstrap = async () => {
   try {
     const values = await Promise.allSettled(imagePromises);
-    Logger.success(`Done creating remote file nodes for all ${values.length} images`);
+    Logger.success(
+      `Done creating remote file nodes for all ${values.length} images`,
+    );
   } catch (e) {
     Logger.error(e);
   }

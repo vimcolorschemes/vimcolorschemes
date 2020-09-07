@@ -24,7 +24,7 @@ const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
 
   const {
-    ownerName,
+    owner: { name: ownerName },
     name,
     githubUrl,
     featuredImage,
