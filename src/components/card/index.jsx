@@ -9,6 +9,7 @@ import { RepositoryType } from "src/types";
 import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
+import { format } from "src/utils/date";
 import { getFirstProcessedFluidImage } from "src/utils/repository";
 
 import { Star } from "src/components/icons";
@@ -62,10 +63,10 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         </div>
         <p className="card__infos">{description}</p>
         <p className="card__infos">
-          Created <strong>{createdAt}</strong>
+          Created <strong>{format(createdAt)}</strong>
         </p>
         <p className="card__infos">
-          Last commit <strong>{lastCommitAt}</strong>
+          Last commit <strong>{format(lastCommitAt)}</strong>
         </p>
       </Link>
     </li>
