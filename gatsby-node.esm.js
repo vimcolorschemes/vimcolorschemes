@@ -35,7 +35,7 @@ export const onCreateNode = ({
     node.internal.type === "mongodbColorschemesRepositories" &&
     !!node.valid
   ) {
-    const WEEK_DAYS_COUNT = 2;
+    const WEEK_DAYS_COUNT = 7;
     if ((node.stargazers_count_history || []).length >= WEEK_DAYS_COUNT) {
       const { stargazers_count_history: history } = node;
       const weekStargazersHistory = history.slice(
