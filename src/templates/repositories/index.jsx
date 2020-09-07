@@ -29,8 +29,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   const activeAction =
     Object.values(ACTIONS).find(
       action =>
-        currentPath.includes(action.route) && action !== ACTIONS.DEFAULT,
-    ) || ACTIONS.DEFAULT;
+        currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
+    ) || ACTIONS.TRENDING;
 
   useNavigation(SECTIONS.REPOSITORIES);
 
