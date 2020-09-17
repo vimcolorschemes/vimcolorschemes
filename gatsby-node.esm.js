@@ -1,11 +1,13 @@
 import path from "path";
-import dayjs from "dayjs";
 
 import { createRemoteFileNode } from "gatsby-source-filesystem";
 
-import { URLify } from "./src/utils/string";
-import { paginateRoute } from "./src/utils/pagination";
 import Logger from "./src/utils/logger";
+import { URLify } from "./src/utils/string";
+import { WEEK_DAYS_COUNT } from "./src/utils/date";
+import { paginateRoute } from "./src/utils/pagination";
+
+import { computeTrendingStargazersCount } from "./build";
 
 import { ACTIONS, REPOSITORY_COUNT_PER_PAGE } from "./src/constants";
 
@@ -36,25 +38,8 @@ export const onCreateNode = ({
     node.internal.type === "mongodbColorschemesRepositories" &&
     !!node.valid
   ) {
-    const WEEK_DAYS_COUNT = 7;
-    const { stargazers_count_history: history } = node;
-    let weekStargazersCount = 0;
-    if ((history || []).length > 0) {
-      const weekStargazersHistory = history.slice(
-        Math.max(history.length - WEEK_DAYS_COUNT, 0),
-      );
-      const aWeekAgo = dayjs().subtract(WEEK_DAYS_COUNT, "day");
-      const firstDayCount =
-        dayjs(node.github_created_at) >= aWeekAgo
-          ? 0
-          : weekStargazersHistory[0].stargazers_count;
-      const lastDayCount =
-        weekStargazersHistory[weekStargazersHistory.length - 1]
-          .stargazers_count;
-      weekStargazersCount = lastDayCount - firstDayCount;
-    }
-    node.week_stargazers_count =
-      weekStargazersCount >= 0 ? weekStargazersCount : 0;
+    node.week_stargazers_count = computeTrendingStargazersCount(node, WEEK_DAYS_COUNT);
+
     if (node.image_urls && node.image_urls.length > 0) {
       const blacklistedImageUrls = node.blacklisted_image_urls || [];
       const validImageUrls = node.image_urls.filter(
