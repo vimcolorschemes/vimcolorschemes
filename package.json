@@ -22,7 +22,7 @@
     "gatsby-source-mongodb": "^2.3.6",
     "gatsby-transformer-json": "^2.4.1",
     "gatsby-transformer-sharp": "^2.5.12",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
