@@ -1,4 +1,4 @@
-import { getFirstProcessedFluidImage } from "../repository";
+import { getFirstProcessedFluidImage } from "src/utils/repository";
 
 const validProcessedFluidImage = {
   childImageSharp: {
