@@ -100,6 +100,10 @@
   height: 100%;
 }
 
+.card__date {
+  font-weight: bold;
+}
+
 @include lg {
   .card__image {
     height: 20rem;
