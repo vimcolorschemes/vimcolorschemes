@@ -77,10 +77,16 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
 
         <p className="card__infos">{description}</p>
         <p className="card__infos">
-          Created <strong>{format(createdAt)}</strong>
+          Created{" "}
+          <time className="card__date" datetime={createdAt}>
+            {format(createdAt)}
+          </time>
         </p>
         <p className="card__infos">
-          Last commit <strong>{format(lastCommitAt)}</strong>
+          Last commit{" "}
+          <time className="card__date" datetime={lastCommitAt}>
+            {format(lastCommitAt)}
+          </time>
         </p>
       </Link>
     </li>
