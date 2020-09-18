@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
 import { RepositoryType } from "src/types";
 
-import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+import {
+  ACTIONS,
+  SECTIONS,
+  LAYOUTS,
+  REPOSITORY_COUNT_PER_PAGE,
+} from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
+import { useEventListener } from "src/hooks/useEventListener";
+import { useDebounce } from "src/hooks/useDebounce";
 
 import Actions from "src/components/actions";
 import Card from "src/components/card";
@@ -32,7 +39,35 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
     ) || ACTIONS.TRENDING;
 
-  useNavigation(SECTIONS.REPOSITORIES);
+  const [searchInput, setSearchInput] = useState("");
+  const debouncedSearchInput = useDebounce(searchInput, 500);
+  const [filteredRepositories, setFilteredRepositories] = useState(
+    repositories,
+  );
+
+  useEffect(() => {
+    if (debouncedSearchInput)
+      setFilteredRepositories(
+        repositories.filter(repository =>
+          repository.name.includes(debouncedSearchInput),
+        ),
+      );
+    else setFilteredRepositories(repositories);
+  }, [debouncedSearchInput, repositories]);
+
+  const [resetNavigation, disableNavigation] = useNavigation(
+    SECTIONS.REPOSITORIES,
+  );
+
+  const searchInputWrapperRef = useRef();
+  const searchInputRef = useRef();
+
+  useEventListener("keydown", event => {
+    if (event.key === "/" && !!searchInputRef?.current?.focus) {
+      event.preventDefault();
+      searchInputRef.current.focus();
+    }
+  });
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
@@ -44,14 +79,56 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     <Layout isHome>
       <SEO title={`${activeAction.label} ${platform} color schemes`} />
       <Intro />
-      <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
-      <p>
-        {startIndex}
-        {" - "}
-        {endIndex} out of <strong>{totalCount}</strong> repositories
-      </p>
+      <div className="action-row">
+        <label
+          ref={searchInputWrapperRef}
+          className="actions-row__search-input-wrapper"
+          data-section={SECTIONS.ACTIONS}
+          data-layout={LAYOUTS.LIST}
+          tabIndex="0"
+          onKeyDown={event => {
+            if (event.target !== searchInputWrapperRef.current) return;
+            if (event.key === "Enter") {
+              console.log("focus to input please");
+              searchInputRef.current.focus();
+            }
+          }}
+        >
+          <input
+            type="text"
+            value={searchInput}
+            ref={searchInputRef}
+            className="actions-row__search-input"
+            onChange={event => setSearchInput(event.target.value)}
+            onFocus={() => {
+              console.log("focus");
+              disableNavigation();
+            }}
+            onBlur={() => {
+              console.log("blur");
+              resetNavigation();
+            }}
+            onKeyDown={event => {
+              console.log(event.key);
+              if (["Enter", "Escape"].includes(event.key)) {
+                console.log("focus on wrapper please");
+                event.preventDefault();
+                searchInputWrapperRef.current.focus();
+              }
+            }}
+          />
+        </label>
+        <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
+      </div>
+      {!debouncedSearchInput && (
+        <p>
+          {startIndex}
+          {" - "}
+          {endIndex} out of <strong>{totalCount}</strong> repositories
+        </p>
+      )}
       <Grid className="repositories">
-        {repositories.map(repository => (
+        {filteredRepositories.map(repository => (
           <Card
             key={`repository-${repository.owner.name}-${repository.name}`}
             linkState={{ fromPath: currentPath }}
@@ -59,11 +136,13 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           />
         ))}
       </Grid>
-      <Pagination
-        currentPage={currentPage}
-        pageCount={pageCount}
-        activeActionRoute={activeAction.route}
-      />
+      {!debouncedSearchInput && (
+        <Pagination
+          currentPage={currentPage}
+          pageCount={pageCount}
+          activeActionRoute={activeAction.route}
+        />
+      )}
     </Layout>
   );
 };

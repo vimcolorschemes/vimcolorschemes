@@ -1,20 +1,42 @@
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
 
 export const useNavigation = defaultSection => {
-  useEffect(() => {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-      const focusables = document.querySelectorAll("*[data-section]");
+  const isBrowser =
+    typeof window !== "undefined" && typeof document !== "undefined";
 
-      const eventListener = event =>
+  const [eventListener, setEventListener] = useState();
+  const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
+
+  const resetNavigation = useCallback(() => {
+    if (!isBrowser) return;
+    const focusables = document.querySelectorAll("*[data-section]");
+    const eventListener = {
+      eventName: "keydown",
+      callback: event =>
         Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event, focusables, defaultSection);
+        handleKeyPress(event, focusables, defaultSection),
+    };
+    window.addEventListener(eventListener.eventName, eventListener.callback);
+    setEventListener(eventListener);
+    setIsNavigationEnabled(true);
+  }, [isBrowser, defaultSection]);
 
-      window.addEventListener("keydown", eventListener);
-      return () => window.removeEventListener("keydown", eventListener);
-    }
-  }, [defaultSection]);
+  const disableNavigation = useCallback(() => {
+    if (!eventListener) return;
+    window.removeEventListener(eventListener.eventName, eventListener.callback);
+    setEventListener(null);
+    setIsNavigationEnabled(false);
+  }, [eventListener]);
+
+  useEffect(() => {
+    if (eventListener || !isNavigationEnabled) return;
+    resetNavigation();
+    return disableNavigation;
+  }, [resetNavigation, disableNavigation, eventListener, isNavigationEnabled]);
+
+  return [resetNavigation, disableNavigation];
 };
 
 const handleKeyPress = (event, focusables, defaultSection) => {

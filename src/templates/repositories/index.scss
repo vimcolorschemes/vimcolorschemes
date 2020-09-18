@@ -1,3 +1,25 @@
+@import "src/style/mixins/index";
+
 .repositories {
   margin-top: 1rem;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actions-row__search-input-wrapper {
+  padding: 1rem;
+  margin: -1rem;
+  &:hover {
+    @include hover-border;
+  }
+  &:focus {
+    @include focus-border;
+  }
+}
+
+.actions-row__search-input {
 }

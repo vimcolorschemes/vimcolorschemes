@@ -28,14 +28,14 @@ const Actions = ({ actions, activeAction }) => (
   </ul>
 );
 
-const actionType = PropTypes.shape({
+const ActionType = PropTypes.shape({
   label: PropTypes.string.isRequired,
   route: PropTypes.string.isRequired,
 });
 
 Actions.propTypes = {
-  actions: PropTypes.arrayOf(actionType).isRequired,
-  activeAction: actionType.isRequired,
+  actions: PropTypes.arrayOf(ActionType).isRequired,
+  activeAction: ActionType,
 };
 
 export default Actions;
