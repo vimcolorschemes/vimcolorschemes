@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useCallback, useRef } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
 
@@ -6,35 +6,37 @@ export const useNavigation = defaultSection => {
   const isBrowser =
     typeof window !== "undefined" && typeof document !== "undefined";
 
-  const [eventListener, setEventListener] = useState();
-  const [isNavigationEnabled, setIsNavigationEnabled] = useState(true);
+  const eventListener = useRef({ callback: null });
 
   const resetNavigation = useCallback(() => {
     if (!isBrowser) return;
+
+    window.removeEventListener("keydown", eventListener.current.callback);
+
     const focusables = document.querySelectorAll("*[data-section]");
-    const eventListener = {
-      eventName: "keydown",
-      callback: event =>
-        Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event, focusables, defaultSection),
-    };
-    window.addEventListener(eventListener.eventName, eventListener.callback);
-    setEventListener(eventListener);
-    setIsNavigationEnabled(true);
+
+    const callback = event =>
+      Object.values(KEYS).includes(event.key) &&
+      handleKeyPress(event, focusables, defaultSection);
+
+    window.addEventListener("keydown", callback);
+
+    eventListener.current.callback = callback;
   }, [isBrowser, defaultSection]);
 
   const disableNavigation = useCallback(() => {
-    if (!eventListener) return;
-    window.removeEventListener(eventListener.eventName, eventListener.callback);
-    setEventListener(null);
-    setIsNavigationEnabled(false);
-  }, [eventListener]);
+    if (!isBrowser) return;
+
+    window.removeEventListener("keydown", eventListener.current.callback);
+    eventListener.current.callback = null;
+  }, [isBrowser]);
 
   useEffect(() => {
-    if (eventListener || !isNavigationEnabled) return;
+    if (!isBrowser) return;
+
     resetNavigation();
     return disableNavigation;
-  }, [resetNavigation, disableNavigation, eventListener, isNavigationEnabled]);
+  }, [isBrowser, resetNavigation, disableNavigation]);
 
   return [resetNavigation, disableNavigation];
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
@@ -26,8 +26,8 @@ import Pagination from "src/components/pagination";
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
-  const { totalCount, repositories: pageRepositories } = data?.repositoriesData;
-  const { repositories } = data?.allRepositoriesData;
+  const { totalCount, repositories } = data?.repositoriesData;
+  const { repositories: allRepositories } = data?.allRepositoriesData;
   const {
     siteMetadata: { platform },
   } = data?.site;
@@ -42,23 +42,34 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearchInput = useDebounce(searchInput, 500);
+  const [searched, setSearched] = useState(false);
+  const [isInputFocused, setIsInputFocused] = useState(false);
   const [filteredRepositories, setFilteredRepositories] = useState(
-    pageRepositories,
+    repositories,
   );
-
-  useEffect(() => {
-    if (debouncedSearchInput)
-      setFilteredRepositories(
-        repositories.filter(repository =>
-          repository.name.includes(debouncedSearchInput),
-        ),
-      );
-    else setFilteredRepositories(pageRepositories);
-  }, [debouncedSearchInput, repositories, pageRepositories]);
 
   const [resetNavigation, disableNavigation] = useNavigation(
     SECTIONS.REPOSITORIES,
   );
+
+  useEffect(() => {
+    if (debouncedSearchInput) {
+      setFilteredRepositories(
+        allRepositories.filter(repository =>
+          repository.name.includes(debouncedSearchInput),
+        ),
+      );
+      setSearched(true);
+    } else setFilteredRepositories(repositories);
+  }, [debouncedSearchInput, allRepositories, repositories]);
+
+  const isInitial = useMemo(
+    () => !searched && filteredRepositories === repositories,
+    [searched, filteredRepositories, repositories],
+  );
+  useEffect(() => {
+    !isInitial && !isInputFocused && resetNavigation();
+  }, [isInitial, isInputFocused, filteredRepositories]);
 
   const searchInputWrapperRef = useRef();
   const searchInputRef = useRef();
@@ -90,7 +101,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           onKeyDown={event => {
             if (event.target !== searchInputWrapperRef.current) return;
             if (event.key === "Enter") {
-              console.log("focus to input please");
               searchInputRef.current.focus();
             }
           }}
@@ -102,19 +112,14 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             className="actions-row__search-input"
             onChange={event => setSearchInput(event.target.value)}
             onFocus={() => {
-              console.log("focus");
+              setIsInputFocused(true);
               disableNavigation();
             }}
-            onBlur={() => {
-              console.log("blur");
-              resetNavigation();
-            }}
             onKeyDown={event => {
-              console.log(event.key);
               if (["Enter", "Escape"].includes(event.key)) {
-                console.log("focus on wrapper please");
                 event.preventDefault();
                 searchInputWrapperRef.current.focus();
+                setIsInputFocused(false);
               }
             }}
           />
@@ -157,6 +162,9 @@ RepositoriesPage.propTypes = {
     }).isRequired,
     repositoriesData: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
+      repositories: PropTypes.arrayOf(RepositoryType).isRequired,
+    }).isRequired,
+    allRepositoriesData: PropTypes.shape({
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
     }).isRequired,
   }).isRequired,
