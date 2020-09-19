@@ -26,7 +26,8 @@ import Pagination from "src/components/pagination";
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
-  const { totalCount, repositories } = data?.repositoriesData;
+  const { totalCount, repositories: pageRepositories } = data?.repositoriesData;
+  const { repositories } = data?.allRepositoriesData;
   const {
     siteMetadata: { platform },
   } = data?.site;
@@ -42,7 +43,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearchInput = useDebounce(searchInput, 500);
   const [filteredRepositories, setFilteredRepositories] = useState(
-    repositories,
+    pageRepositories,
   );
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           repository.name.includes(debouncedSearchInput),
         ),
       );
-    else setFilteredRepositories(repositories);
-  }, [debouncedSearchInput, repositories]);
+    else setFilteredRepositories(pageRepositories);
+  }, [debouncedSearchInput, repositories, pageRepositories]);
 
   const [resetNavigation, disableNavigation] = useNavigation(
     SECTIONS.REPOSITORIES,
@@ -71,7 +72,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
-    currentPage === pageCount
+    currentPage === totalCount
       ? totalCount
       : currentPage * REPOSITORY_COUNT_PER_PAGE;
 
@@ -186,6 +187,37 @@ export const query = graphql`
       skip: $skip
     ) {
       totalCount
+      repositories: nodes {
+        name
+        description
+        stargazersCount: stargazers_count
+        createdAt: github_created_at
+        lastCommitAt: last_commit_at
+        githubUrl: github_url
+        weekStargazersCount: week_stargazers_count
+        owner {
+          name
+        }
+        featuredImage: processed_featured_image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        images: processed_images {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+    allRepositoriesData: allMongodbColorschemesRepositories(
+      filter: { valid: { eq: true }, image_urls: { ne: "" } }
+      sort: { fields: $sortField, order: $sortOrder }
+    ) {
       repositories: nodes {
         name
         description
