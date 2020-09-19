@@ -1,18 +1,12 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
 import { RepositoryType } from "src/types";
 
-import {
-  ACTIONS,
-  SECTIONS,
-  LAYOUTS,
-  REPOSITORY_COUNT_PER_PAGE,
-} from "src/constants";
+import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
-import { useEventListener } from "src/hooks/useEventListener";
 import { useDebounce } from "src/hooks/useDebounce";
 
 import Actions from "src/components/actions";
@@ -24,6 +18,7 @@ import SEO from "src/components/seo";
 import Pagination from "src/components/pagination";
 
 import "./index.scss";
+import SearchInput from "../../components/searchInput";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
@@ -42,14 +37,22 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   const [searchInput, setSearchInput] = useState("");
   const debouncedSearchInput = useDebounce(searchInput, 500);
-  const [searched, setSearched] = useState(false);
-  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [hasSearched, setHasSearched] = useState(false);
+  const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
+
   const [filteredRepositories, setFilteredRepositories] = useState(
     repositories,
   );
 
   const [resetNavigation, disableNavigation] = useNavigation(
     SECTIONS.REPOSITORIES,
+  );
+
+  const isInitialLoad = useMemo(
+    // If user has searched once, false
+    // If repositories are different from default, false
+    () => !hasSearched && filteredRepositories === repositories,
+    [hasSearched, filteredRepositories, repositories],
   );
 
   useEffect(() => {
@@ -59,27 +62,19 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           repository.name.includes(debouncedSearchInput),
         ),
       );
-      setSearched(true);
-    } else setFilteredRepositories(repositories);
-  }, [debouncedSearchInput, allRepositories, repositories]);
+      setHasSearched(true);
+    } else if (!isInitialLoad) setFilteredRepositories(repositories);
+  }, [isInitialLoad, debouncedSearchInput, allRepositories, repositories]);
 
-  const isInitial = useMemo(
-    () => !searched && filteredRepositories === repositories,
-    [searched, filteredRepositories, repositories],
-  );
   useEffect(() => {
-    !isInitial && !isInputFocused && resetNavigation();
-  }, [isInitial, isInputFocused, filteredRepositories]);
-
-  const searchInputWrapperRef = useRef();
-  const searchInputRef = useRef();
-
-  useEventListener("keydown", event => {
-    if (event.key === "/" && !!searchInputRef?.current?.focus) {
-      event.preventDefault();
-      searchInputRef.current.focus();
-    }
-  });
+    // reset navigation when filteredRepositories changes
+    if (!isInitialLoad && !isSearchInputFocused) resetNavigation();
+  }, [
+    filteredRepositories,
+    isInitialLoad,
+    isSearchInputFocused,
+    resetNavigation,
+  ]);
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
@@ -92,38 +87,16 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       <SEO title={`${activeAction.label} ${platform} color schemes`} />
       <Intro />
       <div className="action-row">
-        <label
-          ref={searchInputWrapperRef}
-          className="actions-row__search-input-wrapper"
-          data-section={SECTIONS.ACTIONS}
-          data-layout={LAYOUTS.LIST}
-          tabIndex="0"
-          onKeyDown={event => {
-            if (event.target !== searchInputWrapperRef.current) return;
-            if (event.key === "Enter") {
-              searchInputRef.current.focus();
-            }
-          }}
-        >
-          <input
-            type="text"
-            value={searchInput}
-            ref={searchInputRef}
-            className="actions-row__search-input"
-            onChange={event => setSearchInput(event.target.value)}
-            onFocus={() => {
-              setIsInputFocused(true);
+        <SearchInput
+          value={searchInput}
+          onChange={event => setSearchInput(event.target.value)}
+          onFocusChange={isFocused => {
+            if (isFocused) {
               disableNavigation();
-            }}
-            onKeyDown={event => {
-              if (["Enter", "Escape"].includes(event.key)) {
-                event.preventDefault();
-                searchInputWrapperRef.current.focus();
-                setIsInputFocused(false);
-              }
-            }}
-          />
-        </label>
+            }
+            setIsSearchInputFocused(isFocused);
+          }}
+        />
         <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       </div>
       {!debouncedSearchInput && (
