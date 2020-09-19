@@ -1,4 +1,5 @@
 @import "src/style/mixins/index";
+@import "src/style/mixins/breakpoints";
 
 .repositories {
   margin-top: 1rem;
@@ -6,20 +7,13 @@
 
 .action-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
 }
 
-.actions-row__search-input-wrapper {
-  padding: 1rem;
-  margin: -1rem;
-  &:hover {
-    @include hover-border;
+@include lg {
+  .action-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
-  &:focus {
-    @include focus-border;
-  }
-}
-
-.actions-row__search-input {
 }

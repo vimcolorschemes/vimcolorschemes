@@ -16,9 +16,9 @@ import Intro from "src/components/intro";
 import Layout from "src/components/layout";
 import SEO from "src/components/seo";
 import Pagination from "src/components/pagination";
+import SearchInput from "../../components/searchInput";
 
 import "./index.scss";
-import SearchInput from "../../components/searchInput";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
@@ -76,6 +76,9 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     resetNavigation,
   ]);
 
+  console.log(hasSearched);
+  console.log(isInitialLoad);
+
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
     currentPage === totalCount
@@ -93,6 +96,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           onFocusChange={isFocused => {
             if (isFocused) {
               disableNavigation();
+            } else if (!searchInput) {
+              resetNavigation();
             }
             setIsSearchInputFocused(isFocused);
           }}

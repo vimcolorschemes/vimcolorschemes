@@ -1,0 +1,37 @@
+@import "src/style/mixins/index";
+@import "src/style/mixins/breakpoints";
+
+.search {
+  padding: 1rem;
+  margin: -1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  &:hover {
+    @include hover-border;
+  }
+  &:focus {
+    @include focus-border;
+  }
+}
+
+.search__label {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translate(calc(-100% - 2rem), -50%);
+}
+
+.search__input {
+  flex: 1;
+  padding: .5rem;
+  border-radius: 0;
+  border: 2px solid var(--focus-border);
+}
+
+@include lg {
+  .search {
+    width: 20rem;
+  }
+}

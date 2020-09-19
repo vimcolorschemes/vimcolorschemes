@@ -1,10 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
 
 import { useEventListener } from "src/hooks/useEventListener";
 
+import "./index.scss";
+
+const SEARCH_LABELS = {
+  DEFAULT: "/",
+  FOCUSED: "Enter",
+};
+
 const SearchInput = ({ value, onChange, onFocusChange }) => {
+  const [label, setLabel] = useState(SEARCH_LABELS.DEFAULT);
+
   const searchInputWrapperRef = useRef();
   const searchInputRef = useRef();
 
@@ -18,7 +27,7 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
   return (
     <label
       ref={searchInputWrapperRef}
-      className="actions-row__search-input-wrapper"
+      className="search"
       data-section={SECTIONS.ACTIONS}
       data-layout={LAYOUTS.LIST}
       tabIndex="0"
@@ -31,17 +40,25 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
     >
       <input
         type="text"
-        value={value}
         ref={searchInputRef}
-        className="actions-row__search-input"
+        className="search__input"
+        value={value}
         onChange={onChange}
-        onFocus={() => onFocusChange(true)}
-        onBlur={() => onFocusChange(false)}
+        placeholder="dark, contrast, ..."
+        onFocus={() => {
+          onFocusChange(true);
+          setLabel(SEARCH_LABELS.FOCUSED);
+        }}
+        onBlur={() => {
+          onFocusChange(false);
+          setLabel(SEARCH_LABELS.DEFAULT);
+        }}
         onKeyDown={event => {
           if (["Enter", "Escape"].includes(event.key))
             searchInputWrapperRef.current.focus();
         }}
       />
+      <span className="search__label">{label}</span>
     </label>
   );
 };
