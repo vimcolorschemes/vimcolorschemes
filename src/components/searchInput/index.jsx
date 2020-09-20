@@ -4,14 +4,14 @@ import { SECTIONS, LAYOUTS } from "src/constants";
 
 import { useEventListener } from "src/hooks/useEventListener";
 
-import { Enter } from "src/components/icons";
+import { Enter, Slash } from "src/components/icons";
 
 import "./index.scss";
 
 const SEARCH_LABELS = {
   DEFAULT: {
-    description: 'Search. Press / to focus.',
-    render: () => "/",
+    description: "Search. Press / to focus.",
+    render: () => <Slash className="search__icon search__icon--short" />,
   },
   FOCUSED: {
     description: "Press Enter to focus out.",
@@ -26,7 +26,11 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
   const searchInputRef = useRef();
 
   useEventListener("keydown", event => {
-    if (event.key === "/" && !!searchInputRef?.current?.focus) {
+    if (
+      event.target !== searchInputRef.current &&
+      event.key === "/" &&
+      !!searchInputRef?.current?.focus
+    ) {
       event.preventDefault();
       searchInputRef.current.focus();
     }
@@ -36,7 +40,6 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
     <label
       ref={searchInputWrapperRef}
       className="search"
-      for="search-input"
       data-section={SECTIONS.ACTIONS}
       data-layout={LAYOUTS.LIST}
       tabIndex="0"
@@ -55,7 +58,7 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
         name="search-input"
         value={value}
         onChange={onChange}
-        placeholder="gruvbox, nord, ..."
+        placeholder="dark, contrast, ..."
         aria-label={label.description}
         onFocus={() => {
           onFocusChange(true);
@@ -70,7 +73,9 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
             searchInputWrapperRef.current.focus();
         }}
       />
-      <span className="search__label" aria-hidden>{label.render()}</span>
+      <span className="search__icon-wrapper" aria-hidden>
+        {label.render()}
+      </span>
     </label>
   );
 };

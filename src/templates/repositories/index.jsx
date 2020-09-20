@@ -36,7 +36,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     ) || ACTIONS.TRENDING;
 
   const [searchInput, setSearchInput] = useState("");
-  const debouncedSearchInput = useDebounce(searchInput, 500);
+  const debouncedSearchInput = useDebounce(searchInput, 200);
   const [hasSearched, setHasSearched] = useState(false);
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
 
