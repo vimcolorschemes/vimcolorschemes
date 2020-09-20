@@ -5,7 +5,7 @@ import * as JsSearch from "js-search";
 
 import { RepositoryType } from "src/types";
 
-import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+import { ACTIONS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 import { useDebounce } from "src/hooks/useDebounce";
@@ -21,13 +21,33 @@ import SearchInput from "../../components/searchInput";
 
 import "./index.scss";
 
+const createSearchData = repositories => {
+  const data = new JsSearch.Search("id");
+  data.indexStrategy = new JsSearch.PrefixIndexStrategy();
+  data.sanitizer = new JsSearch.LowerCaseSanitizer();
+  data.searchIndex = new JsSearch.TfIdfSearchIndex("id");
+  data.addIndex("name");
+  data.addIndex(["owner", "name"]);
+  data.addIndex("description");
+  data.addDocuments(repositories);
+  return data;
+};
+
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
-  const { repositories: allRepositories } = data?.allRepositoriesData;
   const {
     siteMetadata: { platform },
   } = data?.site;
-  const { currentPage, pageCount } = pageContext;
+  const { currentPage, pageCount, skip, limit } = pageContext;
+
+  const pageRepositories = useMemo(() => repositories.slice(skip, limit), [
+    repositories,
+    skip,
+    limit,
+  ]);
+  const searchData = useMemo(() => createSearchData(repositories), [
+    repositories,
+  ]);
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -36,68 +56,41 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
     ) || ACTIONS.TRENDING;
 
-  const [searchInput, setSearchInput] = useState("");
-  const debouncedSearchInput = useDebounce(searchInput, 200);
-  const [hasSearched, setHasSearched] = useState(false);
+  const [searchInput, setSearchInput] = useState(null);
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [searchIndex, setSearchIndex] = useState();
 
-  const [filteredRepositories, setFilteredRepositories] = useState(
-    repositories,
-  );
+  const [filterData, setFilterData] = useState({
+    searchInput: null,
+    repositories: pageRepositories,
+  });
+
+  filterData.searchInput = useDebounce(searchInput, 200);
 
   const [resetNavigation, disableNavigation] = useNavigation(
     SECTIONS.REPOSITORIES,
   );
 
-  const isInitialLoad = useMemo(
-    // If user has searched once, false
-    // If repositories are different from default, false
-    () => !hasSearched && filteredRepositories === repositories,
-    [hasSearched, filteredRepositories, repositories],
-  );
+  useEffect(() => {
+    if (filterData.searchInput)
+      setFilterData(data => ({
+        ...data,
+        repositories: searchData.search(filterData.searchInput),
+      }));
+    else if (filterData.searchInput !== null)
+      setFilterData(data => ({
+        ...data,
+        repositories: pageRepositories,
+      }));
+  }, [filterData.searchInput, searchData, pageRepositories]);
 
   useEffect(() => {
-    const dataToSearch = new JsSearch.Search("isbn");
-    dataToSearch.indexStrategy = new JsSearch.PrefixIndexStrategy();
-    dataToSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
-    dataToSearch.searchIndex = new JsSearch.TfIdfSearchIndex("isbn");
-    dataToSearch.addIndex("name");
-    dataToSearch.addIndex("description");
-    dataToSearch.addDocuments(allRepositories);
-    setSearchIndex(dataToSearch);
-  }, [allRepositories]);
-
-  useEffect(() => {
-    if (debouncedSearchInput) {
-      setIsSearching(true);
-      setFilteredRepositories(searchIndex.search(debouncedSearchInput));
-      setHasSearched(true);
-      setIsSearching(true);
-      setLoading(false);
-    } else if (!isInitialLoad) {
-      setFilteredRepositories(repositories);
-      setIsSearching(false);
-    }
-  }, [isInitialLoad, debouncedSearchInput, searchIndex, repositories]);
-
-  useEffect(() => {
-    // reset navigation when filteredRepositories changes
-    if (!isInitialLoad && !isSearchInputFocused) resetNavigation();
-  }, [
-    filteredRepositories,
-    isInitialLoad,
-    isSearchInputFocused,
-    resetNavigation,
-  ]);
-
-  const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
-  const endIndex =
-    currentPage === totalCount
-      ? totalCount
-      : currentPage * REPOSITORY_COUNT_PER_PAGE;
+    if (
+      !isSearchInputFocused &&
+      filterData.searchInput !== null &&
+      filterData.searchInput === searchInput
+    )
+      resetNavigation();
+  }, [filterData, isSearchInputFocused, resetNavigation, searchInput]);
 
   return (
     <Layout isHome>
@@ -105,34 +98,30 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       <Intro />
       <div className="action-row">
         <SearchInput
-          value={searchInput}
+          value={searchInput || ""}
           onChange={event => setSearchInput(event.target.value)}
           onFocusChange={isFocused => {
-            if (isFocused) {
-              disableNavigation();
-            } else if (!searchInput) {
-              resetNavigation();
-            }
+            if (isFocused) disableNavigation();
             setIsSearchInputFocused(isFocused);
           }}
         />
         <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       </div>
-      {isSearching && !loading ? (
+      {!!filterData.searchInput ? (
         <p>
-          <strong>{filteredRepositories.length}</strong> result
-          {filteredRepositories.length !== 1 ? "s" : ""} for "
-          {debouncedSearchInput}"
+          <strong>{filterData.repositories.length}</strong> result
+          {filterData.repositories.length !== 1 ? "s" : ""} for "
+          {filterData.searchInput}"
         </p>
       ) : (
         <p>
-          {startIndex}
+          {skip + 1}
           {" - "}
-          {endIndex} out of <strong>{totalCount}</strong> repositories
+          {limit} out of <strong>{totalCount}</strong> repositories
         </p>
       )}
       <Grid className="repositories">
-        {filteredRepositories.map(repository => (
+        {filterData.repositories.map(repository => (
           <Card
             key={`repository-${repository.owner.name}-${repository.name}`}
             linkState={{ fromPath: currentPath }}
@@ -140,7 +129,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           />
         ))}
       </Grid>
-      {!debouncedSearchInput && (
+      {!filterData.searchInput && (
         <Pagination
           currentPage={currentPage}
           pageCount={pageCount}
@@ -162,9 +151,6 @@ RepositoriesPage.propTypes = {
       totalCount: PropTypes.number.isRequired,
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
     }).isRequired,
-    allRepositoriesData: PropTypes.shape({
-      repositories: PropTypes.arrayOf(RepositoryType).isRequired,
-    }).isRequired,
   }).isRequired,
   pageContext: PropTypes.shape({
     limit: PropTypes.number.isRequired,
@@ -176,8 +162,6 @@ RepositoriesPage.propTypes = {
 
 export const query = graphql`
   query(
-    $skip: Int!
-    $limit: Int!
     $sortField: [mongodbColorschemesRepositoriesFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
@@ -189,42 +173,10 @@ export const query = graphql`
     repositoriesData: allMongodbColorschemesRepositories(
       filter: { valid: { eq: true }, image_urls: { ne: "" } }
       sort: { fields: $sortField, order: $sortOrder }
-      limit: $limit
-      skip: $skip
     ) {
       totalCount
       repositories: nodes {
-        name
-        description
-        stargazersCount: stargazers_count
-        createdAt: github_created_at
-        lastCommitAt: last_commit_at
-        githubUrl: github_url
-        weekStargazersCount: week_stargazers_count
-        owner {
-          name
-        }
-        featuredImage: processed_featured_image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        images: processed_images {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    }
-    allRepositoriesData: allMongodbColorschemesRepositories(
-      filter: { valid: { eq: true }, image_urls: { ne: "" } }
-      sort: { fields: $sortField, order: $sortOrder }
-    ) {
-      repositories: nodes {
+        id
         name
         description
         stargazersCount: stargazers_count
