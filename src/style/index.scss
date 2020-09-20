@@ -19,6 +19,7 @@ body {
   --text-pale: var(--black-pale);
   --focus-border: var(--black-pale);
   --background: var(--white);
+  --input-border: var(--black-pale);
 
   &.dark {
     --link: var(--blue-pale);
@@ -26,6 +27,7 @@ body {
     --text-pale: var(--white-pale);
     --focus-border: var(--white-pale);
     --background: var(--black);
+    --input-border: var(--white-pale);
   }
 
   font-family: var(--font-family);
@@ -37,6 +39,11 @@ body {
   background: var(--background);
 
   transition: background 300ms ease, color 300ms ease;
+}
+
+input {
+  font-family: var(--font-family);
+  font-size: 1rem;
 }
 
 a {
@@ -66,4 +73,9 @@ strong {
 
 .inline-link {
   color: var(--link);
+}
+
+.hidden {
+  position: absolute;
+  opacity: 0;
 }
