@@ -39,6 +39,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   const debouncedSearchInput = useDebounce(searchInput, 200);
   const [hasSearched, setHasSearched] = useState(false);
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const [filteredRepositories, setFilteredRepositories] = useState(
     repositories,
@@ -57,13 +59,21 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   useEffect(() => {
     if (debouncedSearchInput) {
+      setIsSearching(true);
       setFilteredRepositories(
-        allRepositories.filter(repository =>
-          repository.name.includes(debouncedSearchInput),
+        allRepositories.filter(
+          repository =>
+            repository.name.includes(debouncedSearchInput) ||
+            repository.description.includes(debouncedSearchInput),
         ),
       );
       setHasSearched(true);
-    } else if (!isInitialLoad) setFilteredRepositories(repositories);
+      setIsSearching(true);
+      setLoading(false);
+    } else if (!isInitialLoad) {
+      setFilteredRepositories(repositories);
+      setIsSearching(false);
+    }
   }, [isInitialLoad, debouncedSearchInput, allRepositories, repositories]);
 
   useEffect(() => {
@@ -75,9 +85,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     isSearchInputFocused,
     resetNavigation,
   ]);
-
-  console.log(hasSearched);
-  console.log(isInitialLoad);
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
@@ -104,7 +111,13 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         />
         <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       </div>
-      {!debouncedSearchInput && (
+      {isSearching && !loading ? (
+        <p>
+          <strong>{filteredRepositories.length}</strong> result
+          {filteredRepositories.length !== 1 ? "s" : ""} for "
+          {debouncedSearchInput}"
+        </p>
+      ) : (
         <p>
           {startIndex}
           {" - "}
