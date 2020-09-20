@@ -7,7 +7,11 @@
 
 .action-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
+  margin: 2rem 0;
+  & > * + * {
+    margin-bottom: 2rem;
+  }
 }
 
 @include lg {
@@ -15,5 +19,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    & > * + * {
+      margin-bottom: 0;
+    }
   }
 }
