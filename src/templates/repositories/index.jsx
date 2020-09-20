@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
+import * as JsSearch from "js-search";
 
 import { RepositoryType } from "src/types";
 
@@ -41,6 +42,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   const [isSearchInputFocused, setIsSearchInputFocused] = useState(false);
   const [isSearching, setIsSearching] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [searchIndex, setSearchIndex] = useState();
 
   const [filteredRepositories, setFilteredRepositories] = useState(
     repositories,
@@ -58,15 +60,20 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   );
 
   useEffect(() => {
+    const dataToSearch = new JsSearch.Search("isbn");
+    dataToSearch.indexStrategy = new JsSearch.PrefixIndexStrategy();
+    dataToSearch.sanitizer = new JsSearch.LowerCaseSanitizer();
+    dataToSearch.searchIndex = new JsSearch.TfIdfSearchIndex("isbn");
+    dataToSearch.addIndex("name");
+    dataToSearch.addIndex("description");
+    dataToSearch.addDocuments(allRepositories);
+    setSearchIndex(dataToSearch);
+  }, [allRepositories]);
+
+  useEffect(() => {
     if (debouncedSearchInput) {
       setIsSearching(true);
-      setFilteredRepositories(
-        allRepositories.filter(
-          repository =>
-            repository.name.includes(debouncedSearchInput) ||
-            repository.description.includes(debouncedSearchInput),
-        ),
-      );
+      setFilteredRepositories(searchIndex.search(debouncedSearchInput));
       setHasSearched(true);
       setIsSearching(true);
       setLoading(false);
@@ -74,7 +81,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       setFilteredRepositories(repositories);
       setIsSearching(false);
     }
-  }, [isInitialLoad, debouncedSearchInput, allRepositories, repositories]);
+  }, [isInitialLoad, debouncedSearchInput, searchIndex, repositories]);
 
   useEffect(() => {
     // reset navigation when filteredRepositories changes
