@@ -40,11 +40,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
   } = data?.site;
   const { currentPage, pageCount, skip, limit } = pageContext;
 
-  const pageRepositories = useMemo(() => repositories.slice(skip, limit), [
-    repositories,
-    skip,
-    limit,
-  ]);
+  const pageRepositories = useMemo(
+    () => repositories.slice(skip, skip + limit),
+    [repositories, skip, limit],
+  );
   const searchData = useMemo(() => createSearchData(repositories), [
     repositories,
   ]);
