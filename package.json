@@ -34,7 +34,7 @@
     "babel-preset-gatsby": "^0.5.5",
     "gatsby-plugin-root-import": "^2.0.5",
     "jest": "^26.4.2",
-    "prettier": "2.0.5"
+    "prettier": "2.1.2"
   },
   "keywords": [
     "gatsby"
