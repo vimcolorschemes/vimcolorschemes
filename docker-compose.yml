@@ -2,7 +2,7 @@ version: '3'
 
 services:
   app:
-    container_name: app
+    container_name: vimcolorschemes_app
     build: .
     ports:
       - "8000:8000"
@@ -15,7 +15,7 @@ services:
     depends_on:
       - db
   db:
-    container_name: db
+    container_name: vimcolorschemes_db
     image: "mongo:4.4.1-bionic"
     restart: always
     ports:
