@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   app:
@@ -19,7 +19,7 @@ services:
     image: mongo:4.4.1-latest
     restart: always
     ports:
-      - 27017:27017
+      - "27017:27017"
     volumes:
       - ./mongo/db:/data/db
       - ./mongo/configdb:/data/configdb
