@@ -1,7 +1,4 @@
 <h1 align="center">
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
   <img alt="vimcolorschemes logo" src="src/images/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
@@ -15,6 +12,9 @@
   <img src="https://img.shields.io/github/stars/reobin/vimcolorschemes?style=flat-square&logo=github&color=4f8752" alt="stars" />
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
+  <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All contributors" />
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
   <img src="http://img.shields.io/badge/gatsby-663399?style=flat-square&logo=gatsby" alt="gatsby" />
@@ -53,13 +53,11 @@ Developers, check out the [development guide](https://github.com/reobin/vimcolor
 
 [Bugs and feature requests](https://github.com/reobin/vimcolorschemes/issues) are welcome. Make sure to follow the issue template before posting.
 
-## Credits
+## Credits ✨
 
 Credit goes to all the creators of vim color schemes around GitHub 🎉
 
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks also goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
