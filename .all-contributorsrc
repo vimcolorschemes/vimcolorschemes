@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "tsubasaogawa",
+      "name": "Tsubasa Ogawa",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7788821?v=4",
+      "profile": "https://github.com/tsubasaogawa",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "vimcolorschemes",
+  "projectOwner": "reobin",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
