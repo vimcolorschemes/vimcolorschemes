@@ -16,7 +16,7 @@ services:
       - db
   db:
     container_name: vimcolorschemes_db
-    image: mongo:4.4.1-latest
+    image: mongo:latest
     restart: always
     ports:
       - "27017:27017"
