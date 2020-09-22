@@ -1,4 +1,4 @@
-FROM node:14.11.0-buster-slim
+FROM node:slim
 
 WORKDIR /usr/src/app
 
