@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-  <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="All contributors" />
+  <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -74,9 +74,4 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-<<<<<<< HEAD
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-=======
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
-
-> > > > > > > main
