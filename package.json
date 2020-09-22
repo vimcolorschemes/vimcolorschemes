@@ -47,7 +47,7 @@
     "start": "npm run develop",
     "start::local": "npm run develop -- -H 0.0.0.0",
     "clean": "gatsby clean",
-    "seed": "sh ./seed/run.sh",
+    "seed": "sh db/seed.sh",
     "preview::build": "npm run clean && npm run build",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
     "test": "jest --silent"

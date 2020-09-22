@@ -23,6 +23,6 @@ services:
     volumes:
       - ./mongo/db:/data/db
       - ./mongo/configdb:/data/configdb
-      - ./seed:/docker-entrypoint-initdb.d
+      - ./db:/docker-entrypoint-initdb.d
     environment:
       REMOTE_SEED_DIR: /docker-entrypoint-initdb.d
