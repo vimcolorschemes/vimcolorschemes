@@ -7,6 +7,7 @@
     "classnames": "^2.2.6",
     "dayjs": "^1.8.36",
     "dotenv": "^8.2.0",
+    "emoji-js": "^3.5.0",
     "esm": "^3.2.25",
     "gatsby": "^2.24.65",
     "gatsby-cli": "^2.12.100",
@@ -60,4 +61,3 @@
     "url": "https://github.com/reobin/vimcolorschemes/issues"
   }
 }
-

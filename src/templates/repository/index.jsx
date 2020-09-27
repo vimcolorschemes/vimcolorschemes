@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
+import { EmojiConvertor } from 'emoji-js'
 
 import { RepositoryType } from "src/types";
 
@@ -19,6 +20,12 @@ import SEO from "src/components/seo";
 import ZoomableImage from "src/components/zoomableImage";
 
 import "./index.scss";
+
+const emoji = new EmojiConvertor();
+
+// this will explicitely convert colons to unicode instead of `span` tag and `img` tag.
+emoji.replace_mode='unified';
+emoji.allow_native = true;
 
 const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
@@ -84,7 +91,7 @@ const RepositoryPage = ({ data, location }) => {
         <header className="repository__hero">
           <Nav />
           <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
-          <p>{description}</p>
+          <p>{emoji.replace_colons(description)}</p>
         </header>
         <section>
           {!!featuredImage && (

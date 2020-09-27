@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import { EmojiConvertor } from 'emoji-js'
 
 import { RepositoryType } from "src/types";
 
@@ -17,6 +18,12 @@ import { Star, TrendingUp } from "src/components/icons";
 import RepositoryTitle from "src/components/repositoryTitle";
 
 import "./index.scss";
+
+const emoji = new EmojiConvertor();
+
+// this will explicitely convert colons to unicode instead of `span` tag and `img` tag.
+emoji.replace_mode='unified';
+emoji.allow_native = true;
 
 const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
   const {
@@ -75,7 +82,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
           </div>
         </div>
 
-        <p className="card__infos">{description}</p>
+        <p className="card__infos">{emoji.replace_colons(description)}</p>
         <p className="card__infos">
           Created{" "}
           <time className="card__date" dateTime={createdAt}>
