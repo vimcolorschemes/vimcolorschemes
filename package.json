@@ -5,7 +5,7 @@
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.9.0",
     "dotenv": "^8.2.0",
     "esm": "^3.2.25",
     "gatsby": "^2.24.65",
