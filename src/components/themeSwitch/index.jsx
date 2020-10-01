@@ -17,7 +17,7 @@ const ThemeSwitch = inputArgs => {
   }, [isBrowser]);
 
   return (
-    <label className="theme-switch">
+    <label className="theme-switch" tabIndex="0" role="switch" aria-checked={theme === THEMES.DARK} >
       <input
         type="checkbox"
         className="theme-switch__input"
