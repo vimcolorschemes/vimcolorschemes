@@ -2,20 +2,26 @@
 
 .site-title {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 1rem;
+  padding: 0.5rem;
   margin: -1rem;
   width: min-content;
 }
 
 .site-title__logo {
-  height: 5rem;
+  height: 2rem;
+}
+
+.site-title:not(.site-title--vertical) {
+  & .site-title__name {
+    margin-left: 0.5rem;
+  }
 }
 
 .site-title__name-part {
   color: var(--text-pale);
-  font-size: 2rem;
+  font-size: 1rem;
   text-decoration: none;
   margin: 0;
   &:first-of-type {
@@ -23,11 +29,18 @@
   }
 }
 
+@include md {
+  .site-title {
+    padding: 1rem;
+  }
+}
+
 @include lg {
-  .site-title:not(.site-title--vertical) {
-    flex-direction: row;
-    & .site-title__name {
-      margin-left: 0.5rem;
-    }
+  .site-title__name-part {
+    font-size: 2rem;
+  }
+
+  .site-title__logo {
+    height: 5rem;
   }
 }

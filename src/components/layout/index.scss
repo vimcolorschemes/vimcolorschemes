@@ -21,6 +21,10 @@ body,
   flex-direction: column;
   @include container-layout;
   flex: 1;
-  padding-top: 1rem;
+  padding-top: 0.5rem;
   padding-bottom: 1rem;
+}
+
+@include md {
+  padding-top: 1rem;
 }
