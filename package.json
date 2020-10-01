@@ -17,7 +17,7 @@
     "gatsby-plugin-sass": "^2.3.14",
     "gatsby-plugin-sharp": "^2.6.37",
     "gatsby-plugin-sitemap": "^2.4.14",
-    "gatsby-source-filesystem": "^2.3.31",
+    "gatsby-source-filesystem": "^2.3.32",
     "gatsby-source-mongodb": "^2.3.12",
     "gatsby-transformer-sharp": "^2.5.16",
     "node-fetch": "^2.6.1",
