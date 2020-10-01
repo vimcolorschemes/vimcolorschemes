@@ -34,7 +34,7 @@
 .zoomable__toggle:focus + .zoomable__container {
   @include focus-border;
 }
-.zoomable__toggle:hover + .zoomable__container,
+
 .zoomable__container:hover {
   @include hover-border;
 }
