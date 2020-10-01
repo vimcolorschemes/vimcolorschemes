@@ -11,7 +11,7 @@
       "name": "Robin Gagnon",
       "avatar_url": "https://avatars1.githubusercontent.com/u/5920450?v=4",
       "profile": "http://reobin.dev",
-      "contributions" : [
+      "contributions": [
         "code",
         "design",
         "doc",
@@ -26,6 +26,26 @@
       "profile": "https://github.com/tsubasaogawa",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "roya3000",
+      "name": "Alexander Mykolaichuk",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3904240?v=4",
+      "profile": "https://draftcloud.io",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Pustur",
+      "name": "Loris Bettazza",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13663338?v=4",
+      "profile": "https://lorisbettazza.com",
+      "contributions": [
+        "code",
+        "ideas"
       ]
     }
   ],
