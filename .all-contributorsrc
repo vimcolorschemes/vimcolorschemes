@@ -11,7 +11,7 @@
       "name": "Robin Gagnon",
       "avatar_url": "https://avatars1.githubusercontent.com/u/5920450?v=4",
       "profile": "http://reobin.dev",
-      "contributions" : [
+      "contributions": [
         "code",
         "design",
         "doc",
@@ -24,6 +24,15 @@
       "name": "Tsubasa Ogawa",
       "avatar_url": "https://avatars0.githubusercontent.com/u/7788821?v=4",
       "profile": "https://github.com/tsubasaogawa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "roya3000",
+      "name": "Alexander Mykolaichuk",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3904240?v=4",
+      "profile": "https://draftcloud.io",
       "contributions": [
         "code"
       ]
