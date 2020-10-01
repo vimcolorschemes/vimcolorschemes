@@ -10,7 +10,12 @@
 }
 
 .pagination__page-status {
-  margin: 0 3rem;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+  margin: 0;
 }
 
 .pagination__link-block {
@@ -44,5 +49,11 @@
   }
   .pagination__link--limit {
     display: block;
+  }
+
+  .pagination__page-status {
+    margin: 0 3rem;
+    position: relative;
+    width: auto;
   }
 }
