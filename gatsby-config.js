@@ -28,9 +28,9 @@ module.exports = {
           },
           production: {
             policy: [
-              process.env.GATSBY_DISABLE_ROBOTS
-                ? { userAgent: "*", disallow: ["/"] }
-                : { userAgent: "*", allow: ["/"] },
+              process.env.GATSBY_ENABLE_ROBOTS
+                ? { userAgent: "*", allow: ["/"] }
+                : { userAgent: "*", disallow: ["/"] },
             ],
           },
         },
