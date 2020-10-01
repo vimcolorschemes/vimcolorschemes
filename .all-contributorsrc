@@ -37,6 +37,16 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "Pustur",
+      "name": "Loris Bettazza",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13663338?v=4",
+      "profile": "https://lorisbettazza.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,
