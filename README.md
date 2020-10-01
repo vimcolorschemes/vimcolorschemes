@@ -17,12 +17,12 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
-  <img src="http://img.shields.io/badge/gatsby-663399?style=flat-square&logo=gatsby" alt="gatsby" />
-  <img src="http://img.shields.io/badge/react-61DAFB?style=flat-square&logo=react&logoColor=black" alt="react" />
-  <img src="http://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="javascript" />
-  <img src="http://img.shields.io/badge/scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="sass" />
-  <img src="http://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="jest" />
-  <img src="http://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="mongodb" />
+  <img src="http://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
+  <img src="http://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
+  <img src="http://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="http://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
+  <img src="http://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
+  <img src="http://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
 </p>
 
 <br>
