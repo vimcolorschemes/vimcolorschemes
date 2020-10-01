@@ -20,7 +20,7 @@ export const useNavigation = defaultSection => {
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key } = event;
 
-  if (NON_NAVIGATION_KEYS.includes(key)) return;
+  if (NON_NAVIGATION_KEYS.includes(key) || event.metaKey) return;
 
   if (
     [
