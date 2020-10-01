@@ -69,6 +69,19 @@ const AboutPage = ({
             quickly through the whole site
           </li>
         </ul>
+
+        <h2 className="subtitle"> Have an awsome color scheme? get it here.</h2>
+        <p>
+          <strong>We are looking out for you on github </strong>
+          just add tags in your repo like <strong>
+            {" "}
+            vim color scheme{" "}
+          </strong>, <strong> vim colorscheme </strong>
+          <strong> vim colour scheme </strong>
+          or
+          <strong> vim colourscheme </strong>
+        </p>
+        <p>Note, we don't consider repo with dotfiles valid.</p>
         <h2 className="subtitle" id="get-involved">
           <a
             href="#get-involved"
