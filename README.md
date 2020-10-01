@@ -66,7 +66,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
   <tr>
     <td align="center"><a href="http://reobin.dev"><img src="https://avatars1.githubusercontent.com/u/5920450?v=4" width="100px;" alt=""/><br /><sub><b>Robin Gagnon</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=reobin" title="Code">💻</a> <a href="#design-reobin" title="Design">🎨</a> <a href="https://github.com/reobin/vimcolorschemes/commits?author=reobin" title="Documentation">📖</a> <a href="#maintenance-reobin" title="Maintenance">🚧</a> <a href="#infra-reobin" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/tsubasaogawa"><img src="https://avatars0.githubusercontent.com/u/7788821?v=4" width="100px;" alt=""/><br /><sub><b>Tsubasa Ogawa</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=tsubasaogawa" title="Code">💻</a></td>
-    <td align="center"><a href="https://draftcloud.io"><img src="https://avatars1.githubusercontent.com/u/3904240?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Mykolaichuk</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=roya3000" title="Code">💻</a></td>
+    <td align="center"><a href="https://draftcloud.io"><img src="https://avatars1.githubusercontent.com/u/3904240?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Mykolaichuk</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=roya3000" title="Code">💻</a> <a href="#ideas-roya3000" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
