@@ -142,7 +142,13 @@ const AboutPage = ({
           </span>
         </p>
         <h2 className="subtitle" id="howto">
-          Is your color scheme not showing up?
+          <a
+            href="#trouble"
+            data-section={`${SECTIONS.ABOUT_LINK}-9`}
+            data-layout={LAYOUTS.BLOCK}
+          >
+            Is your vim color scheme not showing up?
+          </a>
         </h2>
         <p>
           <strong>
