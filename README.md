@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -69,6 +69,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="https://draftcloud.io"><img src="https://avatars1.githubusercontent.com/u/3904240?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Mykolaichuk</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=roya3000" title="Code">💻</a> <a href="#ideas-roya3000" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://lorisbettazza.com"><img src="https://avatars2.githubusercontent.com/u/13663338?v=4" width="100px;" alt=""/><br /><sub><b>Loris Bettazza</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=Pustur" title="Code">💻</a> <a href="#ideas-Pustur" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/SutharMukesh"><img src="https://avatars1.githubusercontent.com/u/17264175?v=4" width="100px;" alt=""/><br /><sub><b>Mukesh Suthar</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=SutharMukesh" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/vfreitas-"><img src="https://avatars3.githubusercontent.com/u/8248179?v=4" width="100px;" alt=""/><br /><sub><b>Vitor Freitas</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=vfreitas-" title="Code">💻</a> <a href="#ideas-vfreitas" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
