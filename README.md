@@ -69,12 +69,13 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="https://draftcloud.io"><img src="https://avatars1.githubusercontent.com/u/3904240?v=4" width="100px;" alt=""/><br /><sub><b>Alexander Mykolaichuk</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=roya3000" title="Code">💻</a> <a href="#ideas-roya3000" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://lorisbettazza.com"><img src="https://avatars2.githubusercontent.com/u/13663338?v=4" width="100px;" alt=""/><br /><sub><b>Loris Bettazza</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=Pustur" title="Code">💻</a> <a href="#ideas-Pustur" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/SutharMukesh"><img src="https://avatars1.githubusercontent.com/u/17264175?v=4" width="100px;" alt=""/><br /><sub><b>Mukesh Suthar</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=SutharMukesh" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/vfreitas"><img src="https://avatars3.githubusercontent.com/u/37201973?v=4" width="100px;" alt=""/><br /><sub><b>Victor Santos</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=vfreitas" title="Code">💻</a> <a href="#ideas-vfreitas" title="Ideas, Planning, & Feedback">🤔</a></td>
+    <td align="center"><a href="https://github.com/vfreitas-"><img src="https://avatars3.githubusercontent.com/u/8248179?v=4" width="100px;" alt=""/><br /><sub><b>Vitor Freitas</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=vfreitas-" title="Code">💻</a> <a href="#ideas-vfreitas" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
