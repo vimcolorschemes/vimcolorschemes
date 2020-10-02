@@ -66,6 +66,15 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "StTronn",
+      "name": "Rishav",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42781659?v=4",
+      "profile": "https://musing-volhard-410cb2.netlify.app/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
