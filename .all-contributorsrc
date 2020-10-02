@@ -47,6 +47,25 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "SutharMukesh",
+      "name": "Mukesh Suthar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17264175?v=4",
+      "profile": "https://github.com/SutharMukesh",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vfreitas-",
+      "name": "Vitor Freitas",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8248179?v=4",
+      "profile": "https://github.com/vfreitas-",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7,

@@ -3,9 +3,11 @@
 .actions {
   width: 100%;
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin: 1rem -1rem;
+  align-items: center;
+  margin: 0 0 1rem;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+  box-shadow: 5px 0 5px -5px rgba(51, 51, 51, 0.23);
 }
 
 .actions__item {
@@ -13,6 +15,7 @@
   padding: 1rem;
   position: relative;
   margin-left: 1rem;
+  white-space: nowrap;
   &:first-of-type {
     margin-left: 0;
   }
@@ -57,4 +60,16 @@
   border: none;
   box-shadow: none;
   text-decoration: none;
+}
+
+@include md {
+  .actions {
+    align-items: unset;
+    justify-content: flex-end;
+    margin: 1rem -1rem;
+    padding: 0;
+    flex-wrap: wrap; 
+    overflow-x: hidden;
+    box-shadow: none;
+  }
 }
