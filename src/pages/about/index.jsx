@@ -70,18 +70,6 @@ const AboutPage = ({
           </li>
         </ul>
 
-        <h2 className="subtitle"> Have an awsome color scheme? get it here.</h2>
-        <p>
-          <strong>We are looking out for you on github </strong>
-          just add tags in your repo like <strong>
-            {" "}
-            vim color scheme{" "}
-          </strong>, <strong> vim colorscheme </strong>
-          <strong> vim colour scheme </strong>
-          or
-          <strong> vim colourscheme </strong>
-        </p>
-        <p>Note, we don't consider repo with dotfiles valid.</p>
         <h2 className="subtitle" id="get-involved">
           <a
             href="#get-involved"
@@ -152,6 +140,30 @@ const AboutPage = ({
           <span role="img" aria-label="celebration">
             🎉
           </span>
+        </p>
+        <h2 className="subtitle" id="howto">
+          Is your color scheme not showing up?
+        </h2>
+        <p>
+          <strong>
+            {platform}
+            {title}
+          </strong>{" "}
+          scans GitHub every day looking for new color schemes to feature.
+        </p>
+        <p>
+          Make sure words like at least one of the following terms are present
+          on the <strong> README </strong> or <strong> description</strong>:{" "}
+        </p>
+        <ul>
+          <li>vim color scheme </li>
+          <li>vim colorscheme</li>
+          <li>vim colour scheme</li>
+          <li>vim colourscheme</li>
+        </ul>
+        <br />
+        <p>
+          Still nothing? Feel free to create an issue on the GitHub repository.
         </p>
       </div>
     </Layout>
