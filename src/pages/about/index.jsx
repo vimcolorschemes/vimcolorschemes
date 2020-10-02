@@ -152,8 +152,8 @@ const AboutPage = ({
           scans GitHub every day looking for new color schemes to feature.
         </p>
         <p>
-          Make sure words like at least one of the following terms are present
-          on the <strong> README </strong> or <strong> description</strong>:{" "}
+          Make sure at least one of the following terms are present on the{" "}
+          <strong> README </strong> or <strong> description</strong>:{" "}
         </p>
         <ul>
           <li>vim color scheme </li>
