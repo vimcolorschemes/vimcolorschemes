@@ -2,7 +2,6 @@ import React from "react";
 import classnames from "classnames";
 import { graphql, Link } from "gatsby";
 import PropTypes from "prop-types";
-import { parseStringWithEmoji } from 'src/utils/string'
 
 import { RepositoryType } from "src/types";
 
@@ -85,7 +84,7 @@ const RepositoryPage = ({ data, location }) => {
         <header className="repository__hero">
           <Nav />
           <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
-          <p>{parseStringWithEmoji(description)}</p>
+          <p>{description}</p>
         </header>
         <section>
           {!!featuredImage && (
