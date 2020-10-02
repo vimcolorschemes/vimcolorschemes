@@ -9,7 +9,9 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 
-import { Arrow, GitHub } from "src/components/icons";
+import { Star, Arrow, GitHub } from "src/components/icons";
+
+import { format } from "src/utils/date";
 
 import ExternalLink from "src/components/externalLink";
 import Layout from "src/components/layout";
@@ -30,6 +32,9 @@ const RepositoryPage = ({ data, location }) => {
     featuredImage,
     description,
     images,
+    stargazersCount,
+    lastCommitAt,
+    createdAt,
   } = data.repository;
 
   const {
@@ -84,7 +89,23 @@ const RepositoryPage = ({ data, location }) => {
         <header className="repository__hero">
           <Nav />
           <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
+
           <p>{description}</p>
+          <div>
+            <Star />
+            <span>
+              <strong>{stargazersCount}</strong>
+            </span>
+          </div>
+
+          <p>
+            Created <time dateTime={createdAt}>{format(createdAt)}</time>
+          </p>
+
+          <p>
+            Last commit{" "}
+            <time dateTime={lastCommitAt}>{format(lastCommitAt)}</time>
+          </p>
         </header>
         <section>
           {!!featuredImage && (
