@@ -26,5 +26,7 @@ body,
 }
 
 @include md {
-  padding-top: 1rem;
+  .main {
+    padding-top: 1rem;
+  }
 }
