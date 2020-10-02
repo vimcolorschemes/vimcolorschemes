@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-
-import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import { KEYS, LAYOUTS, NON_NAVIGATION_KEYS, SECTIONS } from "src/constants";
 import { isInViewport } from "src/utils/navigation";
+
 
 export const useNavigation = defaultSection => {
   useEffect(() => {
@@ -20,6 +20,19 @@ export const useNavigation = defaultSection => {
 
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key, metaKey } = event;
+  const { activeElement } = document;
+  let nextTabIndex;
+
+  // If element has hash then focus that element and scroll to that element
+  if(activeElement.hash) {
+    const targetElement = document.getElementById(
+      activeElement.hash.substring(1),
+    )
+
+    nextTabIndex = Array.prototype.indexOf.call(focusables, targetElement);
+
+    focus(focusables, nextTabIndex)
+  }
 
   if (NON_NAVIGATION_KEYS.includes(key)) return;
 
@@ -35,8 +48,6 @@ const handleKeyPress = (event, focusables, defaultSection) => {
     event.preventDefault();
   }
 
-  const { activeElement } = document;
-
   const currentTabIndex = Array.prototype.indexOf.call(
     focusables,
     activeElement,
@@ -44,7 +55,6 @@ const handleKeyPress = (event, focusables, defaultSection) => {
 
   const { section, layout } = activeElement.dataset;
 
-  let nextTabIndex;
   if (metaKey) {
     if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
       nextTabIndex = 0;
