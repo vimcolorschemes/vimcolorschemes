@@ -12,6 +12,10 @@
   & * + * {
     margin-top: 1rem;
   }
+
+  .subtitle {
+    font-size: 1rem;
+  }
 }
 
 .intro__highlight {
@@ -26,6 +30,10 @@
   .intro {
     margin: 3rem 0;
     max-width: unset;
+
+    .subtitle {
+      font-size: 1.5rem;
+    }
   }
   .intro__instruction {
     display: block;
