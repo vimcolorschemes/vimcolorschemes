@@ -66,6 +66,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,json,md,css,scss}": "npm run format"
+    "*.{js,jsx,json,md,css,scss}": "prettier --write"
   }
 }
