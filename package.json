@@ -68,6 +68,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,json,md,css,scss}": "prettier --write"
+    "*.{js,jsx,json,md,css,scss}": "prettier --write",
+    "*.{js,jsx}": "jest --findRelatedTests"
   }
 }
