@@ -9,7 +9,7 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 
-import { Star, Arrow, GitHub } from "src/components/icons";
+import { Star, Arrow, GitHub, TrendingUp } from "src/components/icons";
 
 import { format } from "src/utils/date";
 
@@ -33,6 +33,7 @@ const RepositoryPage = ({ data, location }) => {
     description,
     images,
     stargazersCount,
+    weekStargazersCount,
     lastCommitAt,
     createdAt,
   } = data.repository;
@@ -88,23 +89,38 @@ const RepositoryPage = ({ data, location }) => {
       <article className="repository">
         <header className="repository__hero">
           <Nav />
-          <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
 
-          <p>{description}</p>
-          <div>
-            <Star />
-            <span>
-              <strong>{stargazersCount}</strong>
-            </span>
+          <div className="repository__header">
+            <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
+            <div className="repository__meta">
+              <div className="repository__stargazers">
+                <Star className="repository__icon" />
+                <span className="repository__stargazers-count">
+                  <strong>{stargazersCount}</strong>
+                </span>
+              </div>
+              {!!weekStargazersCount && (
+                <div className="repository__trending-stargazers-count">
+                  <TrendingUp className="repository__icon" />
+                  <span>
+                    <strong>{weekStargazersCount}</strong>/week
+                  </span>
+                </div>
+              )}
+            </div>
           </div>
-
-          <p>
-            Created <time dateTime={createdAt}>{format(createdAt)}</time>
+          <p className="repository__infos">{description}</p>
+          <p className="repository__infos">
+            Created{" "}
+            <time className="repository__date" dateTime={createdAt}>
+              {format(createdAt)}
+            </time>
           </p>
-
-          <p>
+          <p className="repository__infos">
             Last commit{" "}
-            <time dateTime={lastCommitAt}>{format(lastCommitAt)}</time>
+            <time className="repository__date" dateTime={lastCommitAt}>
+              {format(lastCommitAt)}
+            </time>
           </p>
         </header>
         <section>
@@ -154,6 +170,7 @@ export const query = graphql`
       description
       githubUrl: github_url
       stargazersCount: stargazers_count
+      weekStargazersCount: week_stargazers_count
       lastCommitAt: last_commit_at
       createdAt: github_created_at
       owner {
