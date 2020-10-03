@@ -1,11 +1,41 @@
 @import "src/style/mixins/index";
 
+$shadow-overlay-width: 7rem;
+
 .actions {
+  position: relative;
   width: 100%;
+  margin: 0 0 1rem;
+}
+
+.actions__shadow-overlay {
+  display: block;
+  position: absolute;
+  right: 0rem;
+  width: $shadow-overlay-width;
+  height: 100%;
+  z-index: 1;
+  background: var(--background);
+  background: linear-gradient(
+    to right,
+    rgba(var(--background-rgb), 0),
+    var(--background)
+  );
+  transition: background 300ms ease;
+}
+
+.actions__shadow-overlay-block {
+  margin-left: 1rem;
+  padding: 1rem;
+  width: $shadow-overlay-width;
+  margin-left: 2rem;
+}
+
+.actions__list {
   display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  margin: 1rem -1rem;
+  align-items: center;
+  padding: 0.5rem 0;
+  overflow-x: auto;
 }
 
 .actions__item {
@@ -13,6 +43,7 @@
   padding: 1rem;
   position: relative;
   margin-left: 1rem;
+  white-space: nowrap;
   &:first-of-type {
     margin-left: 0;
   }
@@ -57,4 +88,26 @@
   border: none;
   box-shadow: none;
   text-decoration: none;
+}
+
+@include sm {
+  .actions__list {
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+
+  .actions__shadow-overlay,
+  .actions__shadow-overlay-block {
+    display: none;
+  }
+}
+
+@include md {
+  .actions__list {
+    align-items: unset;
+    margin: 1rem -1rem;
+    padding: 0;
+    flex-wrap: wrap;
+    overflow-x: unset;
+  }
 }

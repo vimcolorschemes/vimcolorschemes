@@ -4,7 +4,7 @@ import { createRemoteFileNode } from "gatsby-source-filesystem";
 
 import Logger from "./src/utils/logger";
 import { URLify } from "./src/utils/string";
-import { WEEK_DAYS_COUNT } from "./src/utils/date";
+import { convertColonEmojis } from "./src/utils/emoji";
 import { paginateRoute } from "./src/utils/pagination";
 
 import { computeTrendingStargazersCount } from "./build";
@@ -38,7 +38,11 @@ export const onCreateNode = ({
     node.internal.type === "mongodbColorschemesRepositories" &&
     !!node.valid
   ) {
-    node.week_stargazers_count = computeTrendingStargazersCount(node, WEEK_DAYS_COUNT);
+    node.week_stargazers_count = computeTrendingStargazersCount(
+      node,
+      WEEK_DAYS_COUNT,
+    );
+    node.description = convertColonEmojis(node.description);
 
     if (node.image_urls && node.image_urls.length > 0) {
       const blacklistedImageUrls = node.blacklisted_image_urls || [];

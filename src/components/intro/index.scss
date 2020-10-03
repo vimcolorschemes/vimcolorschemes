@@ -4,13 +4,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 60%;
+  max-width: 70%;
   margin: 1rem auto;
   & > * {
     text-align: center;
   }
   & * + * {
     margin-top: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
   }
 }
 
@@ -26,6 +30,10 @@
   .intro {
     margin: 3rem 0;
     max-width: unset;
+
+    .subtitle {
+      font-size: 1.5rem;
+    }
   }
   .intro__instruction {
     display: block;

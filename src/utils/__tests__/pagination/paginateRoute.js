@@ -54,11 +54,19 @@ test("paginateRoute with route and page with leading forward slash", () => {
 });
 
 test("paginateRoute with route and page with leading route", () => {
-  expect(paginateRoute("/options/repositories", 1)).toBe("/options/repositories");
-  expect(paginateRoute("/options/repositories", 2)).toBe("/options/repositories/page/2");
+  expect(paginateRoute("/options/repositories", 1)).toBe(
+    "/options/repositories",
+  );
+  expect(paginateRoute("/options/repositories", 2)).toBe(
+    "/options/repositories/page/2",
+  );
 });
 
 test("paginateRoute with route and page with trailing route", () => {
-  expect(paginateRoute("/options/repositories/", 1)).toBe("/options/repositories/");
-  expect(paginateRoute("/options/repositories/", 2)).toBe("/options/repositories/page/2");
+  expect(paginateRoute("/options/repositories/", 1)).toBe(
+    "/options/repositories/",
+  );
+  expect(paginateRoute("/options/repositories/", 2)).toBe(
+    "/options/repositories/page/2",
+  );
 });
