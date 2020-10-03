@@ -5,4 +5,7 @@ const emojiConverter = new EmojiConverter();
 // Force convert mode to unicode
 emojiConverter.replace_mode = "unified";
 
-export const convertColonEmojis = value => emojiConverter.replace_colons(value);
+export const convertColonEmojis = value =>
+  value && typeof value === "string"
+    ? emojiConverter.replace_colons(value)
+    : "";
