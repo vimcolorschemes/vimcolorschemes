@@ -3,7 +3,8 @@ import dayjs from "dayjs";
 
 import { createRemoteFileNode } from "gatsby-source-filesystem";
 
-import { URLify, parseStringWithEmoji } from "./src/utils/string";
+import { URLify } from "./src/utils/string";
+import { convertColonEmojis } from "./src/utils/emoji";
 import { paginateRoute } from "./src/utils/pagination";
 import Logger from "./src/utils/logger";
 
@@ -38,7 +39,7 @@ export const onCreateNode = ({
   ) {
     const WEEK_DAYS_COUNT = 7;
     const { stargazers_count_history: history, description } = node;
-    node.description = parseStringWithEmoji(description);
+    node.description = convertColonEmojis(description);
     let weekStargazersCount = 0;
     if ((history || []).length > 0) {
       const weekStargazersHistory = history.slice(
