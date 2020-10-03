@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-9-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -74,6 +74,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
   </tr>
   <tr>
     <td align="center"><a href="http://gabriellaroche.dev"><img src="https://avatars0.githubusercontent.com/u/16478984?v=4" width="100px;" alt=""/><br /><sub><b>Gabriel Laroche</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=gabLaroche" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/mk-irina"><img src="https://avatars1.githubusercontent.com/u/72212380?v=4" width="100px;" alt=""/><br /><sub><b>Irina Karmanova</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=mk-irina" title="Code">💻</a></td>
   </tr>
 </table>
 
