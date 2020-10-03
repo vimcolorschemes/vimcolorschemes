@@ -1,6 +1,6 @@
 @import "src/style/mixins/index";
 
-$shadow-overlay-width: 7rem;
+$shadow-overlay-width: 5rem;
 
 .actions {
   position: relative;
@@ -25,10 +25,8 @@ $shadow-overlay-width: 7rem;
 }
 
 .actions__shadow-overlay-block {
-  margin-left: 1rem;
-  padding: 1rem;
-  width: $shadow-overlay-width;
-  margin-left: 2rem;
+  padding: 1px;
+  margin-left: $shadow-overlay-width;
 }
 
 .actions__list {
@@ -62,6 +60,7 @@ $shadow-overlay-width: 7rem;
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 10;
 }
 
 .actions__item > a:hover {

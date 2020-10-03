@@ -38,7 +38,7 @@ const Actions = ({ actions, activeAction }) => {
             </Link>
           </li>
         ))}
-        <li className="actions__shadow-overlay-block" />
+        <li className="actions__shadow-overlay-block" aria-hidden />
       </ul>
     </nav>
   );
