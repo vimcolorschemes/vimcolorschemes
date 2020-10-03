@@ -1,6 +1,12 @@
 import { useEffect } from "react";
 
-import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import {
+  LAYOUTS,
+  KEYS,
+  SECTIONS,
+  NON_NAVIGATION_KEYS,
+  MOUSE_EVENTS,
+} from "src/constants";
 
 export const useNavigation = defaultSection => {
   useEffect(() => {
@@ -32,6 +38,8 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   ) {
     event.preventDefault();
   }
+
+  togglePointerEvents(MOUSE_EVENTS.KEY_PRESS);
 
   const { activeElement } = document;
 
@@ -319,4 +327,39 @@ const getLastTabIndexOfSection = (focusables, section) => {
   const sectionIndexes = getSectionTabIndexes(focusables, section);
   const lastIndex = sectionIndexes[sectionIndexes.length - 1];
   return lastIndex == null ? -1 : lastIndex;
+};
+
+/**
+ * Listener should be triggered once and then cleared itself
+ * It sets _document.body.style.pointerEvents_ to '' if it
+ * has changed it's value
+ */
+const mouseMoveListener = () =>
+  togglePointerEvents(MOUSE_EVENTS.MOUSE_MOVE) &&
+  window.removeEventListener("mousemove", mouseMoveListener);
+
+/**
+ * This function set _document.body.style.pointerEvents_ to 'none'
+ * when user starts to use the keyboard to navigate and set an
+ * event listener for in case of a mouse movement.
+ *
+ * @param {string} eventName name of the events that should be
+ * change the behaviour of mouse effects on the page
+ */
+const togglePointerEvents = eventName => {
+  const actions = {
+    [MOUSE_EVENTS.KEY_PRESS]: pointerEvents => {
+      if (pointerEvents === MOUSE_EVENTS.NONE) return;
+
+      document.body.style.pointerEvents = MOUSE_EVENTS.NONE;
+      window.addEventListener("mousemove", mouseMoveListener);
+    },
+    [MOUSE_EVENTS.MOUSE_MOVE]: pointerEvents => {
+      if (pointerEvents === MOUSE_EVENTS.CLEAR) return;
+
+      document.body.style.pointerEvents = MOUSE_EVENTS.CLEAR;
+    },
+  };
+
+  actions[eventName](document.body.style.pointerEvents);
 };
