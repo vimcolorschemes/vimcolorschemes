@@ -32,6 +32,13 @@ body {
     --background-rgb: var(--black-rgb);
   }
 
+  --title-font-size: 1.5rem;
+  --subtitle-font-size: 1.25rem;
+  @include sm {
+    --title-font-size: 2rem;
+    --subtitle-font-size: 1.5rem;
+  }
+
   font-family: var(--font-family);
   font-size: var(--font-size);
   -webkit-font-smoothing: antialiased;
@@ -59,12 +66,12 @@ strong {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--title-font-size);
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: var(--subtitle-font-size);
   font-weight: bold;
 }
 
