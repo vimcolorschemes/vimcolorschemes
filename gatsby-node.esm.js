@@ -39,7 +39,8 @@ export const onCreateNode = ({
 }) => {
   if (node.internal.type === REPOSITORY_NODE_TYPE && !!node.valid) {
     node.week_stargazers_count = computeTrendingStargazersCount(
-      node,
+      node.stargazers_count_history,
+      node.github_created_at,
       WEEK_DAYS_COUNT,
     );
 

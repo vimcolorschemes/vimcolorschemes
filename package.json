@@ -52,7 +52,8 @@
     "seed": "sh db/seed.sh",
     "preview::build": "npm run clean && npm run build",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "test::vocal": "jest"
   },
   "repository": {
     "type": "git",

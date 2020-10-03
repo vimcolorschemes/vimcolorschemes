@@ -16,28 +16,30 @@ const isValidProcessedFluidImage = imageObject =>
   imageObject.childImageSharp &&
   imageObject.childImageSharp.fluid;
 
-// Computes the stargazers count for the last <daysCount> days
+// Computes the stargazers count for the last <dayCount> days
 export const computeTrendingStargazersCount = (
-  { stargazers_count_history: history, github_created_at },
-  daysCount,
+  stargazersCountHistory,
+  repositoryCreatedAt,
+  dayCount,
+  stargazersCountKey = "stargazers_count",
 ) => {
   let trendingStargazersCount = 0;
 
-  if ((history || []).length > 0) {
-    const stargazersHistory = history.slice(
-      Math.max(history.length - daysCount, 0),
+  if (typeof dayCount !== "number" || dayCount < 1) return 0;
+
+  if ((stargazersCountHistory || []).length > 0) {
+    const timeframeHistory = stargazersCountHistory.slice(
+      Math.max(stargazersCountHistory.length - dayCount, 0),
     );
-    const aWeekAgo = dayjs().subtract(daysCount, "day");
+    const historyStart = dayjs().subtract(dayCount, "day");
     const firstDayCount =
-      dayjs(github_created_at) >= aWeekAgo
+      dayjs(repositoryCreatedAt) >= historyStart
         ? 0
-        : stargazersHistory[0].stargazers_count;
+        : timeframeHistory[0][stargazersCountKey];
     const lastDayCount =
-      stargazersHistory[stargazersHistory.length - 1].stargazers_count;
+      timeframeHistory[timeframeHistory.length - 1][stargazersCountKey];
     trendingStargazersCount = lastDayCount - firstDayCount;
   }
 
   return trendingStargazersCount >= 0 ? trendingStargazersCount : 0;
 };
-
-export const getValidImageUrls = (imageUrls, excludeList) => {};
