@@ -1,6 +1,6 @@
 @import "src/style/mixins/index";
 
-$shadow-overlay-width: 5rem;
+$shadow-overlay-width: 7rem;
 
 .actions {
   position: relative;
@@ -11,12 +11,17 @@ $shadow-overlay-width: 5rem;
 .actions__shadow-overlay {
   display: block;
   position: absolute;
-  right: -1rem;
+  right: 0rem;
   width: $shadow-overlay-width;
   height: 100%;
-  background: linear-gradient(to right, transparent, var(--background) 65%);
-  transition: background 300ms ease;
   z-index: 1;
+  background: var(--background);
+  background: linear-gradient(
+    to right,
+    rgba(var(--background-rgb), 0),
+    var(--background)
+  );
+  transition: background 300ms ease;
 }
 
 .actions__shadow-overlay-block {
