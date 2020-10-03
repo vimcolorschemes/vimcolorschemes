@@ -67,7 +67,7 @@
 .card__trending-stargazers-count {
   display: flex;
   align-items: center;
-  height: 2rem;
+  height: var(--title-font-size);
 }
 
 .card__icon {

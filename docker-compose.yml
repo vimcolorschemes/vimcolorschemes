@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  app:
+    container_name: vimcolorschemes_app
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    environment:
+      GATSBY_SITE_URL: "http://0.0.0.0:8000"
+      GATSBY_DATABASE_CONNECTION_STRING: "mongodb://db:27017"
+    depends_on:
+      - db
+  db:
+    container_name: vimcolorschemes_db
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/db:/data/db
+      - ./mongo/configdb:/data/configdb
+      - ./db:/docker-entrypoint-initdb.d
+    environment:
+      REMOTE_SEED_DIR: /docker-entrypoint-initdb.d

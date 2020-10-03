@@ -1,0 +1,104 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "badgeTemplate": "    <img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"All contributors\" />",
+  "contributors": [
+    {
+      "login": "reobin",
+      "name": "Robin Gagnon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/5920450?v=4",
+      "profile": "http://reobin.dev",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "maintenance",
+        "infra"
+      ]
+    },
+    {
+      "login": "tsubasaogawa",
+      "name": "Tsubasa Ogawa",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/7788821?v=4",
+      "profile": "https://github.com/tsubasaogawa",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "roya3000",
+      "name": "Alexander Mykolaichuk",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/3904240?v=4",
+      "profile": "https://draftcloud.io",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "Pustur",
+      "name": "Loris Bettazza",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/13663338?v=4",
+      "profile": "https://lorisbettazza.com",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "SutharMukesh",
+      "name": "Mukesh Suthar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17264175?v=4",
+      "profile": "https://github.com/SutharMukesh",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vfreitas-",
+      "name": "Vitor Freitas",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8248179?v=4",
+      "profile": "https://github.com/vfreitas-",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "StTronn",
+      "name": "Rishav",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42781659?v=4",
+      "profile": "https://musing-volhard-410cb2.netlify.app/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gabLaroche",
+      "name": "Gabriel Laroche",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16478984?v=4",
+      "profile": "http://gabriellaroche.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mk-irina",
+      "name": "Irina Karmanova",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/72212380?v=4",
+      "profile": "https://github.com/mk-irina",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "vimcolorschemes",
+  "projectOwner": "reobin",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

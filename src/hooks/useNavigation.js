@@ -1,6 +1,7 @@
 import { useEffect, useCallback, useRef } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import { isInViewport } from "src/utils/navigation";
 
 export const useNavigation = defaultSection => {
   const isBrowser =
@@ -42,7 +43,7 @@ export const useNavigation = defaultSection => {
 };
 
 const handleKeyPress = (event, focusables, defaultSection) => {
-  const { key } = event;
+  const { key, metaKey } = event;
 
   if (NON_NAVIGATION_KEYS.includes(key)) return;
 
@@ -52,7 +53,8 @@ const handleKeyPress = (event, focusables, defaultSection) => {
       KEYS.ARROW_RIGHT,
       KEYS.ARROW_DOWN,
       KEYS.ARROW_LEFT,
-    ].includes(key)
+    ].includes(key) &&
+    !metaKey
   ) {
     event.preventDefault();
   }
@@ -67,7 +69,13 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   const { section, layout } = activeElement.dataset;
 
   let nextTabIndex;
-  if (key === KEYS.TOP) {
+  if (metaKey) {
+    if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
+      nextTabIndex = 0;
+    } else if ([KEYS.DOWN, KEYS.ARROW_DOWN].includes(key)) {
+      nextTabIndex = focusables.length - 1;
+    }
+  } else if (key === KEYS.TOP) {
     nextTabIndex = getFirstTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else if (key === KEYS.BOTTOM) {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
@@ -258,22 +266,6 @@ const getNextTabIndexOfPreviousSection = (
     }
   }
   return null;
-};
-
-// return true if the given element is visible in the viewport
-// source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
-const isInViewport = element => {
-  const bounding = element.getBoundingClientRect();
-  const clientHeight =
-    window?.innerHeight || document?.documentElement.clientHeight;
-  const clientWidth =
-    window?.innerWidth || document?.documentElement.clientWidth;
-  return (
-    bounding.top >= 0 &&
-    bounding.left >= 0 &&
-    bounding.bottom <= clientHeight &&
-    bounding.right <= clientWidth
-  );
 };
 
 // focus on a tab index if the element exists

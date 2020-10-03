@@ -3,7 +3,9 @@
 
 body {
   --white: #fff;
+  --white-rgb: 255, 255, 255;
   --black: #333333;
+  --black-rgb: 51, 51, 51;
   --blue: #2855b7;
   --blue-pale: #85a9f7;
 
@@ -21,6 +23,7 @@ body {
   --text-pale: var(--black-pale);
   --focus-border: var(--black-pale);
   --background: var(--white);
+  --background-rgb: var(--white-rgb);
 
   --input-border: var(--grey);
   --input-icon: var(--grey);
@@ -34,12 +37,20 @@ body {
     --text-pale: var(--white-pale);
     --focus-border: var(--white-pale);
     --background: var(--black);
+    --background-rgb: var(--black-rgb);
 
     --input-border: var(--grey);
     --input-icon: var(--grey);
     --input-placeholder: var(--grey);
     --input-border-active: var(--white-pale);
     --input-icon-active: var(--white-pale);
+  }
+
+  --title-font-size: 1.5rem;
+  --subtitle-font-size: 1.25rem;
+  @include sm {
+    --title-font-size: 2rem;
+    --subtitle-font-size: 1.5rem;
   }
 
   --input-color: var(--text);
@@ -53,11 +64,6 @@ body {
   background: var(--background);
 
   transition: background 300ms ease, color 300ms ease;
-}
-
-input {
-  font-family: var(--font-family);
-  font-size: 1rem;
 }
 
 a {
@@ -76,20 +82,15 @@ strong {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--title-font-size);
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: var(--subtitle-font-size);
   font-weight: bold;
 }
 
 .inline-link {
   color: var(--link);
-}
-
-.hidden {
-  position: absolute;
-  opacity: 0;
 }

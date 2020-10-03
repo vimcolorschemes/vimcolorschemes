@@ -2,7 +2,7 @@
 
 .header {
   min-height: 5rem;
-  padding: 2rem 0 0;
+  padding: 0 0.5rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -11,13 +11,11 @@
 .header__content {
   @include container-layout;
   display: flex;
-  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
 }
 
 .header__sub-content {
-  margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -51,7 +49,6 @@
     flex-direction: row;
   }
   .header__sub-content {
-    margin-bottom: 0;
     flex-direction: row;
     align-items: center;
     & > * {
