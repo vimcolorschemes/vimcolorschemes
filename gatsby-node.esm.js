@@ -171,6 +171,24 @@ const repositoriesQuery = `
           name
         }
         description
+        createdAt: github_created_at
+        lastCommitAt: last_commit_at
+        stargazersCount: stargazers_count
+        weekStargazersCount: week_stargazers_count
+        featuredImage: processed_featured_image {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
+        images: processed_images {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
       }
     }
   }

@@ -10,7 +10,7 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
 import { format } from "src/utils/date";
-import { getFirstProcessedFluidImage } from "src/utils/repository";
+import { getFirstProcessedImage } from "src/utils/repository";
 
 import { Star, TrendingUp } from "src/components/icons";
 
@@ -31,7 +31,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
     createdAt,
   } = repository;
 
-  const fluidImage = getFirstProcessedFluidImage(featuredImage, images);
+  const fluidImage = getFirstProcessedImage(featuredImage, images);
 
   return (
     <li className={classnames("card", className)}>
@@ -45,13 +45,16 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
         aria-label={`${name}, by ${ownerName}`}
       >
         <div className="card__image">
-          {!!fluidImage && (
-            <Img
-              fluid={fluidImage}
-              alt={`${ownerName} ${name}`}
-              imgStyle={{ objectFit: "contain" }}
-            />
-          )}
+          {!!fluidImage &&
+            (typeof fluidImage === "string" ? (
+              <p>test</p>
+            ) : (
+              <Img
+                fluid={fluidImage}
+                alt={`${ownerName} ${name}`}
+                imgStyle={{ objectFit: "contain" }}
+              />
+            ))}
         </div>
         <div className="card__header">
           <h3 className="card__title">
