@@ -9,14 +9,12 @@ import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 
-import { Star, Arrow, GitHub, TrendingUp } from "src/components/icons";
-
-import { format } from "src/utils/date";
+import { Arrow, GitHub } from "src/components/icons";
 
 import ExternalLink from "src/components/externalLink";
 import Layout from "src/components/layout";
 import Mosaic from "src/components/mosaic";
-import RepositoryTitle from "src/components/repositoryTitle";
+import RepositoryMeta from "src/components/repositoryMeta";
 import SEO from "src/components/seo";
 import ZoomableImage from "src/components/zoomableImage";
 
@@ -28,14 +26,10 @@ const RepositoryPage = ({ data, location }) => {
   const {
     owner: { name: ownerName },
     name,
+    description,
     githubUrl,
     featuredImage,
-    description,
     images,
-    stargazersCount,
-    weekStargazersCount,
-    lastCommitAt,
-    createdAt,
   } = data.repository;
 
   const {
@@ -90,38 +84,7 @@ const RepositoryPage = ({ data, location }) => {
         <header className="repository__hero">
           <Nav />
 
-          <div className="repository__header">
-            <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
-            <div className="repository__meta">
-              <div className="repository__stargazers">
-                <Star className="repository__icon" />
-                <span className="repository__stargazers-count">
-                  <strong>{stargazersCount}</strong>
-                </span>
-              </div>
-              {!!weekStargazersCount && (
-                <div className="repository__trending-stargazers-count">
-                  <TrendingUp className="repository__icon" />
-                  <span>
-                    <strong>{weekStargazersCount}</strong>/week
-                  </span>
-                </div>
-              )}
-            </div>
-          </div>
-          <p className="repository__infos">{description}</p>
-          <p className="repository__infos">
-            Created{" "}
-            <time className="repository__date" dateTime={createdAt}>
-              {format(createdAt)}
-            </time>
-          </p>
-          <p className="repository__infos">
-            Last commit{" "}
-            <time className="repository__date" dateTime={lastCommitAt}>
-              {format(lastCommitAt)}
-            </time>
-          </p>
+          <RepositoryMeta repository={data.repository} tag="h1" />
         </header>
         <section>
           {!!featuredImage && (
