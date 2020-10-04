@@ -93,6 +93,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adigitoleo",
+      "name": "Leon",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/34595875?v=4",
+      "profile": "https://github.com/adigitoleo",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
