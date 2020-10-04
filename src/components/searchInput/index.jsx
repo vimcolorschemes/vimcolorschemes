@@ -19,7 +19,7 @@ const SEARCH_LABELS = {
   },
 };
 
-const SearchInput = ({ value, onChange, onFocusChange }) => {
+const SearchInput = ({ value, onChange }) => {
   const [label, setLabel] = useState(SEARCH_LABELS.DEFAULT);
 
   const searchInputWrapperRef = useRef();
@@ -60,14 +60,8 @@ const SearchInput = ({ value, onChange, onFocusChange }) => {
         onChange={onChange}
         placeholder="dark, contrast, ..."
         aria-label={label.description}
-        onFocus={() => {
-          onFocusChange(true);
-          setLabel(SEARCH_LABELS.FOCUSED);
-        }}
-        onBlur={() => {
-          onFocusChange(false);
-          setLabel(SEARCH_LABELS.DEFAULT);
-        }}
+        onFocus={() => setLabel(SEARCH_LABELS.FOCUSED)}
+        onBlur={() => setLabel(SEARCH_LABELS.DEFAULT)}
         onKeyDown={event => {
           if (["Enter", "Escape"].includes(event.key))
             searchInputWrapperRef.current.focus();

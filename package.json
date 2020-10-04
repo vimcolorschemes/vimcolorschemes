@@ -4,6 +4,7 @@
   "version": "1.2.0",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
+    "@elastic/elasticsearch": "^7.9.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.9.1",
     "dotenv": "^8.2.0",
@@ -21,6 +22,7 @@
     "gatsby-source-filesystem": "^2.3.32",
     "gatsby-source-mongodb": "^2.3.12",
     "gatsby-transformer-sharp": "^2.5.16",
+    "js-search": "^2.0.0",
     "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",

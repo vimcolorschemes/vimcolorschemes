@@ -45,7 +45,12 @@ export const useNavigation = defaultSection => {
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key, metaKey } = event;
 
-  if (NON_NAVIGATION_KEYS.includes(key)) return;
+  const { activeElement } = document;
+
+  const isTextInput =
+    activeElement.tagName === "INPUT" && activeElement.type === "text";
+
+  if (NON_NAVIGATION_KEYS.includes(key) || isTextInput) return;
 
   if (
     [
@@ -58,8 +63,6 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   ) {
     event.preventDefault();
   }
-
-  const { activeElement } = document;
 
   const currentTabIndex = Array.prototype.indexOf.call(
     focusables,

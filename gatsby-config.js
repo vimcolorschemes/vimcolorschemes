@@ -1,5 +1,9 @@
 const siteUrl = process.env.GATSBY_SITE_URL || "http://localhost:8000";
 
+require("dotenv").config({
+  path: ".env",
+});
+
 module.exports = {
   siteMetadata: {
     title: process.env.GATSBY_SITE_TITLE || "colorschemes",
