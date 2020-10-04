@@ -105,7 +105,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           <Card
             key={`repository-${repository.owner?.name}-${repository.name}`}
             linkState={{ fromPath: currentPath }}
-            repository={{ ...repository, owner: { name: "test" } }}
+            repository={repository}
           />
         ))}
       </Grid>

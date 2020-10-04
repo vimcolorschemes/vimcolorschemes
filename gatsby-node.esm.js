@@ -151,13 +151,7 @@ const createSearchIndex = async repositories => {
   if (deleteResult.success) {
     Logger.info("Creating repositories search index");
 
-    const indexResult = await bulkIndexRepositories(
-      client,
-      repositories.map(repository => ({
-        id: repository.id,
-        name: repository.name,
-      })),
-    );
+    const indexResult = await bulkIndexRepositories(client, repositories);
 
     if (indexResult.success) Logger.info(indexResult.message);
     else
@@ -176,6 +170,7 @@ const repositoriesQuery = `
         owner {
           name
         }
+        description
       }
     }
   }

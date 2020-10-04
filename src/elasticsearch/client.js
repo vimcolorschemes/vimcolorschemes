@@ -30,7 +30,9 @@ export const bulkIndexRepositories = async (client, repositories) => {
           mappings: {
             properties: {
               id: { type: "keyword" },
-              name: { type: "keyword" },
+              name: { type: "text" },
+              owner: { type: "object" },
+              description: { type: "text" },
             },
           },
         },
