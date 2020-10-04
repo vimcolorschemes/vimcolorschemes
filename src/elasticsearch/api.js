@@ -3,6 +3,8 @@ import { REPOSITORY_INDEX_NAME } from ".";
 const API_URL = process.env.GATSBY_ELASTICSEARCH_API_URL;
 
 export const isSearchIndexUp = async () => {
+  if (!API_URL) return false;
+
   try {
     await fetch(API_URL);
     return true;
