@@ -7,6 +7,14 @@ import { Star, TrendingUp } from "src/components/icons";
 
 import "./index.scss";
 
+const DateTag = ({ name, dateValue }) => (
+  <p className="repository__infos">
+    {`${name} `}
+    <time className="repository__date" dateTime={dateValue}>
+      {format(dateValue)}
+    </time>
+  </p>
+);
 const RepositoryMeta = ({ repository, tag, className }) => {
   const TitleTag = tag;
   const {
@@ -46,18 +54,8 @@ const RepositoryMeta = ({ repository, tag, className }) => {
         )}
       </div>
       <p className="repository__infos">{description}</p>
-      <p className="repository__infos">
-        Created{" "}
-        <time className="repository__date" dateTime={createdAt}>
-          {format(createdAt)}
-        </time>
-      </p>
-      <p className="repository__infos">
-        Last commit{" "}
-        <time className="repository__date" dateTime={lastCommitAt}>
-          {format(lastCommitAt)}
-        </time>
-      </p>
+      <DateTag name="Created" value={createdAt} />
+      <DateTag name="Last commit" value={lastCommitAt} />
     </>
   );
 };
