@@ -9,7 +9,7 @@ module.exports = {
     siteUrl,
     description:
       process.env.GATSBY_SITE_DESCRIPTION ||
-      "Find the best vim color schemes around",
+      "Looking for Vim Color Schemes? Explore a variety of trending and popular vim color schemes which are constantly updated just for you.",
     author: "@reobin",
   },
   plugins: [
