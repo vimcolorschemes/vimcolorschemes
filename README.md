@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="vimcolorschemes logo" src="src/images/logo_text_horizontal.png" width="400" />
+  <img alt="vimcolorschemes logo" src="docs/_media//logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
   <b>Find the best vim color schemes around</b>
@@ -28,8 +28,8 @@
 <br>
 
 <p align="center">
-  <img src="src/images/demo_light.png" alt="demo light theme" width="49%">
-  <img src="src/images/demo_dark.png" alt="demo dark theme" width="49%">
+  <img src="docs/_media//demo_light.png" alt="demo light theme" width="49%">
+  <img src="docs/_media//demo_dark.png" alt="demo dark theme" width="49%">
 </p>
 
 ## Welcome 🎉
