@@ -102,6 +102,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "delbetu",
+      "name": "M. Bellucci",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3356799?v=4",
+      "profile": "http://delbetu.github.io",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
