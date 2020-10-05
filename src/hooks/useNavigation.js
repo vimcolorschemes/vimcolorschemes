@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 
-import {
-  LAYOUTS,
-  KEYS,
-  SECTIONS,
-  NON_NAVIGATION_KEYS,
-} from "src/constants";
+import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
 
 export const useNavigation = defaultSection => {
   useEffect(() => {
