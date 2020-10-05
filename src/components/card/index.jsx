@@ -9,12 +9,9 @@ import { RepositoryType } from "src/types";
 import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
-import { format } from "src/utils/date";
 import { getFirstProcessedFluidImage } from "src/utils/repository";
 
-import { Star, TrendingUp } from "src/components/icons";
-
-import RepositoryTitle from "src/components/repositoryTitle";
+import RepositoryMeta from "src/components/repositoryMeta";
 
 import "./index.scss";
 
@@ -22,13 +19,8 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
   const {
     owner: { name: ownerName },
     name,
-    description,
     featuredImage,
     images,
-    stargazersCount,
-    weekStargazersCount,
-    lastCommitAt,
-    createdAt,
   } = repository;
 
   const fluidImage = getFirstProcessedFluidImage(featuredImage, images);
@@ -53,41 +45,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
             />
           )}
         </div>
-        <div className="card__header">
-          <h3 className="card__title">
-            <RepositoryTitle ownerName={ownerName} name={name} />
-          </h3>
-          <div className="card__meta">
-            <div className="card__stargazers">
-              <Star className="card__icon" />
-              <span className="card__stargazers-count">
-                <strong>{stargazersCount}</strong>
-              </span>
-            </div>
-            {!!weekStargazersCount && (
-              <div className="card__trending-stargazers-count">
-                <TrendingUp className="card__icon" />
-                <span>
-                  <strong>{weekStargazersCount}</strong>/week
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <p className="card__infos">{description}</p>
-        <p className="card__infos">
-          Created{" "}
-          <time className="card__date" dateTime={createdAt}>
-            {format(createdAt)}
-          </time>
-        </p>
-        <p className="card__infos">
-          Last commit{" "}
-          <time className="card__date" dateTime={lastCommitAt}>
-            {format(lastCommitAt)}
-          </time>
-        </p>
+        <RepositoryMeta repository={repository} tag="h3" />
       </Link>
     </li>
   );
