@@ -29,29 +29,27 @@ const RepositoryMeta = ({ repository, tag, className }) => {
   return (
     <>
       <div className="repository__header">
-        <h3 className="repository__title">
-          <TitleTag className={classnames("repository-title", className)}>
-            <span className="repository-title__owner-name">{ownerName} </span>
-            <span className="repository-title__name title">{name}</span>
-          </TitleTag>
-        </h3>
-      </div>
+        <TitleTag className={classnames("repository-title", className)}>
+          <span className="repository-title__owner-name">{ownerName} </span>
+          <span className="repository-title__name title">{name}</span>
+        </TitleTag>
 
-      <div className="repository__meta">
-        <div className="repository__stargazers">
-          <Star className="repository__icon" />
-          <span className="repository__stargazers-count">
-            <strong>{stargazersCount}</strong>
-          </span>
-        </div>
-        {!!weekStargazersCount && (
-          <div className="repository__trending-stargazers-count">
-            <TrendingUp className="repository__icon" />
-            <span>
-              <strong>{weekStargazersCount}</strong>/week
+        <div className="repository__meta">
+          <div className="repository__stargazers">
+            <Star className="repository__icon" />
+            <span className="repository__stargazers-count">
+              <strong>{stargazersCount}</strong>
             </span>
           </div>
-        )}
+          {!!weekStargazersCount && (
+            <div className="repository__trending-stargazers-count">
+              <TrendingUp className="repository__icon" />
+              <span>
+                <strong>{weekStargazersCount}</strong>/week
+              </span>
+            </div>
+          )}
+        </div>
       </div>
       <p className="repository__infos">{description}</p>
       <DateTag name="Created" value={createdAt} />
