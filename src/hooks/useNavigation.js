@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { KEYS, LAYOUTS, NON_NAVIGATION_KEYS, SECTIONS } from "src/constants";
 import { isInViewport } from "src/utils/navigation";
 
-
 export const useNavigation = defaultSection => {
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
@@ -21,20 +20,8 @@ export const useNavigation = defaultSection => {
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key, metaKey } = event;
   const { activeElement } = document;
-  let nextTabIndex;
 
-  // If element has hash then focus that element and scroll to that element
-  if(activeElement.hash) {
-    const targetElement = document.getElementById(
-      activeElement.hash.substring(1),
-    )
-
-    nextTabIndex = Array.prototype.indexOf.call(focusables, targetElement);
-
-    focus(focusables, nextTabIndex)
-  }
-
-  if (NON_NAVIGATION_KEYS.includes(key)) return;
+  if (!activeElement.hash && NON_NAVIGATION_KEYS.includes(key)) return;
 
   if (
     [
@@ -55,7 +42,16 @@ const handleKeyPress = (event, focusables, defaultSection) => {
 
   const { section, layout } = activeElement.dataset;
 
-  if (metaKey) {
+  let nextTabIndex;
+
+  // If element has hash then focus that element and scroll to that element
+  if (activeElement.hash && key === KEYS.ENTER) {
+    const targetElement = document.getElementById(
+      activeElement.hash.substring(1),
+    );
+
+    nextTabIndex = Array.prototype.indexOf.call(focusables, targetElement);
+  } else if (metaKey) {
     if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
       nextTabIndex = 0;
     } else if ([KEYS.DOWN, KEYS.ARROW_DOWN].includes(key)) {
