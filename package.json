@@ -1,26 +1,26 @@
 {
   "name": "vimcolorschemes",
   "description": "Find the best vim color schemes around",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
-    "dayjs": "^1.8.36",
+    "dayjs": "^1.9.1",
     "dotenv": "^8.2.0",
+    "emoji-js": "^3.5.0",
     "esm": "^3.2.25",
-    "gatsby": "^2.24.65",
-    "gatsby-cli": "^2.12.100",
-    "gatsby-image": "^2.4.19",
-    "gatsby-plugin-manifest": "^2.4.31",
-    "gatsby-plugin-offline": "^3.2.28",
-    "gatsby-plugin-react-helmet": "^3.3.11",
+    "gatsby": "^2.24.67",
+    "gatsby-cli": "^2.12.102",
+    "gatsby-image": "^2.4.20",
+    "gatsby-plugin-manifest": "^2.4.33",
+    "gatsby-plugin-react-helmet": "^3.3.12",
     "gatsby-plugin-robots-txt": "^1.5.3",
-    "gatsby-plugin-sass": "^2.3.13",
-    "gatsby-plugin-sharp": "^2.6.36",
-    "gatsby-plugin-sitemap": "^2.4.13",
-    "gatsby-source-filesystem": "^2.3.30",
-    "gatsby-source-mongodb": "^2.3.11",
-    "gatsby-transformer-sharp": "^2.5.15",
+    "gatsby-plugin-sass": "^2.3.14",
+    "gatsby-plugin-sharp": "^2.6.38",
+    "gatsby-plugin-sitemap": "^2.4.14",
+    "gatsby-source-filesystem": "^2.3.32",
+    "gatsby-source-mongodb": "^2.3.12",
+    "gatsby-transformer-sharp": "^2.5.16",
     "node-fetch": "^2.6.1",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
@@ -31,9 +31,11 @@
   },
   "devDependencies": {
     "babel-jest": "^26.3.0",
-    "babel-preset-gatsby": "^0.5.10",
+    "babel-preset-gatsby": "^0.5.12",
     "gatsby-plugin-root-import": "^2.0.5",
+    "husky": "^4.3.0",
     "jest": "^26.4.2",
+    "lint-staged": "^10.4.0",
     "prettier": "2.1.2"
   },
   "keywords": [
@@ -50,7 +52,8 @@
     "seed": "sh db/seed.sh",
     "preview::build": "npm run clean && npm run build",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "test::vocal": "jest"
   },
   "repository": {
     "type": "git",
@@ -58,6 +61,14 @@
   },
   "bugs": {
     "url": "https://github.com/reobin/vimcolorschemes/issues"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,json,md,css,scss}": "prettier --write",
+    "*.{js,jsx}": "jest --findRelatedTests"
   }
 }
-

@@ -3,7 +3,9 @@
 
 body {
   --white: #fff;
+  --white-rgb: 255, 255, 255;
   --black: #333333;
+  --black-rgb: 51, 51, 51;
   --blue: #2855b7;
   --blue-pale: #85a9f7;
 
@@ -19,6 +21,7 @@ body {
   --text-pale: var(--black-pale);
   --focus-border: var(--black-pale);
   --background: var(--white);
+  --background-rgb: var(--white-rgb);
 
   &.dark {
     --link: var(--blue-pale);
@@ -26,6 +29,14 @@ body {
     --text-pale: var(--white-pale);
     --focus-border: var(--white-pale);
     --background: var(--black);
+    --background-rgb: var(--black-rgb);
+  }
+
+  --title-font-size: 1.5rem;
+  --subtitle-font-size: 1.25rem;
+  @include sm {
+    --title-font-size: 2rem;
+    --subtitle-font-size: 1.5rem;
   }
 
   font-family: var(--font-family);
@@ -55,12 +66,12 @@ strong {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--title-font-size);
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 1.5rem;
+  font-size: var(--subtitle-font-size);
   font-weight: bold;
 }
 
