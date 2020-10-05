@@ -1,13 +1,18 @@
 import path from "path";
-import dayjs from "dayjs";
 
 import { createRemoteFileNode } from "gatsby-source-filesystem";
 
-import { URLify } from "./src/utils/string";
-import { paginateRoute } from "./src/utils/pagination";
 import Logger from "./src/utils/logger";
+import { URLify } from "./src/utils/string";
+import { WEEK_DAYS_COUNT } from "./src/utils/date";
+import { computeTrendingStargazersCount } from "./src/utils/repository";
+import { convertColonEmojis } from "./src/utils/emoji";
+import { paginateRoute } from "./src/utils/pagination";
+import { excludeItems } from "./src/utils/array";
 
 import { ACTIONS, REPOSITORY_COUNT_PER_PAGE } from "./src/constants";
+
+const REPOSITORY_NODE_TYPE = "mongodbColorschemesRepositories";
 
 const imagePromises = [];
 
@@ -32,38 +37,22 @@ export const onCreateNode = ({
   cache,
   createNodeId,
 }) => {
-  if (
-    node.internal.type === "mongodbColorschemesRepositories" &&
-    !!node.valid
-  ) {
-    const WEEK_DAYS_COUNT = 7;
-    const { stargazers_count_history: history } = node;
-    let weekStargazersCount = 0;
-    if ((history || []).length > 0) {
-      const weekStargazersHistory = history.slice(
-        Math.max(history.length - WEEK_DAYS_COUNT, 0),
-      );
-      const aWeekAgo = dayjs().subtract(WEEK_DAYS_COUNT, "day");
-      const firstDayCount =
-        dayjs(node.github_created_at) >= aWeekAgo
-          ? 0
-          : weekStargazersHistory[0].stargazers_count;
-      const lastDayCount =
-        weekStargazersHistory[weekStargazersHistory.length - 1]
-          .stargazers_count;
-      weekStargazersCount = lastDayCount - firstDayCount;
-    }
-    node.week_stargazers_count =
-      weekStargazersCount >= 0 ? weekStargazersCount : 0;
+  if (node.internal.type === REPOSITORY_NODE_TYPE && !!node.valid) {
+    node.week_stargazers_count = computeTrendingStargazersCount(
+      node.stargazers_count_history,
+      node.github_created_at,
+      WEEK_DAYS_COUNT,
+    );
+
+    node.description = convertColonEmojis(node.description);
+
     if (node.image_urls && node.image_urls.length > 0) {
-      const blacklistedImageUrls = node.blacklisted_image_urls || [];
-      const validImageUrls = node.image_urls.filter(
-        url => !blacklistedImageUrls.includes(url),
+      const validImageUrls = excludeItems(
+        node.image_urls,
+        node.blacklisted_image_urls || [],
       );
 
       validImageUrls.forEach(async (url, index) => {
-        if (blacklistedImageUrls.includes(url)) return;
-
         try {
           const promise = createRemoteFileNode({
             url,
@@ -74,22 +63,24 @@ export const onCreateNode = ({
             store,
           });
           imagePromises.push(promise);
+
           const fileNode = await promise;
 
           if (fileNode) {
             if (
-              (index === 0 && !node.featured_image_url) ||
-              node.featured_image_url === url
-            )
+              node.featured_image_url === url ||
+              (index === 0 && !node.featured_image_url)
+            ) {
               node.processed_featured_image = fileNode.id;
-            else
+            } else {
               node.processed_images = [
                 ...(node.processed_images || []),
                 fileNode,
               ];
+            }
           }
-        } catch (e) {
-          Logger.error(e);
+        } catch (error) {
+          Logger.error(error);
         }
       });
     }
@@ -109,12 +100,12 @@ export const onPostBootstrap = async () => {
 
 const createRepositoryPages = (repositories, createPage) => {
   repositories.forEach(repository => {
-    const ownerName = repository.owner ? repository.owner.name : "oops";
+    const ownerName = repository.owner ? repository.owner.name : "";
     const { name } = repository;
     const repositoryPath = URLify(`${ownerName}/${name}`);
     createPage({
       path: repositoryPath,
-      component: path.resolve(`./src/templates/repository/index.jsx`),
+      component: path.resolve("./src/templates/repository/index.jsx"),
       context: {
         ownerName,
         name,

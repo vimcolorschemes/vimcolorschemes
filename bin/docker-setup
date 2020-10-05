@@ -5,15 +5,21 @@ set -e
 BREAK_LINE="
 "
 
-if ! docker version >/dev/null 2>&1; then
+if ! docker --version >/dev/null 2>&1; then
   echo "Please install Docker Desktop"
-  echo "https://www.docker.com/products/docker-desktop"
+  echo "https://www.docker.com/products/docker-desktop/"
   exit 1
 fi
 
 if ! docker info >/dev/null 2>&1; then
   echo "Please run Docker Desktop"
-  echo "https://www.docker.com/products/docker-desktop"
+  echo "https://docs.docker.com/desktop/"
+  exit 1
+fi
+
+if ! docker-compose --version >/dev/null 2>&1; then
+  echo "Please install docker-compose"
+  echo "https://docs.docker.com/compose/install/"
   exit 1
 fi
 

@@ -47,6 +47,61 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "SutharMukesh",
+      "name": "Mukesh Suthar",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/17264175?v=4",
+      "profile": "https://github.com/SutharMukesh",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vfreitas-",
+      "name": "Vitor Freitas",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/8248179?v=4",
+      "profile": "https://github.com/vfreitas-",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "StTronn",
+      "name": "Rishav",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42781659?v=4",
+      "profile": "https://musing-volhard-410cb2.netlify.app/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gabLaroche",
+      "name": "Gabriel Laroche",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/16478984?v=4",
+      "profile": "http://gabriellaroche.dev",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mk-irina",
+      "name": "Irina Karmanova",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/72212380?v=4",
+      "profile": "https://github.com/mk-irina",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "adigitoleo",
+      "name": "Leon",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/34595875?v=4",
+      "profile": "https://github.com/adigitoleo",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,

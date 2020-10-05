@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import { isInViewport } from "src/utils/navigation";
 
 export const useNavigation = defaultSection => {
   useEffect(() => {
@@ -241,22 +242,6 @@ const getNextTabIndexOfPreviousSection = (
     }
   }
   return null;
-};
-
-// return true if the given element is visible in the viewport
-// source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
-const isInViewport = element => {
-  const bounding = element.getBoundingClientRect();
-  const clientHeight =
-    window?.innerHeight || document?.documentElement.clientHeight;
-  const clientWidth =
-    window?.innerWidth || document?.documentElement.clientWidth;
-  return (
-    bounding.top >= 0 &&
-    bounding.left >= 0 &&
-    bounding.bottom <= clientHeight &&
-    bounding.right <= clientWidth
-  );
 };
 
 // focus on a tab index if the element exists
