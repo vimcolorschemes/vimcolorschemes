@@ -2,7 +2,12 @@ import { useEffect } from "react";
 
 import { MOUSE_EVENTS, KEYS, NON_NAVIGATION_KEYS } from "src/constants";
 
-export const useNavigationEffect = () => {
+/**
+ * This hook is responsible to disable the mouse when the user
+ * starts to navigate using the keyboard and enables the mouse
+ * and the user moves it
+ */
+export const useTogglePointerEvents = () => {
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
       const eventListener = event =>
@@ -11,7 +16,10 @@ export const useNavigationEffect = () => {
         togglePointerEvents(MOUSE_EVENTS.KEY_PRESS);
 
       window.addEventListener("keydown", eventListener);
-      return () => window.removeEventListener("keydown", eventListener);
+      return () => {
+        window.removeEventListener("keydown", eventListener);
+        window.removeEventListener("mousemove", mouseMoveListener);
+      };
     }
   }, []);
 };

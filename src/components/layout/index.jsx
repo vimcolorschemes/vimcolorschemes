@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { useNavigationEffect } from "src/hooks/useNavigationEffect";
+import { useTogglePointerEvents } from "src/hooks/useTogglePointerEvents";
 
 import Header from "src/components/header";
 import Footer from "src/components/footer";
@@ -9,7 +9,7 @@ import Footer from "src/components/footer";
 import "./index.scss";
 
 const Layout = ({ children, isHome }) => {
-  useNavigationEffect();
+  useTogglePointerEvents();
 
   return (
     <>
