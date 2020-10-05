@@ -14,7 +14,7 @@ import { Arrow, GitHub } from "src/components/icons";
 import ExternalLink from "src/components/externalLink";
 import Layout from "src/components/layout";
 import Mosaic from "src/components/mosaic";
-import RepositoryTitle from "src/components/repositoryTitle";
+import RepositoryMeta from "src/components/repositoryMeta";
 import SEO from "src/components/seo";
 import ZoomableImage from "src/components/zoomableImage";
 
@@ -26,9 +26,9 @@ const RepositoryPage = ({ data, location }) => {
   const {
     owner: { name: ownerName },
     name,
+    description,
     githubUrl,
     featuredImage,
-    description,
     images,
   } = data.repository;
 
@@ -83,8 +83,8 @@ const RepositoryPage = ({ data, location }) => {
       <article className="repository">
         <header className="repository__hero">
           <Nav />
-          <RepositoryTitle ownerName={ownerName} name={name} tag="h1" />
-          <p>{description}</p>
+
+          <RepositoryMeta repository={data.repository} tag="h1" />
         </header>
         <section>
           {!!featuredImage && (
@@ -133,6 +133,7 @@ export const query = graphql`
       description
       githubUrl: github_url
       stargazersCount: stargazers_count
+      weekStargazersCount: week_stargazers_count
       lastCommitAt: last_commit_at
       createdAt: github_created_at
       owner {
