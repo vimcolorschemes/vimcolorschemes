@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="vimcolorschemes logo" src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/logo_text_horizontal.png" width="400" />
+  <img alt="vimcolorschemes logo" src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
   <b>Find the best vim color schemes around</b>
@@ -28,8 +28,8 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
-  <img src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
+  <img src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
+  <img src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
 </p>
 
 ## Welcome 🎉
@@ -82,6 +82,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
