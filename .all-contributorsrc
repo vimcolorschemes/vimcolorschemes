@@ -120,6 +120,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Tulkdan",
+      "name": "Pedro Correa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22248651?v=4",
+      "profile": "https://www.linkedin.com/in/pedro-correa-2ba2b0135/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
