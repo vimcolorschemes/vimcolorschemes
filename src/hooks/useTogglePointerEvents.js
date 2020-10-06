@@ -16,10 +16,7 @@ export const useTogglePointerEvents = () => {
         togglePointerEvents(MOUSE_EVENTS.KEY_PRESS);
 
       window.addEventListener("keydown", eventListener);
-      return () => {
-        window.removeEventListener("keydown", eventListener);
-        window.removeEventListener("mousemove", mouseMoveListener);
-      };
+      return () => window.removeEventListener("keydown", eventListener);
     }
   }, []);
 };
@@ -29,9 +26,10 @@ export const useTogglePointerEvents = () => {
  * It sets _document.body.style.pointerEvents_ to '' if it
  * has changed it's value
  */
-const mouseMoveListener = () =>
+const mouseMoveListener = () => {
   togglePointerEvents(MOUSE_EVENTS.MOUSE_MOVE) &&
   window.removeEventListener("mousemove", mouseMoveListener);
+}
 
 /**
  * This function set _document.body.style.pointerEvents_ to 'none'
