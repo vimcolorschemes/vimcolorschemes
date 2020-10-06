@@ -34,7 +34,7 @@
     "babel-preset-gatsby": "^0.5.12",
     "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^4.3.0",
-    "jest": "^26.4.2",
+    "jest": "^26.5.0",
     "lint-staged": "^10.4.0",
     "prettier": "2.1.2"
   },
