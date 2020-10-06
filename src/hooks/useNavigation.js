@@ -19,9 +19,8 @@ export const useNavigation = defaultSection => {
 
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key, metaKey } = event;
-  const { activeElement } = document;
 
-  if (!activeElement.hash && NON_NAVIGATION_KEYS.includes(key)) return;
+  if (NON_NAVIGATION_KEYS.includes(key)) return;
 
   if (
     [
@@ -35,6 +34,8 @@ const handleKeyPress = (event, focusables, defaultSection) => {
     event.preventDefault();
   }
 
+  const { activeElement } = document;
+
   const currentTabIndex = Array.prototype.indexOf.call(
     focusables,
     activeElement,
@@ -44,14 +45,7 @@ const handleKeyPress = (event, focusables, defaultSection) => {
 
   let nextTabIndex;
 
-  // If element has hash then focus that element and scroll to that element
-  if (activeElement.hash && key === KEYS.ENTER) {
-    const targetElement = document.getElementById(
-      activeElement.hash.substring(1),
-    );
-
-    nextTabIndex = Array.prototype.indexOf.call(focusables, targetElement);
-  } else if (metaKey) {
+  if (metaKey) {
     if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
       nextTabIndex = 0;
     } else if ([KEYS.DOWN, KEYS.ARROW_DOWN].includes(key)) {

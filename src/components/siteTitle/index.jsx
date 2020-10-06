@@ -36,11 +36,11 @@ const SiteTitle = ({
 
   return (
     <Link
-      to={isHome ? "/" : "#home" }
+      to="/"
       className={classnames("site-title", { "site-title--vertical": vertical })}
       data-section={section}
       data-layout={layout}
-      id={isHome ? "home" : null }
+      onClick={() => document.activeElement?.blur()}
     >
       <img src={logo} alt="" className="site-title__logo" />
       <Heading className="site-title__name">
