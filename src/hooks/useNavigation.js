@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-
-import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import { KEYS, LAYOUTS, NON_NAVIGATION_KEYS, SECTIONS } from "src/constants";
 import { isInViewport } from "src/utils/navigation";
 
 export const useNavigation = defaultSection => {
@@ -45,6 +44,7 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   const { section, layout } = activeElement.dataset;
 
   let nextTabIndex;
+
   if (metaKey) {
     if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
       nextTabIndex = 0;

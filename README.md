@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="vimcolorschemes logo" src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/logo_text_horizontal.png" width="400" />
+  <img alt="vimcolorschemes logo" src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
   <b>Find the best vim color schemes around</b>
@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-11-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -28,8 +28,8 @@
 <br>
 
 <p align="center">
-  <img src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
-  <img src="https://github.com/reobin/vimcolorschemes/blob/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
+  <img src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
+  <img src="https://raw.githubusercontent.com/reobin/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
 </p>
 
 ## Welcome 🎉
@@ -77,6 +77,8 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="https://github.com/mk-irina"><img src="https://avatars1.githubusercontent.com/u/72212380?v=4" width="100px;" alt=""/><br /><sub><b>Irina Karmanova</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=mk-irina" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/adigitoleo"><img src="https://avatars2.githubusercontent.com/u/34595875?v=4" width="100px;" alt=""/><br /><sub><b>Leon</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/issues?q=author%3Aadigitoleo" title="Bug reports">🐛</a></td>
     <td align="center"><a href="http://delbetu.github.io"><img src="https://avatars2.githubusercontent.com/u/3356799?v=4" width="100px;" alt=""/><br /><sub><b>M. Bellucci</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=delbetu" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/hardikmodi1"><img src="https://avatars2.githubusercontent.com/u/22965398?v=4" width="100px;" alt=""/><br /><sub><b>Hardik Modi</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=hardikmodi1" title="Code">💻</a></td>
+    <td align="center"><a href="https://www.linkedin.com/in/pedro-correa-2ba2b0135/"><img src="https://avatars3.githubusercontent.com/u/22248651?v=4" width="100px;" alt=""/><br /><sub><b>Pedro Correa</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=Tulkdan" title="Code">💻</a></td>
   </tr>
 </table>
 
