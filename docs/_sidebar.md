@@ -1,8 +1,6 @@
-<!-- docs/_sidebar.md -->
-
-* [Home](/)
-* [Code of Conduct](CODE_OF_CONDUCT.md)
-* [Contributing](CONTRIBUTING.md)
-* [Pull Request Template](PULL_REQUEST_TEMPLATE.md)
-* [Bug Report](bug_report.md)
-* [Feature Request](feature_request.md)
+- [Home](/ "vimcolorschemes docs")
+- [Getting started](/getting-started "Getting started | vimcolorschemes docs")
+- [Installation guide](/installation-guide.md "Installation guide | vimcolorschemes docs")
+- [Workflow](/workflow.md "Workflow | vimcolorschemes docs")
+- [Details on the Worker](/the-worker.md "The Worker | vimcolorschemes docs")
+- [Contributing guidelines](/contributing-guidelines.md "Contributing guidelines | vimcolorschemes docs")
