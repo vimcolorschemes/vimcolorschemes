@@ -26,7 +26,8 @@ const RepositoryPage = ({ data, location }) => {
   const {
     owner: { name: ownerName },
     name,
-    description,
+    stargazersCount,
+    createdAt,
     githubUrl,
     featuredImage,
     images,
@@ -76,7 +77,7 @@ const RepositoryPage = ({ data, location }) => {
     <Layout>
       <SEO
         title={`${name} ${platform} color scheme, by ${ownerName}`}
-        description={description}
+        description={`The ${name} vim color scheme was created ${createdAt} years ago by ${ownerName}, and has over ${stargazersCount} stars on Github. Check it out on vimcolorschemes.com!`}
         imageUrl={featuredImage?.publicURL}
         path={`/${ownerName}/${name}`}
       />
