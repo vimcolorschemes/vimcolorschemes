@@ -17,7 +17,7 @@
     "gatsby-plugin-robots-txt": "^1.5.3",
     "gatsby-plugin-sass": "^2.3.16",
     "gatsby-plugin-sharp": "^2.6.38",
-    "gatsby-plugin-sitemap": "^2.4.14",
+    "gatsby-plugin-sitemap": "^2.4.15",
     "gatsby-source-filesystem": "^2.3.32",
     "gatsby-source-mongodb": "^2.3.12",
     "gatsby-transformer-sharp": "^2.5.16",
