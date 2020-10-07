@@ -24,3 +24,13 @@ export const NON_NAVIGATION_KEYS = [
   KEYS.SPACE,
   KEYS.TAB,
 ];
+
+export const MOUSE_EVENTS = {
+  NONE: "none",
+  CLEAR: "",
+  AUTO: "auto",
+
+  // pointer events trigger
+  MOUSE_MOVE: "mousemove",
+  KEY_PRESS: "keypress",
+};
