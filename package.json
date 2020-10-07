@@ -27,7 +27,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^6.0.0",
-    "typeface-source-sans-pro": "^1.1.5"
+    "typeface-source-sans-pro": "^1.1.13"
   },
   "devDependencies": {
     "babel-jest": "^26.5.0",
