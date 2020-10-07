@@ -1,1 +1,1 @@
-[Bug Report](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/ISSUE_TEMPLATE/bug_report.md ":include")
+[Bug Report](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/ISSUE_TEMPLATE/bug_report.md ':include')

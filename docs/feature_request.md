@@ -1,1 +1,1 @@
-[Feature Request](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/ISSUE_TEMPLATE/feature_request.md ":include")
+[Feature Request](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/ISSUE_TEMPLATE/feature_request.md ':include')

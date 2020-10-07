@@ -1,1 +1,1 @@
-[Code of Conduct](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/CODE_OF_CONDUCT.md ":include")
+[Code of Conduct](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/CODE_OF_CONDUCT.md ':include')
