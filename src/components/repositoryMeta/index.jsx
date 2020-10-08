@@ -1,22 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+
 import { format } from "src/utils/date";
+
 import { RepositoryType } from "src/types";
+
 import { Star, TrendingUp } from "src/components/icons";
 
 import "./index.scss";
 
-const DateTag = ({ name, dateValue }) => (
+const Date = ({ name, value }) => (
   <p className="repository__infos">
     {`${name} `}
-    <time className="repository__date" dateTime={dateValue}>
-      {format(dateValue)}
+    <time className="repository__date" dateTime={value}>
+      {format(value)}
     </time>
   </p>
 );
+
 const RepositoryMeta = ({ repository, tag, className }) => {
   const TitleTag = tag;
+
   const {
     owner: { name: ownerName },
     name,
@@ -26,6 +31,7 @@ const RepositoryMeta = ({ repository, tag, className }) => {
     lastCommitAt,
     createdAt,
   } = repository;
+
   return (
     <>
       <div className="repository__header">
@@ -52,8 +58,8 @@ const RepositoryMeta = ({ repository, tag, className }) => {
         </div>
       </div>
       <p className="repository__infos">{description}</p>
-      <DateTag name="Created" value={createdAt} />
-      <DateTag name="Last commit" value={lastCommitAt} />
+      <Date name="Created" value={createdAt} />
+      <Date name="Last commit" value={lastCommitAt} />
     </>
   );
 };
