@@ -78,7 +78,7 @@ const AboutPage = () => {
         <p>
           Developers, check out
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/wiki/Development-guide"
+            to="https://docs.vimcolorschemes.com/#/getting-started"
             data-section={`${SECTIONS.ABOUT_LINK}-5`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
