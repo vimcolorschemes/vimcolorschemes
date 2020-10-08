@@ -9,7 +9,9 @@ module.exports = {
     siteUrl,
     description:
       process.env.GATSBY_SITE_DESCRIPTION ||
-      "Looking for Vim Color Schemes? Explore a variety of trending and popular vim color schemes which are constantly updated just for you.",
+      "Find the best vim color schemes around",
+    metaDescription:
+      "vimcolorschemes.com is the ultimate resource for vim users to find the perfect color scheme for their development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation.",
     author: "@reobin",
   },
   plugins: [

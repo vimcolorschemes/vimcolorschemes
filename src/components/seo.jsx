@@ -12,9 +12,9 @@ function SEO({ description, lang, meta, title, imageUrl, path }) {
             title
             platform
             siteUrl
-            description
             author
             socialImageUrl
+            metaDescription
           }
         }
         logo: file(relativePath: { eq: "logo_background.png" }) {
@@ -24,7 +24,7 @@ function SEO({ description, lang, meta, title, imageUrl, path }) {
     `,
   );
 
-  const metaDescription = description || site.siteMetadata.description;
+  const metaDescription = description || site.siteMetadata.metaDescription;
 
   const ogImage = imageUrl
     ? `${site.siteMetadata.siteUrl}${imageUrl}`
