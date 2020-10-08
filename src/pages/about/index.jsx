@@ -126,21 +126,6 @@ const AboutPage = ({
           </ExternalLink>
           are welcome. Make sure to follow the issue template before posting.
         </p>
-        <h2 className="subtitle" id="credits">
-          <a
-            href="#credits"
-            data-section={`${SECTIONS.ABOUT_LINK}-8`}
-            data-layout={LAYOUTS.BLOCK}
-          >
-            Credits
-          </a>
-        </h2>
-        <p>
-          Credit goes to all the creators of vim color schemes around GitHub{" "}
-          <span role="img" aria-label="celebration">
-            🎉
-          </span>
-        </p>
         <h2 className="subtitle" id="howto">
           <a
             href="#trouble"
@@ -158,18 +143,47 @@ const AboutPage = ({
           scans GitHub every day looking for new color schemes to feature.
         </p>
         <p>
-          Make sure at least one of the following terms are present on the{" "}
-          <strong> README </strong> or <strong> description</strong>:{" "}
+          Make sure the word <strong>vim</strong> and at least one of the
+          following keywords appear on the <strong> README </strong> or{" "}
+          <strong> description</strong>:
         </p>
         <ul>
-          <li>vim color scheme </li>
-          <li>vim colorscheme</li>
-          <li>vim colour scheme</li>
-          <li>vim colourscheme</li>
+          <li>theme</li>
+          <li>color scheme</li>
+          <li>colour scheme</li>
+          <li>colorscheme</li>
+          <li>colourscheme</li>
         </ul>
-        <br />
+        <blockquote>
+          <em>Note:</em> The words can be in any order. Example: "color scheme
+          for vim" will work.
+        </blockquote>
         <p>
-          Still nothing? Feel free to create an issue on the GitHub repository.
+          Still nothing? Feel free to{" "}
+          <ExternalLink
+            to="https://github.com/reobin/vimcolorschemes/issues"
+            data-section={`${SECTIONS.ABOUT_LINK}-10`}
+            data-layout={LAYOUTS.BLOCK}
+            noIcon
+            className="inline-link"
+          >
+            create an issue on the GitHub repository.
+          </ExternalLink>
+        </p>
+        <h2 className="subtitle" id="credits">
+          <a
+            href="#credits"
+            data-section={`${SECTIONS.ABOUT_LINK}-8`}
+            data-layout={LAYOUTS.BLOCK}
+          >
+            Credits
+          </a>
+        </h2>
+        <p>
+          Credit goes to all the creators of vim color schemes around GitHub{" "}
+          <span role="img" aria-label="celebration">
+            🎉
+          </span>
         </p>
       </div>
     </Layout>
