@@ -20,13 +20,16 @@ import ZoomableImage from "src/components/zoomableImage";
 
 import "./index.scss";
 
+import { format } from "src/utils/date";
+
 const RepositoryPage = ({ data, location }) => {
   const fromPath = location?.state?.fromPath;
 
   const {
     owner: { name: ownerName },
     name,
-    description,
+    stargazersCount,
+    createdAt,
     githubUrl,
     featuredImage,
     images,
@@ -76,7 +79,7 @@ const RepositoryPage = ({ data, location }) => {
     <Layout>
       <SEO
         title={`${name} ${platform} color scheme, by ${ownerName}`}
-        description={description}
+        description={`The ${name} vim color scheme was created ${format(createdAt)} by ${ownerName}, and has over ${stargazersCount} stars on Github. Check it out on vimcolorschemes.com!`}
         imageUrl={featuredImage?.publicURL}
         path={`/${ownerName}/${name}`}
       />
