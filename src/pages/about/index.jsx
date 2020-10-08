@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
 
@@ -12,17 +10,11 @@ import SEO from "src/components/seo";
 
 import "./index.scss";
 
-const AboutPage = ({
-  data: {
-    site: {
-      siteMetadata: { title, platform },
-    },
-  },
-}) => {
+const AboutPage = () => {
   useNavigation();
   return (
     <Layout>
-      <SEO title={`About ${platform}colorschemes`} path="/about" />
+      <SEO title={`About vimcolorschemes`} path="/about" />
       <div className="about">
         <h1 className="title" id="about">
           <a
@@ -30,8 +22,7 @@ const AboutPage = ({
             data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            About {platform}
-            {title}
+            About vimcolorschemes
           </a>
         </h1>
         <p>
@@ -61,8 +52,8 @@ const AboutPage = ({
         </h2>
         <ul>
           <li>
-            <strong>Daily updated</strong> list of hundreds of {platform} color
-            scheme repositories
+            <strong>Daily updated</strong> list of hundreds of vim color scheme
+            repositories
           </li>
           <li>
             <strong>Awesome vim (or arrows) key bindings</strong> to navigate
@@ -80,12 +71,9 @@ const AboutPage = ({
           </a>
         </h2>
         <p>
-          <strong>
-            {platform}
-            {title}
-          </strong>{" "}
-          is aimed to be a collaborative project, and you are invited to help.
-          All types of involvement are welcome!
+          <strong>vimcolorschemes</strong> is aimed to be a collaborative
+          project, and you are invited to help. All types of involvement are
+          welcome!
         </p>
         <p>
           Developers, check out
@@ -136,11 +124,8 @@ const AboutPage = ({
           </a>
         </h2>
         <p>
-          <strong>
-            {platform}
-            {title}
-          </strong>{" "}
-          scans GitHub every day looking for new color schemes to feature.
+          <strong>vimcolorschemes</strong> scans GitHub every day looking for
+          new color schemes to feature.
         </p>
         <p>
           Make sure the word <strong>vim</strong> and at least one of the
@@ -189,27 +174,5 @@ const AboutPage = ({
     </Layout>
   );
 };
-
-AboutPage.propTypes = {
-  data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        platform: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
-};
-
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        platform
-      }
-    }
-  }
-`;
 
 export default AboutPage;

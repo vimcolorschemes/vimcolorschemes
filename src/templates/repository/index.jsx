@@ -35,10 +35,6 @@ const RepositoryPage = ({ data, location }) => {
     images,
   } = data.repository;
 
-  const {
-    siteMetadata: { platform },
-  } = data.site;
-
   useNavigation(SECTIONS.REPOSITORY_MAIN_IMAGE);
 
   const Nav = ({ bottom }) => (
@@ -78,7 +74,7 @@ const RepositoryPage = ({ data, location }) => {
   return (
     <Layout>
       <SEO
-        title={`${name} ${platform} color scheme, by ${ownerName}`}
+        title={`${name} vim color scheme, by ${ownerName}`}
         description={`The ${name} vim color scheme was created ${format(
           createdAt,
         )} by ${ownerName}, and has over ${stargazersCount} stars on Github. Check it out on vimcolorschemes.com`}
@@ -112,11 +108,6 @@ const RepositoryPage = ({ data, location }) => {
 RepositoryPage.propTypes = {
   data: PropTypes.shape({
     repository: RepositoryType,
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        platform: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
   }),
   location: PropTypes.shape({
     fromPath: PropTypes.string,
@@ -125,11 +116,6 @@ RepositoryPage.propTypes = {
 
 export const query = graphql`
   query($ownerName: String!, $name: String!) {
-    site {
-      siteMetadata {
-        platform
-      }
-    }
     repository: mongodbColorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }

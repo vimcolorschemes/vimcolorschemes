@@ -17,23 +17,6 @@ const SiteTitle = ({
 }) => {
   const Heading = isHome ? "h1" : "h2";
 
-  const {
-    site: {
-      siteMetadata: { platform, title },
-    },
-  } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            platform
-          }
-        }
-      }
-    `,
-  );
-
   return (
     <Link
       to="/"
@@ -44,8 +27,8 @@ const SiteTitle = ({
     >
       <img src={logo} alt="" className="site-title__logo" />
       <Heading className="site-title__name">
-        <span className="site-title__name-part">{platform}</span>
-        <span className="site-title__name-part">{title}</span>
+        <span className="site-title__name-part">vim</span>
+        <span className="site-title__name-part">colorscheme</span>
       </Heading>
     </Link>
   );

@@ -17,8 +17,6 @@ function SEO({
       query {
         site {
           siteMetadata {
-            title
-            platform
             siteUrl
             author
             socialImageUrl
@@ -48,7 +46,7 @@ function SEO({
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.platform}${site.siteMetadata.title}`}
+      titleTemplate={"%s | vimcolorschemes"}
       meta={[
         {
           name: `description`,
