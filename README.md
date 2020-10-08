@@ -8,7 +8,7 @@
 <br>
 
 <p align="center">
-  <img src="http://img.shields.io/badge/visitors/day-~1k-4f8752?style=flat-square" alt="visitors" />
+  <img src="https://img.shields.io/badge/visitors/day-~1k-4f8752?style=flat-square" alt="visitors" />
   <img src="https://img.shields.io/github/stars/reobin/vimcolorschemes?style=flat-square&logo=github&color=4f8752" alt="stars" />
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
@@ -17,12 +17,12 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
-  <img src="http://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
-  <img src="http://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
-  <img src="http://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
-  <img src="http://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
-  <img src="http://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
-  <img src="http://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
+  <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
+  <img src="https://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
 </p>
 
 <br>
