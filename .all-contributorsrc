@@ -148,6 +148,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Aniruddha-Shriwant",
+      "name": "Aniruddha Shriwant",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/58624108?v=4",
+      "profile": "http://aniruddha-shriwant.github.io/cv/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
