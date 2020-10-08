@@ -27,9 +27,9 @@ export const useTogglePointerEvents = () => {
  * has changed it's value
  */
 const mouseMoveListener = () => {
-  togglePointerEvents(MOUSE_EVENTS.MOUSE_MOVE) &&
+  togglePointerEvents(MOUSE_EVENTS.MOUSE_MOVE);
   window.removeEventListener("mousemove", mouseMoveListener);
-}
+};
 
 /**
  * This function set _document.body.style.pointerEvents_ to 'none'

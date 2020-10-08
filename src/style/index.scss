@@ -4,13 +4,17 @@
 body {
   --white: #fff;
   --white-rgb: 255, 255, 255;
+
   --black: #333333;
   --black-rgb: 51, 51, 51;
+
   --blue: #2855b7;
   --blue-pale: #85a9f7;
 
   --white-pale: #cccccc;
   --black-pale: #5c5c5c;
+
+  --grey: #e3e3e3;
 
   --font-family: "Source Sans Pro", sans-serif;
   --font-size: 16px;
@@ -22,6 +26,8 @@ body {
   --focus-border: var(--black-pale);
   --background: var(--white);
   --background-rgb: var(--white-rgb);
+
+  --blockquote-background: var(--grey);
 
   &.dark {
     --link: var(--blue-pale);
@@ -63,6 +69,16 @@ a {
 
 strong {
   font-weight: bold;
+}
+
+em {
+  font-style: italic;
+}
+
+blockquote {
+  padding: 1rem;
+  background: var(--blockquote-background);
+  margin: 1rem 0;
 }
 
 .title {
