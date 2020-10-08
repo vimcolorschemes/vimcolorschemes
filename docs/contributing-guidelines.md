@@ -1,1 +1,2 @@
-[contributing guidelines](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/CONTRIBUTING.md ":include")
+<!-- prettier-ignore -->
+[Contributing guidelines](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/.github/CONTRIBUTING.md ':include')
