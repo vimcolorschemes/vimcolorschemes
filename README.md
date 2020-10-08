@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-16-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -83,12 +83,12 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/gudeliauskaspam"><img src="https://avatars1.githubusercontent.com/u/47401012?v=4" width="100px;" alt=""/><br /><sub><b>Pâmela G.</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=gudeliauskaspam" title="Code">💻</a> <a href="https://github.com/reobin/vimcolorschemes/commits?author=gudeliauskaspam" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://aniruddha-shriwant.github.io/cv/"><img src="https://avatars3.githubusercontent.com/u/58624108?v=4" width="100px;" alt=""/><br /><sub><b>Aniruddha Shriwant</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=Aniruddha-Shriwant" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
-
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
