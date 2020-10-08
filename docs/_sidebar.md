@@ -1,0 +1,6 @@
+- [Home](/ "vimcolorschemes docs")
+- [Getting started](/getting-started "Getting started | vimcolorschemes docs")
+- [Installation guide](/installation-guide.md "Installation guide | vimcolorschemes docs")
+- [Workflow](/workflow.md "Workflow | vimcolorschemes docs")
+- [Details on the Worker](/the-worker.md "The Worker | vimcolorschemes docs")
+- [Contributing guidelines](/contributing-guidelines.md "Contributing guidelines | vimcolorschemes docs")

@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/reobin/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-15-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -80,6 +80,9 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="https://github.com/hardikmodi1"><img src="https://avatars2.githubusercontent.com/u/22965398?v=4" width="100px;" alt=""/><br /><sub><b>Hardik Modi</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=hardikmodi1" title="Code">💻</a></td>
     <td align="center"><a href="https://www.linkedin.com/in/pedro-correa-2ba2b0135/"><img src="https://avatars3.githubusercontent.com/u/22248651?v=4" width="100px;" alt=""/><br /><sub><b>Pedro Correa</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=Tulkdan" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/indremak"><img src="https://avatars3.githubusercontent.com/u/67926235?v=4" width="100px;" alt=""/><br /><sub><b>indremak</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=indremak" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/gudeliauskaspam"><img src="https://avatars1.githubusercontent.com/u/47401012?v=4" width="100px;" alt=""/><br /><sub><b>Pâmela G.</b></sub></a><br /><a href="https://github.com/reobin/vimcolorschemes/commits?author=gudeliauskaspam" title="Code">💻</a> <a href="https://github.com/reobin/vimcolorschemes/commits?author=gudeliauskaspam" title="Documentation">📖</a></td>
   </tr>
 </table>
 

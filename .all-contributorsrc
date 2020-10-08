@@ -138,6 +138,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "gudeliauskaspam",
+      "name": "Pâmela G.",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/47401012?v=4",
+      "profile": "https://github.com/gudeliauskaspam",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
