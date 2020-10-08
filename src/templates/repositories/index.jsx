@@ -42,7 +42,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   return (
     <Layout isHome>
-      <SEO title={`${activeAction.label} ${platform} color schemes`} />
+      <SEO
+        title={`${activeAction.label} ${platform} color schemes`}
+        descriptionSuffix={`Check out the ${activeAction.label} vim color schemes!`}
+      />
       <Intro />
       <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       <p>
