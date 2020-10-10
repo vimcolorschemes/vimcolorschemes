@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { graphql } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
 
@@ -12,17 +10,11 @@ import SEO from "src/components/seo";
 
 import "./index.scss";
 
-const AboutPage = ({
-  data: {
-    site: {
-      siteMetadata: { title, platform },
-    },
-  },
-}) => {
+const AboutPage = () => {
   useNavigation();
   return (
     <Layout>
-      <SEO title={`About ${platform}colorschemes`} path="/about" />
+      <SEO title={`About vimcolorschemes`} path="/about" />
       <div className="about">
         <h1 className="title" id="about">
           <a
@@ -30,8 +22,7 @@ const AboutPage = ({
             data-section={`${SECTIONS.ABOUT_LINK}-1`}
             data-layout={LAYOUTS.BLOCK}
           >
-            About {platform}
-            {title}
+            About vimcolorschemes
           </a>
         </h1>
         <p>
@@ -61,8 +52,8 @@ const AboutPage = ({
         </h2>
         <ul>
           <li>
-            <strong>Daily updated</strong> list of hundreds of {platform} color
-            scheme repositories
+            <strong>Daily updated</strong> list of hundreds of vim color scheme
+            repositories
           </li>
           <li>
             <strong>Awesome vim (or arrows) key bindings</strong> to navigate
@@ -80,17 +71,14 @@ const AboutPage = ({
           </a>
         </h2>
         <p>
-          <strong>
-            {platform}
-            {title}
-          </strong>{" "}
-          is aimed to be a collaborative project, and you are invited to help.
-          All types of involvement are welcome!
+          <strong>vimcolorschemes</strong> is aimed to be a collaborative
+          project, and you are invited to help. All types of involvement are
+          welcome!
         </p>
         <p>
           Developers, check out
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/wiki/Development-guide"
+            to="https://docs.vimcolorschemes.com/#/getting-started"
             data-section={`${SECTIONS.ABOUT_LINK}-5`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
@@ -126,6 +114,47 @@ const AboutPage = ({
           </ExternalLink>
           are welcome. Make sure to follow the issue template before posting.
         </p>
+        <h2 className="subtitle" id="howto">
+          <a
+            href="#trouble"
+            data-section={`${SECTIONS.ABOUT_LINK}-9`}
+            data-layout={LAYOUTS.BLOCK}
+          >
+            Is your vim color scheme not showing up?
+          </a>
+        </h2>
+        <p>
+          <strong>vimcolorschemes</strong> scans GitHub every day looking for
+          new color schemes to feature.
+        </p>
+        <p>
+          Make sure the word <strong>vim</strong> and at least one of the
+          following keywords appear on the <strong> README </strong> or{" "}
+          <strong> description</strong>:
+        </p>
+        <ul>
+          <li>theme</li>
+          <li>color scheme</li>
+          <li>colour scheme</li>
+          <li>colorscheme</li>
+          <li>colourscheme</li>
+        </ul>
+        <blockquote>
+          <em>Note:</em> The words can be in any order. Example: "color scheme
+          for vim" will work.
+        </blockquote>
+        <p>
+          Still nothing? Feel free to{" "}
+          <ExternalLink
+            to="https://github.com/reobin/vimcolorschemes/issues"
+            data-section={`${SECTIONS.ABOUT_LINK}-10`}
+            data-layout={LAYOUTS.BLOCK}
+            noIcon
+            className="inline-link"
+          >
+            create an issue on the GitHub repository.
+          </ExternalLink>
+        </p>
         <h2 className="subtitle" id="credits">
           <a
             href="#credits"
@@ -141,61 +170,9 @@ const AboutPage = ({
             🎉
           </span>
         </p>
-        <h2 className="subtitle" id="howto">
-          <a
-            href="#trouble"
-            data-section={`${SECTIONS.ABOUT_LINK}-9`}
-            data-layout={LAYOUTS.BLOCK}
-          >
-            Is your vim color scheme not showing up?
-          </a>
-        </h2>
-        <p>
-          <strong>
-            {platform}
-            {title}
-          </strong>{" "}
-          scans GitHub every day looking for new color schemes to feature.
-        </p>
-        <p>
-          Make sure at least one of the following terms are present on the{" "}
-          <strong> README </strong> or <strong> description</strong>:{" "}
-        </p>
-        <ul>
-          <li>vim color scheme </li>
-          <li>vim colorscheme</li>
-          <li>vim colour scheme</li>
-          <li>vim colourscheme</li>
-        </ul>
-        <br />
-        <p>
-          Still nothing? Feel free to create an issue on the GitHub repository.
-        </p>
       </div>
     </Layout>
   );
 };
-
-AboutPage.propTypes = {
-  data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        platform: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
-  }).isRequired,
-};
-
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        platform
-      }
-    }
-  }
-`;
 
 export default AboutPage;

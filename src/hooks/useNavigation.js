@@ -72,6 +72,7 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   const { section, layout } = activeElement.dataset;
 
   let nextTabIndex;
+
   if (metaKey) {
     if ([KEYS.UP, KEYS.ARROW_UP].includes(key)) {
       nextTabIndex = 0;

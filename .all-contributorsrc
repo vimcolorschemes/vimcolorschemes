@@ -93,6 +93,70 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adigitoleo",
+      "name": "Leon",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/34595875?v=4",
+      "profile": "https://github.com/adigitoleo",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "delbetu",
+      "name": "M. Bellucci",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/3356799?v=4",
+      "profile": "http://delbetu.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "hardikmodi1",
+      "name": "Hardik Modi",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/22965398?v=4",
+      "profile": "https://github.com/hardikmodi1",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Tulkdan",
+      "name": "Pedro Correa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/22248651?v=4",
+      "profile": "https://www.linkedin.com/in/pedro-correa-2ba2b0135/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "indremak",
+      "name": "indremak",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/67926235?v=4",
+      "profile": "https://github.com/indremak",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gudeliauskaspam",
+      "name": "Pâmela G.",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/47401012?v=4",
+      "profile": "https://github.com/gudeliauskaspam",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "Aniruddha-Shriwant",
+      "name": "Aniruddha Shriwant",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/58624108?v=4",
+      "profile": "http://aniruddha-shriwant.github.io/cv/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

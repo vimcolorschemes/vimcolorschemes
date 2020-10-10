@@ -24,9 +24,6 @@ import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const { totalCount, repositories } = data?.repositoriesData;
-  const {
-    siteMetadata: { platform },
-  } = data?.site;
   const { currentPage, pageCount } = pageContext;
 
   const currentPath = location.pathname || "";
@@ -77,7 +74,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   return (
     <Layout isHome>
-      <SEO title={`${activeAction.label} ${platform} color schemes`} />
+      <SEO
+        title={`${activeAction.label} vim color schemes`}
+        descriptionSuffix={`Check out the ${activeAction.label} vim color schemes!`}
+      />
       <Intro />
       <div className="action-row">
         {useSearch && (
@@ -122,11 +122,6 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
 RepositoriesPage.propTypes = {
   data: PropTypes.shape({
-    site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        platform: PropTypes.string.isRequired,
-      }).isRequired,
-    }).isRequired,
     repositoriesData: PropTypes.shape({
       totalCount: PropTypes.number.isRequired,
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
@@ -147,11 +142,6 @@ export const query = graphql`
     $sortField: [mongodbColorschemesRepositoriesFieldsEnum]!
     $sortOrder: [SortOrderEnum]!
   ) {
-    site {
-      siteMetadata {
-        platform
-      }
-    }
     repositoriesData: allMongodbColorschemesRepositories(
       filter: { valid: { eq: true }, image_urls: { ne: "" } }
       sort: { fields: $sortField, order: $sortOrder }
