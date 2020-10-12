@@ -27,31 +27,31 @@ const HTML = props => (
       <script
         dangerouslySetInnerHTML={{
           __html: `
-              (function() {
-                window.__onThemeChange = function() {};
-                function setTheme(theme) {
-                  window.__theme = theme;
-                  preferredTheme = theme;
-                  document.body.className = theme;
-                  window.__onThemeChange(theme);
-                }
-                var preferredTheme;
+            (function() {
+              window.__onThemeChange = function() {};
+              function setTheme(newTheme) {
+                window.__theme = newTheme;
+                preferredTheme = newTheme;
+                document.body.className = newTheme;
+                window.__onThemeChange(newTheme);
+              }
+              var preferredTheme;
+              try {
+                preferredTheme = localStorage.getItem("${THEME_KEY}");
+              } catch (err) { }
+              window.__setPreferredTheme = function(newTheme) {
+                setTheme(newTheme);
                 try {
-                  preferredTheme = localStorage.getItem("${THEME_KEY}");
-                } catch {}
-                window.__setPreferredTheme = function(theme) {
-                  setTheme(theme);
-                  try {
-                    localStorage.setItem("${THEME_KEY}", theme);
-                  } catch {}
-                }
-                var mql = window.matchMedia("(prefers-color-scheme: dark)");
-                mql.addListener(function(e) {
-                  window.__setPreferredTheme(e.matches ? "${THEMES.DARK}" : "${THEMES.LIGHT}");
-                });
-                setTheme(preferredTheme || (mql.matches ? "${THEMES.DARK}" : "${THEMES.LIGHT}"));
-              })();
-            `,
+                  localStorage.setItem("${THEME_KEY}", newTheme);
+                } catch (err) {}
+              }
+              var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
+              darkQuery.addListener(function(event) {
+                window.__setPreferredTheme(e.matches ? "${THEMES.DARK}" : "${THEMES.LIGHT}")
+              });
+              setTheme(preferredTheme || (darkQuery.matches ? "${THEMES.DARK}" : "${THEMES.LIGHT}"));
+            })();
+          `,
         }}
       />
       {props.preBodyComponents}
