@@ -6,7 +6,7 @@ import { RepositoryType } from "src/types";
 
 import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
 
-import { isSearchIndexUp, searchRepositoryIndex } from "src/elasticsearch/api";
+import { searchRepositoryIndex } from "src/elasticsearch/api";
 
 import { useNavigation } from "src/hooks/useNavigation";
 import { useDebounce } from "src/hooks/useDebounce";
@@ -33,20 +33,12 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
     ) || ACTIONS.TRENDING;
 
-  const [useSearch, setUseSearch] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const debouncedSearchInput = useDebounce(searchInput, 200);
 
   const [resetNavigation] = useNavigation(SECTIONS.REPOSITORIES);
-
-  useEffect(() => {
-    const fetchIsSearchIndexUp = async () =>
-      setUseSearch(await isSearchIndexUp());
-
-    fetchIsSearchIndexUp();
-  }, []);
 
   useEffect(() => {
     const searchRepositories = async () => {
@@ -59,12 +51,12 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     searchRepositories();
   }, [debouncedSearchInput]);
 
-  const test = useMemo(
+  const displayedRepositories = useMemo(
     () => (debouncedSearchInput ? searchResults : repositories),
     [debouncedSearchInput, searchResults, repositories],
   );
 
-  useEffect(() => resetNavigation(), [test]);
+  useEffect(() => resetNavigation(), [displayedRepositories]);
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
@@ -80,12 +72,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       />
       <Intro />
       <div className="action-row">
-        {useSearch && (
-          <SearchInput
-            value={searchInput}
-            onChange={event => setSearchInput(event.target.value)}
-          />
-        )}
+        <SearchInput
+          value={searchInput}
+          onChange={event => setSearchInput(event.target.value)}
+        />
         <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
       </div>
       {!!debouncedSearchInput ? (
@@ -101,7 +91,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         </p>
       )}
       <Grid className="repositories">
-        {test.map(repository => (
+        {displayedRepositories.map(repository => (
           <Card
             key={`repository-${repository.owner?.name}-${repository.name}`}
             linkState={{ fromPath: currentPath }}

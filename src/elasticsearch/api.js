@@ -2,16 +2,6 @@ import { INDEX_NAME } from ".";
 
 const URL = process.env.GATSBY_ELASTICSEARCH_PROXY_URL;
 
-export const isSearchIndexUp = async () => {
-  if (!URL) return false;
-  try {
-    await fetch(URL);
-    return true;
-  } catch {
-    return false;
-  }
-};
-
 export const searchRepositoryIndex = async query => {
   try {
     const response = await fetch(`${URL}/${INDEX_NAME}/_search`, {

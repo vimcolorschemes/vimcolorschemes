@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
 
-import { useEventListener } from "src/hooks/useEventListener";
+import { useKeyboardShortcuts } from "src/hooks/useKeyboardShortcuts";
 
 import { Enter, Slash } from "src/components/icons";
 
@@ -25,15 +25,11 @@ const SearchInput = ({ value, onChange }) => {
   const searchInputWrapperRef = useRef();
   const searchInputRef = useRef();
 
-  useEventListener("keydown", event => {
-    if (
-      event.target !== searchInputRef.current &&
-      event.key === "/" &&
-      !!searchInputRef?.current?.focus
-    ) {
+  useKeyboardShortcuts({
+    "/": event => {
       event.preventDefault();
       searchInputRef.current.focus();
-    }
+    },
   });
 
   return (
