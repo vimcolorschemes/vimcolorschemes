@@ -211,5 +211,9 @@ export const createPages = async ({ graphql, actions }) => {
   createRepositoriesPages(repositories, createPage);
   Logger.info("Creating repositories index pages");
 
-  if (process.env.GATSBY_ELASTICSEARCH_URL) createSearchIndex(repositories);
+  if (
+    process.env.GATSBY_ELASTICSEARCH_URL ||
+    process.env.GATSBY_ELASTICSEARCH_CLOUD_ID
+  )
+    createSearchIndex(repositories);
 };
