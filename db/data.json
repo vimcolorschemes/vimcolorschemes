@@ -22,63 +22,134 @@
     "pushed_at": {
       "$date": "2020-04-27T06:49:07Z"
     },
-    "stargazers_count": 14539,
+    "stargazers_count": 14577,
     "valid": false,
     "cleaned_recently": false,
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:24.137Z"
+    },
     "image_urls": [],
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 14518
+        "date": "2020-09-13",
+        "stargazers_count": 14552
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 14520
+        "date": "2020-09-14",
+        "stargazers_count": 14551
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 14519
+        "date": "2020-09-15",
+        "stargazers_count": 14551
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 14521
+        "date": "2020-09-16",
+        "stargazers_count": 14552
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 14522
+        "date": "2020-09-17",
+        "stargazers_count": 14553
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 14523
+        "date": "2020-09-18",
+        "stargazers_count": 14554
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 14525
+        "date": "2020-09-19",
+        "stargazers_count": 14554
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 14525
+        "date": "2020-09-20",
+        "stargazers_count": 14556
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 14526
+        "date": "2020-09-21",
+        "stargazers_count": 14559
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 14529
+        "date": "2020-09-22",
+        "stargazers_count": 14558
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 14533
+        "date": "2020-09-23",
+        "stargazers_count": 14558
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 14535
+        "date": "2020-09-24",
+        "stargazers_count": 14558
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 14539
+        "date": "2020-09-25",
+        "stargazers_count": 14556
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 14558
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 14559
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 14559
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 14561
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 14564
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 14565
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 14565
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 14568
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 14568
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 14570
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 14573
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 14572
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 14573
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 14575
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 14575
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 14578
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 14577
       }
     ],
     "vim_color_scheme_names": [],
@@ -115,67 +186,145 @@
       "$date": "2020-07-03T12:42:06Z"
     },
     "pushed_at": {
-      "$date": "2020-07-28T21:26:50Z"
+      "$date": "2020-10-05T19:15:03Z"
     },
-    "stargazers_count": 7929,
+    "stargazers_count": 8094,
     "valid": true,
     "cleaned_recently": false,
+    "blacklisted_image_urls": ["http://i.imgur.com/49qKyYW.png"],
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.053Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:26.723Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 7885
+        "date": "2020-09-13",
+        "stargazers_count": 7960
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 7887
+        "date": "2020-09-14",
+        "stargazers_count": 7962
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 7888
+        "date": "2020-09-15",
+        "stargazers_count": 7968
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 7894
+        "date": "2020-09-16",
+        "stargazers_count": 7974
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 7899
+        "date": "2020-09-17",
+        "stargazers_count": 7974
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 7902
+        "date": "2020-09-18",
+        "stargazers_count": 7981
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 7908
+        "date": "2020-09-19",
+        "stargazers_count": 7990
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 7913
+        "date": "2020-09-20",
+        "stargazers_count": 7990
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 7918
+        "date": "2020-09-21",
+        "stargazers_count": 7990
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 7923
+        "date": "2020-09-22",
+        "stargazers_count": 7996
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 7926
+        "date": "2020-09-23",
+        "stargazers_count": 7997
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 7926
+        "date": "2020-09-24",
+        "stargazers_count": 8007
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 7929
+        "date": "2020-09-25",
+        "stargazers_count": 8011
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 8016
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 8023
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 8030
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 8039
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 8048
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 8050
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 8050
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 8051
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 8057
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 8061
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 8067
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 8072
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 8078
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 8080
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 8084
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 8086
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 8094
       }
     ],
     "vim_color_scheme_names": ["gruvbox"],
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:24Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:09.030Z"
     }
@@ -204,67 +353,145 @@
       "$date": "2015-11-11T12:17:45Z"
     },
     "pushed_at": {
-      "$date": "2020-03-19T15:51:32Z"
+      "$date": "2020-10-01T18:15:59Z"
     },
-    "stargazers_count": 3145,
+    "stargazers_count": 3159,
     "valid": true,
+    "blacklisted_image_urls": [],
+    "updated_at": {
+      "$date": "2020-08-13T19:26:29.222Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:28.116Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 3138
+        "date": "2020-09-13",
+        "stargazers_count": 3149
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 3139
+        "date": "2020-09-14",
+        "stargazers_count": 3148
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 3139
+        "date": "2020-09-15",
+        "stargazers_count": 3150
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 3139
+        "date": "2020-09-16",
+        "stargazers_count": 3150
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 3142
+        "date": "2020-09-17",
+        "stargazers_count": 3151
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 3141
+        "date": "2020-09-18",
+        "stargazers_count": 3151
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 3142
+        "date": "2020-09-19",
+        "stargazers_count": 3151
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 3145
+        "date": "2020-09-20",
+        "stargazers_count": 3150
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 3145
+        "date": "2020-09-21",
+        "stargazers_count": 3152
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 3144
+        "date": "2020-09-22",
+        "stargazers_count": 3152
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 3144
+        "date": "2020-09-23",
+        "stargazers_count": 3152
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 3145
+        "date": "2020-09-24",
+        "stargazers_count": 3153
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 3145
+        "date": "2020-09-25",
+        "stargazers_count": 3154
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 3154
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 3156
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 3156
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 3156
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 3156
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 3156
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 3157
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 3159
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 3159
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 3158
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 3160
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 3159
       }
     ],
     "vim_color_scheme_names": ["molokai"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:25.723Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:09.374Z"
     }
@@ -298,67 +525,148 @@
       "$date": "2020-08-12T23:30:30Z"
     },
     "pushed_at": {
-      "$date": "2020-08-12T23:30:32Z"
+      "$date": "2020-09-28T17:57:42Z"
     },
-    "stargazers_count": 2358,
+    "stargazers_count": 2418,
     "valid": true,
+    "blacklisted_image_urls": [
+      "https://raw.githubusercontent.com/joshdick/onedark.vim/master/img/broken_colors.png",
+      "https://raw.github.com/joshdick/onedark.vim/master/img/preview_airline.png"
+    ],
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.053Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:31.985Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 2343
+        "date": "2020-09-13",
+        "stargazers_count": 2376
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 2345
+        "date": "2020-09-14",
+        "stargazers_count": 2376
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 2347
+        "date": "2020-09-15",
+        "stargazers_count": 2378
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 2350
+        "date": "2020-09-16",
+        "stargazers_count": 2378
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 2351
+        "date": "2020-09-17",
+        "stargazers_count": 2382
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 2351
+        "date": "2020-09-18",
+        "stargazers_count": 2384
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 2351
+        "date": "2020-09-19",
+        "stargazers_count": 2386
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 2353
+        "date": "2020-09-20",
+        "stargazers_count": 2389
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 2354
+        "date": "2020-09-21",
+        "stargazers_count": 2390
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 2355
+        "date": "2020-09-22",
+        "stargazers_count": 2395
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 2356
+        "date": "2020-09-23",
+        "stargazers_count": 2395
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 2356
+        "date": "2020-09-24",
+        "stargazers_count": 2396
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 2358
+        "date": "2020-09-25",
+        "stargazers_count": 2401
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 2401
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 2403
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 2402
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 2404
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 2406
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 2407
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 2409
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 2412
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 2413
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 2414
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 2414
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 2413
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 2413
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 2415
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 2418
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 2417
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 2418
       }
     ],
     "vim_color_scheme_names": ["onedark"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:31.429Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:09.795Z"
     }
@@ -395,65 +703,139 @@
     "pushed_at": {
       "$date": "2020-06-16T23:14:29Z"
     },
-    "stargazers_count": 1605,
+    "stargazers_count": 1633,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:33.248Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1599
+        "date": "2020-09-13",
+        "stargazers_count": 1612
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1600
+        "date": "2020-09-14",
+        "stargazers_count": 1612
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1601
+        "date": "2020-09-15",
+        "stargazers_count": 1613
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1603
+        "date": "2020-09-16",
+        "stargazers_count": 1614
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1604
+        "date": "2020-09-17",
+        "stargazers_count": 1614
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1604
+        "date": "2020-09-18",
+        "stargazers_count": 1614
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1603
+        "date": "2020-09-19",
+        "stargazers_count": 1615
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1604
+        "date": "2020-09-20",
+        "stargazers_count": 1617
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1604
+        "date": "2020-09-21",
+        "stargazers_count": 1617
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1604
+        "date": "2020-09-22",
+        "stargazers_count": 1617
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1604
+        "date": "2020-09-23",
+        "stargazers_count": 1617
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1605
+        "date": "2020-09-24",
+        "stargazers_count": 1620
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1605
+        "date": "2020-09-25",
+        "stargazers_count": 1621
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1620
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1620
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1621
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1626
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1624
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1625
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1627
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1626
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1626
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1627
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1627
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1627
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1629
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1630
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1631
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1631
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1633
       }
     ],
     "vim_color_scheme_names": ["PaperColor"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:33.447Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:10.204Z"
     }
@@ -482,67 +864,141 @@
       "$date": "2019-06-22T00:05:03Z"
     },
     "pushed_at": {
-      "$date": "2019-06-22T00:05:31Z"
+      "$date": "2020-09-30T16:09:27Z"
     },
-    "stargazers_count": 1460,
+    "stargazers_count": 1463,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-25T20:01:34.341Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
+        "date": "2020-09-13",
         "stargazers_count": 1459
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1459
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 1458
-      },
-      {
-        "date": "2020-08-27",
+        "date": "2020-09-14",
         "stargazers_count": 1460
       },
       {
-        "date": "2020-08-28",
+        "date": "2020-09-15",
         "stargazers_count": 1460
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1459
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 1459
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 1458
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 1458
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 1458
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 1458
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 1459
-      },
-      {
-        "date": "2020-09-05",
+        "date": "2020-09-16",
         "stargazers_count": 1460
+      },
+      {
+        "date": "2020-09-17",
+        "stargazers_count": 1460
+      },
+      {
+        "date": "2020-09-18",
+        "stargazers_count": 1461
+      },
+      {
+        "date": "2020-09-19",
+        "stargazers_count": 1461
+      },
+      {
+        "date": "2020-09-20",
+        "stargazers_count": 1461
+      },
+      {
+        "date": "2020-09-21",
+        "stargazers_count": 1461
+      },
+      {
+        "date": "2020-09-22",
+        "stargazers_count": 1461
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1462
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1463
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1463
       }
     ],
     "vim_color_scheme_names": ["jellybeans"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:34.511Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:10.501Z"
     }
@@ -574,64 +1030,142 @@
     "pushed_at": {
       "$date": "2017-11-20T03:15:02Z"
     },
-    "stargazers_count": 1353,
+    "stargazers_count": 1359,
     "valid": true,
+    "blacklisted_image_urls": [],
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.054Z"
+    },
     "featured_image_url": "https://user-images.githubusercontent.com/8057916/28242153-398df6c8-69c2-11e7-9537-eb67497f2bfc.png",
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:03.698Z"
+    },
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
+        "date": "2020-09-13",
         "stargazers_count": 1355
       },
       {
-        "date": "2020-08-25",
+        "date": "2020-09-14",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-15",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-16",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-17",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-18",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-19",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-20",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-21",
+        "stargazers_count": 1355
+      },
+      {
+        "date": "2020-09-22",
         "stargazers_count": 1354
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1354
+        "date": "2020-09-23",
+        "stargazers_count": 1355
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1354
+        "date": "2020-09-24",
+        "stargazers_count": 1356
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1354
+        "date": "2020-09-25",
+        "stargazers_count": 1357
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1354
+        "date": "2020-09-26",
+        "stargazers_count": 1357
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1354
+        "date": "2020-09-27",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1354
+        "date": "2020-09-28",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1354
+        "date": "2020-09-29",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1353
+        "date": "2020-09-30",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1353
+        "date": "2020-10-01",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1354
+        "date": "2020-10-02",
+        "stargazers_count": 1358
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1353
+        "date": "2020-10-03",
+        "stargazers_count": 1358
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1358
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1358
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1359
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1359
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:38.215Z"
+    },
     "vim_color_scheme_names": ["hybrid"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:10.869Z"
@@ -665,64 +1199,138 @@
     "pushed_at": {
       "$date": "2020-07-18T09:22:54Z"
     },
-    "stargazers_count": 1257,
+    "stargazers_count": 1261,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:06.294Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1252
+        "date": "2020-09-13",
+        "stargazers_count": 1260
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1252
+        "date": "2020-09-14",
+        "stargazers_count": 1258
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1252
+        "date": "2020-09-15",
+        "stargazers_count": 1258
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1253
+        "date": "2020-09-16",
+        "stargazers_count": 1259
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1254
+        "date": "2020-09-17",
+        "stargazers_count": 1258
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1255
+        "date": "2020-09-18",
+        "stargazers_count": 1259
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1255
+        "date": "2020-09-19",
+        "stargazers_count": 1259
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1255
+        "date": "2020-09-20",
+        "stargazers_count": 1260
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1256
+        "date": "2020-09-21",
+        "stargazers_count": 1260
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1256
+        "date": "2020-09-22",
+        "stargazers_count": 1260
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1256
+        "date": "2020-09-23",
+        "stargazers_count": 1261
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1257
+        "date": "2020-09-24",
+        "stargazers_count": 1261
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1257
+        "date": "2020-09-25",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1262
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1263
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1260
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1262
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1261
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1261
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:52:40.536Z"
+    },
     "vim_color_scheme_names": ["seoul256", "seoul256"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:11.277Z"
@@ -746,67 +1354,138 @@
     "github_url": "https://github.com/rafi/awesome-vim-colorschemes",
     "homepage_url": "",
     "last_commit_at": {
-      "$date": "2020-08-26T18:02:43Z"
+      "$date": "2020-09-11T09:58:45Z"
     },
     "pushed_at": {
-      "$date": "2020-08-26T18:06:33Z"
+      "$date": "2020-09-11T09:59:00Z"
     },
-    "stargazers_count": 1268,
+    "stargazers_count": 1320,
     "valid": false,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:09.654Z"
+    },
     "image_urls": [],
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1256
+        "date": "2020-09-13",
+        "stargazers_count": 1278
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1256
+        "date": "2020-09-14",
+        "stargazers_count": 1280
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1256
+        "date": "2020-09-15",
+        "stargazers_count": 1281
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1258
+        "date": "2020-09-16",
+        "stargazers_count": 1281
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1259
+        "date": "2020-09-17",
+        "stargazers_count": 1280
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1262
+        "date": "2020-09-18",
+        "stargazers_count": 1280
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1263
+        "date": "2020-09-19",
+        "stargazers_count": 1280
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1266
+        "date": "2020-09-20",
+        "stargazers_count": 1282
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1265
+        "date": "2020-09-21",
+        "stargazers_count": 1284
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1266
+        "date": "2020-09-22",
+        "stargazers_count": 1284
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1268
+        "date": "2020-09-23",
+        "stargazers_count": 1287
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1268
+        "date": "2020-09-24",
+        "stargazers_count": 1286
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1268
+        "date": "2020-09-25",
+        "stargazers_count": 1288
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1290
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1293
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1296
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1297
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1298
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1300
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1302
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1303
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1304
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1305
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1309
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1311
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1313
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1314
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1316
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1318
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1320
       }
     ],
     "vim_color_scheme_names": [],
@@ -838,64 +1517,138 @@
     "pushed_at": {
       "$date": "2020-03-04T13:02:53Z"
     },
-    "stargazers_count": 1145,
+    "stargazers_count": 1150,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:10.958Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1143
+        "date": "2020-09-13",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1144
+        "date": "2020-09-14",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1144
+        "date": "2020-09-15",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1144
+        "date": "2020-09-16",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1144
+        "date": "2020-09-17",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1144
+        "date": "2020-09-18",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1145
+        "date": "2020-09-19",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1145
+        "date": "2020-09-20",
+        "stargazers_count": 1148
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1145
+        "date": "2020-09-21",
+        "stargazers_count": 1149
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1145
+        "date": "2020-09-22",
+        "stargazers_count": 1149
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1145
+        "date": "2020-09-23",
+        "stargazers_count": 1149
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1145
+        "date": "2020-09-24",
+        "stargazers_count": 1149
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1145
+        "date": "2020-09-25",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1151
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1150
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1150
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:15.316Z"
+    },
     "vim_color_scheme_names": ["monokai"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:15.155Z"
@@ -928,67 +1681,145 @@
       "$date": "2020-07-20T14:05:57Z"
     },
     "pushed_at": {
-      "$date": "2020-08-26T18:44:47Z"
+      "$date": "2020-09-26T04:13:30Z"
     },
-    "stargazers_count": 1155,
+    "stargazers_count": 1208,
     "valid": true,
+    "blacklisted_image_urls": [],
     "featured_image_url": "https://cocopon.github.io/iceberg.vim/assets/github/screenshot.png",
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.054Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:15.965Z"
+    },
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1142
+        "date": "2020-09-13",
+        "stargazers_count": 1168
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 1142
+        "date": "2020-09-14",
+        "stargazers_count": 1172
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 1144
+        "date": "2020-09-15",
+        "stargazers_count": 1177
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 1146
+        "date": "2020-09-16",
+        "stargazers_count": 1180
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 1145
+        "date": "2020-09-17",
+        "stargazers_count": 1181
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 1147
+        "date": "2020-09-18",
+        "stargazers_count": 1182
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 1146
+        "date": "2020-09-19",
+        "stargazers_count": 1182
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 1146
+        "date": "2020-09-20",
+        "stargazers_count": 1182
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 1151
+        "date": "2020-09-21",
+        "stargazers_count": 1182
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 1151
+        "date": "2020-09-22",
+        "stargazers_count": 1185
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 1152
+        "date": "2020-09-23",
+        "stargazers_count": 1185
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 1154
+        "date": "2020-09-24",
+        "stargazers_count": 1186
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 1155
+        "date": "2020-09-25",
+        "stargazers_count": 1188
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1190
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1191
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1192
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1192
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1194
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1194
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1193
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1195
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1199
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1201
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1202
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1203
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1204
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1205
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1208
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1207
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 1208
       }
     ],
     "cleaned_recently": false,
-    "vim_color_scheme_names": ["iceberg", "iceberg"],
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:19.813Z"
+    },
+    "vim_color_scheme_names": ["iceberg"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:19.638Z"
     }
@@ -1024,62 +1855,136 @@
     },
     "stargazers_count": 1126,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:17.665Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 1125
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 1125
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 1125
-      },
-      {
-        "date": "2020-08-27",
+        "date": "2020-09-13",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-08-28",
+        "date": "2020-09-14",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-08-29",
+        "date": "2020-09-15",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-08-30",
+        "date": "2020-09-16",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-08-31",
+        "date": "2020-09-17",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-09-01",
+        "date": "2020-09-18",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-09-02",
+        "date": "2020-09-19",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-09-03",
+        "date": "2020-09-20",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-09-04",
+        "date": "2020-09-21",
         "stargazers_count": 1126
       },
       {
-        "date": "2020-09-05",
+        "date": "2020-09-22",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 1127
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1126
+      },
+      {
+        "date": "2020-10-12",
         "stargazers_count": 1126
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:21.335Z"
+    },
     "vim_color_scheme_names": ["badwolf", "goodwolf"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:21.182Z"
@@ -1119,62 +2024,136 @@
     },
     "stargazers_count": 1117,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:19.605Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
+        "date": "2020-09-13",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-25",
+        "date": "2020-09-14",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-26",
+        "date": "2020-09-15",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-27",
+        "date": "2020-09-16",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-28",
+        "date": "2020-09-17",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-29",
+        "date": "2020-09-18",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-30",
+        "date": "2020-09-19",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-08-31",
+        "date": "2020-09-20",
         "stargazers_count": 1116
       },
       {
-        "date": "2020-09-01",
+        "date": "2020-09-21",
         "stargazers_count": 1117
       },
       {
-        "date": "2020-09-02",
+        "date": "2020-09-22",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 1118
+      },
+      {
+        "date": "2020-09-29",
         "stargazers_count": 1117
       },
       {
-        "date": "2020-09-03",
+        "date": "2020-09-30",
         "stargazers_count": 1117
       },
       {
-        "date": "2020-09-04",
+        "date": "2020-10-01",
         "stargazers_count": 1117
       },
       {
-        "date": "2020-09-05",
+        "date": "2020-10-02",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 1117
+      },
+      {
+        "date": "2020-10-12",
         "stargazers_count": 1117
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:22.902Z"
+    },
     "vim_color_scheme_names": ["smyck"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:22.902Z"
@@ -1210,66 +2189,149 @@
       "$date": "2020-06-11T06:28:38Z"
     },
     "pushed_at": {
-      "$date": "2020-07-20T11:10:52Z"
+      "$date": "2020-10-05T10:03:40Z"
     },
-    "stargazers_count": 785,
+    "stargazers_count": 810,
     "valid": true,
+    "blacklisted_image_urls": [
+      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_dark.png",
+      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal.png",
+      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/fluentterminal_light.png",
+      "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/dark.png"
+    ],
     "featured_image_url": "https://raw.githubusercontent.com/sonph/onehalf/master/screenshots/iterm.png",
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.055Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:26.541Z"
+    },
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 773
+        "date": "2020-09-13",
+        "stargazers_count": 789
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 773
+        "date": "2020-09-14",
+        "stargazers_count": 790
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 773
+        "date": "2020-09-15",
+        "stargazers_count": 790
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 774
+        "date": "2020-09-16",
+        "stargazers_count": 791
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 775
+        "date": "2020-09-17",
+        "stargazers_count": 791
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 777
+        "date": "2020-09-18",
+        "stargazers_count": 792
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 780
+        "date": "2020-09-19",
+        "stargazers_count": 792
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 779
+        "date": "2020-09-20",
+        "stargazers_count": 795
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 779
+        "date": "2020-09-21",
+        "stargazers_count": 796
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 780
+        "date": "2020-09-22",
+        "stargazers_count": 797
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 781
+        "date": "2020-09-23",
+        "stargazers_count": 797
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 784
+        "date": "2020-09-24",
+        "stargazers_count": 797
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 785
+        "date": "2020-09-25",
+        "stargazers_count": 798
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 797
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 797
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 799
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 800
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 801
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 801
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 801
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 802
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 802
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 802
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 803
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 803
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 804
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 806
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 808
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 810
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 810
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:27.942Z"
+    },
     "vim_color_scheme_names": ["onehalfdark", "onehalflight"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:27.942Z"
@@ -1294,72 +2356,150 @@
     "homepage_url": "http://kippura.org/zenburnpage",
     "image_urls": ["https://kippura.org/images/zenburn.png"],
     "last_commit_at": {
-      "$date": "2020-08-31T20:25:52Z"
+      "$date": "2020-09-08T22:34:52Z"
     },
     "pushed_at": {
-      "$date": "2020-08-31T20:27:07Z"
+      "$date": "2020-09-08T22:39:24Z"
     },
-    "stargazers_count": 680,
+    "stargazers_count": 688,
     "valid": true,
+    "blacklisted_image_urls": [],
+    "updated_at": {
+      "$date": "2020-08-13T19:28:54.323Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-31T13:03:23.028Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 676
+        "date": "2020-09-13",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 676
+        "date": "2020-09-14",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 676
+        "date": "2020-09-15",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 676
+        "date": "2020-09-16",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 676
+        "date": "2020-09-17",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 676
+        "date": "2020-09-18",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 676
+        "date": "2020-09-19",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 677
+        "date": "2020-09-20",
+        "stargazers_count": 682
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 679
+        "date": "2020-09-21",
+        "stargazers_count": 683
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 680
+        "date": "2020-09-22",
+        "stargazers_count": 683
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 680
+        "date": "2020-09-23",
+        "stargazers_count": 683
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 680
+        "date": "2020-09-24",
+        "stargazers_count": 684
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 680
+        "date": "2020-09-25",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 685
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 685
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 685
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 684
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 685
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 686
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 686
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 686
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 687
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 688
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 688
       }
     ],
     "vim_color_scheme_names": ["zenburn"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-09T13:00:46.658Z"
+    },
     "vim_fetched_at": {
-      "$date": "2020-09-04T15:53:28.290Z"
+      "$date": "2020-09-09T13:00:46.121Z"
     }
   },
   {
@@ -1389,64 +2529,138 @@
     "pushed_at": {
       "$date": "2020-06-16T16:43:57Z"
     },
-    "stargazers_count": 491,
+    "stargazers_count": 494,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:30.685Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 490
+        "date": "2020-09-13",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 490
+        "date": "2020-09-14",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 490
+        "date": "2020-09-15",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 490
+        "date": "2020-09-16",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 490
+        "date": "2020-09-17",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 490
+        "date": "2020-09-18",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 490
+        "date": "2020-09-19",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 490
+        "date": "2020-09-20",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 490
+        "date": "2020-09-21",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 491
+        "date": "2020-09-22",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 491
+        "date": "2020-09-23",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 491
+        "date": "2020-09-24",
+        "stargazers_count": 492
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 491
+        "date": "2020-09-25",
+        "stargazers_count": 492
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 492
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 492
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 493
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 493
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 493
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 494
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 494
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:30.272Z"
+    },
     "vim_color_scheme_names": [
       "base16-material-dark",
       "base16-material",
@@ -1488,64 +2702,142 @@
     "pushed_at": {
       "$date": "2019-11-22T07:24:34Z"
     },
-    "stargazers_count": 462,
+    "stargazers_count": 467,
     "valid": true,
+    "blacklisted_image_urls": ["http://i.imgur.com/V39pwZq.png"],
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.055Z"
+    },
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:33.307Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 461
+        "date": "2020-09-13",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 461
+        "date": "2020-09-14",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 462
+        "date": "2020-09-15",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 462
+        "date": "2020-09-16",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 462
+        "date": "2020-09-17",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 463
+        "date": "2020-09-18",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 463
+        "date": "2020-09-19",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 463
+        "date": "2020-09-20",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 462
+        "date": "2020-09-21",
+        "stargazers_count": 464
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 462
+        "date": "2020-09-22",
+        "stargazers_count": 465
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 462
+        "date": "2020-09-23",
+        "stargazers_count": 466
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 462
+        "date": "2020-09-24",
+        "stargazers_count": 466
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 462
+        "date": "2020-09-25",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 466
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 467
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 467
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:32.280Z"
+    },
     "vim_color_scheme_names": ["pencil"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:32.097Z"
@@ -1581,65 +2873,139 @@
     "pushed_at": {
       "$date": "2020-08-28T10:22:13Z"
     },
-    "stargazers_count": 418,
+    "stargazers_count": 439,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-27T13:00:45.450Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 415
+        "date": "2020-09-13",
+        "stargazers_count": 427
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 415
+        "date": "2020-09-14",
+        "stargazers_count": 425
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 415
+        "date": "2020-09-15",
+        "stargazers_count": 427
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 415
+        "date": "2020-09-16",
+        "stargazers_count": 427
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 416
+        "date": "2020-09-17",
+        "stargazers_count": 426
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 416
+        "date": "2020-09-18",
+        "stargazers_count": 428
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 418
+        "date": "2020-09-19",
+        "stargazers_count": 428
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 418
+        "date": "2020-09-20",
+        "stargazers_count": 428
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 419
+        "date": "2020-09-21",
+        "stargazers_count": 430
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 419
+        "date": "2020-09-22",
+        "stargazers_count": 431
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 419
+        "date": "2020-09-23",
+        "stargazers_count": 431
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 418
+        "date": "2020-09-24",
+        "stargazers_count": 431
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 418
+        "date": "2020-09-25",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 434
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 436
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 436
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 436
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 436
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 437
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 437
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 438
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 439
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 439
       }
     ],
     "vim_color_scheme_names": ["codedark"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:36.147Z"
+    },
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:35.967Z"
     }
@@ -1665,72 +3031,146 @@
       "https://raw.githubusercontent.com/drewtempelmeyer/palenight.vim/master/images/screenshot.png"
     ],
     "last_commit_at": {
-      "$date": "2020-08-30T13:47:45Z"
+      "$date": "2020-09-08T11:02:22Z"
     },
     "pushed_at": {
-      "$date": "2020-09-04T19:19:31Z"
+      "$date": "2020-09-08T14:44:12Z"
     },
-    "stargazers_count": 418,
+    "stargazers_count": 434,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-31T13:03:26.898Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 410
+        "date": "2020-09-13",
+        "stargazers_count": 422
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 411
+        "date": "2020-09-14",
+        "stargazers_count": 422
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 411
+        "date": "2020-09-15",
+        "stargazers_count": 422
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 412
+        "date": "2020-09-16",
+        "stargazers_count": 422
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 413
+        "date": "2020-09-17",
+        "stargazers_count": 423
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 414
+        "date": "2020-09-18",
+        "stargazers_count": 423
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 414
+        "date": "2020-09-19",
+        "stargazers_count": 424
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 416
+        "date": "2020-09-20",
+        "stargazers_count": 425
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 417
+        "date": "2020-09-21",
+        "stargazers_count": 426
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 417
+        "date": "2020-09-22",
+        "stargazers_count": 426
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 418
+        "date": "2020-09-23",
+        "stargazers_count": 426
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 418
+        "date": "2020-09-24",
+        "stargazers_count": 426
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 418
+        "date": "2020-09-25",
+        "stargazers_count": 427
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 427
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 429
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 429
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 429
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 429
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 430
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 430
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 431
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 432
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 432
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 433
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 434
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 434
       }
     ],
     "vim_color_scheme_names": ["palenight"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-08T13:00:48.934Z"
+    },
     "vim_fetched_at": {
-      "$date": "2020-09-04T15:53:38.857Z"
+      "$date": "2020-09-08T13:00:48.733Z"
     }
   },
   {
@@ -1767,64 +3207,150 @@
     "pushed_at": {
       "$date": "2019-10-22T22:43:37Z"
     },
-    "stargazers_count": 381,
+    "stargazers_count": 389,
     "valid": true,
+    "blacklisted_image_urls": [
+      "https://www.colorhexa.com/d54e53.png",
+      "https://www.colorhexa.com/98c379.png",
+      "https://www.colorhexa.com/e5c07b.png",
+      "https://www.colorhexa.com/2c323b.png",
+      "https://www.colorhexa.com/ffffff.png",
+      "https://www.colorhexa.com/000000.png",
+      "https://www.colorhexa.com/eaeaea.png"
+    ],
+    "updated_at": {
+      "$date": "2020-08-13T20:51:07.056Z"
+    },
     "featured_image_url": "https://github.com/ajmwagar/vim-deus/raw/master/screencaps/vim-deus.jpg",
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:45.749Z"
+    },
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 381
+        "date": "2020-09-13",
+        "stargazers_count": 383
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 381
+        "date": "2020-09-14",
+        "stargazers_count": 383
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 381
+        "date": "2020-09-15",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 381
+        "date": "2020-09-16",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 381
+        "date": "2020-09-17",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 381
+        "date": "2020-09-18",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 381
+        "date": "2020-09-19",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 381
+        "date": "2020-09-20",
+        "stargazers_count": 385
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 381
+        "date": "2020-09-21",
+        "stargazers_count": 386
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 381
+        "date": "2020-09-22",
+        "stargazers_count": 387
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 381
+        "date": "2020-09-23",
+        "stargazers_count": 387
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 381
+        "date": "2020-09-24",
+        "stargazers_count": 387
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 381
+        "date": "2020-09-25",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 390
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 388
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 389
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 389
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:41.276Z"
+    },
     "vim_color_scheme_names": ["deus"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:41.276Z"
@@ -1848,67 +3374,138 @@
     "github_url": "https://github.com/lifepillar/vim-colortemplate",
     "homepage_url": "",
     "last_commit_at": {
-      "$date": "2020-09-05T07:07:45Z"
+      "$date": "2020-09-30T17:59:20Z"
     },
     "pushed_at": {
-      "$date": "2020-09-05T07:08:03Z"
+      "$date": "2020-09-30T17:59:34Z"
     },
-    "stargazers_count": 386,
+    "stargazers_count": 417,
     "valid": false,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:48.222Z"
+    },
     "image_urls": [],
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 376
+        "date": "2020-09-13",
+        "stargazers_count": 391
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 377
+        "date": "2020-09-14",
+        "stargazers_count": 392
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 377
+        "date": "2020-09-15",
+        "stargazers_count": 393
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 380
+        "date": "2020-09-16",
+        "stargazers_count": 393
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 380
+        "date": "2020-09-17",
+        "stargazers_count": 393
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 381
+        "date": "2020-09-18",
+        "stargazers_count": 394
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 382
+        "date": "2020-09-19",
+        "stargazers_count": 395
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 382
+        "date": "2020-09-20",
+        "stargazers_count": 396
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 386
+        "date": "2020-09-21",
+        "stargazers_count": 398
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 386
+        "date": "2020-09-22",
+        "stargazers_count": 401
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 386
+        "date": "2020-09-23",
+        "stargazers_count": 401
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 386
+        "date": "2020-09-24",
+        "stargazers_count": 406
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 386
+        "date": "2020-09-25",
+        "stargazers_count": 406
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 407
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 408
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 411
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 414
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 413
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 413
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 414
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 414
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 414
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 416
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 417
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 417
       }
     ],
     "vim_color_scheme_names": [],
@@ -1937,64 +3534,135 @@
       "$date": "2020-08-07T08:55:28Z"
     },
     "pushed_at": {
-      "$date": "2020-08-07T08:55:30Z"
+      "$date": "2020-09-12T16:52:46Z"
     },
-    "stargazers_count": 369,
+    "stargazers_count": 372,
     "valid": false,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:49.695Z"
+    },
     "image_urls": [],
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 365
+        "date": "2020-09-13",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 365
+        "date": "2020-09-14",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 365
+        "date": "2020-09-15",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 365
+        "date": "2020-09-16",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 364
+        "date": "2020-09-17",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 365
+        "date": "2020-09-18",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 365
+        "date": "2020-09-19",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 366
+        "date": "2020-09-20",
+        "stargazers_count": 370
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 368
+        "date": "2020-09-21",
+        "stargazers_count": 371
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 369
+        "date": "2020-09-22",
+        "stargazers_count": 371
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 369
+        "date": "2020-09-23",
+        "stargazers_count": 371
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 369
+        "date": "2020-09-24",
+        "stargazers_count": 372
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 369
+        "date": "2020-09-25",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 373
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 373
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 373
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 373
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 373
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 372
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 372
       }
     ],
     "vim_color_scheme_names": [],
@@ -2024,72 +3692,146 @@
       "https://raw.githubusercontent.com/crusoexia/vim-monokai/master/screenshots/typescript.png"
     ],
     "last_commit_at": {
-      "$date": "2020-09-05T10:39:30Z"
+      "$date": "2020-10-10T05:44:18Z"
     },
     "pushed_at": {
-      "$date": "2020-09-05T10:39:49Z"
+      "$date": "2020-10-10T05:47:01Z"
     },
-    "stargazers_count": 361,
+    "stargazers_count": 365,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-30T13:00:45.423Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 357
+        "date": "2020-09-13",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 357
+        "date": "2020-09-14",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 358
+        "date": "2020-09-15",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 358
+        "date": "2020-09-16",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 358
+        "date": "2020-09-17",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 359
+        "date": "2020-09-18",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 359
+        "date": "2020-09-19",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 359
+        "date": "2020-09-20",
+        "stargazers_count": 361
       },
       {
-        "date": "2020-09-01",
+        "date": "2020-09-21",
+        "stargazers_count": 361
+      },
+      {
+        "date": "2020-09-22",
+        "stargazers_count": 361
+      },
+      {
+        "date": "2020-09-23",
         "stargazers_count": 360
       },
       {
-        "date": "2020-09-02",
+        "date": "2020-09-24",
         "stargazers_count": 360
       },
       {
-        "date": "2020-09-03",
+        "date": "2020-09-25",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 359
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 359
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 359
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 359
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 360
+      },
+      {
+        "date": "2020-10-05",
         "stargazers_count": 361
       },
       {
-        "date": "2020-09-04",
+        "date": "2020-10-06",
         "stargazers_count": 361
       },
       {
-        "date": "2020-09-05",
+        "date": "2020-10-07",
         "stargazers_count": 361
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 363
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 362
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 362
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 362
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 365
       }
     ],
     "vim_color_scheme_names": ["monokai"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-10-10T13:00:53.037Z"
+    },
     "vim_fetched_at": {
-      "$date": "2020-09-05T13:00:46.076Z"
+      "$date": "2020-10-10T13:00:52.815Z"
     }
   },
   {
@@ -2115,72 +3857,146 @@
       "https://raw.githubusercontent.com/ajh17/Spacegray.vim/master/screenshots/low_contrast.png"
     ],
     "last_commit_at": {
-      "$date": "2019-02-23T04:52:36Z"
+      "$date": "2020-09-18T05:47:16Z"
     },
     "pushed_at": {
-      "$date": "2019-02-23T04:52:48Z"
+      "$date": "2020-09-18T05:47:56Z"
     },
-    "stargazers_count": 347,
+    "stargazers_count": 350,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:53.525Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 346
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 346
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 346
-      },
-      {
-        "date": "2020-08-27",
+        "date": "2020-09-13",
         "stargazers_count": 347
       },
       {
-        "date": "2020-08-28",
+        "date": "2020-09-14",
         "stargazers_count": 347
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 348
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 348
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 348
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 348
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 348
-      },
-      {
-        "date": "2020-09-03",
+        "date": "2020-09-15",
         "stargazers_count": 347
       },
       {
-        "date": "2020-09-04",
+        "date": "2020-09-16",
         "stargazers_count": 347
       },
       {
-        "date": "2020-09-05",
+        "date": "2020-09-17",
         "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-18",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-19",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-20",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-21",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-22",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 347
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 348
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 349
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 349
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 349
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 349
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 349
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 350
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 350
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-18T13:00:53.091Z"
+    },
     "vim_color_scheme_names": ["spacegray"],
     "vim_fetched_at": {
-      "$date": "2020-09-04T15:53:47.276Z"
+      "$date": "2020-09-18T13:00:52.868Z"
     }
   },
   {
@@ -2210,66 +4026,140 @@
       "$date": "2019-12-04T22:35:25Z"
     },
     "pushed_at": {
-      "$date": "2019-12-04T22:35:26Z"
+      "$date": "2020-09-25T07:35:34Z"
     },
-    "stargazers_count": 321,
+    "stargazers_count": 334,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T22:59:59.646Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 319
+        "date": "2020-09-13",
+        "stargazers_count": 325
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 319
+        "date": "2020-09-14",
+        "stargazers_count": 325
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 319
+        "date": "2020-09-15",
+        "stargazers_count": 325
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 320
+        "date": "2020-09-16",
+        "stargazers_count": 325
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 320
+        "date": "2020-09-17",
+        "stargazers_count": 326
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 320
+        "date": "2020-09-18",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 320
+        "date": "2020-09-19",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 320
+        "date": "2020-09-20",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 320
+        "date": "2020-09-21",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 320
+        "date": "2020-09-22",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 320
+        "date": "2020-09-23",
+        "stargazers_count": 327
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 321
+        "date": "2020-09-24",
+        "stargazers_count": 329
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 321
+        "date": "2020-09-25",
+        "stargazers_count": 330
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 330
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 330
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 330
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 331
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 331
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 331
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 332
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 333
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 334
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 334
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 334
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 334
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:52.425Z"
+    },
     "vim_color_scheme_names": ["neodark"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:50.736Z"
@@ -2307,64 +4197,138 @@
     "pushed_at": {
       "$date": "2020-06-18T20:04:23Z"
     },
-    "stargazers_count": 319,
+    "stargazers_count": 323,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T23:00:00.869Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
+        "date": "2020-09-13",
         "stargazers_count": 319
       },
       {
-        "date": "2020-08-25",
+        "date": "2020-09-14",
+        "stargazers_count": 319
+      },
+      {
+        "date": "2020-09-15",
+        "stargazers_count": 319
+      },
+      {
+        "date": "2020-09-16",
         "stargazers_count": 320
       },
       {
-        "date": "2020-08-26",
+        "date": "2020-09-17",
         "stargazers_count": 320
       },
       {
-        "date": "2020-08-27",
+        "date": "2020-09-18",
         "stargazers_count": 320
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 320
+        "date": "2020-09-19",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 320
+        "date": "2020-09-20",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 319
+        "date": "2020-09-21",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 319
+        "date": "2020-09-22",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 319
+        "date": "2020-09-23",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 319
+        "date": "2020-09-24",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 319
+        "date": "2020-09-25",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 319
+        "date": "2020-09-26",
+        "stargazers_count": 321
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 319
+        "date": "2020-09-27",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 322
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 321
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 322
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 322
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 322
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 323
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 323
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 323
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 323
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 323
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 323
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:54.035Z"
+    },
     "vim_color_scheme_names": ["lucius"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:54.035Z"
@@ -2397,64 +4361,138 @@
     "pushed_at": {
       "$date": "2019-10-25T14:00:41Z"
     },
-    "stargazers_count": 301,
+    "stargazers_count": 304,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T23:00:05.230Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 300
-      },
-      {
-        "date": "2020-09-03",
+        "date": "2020-09-13",
         "stargazers_count": 301
       },
       {
-        "date": "2020-09-04",
+        "date": "2020-09-14",
         "stargazers_count": 301
       },
       {
-        "date": "2020-09-05",
+        "date": "2020-09-15",
         "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-16",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-17",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-18",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-19",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-20",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-09-21",
+        "stargazers_count": 302
+      },
+      {
+        "date": "2020-09-22",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 303
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 305
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 305
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 304
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:58.342Z"
+    },
     "vim_color_scheme_names": ["quantum"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:58.154Z"
@@ -2486,64 +4524,138 @@
     "pushed_at": {
       "$date": "2013-09-05T15:03:49Z"
     },
-    "stargazers_count": 268,
+    "stargazers_count": 269,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T23:00:06.826Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 267
+        "date": "2020-09-13",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 267
+        "date": "2020-09-14",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 267
+        "date": "2020-09-15",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 267
+        "date": "2020-09-16",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 267
+        "date": "2020-09-17",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 268
+        "date": "2020-09-18",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 268
+        "date": "2020-09-19",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 268
+        "date": "2020-09-20",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 268
+        "date": "2020-09-21",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 268
+        "date": "2020-09-22",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 268
+        "date": "2020-09-23",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 268
+        "date": "2020-09-24",
+        "stargazers_count": 269
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 268
+        "date": "2020-09-25",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 270
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 269
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 269
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-09-04T15:53:59.405Z"
+    },
     "vim_color_scheme_names": ["hemisu"],
     "vim_fetched_at": {
       "$date": "2020-09-04T15:53:59.214Z"
@@ -2570,72 +4682,146 @@
       "https://user-images.githubusercontent.com/37491630/74209833-5217b900-4c81-11ea-86e2-3727fdfc3233.png"
     ],
     "last_commit_at": {
-      "$date": "2020-08-29T03:05:44Z"
+      "$date": "2020-10-09T10:54:37Z"
     },
     "pushed_at": {
-      "$date": "2020-08-29T03:12:24Z"
+      "$date": "2020-10-09T12:00:06Z"
     },
-    "stargazers_count": 275,
+    "stargazers_count": 308,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-29T13:00:49.386Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 269
+        "date": "2020-09-13",
+        "stargazers_count": 281
       },
       {
-        "date": "2020-08-25",
-        "stargazers_count": 270
+        "date": "2020-09-14",
+        "stargazers_count": 281
       },
       {
-        "date": "2020-08-26",
-        "stargazers_count": 271
+        "date": "2020-09-15",
+        "stargazers_count": 282
       },
       {
-        "date": "2020-08-27",
-        "stargazers_count": 272
+        "date": "2020-09-16",
+        "stargazers_count": 282
       },
       {
-        "date": "2020-08-28",
-        "stargazers_count": 274
+        "date": "2020-09-17",
+        "stargazers_count": 283
       },
       {
-        "date": "2020-08-29",
-        "stargazers_count": 275
+        "date": "2020-09-18",
+        "stargazers_count": 283
       },
       {
-        "date": "2020-08-30",
-        "stargazers_count": 274
+        "date": "2020-09-19",
+        "stargazers_count": 283
       },
       {
-        "date": "2020-08-31",
-        "stargazers_count": 274
+        "date": "2020-09-20",
+        "stargazers_count": 286
       },
       {
-        "date": "2020-09-01",
-        "stargazers_count": 273
+        "date": "2020-09-21",
+        "stargazers_count": 286
       },
       {
-        "date": "2020-09-02",
-        "stargazers_count": 274
+        "date": "2020-09-22",
+        "stargazers_count": 286
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 274
+        "date": "2020-09-23",
+        "stargazers_count": 287
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 274
+        "date": "2020-09-24",
+        "stargazers_count": 287
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 275
+        "date": "2020-09-25",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 288
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 289
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 290
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 292
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 294
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 293
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 293
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 293
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 295
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 297
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 297
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 297
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 299
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 301
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 304
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 308
       }
     ],
     "vim_color_scheme_names": ["forest-night"],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-10-09T13:00:58.455Z"
+    },
     "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:02.872Z"
+      "$date": "2020-10-09T13:00:58.234Z"
     }
   },
   {
@@ -2664,515 +4850,146 @@
       "https://raw.githubusercontent.com/kaicataldo/material.vim/main/terminal-colors/konsole/screenshots/Palenight.png"
     ],
     "last_commit_at": {
-      "$date": "2020-08-13T21:17:51Z"
+      "$date": "2020-10-06T15:04:58Z"
     },
     "pushed_at": {
-      "$date": "2020-08-13T21:17:52Z"
+      "$date": "2020-10-06T15:04:59Z"
     },
-    "stargazers_count": 277,
+    "stargazers_count": 294,
     "valid": true,
+    "fetched_at": {
+      "$date": "2020-08-23T23:00:14.645Z"
+    },
     "featured_image_url": null,
     "stargazers_count_history": [
       {
-        "date": "2020-08-24",
-        "stargazers_count": 266
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 266
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 267
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 268
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 269
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 269
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 269
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 269
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 275
-      },
-      {
-        "date": "2020-09-02",
+        "date": "2020-09-13",
         "stargazers_count": 277
       },
       {
-        "date": "2020-09-03",
-        "stargazers_count": 277
+        "date": "2020-09-14",
+        "stargazers_count": 279
       },
       {
-        "date": "2020-09-04",
-        "stargazers_count": 277
+        "date": "2020-09-15",
+        "stargazers_count": 279
       },
       {
-        "date": "2020-09-05",
-        "stargazers_count": 277
+        "date": "2020-09-16",
+        "stargazers_count": 279
+      },
+      {
+        "date": "2020-09-17",
+        "stargazers_count": 279
+      },
+      {
+        "date": "2020-09-18",
+        "stargazers_count": 280
+      },
+      {
+        "date": "2020-09-19",
+        "stargazers_count": 281
+      },
+      {
+        "date": "2020-09-20",
+        "stargazers_count": 281
+      },
+      {
+        "date": "2020-09-21",
+        "stargazers_count": 281
+      },
+      {
+        "date": "2020-09-22",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-23",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-24",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-25",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-26",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-27",
+        "stargazers_count": 283
+      },
+      {
+        "date": "2020-09-28",
+        "stargazers_count": 284
+      },
+      {
+        "date": "2020-09-29",
+        "stargazers_count": 286
+      },
+      {
+        "date": "2020-09-30",
+        "stargazers_count": 285
+      },
+      {
+        "date": "2020-10-01",
+        "stargazers_count": 286
+      },
+      {
+        "date": "2020-10-02",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-10-03",
+        "stargazers_count": 286
+      },
+      {
+        "date": "2020-10-04",
+        "stargazers_count": 286
+      },
+      {
+        "date": "2020-10-05",
+        "stargazers_count": 288
+      },
+      {
+        "date": "2020-10-06",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-10-07",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-10-08",
+        "stargazers_count": 287
+      },
+      {
+        "date": "2020-10-09",
+        "stargazers_count": 290
+      },
+      {
+        "date": "2020-10-10",
+        "stargazers_count": 291
+      },
+      {
+        "date": "2020-10-11",
+        "stargazers_count": 292
+      },
+      {
+        "date": "2020-10-12",
+        "stargazers_count": 294
       }
     ],
     "cleaned_recently": false,
+    "images_fetched_at": {
+      "$date": "2020-10-07T13:01:01.056Z"
+    },
     "vim_color_scheme_names": ["material"],
     "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:06.315Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5f347e031b9bdbc815abd296"
-    },
-    "name": "vim-railscasts-theme",
-    "owner": {
-      "name": "jpo",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/28533?v=4"
-    },
-    "default_branch": "master",
-    "description": "A vim color scheme based on the Railscasts Textmate theme.",
-    "github_created_at": {
-      "$date": "2008-10-11T16:47:16Z"
-    },
-    "github_id": 61883,
-    "github_url": "https://github.com/jpo/vim-railscasts-theme",
-    "homepage_url": "",
-    "image_urls": [
-      "https://raw.github.com/jpo/vim-railscasts-theme/master/screenshot_gui.jpg",
-      "https://raw.github.com/jpo/vim-railscasts-theme/master/screenshot_256.jpg",
-      "https://raw.githubusercontent.com/jpo/vim-railscasts-theme/master/screenshot_256.jpg",
-      "https://raw.githubusercontent.com/jpo/vim-railscasts-theme/master/screenshot_gui.jpg"
-    ],
-    "last_commit_at": {
-      "$date": "2016-06-07T02:15:55Z"
-    },
-    "pushed_at": {
-      "$date": "2016-06-07T02:15:55Z"
-    },
-    "stargazers_count": 255,
-    "valid": true,
-    "featured_image_url": null,
-    "stargazers_count_history": [
-      {
-        "date": "2020-08-24",
-        "stargazers_count": 254
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 254
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 255
-      },
-      {
-        "date": "2020-09-05",
-        "stargazers_count": 255
-      }
-    ],
-    "cleaned_recently": false,
-    "vim_color_scheme_names": ["railscasts"],
-    "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:07.358Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5f347e041b9bdbc815abd2eb"
-    },
-    "name": "vim-colorscheme-primary",
-    "owner": {
-      "name": "google",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1342004?v=4"
-    },
-    "default_branch": "master",
-    "description": "Primary, a Vim color scheme based on Google's colors",
-    "github_created_at": {
-      "$date": "2015-04-22T21:56:07Z"
-    },
-    "github_id": 34418107,
-    "github_url": "https://github.com/google/vim-colorscheme-primary",
-    "homepage_url": "",
-    "image_urls": [
-      "https://raw.githubusercontent.com/google/vim-colorscheme-primary/master/screenshots/dark.png",
-      "https://raw.githubusercontent.com/google/vim-colorscheme-primary/master/screenshots/light.png"
-    ],
-    "last_commit_at": {
-      "$date": "2019-06-22T18:10:59Z"
-    },
-    "pushed_at": {
-      "$date": "2019-06-22T18:11:00Z"
-    },
-    "stargazers_count": 245,
-    "valid": true,
-    "featured_image_url": null,
-    "stargazers_count_history": [
-      {
-        "date": "2020-08-24",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 245
-      },
-      {
-        "date": "2020-09-05",
-        "stargazers_count": 245
-      }
-    ],
-    "cleaned_recently": false,
-    "vim_color_scheme_names": ["primary"],
-    "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:08.796Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5f347e061b9bdbc815abd343"
-    },
-    "name": "vim-kolor",
-    "owner": {
-      "name": "zeis",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/1945427?v=4"
-    },
-    "default_branch": "master",
-    "description": "Vim color scheme.",
-    "github_created_at": {
-      "$date": "2012-12-03T16:54:23Z"
-    },
-    "github_id": 6985886,
-    "github_url": "https://github.com/zeis/vim-kolor",
-    "homepage_url": "",
-    "image_urls": [
-      "https://lh5.googleusercontent.com/-z7CGCLXhTNQ/UM-4XPy52fI/AAAAAAAAAHo/iCFTSqaoapA/s852/kolor-screenshot.jpg"
-    ],
-    "last_commit_at": {
-      "$date": "2017-06-22T08:16:49Z"
-    },
-    "pushed_at": {
-      "$date": "2017-06-22T08:17:06Z"
-    },
-    "stargazers_count": 243,
-    "valid": true,
-    "featured_image_url": null,
-    "stargazers_count_history": [
-      {
-        "date": "2020-08-24",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 244
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 243
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 243
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 243
-      },
-      {
-        "date": "2020-09-05",
-        "stargazers_count": 243
-      }
-    ],
-    "cleaned_recently": false,
-    "vim_color_scheme_names": ["kolor"],
-    "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:09.986Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5f347e0a1b9bdbc815abd475"
-    },
-    "name": "coloration",
-    "owner": {
-      "name": "sickill",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/17589?v=4"
-    },
-    "default_branch": "master",
-    "description": "Textmate to Vim, JEdit and Kate/KWrite color scheme converter",
-    "github_created_at": {
-      "$date": "2009-12-12T18:05:34Z"
-    },
-    "github_id": 426761,
-    "github_url": "https://github.com/sickill/coloration",
-    "homepage_url": "",
-    "last_commit_at": {
-      "$date": "2015-06-06T21:27:34Z"
-    },
-    "pushed_at": {
-      "$date": "2019-11-02T05:22:41Z"
-    },
-    "stargazers_count": 241,
-    "valid": false,
-    "image_urls": [],
-    "featured_image_url": null,
-    "stargazers_count_history": [
-      {
-        "date": "2020-08-24",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 241
-      },
-      {
-        "date": "2020-09-05",
-        "stargazers_count": 241
-      }
-    ],
-    "vim_color_scheme_names": [],
-    "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:14.165Z"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "5f347e0c1b9bdbc815abd502"
-    },
-    "name": "estilo",
-    "owner": {
-      "name": "jacoborus",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/829859?v=4"
-    },
-    "default_branch": "master",
-    "description": "Create color schemes for Vim, Airline and Lightline",
-    "github_created_at": {
-      "$date": "2016-04-26T11:50:18Z"
-    },
-    "github_id": 57123963,
-    "github_url": "https://github.com/jacoborus/estilo",
-    "homepage_url": "",
-    "last_commit_at": {
-      "$date": "2020-05-28T04:59:45Z"
-    },
-    "pushed_at": {
-      "$date": "2020-06-19T15:00:34Z"
-    },
-    "stargazers_count": 239,
-    "valid": false,
-    "image_urls": [],
-    "featured_image_url": null,
-    "stargazers_count_history": [
-      {
-        "date": "2020-08-24",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-25",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-26",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-27",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-28",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-29",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-30",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-08-31",
-        "stargazers_count": 237
-      },
-      {
-        "date": "2020-09-01",
-        "stargazers_count": 239
-      },
-      {
-        "date": "2020-09-02",
-        "stargazers_count": 239
-      },
-      {
-        "date": "2020-09-03",
-        "stargazers_count": 239
-      },
-      {
-        "date": "2020-09-04",
-        "stargazers_count": 239
-      },
-      {
-        "date": "2020-09-05",
-        "stargazers_count": 239
-      }
-    ],
-    "vim_color_scheme_names": [],
-    "vim_fetched_at": {
-      "$date": "2020-09-04T15:54:16.645Z"
+      "$date": "2020-10-07T13:01:00.828Z"
     }
   }
 ]
