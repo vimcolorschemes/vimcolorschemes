@@ -8,7 +8,7 @@ import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 import { useDebounce } from "src/hooks/useDebounce";
-import { useSearch } from "src/hooks/useSearch";
+import { useSearchRepositories } from "src/hooks/useSearchRepositories";
 
 import Actions from "src/components/actions";
 import Card from "src/components/card";
@@ -39,7 +39,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 
   const [resetNavigation] = useNavigation(SECTIONS.REPOSITORIES);
 
-  const { repositories, isLoading } = useSearch(
+  const { repositories, isLoading } = useSearchRepositories(
     debouncedSearchInput,
     pageRepositories,
   );
@@ -66,7 +66,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           value={searchInput}
           onChange={event => setSearchInput(event.target.value)}
         />
-        {!debouncedSearchInput && (
+        {!searchInput && (
           <Actions
             actions={Object.values(ACTIONS)}
             activeAction={activeAction}

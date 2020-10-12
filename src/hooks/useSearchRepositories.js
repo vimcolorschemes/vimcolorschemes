@@ -11,7 +11,7 @@ import { searchRepositories } from "src/api/repository";
  *
  * @returns {object} The repositories to display and the loading state
  */
-export const useSearch = (query, defaultRepositories) => {
+export const useSearchRepositories = (query, defaultRepositories) => {
   const { data, error } = useSWR(query, searchRepositories);
 
   const isLoading = !!query && !data && !error;

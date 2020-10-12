@@ -19,6 +19,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    height: 5.5rem;
     & > * + * {
       margin-bottom: 0;
     }
