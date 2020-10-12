@@ -45,6 +45,7 @@ const RepositoryPage = ({ data, location }) => {
     >
       <Link
         to={fromPath || "/"}
+        state={{ ...location?.state }}
         data-section={
           bottom ? SECTIONS.REPOSITORY_BOTTOM_NAV : SECTIONS.REPOSITORY_NAV
         }

@@ -9,7 +9,8 @@ export const getFirstProcessedImage = (featuredImage, images) => {
 
   const fallbackImage = images.find(isValidProcessedImage);
   return fallbackImage && fallbackImage.childImageSharp
-    ? fallbackImage.childImageSharp.fluid || fallbackImage.childImageSharp.src
+    ? fallbackImage.childImageSharp.fluid ||
+        fallbackImage.childImageSharp.fluid.src
     : null;
 };
 

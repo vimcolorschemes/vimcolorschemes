@@ -2,7 +2,8 @@ import PropTypes from "prop-types";
 
 export const GatsbyImageType = PropTypes.shape({
   childImageSharp: PropTypes.shape({
-    fluid: PropTypes.object.isRequired,
+    fluid: PropTypes.object,
+    src: PropTypes.object,
   }),
 });
 
@@ -13,7 +14,7 @@ export const RepositoryOwnerType = PropTypes.shape({
 export const RepositoryType = PropTypes.shape({
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  githubUrl: PropTypes.string.isRequired,
+  githubUrl: PropTypes.string,
   owner: RepositoryOwnerType.isRequired,
   featuredImage: GatsbyImageType,
   stargazersCount: PropTypes.number.isRequired,

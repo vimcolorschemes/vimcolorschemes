@@ -25,6 +25,11 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
 
   const fluidImage = getFirstProcessedImage(featuredImage, images);
 
+  const imageStyle = {
+    objectFit: "contain",
+    maxHeight: "100%",
+  };
+
   return (
     <li className={classnames("card", className)}>
       <Link
@@ -38,13 +43,17 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
       >
         <div className="card__image">
           {!!fluidImage &&
-            (typeof fluidImage === "string" ? (
-              <p>test</p>
-            ) : (
+            (fluidImage.base64 ? (
               <Img
                 fluid={fluidImage}
                 alt={`${ownerName} ${name}`}
-                imgStyle={{ objectFit: "contain" }}
+                imgStyle={imageStyle}
+              />
+            ) : (
+              <img
+                src={fluidImage.src}
+                alt={`${ownerName} ${name}`}
+                style={imageStyle}
               />
             ))}
         </div>
