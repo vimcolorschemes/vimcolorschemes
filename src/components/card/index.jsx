@@ -9,7 +9,7 @@ import { RepositoryType } from "src/types";
 import { LAYOUTS, SECTIONS } from "src/constants";
 
 import { URLify } from "src/utils/string";
-import { getFirstProcessedFluidImage } from "src/utils/repository";
+import { getFirstProcessedImage } from "src/utils/repository";
 
 import RepositoryMeta from "src/components/repositoryMeta";
 
