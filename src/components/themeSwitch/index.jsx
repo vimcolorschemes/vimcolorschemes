@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import { THEMES, KEYS } from "src/constants";
 
+import { useKeyboardShortcuts } from "src/hooks/useKeyboardShortcuts";
+
 import "./index.scss";
 
 const ThemeSwitch = inputArgs => {
@@ -9,12 +11,18 @@ const ThemeSwitch = inputArgs => {
 
   const [theme, setTheme] = useState(isBrowser ? window.__theme : undefined);
 
+  useKeyboardShortcuts({
+    b: () => updateTheme(theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT),
+  });
+
   useEffect(() => {
     if (isBrowser) {
       setTheme(window.__theme);
       window.__onThemeChange = () => setTheme(window.__theme);
     }
   }, [isBrowser]);
+
+  const updateTheme = theme => window.__setPreferredTheme(theme);
 
   return (
     <label className="theme-switch">
@@ -24,19 +32,14 @@ const ThemeSwitch = inputArgs => {
         aria-label="Switch between light and dark mode"
         checked={theme === THEMES.DARK}
         onChange={event => {
-          window.__setPreferredTheme(
-            event.target.checked ? THEMES.DARK : THEMES.LIGHT,
-          );
+          updateTheme(event.target.checked ? THEMES.DARK : THEMES.LIGHT);
         }}
         onKeyDown={event => {
           const { key, target } = event;
           if (KEYS.ENTER === key) {
             event.preventDefault();
             target.checked = !target.checked;
-            window.__setPreferredTheme(
-              target.checked ? THEMES.DARK : THEMES.LIGHT,
-            );
-            return;
+            updateTheme(target.checked ? THEMES.DARK : THEMES.LIGHT);
           }
         }}
         {...inputArgs}
