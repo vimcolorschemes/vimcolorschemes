@@ -7,12 +7,13 @@ import { useEventListener } from "src/hooks/useEventListener";
  * again after the mouse has moved
  */
 export const useTogglePointerEvents = () => {
-  const eventListener = event =>
-    Object.values(KEYS).includes(event.key) &&
-    !NON_NAVIGATION_KEYS.includes(event.key) &&
-    togglePointerEvents(MOUSE_EVENTS.KEY_PRESS);
-
-  useEventListener("keydown", eventListener);
+  useEventListener(
+    "keydown",
+    event =>
+      Object.values(KEYS).includes(event.key) &&
+      !NON_NAVIGATION_KEYS.includes(event.key) &&
+      togglePointerEvents(MOUSE_EVENTS.KEY_PRESS),
+  );
 };
 
 /**
