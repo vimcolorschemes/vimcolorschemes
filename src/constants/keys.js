@@ -16,7 +16,7 @@ export const KEYS = {
   ESCAPE: "Escape",
   SPACE: " ",
   TAB: "Tab",
-  B: "b",
+  BACKGROUND: "b",
 };
 
 export const NON_NAVIGATION_KEYS = [
@@ -24,7 +24,7 @@ export const NON_NAVIGATION_KEYS = [
   KEYS.ESCAPE,
   KEYS.SPACE,
   KEYS.TAB,
-  KEYS.B,
+  KEYS.BACKGROUND,
 ];
 
 export const MOUSE_EVENTS = {

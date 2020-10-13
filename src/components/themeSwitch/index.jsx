@@ -12,7 +12,8 @@ const ThemeSwitch = inputArgs => {
   const [theme, setTheme] = useState();
 
   useKeyboardShortcuts({
-    b: () => updateTheme(theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT),
+    [KEYS.BACKGROUND]: () =>
+      updateTheme(theme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT),
   });
 
   useEffect(() => {
