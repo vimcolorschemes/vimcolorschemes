@@ -2,6 +2,16 @@ import { useEffect } from "react";
 import { KEYS, LAYOUTS, NON_NAVIGATION_KEYS, SECTIONS } from "src/constants";
 import { isInViewport } from "src/utils/navigation";
 
+/**
+ * Hook that listens for navigation keys and navigates by focusing to configured elements
+ *
+ * All focusable elements must have the data-section attribute.
+ *
+ * @example
+ * useNavigation();
+ *
+ * @param {string} defaultSection Section to focus on when nothing was focused before
+ */
 export const useNavigation = defaultSection => {
   useEffect(() => {
     if (typeof window !== "undefined" && typeof document !== "undefined") {
