@@ -7,7 +7,7 @@ import "./index.scss";
 const ThemeSwitch = inputArgs => {
   const isBrowser = typeof window !== "undefined";
 
-  const [theme, setTheme] = useState(isBrowser ? window.__theme : undefined);
+  const [theme, setTheme] = useState();
 
   useEffect(() => {
     if (isBrowser) {
@@ -41,9 +41,11 @@ const ThemeSwitch = inputArgs => {
         }}
         {...inputArgs}
       />
-      <span>
-        dark theme: <strong>{theme === THEMES.DARK ? "on" : "off"}</strong>
-      </span>
+      {!!theme && (
+        <span>
+          dark theme: <strong>{theme === THEMES.DARK ? "on" : "off"}</strong>
+        </span>
+      )}
     </label>
   );
 };
