@@ -5,7 +5,7 @@
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
     "classnames": "^2.2.6",
-    "dayjs": "^1.9.1",
+    "dayjs": "^1.9.3",
     "dotenv": "^8.2.0",
     "emoji-js": "^3.5.0",
     "esm": "^3.2.25",
