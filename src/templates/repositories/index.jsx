@@ -86,9 +86,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
             {endIndex} out of <strong>{totalCount}</strong> repositories
           </p>
         ))}
-      <Grid className="repositories">
-        {!isLoading &&
-          repositories.map(repository => (
+      {isLoading && <p>loading ...</p>}
+      {!isLoading && (
+        <Grid className="repositories">
+          {repositories.map(repository => (
             <Card
               key={`repository-${repository.owner?.name}-${repository.name}`}
               linkState={{
@@ -98,7 +99,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
               repository={repository}
             />
           ))}
-      </Grid>
+        </Grid>
+      )}
       {!debouncedSearchInput && (
         <Pagination
           currentPage={currentPage}
