@@ -12,3 +12,15 @@ export const isInViewport = element => {
     bounding.right <= clientWidth
   );
 };
+
+export const isAtPageTop = () => {
+  if (typeof window === "undefined") return true;
+
+  const scrollTop =
+    window.pageYOffset !== undefined
+      ? window.pageYOffset
+      : (document.documentElement || document.body.parentNode || document.body)
+          .scrollTop;
+
+  return scrollTop === 0;
+};

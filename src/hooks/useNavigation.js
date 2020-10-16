@@ -1,7 +1,7 @@
 import { useEffect, useCallback, useRef } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
-import { isInViewport } from "src/utils/navigation";
+import { isInViewport, isAtPageTop } from "src/utils/navigation";
 
 /**
  * Hook that listens for navigation keys and navigates by focusing to configured elements
@@ -345,11 +345,20 @@ const getFirstVisibleTabIndexOfSection = (focusables, section) => {
 
   if (!section) return getFirstVisibleTabIndex();
 
-  const firstIndex = prioritize(
+  const elements = prioritize(
     getSectionTabIndexes(focusables, section),
     focusables,
-  ).find(index => isInViewport(focusables[index]));
-  return firstIndex == null ? getFirstVisibleTabIndex() : firstIndex;
+  );
+
+  if (isAtPageTop()) return elements[0];
+
+  const firstVisibleIndex = elements.find(index =>
+    isInViewport(focusables[index]),
+  );
+
+  return firstVisibleIndex == null
+    ? getFirstVisibleTabIndex()
+    : firstVisibleIndex;
 };
 
 // get the first tab index of a given section
