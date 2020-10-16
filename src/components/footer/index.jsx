@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "gatsby";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
@@ -10,9 +11,13 @@ import SiteTitle from "src/components/siteTitle";
 
 import "./index.scss";
 
-const Footer = () => (
+const Footer = ({ onLogoClick }) => (
   <footer className="footer">
-    <SiteTitle section={SECTIONS.FOOTER_NAV} vertical />
+    <SiteTitle
+      section={SECTIONS.FOOTER_NAV}
+      vertical
+      onLogoClick={onLogoClick}
+    />
     <nav className="footer__nav">
       <Link
         to="/about"
@@ -43,5 +48,9 @@ const Footer = () => (
     </nav>
   </footer>
 );
+
+Footer.propTypes = {
+  onLogoClick: PropTypes.func,
+};
 
 export default Footer;

@@ -6,7 +6,7 @@ import { searchRepositories } from "src/api/repository";
 
 import { useDebounce } from "src/hooks/useDebounce";
 
-const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
+export const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
 
 /**
  * Hook that manages the search input, the repositories and loading state depending on a search query
@@ -18,7 +18,9 @@ const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
  */
 export const useSearchRepositories = defaultRepositories => {
   const [searchInput, setSearchInput] = useState(
-    localStorage.getItem(SEARCH_INPUT_LOCAL_STORAGE_KEY) || "",
+    window.previousPath
+      ? localStorage.getItem(SEARCH_INPUT_LOCAL_STORAGE_KEY) || ""
+      : "",
   );
 
   useEffect(() => clearSearchInput(), []);
@@ -38,7 +40,6 @@ export const useSearchRepositories = defaultRepositories => {
     debouncedSearchInput,
     setSearchInput,
     storeSearchInput,
-    clearSearchInput,
     repositories: !!debouncedSearchInput ? data || [] : defaultRepositories,
     isLoading: !!debouncedSearchInput && !data && !error,
   };

@@ -39,7 +39,9 @@ const Card = ({ repository, linkState, onLinkClick, className }) => {
         data-section={SECTIONS.REPOSITORIES}
         data-layout={LAYOUTS.GRID}
         aria-label={`${name}, by ${ownerName}`}
-        onClick={onLinkClick}
+        onClick={event => {
+          if (onLinkClick && !event.metaKey) onLinkClick();
+        }}
       >
         <div className="card__image">
           {!!fluidImage &&

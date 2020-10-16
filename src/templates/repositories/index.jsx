@@ -42,7 +42,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     isLoading,
   } = useSearchRepositories(pageRepositories);
 
-  useEffect(() => resetNavigation(), [repositories]);
+  useEffect(() => resetNavigation(), [repositories, resetNavigation]);
 
   const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
   const endIndex =
@@ -51,7 +51,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       : currentPage * REPOSITORY_COUNT_PER_PAGE;
 
   return (
-    <Layout isHome>
+    <Layout isHome onLogoClick={() => setSearchInput("")}>
       <SEO
         title={`${
           debouncedSearchInput ? "Search" : activeAction.label
