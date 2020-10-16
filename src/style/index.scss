@@ -14,7 +14,8 @@ body {
   --white-pale: #cccccc;
   --black-pale: #5c5c5c;
 
-  --grey: #e3e3e3;
+  --grey: #aaaaaa;
+  --grey-pale: #e3e3e3;
 
   --font-family: "Source Sans Pro", sans-serif;
   --font-size: 16px;
@@ -27,10 +28,10 @@ body {
   --background: var(--white);
   --background-rgb: var(--white-rgb);
 
-  --blockquote-background: var(--grey);
+  --blockquote-background: var(--grey-pale);
 
-  --input-border: var(--grey);
-  --input-icon: var(--grey);
+  --input-border: var(--black-pale);
+  --input-icon: var(--black-pale);
   --input-placeholder: var(--grey);
   --input-border-active: var(--black-pale);
   --input-icon-active: var(--black-pale);
@@ -46,8 +47,8 @@ body {
 
     --blockquote-background: var(--black-pale);
 
-    --input-border: var(--grey);
-    --input-icon: var(--grey);
+    --input-border: var(--white-pale);
+    --input-icon: var(--white-pale);
     --input-placeholder: var(--grey);
     --input-border-active: var(--white-pale);
     --input-icon-active: var(--white-pale);
