@@ -34,6 +34,7 @@ body {
   --input-placeholder: var(--grey);
   --input-border-active: var(--black-pale);
   --input-icon-active: var(--black-pale);
+  --input-font-size: 16px;
 
   &.dark {
     --link: var(--blue-pale);
@@ -95,6 +96,10 @@ blockquote {
   padding: 1rem;
   background: var(--blockquote-background);
   margin: 1rem 0;
+}
+
+input {
+  font-size: var(--input-font-size);
 }
 
 .title {
