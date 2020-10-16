@@ -15,7 +15,7 @@ import RepositoryMeta from "src/components/repositoryMeta";
 
 import "./index.scss";
 
-const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
+const Card = ({ repository, linkState, onLinkClick, className }) => {
   const {
     owner: { name: ownerName },
     name,
@@ -36,11 +36,10 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
       <Link
         to={`/${URLify(`${ownerName}/${name}`)}`}
         state={linkState}
-        id={linkId}
-        tabIndex={linkTabIndex}
         data-section={SECTIONS.REPOSITORIES}
         data-layout={LAYOUTS.GRID}
         aria-label={`${name}, by ${ownerName}`}
+        onClick={onLinkClick}
       >
         <div className="card__image">
           {!!fluidImage &&
@@ -67,6 +66,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
 Card.propTypes = {
   repository: RepositoryType.isRequired,
   linkState: PropTypes.object,
+  onLinkClick: PropTypes.func,
   className: PropTypes.string,
 };
 

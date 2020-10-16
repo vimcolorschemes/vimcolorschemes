@@ -1,22 +1,45 @@
+import { useState, useEffect } from "react";
+
 import useSWR from "swr";
 
 import { searchRepositories } from "src/api/repository";
 
+import { useDebounce } from "src/hooks/useDebounce";
+
+const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
+
 /**
- * Hook that manages repositories and loading state depending on a search query
+ * Hook that manages the search input, the repositories and loading state depending on a search query
  *
- * @param {string} query The search input to match
  * @param {object[]} defaultRepositories The repositories to return if nothing
  * is searched
  *
- * @returns {object} The repositories to display and the loading state
+ * @returns {object} The search state, repositories to display and the loading state
  */
-export const useSearchRepositories = (query, defaultRepositories) => {
-  const { data, error } = useSWR(query, searchRepositories);
+export const useSearchRepositories = defaultRepositories => {
+  const [searchInput, setSearchInput] = useState(
+    localStorage.getItem(SEARCH_INPUT_LOCAL_STORAGE_KEY) || "",
+  );
 
-  const isLoading = !!query && !data && !error;
+  useEffect(() => clearSearchInput(), []);
+
+  const debouncedSearchInput = useDebounce(searchInput);
+
+  const { data, error } = useSWR(debouncedSearchInput, searchRepositories);
+
+  const storeSearchInput = () =>
+    localStorage.setItem(SEARCH_INPUT_LOCAL_STORAGE_KEY, debouncedSearchInput);
+
+  const clearSearchInput = () =>
+    localStorage.removeItem(SEARCH_INPUT_LOCAL_STORAGE_KEY);
+
   return {
-    repositories: !!query ? data || [] : defaultRepositories,
-    isLoading,
+    searchInput,
+    debouncedSearchInput,
+    setSearchInput,
+    storeSearchInput,
+    clearSearchInput,
+    repositories: !!debouncedSearchInput ? data || [] : defaultRepositories,
+    isLoading: !!debouncedSearchInput && !data && !error,
   };
 };

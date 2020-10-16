@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
@@ -7,7 +7,6 @@ import { RepositoryType } from "src/types";
 import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
-import { useDebounce } from "src/hooks/useDebounce";
 import { useSearchRepositories } from "src/hooks/useSearchRepositories";
 
 import Actions from "src/components/actions";
@@ -32,17 +31,16 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
     ) || ACTIONS.TRENDING;
 
-  const [searchInput, setSearchInput] = useState(
-    location.state?.searchInput || "",
-  );
-  const debouncedSearchInput = useDebounce(searchInput);
-
   const [resetNavigation] = useNavigation(SECTIONS.REPOSITORIES);
 
-  const { repositories, isLoading } = useSearchRepositories(
+  const {
+    searchInput,
     debouncedSearchInput,
-    pageRepositories,
-  );
+    setSearchInput,
+    storeSearchInput,
+    repositories,
+    isLoading,
+  } = useSearchRepositories(pageRepositories);
 
   useEffect(() => resetNavigation(), [repositories]);
 
@@ -66,7 +64,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           value={searchInput}
           onChange={value => setSearchInput(value)}
         />
-        {!searchInput && (
+        {!debouncedSearchInput && (
           <Actions
             actions={Object.values(ACTIONS)}
             activeAction={activeAction}
@@ -94,8 +92,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
               key={`repository-${repository.owner?.name}-${repository.name}`}
               linkState={{
                 fromPath: currentPath,
-                searchInput: debouncedSearchInput,
               }}
+              onLinkClick={() => storeSearchInput()}
               repository={repository}
             />
           ))}
