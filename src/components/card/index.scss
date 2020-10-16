@@ -42,6 +42,7 @@
 .card__image {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .card__image > div.gatsby-image-wrapper {

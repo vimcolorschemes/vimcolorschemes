@@ -27,7 +27,7 @@ const Card = ({ repository, linkId, linkTabIndex, linkState, className }) => {
 
   const imageStyle = {
     objectFit: "contain",
-    maxHeight: "100%",
+    height: "100%",
     width: "100%",
   };
 
