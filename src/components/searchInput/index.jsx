@@ -35,40 +35,43 @@ const SearchInput = ({ value, onChange }) => {
   });
 
   return (
-    <label
-      ref={searchInputWrapperRef}
-      className="search"
-      data-section={SECTIONS.ACTIONS}
-      data-layout={LAYOUTS.LIST}
-      tabIndex="0"
-      onKeyDown={event => {
-        if (event.target !== searchInputWrapperRef.current) return;
-        if (event.key === "Enter") {
+    <div className="search">
+      <button
+        type="button"
+        ref={searchInputWrapperRef}
+        className="search__overlay-button"
+        data-section={SECTIONS.ACTIONS}
+        data-layout={LAYOUTS.LIST}
+        onClick={() => {
           searchInputRef.current.focus();
-        }
-      }}
-    >
-      <input
-        type="text"
-        ref={searchInputRef}
-        className="search__input"
-        id="search-input"
-        name="search-input"
-        value={value}
-        onChange={event => onChange(event.target.value)}
-        placeholder="dark, contrast, ..."
-        aria-label={label.description}
-        onFocus={() => setLabel(SEARCH_LABELS.FOCUSED)}
-        onBlur={() => setLabel(SEARCH_LABELS.DEFAULT)}
-        onKeyDown={event => {
-          if (["Enter", "Escape"].includes(event.key))
-            searchInputWrapperRef.current.focus();
         }}
       />
-      <span className="search__icon-wrapper" aria-hidden>
-        {label.render()}
-      </span>
-    </label>
+      <label className="search__input-wrapper">
+        <input
+          type="text"
+          id="search-input"
+          name="search-input"
+          tabIndex={-1}
+          ref={searchInputRef}
+          placeholder="dark, contrast, ..."
+          aria-label={label.description}
+          className="search__input"
+          value={value}
+          onChange={event => onChange(event.target.value)}
+          onFocus={() => setLabel(SEARCH_LABELS.FOCUSED)}
+          onBlur={() => setLabel(SEARCH_LABELS.DEFAULT)}
+          onKeyDown={event => {
+            if (["Enter", "Escape"].includes(event.key)) {
+              event.preventDefault();
+              searchInputWrapperRef.current.focus();
+            }
+          }}
+        />
+        <span className="search__icon-wrapper" aria-hidden>
+          {label.render()}
+        </span>
+      </label>
+    </div>
   );
 };
 

@@ -31,10 +31,9 @@ body {
   --blockquote-background: var(--grey-pale);
 
   --input-border: var(--black-pale);
-  --input-icon: var(--black-pale);
   --input-placeholder: var(--grey);
   --input-border-active: var(--black-pale);
-  --input-icon-active: var(--black-pale);
+  --input-icon: var(--black-pale);
   --input-font-size: 16px;
 
   &.dark {
@@ -48,10 +47,9 @@ body {
     --blockquote-background: var(--black-pale);
 
     --input-border: var(--white-pale);
-    --input-icon: var(--white-pale);
     --input-placeholder: var(--grey);
     --input-border-active: var(--white-pale);
-    --input-icon-active: var(--white-pale);
+    --input-icon: var(--white-pale);
   }
 
   --title-font-size: 1.5rem;
