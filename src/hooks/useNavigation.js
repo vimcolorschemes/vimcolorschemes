@@ -95,9 +95,10 @@ const handleKeyPress = (event, focusables, defaultSection) => {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else {
     if (currentTabIndex === -1) {
-      nextTabIndex = defaultSection
-        ? getFirstTabIndexOfSection(focusables, defaultSection)
-        : 0;
+      nextTabIndex = getFirstVisibleTabIndexOfSection(
+        focusables,
+        defaultSection,
+      );
     } else {
       switch (layout) {
         case LAYOUTS.BLOCK:
@@ -333,6 +334,23 @@ const getSectionTabIndexes = (focusables, section) =>
       focusable.dataset.section === section ? [...indexes, index] : indexes,
     [],
   );
+
+// get the first visible tab index of a specified section, and defaults to
+// simply first visible tab index of any sections
+const getFirstVisibleTabIndexOfSection = (focusables, section) => {
+  const getFirstVisibleTabIndex = () =>
+    Array.prototype.findIndex.call(focusables, focusable =>
+      isInViewport(focusable),
+    );
+
+  if (!section) return getFirstVisibleTabIndex();
+
+  const firstIndex = prioritize(
+    getSectionTabIndexes(focusables, section),
+    focusables,
+  ).find(index => isInViewport(focusables[index]));
+  return firstIndex == null ? getFirstVisibleTabIndex() : firstIndex;
+};
 
 // get the first tab index of a given section
 // if an element within the section has priority, it will be returned first
