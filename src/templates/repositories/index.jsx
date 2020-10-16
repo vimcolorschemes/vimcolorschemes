@@ -64,7 +64,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       <div className="action-row">
         <SearchInput
           value={searchInput}
-          onChange={event => setSearchInput(event.target.value)}
+          onChange={value => setSearchInput(value)}
         />
         {!searchInput && (
           <Actions

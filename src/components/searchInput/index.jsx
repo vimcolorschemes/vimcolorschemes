@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
 
 import { SECTIONS, LAYOUTS } from "src/constants";
 
@@ -30,6 +31,7 @@ const SearchInput = ({ value, onChange }) => {
       event.preventDefault();
       searchInputRef.current.focus();
     },
+    u: () => onChange(""),
   });
 
   return (
@@ -53,7 +55,7 @@ const SearchInput = ({ value, onChange }) => {
         id="search-input"
         name="search-input"
         value={value}
-        onChange={onChange}
+        onChange={event => onChange(event.target.value)}
         placeholder="dark, contrast, ..."
         aria-label={label.description}
         onFocus={() => setLabel(SEARCH_LABELS.FOCUSED)}
@@ -68,6 +70,11 @@ const SearchInput = ({ value, onChange }) => {
       </span>
     </label>
   );
+};
+
+SearchInput.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default SearchInput;
