@@ -14,7 +14,7 @@ describe("Theme switch", () => {
   it("should switch to dark on click", () => {
     cy.visit("/");
 
-    cy.get(".theme-switch").click();
+    cy.get(".theme-switch", { timeout: 3000 }).click();
 
     cy.contains(DARK_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
@@ -26,7 +26,7 @@ describe("Theme switch", () => {
     cy.contains(LIGHT_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
 
-    cy.get(".theme-switch").click();
+    cy.get(".theme-switch", { timeout: 3000 }).click();
 
     cy.contains(DARK_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
@@ -43,7 +43,7 @@ describe("Theme switch", () => {
     cy.contains(LIGHT_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
 
-    cy.get(".theme-switch").click();
+    cy.get(".theme-switch", { timeout: 3000 }).click();
 
     cy.contains(DARK_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
@@ -55,7 +55,7 @@ describe("Theme switch", () => {
 
     cy.reload();
 
-    cy.get(".theme-switch").click();
+    cy.get(".theme-switch", { timeout: 3000 }).click();
 
     cy.contains(LIGHT_THEME_LABEL).should("be.visible");
     cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
