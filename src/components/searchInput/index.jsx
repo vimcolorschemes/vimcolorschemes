@@ -9,19 +9,13 @@ import { Enter, Slash } from "src/components/icons";
 
 import "./index.scss";
 
-const SEARCH_LABELS = {
-  DEFAULT: {
-    description: "Search. Press / to focus.",
-    render: () => <Slash className="search__icon search__icon--short" />,
-  },
-  FOCUSED: {
-    description: "Press Enter to focus out.",
-    render: () => <Enter className="search__icon" />,
-  },
+const SEARCH_ICONS = {
+  DEFAULT: <Slash className="search__icon search__icon--short" />,
+  FOCUSED: <Enter className="search__icon" />,
 };
 
 const SearchInput = ({ value, onChange }) => {
-  const [label, setLabel] = useState(SEARCH_LABELS.DEFAULT);
+  const [icon, setIcon] = useState(SEARCH_ICONS.DEFAULT);
 
   const searchInputWrapperRef = useRef();
   const searchInputRef = useRef();
@@ -42,6 +36,7 @@ const SearchInput = ({ value, onChange }) => {
         className="search__overlay-button"
         data-section={SECTIONS.ACTIONS}
         data-layout={LAYOUTS.LIST}
+        aria-label={"Search. Press Enter to focus on search input."}
         onClick={() => {
           searchInputRef.current.focus();
         }}
@@ -54,12 +49,14 @@ const SearchInput = ({ value, onChange }) => {
           tabIndex={-1}
           ref={searchInputRef}
           placeholder="dark, contrast, ..."
-          aria-label={label.description}
+          aria-label={
+            "Write a search query and press Enter to focus out of input."
+          }
           className="search__input"
           value={value}
           onChange={event => onChange(event.target.value)}
-          onFocus={() => setLabel(SEARCH_LABELS.FOCUSED)}
-          onBlur={() => setLabel(SEARCH_LABELS.DEFAULT)}
+          onFocus={() => setIcon(SEARCH_ICONS.FOCUSED)}
+          onBlur={() => setIcon(SEARCH_ICONS.DEFAULT)}
           onKeyDown={event => {
             if (["Enter", "Escape"].includes(event.key)) {
               event.preventDefault();
@@ -68,7 +65,7 @@ const SearchInput = ({ value, onChange }) => {
           }}
         />
         <span className="search__icon-wrapper" aria-hidden>
-          {label.render()}
+          {icon}
         </span>
       </label>
     </div>
