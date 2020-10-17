@@ -5,6 +5,7 @@
 - [ ] Refactor
 - [ ] Optimization
 - [ ] Documentation update
+- [ ] Tests
 
 ## Description
 
@@ -20,14 +21,16 @@
 
 <!-- Add screenshots, gifs if necessary -->
 
-## Added unit tests?
+## Added tests?
 
-- [ ] yes
+- [ ] unit tests
+- [ ] E2E tests
 - [ ] no, because they aren't needed
 - [ ] no, because I need help
 
 ## Added documentation?
 
+- [ ] JSDoc
 - [ ] docs.vimcolorschemes.com (`./docs`)
 - [ ] README
 - [ ] no
