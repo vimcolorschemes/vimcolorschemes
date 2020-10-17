@@ -15,12 +15,13 @@ const Footer = ({ onLogoClick }) => (
   <footer className="footer">
     <SiteTitle
       section={SECTIONS.FOOTER_NAV}
-      vertical
+      isFooter
       onLogoClick={onLogoClick}
     />
     <nav className="footer__nav">
       <Link
         to="/about"
+        data-testid="footer-link-about"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
         data-priority={1}

@@ -1,5 +1,3 @@
-# This workflow will do a clean install of dependencies and run tests
-
 name: Run tests
 
 on:
@@ -28,7 +26,7 @@ jobs:
           record: true
           browser: chrome
           headless: true
-          build: npm run build::preview
+          build: npm run build.preview
           start: npm run serve
           wait-on: http://localhost:9000
           config: baseUrl=http://localhost:9000

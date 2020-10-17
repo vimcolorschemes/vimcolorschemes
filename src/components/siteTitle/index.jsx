@@ -14,7 +14,7 @@ import "./index.scss";
 const SiteTitle = ({
   section = SECTIONS.NAV,
   layout = LAYOUTS.LIST,
-  vertical = false,
+  isFooter = false,
   isHome,
   onLogoClick,
 }) => {
@@ -23,7 +23,8 @@ const SiteTitle = ({
   return (
     <Link
       to="/"
-      className={classnames("site-title", { "site-title--vertical": vertical })}
+      className={classnames("site-title", { "site-title--vertical": isFooter })}
+      data-testid={!isFooter ? "site-title-link" : undefined}
       data-section={section}
       data-layout={layout}
       onClick={() => {
@@ -41,10 +42,15 @@ const SiteTitle = ({
   );
 };
 
+SiteTitle.defaultProps = {
+  isFooter: false,
+  isHome: false,
+};
+
 SiteTitle.propTypes = {
   section: PropTypes.string,
   layout: PropTypes.string,
-  vertical: PropTypes.bool,
+  isFooter: PropTypes.bool,
   isHome: PropTypes.bool,
   onLogoClick: PropTypes.func,
 };
