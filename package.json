@@ -32,13 +32,15 @@
     "typeface-source-sans-pro": "^1.1.13"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.2",
     "babel-jest": "^26.5.2",
     "babel-preset-gatsby": "^0.5.14",
     "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^4.3.0",
     "jest": "^26.5.3",
     "lint-staged": "^10.4.0",
-    "prettier": "2.1.2"
+    "prettier": "2.1.2",
+    "react-test-renderer": "^16.14.0"
   },
   "keywords": [
     "gatsby"
