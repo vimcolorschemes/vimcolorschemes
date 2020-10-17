@@ -34,4 +34,4 @@ jobs:
         env:
           GATSBY_DATABASE_CONNECTION_STRING: ${{ secrets.GATSBY_DATABASE_CONNECTION_STRING }}
           GATSBY_SITE_URL: https://localhost:9000
-          CYPRESS_RECORD_KEY: ${{ CYPRESS_RECORD_KEY }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
