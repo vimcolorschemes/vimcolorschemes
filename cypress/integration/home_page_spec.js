@@ -1,5 +1,5 @@
-describe("The Home Page", () => {
-  it('successfully loads the app & checks for "vim" header content', () => {
+describe("Home page", () => {
+  it("should load the app & checks for the site title", () => {
     cy.visit("/");
     cy.contains("vimcolorschemes");
   });
