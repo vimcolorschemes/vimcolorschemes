@@ -85,54 +85,55 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           />
         )}
       </div>
-      {!isLoading &&
-        (!!debouncedSearchInput ? (
-          <p>
-            {startIndex}
-            {" - "}
-            {endIndex} of <strong>{totalCount}</strong> result
-            {totalCount !== 1 ? "s" : ""} for "{debouncedSearchInput}"
-          </p>
-        ) : (
-          <p>
-            {startIndex}
-            {" - "}
-            {endIndex} of <strong>{totalCount}</strong> repositor
-            {totalCount !== 1 ? "ies" : "y"}
-          </p>
-        ))}
       {isLoading && <p>loading ...</p>}
       {!isLoading && (
-        <Grid className="repositories">
-          {repositories.map(repository => (
-            <Card
-              key={`repository-${repository.owner?.name}-${repository.name}`}
-              linkState={{
-                fromPath: currentPath,
-              }}
-              onLinkClick={() => storeSearchData()}
-              repository={repository}
-            />
-          ))}
-        </Grid>
+        <>
+          {!!debouncedSearchInput ? (
+            <p>
+              {startIndex}
+              {" - "}
+              {endIndex} of <strong>{totalCount}</strong> result
+              {totalCount !== 1 ? "s" : ""} for "{debouncedSearchInput}"
+            </p>
+          ) : (
+            <p>
+              {startIndex}
+              {" - "}
+              {endIndex} of <strong>{totalCount}</strong> repositor
+              {totalCount !== 1 ? "ies" : "y"}
+            </p>
+          )}
+          <Grid className="repositories">
+            {repositories.map(repository => (
+              <Card
+                key={`repository-${repository.owner?.name}-${repository.name}`}
+                linkState={{
+                  fromPath: currentPath,
+                }}
+                onLinkClick={() => storeSearchData()}
+                repository={repository}
+              />
+            ))}
+          </Grid>
+          <Pagination
+            page={page}
+            pageCount={pageCount}
+            activeActionRoute={
+              !debouncedSearchInput ? activeAction.route : undefined
+            }
+            onChange={
+              !!debouncedSearchInput
+                ? page => {
+                    if (document.activeElement) document.activeElement.blur();
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    setPage(page);
+                  }
+                : undefined
+            }
+          />
+        </>
       )}
-      <Pagination
-        page={page}
-        pageCount={pageCount}
-        activeActionRoute={
-          !debouncedSearchInput ? activeAction.route : undefined
-        }
-        onChange={
-          !!debouncedSearchInput
-            ? page => {
-                if (document.activeElement) document.activeElement.blur();
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-                setPage(page);
-              }
-            : undefined
-        }
-      />
     </Layout>
   );
 };
