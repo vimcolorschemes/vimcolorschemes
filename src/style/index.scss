@@ -14,7 +14,8 @@ body {
   --white-pale: #cccccc;
   --black-pale: #5c5c5c;
 
-  --grey: #e3e3e3;
+  --grey: #aaaaaa;
+  --grey-pale: #e3e3e3;
 
   --font-family: "Source Sans Pro", sans-serif;
   --font-size: 16px;
@@ -27,7 +28,13 @@ body {
   --background: var(--white);
   --background-rgb: var(--white-rgb);
 
-  --blockquote-background: var(--grey);
+  --blockquote-background: var(--grey-pale);
+
+  --input-border: var(--black-pale);
+  --input-placeholder: var(--grey);
+  --input-border-active: var(--black-pale);
+  --input-icon: var(--black-pale);
+  --input-font-size: 16px;
 
   &.dark {
     --link: var(--blue-pale);
@@ -38,6 +45,11 @@ body {
     --background-rgb: var(--black-rgb);
 
     --blockquote-background: var(--black-pale);
+
+    --input-border: var(--white-pale);
+    --input-placeholder: var(--grey);
+    --input-border-active: var(--white-pale);
+    --input-icon: var(--white-pale);
   }
 
   --title-font-size: 1.5rem;
@@ -47,9 +59,10 @@ body {
     --subtitle-font-size: 1.5rem;
   }
 
+  --input-color: var(--text);
+
   font-family: var(--font-family);
   font-size: var(--font-size);
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: var(--line-height);
   color: var(--text);
@@ -58,9 +71,15 @@ body {
   transition: background 300ms ease, color 300ms ease;
 }
 
-a {
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button {
   color: var(--text);
   text-decoration: none;
+  font-size: var(--font-size);
   &:hover {
     @include hover-border;
   }
@@ -81,6 +100,10 @@ blockquote {
   padding: 1rem;
   background: var(--blockquote-background);
   margin: 1rem 0;
+}
+
+input {
+  font-size: var(--input-font-size);
 }
 
 .title {

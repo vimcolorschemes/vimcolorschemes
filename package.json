@@ -4,6 +4,7 @@
   "version": "1.2.3",
   "author": "Robin Gagnon <contact@reobin.dev>",
   "dependencies": {
+    "@elastic/elasticsearch": "^7.9.1",
     "classnames": "^2.2.6",
     "dayjs": "^1.9.3",
     "dotenv": "^8.2.0",
@@ -27,9 +28,11 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.0.0",
+    "swr": "^0.3.5",
     "typeface-source-sans-pro": "^1.1.13"
   },
   "devDependencies": {
+    "@testing-library/react-hooks": "^3.4.2",
     "babel-jest": "^26.5.2",
     "babel-preset-gatsby": "^0.5.14",
     "cypress": "^5.4.0",
@@ -37,7 +40,8 @@
     "husky": "^4.3.0",
     "jest": "^26.5.3",
     "lint-staged": "^10.4.0",
-    "prettier": "2.1.2"
+    "prettier": "2.1.2",
+    "react-test-renderer": "^16.14.0"
   },
   "keywords": [
     "gatsby"

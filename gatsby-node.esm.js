@@ -10,6 +10,12 @@ import { convertColonEmojis } from "./src/utils/emoji";
 import { paginateRoute } from "./src/utils/pagination";
 import { excludeItems } from "./src/utils/array";
 
+import {
+  getRepositoryIndexClient,
+  bulkIndexRepositories,
+  deleteRepositoryIndex,
+} from "./src/elasticsearch/client";
+
 import { ACTIONS, REPOSITORY_COUNT_PER_PAGE } from "./src/constants";
 
 const REPOSITORY_NODE_TYPE = "mongodbColorschemesRepositories";
@@ -135,13 +141,53 @@ const createRepositoriesPages = (repositories, createPage) => {
   });
 };
 
+const createSearchIndex = async repositories => {
+  const client = getRepositoryIndexClient();
+
+  Logger.info("Deleting repository search index");
+
+  const deleteResult = await deleteRepositoryIndex(client);
+
+  if (deleteResult.success) {
+    Logger.info("Creating repositories search index");
+
+    const indexResult = await bulkIndexRepositories(client, repositories);
+
+    if (indexResult.success) Logger.info(indexResult.message);
+    else
+      Logger.error(`Error bulk indexing repositories: ${indexResult.message}`);
+  } else {
+    Logger.error(`Error while deleting search index: ${deleteResult.message}`);
+  }
+};
+
 const repositoriesQuery = `
   {
     allMongodbColorschemesRepositories(filter: {valid: { eq: true }, image_urls: { ne: "" }}) {
       nodes {
+        id
         name
         owner {
           name
+        }
+        description
+        createdAt: github_created_at
+        lastCommitAt: last_commit_at
+        stargazersCount: stargazers_count
+        weekStargazersCount: week_stargazers_count
+        featuredImage: processed_featured_image {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
+        images: processed_images {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
         }
       }
     }
@@ -149,6 +195,8 @@ const repositoriesQuery = `
 `;
 
 export const createPages = async ({ graphql, actions }) => {
+  await Promise.allSettled(imagePromises);
+
   const { createPage } = actions;
 
   const {
@@ -159,6 +207,13 @@ export const createPages = async ({ graphql, actions }) => {
 
   createRepositoryPages(repositories, createPage);
   Logger.info("Creating repository pages");
+
   createRepositoriesPages(repositories, createPage);
   Logger.info("Creating repositories index pages");
+
+  if (
+    process.env.GATSBY_ELASTICSEARCH_URL ||
+    process.env.GATSBY_ELASTICSEARCH_CLOUD_ID
+  )
+    createSearchIndex(repositories);
 };

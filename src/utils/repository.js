@@ -1,20 +1,23 @@
 import dayjs from "dayjs";
 
 // Returns the usable first image; that was properly processed at build time
-export const getFirstProcessedFluidImage = (featuredImage, images) => {
-  if (isValidProcessedFluidImage(featuredImage))
+export const getFirstProcessedImage = (featuredImage, images) => {
+  if (isValidProcessedImage(featuredImage))
     return featuredImage.childImageSharp.fluid;
 
   if (!images || images.length < 1 || !Array.isArray(images)) return null;
 
-  const fallbackImage = images.find(isValidProcessedFluidImage);
-  return fallbackImage ? fallbackImage.childImageSharp.fluid : null;
+  const fallbackImage = images.find(isValidProcessedImage);
+  return fallbackImage && fallbackImage.childImageSharp
+    ? fallbackImage.childImageSharp.fluid ||
+        fallbackImage.childImageSharp.fluid.src
+    : null;
 };
 
-const isValidProcessedFluidImage = imageObject =>
+const isValidProcessedImage = imageObject =>
   imageObject &&
   imageObject.childImageSharp &&
-  imageObject.childImageSharp.fluid;
+  (imageObject.childImageSharp.fluid || imageObject.childImageSharp.src);
 
 // Computes the stargazers count for the last <dayCount> days
 export const computeTrendingStargazersCount = (

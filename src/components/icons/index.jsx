@@ -93,3 +93,38 @@ export const TrendingUp = ({ className }) => (
     <polyline points="17 6 23 6 23 12"></polyline>
   </svg>
 );
+
+export const Enter = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={classnames("feather feather-corner-down-left", className)}
+  >
+    <polyline points="9 10 4 15 9 20"></polyline>
+    <path d="M20 4v7a4 4 0 0 1-4 4H4"></path>
+  </svg>
+);
+
+export const Slash = ({ className }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={classnames("feather feather-slash", className)}
+  >
+    <line x1="23" y1="1" x2="1" y2="23"></line>
+  </svg>
+);

@@ -8,21 +8,26 @@ import Footer from "src/components/footer";
 
 import "./index.scss";
 
-const Layout = ({ children, isHome }) => {
+const Layout = ({ children, isHome, onLogoClick }) => {
   useTogglePointerEvents();
 
   return (
     <>
-      <Header isHome={isHome} />
+      <Header isHome={isHome} onLogoClick={onLogoClick} />
       <main className="main">{children}</main>
-      <Footer />
+      <Footer onLogoClick={onLogoClick} />
     </>
   );
+};
+
+Layout.defaultProps = {
+  isHome: false,
 };
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
   isHome: PropTypes.bool,
+  onLogoClick: PropTypes.func,
 };
 
 export default Layout;

@@ -31,6 +31,7 @@ const Actions = ({ actions, activeAction }) => {
             <Link
               data-section={SECTIONS.ACTIONS}
               data-layout={LAYOUTS.LIST}
+              data-priority={index + 1}
               to={action.route}
               aria-label={`${action.label} vim color schemes`}
             >

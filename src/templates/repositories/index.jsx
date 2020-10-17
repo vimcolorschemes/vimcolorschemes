@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { graphql } from "gatsby";
 import PropTypes from "prop-types";
 
 import { RepositoryType } from "src/types";
 
-import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+import { ACTIONS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
+import { useSearchRepositories } from "src/hooks/useSearchRepositories";
 
 import Actions from "src/components/actions";
 import Card from "src/components/card";
@@ -15,12 +16,16 @@ import Intro from "src/components/intro";
 import Layout from "src/components/layout";
 import SEO from "src/components/seo";
 import Pagination from "src/components/pagination";
+import SearchInput from "../../components/searchInput";
 
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
-  const { totalCount, repositories } = data?.repositoriesData;
-  const { currentPage, pageCount } = pageContext;
+  const {
+    repositories: defaultRepositories,
+    totalCount: defaultTotalCount,
+  } = data?.repositoriesData;
+  const { currentPage: defaultPage, pageCount: defaultPageCount } = pageContext;
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -29,41 +34,106 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         currentPath.includes(action.route) && action !== ACTIONS.TRENDING,
     ) || ACTIONS.TRENDING;
 
-  useNavigation(SECTIONS.REPOSITORIES);
+  const [resetNavigation] = useNavigation(SECTIONS.REPOSITORIES);
 
-  const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
-  const endIndex =
-    currentPage === pageCount
-      ? totalCount
-      : currentPage * REPOSITORY_COUNT_PER_PAGE;
+  const {
+    searchInput,
+    debouncedSearchInput,
+    setSearchInput,
+    storeSearchData,
+    page,
+    setPage,
+    pageCount,
+    startIndex,
+    endIndex,
+    repositories,
+    totalCount,
+    isLoading,
+  } = useSearchRepositories(
+    defaultRepositories,
+    defaultTotalCount,
+    defaultPage,
+    defaultPageCount,
+  );
+
+  useEffect(() => resetNavigation(), [repositories, resetNavigation]);
 
   return (
-    <Layout isHome>
+    <Layout
+      isHome
+      onLogoClick={() => {
+        setSearchInput("");
+        setPage(1);
+      }}
+    >
       <SEO
-        title={`${activeAction.label} vim color schemes`}
+        title={`${
+          debouncedSearchInput ? "Search" : activeAction.label
+        } vim color schemes`}
         descriptionSuffix={`Check out the ${activeAction.label} vim color schemes!`}
       />
       <Intro />
-      <Actions actions={Object.values(ACTIONS)} activeAction={activeAction} />
-      <p>
-        {startIndex}
-        {" - "}
-        {endIndex} out of <strong>{totalCount}</strong> repositories
-      </p>
-      <Grid className="repositories">
-        {repositories.map(repository => (
-          <Card
-            key={`repository-${repository.owner.name}-${repository.name}`}
-            linkState={{ fromPath: currentPath }}
-            repository={repository}
+      <div className="action-row">
+        <SearchInput
+          value={searchInput}
+          onChange={value => setSearchInput(value)}
+        />
+        {!debouncedSearchInput && (
+          <Actions
+            actions={Object.values(ACTIONS)}
+            activeAction={activeAction}
           />
-        ))}
-      </Grid>
-      <Pagination
-        currentPage={currentPage}
-        pageCount={pageCount}
-        activeActionRoute={activeAction.route}
-      />
+        )}
+      </div>
+      {isLoading && <p>loading ...</p>}
+      {!isLoading && (
+        <>
+          {!!debouncedSearchInput ? (
+            <p>
+              {startIndex}
+              {" - "}
+              {endIndex} of <strong>{totalCount}</strong> result
+              {totalCount !== 1 ? "s" : ""} for "{debouncedSearchInput}"
+            </p>
+          ) : (
+            <p>
+              {startIndex}
+              {" - "}
+              {endIndex} of <strong>{totalCount}</strong> repositor
+              {totalCount !== 1 ? "ies" : "y"}
+            </p>
+          )}
+          <Grid className="repositories">
+            {repositories.map(repository => (
+              <Card
+                key={`repository-${repository.owner?.name}-${repository.name}`}
+                linkState={{
+                  fromPath: currentPath,
+                }}
+                onLinkClick={() => storeSearchData()}
+                repository={repository}
+              />
+            ))}
+          </Grid>
+          <Pagination
+            page={page}
+            pageCount={pageCount}
+            activeActionRoute={
+              !debouncedSearchInput ? activeAction.route : undefined
+            }
+            onChange={
+              !!debouncedSearchInput
+                ? page => {
+                    if (document.activeElement) document.activeElement.blur();
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                    setPage(page);
+                  }
+                : undefined
+            }
+          />
+        </>
+      )}
     </Layout>
   );
 };
@@ -71,8 +141,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 RepositoriesPage.propTypes = {
   data: PropTypes.shape({
     repositoriesData: PropTypes.shape({
-      totalCount: PropTypes.number.isRequired,
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
+      totalCount: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   pageContext: PropTypes.shape({

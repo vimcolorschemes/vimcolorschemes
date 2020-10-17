@@ -18,7 +18,7 @@ export const useKeyboardShortcuts = shortcuts => {
     if (!shortcuts || !Object.keys(shortcuts).includes(key) || isInput(target))
       return;
 
-    shortcuts[key]();
+    shortcuts[key](event);
   });
 };
 

@@ -1,6 +1,11 @@
-import { useEffect } from "react";
-import { KEYS, LAYOUTS, NON_NAVIGATION_KEYS, SECTIONS } from "src/constants";
-import { isInViewport } from "src/utils/navigation";
+import { useEffect, useCallback, useRef } from "react";
+
+import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
+import {
+  isInViewport,
+  isAtPageTop,
+  isBrowserActive,
+} from "src/utils/navigation";
 
 /**
  * Hook that listens for navigation keys and navigates by focusing to configured elements
@@ -8,29 +13,59 @@ import { isInViewport } from "src/utils/navigation";
  * All focusable elements must have the data-section attribute.
  *
  * @example
- * useNavigation();
+ * const [resetNavigation] = useNavigation();
  *
  * @param {string} defaultSection Section to focus on when nothing was focused before
+ *
+ * @returns {array} Utility functions to control navigation
  */
 export const useNavigation = defaultSection => {
+  const isBrowser = isBrowserActive();
+
+  const eventListener = useRef({ callback: null });
+
+  const resetNavigation = useCallback(() => {
+    if (!isBrowser) return;
+
+    window.removeEventListener("keydown", eventListener.current.callback);
+
+    const focusables = document.querySelectorAll("*[data-section]");
+
+    const callback = event =>
+      Object.values(KEYS).includes(event.key) &&
+      handleKeyPress(event, focusables, defaultSection);
+
+    window.addEventListener("keydown", callback);
+
+    eventListener.current.callback = callback;
+  }, [isBrowser, defaultSection]);
+
+  const disableNavigation = useCallback(() => {
+    if (!isBrowser) return;
+
+    window.removeEventListener("keydown", eventListener.current.callback);
+    eventListener.current.callback = null;
+  }, [isBrowser]);
+
   useEffect(() => {
-    if (typeof window !== "undefined" && typeof document !== "undefined") {
-      const focusables = document.querySelectorAll("*[data-section]");
+    if (!isBrowser) return;
 
-      const eventListener = event =>
-        Object.values(KEYS).includes(event.key) &&
-        handleKeyPress(event, focusables, defaultSection);
+    resetNavigation();
+    return () => disableNavigation();
+  }, [isBrowser, resetNavigation, disableNavigation]);
 
-      window.addEventListener("keydown", eventListener);
-      return () => window.removeEventListener("keydown", eventListener);
-    }
-  }, [defaultSection]);
+  return [resetNavigation];
 };
 
 const handleKeyPress = (event, focusables, defaultSection) => {
   const { key, metaKey } = event;
 
-  if (NON_NAVIGATION_KEYS.includes(key)) return;
+  const { activeElement } = document;
+
+  const isTextInput =
+    activeElement.tagName === "INPUT" && activeElement.type === "text";
+
+  if (NON_NAVIGATION_KEYS.includes(key) || isTextInput) return;
 
   if (
     [
@@ -43,8 +78,6 @@ const handleKeyPress = (event, focusables, defaultSection) => {
   ) {
     event.preventDefault();
   }
-
-  const { activeElement } = document;
 
   const currentTabIndex = Array.prototype.indexOf.call(
     focusables,
@@ -67,9 +100,10 @@ const handleKeyPress = (event, focusables, defaultSection) => {
     nextTabIndex = getLastTabIndexOfSection(focusables, SECTIONS.REPOSITORIES);
   } else {
     if (currentTabIndex === -1) {
-      nextTabIndex = defaultSection
-        ? getFirstTabIndexOfSection(focusables, defaultSection)
-        : 0;
+      nextTabIndex = getFirstVisibleTabIndexOfSection(
+        focusables,
+        defaultSection,
+      );
     } else {
       switch (layout) {
         case LAYOUTS.BLOCK:
@@ -305,6 +339,32 @@ const getSectionTabIndexes = (focusables, section) =>
       focusable.dataset.section === section ? [...indexes, index] : indexes,
     [],
   );
+
+// get the first visible tab index of a specified section, and defaults to
+// simply first visible tab index of any sections
+const getFirstVisibleTabIndexOfSection = (focusables, section) => {
+  const getFirstVisibleTabIndex = () =>
+    Array.prototype.findIndex.call(focusables, focusable =>
+      isInViewport(focusable),
+    );
+
+  if (!section) return getFirstVisibleTabIndex();
+
+  const elements = prioritize(
+    getSectionTabIndexes(focusables, section),
+    focusables,
+  );
+
+  if (isAtPageTop()) return elements[0];
+
+  const firstVisibleIndex = elements.find(index =>
+    isInViewport(focusables[index]),
+  );
+
+  return firstVisibleIndex == null
+    ? getFirstVisibleTabIndex()
+    : firstVisibleIndex;
+};
 
 // get the first tab index of a given section
 // if an element within the section has priority, it will be returned first
