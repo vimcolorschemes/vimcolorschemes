@@ -21,7 +21,10 @@ import SearchInput from "../../components/searchInput";
 import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
-  const { totalCount, repositories: pageRepositories } = data?.repositoriesData;
+  const {
+    repositories: pageRepositories,
+    totalCount: defaultTotalCount,
+  } = data?.repositoriesData;
   const { currentPage, pageCount } = pageContext;
 
   const currentPath = location.pathname || "";
@@ -37,10 +40,13 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     searchInput,
     debouncedSearchInput,
     setSearchInput,
-    storeSearchInput,
+    storeSearchData,
+    page,
+    setPage,
     repositories,
+    totalCount,
     isLoading,
-  } = useSearchRepositories(pageRepositories);
+  } = useSearchRepositories(pageRepositories, defaultTotalCount);
 
   useEffect(() => resetNavigation(), [repositories, resetNavigation]);
 
@@ -51,7 +57,13 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       : currentPage * REPOSITORY_COUNT_PER_PAGE;
 
   return (
-    <Layout isHome onLogoClick={() => setSearchInput("")}>
+    <Layout
+      isHome
+      onLogoClick={() => {
+        setSearchInput("");
+        setPage(1);
+      }}
+    >
       <SEO
         title={`${
           debouncedSearchInput ? "Search" : activeAction.label
@@ -74,8 +86,10 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
       {!isLoading &&
         (!!debouncedSearchInput ? (
           <p>
-            <strong>{repositories.length}</strong> result
-            {repositories.length !== 1 ? "s" : ""} for "{debouncedSearchInput}"
+            {startIndex}
+            {" - "}
+            {endIndex} out of <strong>{totalCount}</strong> result
+            {totalCount !== 1 ? "s" : ""} for "{debouncedSearchInput}"
           </p>
         ) : (
           <p>
@@ -93,7 +107,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
               linkState={{
                 fromPath: currentPath,
               }}
-              onLinkClick={() => storeSearchInput()}
+              onLinkClick={() => storeSearchData()}
               repository={repository}
             />
           ))}
@@ -106,6 +120,28 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           activeActionRoute={activeAction.route}
         />
       )}
+      <button
+        type="button"
+        onClick={() => {
+          if (document.activeElement) document.activeElement.blur();
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          setPage(page => page + 1);
+        }}
+      >
+        next
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          if (document.activeElement) document.activeElement.blur();
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          setPage(page => page - 1);
+        }}
+      >
+        previous
+      </button>
     </Layout>
   );
 };
@@ -113,8 +149,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
 RepositoriesPage.propTypes = {
   data: PropTypes.shape({
     repositoriesData: PropTypes.shape({
-      totalCount: PropTypes.number.isRequired,
       repositories: PropTypes.arrayOf(RepositoryType).isRequired,
+      totalCount: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
   pageContext: PropTypes.shape({
