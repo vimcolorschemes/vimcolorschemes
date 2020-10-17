@@ -47,6 +47,7 @@
   outline: none;
   background: transparent;
   color: var(--input-color);
+  width: calc(100% - 2rem);
   &::placeholder {
     color: var(--input-placeholder);
   }
