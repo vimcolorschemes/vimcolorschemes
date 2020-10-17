@@ -25,6 +25,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: cypress-io/github-action@v2
         with:
+          record: true
           browser: chrome
           headless: true
           build: npm run build::preview
@@ -34,3 +35,4 @@ jobs:
         env:
           GATSBY_DATABASE_CONNECTION_STRING: ${{ secrets.GATSBY_DATABASE_CONNECTION_STRING }}
           GATSBY_SITE_URL: https://localhost:9000
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
