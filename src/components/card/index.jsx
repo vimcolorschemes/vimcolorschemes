@@ -28,6 +28,7 @@ const Card = ({ repository, linkState, onLinkClick, className }) => {
   const imageStyle = {
     objectFit: "contain",
     height: "100%",
+    minHeight: "15rem",
     width: "100%",
   };
 
@@ -56,6 +57,7 @@ const Card = ({ repository, linkState, onLinkClick, className }) => {
                 src={fluidImage.src}
                 alt={`${ownerName} ${name}`}
                 style={imageStyle}
+                loading="lazy"
               />
             ))}
         </div>
