@@ -24,3 +24,6 @@ export const isAtPageTop = () => {
 
   return scrollTop === 0;
 };
+
+export const isBrowserActive = () =>
+  typeof window !== "undefined" && typeof document !== "undefined";

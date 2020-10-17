@@ -1,7 +1,11 @@
 import { useEffect, useCallback, useRef } from "react";
 
 import { LAYOUTS, KEYS, SECTIONS, NON_NAVIGATION_KEYS } from "src/constants";
-import { isInViewport, isAtPageTop } from "src/utils/navigation";
+import {
+  isInViewport,
+  isAtPageTop,
+  isBrowserActive,
+} from "src/utils/navigation";
 
 /**
  * Hook that listens for navigation keys and navigates by focusing to configured elements
@@ -9,13 +13,14 @@ import { isInViewport, isAtPageTop } from "src/utils/navigation";
  * All focusable elements must have the data-section attribute.
  *
  * @example
- * useNavigation();
+ * const [resetNavigation] = useNavigation();
  *
  * @param {string} defaultSection Section to focus on when nothing was focused before
+ *
+ * @returns {array} Utility functions to control navigation
  */
 export const useNavigation = defaultSection => {
-  const isBrowser =
-    typeof window !== "undefined" && typeof document !== "undefined";
+  const isBrowser = isBrowserActive();
 
   const eventListener = useRef({ callback: null });
 
@@ -46,10 +51,10 @@ export const useNavigation = defaultSection => {
     if (!isBrowser) return;
 
     resetNavigation();
-    return disableNavigation;
+    return () => disableNavigation();
   }, [isBrowser, resetNavigation, disableNavigation]);
 
-  return [resetNavigation, disableNavigation];
+  return [resetNavigation];
 };
 
 const handleKeyPress = (event, focusables, defaultSection) => {
