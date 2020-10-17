@@ -17,11 +17,12 @@ export const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
  * @returns {object} The search state, repositories to display and the loading state
  */
 export const useSearchRepositories = defaultRepositories => {
-  const [searchInput, setSearchInput] = useState(
-    window.previousPath
+  const initialSearchInput =
+    typeof window !== "undefined" && window.previousPath
       ? localStorage.getItem(SEARCH_INPUT_LOCAL_STORAGE_KEY) || ""
-      : "",
-  );
+      : "";
+
+  const [searchInput, setSearchInput] = useState(initialSearchInput);
 
   useEffect(() => clearSearchInput(), []);
 
