@@ -35,7 +35,7 @@ const SiteTitle = ({
       <img src={logo} alt="" className="site-title__logo" />
       <Heading className="site-title__name">
         <span className="site-title__name-part">vim</span>
-        <span className="site-title__name-part">colorscheme</span>
+        <span className="site-title__name-part">colorschemes</span>
       </Heading>
     </Link>
   );

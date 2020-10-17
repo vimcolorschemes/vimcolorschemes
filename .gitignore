@@ -71,3 +71,10 @@ yarn-error.log
 
 # MongoDB Data in Develop Environment
 mongo
+
+# cypress files
+cypress/videos
+cypress/support
+cypress/plugins
+cypress/screenshots
+cypress/fixtures

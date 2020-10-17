@@ -35,6 +35,7 @@
     "@testing-library/react-hooks": "^3.4.2",
     "babel-jest": "^26.5.2",
     "babel-preset-gatsby": "^0.5.14",
+    "cypress": "^5.4.0",
     "gatsby-plugin-root-import": "^2.0.5",
     "husky": "^4.3.0",
     "jest": "^26.5.3",
@@ -57,7 +58,9 @@
     "seed": "sh db/seed.sh",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
     "test": "jest --silent",
-    "test::verbose": "jest"
+    "test::verbose": "jest",
+    "test::e2e": "cypress run",
+    "cypress::open": "cypress open"
   },
   "repository": {
     "type": "git",
