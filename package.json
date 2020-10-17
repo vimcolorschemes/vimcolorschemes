@@ -55,7 +55,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
     "test": "jest --silent",
     "test::verbose": "jest",
-    "test::e2e": "node_modules\\.bin\\cypress open"
+    "test::e2e": "cypress run",
+    "cypress::open": "cypress open"
   },
   "repository": {
     "type": "git",
