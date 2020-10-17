@@ -49,18 +49,17 @@
   "license": "GNU General Public License v3.0",
   "scripts": {
     "start": "npm run develop",
-    "start::local": "npm run develop -- -H 0.0.0.0",
+    "start.local": "npm run develop -- -H 0.0.0.0",
     "develop": "gatsby develop",
     "build": "gatsby build",
-    "build::preview": "npm run clean && npm run build",
+    "build.preview": "npm run clean && npm run build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "seed": "sh db/seed.sh",
     "format": "prettier --write \"**/*.{js,jsx,json,md,css,scss}\"",
     "test": "jest --silent",
-    "test::verbose": "jest",
-    "test::e2e": "cypress run",
-    "cypress::open": "cypress open"
+    "cy.run": "cypress run",
+    "cy.open": "cypress open"
   },
   "repository": {
     "type": "git",

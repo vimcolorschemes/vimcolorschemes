@@ -1,82 +1,64 @@
-const LIGHT_THEME_LABEL = "dark theme: off";
-const DARK_THEME_LABEL = "dark theme: on";
-const LIGHT_THEME_BODY_CLASS = "light";
-const DARK_THEME_BODY_CLASS = "dark";
+import { THEMES, KEYS } from "../../src/constants";
 
 describe("Theme switch", () => {
-  it("should default to light", () => {
-    cy.visit("/");
+  const waitForStateToLoad = () =>
+    cy.getBySel("theme-switch-label").should("be.visible");
 
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
+  const clickOnSwitch = () => cy.getBySel("theme-switch").click();
+
+  const refresh = () => {
+    cy.reload();
+    waitForStateToLoad();
+  };
+
+  const checkTheme = theme => {
+    const label = theme === THEMES.LIGHT ? "theme: light" : "theme: dark";
+    const bodyClass = theme === THEMES.LIGHT ? "light" : "dark";
+
+    cy.contains(label).should("be.visible");
+    cy.get("body").should("have.class", bodyClass);
+  };
+
+  beforeEach(() => {
+    cy.visit("/");
+    cy.clearLocalStorage();
+    waitForStateToLoad();
+  });
+
+  it("should default to light", () => {
+    checkTheme(THEMES.LIGHT);
   });
 
   it("should switch to dark on click", () => {
-    cy.visit("/");
-
-    cy.get(".theme-switch", { timeout: 300 }).click();
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
+    checkTheme(THEMES.LIGHT);
+    clickOnSwitch();
+    checkTheme(THEMES.DARK);
   });
 
   it("should load dark after change and refresh", () => {
-    cy.visit("/");
-
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
-
-    cy.get(".theme-switch", { timeout: 300 }).click();
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
-
-    cy.reload();
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
+    checkTheme(THEMES.LIGHT);
+    clickOnSwitch();
+    checkTheme(THEMES.DARK);
+    refresh();
+    checkTheme(THEMES.DARK);
   });
 
   it("should switch to light after initial dark load", () => {
-    cy.visit("/");
-
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
-
-    cy.get(".theme-switch", { timeout: 300 }).click();
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
-
-    cy.reload();
-    cy.wait(300);
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
-
-    cy.reload();
-    cy.wait(300);
-
-    cy.get(".theme-switch", { timeout: 300 }).click();
-
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
+    checkTheme(THEMES.LIGHT);
+    clickOnSwitch();
+    checkTheme(THEMES.DARK);
+    refresh();
+    checkTheme(THEMES.DARK);
+    refresh();
+    clickOnSwitch();
+    checkTheme(THEMES.LIGHT);
   });
 
   it("should toggle on shortcut press", () => {
-    cy.visit("/");
-
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
-
-    cy.document().trigger("keydown", { key: "b" });
-
-    cy.contains(DARK_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", DARK_THEME_BODY_CLASS);
-
-    cy.document().trigger("keydown", { key: "b" });
-
-    cy.contains(LIGHT_THEME_LABEL).should("be.visible");
-    cy.get("body").should("have.class", LIGHT_THEME_BODY_CLASS);
+    checkTheme(THEMES.LIGHT);
+    cy.document().trigger("keydown", { key: KEYS.BACKGROUND });
+    checkTheme(THEMES.DARK);
+    cy.document().trigger("keydown", { key: KEYS.BACKGROUND });
+    checkTheme(THEMES.LIGHT);
   });
 });

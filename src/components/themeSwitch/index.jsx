@@ -26,7 +26,7 @@ const ThemeSwitch = inputArgs => {
   const updateTheme = theme => window.__setPreferredTheme(theme);
 
   return (
-    <label className="theme-switch">
+    <label className="theme-switch" data-testid="theme-switch">
       <input
         type="checkbox"
         className="theme-switch__input"
@@ -46,8 +46,8 @@ const ThemeSwitch = inputArgs => {
         {...inputArgs}
       />
       {!!theme && (
-        <span>
-          dark theme: <strong>{theme === THEMES.DARK ? "on" : "off"}</strong>
+        <span data-testid="theme-switch-label">
+          theme: <strong>{theme}</strong>
         </span>
       )}
     </label>
