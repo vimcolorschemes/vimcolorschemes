@@ -48,7 +48,7 @@ const SearchInput = ({ value, onChange }) => {
           name="search-input"
           tabIndex={-1}
           ref={searchInputRef}
-          placeholder="dark, contrast, ..."
+          placeholder="dark, low contrast, ..."
           aria-label={
             "Write a search query and press Enter to focus out of input."
           }
