@@ -11,4 +11,4 @@ COPY . ./
 
 EXPOSE 8000
 
-ENTRYPOINT ["npm", "run", "start::local"]
+ENTRYPOINT ["npm", "run", "start.local"]
