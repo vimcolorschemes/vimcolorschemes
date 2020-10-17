@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { RepositoryType } from "src/types";
 
-import { ACTIONS, SECTIONS, REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+import { ACTIONS, SECTIONS } from "src/constants";
 
 import { useNavigation } from "src/hooks/useNavigation";
 import { useSearchRepositories } from "src/hooks/useSearchRepositories";
@@ -22,10 +22,10 @@ import "./index.scss";
 
 const RepositoriesPage = ({ data, pageContext, location }) => {
   const {
-    repositories: pageRepositories,
+    repositories: defaultRepositories,
     totalCount: defaultTotalCount,
   } = data?.repositoriesData;
-  const { currentPage, pageCount } = pageContext;
+  const { currentPage: defaultPage, pageCount: defaultPageCount } = pageContext;
 
   const currentPath = location.pathname || "";
   const activeAction =
@@ -43,18 +43,20 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     storeSearchData,
     page,
     setPage,
+    pageCount,
+    startIndex,
+    endIndex,
     repositories,
     totalCount,
     isLoading,
-  } = useSearchRepositories(pageRepositories, defaultTotalCount);
+  } = useSearchRepositories(
+    defaultRepositories,
+    defaultTotalCount,
+    defaultPage,
+    defaultPageCount,
+  );
 
   useEffect(() => resetNavigation(), [repositories, resetNavigation]);
-
-  const startIndex = (currentPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1;
-  const endIndex =
-    currentPage === pageCount
-      ? totalCount
-      : currentPage * REPOSITORY_COUNT_PER_PAGE;
 
   return (
     <Layout
@@ -88,14 +90,15 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           <p>
             {startIndex}
             {" - "}
-            {endIndex} out of <strong>{totalCount}</strong> result
+            {endIndex} of <strong>{totalCount}</strong> result
             {totalCount !== 1 ? "s" : ""} for "{debouncedSearchInput}"
           </p>
         ) : (
           <p>
             {startIndex}
             {" - "}
-            {endIndex} out of <strong>{totalCount}</strong> repositories
+            {endIndex} of <strong>{totalCount}</strong> repositor
+            {totalCount !== 1 ? "ies" : "y"}
           </p>
         ))}
       {isLoading && <p>loading ...</p>}
@@ -113,35 +116,23 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
           ))}
         </Grid>
       )}
-      {!debouncedSearchInput && (
-        <Pagination
-          currentPage={currentPage}
-          pageCount={pageCount}
-          activeActionRoute={activeAction.route}
-        />
-      )}
-      <button
-        type="button"
-        onClick={() => {
-          if (document.activeElement) document.activeElement.blur();
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-          setPage(page => page + 1);
-        }}
-      >
-        next
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          if (document.activeElement) document.activeElement.blur();
-          document.body.scrollTop = 0; // For Safari
-          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-          setPage(page => page - 1);
-        }}
-      >
-        previous
-      </button>
+      <Pagination
+        page={page}
+        pageCount={pageCount}
+        activeActionRoute={
+          !debouncedSearchInput ? activeAction.route : undefined
+        }
+        onChange={
+          !!debouncedSearchInput
+            ? page => {
+                if (document.activeElement) document.activeElement.blur();
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+                setPage(page);
+              }
+            : undefined
+        }
+      />
     </Layout>
   );
 };

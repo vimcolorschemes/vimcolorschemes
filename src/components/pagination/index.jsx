@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 import { paginateRoute } from "src/utils/pagination";
 
@@ -8,62 +9,98 @@ import { SECTIONS, LAYOUTS } from "src/constants";
 
 import "./index.scss";
 
-const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
-  const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === pageCount;
+const PageLink = ({ children, to, onClick, limit, priority }) => {
+  const Tag = to ? Link : "button";
 
-  const previousPage = currentPage - 1;
-  const nextPage = currentPage + 1;
+  return (
+    <Tag
+      to={to}
+      onClick={onClick}
+      data-section={SECTIONS.PAGINATION}
+      data-layout={LAYOUTS.LIST}
+      data-priority={priority}
+      className={classnames("pagination__link", {
+        "pagination__link--limit": limit,
+      })}
+    >
+      {children}
+    </Tag>
+  );
+};
+
+PageLink.propTypes = {
+  children: PropTypes.node.isRequired,
+  to: PropTypes.string,
+  onClick: PropTypes.func,
+  limit: PropTypes.bool,
+};
+
+const Pagination = ({ page, pageCount, activeActionRoute, onChange }) => {
+  const isFirstPage = page === 1;
+  const isLastPage = page === pageCount;
+
+  const previousPage = page - 1;
+  const nextPage = page + 1;
 
   return (
     <div className="pagination">
       <div className="pagination__link-block">
         {!isFirstPage && (
-          <Link
-            to={paginateRoute(activeActionRoute, 1)}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            className="pagination__link pagination__link--limit"
+          <PageLink
+            to={
+              activeActionRoute
+                ? paginateRoute(activeActionRoute, 1)
+                : undefined
+            }
+            onClick={onChange ? () => onChange(1) : undefined}
+            limit
           >
             First
-          </Link>
+          </PageLink>
         )}
         {!isFirstPage && (
-          <Link
-            to={paginateRoute(activeActionRoute, previousPage)}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            data-priority={2}
-            className="pagination__link"
+          <PageLink
+            to={
+              activeActionRoute
+                ? paginateRoute(activeActionRoute, previousPage)
+                : undefined
+            }
+            onClick={onChange ? () => onChange(previousPage) : undefined}
+            priority={2}
           >
             Previous
-          </Link>
+          </PageLink>
         )}
       </div>
       <p className="pagination__page-status">
-        {currentPage} / {pageCount}
+        {page} / {pageCount}
       </p>
       <div className="pagination__link-block">
         {!isLastPage && (
-          <Link
-            to={paginateRoute(activeActionRoute, nextPage)}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            data-priority={1}
-            className="pagination__link"
+          <PageLink
+            to={
+              activeActionRoute
+                ? paginateRoute(activeActionRoute, nextPage)
+                : undefined
+            }
+            onClick={onChange ? () => onChange(nextPage) : undefined}
+            priority={1}
           >
             Next
-          </Link>
+          </PageLink>
         )}
         {!isLastPage && (
-          <Link
-            to={paginateRoute(activeActionRoute, pageCount)}
-            data-section={SECTIONS.PAGINATION}
-            data-layout={LAYOUTS.LIST}
-            className="pagination__link pagination__link--limit"
+          <PageLink
+            to={
+              activeActionRoute
+                ? paginateRoute(activeActionRoute, pageCount)
+                : undefined
+            }
+            onClick={onChange ? () => onChange(pageCount) : undefined}
+            limit
           >
             Last
-          </Link>
+          </PageLink>
         )}
       </div>
     </div>
@@ -71,9 +108,10 @@ const Pagination = ({ currentPage, pageCount, activeActionRoute }) => {
 };
 
 Pagination.propTypes = {
-  currentPage: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
   pageCount: PropTypes.number.isRequired,
-  activeActionRoute: PropTypes.string.isRequired,
+  activeActionRoute: PropTypes.string,
+  onChange: PropTypes.func,
 };
 
 export default Pagination;

@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 import useSWR from "swr";
 
+import { REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+
 import { searchRepositories } from "src/api/repository";
 
 import { useDebounce } from "src/hooks/useDebounce";
@@ -9,36 +11,37 @@ import { useDebounce } from "src/hooks/useDebounce";
 export const SEARCH_INPUT_LOCAL_STORAGE_KEY = "search-input";
 export const SEARCH_PAGE_LOCAL_STORAGE_KEY = "search-page";
 
+const getLocalStorageItem = (key, defaulValue = "") =>
+  typeof window !== "undefined" && window.previousPath
+    ? localStorage.getItem(key) || defaulValue
+    : defaulValue;
+
 /**
- * Hook that manages the search input, the repositories and loading state depending on a search query
+ * Hook that handles the logic for searching repositories
  *
- * @param {object[]} defaultRepositories The repositories to return if nothing
- * is searched
- * @param {number} defaultTotalCount The total count to return if nothing
+ * @param {object[]} defaultRepositories
+ * @param {number} defaultTotalCount
+ * @param {number} defaultPage
+ * @param {number} defaultPageCount
  *
  * @returns {object} The search state, repositories to display and the loading state
  */
 export const useSearchRepositories = (
   defaultRepositories,
   defaultTotalCount,
+  defaultPage,
+  defaultPageCount,
 ) => {
-  const initialSearchInput =
-    typeof window !== "undefined" && window.previousPath
-      ? localStorage.getItem(SEARCH_INPUT_LOCAL_STORAGE_KEY) || ""
-      : "";
+  const [searchInput, setSearchInput] = useState(
+    getLocalStorageItem(SEARCH_INPUT_LOCAL_STORAGE_KEY),
+  );
+  const debouncedSearchInput = useDebounce(searchInput);
 
-  const [searchInput, setSearchInput] = useState(initialSearchInput);
-
-  const initialSearchPage =
-    typeof window !== "undefined" && window.previousPath
-      ? Number(localStorage.getItem(SEARCH_PAGE_LOCAL_STORAGE_KEY)) || 1
-      : 1;
-
-  const [page, setPage] = useState(initialSearchPage);
+  const [page, setPage] = useState(
+    Number(getLocalStorageItem(SEARCH_PAGE_LOCAL_STORAGE_KEY, 1)),
+  );
 
   useEffect(() => clearSearchInput(), []);
-
-  const debouncedSearchInput = useDebounce(searchInput);
 
   const { data, error } = useSWR(
     debouncedSearchInput ? [debouncedSearchInput, page] : undefined,
@@ -50,22 +53,42 @@ export const useSearchRepositories = (
     localStorage.setItem(SEARCH_PAGE_LOCAL_STORAGE_KEY, page);
   };
 
-  const clearSearchInput = () =>
+  const clearSearchInput = () => {
     localStorage.removeItem(SEARCH_INPUT_LOCAL_STORAGE_KEY);
+    localStorage.removeItem(SEARCH_PAGE_LOCAL_STORAGE_KEY);
+  };
+
+  const usedTotalCount = debouncedSearchInput
+    ? data?.totalCount
+    : defaultTotalCount;
+
+  const usedPage = debouncedSearchInput ? page : defaultPage;
+  const usedPageCount = debouncedSearchInput
+    ? data?.pageCount || 1
+    : defaultPageCount;
+  const startIndex = usedTotalCount
+    ? (usedPage - 1) * REPOSITORY_COUNT_PER_PAGE + 1
+    : 0;
+  const endIndex = usedTotalCount
+    ? usedPage === usedPageCount
+      ? usedTotalCount
+      : usedPage * REPOSITORY_COUNT_PER_PAGE
+    : 0;
 
   return {
     searchInput,
     debouncedSearchInput,
     setSearchInput,
     storeSearchData,
-    page,
+    page: usedPage,
     setPage,
+    pageCount: usedPageCount,
+    startIndex,
+    endIndex,
     repositories: !!debouncedSearchInput
       ? data?.repositories || []
       : defaultRepositories,
-    totalCount: !!debouncedSearchInput
-      ? data?.totalCount || 0
-      : defaultTotalCount,
+    totalCount: usedTotalCount,
     isLoading: !!debouncedSearchInput && !data && !error,
   };
 };

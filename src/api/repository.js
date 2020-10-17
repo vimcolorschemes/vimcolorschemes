@@ -1,5 +1,7 @@
 import { post } from ".";
 
+import { REPOSITORY_COUNT_PER_PAGE } from "src/constants";
+
 import { INDEX_NAME } from "src/elasticsearch";
 
 const URL = process.env.GATSBY_ELASTICSEARCH_PROXY_URL;
@@ -10,7 +12,8 @@ const URL = process.env.GATSBY_ELASTICSEARCH_PROXY_URL;
  * @param {string} query The search input to match
  * @param {number} page The search page
  *
- * @returns {object[]} results The repositories matching the search input
+ * @returns {object} results The repositories, total count and page count
+ * matching the search input
  */
 export const searchRepositories = async (query, page = 1) => {
   try {
@@ -20,15 +23,19 @@ export const searchRepositories = async (query, page = 1) => {
           query: `*${query}*`,
         },
       },
-      from: (page - 1) * 20,
-      size: 20,
+      from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
+      size: REPOSITORY_COUNT_PER_PAGE,
     });
 
+    const repositories = data.hits.hits.map(hit => hit._source);
+    const totalCount = data.hits.total.value;
+
     return {
-      totalCount: data.hits.total.value,
-      repositories: data.hits.hits.map(hit => hit._source),
+      totalCount,
+      repositories,
+      pageCount: Math.ceil(totalCount / REPOSITORY_COUNT_PER_PAGE),
     };
   } catch {
-    return [];
+    return null;
   }
 };

@@ -63,7 +63,6 @@ body {
 
   font-family: var(--font-family);
   font-size: var(--font-size);
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: var(--line-height);
   color: var(--text);
@@ -72,9 +71,15 @@ body {
   transition: background 300ms ease, color 300ms ease;
 }
 
-a {
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+a,
+button {
   color: var(--text);
   text-decoration: none;
+  font-size: var(--font-size);
   &:hover {
     @include hover-border;
   }
