@@ -26,7 +26,7 @@
     @include hover-border;
   }
   &:focus {
-    @include focus-border;
+    @include no-border;
   }
 }
 
@@ -76,5 +76,11 @@
 @include lg {
   .search {
     width: 15rem;
+  }
+
+  .search__overlay-button {
+    &:focus {
+      @include focus-border;
+    }
   }
 }
