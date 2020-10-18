@@ -104,7 +104,7 @@ const AboutPage = () => {
         </p>
         <p>
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/issues"
+            to="https://github.com/vimcolorschemes/vimcolorschemes/issues"
             data-section={`${SECTIONS.ABOUT_LINK}-7`}
             data-layout={LAYOUTS.BLOCK}
             noIcon
@@ -146,7 +146,7 @@ const AboutPage = () => {
         <p>
           Still nothing? Feel free to{" "}
           <ExternalLink
-            to="https://github.com/reobin/vimcolorschemes/issues"
+            to="https://github.com/vimcolorschemes/vimcolorschemes/issues"
             data-section={`${SECTIONS.ABOUT_LINK}-10`}
             data-layout={LAYOUTS.BLOCK}
             noIcon

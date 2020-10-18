@@ -16,7 +16,7 @@ For every repository found, it searches thoroughly for potential image URLs that
 
 ### Links
 
-- [See the repository](https://github.com/reobin/vimcolorschemes-worker)
+- [See the repository](https://github.com/vimcolorschemes/worker)
 - [Read about the worker in more details](/the-worker)
 
 ## 🖼 The App
@@ -33,4 +33,4 @@ Since only image URLs are stored in the database, Gatsby needs to download all t
 
 ## 🎬 The Studio
 
-The Studio is only an idea for now. Follow [the related issue](https://github.com/reobin/colorschemes.dev/issues/15) for updates.
+The Studio is only an idea for now. Follow [the related issue](https://github.com/vimcolorschemes/vimcolorschemes/issues/15) for updates.

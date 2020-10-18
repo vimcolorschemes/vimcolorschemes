@@ -29,7 +29,7 @@ const Footer = ({ onLogoClick }) => (
         About
       </Link>
       <ExternalLink
-        to="https://github.com/reobin/vimcolorschemes"
+        to="https://github.com/vimcolorschemes/vimcolorschemes"
         data-section={SECTIONS.FOOTER_NAV}
         data-layout={LAYOUTS.LIST}
         className="accent"

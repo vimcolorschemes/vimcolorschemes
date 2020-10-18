@@ -66,10 +66,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/reobin/vimcolorschemes"
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes"
   },
   "bugs": {
-    "url": "https://github.com/reobin/vimcolorschemes/issues"
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes/issues"
   },
   "husky": {
     "hooks": {

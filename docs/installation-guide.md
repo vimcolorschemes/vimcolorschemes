@@ -43,4 +43,4 @@ The script imports the example data at `./seed/data.json` into your local databa
 
 ## Running into problems?
 
-Any trouble trying to make vimcolorschemes work locally? [Create an issue](https://github.com/reobin/vimcolorschemes/issues) and we'll be happy to help.
+Any trouble trying to make vimcolorschemes work locally? [Create an issue](https://github.com/vimcolorschemes/vimcolorschemes/issues) and we'll be happy to help.

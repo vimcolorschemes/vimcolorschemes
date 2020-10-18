@@ -1,2 +1,2 @@
 <!-- prettier-ignore -->
-[readme](https://raw.githubusercontent.com/reobin/vimcolorschemes/main/README.md ':include')
+[readme](https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/README.md ':include')
