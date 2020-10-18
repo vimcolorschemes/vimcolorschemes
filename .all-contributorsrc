@@ -176,6 +176,15 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "lucasarvelo",
+      "name": "Lucas Arvelo",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/6098495?v=4",
+      "profile": "http://lucasarvelo.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
