@@ -79,7 +79,6 @@ a,
 button {
   color: var(--text);
   text-decoration: none;
-  font-size: var(--font-size);
   &:hover {
     @include hover-border;
   }
