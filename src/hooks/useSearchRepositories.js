@@ -90,5 +90,6 @@ export const useSearchRepositories = (
       : defaultRepositories,
     totalCount: usedTotalCount,
     isLoading: !!debouncedSearchInput && !data && !error,
+    isError: !!error,
   };
 };

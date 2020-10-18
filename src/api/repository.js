@@ -16,26 +16,22 @@ const URL = process.env.GATSBY_ELASTICSEARCH_PROXY_URL;
  * matching the search input
  */
 export const searchRepositories = async (query, page = 1) => {
-  try {
-    const data = await post(`${URL}/${INDEX_NAME}/_search`, {
-      query: {
-        query_string: {
-          query: `*${query}*`,
-        },
+  const data = await post(`${URL}/${INDEX_NAME}/_search`, {
+    query: {
+      query_string: {
+        query: `*${query}*`,
       },
-      from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
-      size: REPOSITORY_COUNT_PER_PAGE,
-    });
+    },
+    from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
+    size: REPOSITORY_COUNT_PER_PAGE,
+  });
 
-    const repositories = data.hits.hits.map(hit => hit._source);
-    const totalCount = data.hits.total.value;
+  const repositories = data.hits.hits.map(hit => hit._source);
+  const totalCount = data.hits.total.value;
 
-    return {
-      totalCount,
-      repositories,
-      pageCount: Math.ceil(totalCount / REPOSITORY_COUNT_PER_PAGE),
-    };
-  } catch {
-    return null;
-  }
+  return {
+    totalCount,
+    repositories,
+    pageCount: Math.ceil(totalCount / REPOSITORY_COUNT_PER_PAGE),
+  };
 };
