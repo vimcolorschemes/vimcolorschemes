@@ -69,7 +69,7 @@ describe("Theme switch", () => {
     cy.getBySel("footer-link-about").click();
     waitForStateToLoad();
     checkTheme(THEMES.DARK);
-    cy.getBySel("site-title-link").click();
+    cy.visit("/");
     waitForStateToLoad();
     checkTheme(THEMES.DARK);
   });
