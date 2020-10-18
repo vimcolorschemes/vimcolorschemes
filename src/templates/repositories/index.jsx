@@ -49,6 +49,7 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
     repositories,
     totalCount,
     isLoading,
+    isError,
   } = useSearchRepositories(
     defaultRepositories,
     defaultTotalCount,
@@ -86,7 +87,8 @@ const RepositoriesPage = ({ data, pageContext, location }) => {
         )}
       </div>
       {isLoading && <p>loading ...</p>}
-      {!isLoading && (
+      {isError && <p>An error occured while searching repositories</p>}
+      {!isLoading && !isError && (
         <>
           {!!debouncedSearchInput ? (
             <p>
