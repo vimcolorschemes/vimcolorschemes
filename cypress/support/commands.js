@@ -5,3 +5,7 @@ Cypress.Commands.add("getBySel", (selector, ...args) => {
 Cypress.Commands.add("getBySelLike", (selector, ...args) => {
   return cy.get(`[data-testid*=${selector}]`, ...args);
 });
+
+Cypress.Commands.add("triggerShortcut", key => {
+  cy.get("body").trigger("keydown", { key });
+});
