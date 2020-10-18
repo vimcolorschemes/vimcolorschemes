@@ -4991,5 +4991,66 @@
     "vim_fetched_at": {
       "$date": "2020-10-07T13:01:00.828Z"
     }
+  },
+  {
+    "_id": { "$oid": "5f347ffa1b9bdbc815ac5261" },
+    "name": "Hypsteria",
+    "owner": {
+      "name": "BrainDeath0",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/20567546?v=4"
+    },
+    "default_branch": "master",
+    "description": "Low contrast color scheme for vim",
+    "github_created_at": { "$date": "2018-08-19T10:39:31.000Z" },
+    "github_id": 145293998,
+    "github_url": "https://github.com/BrainDeath0/Hypsteria",
+    "homepage_url": "",
+    "image_urls": [
+      "https://raw.githubusercontent.com/BrainDeath0/Hypsteria/master/Hypsteria.png"
+    ],
+    "last_commit_at": { "$date": "2020-10-13T09:05:59.000Z" },
+    "pushed_at": { "$date": "2018-08-20T14:31:23.000Z" },
+    "stargazers_count": 5,
+    "valid": true,
+    "vim_color_scheme_file_paths": ["master/colors/hypsteria.vim"],
+    "fetched_at": { "$date": "2020-08-23T23:07:24.965Z" },
+    "featured_image_url": null,
+    "stargazers_count_history": [
+      { "date": "2020-09-19", "stargazers_count": 5 },
+      { "date": "2020-09-20", "stargazers_count": 5 },
+      { "date": "2020-09-21", "stargazers_count": 5 },
+      { "date": "2020-09-22", "stargazers_count": 5 },
+      { "date": "2020-09-23", "stargazers_count": 5 },
+      { "date": "2020-09-24", "stargazers_count": 5 },
+      { "date": "2020-09-25", "stargazers_count": 5 },
+      { "date": "2020-09-26", "stargazers_count": 5 },
+      { "date": "2020-09-27", "stargazers_count": 5 },
+      { "date": "2020-09-28", "stargazers_count": 5 },
+      { "date": "2020-09-29", "stargazers_count": 5 },
+      { "date": "2020-09-30", "stargazers_count": 5 },
+      { "date": "2020-10-01", "stargazers_count": 5 },
+      { "date": "2020-10-02", "stargazers_count": 5 },
+      { "date": "2020-10-03", "stargazers_count": 5 },
+      { "date": "2020-10-04", "stargazers_count": 5 },
+      { "date": "2020-10-05", "stargazers_count": 5 },
+      { "date": "2020-10-06", "stargazers_count": 5 },
+      { "date": "2020-10-07", "stargazers_count": 5 },
+      { "date": "2020-10-08", "stargazers_count": 5 },
+      { "date": "2020-10-09", "stargazers_count": 5 },
+      { "date": "2020-10-10", "stargazers_count": 5 },
+      { "date": "2020-10-11", "stargazers_count": 5 },
+      { "date": "2020-10-12", "stargazers_count": 5 },
+      { "date": "2020-10-13", "stargazers_count": 5 },
+      { "date": "2020-10-14", "stargazers_count": 5 },
+      { "date": "2020-10-15", "stargazers_count": 5 },
+      { "date": "2020-10-16", "stargazers_count": 5 },
+      { "date": "2020-10-17", "stargazers_count": 5 },
+      { "date": "2020-10-18", "stargazers_count": 5 }
+    ],
+    "cleaned_recently": false,
+    "images_fetched_at": { "$date": "2020-10-13T13:02:22.020Z" },
+    "vim_color_scheme_names": ["hypsteria"],
+    "vim_fetched_at": { "$date": "2020-10-13T13:02:21.700Z" },
+    "archived": true
   }
 ]
