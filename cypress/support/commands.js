@@ -1,7 +1,9 @@
 Cypress.Commands.add("getBySel", (selector, ...args) => {
+  cy.get(`[data-testid=${selector}]`, ...args).should("be.visible");
   return cy.get(`[data-testid=${selector}]`, ...args);
 });
 
 Cypress.Commands.add("getBySelLike", (selector, ...args) => {
-  return cy.get(`[data-testid*=${selector}]`, ...args);
+  cy.get(`[data-testid*=${selector}]`, ...args).should("be.visible");
+  return cy.get(`[data-testid=${selector}]`, ...args);
 });
