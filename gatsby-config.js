@@ -22,6 +22,7 @@ module.exports = {
     "gatsby-plugin-sharp",
     "gatsby-plugin-sitemap",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-preact",
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
