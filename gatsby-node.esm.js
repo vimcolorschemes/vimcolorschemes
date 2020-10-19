@@ -43,7 +43,11 @@ export const onCreateNode = ({
   cache,
   createNodeId,
 }) => {
-  if (node.internal.type === REPOSITORY_NODE_TYPE && !!node.valid) {
+  if (
+    node.internal.type === REPOSITORY_NODE_TYPE &&
+    !!node.valid &&
+    !node.archived
+  ) {
     node.week_stargazers_count = computeTrendingStargazersCount(
       node.stargazers_count_history,
       node.github_created_at,
@@ -106,17 +110,20 @@ export const onPostBootstrap = async () => {
 
 const createRepositoryPages = (repositories, createPage) => {
   repositories.forEach(repository => {
-    const ownerName = repository.owner ? repository.owner.name : "";
-    const { name } = repository;
-    const repositoryPath = URLify(`${ownerName}/${name}`);
-    createPage({
-      path: repositoryPath,
-      component: path.resolve("./src/templates/repository/index.jsx"),
-      context: {
-        ownerName,
-        name,
-      },
-    });
+    const { archived } = repository;
+    if (!archived) {
+      const ownerName = repository.owner ? repository.owner.name : "";
+      const { name } = repository;
+      const repositoryPath = URLify(`${ownerName}/${name}`);
+      createPage({
+        path: repositoryPath,
+        component: path.resolve("./src/templates/repository/index.jsx"),
+        context: {
+          ownerName,
+          name,
+        },
+      });
+    }
   });
 };
 
@@ -163,10 +170,11 @@ const createSearchIndex = async repositories => {
 
 const repositoriesQuery = `
   {
-    allMongodbColorschemesRepositories(filter: {valid: { eq: true }, image_urls: { ne: "" }}) {
+    allMongodbColorschemesRepositories(filter: {valid: { eq: true },archived: {ne: true}, image_urls: { ne: "" }}) {
       nodes {
         id
         name
+        archived
         owner {
           name
         }

@@ -163,7 +163,11 @@ export const query = graphql`
     $sortOrder: [SortOrderEnum]!
   ) {
     repositoriesData: allMongodbColorschemesRepositories(
-      filter: { valid: { eq: true }, image_urls: { ne: "" } }
+      filter: {
+        valid: { eq: true }
+        archived: { ne: true }
+        image_urls: { ne: "" }
+      }
       sort: { fields: $sortField, order: $sortOrder }
       limit: $limit
       skip: $skip
