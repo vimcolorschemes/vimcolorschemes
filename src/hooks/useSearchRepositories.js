@@ -41,7 +41,11 @@ export const useSearchRepositories = (
     Number(getLocalStorageItem(SEARCH_PAGE_LOCAL_STORAGE_KEY, 1)),
   );
 
-  useEffect(() => clearSearchInput(), []);
+  useEffect(() => clearSearchData(), []);
+
+  useEffect(() => {
+    if (!debouncedSearchInput) setPage(1);
+  }, [debouncedSearchInput]);
 
   const { data, error } = useSWR(
     debouncedSearchInput ? [debouncedSearchInput, page] : undefined,
@@ -53,7 +57,7 @@ export const useSearchRepositories = (
     localStorage.setItem(SEARCH_PAGE_LOCAL_STORAGE_KEY, page);
   };
 
-  const clearSearchInput = () => {
+  const clearSearchData = () => {
     localStorage.removeItem(SEARCH_INPUT_LOCAL_STORAGE_KEY);
     localStorage.removeItem(SEARCH_PAGE_LOCAL_STORAGE_KEY);
   };
