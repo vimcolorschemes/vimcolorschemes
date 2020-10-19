@@ -21,7 +21,9 @@ export const useTogglePointerEvents = () => {
  */
 const mouseMoveListener = () => {
   togglePointerEvents(MOUSE_EVENTS.MOUSE_MOVE);
+
   window.removeEventListener("mousemove", mouseMoveListener);
+  window.removeEventListener("touchstart", mouseMoveListener);
 };
 
 /**
@@ -38,7 +40,9 @@ const togglePointerEvents = eventName => {
       if (pointerEvents === MOUSE_EVENTS.NONE) return;
 
       document.body.style.pointerEvents = MOUSE_EVENTS.NONE;
+
       window.addEventListener("mousemove", mouseMoveListener);
+      window.addEventListener("touchstart", mouseMoveListener);
     },
     [MOUSE_EVENTS.MOUSE_MOVE]: pointerEvents => {
       if (pointerEvents === MOUSE_EVENTS.CLEAR) return;
