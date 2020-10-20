@@ -49,7 +49,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "GNU General Public License v3.0",
+  "license": "GPL-3.0-or-later",
   "scripts": {
     "start": "npm run develop",
     "start.local": "npm run develop -- -H 0.0.0.0",
