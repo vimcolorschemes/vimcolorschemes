@@ -12,8 +12,11 @@ services:
     environment:
       GATSBY_SITE_URL: "http://0.0.0.0:8000"
       GATSBY_DATABASE_CONNECTION_STRING: "mongodb://db:27017"
+      GATSBY_ELASTICSEARCH_URL: "http://vimcolorschemes_elasticsearch:9200"
     depends_on:
       - db
+    networks:
+      - vimcolorschemes
   db:
     container_name: vimcolorschemes_db
     image: mongo:latest
@@ -26,3 +29,10 @@ services:
       - ./db:/docker-entrypoint-initdb.d
     environment:
       REMOTE_SEED_DIR: /docker-entrypoint-initdb.d
+    networks:
+      - vimcolorschemes
+
+networks:
+  vimcolorschemes:
+    name: vimcolorschemes
+    driver: bridge
