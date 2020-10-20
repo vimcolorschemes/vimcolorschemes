@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-19-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -85,7 +85,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
   <tr>
     <td align="center"><a href="https://github.com/gudeliauskaspam"><img src="https://avatars1.githubusercontent.com/u/47401012?v=4" width="100px;" alt=""/><br /><sub><b>Pâmela G.</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=gudeliauskaspam" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=gudeliauskaspam" title="Documentation">📖</a></td>
     <td align="center"><a href="http://aniruddha-shriwant.github.io/cv/"><img src="https://avatars3.githubusercontent.com/u/58624108?v=4" width="100px;" alt=""/><br /><sub><b>Aniruddha Shriwant</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=Aniruddha-Shriwant" title="Code">💻</a></td>
-    <td align="center"><a href="http://www.linkedin.com/in/yuriy-rymarchuk-29y1ua"><img src="https://avatars3.githubusercontent.com/u/45283261?v=4" width="100px;" alt=""/><br /><sub><b>Yuriy Rymarchuk</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=DropB1t" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://www.linkedin.com/in/yuriy-rymarchuk-29y1ua"><img src="https://avatars3.githubusercontent.com/u/45283261?v=4" width="100px;" alt=""/><br /><sub><b>Yuriy Rymarchuk</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=DropB1t" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=DropB1t" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://prernamehraa.pythonanywhere.com/"><img src="https://avatars0.githubusercontent.com/u/44117648?v=4" width="100px;" alt=""/><br /><sub><b>Prerna Mehra</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=sadakchap" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=sadakchap" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://lucasarvelo.com"><img src="https://avatars1.githubusercontent.com/u/6098495?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Arvelo</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=lucasarvelo" title="Code">💻</a></td>
   </tr>

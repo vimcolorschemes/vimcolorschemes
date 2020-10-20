@@ -164,6 +164,7 @@
       "avatar_url": "https://avatars3.githubusercontent.com/u/45283261?v=4",
       "profile": "http://www.linkedin.com/in/yuriy-rymarchuk-29y1ua",
       "contributions": [
+        "code",
         "test"
       ]
     },
@@ -189,7 +190,7 @@
   ],
   "contributorsPerLine": 7,
   "projectName": "vimcolorschemes",
-  "projectOwner": "reobin",
+  "projectOwner": "vimcolorschemes",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true
