@@ -110,20 +110,17 @@ export const onPostBootstrap = async () => {
 
 const createRepositoryPages = (repositories, createPage) => {
   repositories.forEach(repository => {
-    const { archived } = repository;
-    if (!archived) {
-      const ownerName = repository.owner ? repository.owner.name : "";
-      const { name } = repository;
-      const repositoryPath = URLify(`${ownerName}/${name}`);
-      createPage({
-        path: repositoryPath,
-        component: path.resolve("./src/templates/repository/index.jsx"),
-        context: {
-          ownerName,
-          name,
-        },
-      });
-    }
+    const ownerName = repository.owner ? repository.owner.name : "";
+    const { name } = repository;
+    const repositoryPath = URLify(`${ownerName}/${name}`);
+    createPage({
+      path: repositoryPath,
+      component: path.resolve("./src/templates/repository/index.jsx"),
+      context: {
+        ownerName,
+        name,
+      },
+    });
   });
 };
 
@@ -174,7 +171,6 @@ const repositoriesQuery = `
       nodes {
         id
         name
-        archived
         owner {
           name
         }
