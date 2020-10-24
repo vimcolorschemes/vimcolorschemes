@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import classnames from "classnames";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image/compat";
 import PropTypes from "prop-types";
 
 import { KEYS } from "src/constants";
@@ -13,7 +13,7 @@ const ZoomableImage = ({ image, className, ...inputArgs }) => {
   if (!image.childImageSharp?.fluid) return null;
 
   const renderedImage = (
-    <Img
+    <GatsbyImage
       fluid={image.childImageSharp.fluid}
       alt="zoomable"
       className="zoomable__image"

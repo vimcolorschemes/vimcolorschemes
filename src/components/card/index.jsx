@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
-import Img from "gatsby-image";
+import { GatsbyImage } from "gatsby-plugin-image/compat";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 
@@ -47,7 +47,7 @@ const Card = ({ repository, linkState, onLinkClick, className }) => {
         <div className="card__image">
           {!!fluidImage &&
             (fluidImage.base64 ? (
-              <Img
+              <GatsbyImage
                 fluid={fluidImage}
                 alt={`${ownerName} ${name}`}
                 imgStyle={imageStyle}
