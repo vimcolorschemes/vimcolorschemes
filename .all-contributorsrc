@@ -186,6 +186,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adrian5",
+      "name": "adrian5",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/5426924?v=4",
+      "profile": "https://github.com/adrian5",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
