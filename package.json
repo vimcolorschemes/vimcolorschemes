@@ -6,7 +6,7 @@
   "dependencies": {
     "@elastic/elasticsearch": "^7.9.1",
     "classnames": "^2.2.6",
-    "dayjs": "^1.9.3",
+    "dayjs": "^1.9.4",
     "dotenv": "^8.2.0",
     "emoji-js": "^3.5.0",
     "esm": "^3.2.25",
