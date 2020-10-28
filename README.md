@@ -97,3 +97,9 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Supporters 🌞
+
+[![Stargazers repo roster for @vimcolorschemes/vimcolorschemes](https://reporoster.com/stars/vimcolorschemes/vimcolorschemes)](https://github.com/vimcolorschemes/vimcolorschemes/stargazers)
+
+[![Forkers repo roster for @vimcolorschemes/vimcolorschemes](https://reporoster.com/forks/vimcolorschemes/vimcolorschemes)](https://github.com/vimcolorschemes/vimcolorschemes/network/members)
