@@ -31,7 +31,7 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-helmet": "^6.0.0",
-    "swr": "^0.3.7",
+    "swr": "^0.3.8",
     "typeface-source-sans-pro": "^1.1.13"
   },
   "devDependencies": {
