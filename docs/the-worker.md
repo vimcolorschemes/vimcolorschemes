@@ -1,7 +1,7 @@
 # The Worker
 
 <p align="center">
-  <img src="https://github.com/vimcolorschemes/worker/blob/main/media/logo.png?raw=true" alt="logo" width="400" />
+  <img src="https://github.com/vimcolorschemes/worker/blob/media/logo.png?raw=true" alt="logo" width="400" />
 </p>
 
 The worker is an essential part of vimcolorschemes. It manages the data for all the repositories of the app.
