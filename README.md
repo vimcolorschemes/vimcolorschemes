@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-20-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -89,6 +89,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="http://prernamehraa.pythonanywhere.com/"><img src="https://avatars0.githubusercontent.com/u/44117648?v=4" width="100px;" alt=""/><br /><sub><b>Prerna Mehra</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=sadakchap" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=sadakchap" title="Tests">⚠️</a></td>
     <td align="center"><a href="http://lucasarvelo.com"><img src="https://avatars1.githubusercontent.com/u/6098495?v=4" width="100px;" alt=""/><br /><sub><b>Lucas Arvelo</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=lucasarvelo" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/adrian5"><img src="https://avatars2.githubusercontent.com/u/5426924?v=4" width="100px;" alt=""/><br /><sub><b>adrian5</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/issues?q=author%3Aadrian5" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://reddit.com/u/Iron-E_Dev"><img src="https://avatars1.githubusercontent.com/u/36409591?v=4" width="100px;" alt=""/><br /><sub><b>Iron-E</b></sub></a><br /><a href="#ideas-Iron-E" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
