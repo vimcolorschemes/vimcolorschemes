@@ -1,7 +1,2 @@
-const path = require('path');
-
-exports.onCreateWebpackConfig = function ({ actions }) {
-  actions.setWebpackConfig({
-    resolve: { alias: { '@': path.resolve(__dirname, 'src') } },
-  });
-};
+require('ts-node').register();
+module.exports = require('./src/gatsby/node');
