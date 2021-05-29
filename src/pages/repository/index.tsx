@@ -1,3 +1,5 @@
+import React from 'react';
+
 function RepositoryPage() {
   return <div>hello</div>;
 }

@@ -2,7 +2,7 @@ import path from 'path';
 
 import { REPOSITORY_COUNT_PER_PAGE, Actions } from '../constants';
 
-import { Repository } from '../models/repository';
+import { RepositoryGraphqlNode, Repository } from '../models/repository';
 
 import { URLify, paginateRoute } from '../helpers/url';
 
@@ -27,15 +27,13 @@ const createRepositoryPages = (
   createPage: (page: PageInput) => void,
 ) => {
   repositories.forEach(repository => {
-    const ownerName = repository.owner ? repository.owner.name : '';
-    const { name } = repository;
-    const repositoryPath = URLify(`${ownerName}/${name}`);
+    const repositoryPath = URLify(repository.key);
     createPage({
       path: repositoryPath,
       component: path.resolve('src/pages/repository/index.tsx'),
       context: {
-        ownerName,
-        name,
+        ownerName: repository.owner.name,
+        name: repository.name,
       },
     });
   });
@@ -67,7 +65,7 @@ const createRepositoriesPages = (
 
 const repositoriesQuery = `
   {
-    allMongodbVimcolorschemesRepositories(filter: { valid: { eq: true } }) {
+    repositoriesData: allMongodbVimcolorschemesRepositories(filter: { valid: { eq: true } }) {
       nodes {
         id
         name
@@ -86,7 +84,9 @@ const repositoriesQuery = `
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
-  const { nodes: repositories } = data.allMongodbVimcolorschemesRepositories;
+  const repositories = data.repositoriesData.nodes.map(
+    (node: RepositoryGraphqlNode) => new Repository(node),
+  );
 
   createRepositoryPages(repositories, createPage);
   createRepositoriesPages(repositories, createPage);

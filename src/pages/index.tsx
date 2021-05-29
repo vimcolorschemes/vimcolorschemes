@@ -1,24 +1,37 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
-import { Repository } from '@/models/repository';
+import { RepositoryGraphqlNode, Repository } from '@/models/repository';
+
+import './index.scss';
 
 interface IProps {
   data: {
     repositoriesData: {
-      repositories: Repository[];
+      nodes: RepositoryGraphqlNode[];
       totalCount: number;
     };
   };
 }
 
 function IndexPage({ data: { repositoriesData } }: IProps) {
-  const { repositories, totalCount } = repositoriesData;
-  console.log(repositories);
-  console.log(totalCount);
+  const repositories = repositoriesData.nodes.map(node => new Repository(node));
+  const { totalCount } = repositoriesData;
   return (
     <main>
       <h1>Hello, world</h1>
+      <section>
+        <header>
+          <p>{totalCount} repositories</p>
+        </header>
+        <div className="repositories">
+          {repositories.map(repository => (
+            <Link to={repository.route} key={repository.key}>
+              {repository.key}
+            </Link>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
@@ -31,7 +44,7 @@ export const query = graphql`
       skip: 0
     ) {
       totalCount
-      repositories: nodes {
+      nodes {
         name
         description
         stargazersCount

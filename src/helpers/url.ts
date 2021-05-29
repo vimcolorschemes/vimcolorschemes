@@ -1,4 +1,4 @@
-export function URLify(value: string): string {
+function URLify(value: string): string {
   if (!value) {
     return '';
   }
@@ -6,7 +6,7 @@ export function URLify(value: string): string {
   return value.trim().replace(/\s/g, '%20').toLowerCase();
 }
 
-export function paginateRoute(route: string, page: number | null): string {
+function paginateRoute(route: string, page: number | null): string {
   if (route == null || typeof route !== 'string') {
     route = '/';
   }
@@ -27,3 +27,8 @@ export function paginateRoute(route: string, page: number | null): string {
 
   return routePath + pagePath;
 }
+
+export default {
+  URLify,
+  paginateRoute,
+};
