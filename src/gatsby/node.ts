@@ -8,7 +8,10 @@ import { URLify, paginateRoute } from '../helpers/url';
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
-    resolve: { alias: { '@': path.resolve(__dirname, './src') } },
+    resolve: {
+      alias: { '@': path.resolve('src') },
+      extensions: ['ts', 'tsx'],
+    },
   });
 }
 
