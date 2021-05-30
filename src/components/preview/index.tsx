@@ -3,6 +3,8 @@ import classnames from 'classnames';
 
 import { VimColorScheme, Background } from '@/models';
 
+import Code from './code';
+
 import codeSample from './codeSample';
 
 import './index.scss';
@@ -78,14 +80,17 @@ function Preview({ vimColorSchemes }: IProps) {
         </button>
       )}
       <p>{vimColorScheme.name}</p>
-      <pre
+      <Code
+        fileName="code.vim"
+        cursorLine={6}
+        lineCount={16}
         className={classnames('preview__code', {
           'preview__code--light': background === Background.Light,
           'preview__code--dark': background === Background.Dark,
         })}
       >
-        <code dangerouslySetInnerHTML={{ __html: codeSample }} />
-      </pre>
+        <span dangerouslySetInnerHTML={{ __html: codeSample }} />
+      </Code>
     </div>
   );
 }
