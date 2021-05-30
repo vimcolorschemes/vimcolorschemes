@@ -16,6 +16,7 @@
     "create-component": "./bin/create-component"
   },
   "dependencies": {
+    "classnames": "^2.3.1",
     "gatsby": "^3.6.1",
     "gatsby-plugin-react-helmet": "^4.6.0",
     "gatsby-plugin-sass": "^4.6.0",

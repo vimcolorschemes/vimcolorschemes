@@ -1,4 +1,4 @@
-import { Repository } from './models/repository';
+import { Repository } from './models';
 
 export const REPOSITORY_COUNT_PER_PAGE = 20;
 

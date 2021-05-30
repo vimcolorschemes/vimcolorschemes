@@ -2,9 +2,7 @@ import path from 'path';
 
 import { REPOSITORY_COUNT_PER_PAGE, Actions } from '../constants';
 
-import { RepositoryGraphqlNode, Repository } from '../models/repository';
-
-import { URLify, paginateRoute } from '../helpers/url';
+import URLHelper from '../helpers/url';
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
@@ -23,11 +21,12 @@ interface PageInput {
 }
 
 const createRepositoryPages = (
-  repositories: Repository[],
+  repositories: any[],
   createPage: (page: PageInput) => void,
 ) => {
   repositories.forEach(repository => {
-    const repositoryPath = URLify(repository.key);
+    const key = `${repository.owner.name}/${repository.name}`;
+    const repositoryPath = URLHelper.URLify(key);
     createPage({
       path: repositoryPath,
       component: path.resolve('src/pages/repository/index.tsx'),
@@ -40,7 +39,7 @@ const createRepositoryPages = (
 };
 
 const createRepositoriesPages = (
-  repositories: Repository[],
+  repositories: any[],
   createPage: (page: PageInput) => void,
 ) => {
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
@@ -48,7 +47,7 @@ const createRepositoriesPages = (
     const page = index + 1;
     Object.values(Actions).forEach(action =>
       createPage({
-        path: paginateRoute(action.route, page),
+        path: URLHelper.paginateRoute(action.route, page),
         component: path.resolve('src/pages/index.tsx'),
         context: {
           skip: index * REPOSITORY_COUNT_PER_PAGE,
@@ -67,16 +66,10 @@ const repositoriesQuery = `
   {
     repositoriesData: allMongodbVimcolorschemesRepositories(filter: { valid: { eq: true } }) {
       nodes {
-        id
         name
         owner {
           name
         }
-        description
-        githubCreatedAt
-        lastCommitAt
-        stargazersCount
-        weekStargazersCount
       }
     }
   }
@@ -84,9 +77,7 @@ const repositoriesQuery = `
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
-  const repositories = data.repositoriesData.nodes.map(
-    (node: RepositoryGraphqlNode) => new Repository(node),
-  );
+  const repositories = data.repositoriesData.nodes;
 
   createRepositoryPages(repositories, createPage);
   createRepositoriesPages(repositories, createPage);

@@ -1,14 +1,17 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 
-import { RepositoryGraphqlNode, Repository } from '@/models/repository';
+import { APIRepository } from '@/models/api';
+import { Repository } from '@/models';
+
+import Card from '@/components/card';
 
 import './index.scss';
 
 interface IProps {
   data: {
     repositoriesData: {
-      nodes: RepositoryGraphqlNode[];
+      nodes: APIRepository[];
       totalCount: number;
     };
   };
@@ -26,9 +29,7 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
         </header>
         <div className="repositories">
           {repositories.map(repository => (
-            <Link to={repository.route} key={repository.key}>
-              {repository.key}
-            </Link>
+            <Card key={repository.key} repository={repository} />
           ))}
         </div>
       </section>
