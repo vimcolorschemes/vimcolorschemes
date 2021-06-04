@@ -11,14 +11,16 @@ import './index.scss';
 interface IProps {
   data: {
     repositoriesData: {
-      nodes: APIRepository[];
+      apiRepositories: APIRepository[];
       totalCount: number;
     };
   };
 }
 
 function IndexPage({ data: { repositoriesData } }: IProps) {
-  const repositories = repositoriesData.nodes.map(node => new Repository(node));
+  const repositories = repositoriesData.apiRepositories.map(
+    apiRepository => new Repository(apiRepository),
+  );
   const { totalCount } = repositoriesData;
   return (
     <main>
@@ -45,7 +47,7 @@ export const query = graphql`
       skip: 0
     ) {
       totalCount
-      nodes {
+      apiRepositories: nodes {
         name
         description
         stargazersCount

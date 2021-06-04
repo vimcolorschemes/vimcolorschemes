@@ -46,6 +46,28 @@ export class Repository {
   get route(): string {
     return `/${URLHelper.URLify(this.key)}`;
   }
+
+  get expandedVimColorSchemes(): VimColorScheme[] {
+    return this.vimColorSchemes.reduce(
+      (vimColorSchemes: VimColorScheme[], vimColorScheme: VimColorScheme) => {
+        if (!vimColorScheme.valid) {
+          return vimColorSchemes;
+        }
+
+        const copies: VimColorScheme[] = vimColorScheme.backgrounds.map(
+          background => {
+            const copy = vimColorScheme.copy();
+            copy.data = new VimColorSchemeData(null);
+            copy.data[background] = vimColorScheme.data[background];
+            return copy;
+          },
+        );
+
+        return [...vimColorSchemes, ...copies];
+      },
+      [] as VimColorScheme[],
+    );
+  }
 }
 
 export interface Owner {
@@ -57,17 +79,29 @@ export class VimColorScheme {
   valid: boolean;
   data: VimColorSchemeData;
 
-  constructor(apiVimColorScheme: APIVimColorScheme) {
-    this.name = apiVimColorScheme.name;
-    this.valid = apiVimColorScheme.valid;
-    this.data = new VimColorSchemeData(apiVimColorScheme.data);
+  constructor(apiVimColorScheme?: APIVimColorScheme) {
+    this.name = apiVimColorScheme?.name || '';
+    this.valid = apiVimColorScheme?.valid || false;
+    this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
   }
 
   get backgrounds(): Background[] {
+    if (!this.data) {
+      return [];
+    }
+
     return [
       ...(this.data.light != null ? [Background.Light] : []),
       ...(this.data.dark != null ? [Background.Dark] : []),
     ];
+  }
+
+  copy(): VimColorScheme {
+    const copy = new VimColorScheme();
+    copy.name = this.name;
+    copy.valid = this.valid;
+    copy.data = this.data;
+    return copy;
   }
 }
 

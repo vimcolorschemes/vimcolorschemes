@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import { Repository } from '@/models/repository';
+import { Repository } from '@/models';
 
 import Preview from '@/components/preview';
 
