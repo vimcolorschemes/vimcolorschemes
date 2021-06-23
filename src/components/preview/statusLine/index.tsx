@@ -15,6 +15,11 @@ function StatusLine({ fileName, cursorLine = 0, lineCount }: IProps) {
     percentage = ` ${percentage}`;
   }
 
+  let lineCountIndicator = `${cursorLine || 0}:${lineCount}`;
+  if (lineCount.toString().length === 1) {
+    lineCountIndicator = ` ${lineCountIndicator}`;
+  }
+
   return (
     <span className={classnames('status-line', 'StatusLineFg', 'StatusLineBg')}>
       <span className="status-line__content">
@@ -34,9 +39,7 @@ function StatusLine({ fileName, cursorLine = 0, lineCount }: IProps) {
         <span>utf-8</span>
         <span>☰</span>
         <span>{percentage}%</span>
-        <span>
-          {cursorLine || 0}:{lineCount}
-        </span>
+        <span>{lineCountIndicator}</span>
       </span>
     </span>
   );

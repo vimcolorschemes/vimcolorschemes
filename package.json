@@ -13,7 +13,8 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{ts,tsx,json,md,css,scss}\"",
-    "create-component": "./bin/create-component"
+    "create-component": "./bin/create-component",
+    "create-icon": "./bin/create-icon"
   },
   "dependencies": {
     "classnames": "^2.3.1",

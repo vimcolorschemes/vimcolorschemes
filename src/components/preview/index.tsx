@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import { VimColorScheme, Background } from '@/models';
 
 import Code from './code';
+import VimRC from './vimRC';
 
 import codeSample from './codeSample';
 
@@ -27,6 +28,13 @@ function Preview({ vimColorSchemes }: IProps) {
   const preview = useRef<HTMLDivElement>(null);
 
   const vimColorScheme = useMemo(() => vimColorSchemes[index], [index]);
+  const canChangeVimColorScheme = useMemo(() => vimColorSchemes.length > 1, [
+    vimColorSchemes,
+  ]);
+  const canToggleBackground = useMemo(
+    () => vimColorScheme.backgrounds.length > 1,
+    [vimColorScheme],
+  );
 
   useEffect(() => {
     const groups = vimColorScheme.data[background];
@@ -68,26 +76,26 @@ function Preview({ vimColorSchemes }: IProps) {
   }
 
   return (
-    <div className="preview" ref={preview}>
-      {vimColorSchemes.length > 1 && (
-        <button type="button" onClick={changeVimColorScheme}>
-          change vim color scheme
-        </button>
-      )}
-      {vimColorScheme.backgrounds.length > 1 && (
-        <button type="button" onClick={toggleBackground}>
-          toggle background
-        </button>
-      )}
-      <p>{vimColorScheme.name}</p>
+    <div
+      className={classnames('preview', {
+        'preview--light': background === Background.Light,
+        'preview--dark': background === Background.Dark,
+      })}
+      ref={preview}
+    >
+      <VimRC
+        vimColorScheme={vimColorScheme}
+        background={background}
+        onChangeVimColorScheme={
+          canChangeVimColorScheme ? changeVimColorScheme : undefined
+        }
+        onToggleBackground={canToggleBackground ? toggleBackground : undefined}
+      />
       <Code
         fileName="code.vim"
         cursorLine={6}
         lineCount={16}
-        className={classnames('preview__code', {
-          'preview__code--light': background === Background.Light,
-          'preview__code--dark': background === Background.Dark,
-        })}
+        className="preview__code"
       >
         <span dangerouslySetInnerHTML={{ __html: codeSample }} />
       </Code>

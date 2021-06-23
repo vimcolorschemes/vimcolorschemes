@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+
+const name = process.argv[2];
+
+if (!name) {
+  console.error('the icon name is mandatory.');
+  process.exit(1);
+}
+
+console.log(`create icon: '${name}'`);
+
+const iconPathName = name[0].toLowerCase() + name.slice(1);
+const path = `src/components/icons/${iconPathName}`;
+
+fs.mkdirSync(path, { recursive: true });
+
+const tsFile = `${path}/index.tsx`;
+
+const componentTemplate = `import React from 'react';
+
+interface IProps {
+  className?: string;
+}
+
+function ${name}({ className }: IProps) {
+  return (
+    <svg className={className} />
+  );
+}
+
+export default ${name};`;
+
+console.log(`creating file: '${tsFile}'`);
+fs.appendFileSync(tsFile, componentTemplate);

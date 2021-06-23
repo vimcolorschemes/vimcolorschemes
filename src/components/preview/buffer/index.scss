@@ -1,0 +1,11 @@
+.buffer {
+  display: flex;
+  column-gap: 0.5rem;
+  position: relative;
+}
+
+.buffer__code {
+  padding: var(--code-padding);
+  padding-left: calc(var(--gutter-width) + var(--code-padding));
+  overflow-x: auto;
+}

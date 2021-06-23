@@ -1,6 +1,10 @@
 import React from 'react';
+import classnames from 'classnames';
 
-import StatusLine from './statusLine';
+import Buffer from '@/components/preview/buffer';
+import StatusLine from '@/components/preview/statusLine';
+
+import './index.scss';
 
 interface IProps {
   fileName: string;
@@ -18,8 +22,10 @@ function Code({
   className,
 }: IProps) {
   return (
-    <pre className={className}>
-      <code>{children}</code>
+    <pre className={classnames('code', className)}>
+      <Buffer cursorLine={cursorLine} lineCount={lineCount}>
+        {children}
+      </Buffer>
       <StatusLine
         fileName={fileName}
         cursorLine={cursorLine}

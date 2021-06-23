@@ -1,4 +1,4 @@
-.preview__code {
+.preview {
   &--dark {
     --normal-fg: var(--vim-NormalFg, white);
     --normal-bg: var(--vim-NormalBg, black);
@@ -9,8 +9,21 @@
     --normal-bg: var(--vim-NormalBg, white);
   }
 
+  --code-padding: 0.5rem;
+  --gutter-horizontal-padding: 0.5rem;
+  --gutter-number-width: 1rem;
+  --gutter-width: calc(
+    var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
+  );
+
+
   background: var(--normal-bg);
   color: var(--normal-fg);
+  line-height: 1.125rem;
+}
+
+.preview > * {
+  margin: 0;
 }
 
 .NormalBg {
