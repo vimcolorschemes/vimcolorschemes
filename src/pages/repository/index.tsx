@@ -26,7 +26,7 @@ function RepositoryPage({ data: { apiRepository } }: IProps) {
 }
 
 export const query = graphql`
-  query($ownerName: String!, $name: String!) {
+  query ($ownerName: String!, $name: String!) {
     apiRepository: mongodbVimcolorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }

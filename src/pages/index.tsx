@@ -21,7 +21,9 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
   const repositories = repositoriesData.apiRepositories.map(
     apiRepository => new Repository(apiRepository),
   );
+
   const { totalCount } = repositoriesData;
+
   return (
     <main>
       <h1>Hello, world</h1>
@@ -42,7 +44,7 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
 export const query = graphql`
   query {
     repositoriesData: allMongodbVimcolorschemesRepositories(
-      filter: { valid: { eq: true } }
+      filter: { updateValid: { eq: true }, generateValid: { eq: true } }
       limit: 20
       skip: 0
     ) {

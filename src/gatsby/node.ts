@@ -63,16 +63,18 @@ const createRepositoriesPages = (
 };
 
 const repositoriesQuery = `
-  {
-    repositoriesData: allMongodbVimcolorschemesRepositories(filter: { valid: { eq: true } }) {
-      nodes {
+{
+  repositoriesData: allMongodbVimcolorschemesRepositories(
+    filter: { updateValid: { eq: true }, generateValid: { eq: true } }
+  ) {
+    nodes {
+      name
+      owner {
         name
-        owner {
-          name
-        }
       }
     }
   }
+}
 `;
 
 export async function createPages({ graphql, actions: { createPage } }) {
