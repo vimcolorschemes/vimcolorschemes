@@ -28,9 +28,10 @@ function Preview({ vimColorSchemes }: IProps) {
   const preview = useRef<HTMLDivElement>(null);
 
   const vimColorScheme = useMemo(() => vimColorSchemes[index], [index]);
-  const canChangeVimColorScheme = useMemo(() => vimColorSchemes.length > 1, [
-    vimColorSchemes,
-  ]);
+  const canChangeVimColorScheme = useMemo(
+    () => vimColorSchemes.length > 1,
+    [vimColorSchemes],
+  );
   const canToggleBackground = useMemo(
     () => vimColorScheme.backgrounds.length > 1,
     [vimColorScheme],
@@ -39,6 +40,7 @@ function Preview({ vimColorSchemes }: IProps) {
   useEffect(() => {
     const groups = vimColorScheme.data[background];
     if (!groups?.length) {
+      toggleBackground();
       return;
     }
 
@@ -62,13 +64,12 @@ function Preview({ vimColorSchemes }: IProps) {
   }
 
   function toggleBackground() {
-    if (vimColorScheme.backgrounds.length < 2) {
-      return;
-    }
+    const nextBackground =
+      background === Background.Light ? Background.Dark : Background.Light;
 
-    setBackground(
-      background === Background.Light ? Background.Dark : Background.Light,
-    );
+    if (vimColorScheme.data[nextBackground]) {
+      setBackground(nextBackground);
+    }
   }
 
   if (!preview) {
