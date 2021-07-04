@@ -1,17 +1,3 @@
-@mixin buttonReset {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-
-  &:hover,
-  &:focus {
-    outline: none;
-    border: none;
-  }
-}
-
 .vimrc__content {
   display: flex;
   flex-direction: column;
@@ -19,6 +5,7 @@
 
 button.vimrc__button {
   @include buttonReset;
+
   cursor: pointer;
 
   margin: -0.25rem;

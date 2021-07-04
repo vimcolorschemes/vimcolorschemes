@@ -1,0 +1,43 @@
+@mixin buttonReset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+@mixin breakpoint($point) {
+  @if $point == small {
+    @media screen and (min-width: 576px) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media screen and (min-width: 768px) {
+      @content;
+    }
+  } @else if $point == large {
+    @media screen and (min-width: 992px) {
+      @content;
+    }
+  } @else if $point == extra-large {
+    @media screen and (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @media screen and (min-width: $point) {
+      @content;
+    }
+  }
+}
+
+@mixin onlyIE() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}

@@ -1,6 +1,6 @@
 import { Repository } from './models';
 
-export const REPOSITORY_COUNT_PER_PAGE = 20;
+export const REPOSITORY_COUNT_PER_PAGE = 300;
 
 export interface Action {
   label: string;

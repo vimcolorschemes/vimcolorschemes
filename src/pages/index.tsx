@@ -4,7 +4,8 @@ import { graphql } from 'gatsby';
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models';
 
-import Card from '@/components/card';
+import Grid from '@/components/ui/grid';
+import Card from '@/components/ui/card';
 
 import './index.scss';
 
@@ -26,16 +27,16 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
 
   return (
     <main>
-      <h1>Hello, world</h1>
+      <h1>vimcolorschemes</h1>
       <section>
         <header>
           <p>{totalCount} repositories</p>
         </header>
-        <div className="repositories">
+        <Grid>
           {repositories.map(repository => (
-            <Card key={repository.key} repository={repository} />
+            <Card repository={repository} key={repository.key} />
           ))}
-        </div>
+        </Grid>
       </section>
     </main>
   );
@@ -45,7 +46,7 @@ export const query = graphql`
   query {
     repositoriesData: allMongodbVimcolorschemesRepositories(
       filter: { updateValid: { eq: true }, generateValid: { eq: true } }
-      limit: 20
+      limit: 300
       skip: 0
     ) {
       totalCount

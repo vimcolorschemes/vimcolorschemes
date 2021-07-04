@@ -3,9 +3,14 @@ module.exports = {
     title: 'vimcolorschemes',
   },
   plugins: [
-    'gatsby-plugin-sass',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
+    {
+      resolve: 'gatsby-plugin-sass',
+      options: {
+        additionalData: `@import '${__dirname}/src/styles/global';`,
+      },
+    },
     {
       resolve: 'gatsby-source-mongodb',
       options: {
