@@ -1,12 +1,12 @@
 import { Repository } from './models';
 
-export const REPOSITORY_COUNT_PER_PAGE = 300;
+export const REPOSITORY_COUNT_PER_PAGE = 2;
 
 export interface Action {
   label: string;
   route: string;
   property: keyof Repository;
-  order: 'asc' | 'desc';
+  order: 'ASC' | 'DESC';
 }
 
 export const Actions: Record<string, Action> = {
@@ -14,30 +14,30 @@ export const Actions: Record<string, Action> = {
     label: 'Trending',
     route: '/',
     property: 'weekStargazersCount',
-    order: 'desc',
+    order: 'DESC',
   },
   top: {
     label: 'Top',
     route: '/top',
     property: 'lastCommitAt',
-    order: 'desc',
+    order: 'DESC',
   },
   recentlyUpdated: {
     label: 'Recently updated',
     route: '/recently-updated',
     property: 'lastCommitAt',
-    order: 'desc',
+    order: 'DESC',
   },
   new: {
     label: 'New',
     route: '/new',
     property: 'githubCreatedAt',
-    order: 'desc',
+    order: 'DESC',
   },
   old: {
     label: 'Old',
     route: '/old',
     property: 'githubCreatedAt',
-    order: 'asc',
+    order: 'ASC',
   },
 };

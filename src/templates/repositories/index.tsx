@@ -43,11 +43,17 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
 }
 
 export const query = graphql`
-  query {
+  query RepositoriesQuery(
+    $sortProperty: [mongodbVimcolorschemesRepositoriesFieldsEnum]!
+    $sortOrder: [SortOrderEnum]!
+    $skip: Int!
+    $limit: Int!
+  ) {
     repositoriesData: allMongodbVimcolorschemesRepositories(
       filter: { updateValid: { eq: true }, generateValid: { eq: true } }
-      limit: 300
-      skip: 0
+      sort: { fields: $sortProperty, order: $sortOrder }
+      skip: $skip
+      limit: $limit
     ) {
       totalCount
       apiRepositories: nodes {

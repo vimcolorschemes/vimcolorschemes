@@ -1,3 +1,4 @@
+import { Repository } from '@/models';
 import path from 'path';
 
 import { REPOSITORY_COUNT_PER_PAGE, Actions } from '../constants';
@@ -13,11 +14,25 @@ export function onCreateWebpackConfig({ actions }) {
   });
 }
 
+interface RepositoryPageContext {
+  ownerName: string;
+  name: string;
+}
+
+interface RepositoriesPageContext {
+  skip: number;
+  limit: number;
+  sortProperty: Array<keyof Repository>;
+  sortOrder: Array<'DESC' | 'ASC'>;
+  pageCount: number;
+  currentPage: number;
+}
+
 interface PageInput {
   path: string;
   component: string;
   layout?: string;
-  context?: any;
+  context?: RepositoryPageContext | RepositoriesPageContext;
 }
 
 const createRepositoryPages = (
@@ -29,7 +44,7 @@ const createRepositoryPages = (
     const repositoryPath = URLHelper.URLify(key);
     createPage({
       path: repositoryPath,
-      component: path.resolve('src/pages/repository/index.tsx'),
+      component: path.resolve('src/templates/repository/index.tsx'),
       context: {
         ownerName: repository.owner.name,
         name: repository.name,
@@ -45,10 +60,10 @@ const createRepositoriesPages = (
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
   Array.from({ length: pageCount }).forEach((_, index) => {
     const page = index + 1;
-    Object.values(Actions).forEach(action =>
+    Object.values(Actions).forEach(action => {
       createPage({
         path: URLHelper.paginateRoute(action.route, page),
-        component: path.resolve('src/pages/index.tsx'),
+        component: path.resolve('src/templates/repositories/index.tsx'),
         context: {
           skip: index * REPOSITORY_COUNT_PER_PAGE,
           limit: REPOSITORY_COUNT_PER_PAGE,
@@ -57,8 +72,8 @@ const createRepositoriesPages = (
           pageCount,
           currentPage: page,
         },
-      }),
-    );
+      });
+    });
   });
 };
 
