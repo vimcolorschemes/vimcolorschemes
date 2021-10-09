@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 
-import { VimColorScheme, Background } from '@/models';
+import { VimColorScheme, Background } from '@/models/vimColorScheme';
 
 import Code from './code';
 import VimRC from './vimRC';
@@ -18,12 +18,9 @@ function Preview({ vimColorSchemes }: IProps) {
   const defaultVimColorScheme = vimColorSchemes[0];
   const [index, setIndex] = useState<number>(0);
 
-  const defaultBackground = Background.Light;
-  const initialBackground =
-    defaultVimColorScheme.backgrounds.length === 2
-      ? defaultBackground
-      : defaultVimColorScheme.backgrounds[0];
-  const [background, setBackground] = useState<Background>(initialBackground);
+  const [background, setBackground] = useState<Background>(
+    defaultVimColorScheme.defaultBackground,
+  );
 
   const preview = useRef<HTMLDivElement>(null);
 

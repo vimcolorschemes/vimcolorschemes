@@ -1,6 +1,4 @@
-import { Repository } from './models';
-
-export const REPOSITORY_COUNT_PER_PAGE = 2;
+import { Repository } from './repository';
 
 export interface Action {
   label: string;

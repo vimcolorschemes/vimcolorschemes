@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { APIRepository } from '@/models/api';
-import { Repository } from '@/models';
+import { Repository } from '@/models/repository';
 
 import Preview from '@/components/preview';
 
@@ -18,15 +18,18 @@ function RepositoryPage({ data: { apiRepository } }: IProps) {
   return (
     <div>
       {repository.key}
-      {repository.expandedVimColorSchemes.map(vimColorScheme => (
-        <Preview vimColorSchemes={[vimColorScheme]} />
+      {repository.flattenedVimColorSchemes.map(vimColorScheme => (
+        <Preview
+          vimColorSchemes={[vimColorScheme]}
+          key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
+        />
       ))}
     </div>
   );
 }
 
 export const query = graphql`
-  query ($ownerName: String!, $name: String!) {
+  query($ownerName: String!, $name: String!) {
     apiRepository: mongodbVimcolorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }

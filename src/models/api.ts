@@ -1,4 +1,5 @@
-import { Owner, VimColorSchemeGroup } from '.';
+import { Owner } from './repository';
+import { VimColorSchemeGroup } from './vimColorScheme';
 
 export interface APIRepository {
   name: string;

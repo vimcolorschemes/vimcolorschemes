@@ -1,9 +1,10 @@
-import { Repository } from '@/models';
 import path from 'path';
 
-import { REPOSITORY_COUNT_PER_PAGE, Actions } from '../constants';
-
 import URLHelper from '../helpers/url';
+import { Actions } from '../models/action';
+import { Repository } from '../models/repository';
+
+const REPOSITORY_COUNT_PER_PAGE = 20;
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({

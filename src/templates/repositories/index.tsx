@@ -2,10 +2,10 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import { APIRepository } from '@/models/api';
-import { Repository } from '@/models';
+import { Repository } from '@/models/repository';
 
-import Grid from '@/components/ui/grid';
-import Card from '@/components/ui/card';
+import Grid from '@/components/grid';
+import Card from '@/components/card';
 
 import './index.scss';
 

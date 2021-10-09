@@ -1,10 +1,6 @@
 import URLHelper from '@/helpers/url';
-import { APIRepository, APIVimColorScheme, APIVimColorSchemeData } from './api';
-
-export enum Background {
-  Light = 'light',
-  Dark = 'dark',
-}
+import { APIRepository } from './api';
+import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
 
 export class Repository {
   name: string;
@@ -47,7 +43,8 @@ export class Repository {
     return `/${URLHelper.URLify(this.key)}`;
   }
 
-  get expandedVimColorSchemes(): VimColorScheme[] {
+  // Return all color scheme variations in a flat list
+  get flattenedVimColorSchemes(): VimColorScheme[] {
     return this.vimColorSchemes.reduce(
       (vimColorSchemes: VimColorScheme[], vimColorScheme: VimColorScheme) => {
         if (!vimColorScheme.valid) {
@@ -72,54 +69,4 @@ export class Repository {
 
 export interface Owner {
   name: string;
-}
-
-export class VimColorScheme {
-  name: string;
-  valid: boolean;
-  data: VimColorSchemeData;
-
-  constructor(apiVimColorScheme?: APIVimColorScheme) {
-    this.name = apiVimColorScheme?.name || '';
-    this.valid = apiVimColorScheme?.valid || false;
-    this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
-  }
-
-  get backgrounds(): Background[] {
-    if (!this.data) {
-      return [];
-    }
-
-    return [
-      ...(this.data.light != null ? [Background.Light] : []),
-      ...(this.data.dark != null ? [Background.Dark] : []),
-    ];
-  }
-
-  copy(): VimColorScheme {
-    const copy = new VimColorScheme();
-    copy.name = this.name;
-    copy.valid = this.valid;
-    copy.data = this.data;
-    return copy;
-  }
-}
-
-export class VimColorSchemeData {
-  light: VimColorSchemeGroup[] | null;
-  dark: VimColorSchemeGroup[] | null;
-
-  constructor(apiVimColorSchemeData: APIVimColorSchemeData | null) {
-    this.light = !!apiVimColorSchemeData?.light?.length
-      ? apiVimColorSchemeData.light
-      : null;
-    this.dark = !!apiVimColorSchemeData?.dark?.length
-      ? apiVimColorSchemeData.dark
-      : null;
-  }
-}
-
-export interface VimColorSchemeGroup {
-  name: string;
-  hexCode: string;
 }
