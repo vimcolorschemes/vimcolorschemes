@@ -2,9 +2,11 @@ import path from 'path';
 
 import URLHelper from '../helpers/url';
 import { Actions } from '../models/action';
-import { Repository } from '../models/repository';
-
-const REPOSITORY_COUNT_PER_PAGE = 20;
+import {
+  RepositoryPageContext,
+  RepositoriesPageContext,
+  REPOSITORY_COUNT_PER_PAGE,
+} from '../models/repository';
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
@@ -13,20 +15,6 @@ export function onCreateWebpackConfig({ actions }) {
       extensions: ['ts', 'tsx'],
     },
   });
-}
-
-interface RepositoryPageContext {
-  ownerName: string;
-  name: string;
-}
-
-interface RepositoriesPageContext {
-  skip: number;
-  limit: number;
-  sortProperty: Array<keyof Repository>;
-  sortOrder: Array<'DESC' | 'ASC'>;
-  pageCount: number;
-  currentPage: number;
 }
 
 interface PageInput {

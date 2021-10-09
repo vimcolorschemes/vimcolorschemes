@@ -14,13 +14,7 @@ interface Props {
   className: string;
 }
 
-function Code({
-  fileName,
-  cursorLine,
-  lineCount,
-  children,
-  className,
-}: Props) {
+function Code({ fileName, cursorLine, lineCount, children, className }: Props) {
   return (
     <pre className={classnames('code', className)}>
       <Buffer cursorLine={cursorLine} lineCount={lineCount}>

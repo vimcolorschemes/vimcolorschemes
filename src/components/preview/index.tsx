@@ -26,9 +26,10 @@ function Preview({ vimColorSchemes }: Props) {
 
   const vimColorScheme = useMemo(() => vimColorSchemes[index], [index]);
 
-  const canChangeVimColorScheme = useMemo(() => vimColorSchemes.length > 1, [
-    vimColorSchemes,
-  ]);
+  const canChangeVimColorScheme = useMemo(
+    () => vimColorSchemes.length > 1,
+    [vimColorSchemes],
+  );
 
   const canToggleBackground = useMemo(
     () => vimColorScheme.backgrounds.length > 1,

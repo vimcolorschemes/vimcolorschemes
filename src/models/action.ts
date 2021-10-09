@@ -1,4 +1,4 @@
-import Routes from '@/routes';
+import Routes from '../routes';
 import { Repository } from './repository';
 
 export interface Action {
@@ -8,32 +8,40 @@ export interface Action {
   order: 'ASC' | 'DESC';
 }
 
-export const Actions: Record<string, Action> = {
-  Trending: {
+enum ActionNames {
+  Trending = 'Trending',
+  Top = 'Top',
+  RecentlyUpdated = 'RecentlyUpdated',
+  New = 'New',
+  Old = 'Old',
+}
+
+export const Actions: Record<ActionNames, Action> = {
+  [ActionNames.Trending]: {
     label: 'Trending',
     route: Routes.Home,
     property: 'weekStargazersCount',
     order: 'DESC',
   },
-  Top: {
+  [ActionNames.Top]: {
     label: 'Top',
     route: Routes.Top,
     property: 'lastCommitAt',
     order: 'DESC',
   },
-  RecentlyUpdated: {
+  [ActionNames.RecentlyUpdated]: {
     label: 'Recently updated',
     route: Routes.RecentlyUpdated,
     property: 'lastCommitAt',
     order: 'DESC',
   },
-  New: {
+  [ActionNames.New]: {
     label: 'New',
     route: Routes.New,
     property: 'githubCreatedAt',
     order: 'DESC',
   },
-  Old: {
+  [ActionNames.Old]: {
     label: 'Old',
     route: Routes.Old,
     property: 'githubCreatedAt',

@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link, graphql } from 'gatsby';
 import classnames from 'classnames';
 
 import { APIRepository } from '@/models/api';
-import { Actions } from '@/models/action';
-import { Repository } from '@/models/repository';
+import { Action, Actions } from '@/models/action';
+import { RepositoriesPageContext, Repository } from '@/models/repository';
 
 import Card from '@/components/card';
 import Grid from '@/components/grid';
 import Page from '@/components/page';
+import Pagination from '@/components/pagination';
 
 import './index.scss';
 
@@ -20,14 +21,31 @@ interface Props {
     };
   };
   location: Location;
+  pageContext: RepositoriesPageContext;
 }
 
-function IndexPage({ data: { repositoriesData }, location }: Props) {
+function IndexPage({
+  data: { repositoriesData },
+  pageContext,
+  location,
+}: Props) {
   const repositories = repositoriesData.apiRepositories.map(
     apiRepository => new Repository(apiRepository),
   );
 
   const { totalCount } = repositoriesData;
+
+  const { currentPage, pageCount } = pageContext;
+
+  const activeAction: Action = useMemo(
+    () =>
+      Object.values(Actions).find(
+        action =>
+          action !== Actions.Trending &&
+          location.pathname.includes(action.route),
+      ) || Actions.Trending,
+    [location.pathname],
+  );
 
   return (
     <Page className="repositories">
@@ -39,7 +57,7 @@ function IndexPage({ data: { repositoriesData }, location }: Props) {
               to={action.route}
               className={classnames('repositories__action', {
                 ['repositories__action--active']:
-                  location.pathname === action.route,
+                  activeAction.route === action.route,
               })}
             >
               {action.label}
@@ -53,6 +71,11 @@ function IndexPage({ data: { repositoriesData }, location }: Props) {
           <Card repository={repository} key={repository.key} />
         ))}
       </Grid>
+      <Pagination
+        activeAction={activeAction}
+        currentPage={currentPage}
+        pageCount={pageCount}
+      />
     </Page>
   );
 }

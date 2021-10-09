@@ -1,6 +1,8 @@
-import URLHelper from '@/helpers/url';
+import URLHelper from '../helpers/url';
 import { APIRepository } from './api';
 import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
+
+export const REPOSITORY_COUNT_PER_PAGE = 20;
 
 export class Repository {
   name: string;
@@ -69,4 +71,18 @@ export class Repository {
 
 export interface Owner {
   name: string;
+}
+
+export interface RepositoryPageContext {
+  ownerName: string;
+  name: string;
+}
+
+export interface RepositoriesPageContext {
+  skip: number;
+  limit: number;
+  sortProperty: Array<keyof Repository>;
+  sortOrder: Array<'DESC' | 'ASC'>;
+  pageCount: number;
+  currentPage: number;
 }
