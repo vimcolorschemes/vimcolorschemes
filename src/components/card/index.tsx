@@ -7,11 +7,11 @@ import Preview from '@/components/preview';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   repository: Repository;
 }
 
-function Card({ repository }: IProps) {
+function Card({ repository }: Props) {
   return (
     <article className="card">
       <Link to={repository.route}>

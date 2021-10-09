@@ -10,11 +10,11 @@ import codeSample from './codeSample';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   vimColorSchemes: VimColorScheme[];
 }
 
-function Preview({ vimColorSchemes }: IProps) {
+function Preview({ vimColorSchemes }: Props) {
   const defaultVimColorScheme = vimColorSchemes[0];
   const [index, setIndex] = useState<number>(0);
 

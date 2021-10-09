@@ -3,13 +3,13 @@ import classnames from 'classnames';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   fileName: string;
   cursorLine?: number;
   lineCount: number;
 }
 
-function StatusLine({ fileName, cursorLine = 0, lineCount }: IProps) {
+function StatusLine({ fileName, cursorLine = 0, lineCount }: Props) {
   let percentage = Math.ceil((cursorLine / lineCount) * 100).toString();
   if (percentage.length === 1) {
     percentage = ` ${percentage}`;

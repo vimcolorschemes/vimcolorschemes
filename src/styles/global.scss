@@ -1,5 +1,6 @@
 @import './reset.scss';
 @import './mixins.scss';
+@import './variables.scss';
 
 body,
 html {
@@ -12,7 +13,6 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem;
 
   & > * {
     width: 80rem;

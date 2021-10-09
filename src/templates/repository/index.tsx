@@ -4,19 +4,20 @@ import { graphql } from 'gatsby';
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
+import Page from '@/components/page';
 import Preview from '@/components/preview';
 
-interface IProps {
+interface Props {
   data: {
     apiRepository: APIRepository;
   };
 }
 
-function RepositoryPage({ data: { apiRepository } }: IProps) {
+function RepositoryPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
 
   return (
-    <div>
+    <Page>
       {repository.key}
       {repository.flattenedVimColorSchemes.map(vimColorScheme => (
         <Preview
@@ -24,7 +25,7 @@ function RepositoryPage({ data: { apiRepository } }: IProps) {
           key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
         />
       ))}
-    </div>
+    </Page>
   );
 }
 

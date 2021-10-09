@@ -7,7 +7,7 @@ import IconArrowCircle from '@/components/icons/iconArrowCircle';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   vimColorScheme: VimColorScheme;
   background: Background;
   onChangeVimColorScheme?: () => void;
@@ -35,7 +35,7 @@ function VimRC({
   background,
   onChangeVimColorScheme,
   onToggleBackground,
-}: IProps) {
+}: Props) {
   return (
     <Code fileName=".vimrc" lineCount={2} className="vimrc">
       <div className="vimrc__content">

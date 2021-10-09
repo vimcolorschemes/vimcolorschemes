@@ -23,10 +23,10 @@ const componentTemplate = `import React from 'react';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
 }
 
-function ${capitalizedName}({}: IProps) {
+function ${capitalizedName}({}: Props) {
   return (
     <div>Hello, World!</div>
   );

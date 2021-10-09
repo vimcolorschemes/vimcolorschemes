@@ -6,7 +6,7 @@ import StatusLine from '@/components/preview/statusLine';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   fileName: string;
   cursorLine?: number;
   lineCount: number;
@@ -20,7 +20,7 @@ function Code({
   lineCount,
   children,
   className,
-}: IProps) {
+}: Props) {
   return (
     <pre className={classnames('code', className)}>
       <Buffer cursorLine={cursorLine} lineCount={lineCount}>

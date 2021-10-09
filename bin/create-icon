@@ -20,11 +20,11 @@ const tsFile = `${path}/index.tsx`;
 
 const componentTemplate = `import React from 'react';
 
-interface IProps {
+interface Props {
   className?: string;
 }
 
-function ${name}({ className }: IProps) {
+function ${name}({ className }: Props) {
   return (
     <svg className={className} />
   );

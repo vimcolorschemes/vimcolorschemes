@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface IProps {
+interface Props {
   className?: string;
 }
 
-function IconArrowCircle({ className }: IProps) {
+function IconArrowCircle({ className }: Props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

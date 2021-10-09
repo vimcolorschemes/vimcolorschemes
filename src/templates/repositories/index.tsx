@@ -4,12 +4,13 @@ import { graphql } from 'gatsby';
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
-import Grid from '@/components/grid';
 import Card from '@/components/card';
+import Grid from '@/components/grid';
+import Page from '@/components/page';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   data: {
     repositoriesData: {
       apiRepositories: APIRepository[];
@@ -18,7 +19,7 @@ interface IProps {
   };
 }
 
-function IndexPage({ data: { repositoriesData } }: IProps) {
+function IndexPage({ data: { repositoriesData } }: Props) {
   const repositories = repositoriesData.apiRepositories.map(
     apiRepository => new Repository(apiRepository),
   );
@@ -26,7 +27,7 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
   const { totalCount } = repositoriesData;
 
   return (
-    <main>
+    <Page>
       <h1>vimcolorschemes</h1>
       <section>
         <header>
@@ -38,7 +39,7 @@ function IndexPage({ data: { repositoriesData } }: IProps) {
           ))}
         </Grid>
       </section>
-    </main>
+    </Page>
   );
 }
 

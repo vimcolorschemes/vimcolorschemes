@@ -2,11 +2,11 @@ import React from 'react';
 
 import './index.scss';
 
-interface IProps {
+interface Props {
   children: React.ReactNode;
 }
 
-function Grid({ children }: IProps) {
+function Grid({ children }: Props) {
   return <div className="grid">{children}</div>;
 }
 
