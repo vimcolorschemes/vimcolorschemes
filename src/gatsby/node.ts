@@ -1,12 +1,17 @@
+import SearchService from '../services/search';
 import path from 'path';
 
 import URLHelper from '../helpers/url';
-import { Actions } from '../models/action';
+import { Actions } from '../lib/actions';
 import {
   RepositoryPageContext,
   RepositoriesPageContext,
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
+
+const isSearchUp =
+  !!process.env.GATSBY_ELASTICSEARCH_URL ||
+  !!process.env.GATSBY_ELASTICSEARCH_CLOUD_ID;
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
@@ -71,10 +76,30 @@ const repositoriesQuery = `
   repositoriesData: allMongodbVimcolorschemesRepositories(
     filter: { updateValid: { eq: true }, generateValid: { eq: true } }
   ) {
-    nodes {
+    apiRepositories: nodes {
       name
+      description
+      stargazersCount
+      githubCreatedAt
+      lastCommitAt
+      githubURL
+      weekStargazersCount
       owner {
         name
+      }
+      vimColorSchemes {
+        name
+        valid
+        data {
+          light {
+            name
+            hexCode
+          }
+          dark {
+            name
+            hexCode
+          }
+        }
       }
     }
   }
@@ -83,8 +108,14 @@ const repositoriesQuery = `
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
-  const repositories = data.repositoriesData.nodes;
+  const apiRepositories = data.repositoriesData;
 
-  createRepositoryPages(repositories, createPage);
-  createRepositoriesPages(repositories, createPage);
+  createRepositoryPages(apiRepositories, createPage);
+  createRepositoriesPages(apiRepositories, createPage);
+
+  if (isSearchUp) {
+    const searchService = new SearchService();
+    const result = await searchService.indexRepositories(apiRepositories);
+    console.log("Search Index result:", result)
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 
-import { Action } from '@/models/action';
+import { Action } from '@/lib/actions';
 
 import URLHelper from '@/helpers/url';
 

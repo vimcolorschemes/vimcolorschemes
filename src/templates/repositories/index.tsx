@@ -3,7 +3,7 @@ import { Link, graphql } from 'gatsby';
 import classnames from 'classnames';
 
 import { APIRepository } from '@/models/api';
-import { Action, Actions } from '@/models/action';
+import { Action, Actions } from '@/lib/actions';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
 
 import Card from '@/components/card';

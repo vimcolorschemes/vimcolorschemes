@@ -1,5 +1,5 @@
-import Routes from '../routes';
-import { Repository } from './repository';
+import Routes from './routes';
+import { Repository } from '../models/repository';
 
 export interface Action {
   label: string;

@@ -18,20 +18,22 @@
   },
   "dependencies": {
     "classnames": "^2.3.1",
-    "gatsby": "^3.10.2",
-    "gatsby-plugin-react-helmet": "^4.6.0",
-    "gatsby-plugin-sass": "^4.6.0",
-    "gatsby-plugin-sitemap": "^4.2.0",
-    "gatsby-source-mongodb": "^3.6.0",
+    "gatsby": "^3.14.2",
+    "gatsby-plugin-react-helmet": "^4.14.0",
+    "gatsby-plugin-sass": "^4.14.0",
+    "gatsby-plugin-sitemap": "^4.10.0",
+    "gatsby-source-mongodb": "^3.14.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
-    "sass": "^1.34.0",
+    "sass": "^1.42.1",
     "ts-node": "^9.1.1"
   },
   "devDependencies": {
+    "@elastic/elasticsearch": "^7.15.0",
+    "dotenv": "^10.0.0",
     "eslint-config-react-app": "^6.0.0",
-    "prettier": "^2.3.0",
-    "typescript": "^4.3.2"
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.3"
   }
 }

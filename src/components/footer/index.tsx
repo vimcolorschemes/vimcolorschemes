@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-import Routes from '@/routes';
+import Routes from '@/lib/routes';
 
 import './index.scss';
 
