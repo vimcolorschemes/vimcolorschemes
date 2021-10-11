@@ -30,7 +30,10 @@ function IndexPage({
   pageContext,
   location,
 }: Props) {
-  const search = useSearch(repositoriesData);
+  const search = useSearch({
+    defaultRepositoriesData: repositoriesData,
+    defaultPageData: pageContext,
+  });
 
   const activeAction: Action = useMemo(
     () =>
@@ -53,6 +56,7 @@ function IndexPage({
         />
         <p>{search.totalCount} repositories</p>
       </header>
+      {search.isError && <p>Error searching...</p>}
       <Grid>
         {search.repositories.map(repository => (
           <Card repository={repository} key={repository.key} />
@@ -60,8 +64,9 @@ function IndexPage({
       </Grid>
       <Pagination
         activeAction={activeAction}
-        currentPage={pageContext.currentPage}
-        pageCount={pageContext.pageCount}
+        currentPage={search.page}
+        onChange={!!search.input ? search.setPage : undefined}
+        pageCount={search.pageCount}
       />
     </Page>
   );

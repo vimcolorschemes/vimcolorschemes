@@ -4,7 +4,15 @@ import useSWR from 'swr';
 import SearchService from '@/services/search';
 import useDebounce from './debounce';
 import { APIRepository } from '@/models/api';
-import { Repository } from '@/models/repository';
+import { RepositoriesPageContext, Repository } from '@/models/repository';
+
+interface Props {
+  defaultRepositoriesData: {
+    apiRepositories: APIRepository[];
+    totalCount: number;
+  };
+  defaultPageData: RepositoriesPageContext;
+}
 
 interface Search {
   input: string;
@@ -12,11 +20,10 @@ interface Search {
   repositories: Repository[];
   totalCount: number;
   isLoading: boolean;
-}
-
-interface Props {
-  apiRepositories: APIRepository[];
-  totalCount: number;
+  isError: boolean;
+  page: number;
+  setPage: (page: number) => void;
+  pageCount: number;
 }
 
 /**
@@ -24,36 +31,57 @@ interface Props {
  *
  * @param {Object} repositoriesData - The repositories data coming from the
  * base GraphQL query
- * @returns {Object} Objects and functions to help manage what to display 
+ * @returns {Object} Objects and functions to help manage what to display
  */
-function useSearch(repositoriesData: Props): Search {
+function useSearch({
+  defaultRepositoriesData,
+  defaultPageData,
+}: Props): Search {
   const defaultRepositories = useMemo(
     () =>
-      repositoriesData.apiRepositories.map(
+      defaultRepositoriesData.apiRepositories.map(
         apiRepository => new Repository(apiRepository),
       ),
-    [repositoriesData.apiRepositories],
+    [defaultRepositoriesData.apiRepositories],
   );
 
+  const [page, setPage] = useState<number>(defaultPageData.currentPage || 1);
   const [input, setInput] = useState<string>('');
   const debouncedInput = useDebounce(input);
 
-  const { data, error } = useSWR([debouncedInput, 1], SearchService.search);
+  const { data: searchData, error } = useSWR(
+    [debouncedInput, page],
+    SearchService.search,
+  );
 
-  const isLoading = useMemo(() => !data && !error, [data, error]);
+  const isLoading = useMemo(() => !searchData && !error, [searchData, error]);
 
   const repositories = useMemo(
     () =>
-      !!debouncedInput.length ? data?.repositories || [] : defaultRepositories,
-    [debouncedInput, data?.repositories, defaultRepositories],
+      !!debouncedInput.length
+        ? searchData?.repositories || []
+        : defaultRepositories,
+    [debouncedInput, searchData?.repositories, defaultRepositories],
   );
 
   const totalCount = useMemo(
     () =>
       !!debouncedInput.length
-        ? data?.totalCount || 0
-        : repositoriesData.totalCount,
-    [debouncedInput, data?.totalCount, repositoriesData.totalCount],
+        ? searchData?.totalCount || 0
+        : defaultRepositoriesData.totalCount,
+    [
+      debouncedInput,
+      searchData?.totalCount,
+      defaultRepositoriesData.totalCount,
+    ],
+  );
+
+  const pageCount = useMemo(
+    () =>
+      !!debouncedInput.length
+        ? searchData?.pageCount || 0
+        : defaultPageData.pageCount,
+    [debouncedInput, searchData?.pageCount, defaultPageData.pageCount],
   );
 
   return {
@@ -62,6 +90,10 @@ function useSearch(repositoriesData: Props): Search {
     repositories,
     totalCount,
     isLoading,
+    isError: !!error,
+    page,
+    setPage,
+    pageCount,
   };
 }
 
