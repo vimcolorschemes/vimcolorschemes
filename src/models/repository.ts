@@ -2,7 +2,7 @@ import URLHelper from '../helpers/url';
 import { APIRepository } from './api';
 import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
 
-export const REPOSITORY_COUNT_PER_PAGE = 20;
+export const REPOSITORY_COUNT_PER_PAGE = 2;
 
 export class Repository {
   name: string;

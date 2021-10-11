@@ -1,0 +1,13 @@
+.actions {
+  display: flex;
+  align-items: center;
+  column-gap: $standard-space;
+}
+
+.actions__action {
+  text-decoration: none;
+
+  &--active {
+    border-bottom: 1px solid blue;
+  }
+}

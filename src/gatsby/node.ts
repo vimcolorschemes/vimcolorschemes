@@ -1,4 +1,4 @@
-import SearchService from '../services/search';
+import ElasticSearchClient from '../services/elasticSearch';
 import path from 'path';
 
 import URLHelper from '../helpers/url';
@@ -10,8 +10,8 @@ import {
 } from '../models/repository';
 
 const isSearchUp =
-  !!process.env.GATSBY_ELASTICSEARCH_URL ||
-  !!process.env.GATSBY_ELASTICSEARCH_CLOUD_ID;
+  !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
+  !!process.env.GATSBY_ELASTIC_SEARCH_CLOUD_ID;
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
@@ -108,14 +108,14 @@ const repositoriesQuery = `
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
-  const apiRepositories = data.repositoriesData;
+  const { apiRepositories } = data.repositoriesData;
 
   createRepositoryPages(apiRepositories, createPage);
   createRepositoriesPages(apiRepositories, createPage);
 
   if (isSearchUp) {
-    const searchService = new SearchService();
-    const result = await searchService.indexRepositories(apiRepositories);
-    console.log("Search Index result:", result)
+    const elasticSearchClient = new ElasticSearchClient();
+    const result = await elasticSearchClient.indexRepositories(apiRepositories);
+    console.log('Search Index result:', result);
   }
 }

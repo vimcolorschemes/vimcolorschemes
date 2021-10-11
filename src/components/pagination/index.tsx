@@ -15,10 +15,10 @@ interface Props {
 
 function Pagination({ activeAction, currentPage, pageCount }: Props) {
   const isFirstPage = useMemo(() => currentPage === 1, [currentPage]);
-  const isLastPage = useMemo(
-    () => currentPage === pageCount,
-    [currentPage, pageCount],
-  );
+  const isLastPage = useMemo(() => currentPage === pageCount, [
+    currentPage,
+    pageCount,
+  ]);
 
   return (
     <div className="pagination">

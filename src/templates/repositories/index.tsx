@@ -1,11 +1,12 @@
 import React, { useMemo } from 'react';
-import { Link, graphql } from 'gatsby';
-import classnames from 'classnames';
+import { graphql } from 'gatsby';
 
+import useSearch from '@/hooks/search';
 import { APIRepository } from '@/models/api';
-import { Action, Actions } from '@/lib/actions';
-import { RepositoriesPageContext, Repository } from '@/models/repository';
+import { Action, Actions as ActionsEnum } from '@/lib/actions';
+import { RepositoriesPageContext } from '@/models/repository';
 
+import Actions from '@/components/actions';
 import Card from '@/components/card';
 import Grid from '@/components/grid';
 import Page from '@/components/page';
@@ -29,52 +30,38 @@ function IndexPage({
   pageContext,
   location,
 }: Props) {
-  const repositories = repositoriesData.apiRepositories.map(
-    apiRepository => new Repository(apiRepository),
-  );
-
-  const { totalCount } = repositoriesData;
-
-  const { currentPage, pageCount } = pageContext;
+  const search = useSearch(repositoriesData);
 
   const activeAction: Action = useMemo(
     () =>
-      Object.values(Actions).find(
+      Object.values(ActionsEnum).find(
         action =>
-          action !== Actions.Trending &&
+          action !== ActionsEnum.Trending &&
           location.pathname.includes(action.route),
-      ) || Actions.Trending,
+      ) || ActionsEnum.Trending,
     [location.pathname],
   );
 
   return (
     <Page className="repositories">
       <header className="repositories__header">
-        <div className="repositories__actions">
-          {Object.values(Actions).map(action => (
-            <Link
-              key={action.route}
-              to={action.route}
-              className={classnames('repositories__action', {
-                ['repositories__action--active']:
-                  activeAction.route === action.route,
-              })}
-            >
-              {action.label}
-            </Link>
-          ))}
-        </div>
-        <p>{totalCount} repositories</p>
+        <Actions activeAction={activeAction} />
+        <input
+          type="search"
+          value={search.input}
+          onChange={event => search.setInput(event.target.value)}
+        />
+        <p>{search.totalCount} repositories</p>
       </header>
       <Grid>
-        {repositories.map(repository => (
+        {search.repositories.map(repository => (
           <Card repository={repository} key={repository.key} />
         ))}
       </Grid>
       <Pagination
         activeAction={activeAction}
-        currentPage={currentPage}
-        pageCount={pageCount}
+        currentPage={pageContext.currentPage}
+        pageCount={pageContext.pageCount}
       />
     </Page>
   );

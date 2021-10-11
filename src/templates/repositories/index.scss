@@ -9,17 +9,3 @@
   flex-direction: column;
   row-gap: $standard-space;
 }
-
-.repositories__actions {
-  display: flex;
-  align-items: center;
-  column-gap: $standard-space;
-}
-
-.repositories__action {
-  text-decoration: none;
-
-  &--active {
-    border-bottom: 1px solid blue;
-  }
-}
