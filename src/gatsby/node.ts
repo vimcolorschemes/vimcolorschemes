@@ -1,5 +1,6 @@
 import ElasticSearchClient from '../services/elasticSearch';
 import path from 'path';
+import puppeteer from 'puppeteer';
 
 import URLHelper from '../helpers/url';
 import { APIRepository } from '../models/api';
@@ -10,6 +11,7 @@ import {
   RepositoriesPageContext,
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
+import { APIRepository } from '../models/api';
 
 const isSearchUp =
   !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
@@ -38,6 +40,22 @@ function createRepositoryPages(
   repositories.forEach(repository =>
     createPage({
       path: repository.route,
+      component: path.resolve('src/templates/repository/index.tsx'),
+      context: {
+        ownerName: repository.owner.name,
+        name: repository.name,
+      },
+    }),
+  );
+}
+
+async function createRepositoryPreviewPages(
+  apiRepositories: Repository[],
+  createPage: (page: PageInput) => void,
+): Promise<void> {
+  apiRepositories.forEach(repository =>
+    createPage({
+      path: repository.previewRoute,
       component: path.resolve('src/templates/repository/index.tsx'),
       context: {
         ownerName: repository.owner.name,
@@ -106,6 +124,28 @@ const repositoriesQuery = `
 }
 `;
 
+async function createPreviewImages(
+  apiRepositories: Repository[],
+): Promise<void> {
+  apiRepositories.forEach(async repository => {
+    const browser = await puppeteer.launch({
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    });
+    const page = await browser.newPage();
+    await page.goto(repository.previewRoute);
+    await page.screenshot({
+      path: repository.previewImagePath,
+      clip: {
+        x: 0,
+        y: 0,
+        width: 400,
+        height: 200,
+      },
+    });
+    await browser.close();
+  });
+}
+
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
   const repositories = data.repositoriesData.apiRepositories.map(
@@ -113,8 +153,11 @@ export async function createPages({ graphql, actions: { createPage } }) {
   );
 
   createRepositoryPages(repositories, createPage);
+  createRepositoryPreviewPages(repositories, createPage);
 
   createRepositoriesPages(repositories, createPage);
+
+  createPreviewImages(repositories);
 
   if (isSearchUp) {
     const elasticSearchClient = new ElasticSearchClient();

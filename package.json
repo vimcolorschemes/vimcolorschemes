@@ -36,6 +36,7 @@
     "dotenv": "^10.0.0",
     "eslint-config-react-app": "^6.0.0",
     "prettier": "^2.4.1",
+    "puppeteer": "^10.4.0",
     "typescript": "^4.4.3"
   }
 }

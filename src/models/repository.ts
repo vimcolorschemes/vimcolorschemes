@@ -45,6 +45,14 @@ export class Repository {
     return `/${URLHelper.URLify(this.key)}`;
   }
 
+  get previewRoute(): string {
+    return `${this.route}/preview`;
+  }
+
+  get previewImagePath(): string {
+    return `.previews/${this.key}.preview.png`;
+  }
+
   // Return all color scheme variations in a flat list
   get flattenedVimColorSchemes(): VimColorScheme[] {
     return this.vimColorSchemes.reduce(
