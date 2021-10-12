@@ -1,4 +1,4 @@
-import { Action, Actions } from '@/lib/actions';
+import { Action, Actions } from '../lib/actions';
 
 /**
  * Make a string value safe to use as a URL

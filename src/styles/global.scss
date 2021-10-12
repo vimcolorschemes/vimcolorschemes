@@ -19,3 +19,13 @@ html {
     max-width: 100%;
   }
 }
+
+body {
+  background: white;
+  color: black;
+
+  &.dark {
+    background: black;
+    color: white;
+  }
+}
