@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "@elastic/elasticsearch": "^7.15.0",
+    "@types/react-helmet": "^6.1.3",
     "dotenv": "^10.0.0",
     "eslint-config-react-app": "^6.0.0",
     "prettier": "^2.4.1",

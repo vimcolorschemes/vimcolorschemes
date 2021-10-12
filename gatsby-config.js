@@ -3,6 +3,7 @@ require('dotenv').config({ path: '.env' });
 module.exports = {
   siteMetadata: {
     title: 'vimcolorschemes',
+    URL: 'https://vimcolorschemes.com',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

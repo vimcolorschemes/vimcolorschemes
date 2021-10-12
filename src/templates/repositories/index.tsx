@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { graphql } from 'gatsby';
 
 import URLHelper from '@/helpers/url';
@@ -14,6 +14,7 @@ import Page from '@/components/page';
 import Pagination from '@/components/pagination';
 
 import './index.scss';
+import SEO from '@/components/seo';
 
 interface Props {
   data: {
@@ -43,6 +44,11 @@ function IndexPage({
 
   return (
     <Page className="repositories">
+      <SEO
+        title={`${actionFromURL.label} vim color schemes`}
+        description={`vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation. Check out the ${actionFromURL.label} vim color schemes!`}
+        pathname={location.pathname}
+      />
       <header className="repositories__header">
         <Actions activeAction={actionFromURL} />
         <input

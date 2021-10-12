@@ -1,7 +1,7 @@
 import { Client, ClientOptions } from '@elastic/elasticsearch';
 
-import { APIRepository } from '@/models/api';
 import { ELASTIC_SEARCH_INDEX_NAME } from '.';
+import { Repository } from '@/models/repository';
 
 const ELASTIC_SEARCH_CLOUD_ID = process.env.GATSBY_ELASTIC_SEARCH_CLOUD_ID;
 const ELASTIC_SEARCH_URL =
@@ -53,7 +53,7 @@ class ElasticSearchClient {
    * applicable
    */
   async indexRepositories(
-    repositories: APIRepository[],
+    repositories: Repository[],
   ): Promise<ElasticSearchResult> {
     try {
       const deletionResult = await this.deleteRepositoryIndex();

@@ -6,18 +6,27 @@ import { Repository } from '@/models/repository';
 
 import Page from '@/components/page';
 import Preview from '@/components/preview';
+import SEO from '@/components/seo';
 
 interface Props {
   data: {
     apiRepository: APIRepository;
   };
+  location: Location;
 }
 
-function RepositoryPage({ data: { apiRepository } }: Props) {
+function RepositoryPage({ data: { apiRepository }, location }: Props) {
   const repository = new Repository(apiRepository);
 
   return (
     <Page>
+      <SEO
+        title={`${
+          repository.flattenedVimColorSchemes[0]?.name || repository.name
+        } vim color scheme, by ${repository.owner.name}`}
+        description={repository.description}
+        pathname={location.pathname}
+      />
       {repository.key}
       {repository.flattenedVimColorSchemes.map(vimColorScheme => (
         <Preview
@@ -30,7 +39,7 @@ function RepositoryPage({ data: { apiRepository } }: Props) {
 }
 
 export const query = graphql`
-  query ($ownerName: String!, $name: String!) {
+  query($ownerName: String!, $name: String!) {
     apiRepository: mongodbVimcolorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }

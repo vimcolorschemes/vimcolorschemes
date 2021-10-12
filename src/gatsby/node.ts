@@ -2,8 +2,10 @@ import ElasticSearchClient from '../services/elasticSearch';
 import path from 'path';
 
 import URLHelper from '../helpers/url';
+import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
 import {
+  Repository,
   RepositoryPageContext,
   RepositoriesPageContext,
   REPOSITORY_COUNT_PER_PAGE,
@@ -29,28 +31,26 @@ interface PageInput {
   context?: RepositoryPageContext | RepositoriesPageContext;
 }
 
-const createRepositoryPages = (
-  repositories: any[],
+function createRepositoryPages(
+  repositories: Repository[],
   createPage: (page: PageInput) => void,
-) => {
-  repositories.forEach(repository => {
-    const key = `${repository.owner.name}/${repository.name}`;
-    const repositoryPath = URLHelper.URLify(key);
+) {
+  repositories.forEach(repository =>
     createPage({
-      path: repositoryPath,
+      path: repository.route,
       component: path.resolve('src/templates/repository/index.tsx'),
       context: {
         ownerName: repository.owner.name,
         name: repository.name,
       },
-    });
-  });
-};
+    }),
+  );
+}
 
-const createRepositoriesPages = (
-  repositories: any[],
+function createRepositoriesPages(
+  repositories: Repository[],
   createPage: (page: PageInput) => void,
-) => {
+) {
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
   Array.from({ length: pageCount }).forEach((_, index) => {
     const page = index + 1;
@@ -69,7 +69,7 @@ const createRepositoriesPages = (
       });
     });
   });
-};
+}
 
 const repositoriesQuery = `
 {
@@ -108,14 +108,17 @@ const repositoriesQuery = `
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
-  const { apiRepositories } = data.repositoriesData;
+  const repositories = data.repositoriesData.apiRepositories.map(
+    (apiRepository: APIRepository) => new Repository(apiRepository),
+  );
 
-  createRepositoryPages(apiRepositories, createPage);
-  createRepositoriesPages(apiRepositories, createPage);
+  createRepositoryPages(repositories, createPage);
+
+  createRepositoriesPages(repositories, createPage);
 
   if (isSearchUp) {
     const elasticSearchClient = new ElasticSearchClient();
-    const result = await elasticSearchClient.indexRepositories(apiRepositories);
+    const result = await elasticSearchClient.indexRepositories(repositories);
     console.log('Search Index result:', result);
   }
 }
