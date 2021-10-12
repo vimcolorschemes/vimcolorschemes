@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
 import SearchService from '@/services/search';
@@ -21,6 +21,7 @@ interface Search {
   totalCount: number;
   isLoading: boolean;
   isError: boolean;
+  isSearching: boolean;
   page: number;
   setPage: (page: number) => void;
   pageCount: number;
@@ -29,9 +30,11 @@ interface Search {
 /**
  * Manages what repositories to display based on various inputs
  *
- * @param {Object} repositoriesData - The repositories data coming from the
- * base GraphQL query
- * @returns {Object} Objects and functions to help manage what to display
+ * @param {Object} defaultRepositoriesData - The repositories data coming from
+ * the base GraphQL query
+ * @param {Object} defaultPageData - The page context data coming from the base
+ * GraphQL query
+ * @returns {Object} Current search and repositories state
  */
 function useSearch({
   defaultRepositoriesData,
@@ -56,17 +59,28 @@ function useSearch({
 
   const isLoading = useMemo(() => !searchData && !error, [searchData, error]);
 
+  const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
+
+  useEffect(() => setPage(1), [debouncedInput]);
+  useEffect(() => setPage(defaultPageData.currentPage), [
+    defaultPageData.currentPage,
+  ]);
+  useEffect(() => {
+    if (isSearching) {
+      return;
+    }
+
+    setPage(defaultPageData.currentPage);
+  }, [isSearching, page, defaultPageData.currentPage]);
+
   const repositories = useMemo(
-    () =>
-      !!debouncedInput.length
-        ? searchData?.repositories || []
-        : defaultRepositories,
+    () => (isSearching ? searchData?.repositories || [] : defaultRepositories),
     [debouncedInput, searchData?.repositories, defaultRepositories],
   );
 
   const totalCount = useMemo(
     () =>
-      !!debouncedInput.length
+      isSearching
         ? searchData?.totalCount || 0
         : defaultRepositoriesData.totalCount,
     [
@@ -78,9 +92,7 @@ function useSearch({
 
   const pageCount = useMemo(
     () =>
-      !!debouncedInput.length
-        ? searchData?.pageCount || 0
-        : defaultPageData.pageCount,
+      isSearching ? searchData?.pageCount || 0 : defaultPageData.pageCount,
     [debouncedInput, searchData?.pageCount, defaultPageData.pageCount],
   );
 
@@ -91,6 +103,7 @@ function useSearch({
     totalCount,
     isLoading,
     isError: !!error,
+    isSearching,
     page,
     setPage,
     pageCount,

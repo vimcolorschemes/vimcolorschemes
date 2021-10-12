@@ -1,3 +1,5 @@
+import { Action, Actions } from '@/lib/actions';
+
 /**
  * Make a string value safe to use as a URL
  * @param {string} value - The string value to use as a URL
@@ -39,9 +41,48 @@ function paginateRoute(route: string, page: number): string {
   return routePath + pagePath;
 }
 
+/**
+ * Returns the current page as specified by the URL pathname
+ * @param {string} pathname - The current URL pathname
+ * @returns {number} The current page
+ */
+function getPageFromURL(pathname: string): number {
+  const expression = /\/page\/(\d+)/;
+  const matches = pathname.match(expression);
+
+  if (matches == null || matches.length < 2) {
+    return 1;
+  }
+
+  try {
+    return Number.parseInt(matches[1]);
+  } catch {
+    return 1;
+  }
+}
+
+/**
+ * Returns the current action as specified by the URL pathname
+ * @param {string} pathname - The current URL pathname
+ * @returns {Object} The current action
+ */
+function getActionFromURL(pathname: string): Action {
+  const match = Object.values(Actions)
+    .filter(action => action !== Actions.Trending)
+    .find(action => pathname.includes(action.route));
+
+  if (match == null) {
+    return Actions.Trending;
+  }
+
+  return match;
+}
+
 const URLHelper = {
   URLify,
   paginateRoute,
+  getActionFromURL,
+  getPageFromURL,
 };
 
 export default URLHelper;

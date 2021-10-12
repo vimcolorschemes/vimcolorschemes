@@ -7,6 +7,7 @@ enum Routes {
   Old = '/old',
   RecentlyUpdated = '/recently-updated',
   Top = '/top',
+  Search = '/search',
 }
 
 export default Routes;

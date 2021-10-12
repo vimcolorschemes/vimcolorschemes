@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { graphql } from 'gatsby';
 
+import URLHelper from '@/helpers/url';
 import useSearch from '@/hooks/search';
 import { APIRepository } from '@/models/api';
-import { Action, Actions as ActionsEnum } from '@/lib/actions';
+import { Action } from '@/lib/actions';
 import { RepositoriesPageContext } from '@/models/repository';
 
 import Actions from '@/components/actions';
@@ -35,20 +36,15 @@ function IndexPage({
     defaultPageData: pageContext,
   });
 
-  const activeAction: Action = useMemo(
-    () =>
-      Object.values(ActionsEnum).find(
-        action =>
-          action !== ActionsEnum.Trending &&
-          location.pathname.includes(action.route),
-      ) || ActionsEnum.Trending,
+  const actionFromURL: Action = useMemo(
+    () => URLHelper.getActionFromURL(location.pathname),
     [location.pathname],
   );
 
   return (
     <Page className="repositories">
       <header className="repositories__header">
-        <Actions activeAction={activeAction} />
+        <Actions activeAction={actionFromURL} />
         <input
           type="search"
           value={search.input}
@@ -63,7 +59,7 @@ function IndexPage({
         ))}
       </Grid>
       <Pagination
-        activeAction={activeAction}
+        activeAction={actionFromURL}
         currentPage={search.page}
         onChange={!!search.input ? search.setPage : undefined}
         pageCount={search.pageCount}
