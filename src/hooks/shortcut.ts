@@ -14,7 +14,7 @@ interface Shortcuts {
  * }
  * useShortcut(shortcuts);
  *
- * @param {object} shortcuts - The object configuring various shortcuts
+ * @param {Object} shortcuts - The object configuring various shortcuts
  */
 function useShortcut(shortcuts: Shortcuts) {
   useEvent<KeyboardEvent>('keydown', event => {

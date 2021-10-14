@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 
 import URLHelper from '@/helpers/url';
 import useSearch from '@/hooks/search';
-import useShortcut from '@/hooks/shortcut';
 import { APIRepository } from '@/models/api';
 import { Action } from '@/lib/actions';
 import { RepositoriesPageContext } from '@/models/repository';

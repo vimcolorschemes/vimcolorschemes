@@ -32,7 +32,7 @@ function isInput(element: EventTarget | null): boolean {
  *
  * source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
  *
- * @param {object} element - The HTML element to check
+ * @param {Object} element - The HTML element to check
  * @returns {boolean} True if the element is visible
  */
 function isInViewport(element: HTMLElement): boolean {
