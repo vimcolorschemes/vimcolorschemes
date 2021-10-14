@@ -68,7 +68,7 @@
   background: var(--vim-CursorLineNrBg, var(--vim-LineNrBg));
 }
 
-// content below is generated using the bin/generate_css command
+// content below is generated using the bin/preview/generate-css command
 .vimLineComment {
   color: var(--vim-vimLineComment);
 }
