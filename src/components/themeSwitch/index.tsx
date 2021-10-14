@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import useShortcut from '@/hooks/shortcut';
 import { Theme } from '@/lib/themes';
 
 import './index.scss';
@@ -8,6 +9,10 @@ function ThemeSwitch() {
   const isBrowser = typeof window !== 'undefined';
 
   const [theme, setTheme] = useState<Theme>();
+
+  useShortcut({
+    b: () => updateTheme(theme === Theme.Light ? Theme.Dark : Theme.Light),
+  });
 
   useEffect(() => {
     if (isBrowser) {

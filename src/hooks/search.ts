@@ -62,9 +62,10 @@ function useSearch({
   const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
 
   useEffect(() => setPage(1), [debouncedInput]);
-  useEffect(() => setPage(defaultPageData.currentPage), [
-    defaultPageData.currentPage,
-  ]);
+  useEffect(
+    () => setPage(defaultPageData.currentPage),
+    [defaultPageData.currentPage],
+  );
   useEffect(() => {
     if (isSearching) {
       return;
