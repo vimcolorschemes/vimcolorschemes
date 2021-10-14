@@ -1,5 +1,23 @@
 import React from 'react';
-import { Theme, THEME_KEY } from './lib/themes';
+
+import { Theme, THEME_KEY } from '@/lib/themes';
+
+const spatialNavigation = require('!!raw-loader!/node_modules/spatial-navigation-polyfill/polyfill/spatial-navigation-polyfill.js');
+
+declare global {
+  interface Window {
+    __theme: Theme;
+    __onThemeChange: () => void;
+    __setPreferredTheme: (theme: Theme) => void;
+  }
+
+  interface EventTarget {
+    spatialNavigationSearch: (
+      direction: 'left' | 'down' | 'up' | 'right',
+      options: { candidates: Element[] },
+    ) => HTMLElement | null;
+  }
+}
 
 interface Props {
   htmlAttributes: Object;
@@ -49,7 +67,16 @@ function HTML(props: Props) {
         {props.headComponents}
       </head>
       <body {...props.bodyAttributes} className={Theme.Light}>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: spatialNavigation.default.toString(),
+          }}
+        />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
         {props.preBodyComponents}
         <div
           key="body"

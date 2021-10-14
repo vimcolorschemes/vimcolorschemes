@@ -15,11 +15,11 @@ interface PageLinkProps {
 
 function PageLink({ to, onClick, children }: PageLinkProps) {
   if (to) {
-    return <Link to={to}>{children}</Link>;
+    return <Link to={to} data-focusable>{children}</Link>;
   }
 
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" onClick={onClick} data-focusable>
       {children}
     </button>
   );

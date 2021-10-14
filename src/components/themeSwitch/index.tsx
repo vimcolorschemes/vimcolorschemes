@@ -16,16 +16,16 @@ function ThemeSwitch() {
 
   useEffect(() => {
     if (isBrowser) {
-      setTheme(window['__theme']);
+      setTheme(window.__theme);
 
-      window['__onThemeChange'] = function () {
-        setTheme(window['__theme']);
+      window.__onThemeChange = function () {
+        setTheme(window.__theme);
       };
     }
   }, [isBrowser]);
 
   function updateTheme(theme: Theme) {
-    window['__setPreferredTheme'](theme);
+    window.__setPreferredTheme(theme);
   }
 
   return (
@@ -38,6 +38,7 @@ function ThemeSwitch() {
         onChange={event => {
           updateTheme(event.target.checked ? Theme.Dark : Theme.Light);
         }}
+        data-focusable
       />
       {!!theme && (
         <span data-testid="theme-switch-label">

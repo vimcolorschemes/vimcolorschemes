@@ -8,12 +8,16 @@ import './index.scss';
 function Footer() {
   return (
     <footer className="footer">
-      <Link to={Routes.Home}>vimcolorschemes</Link>
-      <Link to={Routes.About}>About</Link>
-      <a href={Routes.Github} rel="noopener" target="_blank">
+      <Link to={Routes.Home} data-focusable>
+        vimcolorschemes
+      </Link>
+      <Link to={Routes.About} data-focusable>
+        About
+      </Link>
+      <a href={Routes.Github} rel="noopener" target="_blank" data-focusable>
         Github
       </a>
-      <a href={Routes.Contact} rel="noopener" target="_blank">
+      <a href={Routes.Contact} rel="noopener" target="_blank" data-focusable>
         Contact
       </a>
     </footer>

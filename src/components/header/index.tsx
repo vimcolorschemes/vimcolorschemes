@@ -10,7 +10,9 @@ import './index.scss';
 function Header() {
   return (
     <header className="header">
-      <Link to={Routes.Home}>vimcolorschemes</Link>
+      <Link to={Routes.Home} data-focusable>
+        vimcolorschemes
+      </Link>
       <ThemeSwitch />
     </header>
   );

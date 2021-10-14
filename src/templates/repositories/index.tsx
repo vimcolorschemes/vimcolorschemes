@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 
 import URLHelper from '@/helpers/url';
 import useSearch from '@/hooks/search';
+import useShortcut from '@/hooks/shortcut';
 import { APIRepository } from '@/models/api';
 import { Action } from '@/lib/actions';
 import { RepositoriesPageContext } from '@/models/repository';
@@ -12,9 +13,9 @@ import Card from '@/components/card';
 import Grid from '@/components/grid';
 import Page from '@/components/page';
 import Pagination from '@/components/pagination';
+import SEO from '@/components/seo';
 
 import './index.scss';
-import SEO from '@/components/seo';
 
 interface Props {
   data: {

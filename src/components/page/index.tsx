@@ -1,6 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 
+import useNavigation from '@/hooks/navigation';
+
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 
@@ -12,6 +14,8 @@ interface Props {
 }
 
 function Page({ children, className }: Props) {
+  useNavigation();
+
   return (
     <>
       <Header />

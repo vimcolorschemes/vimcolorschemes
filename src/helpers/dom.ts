@@ -1,4 +1,14 @@
 /**
+ * Returns a list of all elements that were manually designed to be focusable
+ * within the page
+ *
+ * @returns {array} The focusable HTML elements
+ */
+function getExplicitelyFocusableElements(): HTMLElement[] {
+  return Array.from(document.querySelectorAll('*[data-focusable]'));
+}
+
+/**
  * Returns true if the HTML element is an input
  *
  * @param element - The element to verify
@@ -17,8 +27,36 @@ function isInput(element: EventTarget | null): boolean {
   );
 }
 
+/**
+ * Returns true if the element is visible in the current viewport
+ *
+ * source: https://gomakethings.com/how-to-test-if-an-element-is-in-the-viewport-with-vanilla-javascript/
+ *
+ * @param {object} element - The HTML element to check
+ * @returns {boolean} True if the element is visible
+ */
+function isInViewport(element: HTMLElement): boolean {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return false;
+  }
+
+  const bounding = element.getBoundingClientRect();
+  const clientHeight =
+    window.innerHeight || document.documentElement.clientHeight;
+  const clientWidth = window.innerWidth || document.documentElement.clientWidth;
+
+  return (
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= clientHeight &&
+    bounding.right <= clientWidth
+  );
+}
+
 const DOMHelper = {
+  getExplicitelyFocusableElements,
   isInput,
+  isInViewport,
 };
 
 export default DOMHelper;

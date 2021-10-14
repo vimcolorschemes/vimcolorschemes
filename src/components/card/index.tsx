@@ -14,7 +14,7 @@ interface Props {
 function Card({ repository }: Props) {
   return (
     <article className="card">
-      <Link to={repository.route}>
+      <Link to={repository.route} data-focusable>
         <h3 className="card__title">{repository.key}</h3>
       </Link>
       <p className="card__description">{repository.description}</p>
