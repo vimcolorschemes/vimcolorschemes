@@ -18,15 +18,15 @@ function useEvent<EventType extends Event>(
       !event ||
       !callback ||
       typeof window === 'undefined' ||
-      typeof window === 'undefined'
+      typeof document === 'undefined'
     ) {
       return;
     }
 
     const eventListener = (event: Event) => callback(event as EventType);
 
-    window.addEventListener(event, eventListener);
-    return () => window.removeEventListener(event, eventListener);
+    document.addEventListener(event, eventListener);
+    return () => document.removeEventListener(event, eventListener);
   }, [event, callback]);
 }
 
