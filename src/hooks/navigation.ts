@@ -16,7 +16,9 @@ function useNavigation() {
   function go(direction: Direction, event: KeyboardEvent) {
     event.preventDefault();
     try {
-      const candidates = DOMHelper.getExplicitelyFocusableElements();
+      const candidates = DOMHelper.getExplicitelyFocusableElements().filter(
+        element => element != document.activeElement,
+      );
       const target = event.target || document.documentElement;
       const next = target.spatialNavigationSearch(direction, { candidates });
 
