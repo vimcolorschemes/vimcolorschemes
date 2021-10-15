@@ -11,15 +11,16 @@ function getExplicitelyFocusableElements(): HTMLElement[] {
 /**
  * Returns true if the HTML element is an input
  *
- * @param element - The element to verify
- * @returns True if the element is an input, false otherwise
+ * @param {Object} element - The element to verify
+ * @returns {boolean} True if the element is an input, false otherwise
  */
-function isInput(element: EventTarget | null): boolean {
+function isTextInput(element: EventTarget | null): boolean {
   if (element == null || !(element instanceof HTMLElement)) {
     return false;
   }
 
   const { tagName, type } = element as HTMLInputElement;
+
   return (
     (tagName === 'INPUT' &&
       ['submit', 'reset', 'checkbox', 'radio'].indexOf(type) < 0) ||
@@ -55,7 +56,7 @@ function isInViewport(element: HTMLElement): boolean {
 
 const DOMHelper = {
   getExplicitelyFocusableElements,
-  isInput,
+  isTextInput,
   isInViewport,
 };
 

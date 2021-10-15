@@ -23,7 +23,7 @@ function useShortcut(shortcuts: Shortcuts) {
     if (
       !shortcuts ||
       !Object.keys(shortcuts).includes(key) ||
-      DOMHelper.isInput(target)
+      DOMHelper.isTextInput(target)
     ) {
       return;
     }
