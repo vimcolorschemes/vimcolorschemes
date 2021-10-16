@@ -18,8 +18,8 @@
     "cypress.run": "cypress run",
     "create-component": "./bin/create-component",
     "create-icon": "./bin/create-icon",
-    "ci.test.unit": "jest",
-    "ci.test.e2e": "start-server-and-test start http://localhost:8000 cypress.run"
+    "ci.build": "npm run clean && npm run build",
+    "ci.test.unit": "jest"
   },
   "dependencies": {
     "classnames": "^2.3.1",
