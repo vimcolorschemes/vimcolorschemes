@@ -20,6 +20,7 @@ function Gutter({ cursorLine, lineCount }: Props) {
             'CursorLineNrFg CursorLineNrBg':
               cursorLine != null && line === cursorLine,
           })}
+          data-ignore-a11y
         >
           {line}
         </span>

@@ -14,7 +14,9 @@ function Buffer({ cursorLine, lineCount, children }: Props) {
   return (
     <span className="buffer">
       <Gutter lineCount={lineCount} cursorLine={cursorLine} />
-      <code className="buffer__code">{children}</code>
+      <code className="buffer__code" tabIndex={0} data-ignore-a11y>
+        {children}
+      </code>
     </span>
   );
 }
