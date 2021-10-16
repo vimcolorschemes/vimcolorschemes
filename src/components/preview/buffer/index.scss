@@ -1,6 +1,6 @@
 .buffer {
   display: flex;
-  column-gap: 0.5rem;
+  column-gap: var(--small-space);
   position: relative;
 }
 

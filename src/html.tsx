@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { Theme, THEME_KEY } from '@/lib/themes';
+import { Background, BACKGROUND_KEY } from '@/lib/background';
 
 const spatialNavigation = require('!!raw-loader!/node_modules/spatial-navigation-polyfill/polyfill/spatial-navigation-polyfill.js');
 
 declare global {
   interface Window {
-    __theme: Theme;
-    __onThemeChange: () => void;
-    __setPreferredTheme: (theme: Theme) => void;
+    __background: Background;
+    __onBackgroundChange: () => void;
+    __setPreferredBackground: (background: Background) => void;
   }
 
   interface EventTarget {
@@ -29,30 +29,30 @@ interface Props {
 }
 
 function HTML(props: Props) {
-  const themeScript = `
+  const backgroundScript = `
     (function() {
-      window.__onThemeChange = function() {};
-      function setTheme(newTheme) {
-        window.__theme = newTheme;
-        preferredTheme = newTheme;
-        document.body.className = newTheme;
-        window.__onThemeChange(newTheme);
+      window.__onBackgroundChange = function() {};
+      function setBackground(newBackground) {
+        window.__background = newBackground;
+        preferredBackground = newBackground;
+        document.body.className = newBackground;
+        window.__onBackgroundChange(newBackground);
       }
-      var preferredTheme;
+      var preferredBackground;
       try {
-        preferredTheme = localStorage.getItem("${THEME_KEY}");
+        preferredBackground = localStorage.getItem("${BACKGROUND_KEY}");
       } catch (err) {}
-      window.__setPreferredTheme = function(newTheme) {
-        setTheme(newTheme);
+      window.__setPreferredBackground = function(newBackground) {
+        setBackground(newBackground);
         try {
-          localStorage.setItem("${THEME_KEY}", newTheme);
+          localStorage.setItem("${BACKGROUND_KEY}", newBackground);
         } catch (err) {}
       }
       var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
       darkQuery.addListener(function(event) {
-        window.__setPreferredTheme(e.matches ? "${Theme.Dark}" : "${Theme.Light}")
+        window.__setPreferredBackground(e.matches ? "${Background.Dark}" : "${Background.Light}")
       });
-      setTheme(preferredTheme || (darkQuery.matches ? "${Theme.Dark}" : "${Theme.Light}"));
+      setBackground(preferredBackground || (darkQuery.matches ? "${Background.Dark}" : "${Background.Light}"));
     })();`;
 
   return (
@@ -66,7 +66,7 @@ function HTML(props: Props) {
         />
         {props.headComponents}
       </head>
-      <body {...props.bodyAttributes} className={Theme.Light}>
+      <body {...props.bodyAttributes} className={Background.Light}>
         <script
           type="text/javascript"
           dangerouslySetInnerHTML={{
@@ -75,7 +75,7 @@ function HTML(props: Props) {
         />
         <script
           type="text/javascript"
-          dangerouslySetInnerHTML={{ __html: themeScript }}
+          dangerouslySetInnerHTML={{ __html: backgroundScript }}
         />
         {props.preBodyComponents}
         <div

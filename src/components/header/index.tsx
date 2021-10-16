@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import Routes from '@/lib/routes';
 
-import ThemeSwitch from '@/components/themeSwitch';
+import BackgroundSwitch from '@/components/backgroundSwitch';
 
 import './index.scss';
 
@@ -18,7 +18,7 @@ function Header({ isHome }: Props) {
       <Link to={Routes.Home} data-focusable data-testid="header__title">
         <Title>vimcolorschemes</Title>
       </Link>
-      <ThemeSwitch />
+      <BackgroundSwitch />
     </header>
   );
 }

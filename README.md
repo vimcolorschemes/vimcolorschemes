@@ -30,8 +30,8 @@
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
+  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light background" width="49%">
+  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark background" width="49%">
 </p>
 
 ## Welcome 🎉

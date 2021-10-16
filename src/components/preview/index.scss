@@ -9,9 +9,9 @@
     --normal-bg: var(--vim-NormalBg, white);
   }
 
-  --code-padding: 0.5rem;
-  --gutter-horizontal-padding: 0.5rem;
-  --gutter-number-width: 1rem;
+  --code-padding: var(--small-space);
+  --gutter-horizontal-padding: var(--small-space);
+  --gutter-number-width: var(--standard-space);
   --gutter-width: calc(
     var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
   );

@@ -10,7 +10,7 @@ interface Shortcuts {
  *
  * @example
  * const shortcuts = {
- *   b: () => toggleTheme(),
+ *   b: () => toggleBackground(),
  * }
  * useShortcut(shortcuts);
  *

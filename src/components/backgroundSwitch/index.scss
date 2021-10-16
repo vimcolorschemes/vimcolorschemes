@@ -1,0 +1,29 @@
+.background-switch {
+  position: relative;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+}
+
+.background-switch__input {
+  pointer-events: none;
+  position: absolute;
+  opacity: 0;
+}
+
+.background-switch__indicator {
+  padding: var(--smallest-space);
+  margin: calc(var(--smallest-space) * -1);
+}
+
+.background-switch:hover .background-switch__indicator {
+  box-shadow: 0px 2px 0px 0px var(--focus-border);
+}
+
+.background-switch__input:focus ~ * .background-switch__indicator {
+  box-shadow: 0px 0px 0px 2px var(--focus-border);
+}

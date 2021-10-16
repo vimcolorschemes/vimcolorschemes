@@ -17,5 +17,7 @@ body {
 
   --standard-space: 1rem;
   --small-space: calc(var(--standard-space) / 2);
+  --smallest-space: calc(var(--small-space) / 2);
   --large-space: calc(var(--standard-space) * 2);
+  --largest-space: calc(var(--large-space) * 2);
 }

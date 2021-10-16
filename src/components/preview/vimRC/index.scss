@@ -8,20 +8,24 @@ button.vimrc__button {
 
   cursor: pointer;
 
-  margin: -0.25rem;
-  padding: 0.25rem;
+  padding: var(--smallest-space);
+  margin: calc(var(--smallest-space) * -1);
 
   display: inline-flex;
   align-items: center;
   column-gap: 0.1rem;
 
-  &:hover,
+  &:hover {
+    box-shadow: 0px 2px 0px 0px var(--normal-fg);
+  }
+
   &:focus {
-    outline: 1px solid var(--normal-fg);
+    box-shadow: 0px 0px 0px 2px var(--normal-fg);
+    outline: none;
   }
 }
 
 .vimrc__button-icon {
-  width: 1rem;
-  height: 1rem;
+  width: var(--standard-space);
+  height: var(--standard-space);
 }

@@ -1,13 +1,13 @@
 import Keys from '@/lib/keys';
-import { Theme } from '@/lib/themes';
+import { Background } from '@/lib/background';
 
-describe('Theme switch', () => {
+describe('Background switch', () => {
   function waitForStateToLoad() {
-    return cy.getBySelector('theme-switch__label').should('be.visible');
+    return cy.getBySelector('background-switch__label').should('be.visible');
   }
 
   function clickOnSwitch() {
-    cy.getBySelector('theme-switch').click();
+    cy.getBySelector('background-switch').click();
   }
 
   function refresh() {
@@ -15,9 +15,12 @@ describe('Theme switch', () => {
     waitForStateToLoad();
   }
 
-  function checkTheme(theme: Theme) {
-    const label = theme === Theme.Light ? 'theme: light' : 'theme: dark';
-    const bodyClass = theme === Theme.Light ? 'light' : 'dark';
+  function checkBackground(background: Background) {
+    const label =
+      background === Background.Light
+        ? 'set background=light'
+        : 'set background=dark';
+    const bodyClass = background === Background.Light ? 'light' : 'dark';
 
     cy.contains(label).should('be.visible');
     cy.get('body').should('have.class', bodyClass);
@@ -27,47 +30,47 @@ describe('Theme switch', () => {
     cy.visit('/');
     cy.clearLocalStorage();
     waitForStateToLoad();
-    checkTheme(Theme.Light);
+    checkBackground(Background.Light);
   });
 
   it('should switch to dark on click', () => {
     clickOnSwitch();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
   });
 
   it('should load dark after change and refresh', () => {
     clickOnSwitch();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     refresh();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
   });
 
   it('should switch to light after initial dark load', () => {
     clickOnSwitch();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     refresh();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     refresh();
     clickOnSwitch();
-    checkTheme(Theme.Light);
+    checkBackground(Background.Light);
   });
 
   it('should toggle on shortcut press', () => {
     cy.triggerShortcut(Keys.Background);
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     refresh();
     cy.triggerShortcut(Keys.Background);
-    checkTheme(Theme.Light);
+    checkBackground(Background.Light);
   });
 
-  it('should conserve theme when changing pages', () => {
+  it('should conserve background when changing pages', () => {
     clickOnSwitch();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     cy.getBySelector('footer__about').click();
     waitForStateToLoad();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
     cy.visit('/');
     waitForStateToLoad();
-    checkTheme(Theme.Dark);
+    checkBackground(Background.Dark);
   });
 });

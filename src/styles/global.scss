@@ -33,6 +33,11 @@ a {
   color: var(--foreground);
 }
 
+pre,
+code {
+  font-family: monospace;
+}
+
 *[data-focusable] {
   padding: var(--standard-space);
   margin: calc(var(--standard-space) * -1);
