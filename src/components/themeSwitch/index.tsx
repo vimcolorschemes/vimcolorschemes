@@ -32,7 +32,7 @@ function ThemeSwitch() {
   }
 
   return (
-    <label className="theme-switch" data-testid="theme-switch">
+    <label className="theme-switch" data-testid="theme-switch" data-focusable>
       <input
         type="checkbox"
         className="theme-switch__input"
@@ -41,7 +41,6 @@ function ThemeSwitch() {
         onChange={event => {
           updateTheme(event.target.checked ? Theme.Dark : Theme.Light);
         }}
-        data-focusable
       />
       {!!theme && (
         <span data-testid="theme-switch__label">
