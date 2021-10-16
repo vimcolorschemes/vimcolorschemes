@@ -27,6 +27,10 @@ function ThemeSwitch() {
     }
   }, [isBrowser]);
 
+  function toggleTheme() {
+    updateTheme(theme === Theme.Dark ? Theme.Light : Theme.Dark);
+  }
+
   function updateTheme(theme: Theme) {
     window.__setPreferredTheme(theme);
   }
@@ -38,9 +42,12 @@ function ThemeSwitch() {
         className="theme-switch__input"
         aria-label="Switch between light and dark mode"
         checked={theme === Theme.Dark}
-        onChange={event => {
-          updateTheme(event.target.checked ? Theme.Dark : Theme.Light);
+        onKeyDown={event => {
+          if (event.key === Keys.Enter) {
+            toggleTheme();
+          }
         }}
+        onChange={toggleTheme}
       />
       {!!theme && (
         <span data-testid="theme-switch__label">
