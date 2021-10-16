@@ -2,19 +2,23 @@
 @import './mixins.scss';
 @import './variables.scss';
 
+html,
 body,
-html {
-  overflow-x: hidden;
+#___gatsby {
+  height: 100%;
   padding: 0;
   margin: 0;
 }
 
 #gatsby-focus-wrapper {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 var(--standard-space);
 
   & > * {
+    flex-shrink: 0;
     width: 80rem;
     max-width: 100%;
   }
@@ -29,7 +33,11 @@ a {
   color: var(--foreground);
 }
 
-*[data-focusable]:focus {
-  box-shadow: 0px 0px 0px 2px var(--focus-border);
-  outline: none;
+*[data-focusable] {
+  padding: var(--standard-space);
+  margin: calc(var(--standard-space) * -1);
+  &:focus {
+    box-shadow: 0px 0px 0px 2px var(--focus-border);
+    outline: none;
+  }
 }

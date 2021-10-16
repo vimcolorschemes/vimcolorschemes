@@ -16,4 +16,5 @@ body {
   }
 
   --standard-space: 1rem;
+  --large-space: calc(var(--standard-space) * 2);
 }

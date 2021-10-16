@@ -1,7 +1,9 @@
 .actions {
   display: flex;
   align-items: center;
-  column-gap: var(--standard-space);
+  justify-content: flex-end;
+  column-gap: calc(var(--standard-space) * 3);
+  padding: var(--large-space) var(--standard-space);
 }
 
 .actions__action {
