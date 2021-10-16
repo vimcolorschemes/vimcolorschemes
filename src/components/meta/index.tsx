@@ -17,7 +17,7 @@ function Meta({ repository, isRepositoryPage }: Props) {
 
   const Title = ({ children }) =>
     !isRepositoryPage ? (
-      <Link to={`/${repository.key.toLowerCase()}`} data-focusable>
+      <Link to={repository.route} data-focusable>
         <TitleTag>{children}</TitleTag>
       </Link>
     ) : (

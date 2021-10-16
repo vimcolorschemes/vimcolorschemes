@@ -42,7 +42,7 @@ export class Repository {
   }
 
   get route(): string {
-    return `/${URLHelper.URLify(this.key)}`;
+    return `/${URLHelper.URLify(this.key)}`.toLowerCase();
   }
 
   // Return all color scheme variations in a flat list
