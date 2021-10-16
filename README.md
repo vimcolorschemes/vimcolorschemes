@@ -19,7 +19,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Typescript-007ACC?style=flat-square&logo=typescript&logoColor=white" alt="Typescript" />
   <img src="https://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
   <img src="https://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
   <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
