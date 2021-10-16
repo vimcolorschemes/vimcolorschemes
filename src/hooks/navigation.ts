@@ -13,26 +13,49 @@ enum Direction {
  * Uses: https://github.com/WICG/spatial-navigation
  */
 function useNavigation() {
+  function getFirstVisible(candidates: HTMLElement[]): HTMLElement {
+    return candidates.find(DOMHelper.isInViewport) || candidates[0];
+  }
+
+  function focus(element: HTMLElement) {
+    if (!DOMHelper.isInViewport(element)) {
+      element.scrollIntoView({ block: 'center' });
+    }
+    element.focus({ preventScroll: true });
+  }
+
   function go(direction: Direction, event: KeyboardEvent) {
     event.preventDefault();
     try {
       const candidates = DOMHelper.getExplicitelyFocusableElements().filter(
         element => element != document.activeElement,
       );
-      const target = event.target || document.documentElement;
-      const next = target.spatialNavigationSearch(direction, { candidates });
 
+      if (!candidates.length) {
+        return;
+      }
+
+      if (
+        event.target == null ||
+        event.target === document.getElementById('gatsby-focus-wrapper')
+      ) {
+        focus(getFirstVisible(candidates));
+        return;
+      }
+
+      let next = event.target.spatialNavigationSearch(direction, {
+        candidates,
+      });
       if (!next) {
         return;
       }
 
-      if (!DOMHelper.isInViewport(next)) {
-        next.scrollIntoView({ block: 'center' });
+      if (!candidates.includes(next)) {
+        next = getFirstVisible(candidates);
       }
-      next.focus({ preventScroll: true });
-    } catch (error) {
-      console.error(error);
-    }
+
+      focus(next);
+    } catch {}
   }
 
   useShortcut({
