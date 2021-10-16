@@ -9,16 +9,17 @@ import Header from '@/components/header';
 import './index.scss';
 
 interface Props {
+  isHome?: boolean;
   children?: React.ReactNode;
   className?: string;
 }
 
-function Page({ children, className }: Props) {
+function Page({ isHome, children, className }: Props) {
   useNavigation();
 
   return (
     <>
-      <Header />
+      <Header isHome={isHome} />
       <main className={classnames('main', className)}>{children}</main>
       <Footer />
     </>

@@ -7,11 +7,16 @@ import ThemeSwitch from '@/components/themeSwitch';
 
 import './index.scss';
 
-function Header() {
+interface Props {
+  isHome?: boolean;
+}
+
+function Header({ isHome }: Props) {
+  const Title = isHome ? 'h1' : 'h2';
   return (
     <header className="header">
       <Link to={Routes.Home} data-focusable>
-        vimcolorschemes
+        <Title>vimcolorschemes</Title>
       </Link>
       <ThemeSwitch />
     </header>

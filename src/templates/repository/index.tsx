@@ -27,7 +27,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
         description={repository.description}
         pathname={location.pathname}
       />
-      {repository.key}
+      <h1>{repository.key}</h1>
       {repository.flattenedVimColorSchemes.map(vimColorScheme => (
         <Preview
           vimColorSchemes={[vimColorScheme]}

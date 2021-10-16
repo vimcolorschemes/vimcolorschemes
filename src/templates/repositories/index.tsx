@@ -43,7 +43,7 @@ function IndexPage({
   );
 
   return (
-    <Page className="repositories">
+    <Page className="repositories" isHome>
       <SEO
         title={`${actionFromURL.label} vim color schemes`}
         description={`vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation. Check out the ${actionFromURL.label} vim color schemes!`}
@@ -53,6 +53,8 @@ function IndexPage({
         <Actions activeAction={actionFromURL} />
         <input
           type="search"
+          aria-label="search"
+          placeholder="dark, low contrast..."
           value={search.input}
           onChange={event => search.setInput(event.target.value)}
         />
