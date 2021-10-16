@@ -7,5 +7,5 @@
 .repositories__header {
   display: flex;
   flex-direction: column;
-  row-gap: $standard-space;
+  row-gap: var(--standard-space);
 }

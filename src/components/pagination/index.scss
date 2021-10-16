@@ -1,5 +1,5 @@
 .pagination {
   display: flex;
   align-items: center;
-  column-gap: $standard-space;
+  column-gap: var(--standard-space);
 }

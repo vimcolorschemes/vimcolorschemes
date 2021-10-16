@@ -1,7 +1,7 @@
 .footer {
   display: flex;
   align-items: center;
-  column-gap: $standard-space;
+  column-gap: var(--standard-space);
 
   & > *:first-child {
     flex: 1;

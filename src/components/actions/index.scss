@@ -1,7 +1,7 @@
 .actions {
   display: flex;
   align-items: center;
-  column-gap: $standard-space;
+  column-gap: var(--standard-space);
 }
 
 .actions__action {

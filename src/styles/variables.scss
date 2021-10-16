@@ -1,1 +1,19 @@
-$standard-space: 1rem;
+body {
+  // source: color-name.com
+  --white: #ffffff;
+  --davys-grey: #5c5c5c;
+  --dark-charcoal: #333333;
+  --chinese-silver: #cccccc;
+
+  --background: var(--white);
+  --focus-border: var(--davys-grey);
+  --foreground: var(--dark-charcoal);
+
+  &.dark {
+    --background: var(--dark-charcoal);
+    --focus-border: var(--chinese-silver);
+    --foreground: var(--white);
+  }
+
+  --standard-space: 1rem;
+}
