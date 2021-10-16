@@ -11,7 +11,7 @@ function Footer() {
       <Link to={Routes.Home} data-focusable>
         vimcolorschemes
       </Link>
-      <Link to={Routes.About} data-focusable>
+      <Link to={Routes.About} data-focusable data-testid="footer__about">
         About
       </Link>
       <a href={Routes.Github} rel="noopener" target="_blank" data-focusable>

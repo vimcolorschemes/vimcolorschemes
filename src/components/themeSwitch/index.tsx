@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Keys from '@/lib/keys';
 import useShortcut from '@/hooks/shortcut';
 import { Theme } from '@/lib/themes';
 
@@ -11,7 +12,9 @@ function ThemeSwitch() {
   const [theme, setTheme] = useState<Theme>();
 
   useShortcut({
-    b: () => updateTheme(theme === Theme.Light ? Theme.Dark : Theme.Light),
+    [Keys.Background]: () => {
+      updateTheme(theme === Theme.Light ? Theme.Dark : Theme.Light);
+    },
   });
 
   useEffect(() => {
@@ -41,7 +44,7 @@ function ThemeSwitch() {
         data-focusable
       />
       {!!theme && (
-        <span data-testid="theme-switch-label">
+        <span data-testid="theme-switch__label">
           theme: <strong>{theme}</strong>
         </span>
       )}

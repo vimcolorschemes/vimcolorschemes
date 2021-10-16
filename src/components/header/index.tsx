@@ -15,7 +15,7 @@ function Header({ isHome }: Props) {
   const Title = isHome ? 'h1' : 'h2';
   return (
     <header className="header">
-      <Link to={Routes.Home} data-focusable>
+      <Link to={Routes.Home} data-focusable data-testid="header__title">
         <Title>vimcolorschemes</Title>
       </Link>
       <ThemeSwitch />
