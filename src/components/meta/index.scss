@@ -1,0 +1,23 @@
+.meta {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--standard-space);
+}
+
+.meta__header {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--small-space);
+}
+
+.meta__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meta__footer {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--small-space);
+}

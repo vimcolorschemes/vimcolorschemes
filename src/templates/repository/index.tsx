@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
+import Meta from '@/components/meta';
 import Page from '@/components/page';
 import Preview from '@/components/preview';
 import SEO from '@/components/seo';
@@ -27,7 +28,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
         description={repository.description}
         pathname={location.pathname}
       />
-      <h1>{repository.key}</h1>
+      <Meta repository={repository} isRepositoryPage />
       {repository.flattenedVimColorSchemes.map(vimColorScheme => (
         <Preview
           vimColorSchemes={[vimColorScheme]}
