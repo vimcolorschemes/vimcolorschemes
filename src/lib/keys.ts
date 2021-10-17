@@ -1,6 +1,9 @@
 enum Keys {
   Background = 'b',
-  Enter = 'Enter',
+  Escape = 'Escape',
+  Search = '/',
+  Submit = 'Enter',
+  Undo = 'u',
 }
 
 export default Keys;

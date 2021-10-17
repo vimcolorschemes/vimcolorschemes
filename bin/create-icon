@@ -24,13 +24,13 @@ interface Props {
   className?: string;
 }
 
-function ${name}({ className }: Props) {
+function Icon${name}({ className }: Props) {
   return (
     <svg className={className} />
   );
 }
 
-export default ${name};`;
+export default Icon${name};`;
 
 console.log(`creating file: '${tsFile}'`);
 fs.appendFileSync(tsFile, componentTemplate);

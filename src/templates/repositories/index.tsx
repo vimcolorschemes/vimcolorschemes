@@ -15,6 +15,7 @@ import Pagination from '@/components/pagination';
 import SEO from '@/components/seo';
 
 import './index.scss';
+import SearchInput from '@/components/searchInput';
 
 interface Props {
   data: {
@@ -50,16 +51,10 @@ function IndexPage({
         pathname={location.pathname}
       />
       <header className="repositories__header">
+        <SearchInput value={search.input} onChange={search.setInput} />
         <Actions activeAction={actionFromURL} />
-        <input
-          type="search"
-          aria-label="search"
-          placeholder="dark, low contrast..."
-          value={search.input}
-          onChange={event => search.setInput(event.target.value)}
-        />
-        <p>{search.totalCount} repositories</p>
       </header>
+      <p>{search.totalCount} repositories</p>
       {search.isError && <p>Error searching...</p>}
       <Grid>
         {search.repositories.map(repository => (

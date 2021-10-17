@@ -47,7 +47,7 @@ function BackgroundSwitch() {
         aria-label="Switch between light and dark background"
         checked={background === Background.Dark}
         onKeyDown={event => {
-          if (event.key === Keys.Enter) {
+          if (event.key === Keys.Submit) {
             toggleBackground();
           }
         }}

@@ -15,6 +15,10 @@ body {
   --code-block-foreground: #c6c8d1;
   --code-block-foreground-shade-1: #84a0c6;
 
+  --input-foreground: var(--foreground);
+  --input-placeholder: var(--foreground-shade-1);
+  --input-icon: var(--foreground);
+
   &.dark {
     --background: var(--dark-charcoal);
     --focus-border: var(--chinese-silver);
@@ -38,5 +42,5 @@ body {
   --standard-font-size: 16px;
   --line-height: 1.5;
 
-  --standard-border-radius: 3px;
+  --standard-border-radius: 5px;
 }
