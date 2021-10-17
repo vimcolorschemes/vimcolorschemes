@@ -1,5 +1,21 @@
 .pagination {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   column-gap: var(--standard-space);
+
+  & > div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & > div:first-child {
+    justify-content: flex-start;
+  }
+
+  & > div:last-child {
+    justify-content: flex-end;
+  }
 }
