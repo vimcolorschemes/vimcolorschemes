@@ -24,7 +24,7 @@ function Meta({ repository, isRepositoryPage }: Props) {
           <div>{repository.stargazersCount}</div>
         </div>
         <div className="meta__header-row">
-          <TitleTag>{repository.name}</TitleTag>
+          <TitleTag aria-label={repository.title}>{repository.name}</TitleTag>
           <div>{repository.weekStargazersCount}</div>
         </div>
       </div>
