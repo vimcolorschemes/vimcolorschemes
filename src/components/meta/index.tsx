@@ -1,5 +1,4 @@
 import React, { useMemo } from 'react';
-import { Link } from 'gatsby';
 
 import DateHelper from '@/helpers/date';
 import { Repository } from '@/models/repository';
@@ -12,18 +11,10 @@ interface Props {
 }
 
 function Meta({ repository, isRepositoryPage }: Props) {
-  const TitleTag = useMemo(() => (isRepositoryPage ? 'h1' : 'h2'), [
-    isRepositoryPage,
-  ]);
-
-  const Title = ({ children }) =>
-    !isRepositoryPage ? (
-      <Link to={repository.route} data-focusable>
-        <TitleTag>{children}</TitleTag>
-      </Link>
-    ) : (
-      <TitleTag>{children}</TitleTag>
-    );
+  const TitleTag = useMemo(
+    () => (isRepositoryPage ? 'h1' : 'h2'),
+    [isRepositoryPage],
+  );
 
   return (
     <div className="meta">
@@ -33,7 +24,7 @@ function Meta({ repository, isRepositoryPage }: Props) {
           <div>{repository.stargazersCount}</div>
         </div>
         <div className="meta__header-row">
-          <Title>{repository.name}</Title>
+          <TitleTag>{repository.name}</TitleTag>
           <div>{repository.weekStargazersCount}</div>
         </div>
       </div>

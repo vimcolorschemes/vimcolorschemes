@@ -2,4 +2,25 @@
   display: flex;
   flex-direction: column;
   row-gap: var(--standard-space);
+
+  position: relative;
+
+  @include invertedPadding;
+  &:hover {
+    @include hoverBorder;
+  }
+  &:focus-within {
+    @include focusBorder;
+  }
+}
+
+.card__ghost-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+  pointer-events: none;
+  opacity: 0;
 }

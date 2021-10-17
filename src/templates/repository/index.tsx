@@ -22,9 +22,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
   return (
     <Page>
       <SEO
-        title={`${
-          repository.flattenedVimColorSchemes[0]?.name || repository.name
-        } vim color scheme, by ${repository.owner.name}`}
+        title={repository.title}
         description={repository.description}
         pathname={location.pathname}
       />

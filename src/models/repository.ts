@@ -45,6 +45,11 @@ export class Repository {
     return `/${URLHelper.URLify(this.key)}`.toLowerCase();
   }
 
+  get title(): string {
+    const name = this.flattenedVimColorSchemes[0]?.name || this.name;
+    return `${name} vim color scheme, by ${this.owner.name}`;
+  }
+
   // Return all color scheme variations in a flat list
   get flattenedVimColorSchemes(): VimColorScheme[] {
     return this.vimColorSchemes.reduce(

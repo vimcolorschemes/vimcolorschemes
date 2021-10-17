@@ -14,7 +14,7 @@ declare global {
   interface EventTarget {
     spatialNavigationSearch: (
       direction: 'left' | 'down' | 'up' | 'right',
-      options: { candidates: Element[] },
+      options?: { candidates?: Element[]; container?: Element },
     ) => HTMLElement | null;
   }
 }
