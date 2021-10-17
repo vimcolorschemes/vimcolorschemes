@@ -9,10 +9,11 @@ import './index.scss';
 
 interface Props {
   isHome?: boolean;
+  isFooter?: boolean;
 }
 
-function HomeLink({ isHome }: Props) {
-  const Title = isHome ? 'h1' : 'h2';
+function HomeLink({ isHome, isFooter }: Props) {
+  const Title = isFooter ? 'span' : isHome ? 'h1' : 'h2';
 
   return (
     <Link to={Routes.Home} className="home-link" data-focusable>

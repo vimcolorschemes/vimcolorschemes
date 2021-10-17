@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   column-gap: var(--small-space);
-  font-size: 1rem;
+  font-size: 1em;
 }
 
 .home-link__logo {
@@ -15,5 +15,11 @@
 
   & > span:first-child {
     color: var(--foreground);
+  }
+}
+
+@include breakpoint(large) {
+  .home-link {
+    font-size: 2em;
   }
 }

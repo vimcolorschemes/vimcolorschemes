@@ -15,7 +15,7 @@ function Footer({ isHome }: Props) {
   return (
     <footer className="footer">
       <div className="footer__links">
-        <HomeLink isHome={isHome} />
+        <HomeLink isHome={isHome} isFooter />
       </div>
       <div className="footer__links">
         <Link to={Routes.About} data-focusable data-testid="footer__about">
