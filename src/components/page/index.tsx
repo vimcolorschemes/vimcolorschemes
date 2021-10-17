@@ -21,7 +21,7 @@ function Page({ isHome, children, className }: Props) {
     <>
       <Header isHome={isHome} />
       <main className={classnames('main', className)}>{children}</main>
-      <Footer />
+      <Footer isHome={isHome} />
     </>
   );
 }

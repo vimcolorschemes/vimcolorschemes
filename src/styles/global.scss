@@ -27,9 +27,11 @@ body,
 body {
   background: var(--background);
   color: var(--foreground);
+  font-size: var(--font-size);
 }
 
 a {
+  text-decoration: none;
   color: var(--foreground);
 }
 
@@ -49,5 +51,11 @@ code {
   &:focus {
     box-shadow: 0px 0px 0px 2px var(--focus-border);
     outline: none;
+  }
+}
+
+@include breakpoint(medium) {
+  #gatsby-focus-wrapper {
+    padding: 0 var(--large-space);
   }
 }

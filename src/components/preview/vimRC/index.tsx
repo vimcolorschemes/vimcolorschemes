@@ -3,7 +3,7 @@ import React from 'react';
 import { Background, VimColorScheme } from '@/models/vimColorScheme';
 
 import Code from '@/components/preview/code';
-import IconArrowCircle from '@/components/icons/iconArrowCircle';
+import IconArrowCircle from '@/components/icons/arrowCircle';
 
 import './index.scss';
 

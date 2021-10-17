@@ -3,15 +3,19 @@ import { Link } from 'gatsby';
 
 import Routes from '@/lib/routes';
 
+import HomeLink from '@/components/homeLink';
+
 import './index.scss';
 
-function Footer() {
+interface Props {
+  isHome?: boolean;
+}
+
+function Footer({ isHome }: Props) {
   return (
     <footer className="footer">
       <div className="footer__links">
-        <Link to={Routes.Home} data-focusable>
-          vimcolorschemes
-        </Link>
+        <HomeLink isHome={isHome} />
       </div>
       <div className="footer__links">
         <Link to={Routes.About} data-focusable data-testid="footer__about">

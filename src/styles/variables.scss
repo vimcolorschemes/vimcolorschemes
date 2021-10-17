@@ -8,6 +8,7 @@ body {
   --background: var(--white);
   --focus-border: var(--davys-grey);
   --foreground: var(--dark-charcoal);
+  --foreground-shade-1: var(--davys-grey);
 
   &.dark {
     --background: var(--dark-charcoal);
@@ -20,4 +21,6 @@ body {
   --smallest-space: calc(var(--small-space) / 2);
   --large-space: calc(var(--standard-space) * 2);
   --largest-space: calc(var(--large-space) * 2);
+
+  --font-size: 16px;
 }
