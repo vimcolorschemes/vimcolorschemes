@@ -8,37 +8,15 @@ function IconLogo({ className }: Props) {
   return (
     <svg
       className={className}
-      width="423"
-      height="374"
-      viewBox="0 0 423 374"
-      fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 423 374"
     >
-      <g clipPath="url(#clip0)">
-        <path
-          d="M413.245 92.7072L212.062 366.054L10.8788 92.7072L413.245 92.7072Z"
-          fill="white"
-          stroke="#333333"
-          strokeWidth="9.42"
-        />
-        <path
-          d="M413.245 48.4145L212.062 321.762L10.8788 48.4145L413.245 48.4145Z"
-          fill="white"
-          stroke="#333333"
-          strokeWidth="9.42"
-        />
-        <path
-          d="M413.245 3.04422L212.062 276.391L10.8788 3.04422L413.245 3.04422Z"
-          fill="white"
-          stroke="#333333"
-          strokeWidth="9.42"
-        />
+      <g fill="#fff" stroke="#333" strokeWidth="9.42">
+        <path d="M413.245 92.707 212.062 366.054 10.879 92.707h402.366Z" />
+        <path d="M413.245 48.414 212.062 321.762 10.879 48.414h402.366Z" />
+        <path d="M413.245 3.044 212.062 276.391 10.879 3.044h402.366Z" />
       </g>
-      <defs>
-        <clipPath id="clip0">
-          <rect width="423" height="374" fill="white" />
-        </clipPath>
-      </defs>
     </svg>
   );
 }
