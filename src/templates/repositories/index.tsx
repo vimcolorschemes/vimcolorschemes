@@ -54,7 +54,7 @@ function IndexPage({
         <SearchInput value={search.input} onChange={search.setInput} />
         <Actions activeAction={actionFromURL} />
       </header>
-      <p>{search.totalCount} repositories</p>
+      <p>{search.totalCount} color schemes</p>
       {search.isError && <p>Error searching...</p>}
       <Grid>
         {search.repositories.map(repository => (
