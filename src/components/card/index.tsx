@@ -13,13 +13,16 @@ interface Props {
 }
 
 function Card({ repository }: Props) {
+  const linkLabel = `Go to page: ${repository.title}`;
   return (
     <article className="card">
       <Link to={repository.route} data-focusable className="card__ghost-link">
-        Go to page: {repository.title}
+        {linkLabel}
       </Link>
       <Preview vimColorSchemes={repository.vimColorSchemes} />
-      <Meta repository={repository} />
+      <Link to={repository.route} tabIndex={-1} aria-label={linkLabel}>
+        <Meta repository={repository} />
+      </Link>
     </article>
   );
 }
