@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 
+import DateHelper from '@/helpers/date';
 import { Repository } from '@/models/repository';
 
 import './index.scss';
@@ -38,8 +39,8 @@ function Meta({ repository, isRepositoryPage }: Props) {
       </div>
       <div className="meta__description">{repository.description}</div>
       <div className="meta__footer">
-        <p>{repository.githubCreatedAt}</p>
-        <p>{repository.lastCommitAt}</p>
+        <p>{DateHelper.fromNow(repository.githubCreatedAt)}</p>
+        <p>{DateHelper.fromNow(repository.lastCommitAt)}</p>
       </div>
     </div>
   );
