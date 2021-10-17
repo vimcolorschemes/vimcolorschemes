@@ -24,5 +24,17 @@ module.exports = {
         collection: ['repositories'],
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'vimcolorschemes',
+        short_name: 'vimcolorschemes',
+        start_url: '/',
+        background_color: '#fff',
+        theme_color: '#333',
+        display: 'standalone',
+        icon: 'src/images/logo_square.png',
+      },
+    },
   ],
 };
