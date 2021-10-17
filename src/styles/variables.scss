@@ -14,6 +14,7 @@ body {
     --background: var(--dark-charcoal);
     --focus-border: var(--chinese-silver);
     --foreground: var(--white);
+    --foreground-shade-1: var(--chinese-silver);
   }
 
   --standard-space: 1rem;
@@ -22,5 +23,8 @@ body {
   --large-space: calc(var(--standard-space) * 2);
   --largest-space: calc(var(--large-space) * 2);
 
-  --font-size: 16px;
+  --standard-font-family: 'Source Sans Pro', sans-serif;
+  --code-font-family: 'Jetbrains Mono', monospace;
+  --standard-font-size: 16px;
+  --line-height: 1.5;
 }

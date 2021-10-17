@@ -27,7 +27,14 @@ body,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-size: var(--font-size);
+  font-family: var(--standard-font-family);
+  font-size: var(--standard-font-size);
+  line-height: var(--line-height);
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -35,9 +42,13 @@ a {
   color: var(--foreground);
 }
 
+button {
+  font-size: var(--standard-font-size);
+}
+
 pre,
 code {
-  font-family: monospace;
+  font-family: var(--code-font-family);
 }
 
 *[data-focusable] {
