@@ -15,12 +15,14 @@ button.vimrc__button {
   align-items: center;
   column-gap: 0.1rem;
 
+  --border-color: var(--vim-vimCommand, var(--vim-vimOper, var(--normal-fg)));
+
   &:hover {
-    box-shadow: 0px 2px 0px 0px var(--normal-fg);
+    box-shadow: 0px 2px 0px 0px var(--border-color);
   }
 
   &:focus {
-    box-shadow: 0px 0px 0px 2px var(--normal-fg);
+    box-shadow: 0px 0px 0px 2px var(--border-color);
     outline: none;
   }
 }

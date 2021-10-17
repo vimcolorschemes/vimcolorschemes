@@ -19,6 +19,8 @@
   background: var(--normal-bg);
   color: var(--normal-fg);
   line-height: 1.125rem;
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
 }
 
 .preview > * {
@@ -70,6 +72,7 @@
 
 // content below is generated using the bin/preview/generate-css command
 .vimLineComment {
+  font-style: italic;
   color: var(--vim-vimLineComment);
 }
 .vimCommand {

@@ -10,11 +10,21 @@ body {
   --foreground: var(--dark-charcoal);
   --foreground-shade-1: var(--davys-grey);
 
+  // source: iceberg vim color scheme, by cocopon
+  --code-block-background: #161821;
+  --code-block-foreground: #c6c8d1;
+  --code-block-foreground-shade-1: #84a0c6;
+
   &.dark {
     --background: var(--dark-charcoal);
     --focus-border: var(--chinese-silver);
     --foreground: var(--white);
     --foreground-shade-1: var(--chinese-silver);
+
+    // source: iceberg vim color scheme, by cocopon
+    --code-block-background: #e8e9ec;
+    --code-block-foreground: #33374c;
+    --code-block-foreground-shade-1: #2d539e;
   }
 
   --standard-space: 1rem;
@@ -27,4 +37,6 @@ body {
   --code-font-family: 'Jetbrains Mono', monospace;
   --standard-font-size: 16px;
   --line-height: 1.5;
+
+  --standard-border-radius: 3px;
 }

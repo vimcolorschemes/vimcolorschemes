@@ -58,7 +58,9 @@ function BackgroundSwitch() {
         <span data-testid="background-switch__label">
           <pre>
             <code>
-              set background=
+              <span className="background-switch__indicator-operator">set</span>
+              <span> background</span>
+              <span className="background-switch__indicator-operator">=</span>
               <span className="background-switch__indicator">{background}</span>
             </code>
           </pre>
