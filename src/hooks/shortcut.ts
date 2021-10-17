@@ -18,9 +18,12 @@ interface Shortcuts {
  */
 function useShortcut(shortcuts: Shortcuts) {
   useEvent<KeyboardEvent>('keydown', event => {
-    const { key, target } = event;
+    const { key, target, ctrlKey, metaKey, altKey } = event;
 
     if (
+      ctrlKey ||
+      metaKey ||
+      altKey ||
       !shortcuts ||
       !Object.keys(shortcuts).includes(key) ||
       DOMHelper.isTextInput(target)
