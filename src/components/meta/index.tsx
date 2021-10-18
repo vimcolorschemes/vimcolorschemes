@@ -3,6 +3,9 @@ import React, { useMemo } from 'react';
 import DateHelper from '@/helpers/date';
 import { Repository } from '@/models/repository';
 
+import IconStar from '@/components/icons/star';
+import IconTrendingUp from '@/components/icons/trendingUp';
+
 import './index.scss';
 
 interface Props {
@@ -20,18 +23,44 @@ function Meta({ repository, isRepositoryPage }: Props) {
     <div className="meta">
       <div className="meta__header">
         <div className="meta__header-row">
-          <div>{repository.owner.name}</div>
-          <div>{repository.stargazersCount}</div>
+          <div className="meta__subtitle">{repository.owner.name}</div>
+          <div className="meta__statistic">
+            <IconStar className="meta__icon" />
+            <b>{repository.stargazersCount}</b>
+          </div>
         </div>
         <div className="meta__header-row">
-          <TitleTag aria-label={repository.title}>{repository.name}</TitleTag>
-          <div>{repository.weekStargazersCount}</div>
+          <TitleTag aria-label={repository.title} className="meta__title">
+            {repository.name}
+          </TitleTag>
+          {repository.weekStargazersCount > 0 && (
+            <div className="meta__statistic">
+              <IconTrendingUp className="meta__icon" />
+              <span>
+                <b>{repository.weekStargazersCount}</b>/week
+              </span>
+            </div>
+          )}
         </div>
       </div>
       <div className="meta__description">{repository.description}</div>
       <div className="meta__footer">
-        <p>{DateHelper.fromNow(repository.githubCreatedAt)}</p>
-        <p>{DateHelper.fromNow(repository.lastCommitAt)}</p>
+        <p className="meta__footer-row">
+          Created{' '}
+          <b>
+            <time dateTime={repository.githubCreatedAt}>
+              {DateHelper.fromNow(repository.githubCreatedAt)}
+            </time>
+          </b>
+        </p>
+        <p className="meta__footer-row">
+          Last commit{' '}
+          <b>
+            <time dateTime={repository.lastCommitAt}>
+              {DateHelper.fromNow(repository.lastCommitAt)}
+            </time>
+          </b>
+        </p>
       </div>
     </div>
   );

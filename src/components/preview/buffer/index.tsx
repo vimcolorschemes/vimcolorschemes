@@ -16,7 +16,6 @@ function Buffer({ cursorLine, lineCount, children }: Props) {
       <Gutter lineCount={lineCount} cursorLine={cursorLine} />
       <code
         className="buffer__code"
-        tabIndex={-1}
         aria-label="Code sample in vimscript language"
         data-ignore-a11y
       >

@@ -7,7 +7,7 @@ interface Props {
 }
 
 function Grid({ children }: Props) {
-  return <div className="grid">{children}</div>;
+  return <section className="grid">{children}</section>;
 }
 
 export default Grid;
