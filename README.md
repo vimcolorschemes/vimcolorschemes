@@ -23,6 +23,7 @@
   <img src="https://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
   <img src="https://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
   <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
+  <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=flat-square&logo=testing-library&logoColor=white" alt="Testing library" />
   <img src="https://img.shields.io/badge/Cypress-17202C?style=flat-square&logo=cypress" alt="Cypress" />
   <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=black" alt="Amazon AWS" />
 </p>
