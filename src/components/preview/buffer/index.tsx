@@ -17,6 +17,7 @@ function Buffer({ cursorLine, lineCount, children }: Props) {
       <code
         className="buffer__code"
         aria-label="Code sample in vimscript language"
+        tabIndex={-1}
         data-ignore-a11y
       >
         {children}
