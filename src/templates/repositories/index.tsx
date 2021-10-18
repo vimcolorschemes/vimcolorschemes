@@ -79,7 +79,11 @@ export const query = graphql`
     $limit: Int!
   ) {
     repositoriesData: allMongodbVimcolorschemesRepositories(
-      filter: { updateValid: { eq: true }, generateValid: { eq: true } }
+      filter: {
+        updateValid: { eq: true }
+        generateValid: { eq: true }
+        vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+      }
       sort: { fields: $sortProperty, order: $sortOrder }
       skip: $skip
       limit: $limit

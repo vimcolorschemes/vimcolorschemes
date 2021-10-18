@@ -83,7 +83,11 @@ function createRepositoriesPages(
 const repositoriesQuery = `
 {
   repositoriesData: allMongodbVimcolorschemesRepositories(
-    filter: { updateValid: { eq: true }, generateValid: { eq: true } }
+    filter: {
+      updateValid: { eq: true }
+      generateValid: { eq: true }
+      vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+    }
   ) {
     apiRepositories: nodes {
       name
