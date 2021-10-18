@@ -1,12 +1,8 @@
 {
   "name": "vimcolorschemes",
   "version": "2.0.0",
-  "private": true,
   "description": "vimcolorschemes",
   "author": "@reobin",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
@@ -20,6 +16,24 @@
     "create-icon": "./bin/create-icon",
     "ci.build": "npm run clean && npm run build",
     "ci.test.unit": "jest"
+  },
+  "keywords": [
+    "gatsby",
+    "react",
+    "typescript",
+    "mongodb",
+    "gatsby",
+    "vim",
+    "color",
+    "schemes"
+  ],
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes"
+  },
+  "bugs": {
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes/issues"
   },
   "dependencies": {
     "classnames": "^2.3.1",
