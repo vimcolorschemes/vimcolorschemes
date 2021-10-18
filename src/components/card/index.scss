@@ -24,3 +24,12 @@
   pointer-events: none;
   opacity: 0;
 }
+
+.card__link {
+  margin: calc(var(--small-space) * -1);
+  padding: var(--small-space);
+
+  &:focus {
+    @include focusBorder(var(--focus-border-shade-1));
+  }
+}

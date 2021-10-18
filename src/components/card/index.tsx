@@ -20,7 +20,7 @@ function Card({ repository }: Props) {
         {linkLabel}
       </Link>
       <Preview vimColorSchemes={repository.vimColorSchemes} />
-      <Link to={repository.route} tabIndex={-1} aria-label={linkLabel}>
+      <Link to={repository.route} aria-label={linkLabel} className="card__link">
         <Meta repository={repository} />
       </Link>
     </article>

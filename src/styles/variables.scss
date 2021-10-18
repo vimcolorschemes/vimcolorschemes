@@ -7,6 +7,7 @@ body {
 
   --background: var(--white);
   --focus-border: var(--davys-grey);
+  --focus-border-shade-1: var(--chinese-silver);
   --foreground: var(--dark-charcoal);
   --foreground-shade-1: var(--davys-grey);
 
@@ -21,7 +22,8 @@ body {
 
   &.dark {
     --background: var(--dark-charcoal);
-    --focus-border: var(--chinese-silver);
+    --focus-border: var(--white);
+    --focus-border-shade-1: var(--chinese-silver);
     --foreground: var(--white);
     --foreground-shade-1: var(--chinese-silver);
 
