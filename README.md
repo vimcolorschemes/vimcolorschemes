@@ -13,8 +13,8 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square" alt="All contributors" />
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <img src="https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square" alt="All contributors" />
+  <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
