@@ -23,14 +23,14 @@ function Meta({ repository, isRepositoryPage }: Props) {
     <div className="meta">
       <div className="meta__header">
         <div className="meta__header-row">
-          <div className="meta__subtitle">{repository.owner.name}</div>
+          <div className="subtitle">{repository.owner.name}</div>
           <div className="meta__statistic">
             <IconStar className="meta__icon" />
             <b>{repository.stargazersCount}</b>
           </div>
         </div>
         <div className="meta__header-row">
-          <TitleTag aria-label={repository.title} className="meta__title">
+          <TitleTag aria-label={repository.title} className="title">
             {repository.name}
           </TitleTag>
           {repository.weekStargazersCount > 0 && (

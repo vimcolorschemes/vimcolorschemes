@@ -38,7 +38,7 @@ body {
 }
 
 a {
-  font-size: var(--standard-font-size);
+  font-size: inherit;
   text-decoration: none;
   color: var(--foreground);
 }
@@ -54,6 +54,19 @@ button {
 pre,
 code {
   font-family: var(--code-font-family);
+}
+
+.subtitle {
+  font-size: var(--large-font-size);
+}
+
+.title {
+  font-size: var(--largest-font-size);
+  font-weight: 700;
+}
+
+.inline-link {
+  color: var(--link);
 }
 
 *[data-focusable] {

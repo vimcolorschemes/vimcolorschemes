@@ -6,6 +6,7 @@ import Routes from '@/lib/routes';
 import HomeLink from '@/components/homeLink';
 
 import './index.scss';
+import ExternalLink from '../externalLink';
 
 interface Props {
   isHome?: boolean;
@@ -21,12 +22,12 @@ function Footer({ isHome }: Props) {
         <Link to={Routes.About} data-focusable data-testid="footer__about">
           About
         </Link>
-        <a href={Routes.Github} rel="noopener" target="_blank" data-focusable>
+        <ExternalLink to={Routes.Github} data-focusable>
           Github
-        </a>
-        <a href={Routes.Contact} rel="noopener" target="_blank" data-focusable>
+        </ExternalLink>
+        <ExternalLink to={Routes.Contact} data-focusable>
           Contact
-        </a>
+        </ExternalLink>
       </div>
     </footer>
   );

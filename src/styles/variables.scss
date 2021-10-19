@@ -1,20 +1,26 @@
 body {
   // source: color-name.com
   --white: #ffffff;
+  --platinum: #e3e3e3;
+  --chinese-silver: #cccccc;
   --davys-grey: #5c5c5c;
   --dark-charcoal: #333333;
-  --chinese-silver: #cccccc;
+  --jordy-blue: #85a9f7;
+  --cerulean-blue: #2855b7;
 
   --background: var(--white);
   --focus-border: var(--davys-grey);
   --focus-border-shade-1: var(--chinese-silver);
   --foreground: var(--dark-charcoal);
   --foreground-shade-1: var(--davys-grey);
+  --link: var(--cerulean-blue);
 
   // source: iceberg vim color scheme, by cocopon
   --code-block-background: #161821;
   --code-block-foreground: #c6c8d1;
   --code-block-foreground-shade-1: #84a0c6;
+
+  --blockquote-background: var(--platinum);
 
   --input-foreground: var(--foreground);
   --input-placeholder: var(--foreground-shade-1);
@@ -26,11 +32,14 @@ body {
     --focus-border-shade-1: var(--chinese-silver);
     --foreground: var(--white);
     --foreground-shade-1: var(--chinese-silver);
+    --link: var(--jordy-blue);
 
     // source: iceberg vim color scheme, by cocopon
     --code-block-background: #e8e9ec;
     --code-block-foreground: #33374c;
     --code-block-foreground-shade-1: #2d539e;
+
+    --blockquote-background: var(--davys-grey);
   }
 
   --standard-space: 1rem;
