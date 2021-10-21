@@ -8,7 +8,7 @@ button.vimrc__button {
 
   cursor: pointer;
 
-  padding: var(--smallest-space);
+  padding: 0 var(--smallest-space);
   margin: calc(var(--smallest-space) * -1);
 
   display: inline-flex;
