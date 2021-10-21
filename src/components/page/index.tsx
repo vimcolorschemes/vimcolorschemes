@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 
 import useNavigation from '@/hooks/navigation';
+import usePointerEvents from '@/hooks/pointerEvents';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
@@ -16,6 +17,7 @@ interface Props {
 
 function Page({ isHome, children, className }: Props) {
   useNavigation();
+  usePointerEvents();
 
   return (
     <>
