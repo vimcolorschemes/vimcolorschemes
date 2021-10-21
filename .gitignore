@@ -6,3 +6,8 @@ public
 # Cypress
 cypress/videos
 cypress/screenshots
+
+# Preview images
+
+!.previews/.gitkeep
+.previews/*
