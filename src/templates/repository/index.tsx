@@ -28,6 +28,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
         title={repository.title}
         description={repository.description}
         pathname={location.pathname}
+        og={{ image: repository.previewImageRoute }}
       />
       <section className="repository__content">
         <Meta repository={repository} isRepositoryPage />
