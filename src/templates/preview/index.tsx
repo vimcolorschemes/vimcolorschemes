@@ -4,11 +4,7 @@ import { graphql } from 'gatsby';
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
-import Grid from '@/components/grid';
-import Meta from '@/components/meta';
-import Page from '@/components/page';
 import Preview from '@/components/preview';
-import SEO from '@/components/seo';
 
 import './index.scss';
 
@@ -16,32 +12,16 @@ interface Props {
   data: {
     apiRepository: APIRepository;
   };
-  location: Location;
 }
 
-function RepositoryPage({ data: { apiRepository }, location }: Props) {
+function PreviewPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
-
+  const defaultVimColorScheme = repository.flattenedVimColorSchemes[0];
   return (
-    <Page className="repository">
-      <SEO
-        title={repository.title}
-        description={repository.description}
-        pathname={location.pathname}
-        og={{ image: repository.previewImageRoute }}
-      />
-      <section className="repository__content">
-        <Meta repository={repository} isRepositoryPage />
-        <Grid>
-          {repository.flattenedVimColorSchemes.map(vimColorScheme => (
-            <Preview
-              vimColorSchemes={[vimColorScheme]}
-              key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
-            />
-          ))}
-        </Grid>
-      </section>
-    </Page>
+    <Preview
+      vimColorSchemes={[defaultVimColorScheme]}
+      className="preview-page"
+    />
   );
 }
 
@@ -79,4 +59,4 @@ export const query = graphql`
   }
 `;
 
-export default RepositoryPage;
+export default PreviewPage;

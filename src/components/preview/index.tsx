@@ -12,9 +12,10 @@ import './index.scss';
 
 interface Props {
   vimColorSchemes: VimColorScheme[];
+  className?: string;
 }
 
-function Preview({ vimColorSchemes }: Props) {
+function Preview({ vimColorSchemes, className }: Props) {
   const defaultVimColorScheme = vimColorSchemes[0];
   const [index, setIndex] = useState<number>(0);
 
@@ -77,7 +78,7 @@ function Preview({ vimColorSchemes }: Props) {
 
   return (
     <div
-      className={classnames('preview', {
+      className={classnames('preview', className, {
         'preview--light': background === Background.Light,
         'preview--dark': background === Background.Dark,
       })}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet } from 'react-helmet';
 
@@ -8,10 +8,13 @@ interface Props {
   title: string;
   description: string;
   pathname: string;
+  og?: {
+    image?: string;
+  };
 }
 
-function SEO({ title, description, pathname }: Props) {
-  const { site } = useStaticQuery(
+function SEO({ title, description, pathname, og }: Props) {
+  const { site, logo } = useStaticQuery(
     graphql`
       query {
         site {
@@ -23,6 +26,11 @@ function SEO({ title, description, pathname }: Props) {
       }
     `,
   );
+
+  const image = useMemo(() => {
+    const path = !!og?.image ? og.image : '/';
+    return site.siteMetadata.siteUrl + path;
+  }, [og?.image, logo, site.siteMetadata.siteUrl]);
 
   return (
     <Helmet
@@ -51,6 +59,22 @@ function SEO({ title, description, pathname }: Props) {
           content: `${site.siteMetadata.siteUrl}${pathname}`,
         },
         {
+          property: 'og:image',
+          content: image,
+        },
+        {
+          property: 'og:image:type',
+          content: 'image/png',
+        },
+        {
+          property: 'og:image:width',
+          content: '400',
+        },
+        {
+          property: 'og:image:height',
+          content: '200',
+        },
+        {
           name: 'twitter:card',
           content: 'summary_large_image',
         },
@@ -65,6 +89,10 @@ function SEO({ title, description, pathname }: Props) {
         {
           name: 'twitter:description',
           content: description,
+        },
+        {
+          name: 'twitter:image',
+          content: image,
         },
       ]}
     />
