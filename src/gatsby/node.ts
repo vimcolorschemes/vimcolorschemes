@@ -1,3 +1,4 @@
+import fs from 'fs';
 import http from 'http';
 import nodeStatic from 'node-static';
 import path from 'path';
@@ -15,9 +16,9 @@ import {
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
 
+const BUILD_PATH = 'public';
 const PREVIEW_PORT = 8080;
 const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
-const PREVIEW_PATH = '.previews';
 
 const isSearchUp =
   !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
@@ -142,33 +143,6 @@ const repositoriesQuery = `
 }
 `;
 
-async function createPreviewImages(
-  apiRepositories: Repository[],
-): Promise<void> {
-  try {
-    apiRepositories.forEach(async repository => {
-      const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      });
-      const page = await browser.newPage();
-      await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
-
-      await page.screenshot({
-        path: `${PREVIEW_PATH}${repository.previewImagePath}`,
-        clip: {
-          x: 0,
-          y: 0,
-          width: 400,
-          height: 200,
-        },
-      });
-      await browser.close();
-    });
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
   const repositories = data.repositoriesData.apiRepositories.map(
@@ -188,7 +162,6 @@ export async function createPages({ graphql, actions: { createPage } }) {
 }
 
 export async function onPostBuild({ graphql }) {
-  console.log('start server...');
   const build = new nodeStatic.Server('public');
 
   http
@@ -198,9 +171,37 @@ export async function onPostBuild({ graphql }) {
     .listen(PREVIEW_PORT);
 
   const { data } = await graphql(repositoriesQuery);
-  const repositories = data.repositoriesData.apiRepositories.map(
+  const repositories: Repository[] = data.repositoriesData.apiRepositories.map(
     (apiRepository: APIRepository) => new Repository(apiRepository),
   );
 
-  createPreviewImages(repositories);
+  repositories.forEach(async repository => {
+    try {
+      const browser = await puppeteer.launch({
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      });
+      const page = await browser.newPage();
+      await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
+
+      const previewPath = BUILD_PATH + repository.previewImageRoute;
+      const previewDirectory = path.dirname(previewPath);
+
+      if (!fs.existsSync(previewDirectory)) {
+        fs.mkdirSync(previewDirectory, { recursive: true });
+      }
+
+      await page.screenshot({
+        path: previewPath,
+        clip: {
+          x: 0,
+          y: 0,
+          width: 400,
+          height: 200,
+        },
+      });
+      await browser.close();
+    } catch (error) {
+      console.error(error);
+    }
+  });
 }

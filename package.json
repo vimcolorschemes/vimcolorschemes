@@ -72,7 +72,6 @@
     "dotenv": "^10.0.0",
     "emoji-js": "^3.6.0",
     "eslint-config-react-app": "^6.0.0",
-    "http": "0.0.1-security",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.0",
     "node-static": "^0.7.11",

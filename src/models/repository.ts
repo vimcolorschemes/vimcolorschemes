@@ -54,8 +54,8 @@ export class Repository {
     return `${this.route}/preview`;
   }
 
-  get previewImagePath(): string {
-    return `/${this.owner.name}.${this.name}.preview.png`;
+  get previewImageRoute(): string {
+    return `/previews/${this.owner.name}.${this.name}.preview.png`;
   }
 
   // Return all color scheme variations in a flat list
