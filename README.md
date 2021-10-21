@@ -2,7 +2,10 @@
   <img alt="vimcolorschemes logo" src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
-  <b>WARNING: This is v2.0, coming soon to the main repository</b>
+  <b>Find the best vim color schemes around</b>
+</p>
+<p align="center">
+  <b>This is v2.0, releasing soon to vimcolorschemes.com</b>
 </p>
 
 <br>
