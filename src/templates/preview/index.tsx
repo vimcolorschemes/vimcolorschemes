@@ -6,20 +6,27 @@ import { Repository } from '@/models/repository';
 
 import Preview from '@/components/preview';
 
+import './index.scss';
+
 interface Props {
   data: {
     apiRepository: APIRepository;
   };
 }
 
-function RepositoryPage({ data: { apiRepository } }: Props) {
+function PreviewPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
   const defaultVimColorScheme = repository.flattenedVimColorSchemes[0];
-  return <Preview vimColorSchemes={[defaultVimColorScheme]} />;
+  return (
+    <Preview
+      vimColorSchemes={[defaultVimColorScheme]}
+      className="preview-page"
+    />
+  );
 }
 
 export const query = graphql`
-  query($ownerName: String!, $name: String!) {
+  query ($ownerName: String!, $name: String!) {
     apiRepository: mongodbVimcolorschemesRepositories(
       owner: { name: { eq: $ownerName } }
       name: { eq: $name }
@@ -52,4 +59,4 @@ export const query = graphql`
   }
 `;
 
-export default RepositoryPage;
+export default PreviewPage;

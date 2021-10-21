@@ -17,6 +17,8 @@ import {
 } from '../models/repository';
 
 const BUILD_PATH = 'public';
+const PREVIEW_WIDTH = 800;
+const PREVIEW_HEIGHT = 348;
 const PREVIEW_PORT = 8080;
 const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
 
@@ -178,7 +180,11 @@ export async function onPostBuild({ graphql }) {
   repositories.forEach(async repository => {
     try {
       const browser = await puppeteer.launch({
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+          `--window-size=${PREVIEW_WIDTH},${PREVIEW_HEIGHT}`,
+        ],
       });
       const page = await browser.newPage();
       await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
@@ -195,8 +201,8 @@ export async function onPostBuild({ graphql }) {
         clip: {
           x: 0,
           y: 0,
-          width: 400,
-          height: 200,
+          width: PREVIEW_WIDTH,
+          height: PREVIEW_HEIGHT,
         },
       });
       await browser.close();
