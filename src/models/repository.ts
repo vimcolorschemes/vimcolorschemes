@@ -51,7 +51,7 @@ export class Repository {
   }
 
   get previewRoute(): string {
-    return `${this.route}/preview`;
+    return `/preview/${this.route}`;
   }
 
   get previewImagePath(): string {

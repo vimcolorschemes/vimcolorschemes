@@ -1,9 +1,9 @@
 import ElasticSearchClient from '../services/elasticSearch';
 import path from 'path';
-import puppeteer from 'puppeteer';
+// import puppeteer from 'puppeteer';
 
-import URLHelper from '../helpers/url';
 import EmojiHelper from '../helpers/emoji';
+import URLHelper from '../helpers/url';
 import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
 import {
@@ -12,7 +12,6 @@ import {
   RepositoriesPageContext,
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
-import { APIRepository } from '../models/api';
 
 const isSearchUp =
   !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
@@ -65,7 +64,7 @@ async function createRepositoryPreviewPages(
   apiRepositories.forEach(repository =>
     createPage({
       path: repository.previewRoute,
-      component: path.resolve('src/templates/repository/index.tsx'),
+      component: path.resolve('src/templates/preview/index.tsx'),
       context: {
         ownerName: repository.owner.name,
         name: repository.name,
@@ -137,27 +136,27 @@ const repositoriesQuery = `
 }
 `;
 
-async function createPreviewImages(
-  apiRepositories: Repository[],
-): Promise<void> {
-  apiRepositories.forEach(async repository => {
-    const browser = await puppeteer.launch({
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
-    const page = await browser.newPage();
-    await page.goto(repository.previewRoute);
-    await page.screenshot({
-      path: repository.previewImagePath,
-      clip: {
-        x: 0,
-        y: 0,
-        width: 400,
-        height: 200,
-      },
-    });
-    await browser.close();
-  });
-}
+// async function createPreviewImages(
+//   apiRepositories: Repository[],
+// ): Promise<void> {
+//   apiRepositories.forEach(async repository => {
+//     const browser = await puppeteer.launch({
+//       args: ['--no-sandbox', '--disable-setuid-sandbox'],
+//     });
+//     const page = await browser.newPage();
+//     await page.goto(repository.previewRoute);
+//     await page.screenshot({
+//       path: repository.previewImagePath,
+//       clip: {
+//         x: 0,
+//         y: 0,
+//         width: 400,
+//         height: 200,
+//       },
+//     });
+//     await browser.close();
+//   });
+// }
 
 export async function createPages({ graphql, actions: { createPage } }) {
   const { data } = await graphql(repositoriesQuery);
@@ -170,7 +169,7 @@ export async function createPages({ graphql, actions: { createPage } }) {
 
   createRepositoriesPages(repositories, createPage);
 
-  createPreviewImages(repositories);
+  // createPreviewImages(repositories);
 
   if (isSearchUp) {
     const elasticSearchClient = new ElasticSearchClient();
