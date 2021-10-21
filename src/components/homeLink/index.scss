@@ -1,0 +1,25 @@
+.home-link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--small-space);
+  font-size: 1em;
+}
+
+.home-link__logo {
+  width: auto;
+  height: 2.5em;
+}
+
+.home-link__title {
+  color: var(--foreground-shade-1);
+
+  & > span:first-child {
+    color: var(--foreground);
+  }
+}
+
+@include breakpoint(large) {
+  .home-link {
+    font-size: 2em;
+  }
+}

@@ -1,0 +1,28 @@
+.about {
+  p {
+    margin-bottom: var(--standard-space);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-weight: bold;
+    margin-top: var(--large-space);
+    margin-bottom: var(--standard-space);
+  }
+
+  ul {
+    padding-left: 2rem;
+  }
+
+  li {
+    list-style: disc;
+  }
+
+  blockquote {
+    padding: 1rem;
+    background: var(--blockquote-background);
+    margin: 1rem 0;
+    border-radius: var(--standard-border-radius);
+  }
+}

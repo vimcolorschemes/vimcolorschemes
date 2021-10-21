@@ -3,6 +3,7 @@ import path from 'path';
 import puppeteer from 'puppeteer';
 
 import URLHelper from '../helpers/url';
+import EmojiHelper from '../helpers/emoji';
 import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
 import {
@@ -17,6 +18,8 @@ const isSearchUp =
   !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
   !!process.env.GATSBY_ELASTIC_SEARCH_CLOUD_ID;
 
+const REPOSITORY_NODE_TYPE = 'mongodbVimcolorschemesRepositories';
+
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
     resolve: {
@@ -24,6 +27,12 @@ export function onCreateWebpackConfig({ actions }) {
       extensions: ['ts', 'tsx'],
     },
   });
+}
+
+export function onCreateNode({ node }) {
+  if (node.internal.type === REPOSITORY_NODE_TYPE) {
+    node.description = EmojiHelper.convertColonEmojis(node.description);
+  }
 }
 
 interface PageInput {
@@ -92,7 +101,11 @@ function createRepositoriesPages(
 const repositoriesQuery = `
 {
   repositoriesData: allMongodbVimcolorschemesRepositories(
-    filter: { updateValid: { eq: true }, generateValid: { eq: true } }
+    filter: {
+      updateValid: { eq: true }
+      generateValid: { eq: true }
+      vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+    }
   ) {
     apiRepositories: nodes {
       name

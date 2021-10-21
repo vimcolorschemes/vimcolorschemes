@@ -42,7 +42,12 @@ export class Repository {
   }
 
   get route(): string {
-    return `/${URLHelper.URLify(this.key)}`;
+    return `/${URLHelper.URLify(this.key)}`.toLowerCase();
+  }
+
+  get title(): string {
+    const name = this.flattenedVimColorSchemes[0]?.name || this.name;
+    return `${name} vim color scheme, by ${this.owner.name}`;
   }
 
   get previewRoute(): string {

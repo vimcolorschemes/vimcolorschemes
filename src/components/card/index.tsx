@@ -3,6 +3,7 @@ import { Link } from 'gatsby';
 
 import { Repository } from '@/models/repository';
 
+import Meta from '@/components/meta';
 import Preview from '@/components/preview';
 
 import './index.scss';
@@ -12,13 +13,16 @@ interface Props {
 }
 
 function Card({ repository }: Props) {
+  const linkLabel = `Go to page: ${repository.title}`;
   return (
     <article className="card">
-      <Link to={repository.route}>
-        <h3 className="card__title">{repository.key}</h3>
+      <Link to={repository.route} data-focusable className="card__ghost-link">
+        {linkLabel}
       </Link>
-      <p className="card__description">{repository.description}</p>
       <Preview vimColorSchemes={repository.vimColorSchemes} />
+      <Link to={repository.route} aria-label={linkLabel} className="card__link">
+        <Meta repository={repository} />
+      </Link>
     </article>
   );
 }

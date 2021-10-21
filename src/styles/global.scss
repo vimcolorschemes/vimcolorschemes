@@ -2,30 +2,79 @@
 @import './mixins.scss';
 @import './variables.scss';
 
+html,
 body,
-html {
-  overflow-x: hidden;
+#___gatsby {
+  height: 100%;
   padding: 0;
   margin: 0;
 }
 
 #gatsby-focus-wrapper {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 var(--standard-space);
 
   & > * {
+    flex-shrink: 0;
     width: 80rem;
     max-width: 100%;
   }
 }
 
 body {
-  background: white;
-  color: black;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--standard-font-family);
+  font-size: var(--standard-font-size);
+  line-height: var(--line-height);
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  &.dark {
-    background: black;
-    color: white;
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  font-size: inherit;
+  text-decoration: none;
+  color: var(--foreground);
+}
+
+b {
+  font-weight: bold;
+}
+
+button {
+  font-size: var(--standard-font-size);
+}
+
+pre,
+code {
+  font-family: var(--code-font-family);
+}
+
+.subtitle {
+  font-size: var(--large-font-size);
+}
+
+.title {
+  font-size: var(--largest-font-size);
+  font-weight: 700;
+}
+
+.inline-link {
+  color: var(--link);
+}
+
+*[data-focusable] {
+  @include focusableStyle;
+}
+
+@include breakpoint(medium) {
+  #gatsby-focus-wrapper {
+    padding: 0 var(--large-space);
   }
 }

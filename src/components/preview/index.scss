@@ -9,9 +9,9 @@
     --normal-bg: var(--vim-NormalBg, white);
   }
 
-  --code-padding: 0.5rem;
-  --gutter-horizontal-padding: 0.5rem;
-  --gutter-number-width: 1rem;
+  --code-padding: var(--small-space);
+  --gutter-horizontal-padding: var(--small-space);
+  --gutter-number-width: var(--standard-space);
   --gutter-width: calc(
     var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
   );
@@ -19,6 +19,8 @@
   background: var(--normal-bg);
   color: var(--normal-fg);
   line-height: 1.125rem;
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
 }
 
 .preview > * {
@@ -68,8 +70,9 @@
   background: var(--vim-CursorLineNrBg, var(--vim-LineNrBg));
 }
 
-// content below is generated using the bin/generate_css command
+// content below is generated using the bin/preview/generate-css command
 .vimLineComment {
+  font-style: italic;
   color: var(--vim-vimLineComment);
 }
 .vimCommand {

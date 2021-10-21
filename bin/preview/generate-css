@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var fs = require('fs');
+
+var content = fs.readFileSync('./src/components/preview/codeSample.ts', 'utf8');
+
+var matches = [...content.matchAll(/class="(\w*)"/g)];
+var classNames = matches.map(match => match[1]);
+var uniqueClassNames = [...new Set(classNames)];
+
+var content = uniqueClassNames
+  .map(className => `.${className}{color:var(--vim-${className});}`)
+  .join('');
+
+console.log(content);

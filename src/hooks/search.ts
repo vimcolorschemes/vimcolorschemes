@@ -49,6 +49,11 @@ function useSearch({
   );
 
   const [page, setPage] = useState<number>(defaultPageData.currentPage || 1);
+  const [repositories, setRepositories] =
+    useState<Repository[]>(defaultRepositories);
+  const [totalCount, setTotalCount] = useState<number>(
+    defaultRepositoriesData.totalCount,
+  );
   const [input, setInput] = useState<string>('');
   const debouncedInput = useDebounce(input);
 
@@ -57,42 +62,60 @@ function useSearch({
     SearchService.search,
   );
 
-  const isLoading = useMemo(() => !searchData && !error, [searchData, error]);
-
   const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
 
+  const isLoading = useMemo(
+    () => isSearching && !searchData && !error,
+    [searchData, error],
+  );
+
   useEffect(() => setPage(1), [debouncedInput]);
-  useEffect(() => setPage(defaultPageData.currentPage), [
-    defaultPageData.currentPage,
-  ]);
+
+  useEffect(
+    () => setPage(defaultPageData.currentPage),
+    [defaultPageData.currentPage],
+  );
+
   useEffect(() => {
-    if (isSearching) {
+    if (!isSearching) {
+      setPage(defaultPageData.currentPage);
+    }
+  }, [isSearching, page, defaultPageData.currentPage]);
+
+  useEffect(() => {
+    if (isLoading) {
       return;
     }
 
-    setPage(defaultPageData.currentPage);
-  }, [isSearching, page, defaultPageData.currentPage]);
+    if (!isSearching) {
+      setRepositories(defaultRepositories);
+      return;
+    }
 
-  const repositories = useMemo(
-    () => (isSearching ? searchData?.repositories || [] : defaultRepositories),
-    [debouncedInput, searchData?.repositories, defaultRepositories],
-  );
+    setRepositories(searchData?.repositories || []);
+  }, [isSearching, isLoading, searchData?.repositories, defaultRepositories]);
 
-  const totalCount = useMemo(
-    () =>
-      isSearching
-        ? searchData?.totalCount || 0
-        : defaultRepositoriesData.totalCount,
-    [
-      debouncedInput,
-      searchData?.totalCount,
-      defaultRepositoriesData.totalCount,
-    ],
-  );
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+
+    if (!isSearching) {
+      setTotalCount(defaultRepositoriesData.totalCount);
+      return;
+    }
+
+    setTotalCount(searchData?.totalCount || 0);
+  }, [
+    isSearching,
+    isLoading,
+    searchData?.totalCount,
+    defaultRepositoriesData.totalCount,
+  ]);
 
   const pageCount = useMemo(
     () =>
-      isSearching ? searchData?.pageCount || 0 : defaultPageData.pageCount,
+      (isSearching ? searchData?.pageCount : defaultPageData.pageCount) || 1,
     [debouncedInput, searchData?.pageCount, defaultPageData.pageCount],
   );
 

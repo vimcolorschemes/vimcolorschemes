@@ -1,9 +1,35 @@
 .card {
   display: flex;
   flex-direction: column;
-  row-gap: 1rem;
+  row-gap: var(--standard-space);
+  position: relative;
+
+  @include invertedPadding;
+  &:hover {
+    @include hoverBorder;
+  }
+  &:focus-within {
+    @include focusBorder;
+  }
 }
 
-.card__description {
-  flex: 1;
+.card__ghost-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 75%;
+  padding: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.card__link {
+  margin: calc(var(--small-space) * -1);
+  padding: var(--small-space);
+
+  &:focus {
+    @include focusBorder(var(--focus-border-shade-1));
+  }
 }

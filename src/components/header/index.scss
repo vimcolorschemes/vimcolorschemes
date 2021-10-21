@@ -2,4 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  column-gap: var(--standard-space);
+  padding: var(--large-space) 0;
 }

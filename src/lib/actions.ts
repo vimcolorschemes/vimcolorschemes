@@ -26,7 +26,7 @@ export const Actions: Record<ActionNames, Action> = {
   [ActionNames.Top]: {
     label: 'Top',
     route: Routes.Top,
-    property: 'lastCommitAt',
+    property: 'stargazersCount',
     order: 'DESC',
   },
   [ActionNames.RecentlyUpdated]: {

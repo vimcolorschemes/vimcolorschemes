@@ -20,6 +20,7 @@ function Actions({ activeAction }: Props) {
           className={classnames('actions__action', {
             ['actions__action--active']: activeAction.route === action.route,
           })}
+          data-focusable
         >
           {action.label}
         </Link>

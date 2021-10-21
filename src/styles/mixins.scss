@@ -12,6 +12,31 @@
   }
 }
 
+@mixin hoverBorder {
+  box-shadow: 0px 2px 0px 0px var(--focus-border);
+}
+
+@mixin focusBorder($color: var(--focus-border)) {
+  border-radius: var(--standard-border-radius);
+  box-shadow: 0px 0px 0px 2px $color;
+  outline: none;
+}
+
+@mixin invertedPadding {
+  padding: var(--standard-space);
+  margin: calc(var(--standard-space) * -1);
+}
+
+@mixin focusableStyle {
+  @include invertedPadding;
+  &:hover {
+    @include hoverBorder;
+  }
+  &:focus {
+    @include focusBorder;
+  }
+}
+
 @mixin breakpoint($point) {
   @if $point == small {
     @media screen and (min-width: 576px) {

@@ -1,17 +1,19 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
-import Routes from '@/lib/routes';
-
-import ThemeSwitch from '@/components/themeSwitch';
+import BackgroundSwitch from '@/components/backgroundSwitch';
+import HomeLink from '@/components/homeLink';
 
 import './index.scss';
 
-function Header() {
+interface Props {
+  isHome?: boolean;
+}
+
+function Header({ isHome }: Props) {
   return (
     <header className="header">
-      <Link to={Routes.Home}>vimcolorschemes</Link>
-      <ThemeSwitch />
+      <HomeLink isHome={isHome} />
+      <BackgroundSwitch />
     </header>
   );
 }

@@ -1,10 +1,11 @@
 .buffer {
   display: flex;
-  column-gap: 0.5rem;
+  column-gap: var(--small-space);
   position: relative;
 }
 
 .buffer__code {
+  width: 100%;
   padding: var(--code-padding);
   padding-left: calc(var(--gutter-width) + var(--code-padding));
   overflow-x: auto;

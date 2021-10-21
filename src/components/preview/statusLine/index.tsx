@@ -29,17 +29,18 @@ function StatusLine({ fileName, cursorLine = 0, lineCount }: Props) {
             'StatusLineFg--inverted',
             'StatusLineBg--inverted',
           )}
+          data-ignore-a11y
         >
           NORMAL
         </span>
-        <span>{fileName}</span>
+        <span data-ignore-a11y>{fileName}</span>
       </span>
       <span className="status-line__content">
-        <span>unix</span>
-        <span>utf-8</span>
-        <span>☰</span>
-        <span>{percentage}%</span>
-        <span>{lineCountIndicator}</span>
+        <span data-ignore-a11y>unix</span>
+        <span data-ignore-a11y>utf-8</span>
+        <span data-ignore-a11y>☰</span>
+        <span data-ignore-a11y>{percentage}%</span>
+        <span data-ignore-a11y>{lineCountIndicator}</span>
       </span>
     </span>
   );

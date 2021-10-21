@@ -1,9 +1,17 @@
 .footer {
   display: flex;
   align-items: center;
-  column-gap: $standard-space;
+  justify-content: space-between;
+  column-gap: calc(var(--standard-space) * 3);
+  padding: var(--large-space) 0;
 
   & > *:first-child {
     flex: 1;
   }
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  column-gap: calc(var(--standard-space) * 3);
 }

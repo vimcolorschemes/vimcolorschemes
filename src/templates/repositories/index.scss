@@ -1,11 +1,12 @@
 .repositories {
   display: flex;
   flex-direction: column;
-  row-gap: 5rem;
+  row-gap: var(--largest-space);
 }
 
 .repositories__header {
   display: flex;
-  flex-direction: column;
-  row-gap: $standard-space;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--standard-space);
 }

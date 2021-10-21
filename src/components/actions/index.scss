@@ -1,13 +1,14 @@
 .actions {
   display: flex;
   align-items: center;
-  column-gap: $standard-space;
+  column-gap: calc(var(--standard-space) * 3);
+  padding: var(--large-space) var(--standard-space);
 }
 
 .actions__action {
   text-decoration: none;
 
   &--active {
-    border-bottom: 1px solid blue;
+    box-shadow: 0px 2px 0px 0px var(--focus-border);
   }
 }

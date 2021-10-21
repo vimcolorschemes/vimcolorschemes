@@ -94,7 +94,7 @@ function Preview({ vimColorSchemes }: Props) {
       <Code
         fileName="code.vim"
         cursorLine={6}
-        lineCount={16}
+        lineCount={12}
         className="preview__code"
       >
         <span dangerouslySetInnerHTML={{ __html: codeSample }} />

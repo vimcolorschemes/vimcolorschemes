@@ -34,7 +34,7 @@ function paginateRoute(route: string, page: number): string {
   }
 
   let routePath = route;
-  if (pagePath && !route.endsWith('/')) {
+  if (!!pagePath && !route.endsWith('/')) {
     routePath = route + '/';
   }
 
@@ -55,7 +55,8 @@ function getPageFromURL(pathname: string): number {
   }
 
   try {
-    return Number.parseInt(matches[1]);
+    const page = Number.parseInt(matches[1]);
+    return page > 0 ? page : 1;
   } catch {
     return 1;
   }

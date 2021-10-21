@@ -17,7 +17,7 @@ function SEO({ title, description, pathname }: Props) {
         site {
           siteMetadata {
             title
-            URL
+            siteUrl
           }
         }
       }
@@ -48,7 +48,7 @@ function SEO({ title, description, pathname }: Props) {
         },
         {
           property: 'og:url',
-          content: `${site.siteMetadata.URL}${pathname}`,
+          content: `${site.siteMetadata.siteUrl}${pathname}`,
         },
         {
           name: 'twitter:card',

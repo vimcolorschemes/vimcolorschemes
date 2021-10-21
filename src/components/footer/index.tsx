@@ -3,19 +3,32 @@ import { Link } from 'gatsby';
 
 import Routes from '@/lib/routes';
 
-import './index.scss';
+import HomeLink from '@/components/homeLink';
 
-function Footer() {
+import './index.scss';
+import ExternalLink from '../externalLink';
+
+interface Props {
+  isHome?: boolean;
+}
+
+function Footer({ isHome }: Props) {
   return (
     <footer className="footer">
-      <Link to={Routes.Home}>vimcolorschemes</Link>
-      <Link to={Routes.About}>About</Link>
-      <a href={Routes.Github} rel="noopener" target="_blank">
-        Github
-      </a>
-      <a href={Routes.Contact} rel="noopener" target="_blank">
-        Contact
-      </a>
+      <div className="footer__links">
+        <HomeLink isHome={isHome} isFooter />
+      </div>
+      <div className="footer__links">
+        <Link to={Routes.About} data-focusable data-testid="footer__about">
+          About
+        </Link>
+        <ExternalLink to={Routes.Github} data-focusable>
+          Github
+        </ExternalLink>
+        <ExternalLink to={Routes.Contact} data-focusable>
+          Contact
+        </ExternalLink>
+      </div>
     </footer>
   );
 }
