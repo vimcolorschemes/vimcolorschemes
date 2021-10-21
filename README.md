@@ -2,7 +2,7 @@
   <img alt="vimcolorschemes logo" src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
-  <b>Find the best vim color schemes around</b>
+  <b>WARNING: This is v2.0, coming soon to the main repository</b>
 </p>
 
 <br>
@@ -13,24 +13,26 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square" alt="All contributors" />
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+  <img src="https://img.shields.io/badge/all_contributors-21-orange.svg?style=flat-square" alt="All contributors" />
+  <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript" />
+  <img src="https://img.shields.io/badge/Typescript-007ACC?style=flat-square&logo=typescript&logoColor=white" alt="Typescript" />
   <img src="https://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
   <img src="https://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
   <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
+  <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=flat-square&logo=testing-library&logoColor=white" alt="Testing library" />
   <img src="https://img.shields.io/badge/Cypress-17202C?style=flat-square&logo=cypress" alt="Cypress" />
+  <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=black" alt="Amazon AWS" />
 </p>
 
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light theme" width="49%">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark theme" width="49%">
+  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light background" width="49%">
+  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark background" width="49%">
 </p>
 
 ## Welcome 🎉

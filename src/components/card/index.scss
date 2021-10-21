@@ -1,64 +1,35 @@
-@import "src/style/mixins/breakpoints";
-@import "src/style/mixins/index";
-
 .card {
   display: flex;
   flex-direction: column;
+  row-gap: var(--standard-space);
   position: relative;
-  cursor: pointer;
-  padding: 1rem;
-}
 
-.card:hover {
-  @include hover-border;
-}
-
-.card:focus-within {
-  @include focus-border;
-}
-
-.card > a {
-  display: flex;
-  flex-direction: column;
-  box-shadow: none;
-}
-
-.card > a:focus {
-  text-decoration: underline;
-  outline: none;
-}
-
-.card:focus-within > a {
-  text-decoration: none;
-  outline: none;
-  box-shadow: none;
-}
-
-.card__title {
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.card__image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.card__image > div.gatsby-image-wrapper {
-  flex: 1;
-  width: 100%;
-  height: 100%;
-}
-
-@include lg {
-  .card__image {
-    height: 20rem;
+  @include invertedPadding;
+  &:hover {
+    @include hoverBorder;
+  }
+  &:focus-within {
+    @include focusBorder;
   }
 }
 
-@include xl {
-  .card__image {
-    height: 30rem;
+.card__ghost-link {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 75%;
+  padding: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.card__link {
+  margin: calc(var(--small-space) * -1);
+  padding: var(--small-space);
+
+  &:focus {
+    @include focusBorder(var(--focus-border-shade-1));
   }
 }

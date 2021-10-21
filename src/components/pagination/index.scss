@@ -1,62 +1,21 @@
-@import "src/style/mixins/breakpoints";
-
 .pagination {
-  margin-top: 3rem;
-  width: 100%;
-  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-}
+  justify-content: space-between;
+  column-gap: var(--standard-space);
 
-.pagination__page-status {
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  width: 100%;
-  z-index: -1;
-  margin: 0;
-}
-
-.pagination__link-block {
-  width: max-content;
-  &:first-of-type > a {
-    text-align: left;
-  }
-  &:last-of-type > a {
-    text-align: right;
-  }
-}
-
-.pagination__link {
-  margin: -1rem;
-  padding: 1rem;
-  background: none;
-  border: none;
-  font-size: var(--font-size);
-  &--limit {
-    display: none;
-  }
-}
-
-@include lg {
-  .pagination__link-block {
+  & > div {
     flex: 1;
     display: flex;
-    justify-content: space-between;
-  }
-  .pagination__link {
-    &:first-of-type {
-      margin-right: 3rem;
-    }
-  }
-  .pagination__link--limit {
-    display: block;
+    align-items: center;
+    justify-content: center;
   }
 
-  .pagination__page-status {
-    margin: 0 3rem;
-    position: relative;
-    width: auto;
+  & > div:first-child {
+    justify-content: flex-start;
+  }
+
+  & > div:last-child {
+    justify-content: flex-end;
   }
 }

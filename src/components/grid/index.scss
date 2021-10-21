@@ -1,16 +1,11 @@
-@import "src/style/mixins/breakpoints";
-
 .grid {
+  width: 100%;
   display: grid;
-  grid-column-gap: 2rem;
-  grid-row-gap: 3rem;
-  margin-left: -1rem;
-  margin-right: -1rem;
+  gap: var(--largest-space);
 }
 
-@include lg {
+@include breakpoint(large) {
   .grid {
-    grid-template-columns: calc(50% - 1rem) calc(50% - 1rem);
-    grid-row-gap: 5rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 }

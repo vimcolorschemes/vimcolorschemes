@@ -1,27 +1,12 @@
-@import "src/style/mixins/index";
-@import "src/style/mixins/breakpoints";
-
 .repositories {
-  margin-top: 1rem;
-}
-
-.action-row {
   display: flex;
-  flex-direction: column-reverse;
-  margin: 2rem 0;
-  & > * + * {
-    margin-bottom: 2rem;
-  }
+  flex-direction: column;
+  row-gap: var(--largest-space);
 }
 
-@include lg {
-  .action-row {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 5.5rem;
-    & > * + * {
-      margin-bottom: 0;
-    }
-  }
+.repositories__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: var(--standard-space);
 }

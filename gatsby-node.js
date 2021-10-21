@@ -1,2 +1,3 @@
-require = require("esm")(module);
-module.exports = require("./gatsby-node.esm.js");
+require('ts-node').register();
+
+module.exports = require('./src/gatsby/node');

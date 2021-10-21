@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+file_path=$1
+
+if [[ $file_path = "" ]]; then
+  echo "file_path is required"
+  exit 1
+fi;
+
+echo "Generate code sample file for $file_path"
+
+echo "Ensure you have https://github.com/cocopon/snapbuffer.vim installed in neovim"
+
+nvim -c ":SnapBuffer" $file_path

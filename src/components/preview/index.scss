@@ -1,0 +1,122 @@
+.preview {
+  &--dark {
+    --normal-fg: var(--vim-NormalFg, white);
+    --normal-bg: var(--vim-NormalBg, black);
+  }
+
+  &--light {
+    --normal-fg: var(--vim-NormalFg, black);
+    --normal-bg: var(--vim-NormalBg, white);
+  }
+
+  --code-padding: var(--small-space);
+  --gutter-horizontal-padding: var(--small-space);
+  --gutter-number-width: var(--standard-space);
+  --gutter-width: calc(
+    var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
+  );
+
+  background: var(--normal-bg);
+  color: var(--normal-fg);
+  line-height: 1.125rem;
+  border-radius: var(--standard-border-radius);
+  overflow: hidden;
+}
+
+.preview > * {
+  margin: 0;
+}
+
+.NormalBg {
+  background: var(--normal-bg);
+}
+
+.CursorFg {
+  color: var(--vim-CursorFg, rgba(black, 50%));
+}
+.CursorBg {
+  background: var(--vim-CursorBg, rgba(white, 50%));
+}
+
+.StatusLineFg {
+  color: var(--vim-StatusLineFg);
+}
+.StatusLineBg {
+  background: var(--vim-StatusLineBg);
+}
+.StatusLineFg--inverted {
+  color: var(--vim-StatusLineBg, var(--normal-bg));
+}
+.StatusLineBg--inverted {
+  background: var(--vim-StatusLineFg, var(--normal-fg));
+}
+
+.LineNrFg {
+  color: var(--vim-LineNrFg);
+}
+.LineNrBg {
+  background: var(--vim-LineNrBg, var(--vim-NormalBg));
+}
+.CursorLineFg {
+  color: var(--vim-CursorLineFg, var(--vim-LineNrFg));
+}
+.CursorLineBg {
+  background: var(--vim-CursorLineBg, var(--vim-LineNrBg));
+}
+.CursorLineNrFg {
+  color: var(--vim-CursorLineNrFg, var(--vim-LineNrFg));
+}
+.CursorLineNrBg {
+  background: var(--vim-CursorLineNrBg, var(--vim-LineNrBg));
+}
+
+// content below is generated using the bin/preview/generate-css command
+.vimLineComment {
+  font-style: italic;
+  color: var(--vim-vimLineComment);
+}
+.vimCommand {
+  color: var(--vim-vimCommand);
+}
+.vimFunction {
+  color: var(--vim-vimFunction);
+}
+.vimParenSep {
+  color: var(--vim-vimParenSep);
+}
+.vimOperParen {
+  color: var(--vim-vimOperParen);
+}
+.vimFuncBody {
+  color: var(--vim-vimFuncBody);
+}
+.vimIsCommand {
+  color: var(--vim-vimIsCommand);
+}
+.vimLet {
+  color: var(--vim-vimLet);
+}
+.vimVar {
+  color: var(--vim-vimVar);
+}
+.vimOper {
+  color: var(--vim-vimOper);
+}
+.vimFuncName {
+  color: var(--vim-vimFuncName);
+}
+.vimFuncVar {
+  color: var(--vim-vimFuncVar);
+}
+.vimString {
+  color: var(--vim-vimString);
+}
+.vimSubst {
+  color: var(--vim-vimSubst);
+}
+.vimNumber {
+  color: var(--vim-vimNumber);
+}
+.vimNotFunc {
+  color: var(--vim-vimNotFunc);
+}

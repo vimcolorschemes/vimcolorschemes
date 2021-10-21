@@ -1,67 +1,66 @@
-@import "src/style/mixins/index";
-@import "src/style/mixins/breakpoints";
-
-.search {
-  padding: 1rem;
-  margin: -1rem;
+.search-input {
   display: flex;
   align-items: center;
-  width: 100%;
   position: relative;
 }
 
-.search__overlay-button {
+.search-input__overlay-button {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: calc(100% + calc(var(--standard-space) * 2));
   background: none;
   outline: none;
   border: none;
   cursor: pointer;
   z-index: -1;
+
   &:hover,
   &:focus {
-    @include no-border;
+    outline: none;
+    border: none;
+    box-shadow: none;
   }
 }
 
-.search__input-wrapper {
+.search-input__input-wrapper {
   flex: 1;
-  border-bottom: 2px solid var(--input-border);
+  border-bottom: 2px solid var(--focus-border);
   position: relative;
 }
 
-.search__input-wrapper:focus-within {
-  border-bottom: 2px solid var(--input-border-active);
+.search-input__input-wrapper:focus-within {
+  border-bottom: 2px solid var(--focus-border);
 }
 
-.search__input {
+.search-input__input {
   flex: 1;
-  padding: 0.5rem;
+  padding: var(--small-space);
   border: none;
   outline: none;
   background: transparent;
-  color: var(--input-color);
-  width: calc(100% - 2rem);
+  color: var(--input-foreground);
+  width: calc(100% - calc(var(--standard-space) * 2));
+
   &::placeholder {
     color: var(--input-placeholder);
   }
 }
 
-.search__icon {
-  width: 1rem;
-  height: 1rem;
+.search-input__icon {
+  width: var(--standard-space);
+  height: var(--standard-space);
   color: var(--input-icon);
+
   &--short {
-    width: 0.9rem;
-    height: 0.9rem;
+    width: calc(var(--standard-space) * 0.9);
+    height: calc(var(--standard-space) * 0.9);
   }
 }
 
-.search__icon-wrapper {
+.search-input__icon-wrapper {
   position: absolute;
   left: 100%;
   top: 50%;
@@ -71,14 +70,14 @@
   justify-content: center;
 }
 
-@include lg {
-  .search {
+@include breakpoint(large) {
+  .search-input {
     width: 15rem;
   }
 
-  .search__overlay-button {
+  .search-input__overlay-button {
     &:focus {
-      @include focus-border;
+      box-shadow: 0px 0px 0px 2px var(--focus-border);
     }
   }
 }
