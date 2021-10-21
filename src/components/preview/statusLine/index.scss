@@ -1,0 +1,23 @@
+.status-line {
+  max-width: 100%;
+  overflow: hidden;
+  height: var(--large-space);
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-line__content {
+  display: flex;
+  align-items: center;
+
+  & > * {
+    padding: 0 var(--small-space);
+  }
+}
+
+.status-line__mode {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: min-content;
+}

@@ -1,0 +1,11 @@
+.grid {
+  width: 100%;
+  display: grid;
+  gap: var(--largest-space);
+}
+
+@include breakpoint(large) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}

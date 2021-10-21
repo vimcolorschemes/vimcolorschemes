@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+
+const path = process.argv[2];
+
+if (!path) {
+  console.error('The component path is mandatory.');
+  process.exit(1);
+}
+
+console.log(`Create path: '${path}'`);
+fs.mkdirSync(path, { recursive: true });
+
+const parts = path.split('/');
+const name = parts[parts.length - 1];
+const capitalizedName = name[0].toUpperCase() + name.slice(1);
+
+const tsFile = `${path}/index.tsx`;
+const scssFile = `${path}/index.scss`;
+
+const componentTemplate = `import React from 'react';
+
+import './index.scss';
+
+interface Props {
+}
+
+function ${capitalizedName}({}: Props) {
+  return (
+    <div>Hello, World!</div>
+  );
+}
+
+export default ${capitalizedName};`;
+
+console.log(`Creating file: '${tsFile}'`);
+fs.appendFileSync(tsFile, componentTemplate);
+
+console.log(`Creating file: '${scssFile}'`);
+fs.appendFileSync(scssFile, '');

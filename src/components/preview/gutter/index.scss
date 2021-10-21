@@ -1,0 +1,17 @@
+.gutter {
+  position: absolute;
+  left: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: right;
+
+  padding: var(--code-padding) 0;
+  width: var(--gutter-width);
+}
+
+.gutter__number {
+  width: var(--gutter-number-width);
+  padding: 0 var(--gutter-horizontal-padding);
+}
