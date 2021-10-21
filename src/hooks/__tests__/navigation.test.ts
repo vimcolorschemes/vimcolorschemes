@@ -1,6 +1,7 @@
 import { fireEvent } from '@testing-library/react';
 import { renderHook } from '@testing-library/react-hooks';
 
+import Keys from '@/lib/keys';
 import useNavigation from '@/hooks/navigation';
 
 /*
@@ -28,7 +29,9 @@ describe('useNavigation', () => {
 
     renderHook(() => useNavigation());
 
-    fireEvent.keyDown(global.document.documentElement, { key: 'j' });
+    fireEvent.keyDown(global.document.documentElement, {
+      key: Keys.Navigation.Down,
+    });
 
     expect(global.document.activeElement).toBe(first);
   });
@@ -47,11 +50,15 @@ describe('useNavigation', () => {
 
     renderHook(() => useNavigation());
 
-    fireEvent.keyDown(global.document.documentElement, { key: 'j' });
+    fireEvent.keyDown(global.document.documentElement, {
+      key: Keys.Navigation.Down,
+    });
 
     expect(global.document.activeElement).toBe(first);
 
-    fireEvent.keyDown(global.document.documentElement, { key: 'j' });
+    fireEvent.keyDown(global.document.documentElement, {
+      key: Keys.Navigation.Down,
+    });
 
     expect(global.document.activeElement).toBe(second);
   });

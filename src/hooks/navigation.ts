@@ -1,5 +1,6 @@
 import DOMHelper from '@/helpers/dom';
 import useShortcut from '@/hooks/shortcut';
+import Keys from '@/lib/keys';
 
 enum Direction {
   Left = 'left',
@@ -59,10 +60,10 @@ function useNavigation() {
   }
 
   useShortcut({
-    h: event => go(Direction.Left, event),
-    j: event => go(Direction.Down, event),
-    k: event => go(Direction.Up, event),
-    l: event => go(Direction.Right, event),
+    [Keys.Navigation.Left]: event => go(Direction.Left, event),
+    [Keys.Navigation.Down]: event => go(Direction.Down, event),
+    [Keys.Navigation.Up]: event => go(Direction.Up, event),
+    [Keys.Navigation.Right]: event => go(Direction.Right, event),
   });
 }
 
