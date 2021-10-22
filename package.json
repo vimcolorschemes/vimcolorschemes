@@ -6,16 +6,17 @@
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build",
+    "build.ci": "npm run clean && npm run build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{ts,tsx,json,md,css,scss}\"",
-    "test": "jest",
+    "test": "npm run test.unit && npm run test.e2e",
+    "test.unit": "jest",
+    "test.e2e": "npm run cypress.run",
     "cypress.open": "cypress open",
     "cypress.run": "cypress run",
     "create-component": "./bin/create-component",
-    "create-icon": "./bin/create-icon",
-    "ci.build": "npm run clean && npm run build",
-    "ci.test.unit": "jest"
+    "create-icon": "./bin/create-icon"
   },
   "keywords": [
     "gatsby",
