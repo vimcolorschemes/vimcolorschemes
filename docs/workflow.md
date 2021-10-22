@@ -1,36 +1,50 @@
 # Workflow
 
-## Acting agents
+## Projects
 
-3 agents working in sync make vimcolorschemes possible:
+2 different projects work in sync to make vimcolorschemes possible:
 
 - The Worker
 - The App
-- The Studio
 
-## ⚙️ The Worker
+## The Worker ⚙️
 
-The Worker is a [python](https://www.python.org/) function that runs daily. Its main goal is to fetch repositories using the [GitHub API](https://docs.github.com/en/rest) and then store them in a [MongoDB](https://www.mongodb.com/) database.
+The Worker is a "scraper" that runs daily. Its main goal is to fetch
+repositories that could ressemble a vim color scheme from different git forges
+and then store them in a database.
 
-For every repository found, it searches thoroughly for potential image URLs that represent the color scheme, and that could be used by the App.
+For every repository found, it searches thoroughly for vim files that could be
+used to generate a vim color scheme preview.
 
 ### Links
 
 - [See the repository](https://github.com/vimcolorschemes/worker)
-- [Read about the worker in more details](/the-worker)
+- [Read about the worker in more details](/worker)
 
-## 🖼 The App
+### Stack
 
-The App is a static website built with [Gatsby](https://www.gatsbyjs.org/). All the data fetching and content processing happen at build time.
+- [Golang](https://golang.org/)
+- [MongoDB](https://www.mongodb.com/)
+- [Github API](https://docs.github.com/en/rest)
+- Vimscript
 
-### Data fetching
+## The App 🖼
 
-At build time, Gatsby creates [nodes](https://www.gatsbyjs.org/docs/node-model) out of all repositories stored in the MongoDB database. This is done with the help of [gatsby-source-mongodb](https://www.gatsbyjs.org/packages/gatsby-source-mongodb/).
+The App is a nicely navigable gallery created using all the vim color schemes found by the Worker.
 
-### Image processing
+After The Worker's daily jobs, the website is built again using the new data and then deployed.
 
-Since only image URLs are stored in the database, Gatsby needs to download all the images at build time. It [creates remote nodes](https://www.gatsbyjs.org/docs/preprocessing-external-images/) out of every image so that they can be used with [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/). This makes all the site images lazy-loaded, speeding the website.
+> Curious about how the vim color scheme previews are built? Visit [/previews](/previews).
 
-## 🎬 The Studio
+### Stack
 
-The Studio is only an idea for now. Follow [the related issue](https://github.com/vimcolorschemes/vimcolorschemes/issues/15) for updates.
+- [Gatsby](https://gatsbyjs.com/)
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Scss](https://sass-lang.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Jest](https://jestjs.io/)
+- [Testing Library](https://testing-library.com/)
+- [Cypress](https://www.cypress.io/)
+- [AWS](https://console.aws.amazon.com/)
+- [ElasticSearch](https://elastic.co)
