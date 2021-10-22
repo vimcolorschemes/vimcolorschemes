@@ -16,7 +16,8 @@
     "cypress.open": "cypress open",
     "cypress.run": "cypress run",
     "create-component": "./bin/create-component",
-    "create-icon": "./bin/create-icon"
+    "create-icon": "./bin/create-icon",
+    "seed": "./bin/seed"
   },
   "keywords": [
     "gatsby",

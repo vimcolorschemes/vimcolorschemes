@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+mongoimport \
+  --db vimcolorschemes \
+  --collection repositories \
+  --jsonArray \
+  --drop \
+  --file ./database/seed.json
