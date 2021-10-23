@@ -9,6 +9,7 @@ declare global {
     __background: Background;
     __onBackgroundChange: () => void;
     __setPreferredBackground: (background: Background) => void;
+    previousPath?: string;
   }
 
   interface EventTarget {

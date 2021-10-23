@@ -36,7 +36,11 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
       />
       <section className="repository__content">
         <nav className="repository__nav">
-          <Link to={Routes.Home} className="repository__link" data-focusable>
+          <Link
+            to={window.previousPath || Routes.Home}
+            className="repository__link"
+            data-focusable
+          >
             <IconArrow left className="repository__link-icon" />
             <span>Back</span>
           </Link>
