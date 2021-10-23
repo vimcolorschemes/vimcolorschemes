@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+
+BREAK_LINE="
+"
+
+if ! docker --version >/dev/null 2>&1; then
+  echo "Please install Docker Desktop"
+  echo "https://www.docker.com/products/docker-desktop/"
+  exit 1
+fi
+
+if ! docker info >/dev/null 2>&1; then
+  echo "Please run Docker Desktop"
+  echo "https://docs.docker.com/desktop/"
+  exit 1
+fi
+
+if ! docker-compose --version >/dev/null 2>&1; then
+  echo "Please install docker-compose"
+  echo "https://docs.docker.com/compose/install/"
+  exit 1
+fi
+
+echo "
+ _  __(_)_ _  _______  / /__  _______ ____/ /  ___ __ _  ___ ___
+| |/ / /  ' \/ __/ _ \/ / _ \/ __(_-</ __/ _ \/ -_)  ' \/ -_|_-<
+|___/_/_/_/_/\__/\___/_/\___/_/ /___/\__/_//_/\__/_/_/_/\__/___/
+"
+
+echo "${BREAK_LINE}Building the vimcolorschemes container image$BREAK_LINE"
+
+docker-compose build
+
+echo "${BREAK_LINE}Starting the vimcolorschemes containers$BREAK_LINE"
+
+docker-compose up

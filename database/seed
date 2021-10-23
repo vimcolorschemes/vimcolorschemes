@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+echo "Seed MongoDB database"
+
+SEED_DIR=${SEED_DIR:-$(cd $(dirname $0); pwd)}
+DATABASE_URI=${DATABASE_URI:-mongodb://localhost:27017/vimcolorschemes}
+
+mongoimport \
+  --uri $DATABASE_URI \
+  --db vimcolorschemes \
+  --collection repositories \
+  --jsonArray \
+  --drop \
+  --file ${SEED_DIR}/seed.json
+
+echo "Done seeding"

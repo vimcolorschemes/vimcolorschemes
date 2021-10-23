@@ -4,7 +4,9 @@
   "description": "vimcolorschemes",
   "author": "@reobin",
   "scripts": {
-    "start": "gatsby develop",
+    "start": "npm run develop",
+    "start.docker": "npm run develop -- -H 0.0.0.0",
+    "develop": "gatsby develop",
     "build": "gatsby build",
     "build.ci": "npm run clean && npm run build",
     "serve": "gatsby serve",
@@ -17,7 +19,8 @@
     "cypress.run": "cypress run",
     "create-component": "./bin/create-component",
     "create-icon": "./bin/create-icon",
-    "seed": "./bin/seed"
+    "seed": "./database/seed",
+    "docker": "./bin/docker/start"
   },
   "keywords": [
     "gatsby",

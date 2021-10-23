@@ -3,6 +3,9 @@ node_modules/
 .cache/
 public
 
+# Database
+mongo
+
 # Cypress
 cypress/videos
 cypress/screenshots
