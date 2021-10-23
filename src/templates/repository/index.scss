@@ -3,3 +3,20 @@
   flex-direction: column;
   row-gap: var(--largest-space);
 }
+
+.repository__nav {
+  margin: var(--standard-space) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.repository__link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--smallest-space);
+}
+
+.repository__link-icon {
+  height: 1.2rem;
+}
