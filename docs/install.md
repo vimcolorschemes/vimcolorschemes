@@ -2,8 +2,18 @@
 
 There are two ways to get up and running with vimcolorschemes.
 
-1. Run Docker containers (coming soon...)
+1. [Docker](#_1-docker)
 1. [Run locally](#_2-local)
+
+## 1. Docker
+
+1. `cd` into the root of the repository
+1. run `npm run docker`
+
+That's it. The script will:
+
+1. `docker-compose build`: build the docker image for the database and the app
+1. `docker-compose up`: start the application
 
 ## 2. Local
 
@@ -18,7 +28,7 @@ There are two ways to get up and running with vimcolorschemes.
 1. Make sure mongodb is running locally at port `27017`
    - If using custom configuration, update the `connectionString` in `gatsby-config.js`
 1. Run the seed script: `npm run seed`
-   - Again, if using custom configuration, update the `mongoimport` script at `./bin/seed`.  Running into problems? Check out [mongoimport docs](https://docs.mongodb.com/v4.2/reference/program/mongoimport/) or create an issue.
+   - Again, if using custom configuration, update the `mongoimport` script at `./db/seed`.  Running into problems? Check out [mongoimport docs](https://docs.mongodb.com/v4.2/reference/program/mongoimport/) or create an issue.
 
 The script imports the example data at `./database/seed.json` into your local
 database.
@@ -33,8 +43,7 @@ database.
 
 The search feature of vimcolorschemes uses an Elasticsearch engine.
 
-You can choose to install and run it through docker (coming soon...) or on
-locally your machine.
+You can choose to install and run it through docker or on locally your machine.
 
 For both, first clone [the search
 repository](https://github.com/vimcolorschemes/search).
@@ -52,7 +61,23 @@ start` again.
 
 ### Docker
 
-(coming soon...)
+1. `cd` into the root of the search repository
+2. Run `npm run docker`
+
+That's it. 2 docker containers will be built and started, 1 for elasticsearch,
+and 1 for the search proxy.
+
+### Communication with the vimcolorschemes app
+
+Once the search engine is ready, the vimcolorschemes app should be built again
+in order for the search data to be uploaded to elasticsearch.
+
+Note that by default, the environment variables are set up to work with one of
+these 3 options:
+
+- Using docker for both app and search
+- Using a local install for both app and search
+- Using a local install for the app and docker for search
 
 ## Running into problems?
 
