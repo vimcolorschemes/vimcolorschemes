@@ -23,12 +23,15 @@ function SEO({ title, description, pathname, og }: Props) {
             siteUrl
           }
         }
+        logo: file(relativePath: { eq: "logo_background.png" }) {
+          publicURL
+        }
       }
     `,
   );
 
   const image = useMemo(() => {
-    const path = !!og?.image ? og.image : '/';
+    const path = !!og?.image ? og.image : logo.publicURL;
     return site.siteMetadata.siteUrl + path;
   }, [og?.image, logo, site.siteMetadata.siteUrl]);
 
