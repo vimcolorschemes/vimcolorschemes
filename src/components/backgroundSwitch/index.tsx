@@ -59,7 +59,7 @@ function BackgroundSwitch() {
           <pre>
             <code>
               <span className="background-switch__indicator-operator">set</span>
-              <span> background</span>
+              <span className="background-switch__background-label"> background</span>
               <span className="background-switch__indicator-operator">=</span>
               <span className="background-switch__indicator">{background}</span>
             </code>
