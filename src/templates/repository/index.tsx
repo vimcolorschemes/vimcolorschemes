@@ -1,13 +1,17 @@
-import React from 'react';
-import { graphql } from 'gatsby';
+import React, { useMemo } from 'react';
+import { graphql, Link } from 'gatsby';
 
 import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
+import ExternalLink from '@/components/externalLink';
 import Grid from '@/components/grid';
+import IconArrow from '@/components/icons/arrow';
+import IconGithub from '@/components/icons/github';
 import Meta from '@/components/meta';
 import Page from '@/components/page';
 import Preview from '@/components/preview';
+import Routes from '@/lib/routes';
 import SEO from '@/components/seo';
 
 import './index.scss';
@@ -22,6 +26,14 @@ interface Props {
 function RepositoryPage({ data: { apiRepository }, location }: Props) {
   const repository = new Repository(apiRepository);
 
+  const previousPath = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return Routes.Home;
+    }
+
+    return window.previousPath || Routes.Home;
+  }, [typeof window]);
+
   return (
     <Page className="repository">
       <SEO
@@ -31,6 +43,22 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
         og={{ image: repository.previewImageRoute }}
       />
       <section className="repository__content">
+        <nav className="repository__nav">
+          <Link to={previousPath} className="repository__link" data-focusable>
+            <IconArrow left className="repository__link-icon" />
+            <span>Back</span>
+          </Link>
+          <ExternalLink
+            to={repository.githubURL}
+            className="repository__link"
+            data-focusable
+          >
+            <span>
+              View <b>{repository.name}</b> on Github
+            </span>
+            <IconGithub className="repository__link-icon" />
+          </ExternalLink>
+        </nav>
         <Meta repository={repository} isRepositoryPage />
         <Grid>
           {repository.flattenedVimColorSchemes.map(vimColorScheme => (

@@ -13,9 +13,9 @@ import Grid from '@/components/grid';
 import Page from '@/components/page';
 import Pagination from '@/components/pagination';
 import SEO from '@/components/seo';
+import SearchInput from '@/components/searchInput';
 
 import './index.scss';
-import SearchInput from '@/components/searchInput';
 
 interface Props {
   data: {
@@ -44,7 +44,14 @@ function IndexPage({
   );
 
   return (
-    <Page className="repositories" isHome>
+    <Page
+      className="repositories"
+      isHome
+      onHomeLinkClick={() => {
+        search.setInput('');
+        search.setPage(1);
+      }}
+    >
       <SEO
         title={`${actionFromURL.label} vim color schemes`}
         description={`vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation. Check out the ${actionFromURL.label} vim color schemes!`}

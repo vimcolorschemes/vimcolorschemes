@@ -10,17 +10,28 @@ import './index.scss';
 
 interface Props {
   repository: Repository;
+  onClick?: () => void;
 }
 
-function Card({ repository }: Props) {
+function Card({ repository, onClick }: Props) {
   const linkLabel = `Go to page: ${repository.title}`;
   return (
     <article className="card">
-      <Link to={repository.route} data-focusable className="card__ghost-link">
+      <Link
+        to={repository.route}
+        data-focusable
+        className="card__ghost-link"
+        onClick={onClick}
+      >
         {linkLabel}
       </Link>
       <Preview vimColorSchemes={repository.vimColorSchemes} />
-      <Link to={repository.route} aria-label={linkLabel} className="card__link">
+      <Link
+        to={repository.route}
+        aria-label={linkLabel}
+        className="card__link"
+        onClick={onClick}
+      >
         <Meta repository={repository} />
       </Link>
     </article>

@@ -20,7 +20,7 @@ That's it. The script will:
 ### 0. Requirements
 
 - Running local install of mongodb-community on macOS: `brew install mongodb-community && brew services start mongodb-community`
-- Node 12+ 
+- Node 12+
 - A locally cloned fork of [the repository](https://github.com/vimcolorschemes/vimcolorschemes). Check out [how to.](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
 
 ### 1. Set up the local database
@@ -28,7 +28,7 @@ That's it. The script will:
 1. Make sure mongodb is running locally at port `27017`
    - If using custom configuration, update the `connectionString` in `gatsby-config.js`
 1. Run the seed script: `npm run seed`
-   - Again, if using custom configuration, update the `mongoimport` script at `./db/seed`.  Running into problems? Check out [mongoimport docs](https://docs.mongodb.com/v4.2/reference/program/mongoimport/) or create an issue.
+   - Again, if using custom configuration, update the `mongoimport` script at `./db/seed`. Running into problems? Check out [mongoimport docs](https://docs.mongodb.com/v4.2/reference/program/mongoimport/) or create an issue.
 
 The script imports the example data at `./database/seed.json` into your local
 database.
@@ -56,8 +56,7 @@ repository](https://github.com/vimcolorschemes/search).
 1. Run `npm install`
 1. Run `npm start`
 
-With both running, go back to the main vimcolorschemes repository, and run `npm
-start` again.
+With both running, go back to the main vimcolorschemes repository, and run `npm start` again.
 
 ### Docker
 

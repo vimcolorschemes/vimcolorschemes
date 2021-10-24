@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
+import LocalStorageHelper from '@/helpers/localStorage';
+import LocalStorageKeys from '@/lib/localStorage';
 import SearchService from '@/services/search';
-import useDebounce from './debounce';
+import useDebounce from '@/hooks/debounce';
 import { APIRepository } from '@/models/api';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
 
@@ -48,13 +50,15 @@ function useSearch({
     [defaultRepositoriesData.apiRepositories],
   );
 
-  const [page, setPage] = useState<number>(defaultPageData.currentPage || 1);
-  const [repositories, setRepositories] =
-    useState<Repository[]>(defaultRepositories);
-  const [totalCount, setTotalCount] = useState<number>(
-    defaultRepositoriesData.totalCount,
+  const storedSearchInput = LocalStorageHelper.get(
+    LocalStorageKeys.SearchInput,
   );
-  const [input, setInput] = useState<string>('');
+  const storedSearchPage = LocalStorageHelper.get(LocalStorageKeys.SearchPage);
+
+  const [page, setPage] = useState<number>(
+    Number(storedSearchPage) || defaultPageData.currentPage || 1,
+  );
+  const [input, setInput] = useState<string>(storedSearchInput);
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
@@ -69,7 +73,23 @@ function useSearch({
     [searchData, error],
   );
 
-  useEffect(() => setPage(1), [debouncedInput]);
+  function storeSearchData() {
+    LocalStorageHelper.set(LocalStorageKeys.SearchInput, debouncedInput);
+    LocalStorageHelper.set(LocalStorageKeys.SearchPage, page.toString());
+  }
+
+  function resetSearchData() {
+    LocalStorageHelper.remove(LocalStorageKeys.SearchInput);
+    LocalStorageHelper.remove(LocalStorageKeys.SearchPage);
+  }
+
+  useEffect(() => {
+    if (isSearching) {
+      storeSearchData();
+    } else {
+      resetSearchData();
+    }
+  }, [isSearching, debouncedInput, page]);
 
   useEffect(
     () => setPage(defaultPageData.currentPage),
@@ -77,41 +97,28 @@ function useSearch({
   );
 
   useEffect(() => {
-    if (!isSearching) {
+    if (isSearching) {
+      setPage(1);
+    } else {
       setPage(defaultPageData.currentPage);
     }
-  }, [isSearching, page, defaultPageData.currentPage]);
+  }, [isSearching, defaultPageData.currentPage]);
 
-  useEffect(() => {
-    if (isLoading) {
-      return;
+  const repositories = useMemo(() => {
+    if (isSearching) {
+      return searchData?.repositories || [];
     }
 
-    if (!isSearching) {
-      setRepositories(defaultRepositories);
-      return;
+    return defaultRepositories;
+  }, [isSearching, searchData?.repositories, defaultRepositories]);
+
+  const totalCount = useMemo(() => {
+    if (isSearching) {
+      return searchData?.totalCount || 0;
     }
 
-    setRepositories(searchData?.repositories || []);
-  }, [isSearching, isLoading, searchData?.repositories, defaultRepositories]);
-
-  useEffect(() => {
-    if (isLoading) {
-      return;
-    }
-
-    if (!isSearching) {
-      setTotalCount(defaultRepositoriesData.totalCount);
-      return;
-    }
-
-    setTotalCount(searchData?.totalCount || 0);
-  }, [
-    isSearching,
-    isLoading,
-    searchData?.totalCount,
-    defaultRepositoriesData.totalCount,
-  ]);
+    return defaultRepositoriesData.totalCount;
+  }, [isSearching, searchData?.totalCount, defaultRepositoriesData.totalCount]);
 
   const pageCount = useMemo(
     () =>

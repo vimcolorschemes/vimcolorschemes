@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 
 import './index.scss';
 
@@ -14,7 +15,7 @@ function ExternalLink({ to, children, className, ...props }: Props) {
       href={to}
       rel="noopener"
       target="_blank"
-      className={className}
+      className={classnames('external-link', className)}
       {...props}
     >
       {children}
