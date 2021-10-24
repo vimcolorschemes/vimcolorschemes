@@ -5,6 +5,8 @@ import SearchService from '@/services/search';
 import useDebounce from './debounce';
 import { APIRepository } from '@/models/api';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
+import LocalStorageHelper from '@/helpers/localStorage';
+import LocalStorageKeys from '@/lib/localStorage';
 
 interface Props {
   defaultRepositoriesData: {
@@ -25,6 +27,7 @@ interface Search {
   page: number;
   setPage: (page: number) => void;
   pageCount: number;
+  storeSearchData: () => void;
 }
 
 /**
@@ -48,13 +51,19 @@ function useSearch({
     [defaultRepositoriesData.apiRepositories],
   );
 
-  const [page, setPage] = useState<number>(defaultPageData.currentPage || 1);
+  const [page, setPage] = useState<number>(
+    Number(LocalStorageHelper.get(LocalStorageKeys.SearchPage)) ||
+      defaultPageData.currentPage ||
+      1,
+  );
   const [repositories, setRepositories] =
     useState<Repository[]>(defaultRepositories);
   const [totalCount, setTotalCount] = useState<number>(
     defaultRepositoriesData.totalCount,
   );
-  const [input, setInput] = useState<string>('');
+  const [input, setInput] = useState<string>(
+    LocalStorageHelper.get(LocalStorageKeys.SearchInput),
+  );
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
@@ -68,6 +77,16 @@ function useSearch({
     () => isSearching && !searchData && !error,
     [searchData, error],
   );
+
+  useEffect(() => {
+    LocalStorageHelper.remove(LocalStorageKeys.SearchInput);
+    LocalStorageHelper.remove(LocalStorageKeys.SearchPage);
+  }, []);
+
+  function storeSearchData() {
+    LocalStorageHelper.set(LocalStorageKeys.SearchInput, debouncedInput);
+    LocalStorageHelper.set(LocalStorageKeys.SearchPage, page.toString());
+  }
 
   useEffect(() => setPage(1), [debouncedInput]);
 
@@ -130,6 +149,7 @@ function useSearch({
     page,
     setPage,
     pageCount,
+    storeSearchData,
   };
 }
 

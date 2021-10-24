@@ -13,15 +13,16 @@ interface Props {
   isHome?: boolean;
   children?: React.ReactNode;
   className?: string;
+  onHomeLinkClick?: () => void;
 }
 
-function Page({ isHome, children, className }: Props) {
+function Page({ isHome, children, className, onHomeLinkClick }: Props) {
   useNavigation();
   usePointerEvents();
 
   return (
     <>
-      <Header isHome={isHome} />
+      <Header isHome={isHome} onHomeLinkClick={onHomeLinkClick} />
       <main className={classnames('main', className)}>{children}</main>
       <Footer isHome={isHome} />
     </>

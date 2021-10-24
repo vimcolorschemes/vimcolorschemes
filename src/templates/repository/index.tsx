@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { graphql, Link } from 'gatsby';
 
 import { APIRepository } from '@/models/api';
@@ -26,6 +26,14 @@ interface Props {
 function RepositoryPage({ data: { apiRepository }, location }: Props) {
   const repository = new Repository(apiRepository);
 
+  const previousPath = useMemo(() => {
+    if (typeof window === 'undefined') {
+      return Routes.Home;
+    }
+
+    return window.previousPath || Routes.Home;
+  }, [typeof window]);
+
   return (
     <Page className="repository">
       <SEO
@@ -36,11 +44,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
       />
       <section className="repository__content">
         <nav className="repository__nav">
-          <Link
-            to={window.previousPath || Routes.Home}
-            className="repository__link"
-            data-focusable
-          >
+          <Link to={previousPath} className="repository__link" data-focusable>
             <IconArrow left className="repository__link-icon" />
             <span>Back</span>
           </Link>

@@ -7,12 +7,13 @@ import './index.scss';
 
 interface Props {
   isHome?: boolean;
+  onHomeLinkClick?: () => void;
 }
 
-function Header({ isHome }: Props) {
+function Header({ isHome, onHomeLinkClick }: Props) {
   return (
     <header className="header">
-      <HomeLink isHome={isHome} />
+      <HomeLink isHome={isHome} onClick={onHomeLinkClick} />
       <BackgroundSwitch />
     </header>
   );
