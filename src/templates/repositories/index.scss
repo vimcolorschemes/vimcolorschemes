@@ -1,12 +1,20 @@
 .repositories {
   display: flex;
   flex-direction: column;
-  row-gap: var(--largest-space);
+  row-gap: var(--large-space);
+  padding-top: 0;
 }
 
 .repositories__header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  column-gap: var(--standard-space);
+  flex-direction: column;
+  gap: var(--large-space);
+}
+
+@include breakpoint(large) {
+  .repositories__header {
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

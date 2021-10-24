@@ -70,7 +70,7 @@ code {
 }
 
 *[data-focusable] {
-  @include focusableStyle;
+  @include focusable-style;
 }
 
 @include breakpoint(medium) {

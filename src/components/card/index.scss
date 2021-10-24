@@ -4,12 +4,12 @@
   row-gap: var(--standard-space);
   position: relative;
 
-  @include invertedPadding;
+  @include inverted-padding;
   &:hover {
-    @include hoverBorder;
+    @include hover-border;
   }
   &:focus-within {
-    @include focusBorder;
+    @include focus-border;
   }
 }
 
@@ -30,6 +30,6 @@
   padding: var(--small-space);
 
   &:focus {
-    @include focusBorder(var(--focus-border-shade-1));
+    @include focus-border(var(--focus-border-shade-1));
   }
 }

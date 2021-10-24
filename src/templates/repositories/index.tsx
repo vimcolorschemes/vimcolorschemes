@@ -58,8 +58,8 @@ function IndexPage({
         pathname={location.pathname}
       />
       <header className="repositories__header">
-        <SearchInput value={search.input} onChange={search.setInput} />
         <Actions activeAction={actionFromURL} />
+        <SearchInput value={search.input} onChange={search.setInput} />
       </header>
       <p>
         <span>{search.totalCount} color schemes</span>

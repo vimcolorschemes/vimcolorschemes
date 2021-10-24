@@ -1,4 +1,4 @@
-@mixin buttonReset {
+@mixin button-reset {
   border: none;
   background: none;
   padding: 0;
@@ -12,28 +12,29 @@
   }
 }
 
-@mixin hoverBorder {
+@mixin hover-border {
+  border-radius: 0;
   box-shadow: 0px 2px 0px 0px var(--focus-border);
 }
 
-@mixin focusBorder($color: var(--focus-border)) {
+@mixin focus-border($color: var(--focus-border)) {
   border-radius: var(--standard-border-radius);
   box-shadow: 0px 0px 0px 2px $color;
   outline: none;
 }
 
-@mixin invertedPadding {
+@mixin inverted-padding {
   padding: var(--standard-space);
   margin: calc(var(--standard-space) * -1);
 }
 
-@mixin focusableStyle {
-  @include invertedPadding;
+@mixin focusable-style {
+  @include inverted-padding;
   &:hover {
-    @include hoverBorder;
+    @include hover-border;
   }
   &:focus {
-    @include focusBorder;
+    @include focus-border;
   }
 }
 
@@ -61,7 +62,7 @@
   }
 }
 
-@mixin onlyIE() {
+@mixin only-IE() {
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     @content;
   }

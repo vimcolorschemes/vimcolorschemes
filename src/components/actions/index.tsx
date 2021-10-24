@@ -12,20 +12,24 @@ interface Props {
 
 function Actions({ activeAction }: Props) {
   return (
-    <div className="actions">
-      {Object.values(ActionsEnum).map(action => (
-        <Link
-          key={action.route}
-          to={action.route}
-          className={classnames('actions__action', {
-            ['actions__action--active']: activeAction.route === action.route,
-          })}
-          data-focusable
-        >
-          {action.label}
-        </Link>
-      ))}
-    </div>
+    <nav className="actions">
+      <div className="actions__shadow-overlay" />
+      <ul className="actions__list">
+        {Object.values(ActionsEnum).map(action => (
+          <li
+            key={action.route}
+            className={classnames('actions__action', {
+              ['actions__action--active']: activeAction.route === action.route,
+            })}
+          >
+            <Link to={action.route} data-focusable>
+              {action.label}
+            </Link>
+          </li>
+        ))}
+        <li className="actions__shadow-overlay-block" aria-hidden />
+      </ul>
+    </nav>
   );
 }
 
