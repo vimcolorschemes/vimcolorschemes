@@ -5,6 +5,7 @@ import Routes from '@/lib/routes';
 
 import ExternalLink from '@/components/externalLink';
 import HomeLink from '@/components/homeLink';
+import IconGithub from '@/components/icons/github';
 
 import './index.scss';
 
@@ -16,20 +17,38 @@ interface Props {
 function Footer({ isHome, onHomeLinkClick }: Props) {
   return (
     <footer className="footer">
-      <div className="footer__links">
+      <nav className="footer__links">
         <HomeLink isHome={isHome} onClick={onHomeLinkClick} isFooter />
-      </div>
-      <div className="footer__links">
-        <Link to={Routes.About} data-focusable data-testid="footer__about">
+      </nav>
+      <nav className="footer__links">
+        <Link
+          to={Routes.About}
+          data-focusable
+          data-testid="footer__about"
+          className="footer__link"
+        >
           About
         </Link>
-        <ExternalLink to={Routes.Github} data-focusable>
-          Github
+        <ExternalLink
+          to={Routes.Github}
+          data-focusable
+          className="footer__link footer__link--accent"
+        >
+          <span>
+            Follow{' '}
+            <span className="footer__link-extension">vimcolorshemes</span> on
+            Github
+          </span>
+          <IconGithub />
         </ExternalLink>
-        <ExternalLink to={Routes.Contact} data-focusable>
+        <ExternalLink
+          to={Routes.Contact}
+          data-focusable
+          className="footer__link"
+        >
           Contact
         </ExternalLink>
-      </div>
+      </nav>
     </footer>
   );
 }
