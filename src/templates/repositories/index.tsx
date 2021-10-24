@@ -68,11 +68,7 @@ function IndexPage({
       {search.isError && <p>Error searching...</p>}
       <Grid>
         {search.repositories.map(repository => (
-          <Card
-            repository={repository}
-            key={repository.key}
-            onClick={() => search.storeSearchData()}
-          />
+          <Card repository={repository} key={repository.key} />
         ))}
       </Grid>
       <Pagination

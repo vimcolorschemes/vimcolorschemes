@@ -63,8 +63,12 @@ function SearchInput({ value, onChange }: Props) {
           }
           className="search-input__input"
           value={value}
-          onChange={event => onChange(event.target.value)}
-          onFocus={(event) => {
+          onChange={event => {
+            onChange(event.target.value);
+          }}
+          onFocus={event => {
+            event.target.value = '';
+            event.target.value = value;
             event.target.select();
             setIcon(Icons.Enter);
           }}

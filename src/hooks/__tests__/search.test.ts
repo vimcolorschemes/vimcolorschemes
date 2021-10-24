@@ -25,6 +25,7 @@ describe('useSearch', () => {
 
   beforeEach(() => {
     RequestHelper.post = jest.fn();
+    localStorage.clear();
   });
 
   test('should not call the search endpoint on load', () => {

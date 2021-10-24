@@ -10,7 +10,7 @@ import './index.scss';
 
 interface Props {
   repository: Repository;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function Card({ repository, onClick }: Props) {

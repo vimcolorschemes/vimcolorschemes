@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import LocalStorageHelper from '@/helpers/localStorage';
 import LocalStorageKeys from '@/lib/localStorage';
 import SearchService from '@/services/search';
-import useDebounce from './debounce';
+import useDebounce from '@/hooks/debounce';
 import { APIRepository } from '@/models/api';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
 
@@ -27,7 +27,6 @@ interface Search {
   page: number;
   setPage: (page: number) => void;
   pageCount: number;
-  storeSearchData: () => void;
 }
 
 /**
@@ -51,14 +50,15 @@ function useSearch({
     [defaultRepositoriesData.apiRepositories],
   );
 
+  const storedSearchInput = LocalStorageHelper.get(
+    LocalStorageKeys.SearchInput,
+  );
+  const storedSearchPage = LocalStorageHelper.get(LocalStorageKeys.SearchPage);
+
   const [page, setPage] = useState<number>(
-    Number(LocalStorageHelper.get(LocalStorageKeys.SearchPage)) ||
-      defaultPageData.currentPage ||
-      1,
+    Number(storedSearchPage) || defaultPageData.currentPage || 1,
   );
-  const [input, setInput] = useState<string>(
-    LocalStorageHelper.get(LocalStorageKeys.SearchInput),
-  );
+  const [input, setInput] = useState<string>(storedSearchInput);
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
@@ -73,17 +73,23 @@ function useSearch({
     [searchData, error],
   );
 
-  useEffect(() => {
-    LocalStorageHelper.remove(LocalStorageKeys.SearchInput);
-    LocalStorageHelper.remove(LocalStorageKeys.SearchPage);
-  }, []);
-
   function storeSearchData() {
     LocalStorageHelper.set(LocalStorageKeys.SearchInput, debouncedInput);
     LocalStorageHelper.set(LocalStorageKeys.SearchPage, page.toString());
   }
 
-  useEffect(() => setPage(1), [debouncedInput]);
+  function resetSearchData() {
+    LocalStorageHelper.remove(LocalStorageKeys.SearchInput);
+    LocalStorageHelper.remove(LocalStorageKeys.SearchPage);
+  }
+
+  useEffect(() => {
+    if (isSearching) {
+      storeSearchData();
+    } else {
+      resetSearchData();
+    }
+  }, [isSearching, debouncedInput, page]);
 
   useEffect(
     () => setPage(defaultPageData.currentPage),
@@ -91,10 +97,12 @@ function useSearch({
   );
 
   useEffect(() => {
-    if (!isSearching) {
+    if (isSearching) {
+      setPage(1);
+    } else {
       setPage(defaultPageData.currentPage);
     }
-  }, [isSearching, page, defaultPageData.currentPage]);
+  }, [isSearching, defaultPageData.currentPage]);
 
   const repositories = useMemo(() => {
     if (isSearching) {
@@ -129,7 +137,6 @@ function useSearch({
     page,
     setPage,
     pageCount,
-    storeSearchData,
   };
 }
 
