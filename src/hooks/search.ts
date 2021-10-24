@@ -1,12 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
+import LocalStorageHelper from '@/helpers/localStorage';
+import LocalStorageKeys from '@/lib/localStorage';
 import SearchService from '@/services/search';
 import useDebounce from './debounce';
 import { APIRepository } from '@/models/api';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
-import LocalStorageHelper from '@/helpers/localStorage';
-import LocalStorageKeys from '@/lib/localStorage';
 
 interface Props {
   defaultRepositoriesData: {
@@ -56,11 +56,6 @@ function useSearch({
       defaultPageData.currentPage ||
       1,
   );
-  const [repositories, setRepositories] =
-    useState<Repository[]>(defaultRepositories);
-  const [totalCount, setTotalCount] = useState<number>(
-    defaultRepositoriesData.totalCount,
-  );
   const [input, setInput] = useState<string>(
     LocalStorageHelper.get(LocalStorageKeys.SearchInput),
   );
@@ -101,36 +96,21 @@ function useSearch({
     }
   }, [isSearching, page, defaultPageData.currentPage]);
 
-  useEffect(() => {
-    if (isLoading) {
-      return;
+  const repositories = useMemo(() => {
+    if (isSearching) {
+      return searchData?.repositories || [];
     }
 
-    if (!isSearching) {
-      setRepositories(defaultRepositories);
-      return;
+    return defaultRepositories;
+  }, [isSearching, searchData?.repositories, defaultRepositories]);
+
+  const totalCount = useMemo(() => {
+    if (isSearching) {
+      return searchData?.totalCount || 0;
     }
 
-    setRepositories(searchData?.repositories || []);
-  }, [isSearching, isLoading, searchData?.repositories, defaultRepositories]);
-
-  useEffect(() => {
-    if (isLoading) {
-      return;
-    }
-
-    if (!isSearching) {
-      setTotalCount(defaultRepositoriesData.totalCount);
-      return;
-    }
-
-    setTotalCount(searchData?.totalCount || 0);
-  }, [
-    isSearching,
-    isLoading,
-    searchData?.totalCount,
-    defaultRepositoriesData.totalCount,
-  ]);
+    return defaultRepositoriesData.totalCount;
+  }, [isSearching, searchData?.totalCount, defaultRepositoriesData.totalCount]);
 
   const pageCount = useMemo(
     () =>

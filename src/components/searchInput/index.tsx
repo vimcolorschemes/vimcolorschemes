@@ -64,7 +64,10 @@ function SearchInput({ value, onChange }: Props) {
           className="search-input__input"
           value={value}
           onChange={event => onChange(event.target.value)}
-          onFocus={() => setIcon(Icons.Enter)}
+          onFocus={(event) => {
+            event.target.select();
+            setIcon(Icons.Enter);
+          }}
           onBlur={() => setIcon(Icons.Search)}
           onKeyDown={event => {
             if (['Enter', 'Escape'].includes(event.key)) {
