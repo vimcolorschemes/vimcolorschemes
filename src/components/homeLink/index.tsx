@@ -23,6 +23,8 @@ function HomeLink({ isHome, isFooter, onClick }: Props) {
       to={Routes.Home}
       className="home-link"
       onClick={() => {
+        document.documentElement.focus();
+
         LocalStorageHelper.remove(LocalStorageKeys.SearchInput);
         LocalStorageHelper.remove(LocalStorageKeys.SearchPage);
 

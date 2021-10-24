@@ -24,7 +24,7 @@ function Page({ isHome, children, className, onHomeLinkClick }: Props) {
     <>
       <Header isHome={isHome} onHomeLinkClick={onHomeLinkClick} />
       <main className={classnames('main', className)}>{children}</main>
-      <Footer isHome={isHome} />
+      <Footer isHome={isHome} onHomeLinkClick={onHomeLinkClick} />
     </>
   );
 }
