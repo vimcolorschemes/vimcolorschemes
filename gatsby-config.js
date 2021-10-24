@@ -9,6 +9,16 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [
+          process.env.GATSBY_ENABLE_ROBOTS
+            ? { userAgent: '*', allow: ['/'] }
+            : { userAgent: '*', disallow: ['/'] },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-source-filesystem',
       options: {
         name: 'images',
