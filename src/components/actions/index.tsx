@@ -12,7 +12,7 @@ interface Props {
 
 function Actions({ activeAction }: Props) {
   return (
-    <nav className="actions">
+    <nav className="actions" aria-label="repository list sort actions">
       <div className="actions__shadow-overlay" />
       <ul className="actions__list">
         {Object.values(ActionsEnum).map(action => (

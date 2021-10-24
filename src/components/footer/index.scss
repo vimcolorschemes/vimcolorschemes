@@ -1,9 +1,12 @@
 .footer {
+  padding: var(--large-space) 0;
+}
+
+.footer__content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--large-space);
-  padding: var(--large-space) 0;
 
   & > *:first-child {
     flex: 1;
@@ -33,7 +36,7 @@
 }
 
 @include breakpoint(medium) {
-  .footer {
+  .footer__content {
     flex-direction: row;
     justify-content: space-between;
     gap: calc(var(--standard-space) * 3);
