@@ -2,6 +2,7 @@
   width: 100%;
   display: grid;
   gap: var(--largest-space);
+  grid-template-columns: 100%;
 }
 
 @include breakpoint(large) {
