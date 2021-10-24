@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   column-gap: var(--small-space);
-  font-size: 1em;
+  font-size: var(--large-font-size);
 }
 
 .home-link__logo {
@@ -20,6 +20,6 @@
 
 @include breakpoint(large) {
   .home-link {
-    font-size: 2em;
+    font-size: var(--largest-font-size);
   }
 }

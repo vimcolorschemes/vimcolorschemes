@@ -1,14 +1,17 @@
 body {
   // source: color-name.com
   --white: #ffffff;
+  --white-rgb: 255, 255, 255;
   --platinum: #e3e3e3;
   --chinese-silver: #cccccc;
   --davys-grey: #5c5c5c;
   --dark-charcoal: #333333;
+  --dark-charcoal-rgb: 51, 51, 51;
   --jordy-blue: #85a9f7;
   --cerulean-blue: #2855b7;
 
   --background: var(--white);
+  --background-rgb: var(--white-rgb);
   --focus-border: var(--davys-grey);
   --focus-border-shade-1: var(--chinese-silver);
   --foreground: var(--dark-charcoal);
@@ -28,6 +31,7 @@ body {
 
   &.dark {
     --background: var(--dark-charcoal);
+    --background-rgb: var(--dark-charcoal-rgb);
     --focus-border: var(--white);
     --focus-border-shade-1: var(--chinese-silver);
     --foreground: var(--white);
