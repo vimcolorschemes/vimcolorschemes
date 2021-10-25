@@ -57,7 +57,7 @@
     "sass": "^1.43.3",
     "spatial-navigation-polyfill": "^1.3.1",
     "swr": "^1.0.1",
-    "ts-node": "^10.3.0",
+    "ts-node": "^10.4.0",
     "typeface-jetbrains-mono": "^2.0.1",
     "typeface-source-sans-pro": "^1.1.13"
   },
