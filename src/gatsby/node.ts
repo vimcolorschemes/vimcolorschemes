@@ -164,6 +164,10 @@ export async function createPages({ graphql, actions: { createPage } }) {
 }
 
 export async function onPostBuild({ graphql }) {
+  if (!process.env.GATSBY_ENABLE_GENERATE_PREVIEW_IMAGES) {
+    return;
+  }
+
   const build = new nodeStatic.Server('public');
 
   http
