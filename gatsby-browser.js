@@ -1,5 +1,5 @@
 import 'typeface-source-sans-pro';
-import 'typeface-jetbrains-mono';
+import 'typeface-ubuntu-mono';
 
 export function onPreRouteUpdate() {
   // Adds a previousPath property that is available on all pages
