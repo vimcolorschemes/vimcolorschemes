@@ -16,10 +16,9 @@ interface Props {
 
 function PreviewPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
-  const defaultVimColorScheme = repository.flattenedVimColorSchemes[0];
   return (
     <Preview
-      vimColorSchemes={[defaultVimColorScheme]}
+      vimColorSchemes={[repository.defaultVimColorScheme]}
       className="preview-page"
     />
   );

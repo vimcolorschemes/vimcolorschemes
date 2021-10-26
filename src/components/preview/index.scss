@@ -19,12 +19,18 @@
   background: var(--normal-bg);
   color: var(--normal-fg);
   line-height: 1.125rem;
-  border-radius: var(--standard-border-radius);
+  border-radius: 0;
   overflow: hidden;
 }
 
 .preview > * {
   margin: 0;
+}
+
+@include breakpoint(medium) {
+  .preview {
+    border-radius: var(--standard-border-radius);
+  }
 }
 
 .NormalBg {

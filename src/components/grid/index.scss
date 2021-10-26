@@ -1,12 +1,15 @@
 .grid {
-  width: 100%;
+  width: calc(100% + calc(var(--standard-space) * 2));
   display: grid;
   gap: var(--largest-space);
   grid-template-columns: 100%;
+  margin: 0 calc(var(--standard-space) * -1);
 }
 
 @include breakpoint(large) {
   .grid {
+    width: 100%;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    margin: 0;
   }
 }

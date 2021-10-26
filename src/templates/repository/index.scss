@@ -1,14 +1,21 @@
 .repository__content {
   display: flex;
   flex-direction: column;
-  row-gap: var(--largest-space);
+  align-items: center;
+  row-gap: var(--large-space);
 }
 
 .repository__nav {
+  width: 100%;
   margin: var(--standard-space) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.repository__meta {
+  width: 100%;
+  margin: 0;
 }
 
 .repository__link {
@@ -19,4 +26,49 @@
 
 .repository__link-icon {
   height: 1.2rem;
+}
+
+.repository__previews {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--large-space);
+  margin: var(--standard-space) 0 var(--largest-space);
+
+  & > * {
+    width: 100%;
+  }
+}
+
+.repository__previews-title {
+  text-align: center;
+}
+
+.repository__preview-wrapper {
+  width: 100%;
+}
+
+.repository__preview {
+  width: calc(100% + var(--standard-space) * 2);
+  margin: 0 calc(var(--standard-space) * -1);
+}
+
+.repository__preview-title {
+  font-size: var(--small-font-size);
+  margin-bottom: var(--small-space);
+}
+
+.repository__link-extension {
+  display: none;
+}
+
+@include breakpoint(medium) {
+  .repository__preview {
+    width: 100%;
+    margin: 0;
+  }
+
+  .repository__link-extension {
+    display: inline-block;
+  }
 }

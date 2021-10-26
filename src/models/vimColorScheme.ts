@@ -33,6 +33,10 @@ export class VimColorScheme {
       : this.backgrounds[0];
   }
 
+  get key(): string {
+    return `${this.name} (${this.defaultBackground})`;
+  }
+
   copy(): VimColorScheme {
     const copy = new VimColorScheme();
     copy.name = this.name;

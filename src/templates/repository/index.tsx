@@ -5,14 +5,13 @@ import { APIRepository } from '@/models/api';
 import { Repository } from '@/models/repository';
 
 import ExternalLink from '@/components/externalLink';
-import Grid from '@/components/grid';
 import IconArrow from '@/components/icons/arrow';
 import IconGithub from '@/components/icons/github';
-import Meta from '@/components/meta';
 import Page from '@/components/page';
 import Preview from '@/components/preview';
 import Routes from '@/lib/routes';
 import SEO from '@/components/seo';
+import { MetaDescription, MetaFooter, MetaHeader } from '@/components/meta';
 
 import './index.scss';
 
@@ -54,20 +53,46 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
             data-focusable
           >
             <span>
-              View <b>{repository.name}</b> on Github
+              <span className="repository__link-extension">
+                View <b>{repository.name}</b> on{' '}
+              </span>
+              Github
             </span>
             <IconGithub className="repository__link-icon" />
           </ExternalLink>
         </nav>
-        <Meta repository={repository} isRepositoryPage />
-        <Grid>
-          {repository.flattenedVimColorSchemes.map(vimColorScheme => (
-            <Preview
-              vimColorSchemes={[vimColorScheme]}
-              key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
-            />
-          ))}
-        </Grid>
+        <MetaHeader
+          repository={repository}
+          className="repository__meta"
+          isRepositoryPage
+        />
+        <Preview
+          vimColorSchemes={[repository.defaultVimColorScheme]}
+          className="repository__preview"
+        />
+        <MetaDescription repository={repository} className="repository__meta" />
+        <MetaFooter repository={repository} className="repository__meta" />
+        {repository.flattenedVimColorSchemes.length > 1 && (
+          <div className="repository__previews">
+            <h3 className="repository__previews-title subtitle">
+              <b>More from {repository.name}</b>
+            </h3>
+            {repository.flattenedVimColorSchemes
+              .slice(1)
+              .map(vimColorScheme => (
+                <div className="repository__preview-wrapper">
+                  <h4 className="repository__preview-title subtitle">
+                    <code>{vimColorScheme.key}</code>
+                  </h4>
+                  <Preview
+                    vimColorSchemes={[vimColorScheme]}
+                    key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
+                    className="repository__preview"
+                  />
+                </div>
+              ))}
+          </div>
+        )}
       </section>
     </Page>
   );

@@ -36,8 +36,12 @@ function StatusLine({ fileName, cursorLine = 0, lineCount }: Props) {
         <span data-ignore-a11y>{fileName}</span>
       </span>
       <span className="status-line__content">
-        <span data-ignore-a11y>unix</span>
-        <span data-ignore-a11y>utf-8</span>
+        <span className="status-line__extension" data-ignore-a11y>
+          unix
+        </span>
+        <span className="status-line__extension" data-ignore-a11y>
+          utf-8
+        </span>
         <span data-ignore-a11y>☰</span>
         <span data-ignore-a11y>{percentage}%</span>
         <span data-ignore-a11y>{lineCountIndicator}</span>

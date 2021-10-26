@@ -3,6 +3,9 @@
   align-items: center;
   justify-content: space-between;
   column-gap: var(--standard-space);
+  width: var(--standard-page-width);
+  max-width: 100%;
+  margin-top: var(--large-space);
 
   & > div {
     flex: 1;

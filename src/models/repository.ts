@@ -80,6 +80,10 @@ export class Repository {
       [] as VimColorScheme[],
     );
   }
+
+  get defaultVimColorScheme(): VimColorScheme {
+    return this.flattenedVimColorSchemes[0];
+  }
 }
 
 export interface Owner {

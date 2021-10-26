@@ -61,11 +61,13 @@ function IndexPage({
         <Actions activeAction={actionFromURL} />
         <SearchInput value={search.input} onChange={search.setInput} />
       </header>
-      <p>
+      <p className="repositories__search-indicator">
         <span>{search.totalCount} color schemes</span>
         {search.isSearching && <span> found</span>}
       </p>
-      {search.isError && <p>Error searching...</p>}
+      {search.isError && (
+        <p className="repositories__search-indicator">Error searching...</p>
+      )}
       <Grid>
         {search.repositories.map(repository => (
           <Card repository={repository} key={repository.key} />

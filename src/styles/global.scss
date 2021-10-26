@@ -19,7 +19,7 @@ body,
 
   & > * {
     flex-shrink: 0;
-    width: 80rem;
+    width: var(--standard-page-width);
     max-width: 100%;
   }
 }

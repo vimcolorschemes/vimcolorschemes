@@ -27,9 +27,15 @@
 
 .card__link {
   margin: calc(var(--small-space) * -1);
-  padding: var(--small-space);
+  padding: var(--standard-space);
 
   &:focus {
     @include focus-border(var(--focus-border-shade-1));
+  }
+}
+
+@include breakpoint(medium) {
+  .card__link {
+    padding: var(--small-space);
   }
 }

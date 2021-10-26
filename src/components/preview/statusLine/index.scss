@@ -21,3 +21,13 @@
   align-items: center;
   width: min-content;
 }
+
+.status-line__extension {
+  display: none;
+}
+
+@include breakpoint(medium) {
+  .status-line__extension {
+    display: inline-block;
+  }
+}
