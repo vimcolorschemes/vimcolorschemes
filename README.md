@@ -4,9 +4,6 @@
 <p align="center">
   <b>Find the best vim color schemes around</b>
 </p>
-<p align="center">
-  <b>This is v2.0, releasing soon to vimcolorschemes.com</b>
-</p>
 
 <br>
 
