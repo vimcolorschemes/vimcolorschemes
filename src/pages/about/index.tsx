@@ -14,11 +14,7 @@ interface Props {
 const AboutPage = ({ location }: Props) => {
   return (
     <Page className="about">
-      <SEO
-        title="About"
-        description="vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation."
-        pathname={location.pathname}
-      />
+      <SEO title="About" pathname={location.pathname} />
 
       <h1 className="title" id="about">
         <a href="#about" data-focusable>

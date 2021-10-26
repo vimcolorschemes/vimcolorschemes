@@ -39,7 +39,7 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
         title={repository.title}
         description={repository.description}
         pathname={location.pathname}
-        og={{ image: repository.previewImageRoute }}
+        image={repository.previewImageRoute}
       />
       <section className="repository__content">
         <nav className="repository__nav">

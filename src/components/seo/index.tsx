@@ -6,14 +6,12 @@ import './index.scss';
 
 interface Props {
   title: string;
-  description: string;
   pathname: string;
-  og?: {
-    image?: string;
-  };
+  description?: string;
+  image?: string;
 }
 
-function SEO({ title, description, pathname, og }: Props) {
+function SEO({ title, description, pathname, image }: Props) {
   const { site, logo } = useStaticQuery(
     graphql`
       query {
@@ -21,6 +19,7 @@ function SEO({ title, description, pathname, og }: Props) {
           siteMetadata {
             title
             siteUrl
+            description
           }
         }
         logo: file(relativePath: { eq: "logo_background.png" }) {
@@ -30,10 +29,18 @@ function SEO({ title, description, pathname, og }: Props) {
     `,
   );
 
-  const image = useMemo(() => {
-    const path = !!og?.image ? og.image : logo.publicURL;
+  const ogImage = useMemo(() => {
+    const path = !!image ? image : logo.publicURL;
     return site.siteMetadata.siteUrl + path;
-  }, [og?.image, logo, site.siteMetadata.siteUrl]);
+  }, [image, logo, site.siteMetadata.siteUrl]);
+
+  const fullDescription = useMemo(() => {
+    if (!description) {
+      return site.siteMetadata.description;
+    }
+
+    return `${description} | ${site.siteMetadata.description}`;
+  }, [description, site.siteMetadata.description]);
 
   return (
     <Helmet
@@ -43,7 +50,7 @@ function SEO({ title, description, pathname, og }: Props) {
       meta={[
         {
           name: 'description',
-          content: description,
+          content: fullDescription,
         },
         {
           property: 'og:title',
@@ -51,7 +58,7 @@ function SEO({ title, description, pathname, og }: Props) {
         },
         {
           property: 'og:description',
-          content: description,
+          content: fullDescription,
         },
         {
           property: 'og:type',
@@ -63,7 +70,7 @@ function SEO({ title, description, pathname, og }: Props) {
         },
         {
           property: 'og:image',
-          content: image,
+          content: ogImage,
         },
         {
           property: 'og:image:type',
@@ -91,11 +98,11 @@ function SEO({ title, description, pathname, og }: Props) {
         },
         {
           name: 'twitter:description',
-          content: description,
+          content: fullDescription,
         },
         {
           name: 'twitter:image',
-          content: image,
+          content: ogImage,
         },
       ]}
     />
