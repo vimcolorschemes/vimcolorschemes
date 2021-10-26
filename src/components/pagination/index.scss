@@ -22,3 +22,13 @@
     justify-content: flex-end;
   }
 }
+
+.pagination__link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--smallest-space);
+}
+
+.pagination__icon {
+  height: 1.2rem;
+}

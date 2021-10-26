@@ -5,6 +5,8 @@ import { Action } from '@/lib/actions';
 
 import URLHelper from '@/helpers/url';
 
+import IconArrow from '@/components/icons/arrow';
+
 import './index.scss';
 
 interface PageLinkProps {
@@ -65,7 +67,8 @@ function Pagination({
             }
             onClick={onChange ? () => onChange(currentPage - 1) : undefined}
           >
-            Previous page
+            <IconArrow className="pagination__icon" left />
+            <span>Previous page</span>
           </PageLink>
         )}
       </div>
@@ -82,7 +85,8 @@ function Pagination({
             }
             onClick={onChange ? () => onChange(currentPage + 1) : undefined}
           >
-            Next page
+            <span>Next page</span>
+            <IconArrow className="pagination__icon" />
           </PageLink>
         )}
       </div>
