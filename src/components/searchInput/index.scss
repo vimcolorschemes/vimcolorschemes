@@ -41,6 +41,7 @@
   border: none;
   outline: none;
   background: transparent;
+  font-size: var(--standard-font-size);
   color: var(--input-foreground);
   width: calc(100% - calc(var(--standard-space) * 2));
 
