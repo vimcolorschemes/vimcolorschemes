@@ -54,9 +54,9 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
           >
             <span>
               <span className="repository__link-extension">
-                View <b>{repository.name}</b> on{' '}
+                View <b>{repository.name}</b> on
               </span>
-              Github
+              {' Github'}
             </span>
             <IconGithub className="repository__link-icon" />
           </ExternalLink>
