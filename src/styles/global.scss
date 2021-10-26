@@ -31,6 +31,7 @@ body {
   font-size: var(--standard-font-size);
   line-height: var(--line-height);
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 * {
@@ -49,11 +50,6 @@ b {
 
 button {
   font-size: var(--standard-font-size);
-}
-
-pre,
-code {
-  font-family: var(--code-font-family);
 }
 
 .subtitle {
