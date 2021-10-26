@@ -62,11 +62,14 @@ function IndexPage({
         <SearchInput value={search.input} onChange={search.setInput} />
       </header>
       <p className="repositories__search-indicator">
-        <span>{search.totalCount} color schemes</span>
+        <span>{search.isLoading ? '_' : search.totalCount} color schemes</span>
         {search.isSearching && <span> found</span>}
       </p>
       {search.isError && (
         <p className="repositories__search-indicator">Error searching...</p>
+      )}
+      {search.isLoading && (
+        <p className="repositories__search-indicator">Loading...</p>
       )}
       <Grid>
         {search.repositories.map(repository => (

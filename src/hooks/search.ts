@@ -70,7 +70,7 @@ function useSearch({
 
   const isLoading = useMemo(
     () => isSearching && !searchData && !error,
-    [searchData, error],
+    [isSearching, searchData, error],
   );
 
   function storeSearchData() {
