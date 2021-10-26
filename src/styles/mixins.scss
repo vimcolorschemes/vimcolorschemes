@@ -1,3 +1,5 @@
+@use 'sass:math';
+
 @mixin button-reset {
   border: none;
   background: none;
@@ -69,7 +71,7 @@
  * @returns The value in rem
  */
 @function rem($value) {
-  @return strip-units($value) / 16 * 1rem;
+  @return math.div(strip-units($value), 16) * 1rem;
 }
 
 /**
@@ -79,5 +81,5 @@
  * @returns The value without the suffix
  */
 @function strip-units($number) {
-  @return $number / ($number * 0 + 1);
+  @return math.div($number, $number * 0 + 1);
 }
