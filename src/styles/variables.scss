@@ -46,7 +46,7 @@ body {
     --blockquote-background: var(--davys-grey);
   }
 
-  --standard-space: 1rem;
+  --standard-space: #{rem(16px)};
   --small-space: calc(var(--standard-space) / 2);
   --smallest-space: calc(var(--small-space) / 2);
   --large-space: calc(var(--standard-space) * 2);
@@ -57,11 +57,11 @@ body {
   --line-height: 1.5;
 
   --standard-font-size: 16px;
-  --large-font-size: 20px;
-  --largest-font-size: 32px;
+  --large-font-size: #{rem(20px)};
+  --largest-font-size: #{rem(32px)};
 
   --standard-border-radius: 3px;
 
-  --standard-page-width: 80rem;
-  --large-page-width: 120rem;
+  --standard-page-width: #{rem(1280px)};
+  --large-page-width: #{rem(1920px)};
 }

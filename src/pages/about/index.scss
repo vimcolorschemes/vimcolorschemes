@@ -1,3 +1,7 @@
+#gatsby-focus-wrapper > .about {
+  width: rem(640px);
+}
+
 .about {
   p {
     margin-bottom: var(--standard-space);
@@ -12,7 +16,7 @@
   }
 
   ul {
-    padding-left: 2rem;
+    padding-left: var(--large-space);
   }
 
   li {
@@ -20,7 +24,7 @@
   }
 
   blockquote {
-    padding: 1rem;
+    padding: var(--standard-space);
     background: var(--blockquote-background);
     margin: 1rem 0;
     border-radius: var(--standard-border-radius);

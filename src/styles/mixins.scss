@@ -62,8 +62,22 @@
   }
 }
 
-@mixin only-IE() {
-  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
-    @content;
-  }
+/**
+ * Returns the value in rem
+ *
+ * @param value - The value in px
+ * @returns The value in rem
+ */
+@function rem($value) {
+  @return strip-units($value) / 16 * 1rem;
+}
+
+/**
+ * Strips the value of its suffix (ex: px)
+ *
+ * @param value - The value with a suffix
+ * @returns The value without the suffix
+ */
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
 }

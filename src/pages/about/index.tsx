@@ -1,11 +1,12 @@
 import React from 'react';
 
+import Routes from '@/lib/routes';
+
 import ExternalLink from '@/components/externalLink';
 import Page from '@/components/page';
 import SEO from '@/components/seo';
 
 import './index.scss';
-import Routes from '@/lib/routes';
 
 interface Props {
   location: Location;
