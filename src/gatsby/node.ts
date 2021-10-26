@@ -1,12 +1,9 @@
-import fs from 'fs';
-import http from 'http';
-import nodeStatic from 'node-static';
 import path from 'path';
-import puppeteer from 'puppeteer';
 
 import ElasticSearchClient from '../services/elasticSearch';
 import EmojiHelper from '../helpers/emoji';
 import URLHelper from '../helpers/url';
+import generatePreviewImages from './preview';
 import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
 import {
@@ -15,12 +12,6 @@ import {
   RepositoriesPageContext,
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
-
-const BUILD_PATH = 'public';
-const PREVIEW_WIDTH = 800;
-const PREVIEW_HEIGHT = 348;
-const PREVIEW_PORT = 8080;
-const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
 
 const isSearchUp =
   !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
@@ -164,54 +155,10 @@ export async function createPages({ graphql, actions: { createPage } }) {
 }
 
 export async function onPostBuild({ graphql }) {
-  if (!process.env.GATSBY_ENABLE_GENERATE_PREVIEW_IMAGES) {
-    return;
-  }
-
-  const build = new nodeStatic.Server('public');
-
-  http
-    .createServer((req, res) => {
-      build.serve(req, res);
-    })
-    .listen(PREVIEW_PORT);
-
   const { data } = await graphql(repositoriesQuery);
   const repositories: Repository[] = data.repositoriesData.apiRepositories.map(
     (apiRepository: APIRepository) => new Repository(apiRepository),
   );
 
-  repositories.forEach(async repository => {
-    try {
-      const browser = await puppeteer.launch({
-        args: [
-          '--no-sandbox',
-          '--disable-setuid-sandbox',
-          `--window-size=${PREVIEW_WIDTH},${PREVIEW_HEIGHT}`,
-        ],
-      });
-      const page = await browser.newPage();
-      await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
-
-      const previewPath = BUILD_PATH + repository.previewImageRoute;
-      const previewDirectory = path.dirname(previewPath);
-
-      if (!fs.existsSync(previewDirectory)) {
-        fs.mkdirSync(previewDirectory, { recursive: true });
-      }
-
-      await page.screenshot({
-        path: previewPath,
-        clip: {
-          x: 0,
-          y: 0,
-          width: PREVIEW_WIDTH,
-          height: PREVIEW_HEIGHT,
-        },
-      });
-      await browser.close();
-    } catch (error) {
-      console.error(error);
-    }
-  });
+  generatePreviewImages(repositories);
 }
