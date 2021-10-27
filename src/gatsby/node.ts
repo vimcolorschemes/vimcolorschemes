@@ -160,5 +160,5 @@ export async function onPostBuild({ graphql }) {
     (apiRepository: APIRepository) => new Repository(apiRepository),
   );
 
-  generatePreviewImages(repositories);
+  await generatePreviewImages(repositories);
 }

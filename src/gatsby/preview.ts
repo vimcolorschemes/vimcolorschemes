@@ -6,7 +6,7 @@ import path from 'path';
 
 import { Repository } from '../models/repository';
 
-const BUILD_PATH = 'public';
+const buildPath = `${process.cwd()}/public`;
 
 const PREVIEW_WIDTH = 800;
 const PREVIEW_HEIGHT = 446;
@@ -19,18 +19,14 @@ const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
  *
  * @param {Object[]} repositories - The repositories we need a preview for
  */
-async function generatePreviewImages(repositories: Repository[]) {
+async function generatePreviewImages(
+  repositories: Repository[],
+): Promise<void> {
   if (!process.env.GATSBY_ENABLE_GENERATE_PREVIEW_IMAGES) {
     return;
   }
 
-  const build = new nodeStatic.Server('public');
-
-  http
-    .createServer((req, res) => {
-      build.serve(req, res);
-    })
-    .listen(PREVIEW_PORT);
+  await startServer();
 
   const browser = await chromium.puppeteer.launch({
     args: [
@@ -44,18 +40,20 @@ async function generatePreviewImages(repositories: Repository[]) {
     ignoreHTTPSErrors: true,
   });
 
-  const promises = repositories.map(async repository => {
+  for (let i = 0; i < repositories.length; i++) {
+    const repository = repositories[i];
+
     const page = await browser.newPage();
     await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
 
-    const previewPath = BUILD_PATH + repository.previewImageRoute;
+    const previewPath = buildPath + repository.previewImageRoute;
     const previewDirectory = path.dirname(previewPath);
 
     if (!fs.existsSync(previewDirectory)) {
       fs.mkdirSync(previewDirectory, { recursive: true });
     }
 
-    return page.screenshot({
+    await page.screenshot({
       path: previewPath,
       clip: {
         x: 0,
@@ -64,11 +62,21 @@ async function generatePreviewImages(repositories: Repository[]) {
         height: PREVIEW_HEIGHT,
       },
     });
-  });
 
-  await Promise.all(promises);
+    await page.close()
+  }
 
   await browser.close();
+}
+
+async function startServer(): Promise<void> {
+  const build = new nodeStatic.Server('public');
+
+  http
+    .createServer((req, res) => {
+      build.serve(req, res);
+    })
+    .listen(PREVIEW_PORT);
 }
 
 export default generatePreviewImages;
