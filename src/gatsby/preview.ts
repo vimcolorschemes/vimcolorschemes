@@ -1,8 +1,8 @@
+import chromium from 'chrome-aws-lambda';
 import fs from 'fs';
 import http from 'http';
 import nodeStatic from 'node-static';
 import path from 'path';
-import puppeteer from 'puppeteer';
 
 import { Repository } from '../models/repository';
 
@@ -32,12 +32,16 @@ async function generatePreviewImages(repositories: Repository[]) {
     })
     .listen(PREVIEW_PORT);
 
-  const browser = await puppeteer.launch({
+  const browser = await chromium.puppeteer.launch({
     args: [
+      ...chromium.args,
       '--no-sandbox',
       '--disable-setuid-sandbox',
       `--window-size=${PREVIEW_WIDTH},${PREVIEW_HEIGHT}`,
     ],
+    executablePath: await chromium.executablePath,
+    headless: true,
+    ignoreHTTPSErrors: true,
   });
 
   const promises = repositories.map(async repository => {
