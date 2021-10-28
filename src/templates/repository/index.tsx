@@ -80,13 +80,15 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
             {repository.flattenedVimColorSchemes
               .slice(1)
               .map(vimColorScheme => (
-                <div className="repository__preview-wrapper">
+                <div
+                  className="repository__preview-wrapper"
+                  key={vimColorScheme.key}
+                >
                   <h4 className="repository__preview-title subtitle">
                     <code>{vimColorScheme.key}</code>
                   </h4>
                   <Preview
                     vimColorSchemes={[vimColorScheme]}
-                    key={`${vimColorScheme.name}-${vimColorScheme.defaultBackground}`}
                     className="repository__preview"
                   />
                 </div>
