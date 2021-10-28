@@ -30,7 +30,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        additionalData: `@import '${__dirname}/src/styles/global';`,
+        additionalData: `@import '${__dirname}/src/styles/mixins';`,
       },
     },
     {
