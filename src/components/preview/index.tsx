@@ -22,6 +22,7 @@ function Preview({ vimColorSchemes, className }: Props) {
   const [background, setBackground] = useState<Background>(
     defaultVimColorScheme.defaultBackground,
   );
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const preview = useRef<HTMLDivElement>(null);
 
@@ -38,6 +39,8 @@ function Preview({ vimColorSchemes, className }: Props) {
   );
 
   useEffect(() => {
+    setIsLoading(true);
+
     const groups = vimColorScheme.data[background];
     if (!groups?.length) {
       toggleBackground();
@@ -47,6 +50,8 @@ function Preview({ vimColorSchemes, className }: Props) {
     groups.forEach(group => {
       preview.current?.style.setProperty(`--vim-${group.name}`, group.hexCode);
     });
+
+    setIsLoading(false);
   }, [background, vimColorScheme, preview]);
 
   function changeVimColorScheme() {
@@ -84,22 +89,30 @@ function Preview({ vimColorSchemes, className }: Props) {
       })}
       ref={preview}
     >
-      <VimRC
-        vimColorScheme={vimColorScheme}
-        background={background}
-        onChangeVimColorScheme={
-          canChangeVimColorScheme ? changeVimColorScheme : undefined
-        }
-        onToggleBackground={canToggleBackground ? toggleBackground : undefined}
-      />
-      <Code
-        fileName="code.vim"
-        cursorLine={6}
-        lineCount={12}
-        className="preview__code"
-      >
-        <span dangerouslySetInnerHTML={{ __html: codeSample }} />
-      </Code>
+      {isLoading ? (
+        <p>loading ...</p>
+      ) : (
+        <>
+          <VimRC
+            vimColorScheme={vimColorScheme}
+            background={background}
+            onChangeVimColorScheme={
+              canChangeVimColorScheme ? changeVimColorScheme : undefined
+            }
+            onToggleBackground={
+              canToggleBackground ? toggleBackground : undefined
+            }
+          />
+          <Code
+            fileName="code.vim"
+            cursorLine={6}
+            lineCount={12}
+            className="preview__code"
+          >
+            <span dangerouslySetInnerHTML={{ __html: codeSample }} />
+          </Code>
+        </>
+      )}
     </div>
   );
 }
