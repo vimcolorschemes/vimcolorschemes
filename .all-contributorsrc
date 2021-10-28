@@ -204,6 +204,16 @@
       "contributions": [
         "ideas"
       ]
+    },
+    {
+      "login": "LeeWarnock",
+      "name": "Lee Warnock",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10902904?v=4",
+      "profile": "http://leewarnock.io",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
