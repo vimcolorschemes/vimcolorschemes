@@ -22,14 +22,14 @@ export class VimColorScheme {
     }
 
     return [
-      ...(this.data.light != null ? [Background.Light] : []),
       ...(this.data.dark != null ? [Background.Dark] : []),
+      ...(this.data.light != null ? [Background.Light] : []),
     ];
   }
 
   get defaultBackground(): Background {
     return this.backgrounds.length === 2
-      ? Background.Light
+      ? Background.Dark
       : this.backgrounds[0];
   }
 

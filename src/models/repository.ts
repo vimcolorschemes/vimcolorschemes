@@ -1,6 +1,10 @@
 import URLHelper from '../helpers/url';
 import { APIRepository } from './api';
-import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
+import {
+  Background,
+  VimColorScheme,
+  VimColorSchemeData,
+} from './vimColorScheme';
 
 export const REPOSITORY_COUNT_PER_PAGE = 20;
 
@@ -25,16 +29,21 @@ export class Repository {
     this.stargazersCount = apiRepository.stargazersCount;
     this.weekStargazersCount = apiRepository.weekStargazersCount;
 
-    this.vimColorSchemes = (apiRepository.vimColorSchemes || []).reduce(
-      (vimColorSchemes, vimColorScheme) => {
+    this.vimColorSchemes = (apiRepository.vimColorSchemes || [])
+      .reduce((vimColorSchemes, vimColorScheme) => {
         if (vimColorScheme.valid) {
           return [...vimColorSchemes, new VimColorScheme(vimColorScheme)];
         }
 
         return vimColorSchemes;
-      },
-      [] as VimColorScheme[],
-    );
+      }, [] as VimColorScheme[])
+      .sort((a, _b) => {
+        if (a.backgrounds.includes(Background.Dark)) {
+          return -1;
+        }
+
+        return 1;
+      });
   }
 
   get key(): string {
