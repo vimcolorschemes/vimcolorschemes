@@ -214,6 +214,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "armspkt",
+      "name": "armspkt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49720317?v=4",
+      "profile": "https://github.com/armspkt",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
