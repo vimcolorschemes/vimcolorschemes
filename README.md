@@ -51,7 +51,7 @@ The **focus** here is always on the **content**. The **simple design** of the we
 
 [vimcolorschemes](https://vimcolorschemes.com) is aimed to be a **collaborative** project, and you are invited to help. All types of involvement are welcome!
 
-Developers, check out the [development guide](https://docs.vimcolorschemes.com/#/getting-started) to start writing code and contribute.
+Developers, check out the [development guide](https://docs.vimcolorschemes.com/#/intro) to start writing code and contribute.
 
 ## Issues
 
