@@ -85,6 +85,13 @@ function HTML(props: Props) {
           dangerouslySetInnerHTML={{ __html: props.body }}
         />
         {props.postBodyComponents}
+        {!!process.env.GATSBY_CLOUDFLARE_ANALYTICS_TOKEN && (
+          <script
+            defer
+            src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": ${process.env.GATSBY_CLOUDFLARE_ANALYTICS_TOKEN}}`}
+          ></script>
+        )}
       </body>
     </html>
   );
