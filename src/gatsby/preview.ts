@@ -53,6 +53,8 @@ async function generatePreviewImages(
       fs.mkdirSync(previewDirectory, { recursive: true });
     }
 
+    await page.waitForSelector('.preview.preview--loaded');
+
     await page.screenshot({
       path: previewPath,
       clip: {
@@ -63,7 +65,7 @@ async function generatePreviewImages(
       },
     });
 
-    await page.close()
+    await page.close();
   }
 
   await browser.close();

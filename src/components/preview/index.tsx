@@ -19,6 +19,8 @@ function Preview({ vimColorSchemes, className }: Props) {
   const defaultVimColorScheme = vimColorSchemes[0];
   const [index, setIndex] = useState<number>(0);
 
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [background, setBackground] = useState<Background>(
     defaultVimColorScheme.defaultBackground,
   );
@@ -47,6 +49,8 @@ function Preview({ vimColorSchemes, className }: Props) {
     groups.forEach(group => {
       preview.current?.style.setProperty(`--vim-${group.name}`, group.hexCode);
     });
+
+    setIsLoading(false);
   }, [background, vimColorScheme, preview]);
 
   function changeVimColorScheme() {
@@ -81,6 +85,7 @@ function Preview({ vimColorSchemes, className }: Props) {
       className={classnames('preview', className, {
         'preview--light': background === Background.Light,
         'preview--dark': background === Background.Dark,
+        'preview--loaded': !isLoading,
       })}
       ref={preview}
     >
