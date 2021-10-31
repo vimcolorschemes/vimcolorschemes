@@ -40,7 +40,7 @@ $shadow-overlay-width: var(--largest-space);
   white-space: nowrap;
 
   &--active {
-    @include hover-border;
+    box-shadow: 0px 2px 0px 0px var(--focus-border);
   }
   &:focus-within {
     @include focus-border;

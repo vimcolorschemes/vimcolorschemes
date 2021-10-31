@@ -15,14 +15,18 @@
 }
 
 @mixin hover-border {
-  border-radius: 0;
-  box-shadow: 0px 2px 0px 0px var(--focus-border);
+  @media (hover: hover) and (pointer: fine) {
+    border-radius: 0;
+    box-shadow: 0px 2px 0px 0px var(--focus-border);
+  }
 }
 
 @mixin focus-border($color: var(--focus-border)) {
-  border-radius: var(--standard-border-radius);
-  box-shadow: 0px 0px 0px 2px $color;
-  outline: none;
+  @media (hover: hover) and (pointer: fine) {
+    border-radius: var(--standard-border-radius);
+    box-shadow: 0px 0px 0px 2px $color;
+    outline: none;
+  }
 }
 
 @mixin inverted-padding {

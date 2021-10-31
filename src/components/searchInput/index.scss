@@ -32,7 +32,9 @@
 }
 
 .search-input__input-wrapper:focus-within {
-  border-bottom: 2px solid var(--focus-border);
+  @media (hover: hover) and (pointer: fine) {
+    border-bottom: 2px solid var(--focus-border);
+  }
 }
 
 .search-input__input {
@@ -78,7 +80,9 @@
 
   .search-input__overlay-button {
     &:focus {
-      box-shadow: 0px 0px 0px 2px var(--focus-border);
+      @media (hover: hover) and (pointer: fine) {
+        box-shadow: 0px 0px 0px 2px var(--focus-border);
+      }
     }
   }
 }
