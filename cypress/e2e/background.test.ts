@@ -56,9 +56,16 @@ describe('Background switch', () => {
   });
 
   it('should toggle on shortcut press', () => {
+    // TODO: find a better way to wait for event listeners to be registered
+    cy.wait(2000);
+
     cy.triggerShortcut(Keys.Background);
     checkBackground(Background.Dark);
+
     refresh();
+
+    cy.wait(2000);
+
     cy.triggerShortcut(Keys.Background);
     checkBackground(Background.Light);
   });
