@@ -1,21 +1,10 @@
-name: Run tests
+name: Run E2E tests
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  unit_tests:
-    name: Run unit tests
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: npm ci
-    - name: Run unit tests
-      run: npm run test.unit
   e2e_tests:
     name: Run E2E tests on Chrome
     runs-on: ubuntu-latest
