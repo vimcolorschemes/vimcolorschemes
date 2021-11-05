@@ -1,10 +1,12 @@
 import path from 'path';
 
 import ElasticSearchClient from '../services/elasticSearch';
+import EnumHelper from '../helpers/enum';
 import URLHelper from '../helpers/url';
 import generatePreviewImages from './preview';
 import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
+import { Background } from '../lib/background';
 import {
   Repository,
   RepositoryPageContext,
@@ -71,6 +73,26 @@ function createRepositoriesPages(
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
   Array.from({ length: pageCount }).forEach((_, index) => {
     const page = index + 1;
+    EnumHelper.getKeys(Background).forEach(filterKey => {
+      const filter = Background[filterKey];
+      const filterPath = `/${filter}`;
+      Object.values(Actions).forEach(action => {
+        createPage({
+          path: filterPath + URLHelper.paginateRoute(action.route, page),
+          component: path.resolve('src/templates/repositories/index.tsx'),
+          context: {
+            skip: index * REPOSITORY_COUNT_PER_PAGE,
+            limit: REPOSITORY_COUNT_PER_PAGE,
+            sortProperty: [action.property],
+            sortOrder: [action.order],
+            pageCount,
+            currentPage: page,
+            filters: [filter],
+          },
+        });
+      });
+    });
+
     Object.values(Actions).forEach(action => {
       createPage({
         path: URLHelper.paginateRoute(action.route, page),
@@ -82,6 +104,7 @@ function createRepositoriesPages(
           sortOrder: [action.order],
           pageCount,
           currentPage: page,
+          filters: [Background.Light, Background.Dark],
         },
       });
     });

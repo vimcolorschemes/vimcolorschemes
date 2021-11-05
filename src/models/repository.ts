@@ -1,10 +1,7 @@
 import URLHelper from '../helpers/url';
 import { APIRepository } from './api';
-import {
-  Background,
-  VimColorScheme,
-  VimColorSchemeData,
-} from './vimColorScheme';
+import { Background } from '../lib/background';
+import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
 
 export const REPOSITORY_COUNT_PER_PAGE = 20;
 
@@ -18,6 +15,7 @@ export class Repository {
   stargazersCount: number;
   weekStargazersCount: number;
   vimColorSchemes: VimColorScheme[];
+  private _defaultBackground: Background;
 
   constructor(apiRepository: APIRepository) {
     this.name = apiRepository.name;
@@ -29,21 +27,47 @@ export class Repository {
     this.stargazersCount = apiRepository.stargazersCount;
     this.weekStargazersCount = apiRepository.weekStargazersCount;
 
-    this.vimColorSchemes = (apiRepository.vimColorSchemes || [])
-      .reduce((vimColorSchemes, vimColorScheme) => {
+    let defaultBackground = Background.Light;
+
+    this.vimColorSchemes = (apiRepository.vimColorSchemes || []).reduce(
+      (vimColorSchemes, vimColorScheme) => {
         if (vimColorScheme.valid) {
+          if (vimColorScheme.backgrounds.includes(Background.Dark)) {
+            defaultBackground = Background.Dark;
+          }
+
           return [...vimColorSchemes, new VimColorScheme(vimColorScheme)];
         }
 
         return vimColorSchemes;
-      }, [] as VimColorScheme[])
+      },
+      [] as VimColorScheme[],
+    );
+
+    this._defaultBackground = defaultBackground;
+  }
+
+  set defaultBackground(background: Background) {
+    this._defaultBackground = background;
+
+    this.vimColorSchemes = this.vimColorSchemes
+      .map(vimColorScheme => {
+        if (vimColorScheme.backgrounds.includes(background)) {
+          vimColorScheme.defaultBackground = background;
+        }
+        return vimColorScheme;
+      })
       .sort((a, _b) => {
-        if (a.backgrounds.includes(Background.Dark)) {
+        if (a.backgrounds.includes(background)) {
           return -1;
         }
 
         return 1;
       });
+  }
+
+  get defaultBackground(): Background {
+    return this._defaultBackground;
   }
 
   get key(): string {
@@ -111,4 +135,5 @@ export interface RepositoriesPageContext {
   sortOrder: Array<'DESC' | 'ASC'>;
   pageCount: number;
   currentPage: number;
+  filters: Background[];
 }

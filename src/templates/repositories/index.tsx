@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react';
-import { graphql } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 
+import Routes from '@/lib/routes';
 import URLHelper from '@/helpers/url';
 import useSearch from '@/hooks/search';
 import { APIRepository } from '@/models/api';
 import { Action } from '@/lib/actions';
+import { Background } from '@/lib/background';
 import { RepositoriesPageContext } from '@/models/repository';
 
 import Actions from '@/components/actions';
@@ -43,6 +45,33 @@ function IndexPage({
     [location.pathname],
   );
 
+  const isLightFilterChecked = useMemo(
+    () => pageContext.filters.includes(Background.Light),
+    [pageContext.filters],
+  );
+
+  const isDarkFilterChecked = useMemo(
+    () => pageContext.filters.includes(Background.Dark),
+    [pageContext.filters],
+  );
+
+  function onChangeFilters(
+    isLightFilterChecked: boolean,
+    isDarkFilterChecked: boolean,
+  ) {
+    let nextRoute = '';
+
+    if (isLightFilterChecked && !isDarkFilterChecked) {
+      nextRoute = Routes.Light;
+    }
+
+    if (!isLightFilterChecked && isDarkFilterChecked) {
+      nextRoute = Routes.Dark;
+    }
+
+    navigate(nextRoute + actionFromURL.route);
+  }
+
   return (
     <Page
       className="repositories"
@@ -58,9 +87,40 @@ function IndexPage({
         pathname={location.pathname}
       />
       <header className="repositories__header">
-        <Actions activeAction={actionFromURL} />
+        <Actions
+          activeAction={actionFromURL}
+          activeFilters={pageContext.filters}
+        />
         <SearchInput value={search.input} onChange={search.setInput} />
       </header>
+      <fieldset>
+        <label>
+          <span>light</span>
+          <input
+            type="checkbox"
+            name="background"
+            value="light"
+            checked={isLightFilterChecked}
+            onChange={() =>
+              onChangeFilters(!isLightFilterChecked, isDarkFilterChecked)
+            }
+            disabled={isLightFilterChecked && !isDarkFilterChecked}
+          />
+        </label>
+        <label>
+          <span>dark</span>
+          <input
+            type="checkbox"
+            name="background"
+            value="dark"
+            checked={isDarkFilterChecked}
+            onChange={() =>
+              onChangeFilters(isLightFilterChecked, !isDarkFilterChecked)
+            }
+            disabled={!isLightFilterChecked && isDarkFilterChecked}
+          />
+        </label>
+      </fieldset>
       <p className="repositories__search-indicator">
         <span>{search.isLoading ? '_' : search.totalCount} color schemes</span>
         {search.isSearching && <span> found</span>}
@@ -73,11 +133,16 @@ function IndexPage({
       )}
       <Grid>
         {search.repositories.map(repository => (
-          <Card repository={repository} key={repository.key} />
+          <Card
+            key={repository.key}
+            repository={repository}
+            activeFilters={pageContext.filters}
+          />
         ))}
       </Grid>
       <Pagination
         activeAction={actionFromURL}
+        activeFilters={pageContext.filters}
         currentPage={search.page}
         onChange={!!search.input ? search.setPage : undefined}
         pageCount={search.pageCount}
@@ -92,12 +157,15 @@ export const query = graphql`
     $sortOrder: [SortOrderEnum]!
     $skip: Int!
     $limit: Int!
+    $filters: [String] = ["dark", "light"]
   ) {
     repositoriesData: allMongodbVimcolorschemesRepositories(
       filter: {
         updateValid: { eq: true }
         generateValid: { eq: true }
-        vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+        vimColorSchemes: {
+          elemMatch: { valid: { eq: true }, backgrounds: { in: $filters } }
+        }
       }
       sort: { fields: $sortProperty, order: $sortOrder }
       skip: $skip
@@ -118,6 +186,7 @@ export const query = graphql`
         vimColorSchemes {
           name
           valid
+          backgrounds
           data {
             light {
               name

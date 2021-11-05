@@ -1,3 +1,4 @@
+import { Background } from '../lib/background';
 import { Owner } from './repository';
 import { VimColorSchemeGroup } from './vimColorScheme';
 
@@ -17,6 +18,7 @@ export interface APIVimColorScheme {
   name: string;
   valid: boolean;
   data: APIVimColorSchemeData | null;
+  backgrounds: Background[];
 }
 
 export interface APIVimColorSchemeData {

@@ -1,36 +1,22 @@
 import { APIVimColorScheme, APIVimColorSchemeData } from './api';
-
-export enum Background {
-  Light = 'light',
-  Dark = 'dark',
-}
+import { Background } from '../lib/background';
 
 export class VimColorScheme {
   name: string;
   valid: boolean;
   data: VimColorSchemeData;
+  backgrounds: Background[];
+  defaultBackground: Background;
 
   constructor(apiVimColorScheme?: APIVimColorScheme) {
     this.name = apiVimColorScheme?.name || '';
     this.valid = apiVimColorScheme?.valid || false;
     this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
-  }
+    this.backgrounds = apiVimColorScheme?.backgrounds || [];
 
-  get backgrounds(): Background[] {
-    if (!this.data) {
-      return [];
-    }
-
-    return [
-      ...(this.data.dark != null ? [Background.Dark] : []),
-      ...(this.data.light != null ? [Background.Light] : []),
-    ];
-  }
-
-  get defaultBackground(): Background {
-    return this.backgrounds.length === 2
+    this.defaultBackground = this.backgrounds.includes(Background.Dark)
       ? Background.Dark
-      : this.backgrounds[0];
+      : Background.Light;
   }
 
   get key(): string {

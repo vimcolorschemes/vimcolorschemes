@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Background, VimColorScheme } from '@/models/vimColorScheme';
+import { Background } from '@/lib/background';
+import { VimColorScheme } from '@/models/vimColorScheme';
 
 import Code from '@/components/preview/code';
 import IconArrowCircle from '@/components/icons/arrowCircle';
