@@ -4,6 +4,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import useSearch from '@/hooks/search';
 import RequestHelper from '@/helpers/request';
 import { Repository } from '@/models/repository';
+import { Background } from '@/lib/background';
 
 const defaultRepositoriesData = {
   apiRepositories: [],
@@ -16,6 +17,7 @@ const defaultPageData = {
   sortOrder: ['DESC'] as ('DESC' | 'ASC')[],
   pageCount: 2,
   currentPage: 1,
+  filters: [Background.Dark, Background.Light],
 };
 
 describe('useSearch', () => {

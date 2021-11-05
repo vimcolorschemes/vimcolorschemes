@@ -45,20 +45,24 @@ export class Repository {
     );
 
     this._defaultBackground = defaultBackground;
+    this.sortVimColorSchemesByBackground();
   }
 
   set defaultBackground(background: Background) {
     this._defaultBackground = background;
+    this.sortVimColorSchemesByBackground();
+  }
 
+  private sortVimColorSchemesByBackground() {
     this.vimColorSchemes = this.vimColorSchemes
       .map(vimColorScheme => {
-        if (vimColorScheme.backgrounds.includes(background)) {
-          vimColorScheme.defaultBackground = background;
+        if (vimColorScheme.backgrounds.includes(this._defaultBackground)) {
+          vimColorScheme.defaultBackground = this._defaultBackground;
         }
         return vimColorScheme;
       })
       .sort((a, _b) => {
-        if (a.backgrounds.includes(background)) {
+        if (a.backgrounds.includes(this._defaultBackground)) {
           return -1;
         }
 

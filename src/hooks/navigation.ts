@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import DOMHelper from '@/helpers/dom';
 import useShortcut from '@/hooks/shortcut';
 import Keys from '@/lib/keys';
@@ -14,6 +16,14 @@ enum Direction {
  * Uses: https://github.com/WICG/spatial-navigation
  */
 function useNavigation() {
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    window.__spatialNavigation__.keyMode = 'NONE';
+  }, [typeof window]);
+
   function getFirstVisible(candidates: HTMLElement[]): HTMLElement {
     return candidates.find(DOMHelper.isInViewport) || candidates[0];
   }

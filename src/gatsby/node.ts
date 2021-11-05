@@ -134,6 +134,7 @@ const repositoriesQuery = `
       vimColorSchemes {
         name
         valid
+        backgrounds
         data {
           light {
             name

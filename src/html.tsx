@@ -9,6 +9,9 @@ declare global {
     __background: Background;
     __onBackgroundChange: () => void;
     __setPreferredBackground: (background: Background) => void;
+    __spatialNavigation__: {
+      keyMode: 'ARROW' | 'SHIFTARROW' | 'NONE';
+    };
     previousPath?: string;
   }
 

@@ -6,17 +6,32 @@ export class VimColorScheme {
   valid: boolean;
   data: VimColorSchemeData;
   backgrounds: Background[];
-  defaultBackground: Background;
+  private _defaultBackground: Background;
 
   constructor(apiVimColorScheme?: APIVimColorScheme) {
     this.name = apiVimColorScheme?.name || '';
     this.valid = apiVimColorScheme?.valid || false;
     this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
+
     this.backgrounds = apiVimColorScheme?.backgrounds || [];
 
-    this.defaultBackground = this.backgrounds.includes(Background.Dark)
+    this._defaultBackground = this.backgrounds.includes(Background.Dark)
       ? Background.Dark
       : Background.Light;
+    this.sortBackgrounds();
+  }
+
+  get defaultBackground(): Background {
+    return this._defaultBackground;
+  }
+
+  set defaultBackground(background: Background) {
+    this._defaultBackground = background;
+    this.sortBackgrounds();
+  }
+
+  sortBackgrounds() {
+    this.backgrounds.sort(a => (a === this._defaultBackground ? -1 : 1));
   }
 
   get key(): string {
