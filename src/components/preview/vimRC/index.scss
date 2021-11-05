@@ -6,6 +6,7 @@
 button.vimrc__button {
   @include button-reset;
 
+  font-family: var(--code-font-family);
   font-size: calc(var(--large-font-size) - 1px);
   cursor: pointer;
   padding: 0 var(--smallest-space);
