@@ -25,13 +25,14 @@ function PageLink({ to, onClick, children }: PageLinkProps) {
   }
 
   return (
-    <a
+    <button
+      type="button"
       className="pagination__link"
       onClick={onClick}
       data-focusable
     >
       {children}
-    </a>
+    </button>
   );
 }
 
