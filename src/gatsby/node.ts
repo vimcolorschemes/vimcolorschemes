@@ -1,12 +1,12 @@
 import path from 'path';
 
+import Background from '../lib/background';
 import ElasticSearchClient from '../services/elasticSearch';
 import EnumHelper from '../helpers/enum';
 import URLHelper from '../helpers/url';
 import generatePreviewImages from './preview';
 import { APIRepository } from '../models/api';
 import { Actions } from '../lib/actions';
-import { Background } from '../lib/background';
 import {
   Repository,
   RepositoryPageContext,

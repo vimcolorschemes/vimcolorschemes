@@ -2,8 +2,8 @@ import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 import classnames from 'classnames';
 
+import Background from '@/lib/background';
 import { Action, Actions as ActionsEnum } from '@/lib/actions';
-import { Background } from '@/lib/background';
 
 import './index.scss';
 

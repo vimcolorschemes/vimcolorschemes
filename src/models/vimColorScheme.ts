@@ -1,5 +1,5 @@
+import Background from '../lib/background';
 import { APIVimColorScheme, APIVimColorSchemeData } from './api';
-import { Background } from '../lib/background';
 
 export class VimColorScheme {
   name: string;

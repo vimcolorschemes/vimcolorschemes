@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 
-import { Background } from '@/lib/background';
+import Background from '@/lib/background';
 import { VimColorScheme } from '@/models/vimColorScheme';
 
 import Code from './code';

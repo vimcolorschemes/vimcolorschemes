@@ -13,10 +13,20 @@
 
 .repositories__header {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: var(--large-space);
   width: var(--standard-page-width);
   max-width: 100%;
+}
+
+.repositories__header-row {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--large-space);
+}
+
+.repositories__header-row--align-end {
+  align-items: flex-end;
 }
 
 .repositories__search-indicator {
@@ -24,9 +34,14 @@
 }
 
 @include breakpoint(large) {
-  .repositories__header {
+  .repositories__header-row {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .repositories__header-row--align-end {
+    align-items: center;
+    justify-content: flex-end;
   }
 }

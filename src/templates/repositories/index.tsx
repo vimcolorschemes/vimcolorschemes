@@ -1,16 +1,15 @@
 import React, { useMemo } from 'react';
-import { graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 
-import Routes from '@/lib/routes';
 import URLHelper from '@/helpers/url';
 import useSearch from '@/hooks/search';
 import { APIRepository } from '@/models/api';
 import { Action } from '@/lib/actions';
-import { Background } from '@/lib/background';
 import { RepositoriesPageContext } from '@/models/repository';
 
 import Actions from '@/components/actions';
 import Card from '@/components/card';
+import Filters from '@/components/filters';
 import Grid from '@/components/grid';
 import Page from '@/components/page';
 import Pagination from '@/components/pagination';
@@ -45,36 +44,6 @@ function IndexPage({
     [location.pathname],
   );
 
-  const isLightFilterChecked = useMemo(
-    () => pageContext.filters.includes(Background.Light),
-    [pageContext.filters],
-  );
-
-  const isDarkFilterChecked = useMemo(
-    () => pageContext.filters.includes(Background.Dark),
-    [pageContext.filters],
-  );
-
-  function onChangeFilters(
-    isLightFilterChecked: boolean,
-    isDarkFilterChecked: boolean,
-  ) {
-    let nextRoute = '';
-
-    if (isLightFilterChecked && !isDarkFilterChecked) {
-      nextRoute = Routes.Light;
-    }
-
-    if (isDarkFilterChecked && !isLightFilterChecked) {
-      nextRoute = Routes.Dark;
-    }
-
-    // TODO refocusId only when using keyboard
-    navigate(nextRoute + actionFromURL.route, {
-      state: { refocusId: 'background' },
-    });
-  }
-
   return (
     <Page
       className="repositories"
@@ -90,50 +59,20 @@ function IndexPage({
         pathname={location.pathname}
       />
       <header className="repositories__header">
-        <SearchInput value={search.input} onChange={search.setInput} />
-        <Actions
-          activeAction={actionFromURL}
-          activeFilters={pageContext.filters}
-        />
+        <div className="repositories__header-row">
+          <SearchInput value={search.input} onChange={search.setInput} />
+          <Actions
+            activeAction={actionFromURL}
+            activeFilters={pageContext.filters}
+          />
+        </div>
+        <div className="repositories__header-row repositories__header-row--align-end">
+          <Filters
+            activeFilters={pageContext.filters}
+            activeAction={actionFromURL}
+          />
+        </div>
       </header>
-      <fieldset id="background">
-        <label>
-          <span>all</span>
-          <input
-            type="radio"
-            name="background"
-            value="all"
-            checked={isDarkFilterChecked && isLightFilterChecked}
-            onChange={event =>
-              event.target.checked && onChangeFilters(true, true)
-            }
-          />
-        </label>
-        <label>
-          <span>light</span>
-          <input
-            type="radio"
-            name="background"
-            value="light"
-            checked={isLightFilterChecked && !isDarkFilterChecked}
-            onChange={event =>
-              event.target.checked && onChangeFilters(true, false)
-            }
-          />
-        </label>
-        <label>
-          <span>dark</span>
-          <input
-            type="radio"
-            name="background"
-            value="dark"
-            checked={isDarkFilterChecked && !isLightFilterChecked}
-            onChange={event =>
-              event.target.checked && onChangeFilters(false, true)
-            }
-          />
-        </label>
-      </fieldset>
       <p className="repositories__search-indicator">
         <span>{search.isLoading ? '_' : search.totalCount} color schemes</span>
         {search.isSearching && <span> found</span>}

@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import { Link } from 'gatsby';
 
+import Background from '@/lib/background';
 import useForceUpdate from '@/hooks/update';
-import { Background } from '@/lib/background';
 import { Repository } from '@/models/repository';
 
 import Meta from '@/components/meta';

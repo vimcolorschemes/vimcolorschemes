@@ -29,6 +29,10 @@ body {
   --input-placeholder: var(--foreground-shade-1);
   --input-icon: var(--foreground);
 
+  --radio-background: var(--background);
+  --radio-foreground: var(--foreground);
+  --radio-border: var(--foreground);
+
   &.dark {
     --background: var(--dark-charcoal);
     --background-rgb: var(--dark-charcoal-rgb);

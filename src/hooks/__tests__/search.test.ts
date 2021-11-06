@@ -1,10 +1,10 @@
 import { act } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 
-import useSearch from '@/hooks/search';
+import Background from '@/lib/background';
 import RequestHelper from '@/helpers/request';
+import useSearch from '@/hooks/search';
 import { Repository } from '@/models/repository';
-import { Background } from '@/lib/background';
 
 const defaultRepositoriesData = {
   apiRepositories: [],

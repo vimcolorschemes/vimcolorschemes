@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Background, BACKGROUND_KEY } from '@/lib/background';
+import Background, { BACKGROUND_KEY } from '@/lib/background';
 
 const spatialNavigation = require('!!raw-loader!/node_modules/spatial-navigation-polyfill/polyfill/spatial-navigation-polyfill.js');
 

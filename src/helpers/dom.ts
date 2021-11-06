@@ -5,7 +5,7 @@
  * @returns {array} The focusable HTML elements
  */
 function getExplicitelyFocusableElements(): HTMLElement[] {
-  return Array.from(document.querySelectorAll('*[data-focusable]'));
+  return Array.from(document.querySelectorAll('*[data-focusable=true]'));
 }
 
 /**

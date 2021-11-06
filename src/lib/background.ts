@@ -1,6 +1,8 @@
 export const BACKGROUND_KEY = 'background';
 
-export enum Background {
+enum Background {
   Light = 'light',
   Dark = 'dark',
 }
+
+export default Background;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Background } from '@/lib/background';
+import Background from '@/lib/background';
 import { VimColorScheme } from '@/models/vimColorScheme';
 
 import Code from '@/components/preview/code';

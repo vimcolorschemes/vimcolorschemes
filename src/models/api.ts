@@ -1,4 +1,4 @@
-import { Background } from '../lib/background';
+import Background from '../lib/background';
 import { Owner } from './repository';
 import { VimColorSchemeGroup } from './vimColorScheme';
 

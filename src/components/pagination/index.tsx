@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 
 import URLHelper from '@/helpers/url';
 import { Action } from '@/lib/actions';
-import { Background } from '@/lib/background';
+import Background from '@/lib/background';
 
 import IconArrow from '@/components/icons/arrow';
 
