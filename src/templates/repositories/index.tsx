@@ -59,7 +59,6 @@ function IndexPage({
     isLightFilterChecked: boolean,
     isDarkFilterChecked: boolean,
   ) {
-    console.log('onchange');
     let nextRoute = '';
 
     if (isLightFilterChecked && !isDarkFilterChecked) {
@@ -70,7 +69,10 @@ function IndexPage({
       nextRoute = Routes.Dark;
     }
 
-    navigate(nextRoute + actionFromURL.route);
+    // TODO refocusId only when using keyboard
+    navigate(nextRoute + actionFromURL.route, {
+      state: { refocusId: 'background' },
+    });
   }
 
   return (
@@ -95,33 +97,42 @@ function IndexPage({
         />
       </header>
       <fieldset id="background">
-        <input
-          type="radio"
-          name="background"
-          value="all"
-          checked={isDarkFilterChecked && isLightFilterChecked}
-          onChange={event =>
-            event.target.checked && onChangeFilters(true, true)
-          }
-        />
-        <input
-          type="radio"
-          name="background"
-          value="light"
-          checked={isLightFilterChecked && !isDarkFilterChecked}
-          onChange={event =>
-            event.target.checked && onChangeFilters(true, false)
-          }
-        />
-        <input
-          type="radio"
-          name="background"
-          value="dark"
-          checked={isDarkFilterChecked && !isLightFilterChecked}
-          onChange={event =>
-            event.target.checked && onChangeFilters(false, true)
-          }
-        />
+        <label>
+          <span>all</span>
+          <input
+            type="radio"
+            name="background"
+            value="all"
+            checked={isDarkFilterChecked && isLightFilterChecked}
+            onChange={event =>
+              event.target.checked && onChangeFilters(true, true)
+            }
+          />
+        </label>
+        <label>
+          <span>light</span>
+          <input
+            type="radio"
+            name="background"
+            value="light"
+            checked={isLightFilterChecked && !isDarkFilterChecked}
+            onChange={event =>
+              event.target.checked && onChangeFilters(true, false)
+            }
+          />
+        </label>
+        <label>
+          <span>dark</span>
+          <input
+            type="radio"
+            name="background"
+            value="dark"
+            checked={isDarkFilterChecked && !isLightFilterChecked}
+            onChange={event =>
+              event.target.checked && onChangeFilters(false, true)
+            }
+          />
+        </label>
       </fieldset>
       <p className="repositories__search-indicator">
         <span>{search.isLoading ? '_' : search.totalCount} color schemes</span>
