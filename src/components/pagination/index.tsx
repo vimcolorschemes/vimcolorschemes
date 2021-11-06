@@ -24,11 +24,21 @@ function PageLink({ to, onClick, children }: PageLinkProps) {
     );
   }
 
+  function onLinkClick() {
+    if (typeof window !== 'undefined') {
+      scrollTo({ top: 0 });
+    }
+
+    if (onClick) {
+      onClick();
+    }
+  }
+
   return (
     <button
       type="button"
       className="pagination__link"
-      onClick={onClick}
+      onClick={onLinkClick}
       data-focusable
     >
       {children}

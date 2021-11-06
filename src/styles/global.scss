@@ -48,7 +48,7 @@ b {
 }
 
 button {
-  font-size: var(--standard-font-size);
+  @include button-reset;
 }
 
 .subtitle {

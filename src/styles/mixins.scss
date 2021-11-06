@@ -1,11 +1,15 @@
 @use 'sass:math';
 
 @mixin button-reset {
+  font-family: var(--standard-font-family);
+  font-size: var(--standard-font-size);
+
   border: none;
   background: none;
   padding: 0;
   margin: 0;
   color: inherit;
+  cursor: pointer;
 
   &:hover,
   &:focus {

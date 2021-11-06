@@ -24,7 +24,6 @@
 }
 
 .pagination__link {
-  @include button-reset;
   display: flex;
   align-items: center;
   column-gap: var(--smallest-space);
