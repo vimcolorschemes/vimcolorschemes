@@ -77,8 +77,10 @@ function createRepositoriesPages(
       const filter = Background[filterKey];
 
       const filteredRepositories = repositories.filter(repository =>
-        repository.vimColorSchemes.some(vimColorScheme =>
-          !!vimColorScheme.backgrounds?.includes(filter),
+        repository.vimColorSchemes.some(
+          vimColorScheme =>
+            vimColorScheme.valid &&
+            !!vimColorScheme.backgrounds.includes(filter),
         ),
       );
       const pageCount = Math.ceil(
