@@ -9,7 +9,7 @@ import { Repository } from '../models/repository';
 const buildPath = `${process.cwd()}/public`;
 
 const PREVIEW_WIDTH = 800;
-const PREVIEW_HEIGHT = 446;
+const PREVIEW_HEIGHT = 508;
 
 export const PREVIEW_PORT = 8080;
 const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;

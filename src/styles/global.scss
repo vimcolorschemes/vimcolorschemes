@@ -74,6 +74,8 @@ button {
   }
 }
 
+pre,
 code {
+  font-family: var(--code-font-family);
   outline: 0;
 }

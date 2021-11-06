@@ -1,5 +1,5 @@
 .preview-page {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  border-radius: 0;
+  margin: var(--standard-space);
+  width: calc(100vw - var(--standard-space) * 2) !important;
+  max-width: calc(100vw - var(--standard-space) * 2) !important;
 }

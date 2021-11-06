@@ -97,6 +97,12 @@ function Preview({ vimColorSchemes, className }: Props) {
       })}
       ref={preview}
     >
+      <header className="preview__header">
+        <div />
+        <div />
+        <div />
+        <code>{vimColorScheme.name}</code>
+      </header>
       <VimRC
         vimColorScheme={vimColorScheme}
         background={background}

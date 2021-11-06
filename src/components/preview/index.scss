@@ -21,6 +21,41 @@
   line-height: 1.125rem;
   border-radius: 0;
   overflow: hidden;
+
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.preview__header {
+  background: var(--vim-StatusLineBg, var(--normal-bg));
+  color: var(--vim-StatusLineFg, var(--normal-fg));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: rem(30px);
+  position: relative;
+  font-weight: bold;
+
+  & > div {
+    position: absolute;
+    width: rem(15px);
+    height: rem(15px);
+    border-radius: 50%;
+    left: var(--small-space);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  $colors: (
+    #ff605c: 0,
+    #ffbd44: 1,
+    #00ca4e: 2,
+  );
+  @each $color, $index in $colors {
+    & > div:nth-child(#{$index + 1}) {
+      background: $color;
+      margin-left: calc($index * (var(--standard-space) + var(--small-space)));
+    }
+  }
 }
 
 .preview > * {
@@ -29,7 +64,7 @@
 
 @include breakpoint(medium) {
   .preview {
-    border-radius: var(--standard-border-radius);
+    border-radius: var(--large-border-radius);
   }
 }
 
