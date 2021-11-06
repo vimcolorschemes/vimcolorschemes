@@ -75,6 +75,16 @@ function createRepositoriesPages(
     const page = index + 1;
     EnumHelper.getKeys(Background).forEach(filterKey => {
       const filter = Background[filterKey];
+
+      const filteredRepositories = repositories.filter(repository =>
+        repository.vimColorSchemes.some(vimColorScheme =>
+          vimColorScheme.backgrounds.includes(filter),
+        ),
+      );
+      const pageCount = Math.ceil(
+        filteredRepositories.length / REPOSITORY_COUNT_PER_PAGE,
+      );
+
       const filterPath = `/${filter}`;
       Object.values(Actions).forEach(action => {
         const pagePath =
