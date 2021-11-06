@@ -85,11 +85,7 @@ function IndexPage({
       )}
       <Grid>
         {search.repositories.map(repository => (
-          <Card
-            key={repository.key}
-            repository={repository}
-            activeFilters={pageContext.filters}
-          />
+          <Card key={repository.key} repository={repository} />
         ))}
       </Grid>
       <Pagination

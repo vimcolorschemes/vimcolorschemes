@@ -7,6 +7,7 @@ import SearchService from '@/services/search';
 import useDebounce from '@/hooks/debounce';
 import { APIRepository } from '@/models/api';
 import { RepositoriesPageContext, Repository } from '@/models/repository';
+import Background from '@/lib/background';
 
 interface Props {
   defaultRepositoriesData: {
@@ -112,13 +113,25 @@ function useSearch({
     return defaultRepositoriesData.totalCount;
   }, [isSearching, searchData?.totalCount, defaultRepositoriesData.totalCount]);
 
+  const background = useMemo(() => {
+    if (defaultPageData.filters.includes(Background.Dark)) {
+      return Background.Dark;
+    }
+    return Background.Light;
+  }, [defaultPageData.filters]);
+
   const repositories = useMemo(() => {
+    let repositories = defaultRepositories;
+
     if (isSearching) {
-      return searchData?.repositories || [];
+      repositories = searchData?.repositories || [];
     }
 
-    return defaultRepositories;
-  }, [isSearching, searchData?.repositories, defaultRepositories]);
+    return repositories.map(repository => {
+      repository.defaultBackground = background;
+      return repository;
+    });
+  }, [isSearching, searchData?.repositories, defaultRepositories, background]);
 
   const pageCount = useMemo(
     () =>
