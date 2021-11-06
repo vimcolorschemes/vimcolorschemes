@@ -3,7 +3,6 @@ import RequestHelper from '@/helpers/request';
 import { APIRepository } from '@/models/api';
 import { ELASTIC_SEARCH_INDEX_NAME } from '.';
 import { Repository, REPOSITORY_COUNT_PER_PAGE } from '@/models/repository';
-import { SearchSort } from '@elastic/elasticsearch/api/types';
 
 const ELASTIC_SEARCH_PROXY_URL = process.env.GATSBY_ELASTIC_SEARCH_PROXY_URL;
 
@@ -26,36 +25,47 @@ interface ElasticSearchResult<T> {
   };
 }
 
-interface SearchProps {
-  query: string;
-  filters: Background[];
-  page: number;
-}
-
 /**
  * Posts a search request to the repository search index and returns the result
  *
  * @param {string} query - The search input to match
+ * @param {Background[]} filters - The background filters to apply
  * @param {number} page - The search page
  *
- * @returns {Object[]} The repositories, total count and page count matching the
+ * @returns {SearchResult} The repositories, total count and page count matching the
  * search input
  */
-async function search({
-  query,
-  filters,
-  page = 1,
-}: SearchProps): Promise<SearchResult> {
+async function search(
+  query: string,
+  filters: Background[],
+  page: number = 1,
+): Promise<SearchResult> {
   if (!query) {
     return Promise.reject();
   }
 
-  // TODO do filters here
+  const matchQuery = {
+    multi_match: {
+      query: `*${query}*`,
+      fields: ['name', 'owner.name', 'description'],
+    },
+  };
+
+  const filterQuery = {
+    terms: {
+      'vimColorSchemes.backgrounds': filters,
+    },
+  };
 
   const data = await RequestHelper.post<ElasticSearchResult<APIRepository>>(
     URL,
     {
-      query: { query_string: { query: `*${query}*` } },
+      query: {
+        bool: {
+          must: matchQuery,
+          filter: filterQuery,
+        },
+      },
       from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
       size: REPOSITORY_COUNT_PER_PAGE,
     },

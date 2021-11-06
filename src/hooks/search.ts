@@ -62,13 +62,7 @@ function useSearch({
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
-    [
-      {
-        query: debouncedInput,
-        filters: defaultPageData.filters,
-        page,
-      },
-    ],
+    [debouncedInput, defaultPageData.filters, page],
     SearchService.search,
   );
 
