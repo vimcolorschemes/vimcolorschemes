@@ -101,7 +101,7 @@ function Preview({ vimColorSchemes, className }: Props) {
         <div />
         <div />
         <div />
-        <code>{vimColorScheme.name}</code>
+        <code data-ignore-a11y>{vimColorScheme.name}</code>
       </header>
       <VimRC
         vimColorScheme={vimColorScheme}

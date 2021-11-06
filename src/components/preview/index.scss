@@ -26,8 +26,8 @@
 }
 
 .preview__header {
-  background: var(--vim-StatusLineBg, var(--normal-bg));
-  color: var(--vim-StatusLineFg, var(--normal-fg));
+  background: var(--vim-StatusLineFg, var(--normal-fg));
+  color: var(--vim-StatusLineBg, var(--normal-bg));
   display: flex;
   align-items: center;
   justify-content: center;
