@@ -43,6 +43,7 @@ export const query = graphql`
       vimColorSchemes {
         name
         valid
+        backgrounds
         data {
           light {
             name
