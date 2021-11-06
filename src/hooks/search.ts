@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
-import Background from '@/lib/background';
 import LocalStorageHelper from '@/helpers/localStorage';
 import LocalStorageKeys from '@/lib/localStorage';
 import SearchService from '@/services/search';
@@ -63,7 +62,13 @@ function useSearch({
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
-    [debouncedInput, page],
+    [
+      {
+        query: debouncedInput,
+        filters: defaultPageData.filters,
+        page,
+      },
+    ],
     SearchService.search,
   );
 
@@ -105,6 +110,14 @@ function useSearch({
     }
   }, [isSearching, defaultPageData.currentPage]);
 
+  const totalCount = useMemo(() => {
+    if (isSearching) {
+      return searchData?.totalCount || 0;
+    }
+
+    return defaultRepositoriesData.totalCount;
+  }, [isSearching, searchData?.totalCount, defaultRepositoriesData.totalCount]);
+
   const repositories = useMemo(() => {
     if (isSearching) {
       return searchData?.repositories || [];
@@ -119,52 +132,10 @@ function useSearch({
     [debouncedInput, searchData?.pageCount, defaultPageData.pageCount],
   );
 
-  const isLightFilterChecked = useMemo(
-    () => defaultPageData.filters.includes(Background.Light),
-    [defaultPageData],
-  );
-
-  const isDarkFilterChecked = useMemo(
-    () => defaultPageData.filters.includes(Background.Dark),
-    [defaultPageData],
-  );
-
-  const filteredRepositories: Repository[] = useMemo(() => {
-    if (!isSearching || (isDarkFilterChecked && isLightFilterChecked)) {
-      return repositories;
-    }
-
-    const background = isLightFilterChecked
-      ? Background.Light
-      : Background.Dark;
-
-    return repositories.reduce((repositories, repository) => {
-      if (
-        !repository.vimColorSchemes.some(vimColorScheme =>
-          vimColorScheme.backgrounds.includes(background),
-        )
-      ) {
-        return repositories;
-      }
-
-      repository.defaultBackground = background;
-
-      return [...repositories, repository];
-    }, [] as Repository[]);
-  }, [isSearching, isLightFilterChecked, isDarkFilterChecked, repositories]);
-
-  const totalCount = useMemo(() => {
-    if (isSearching) {
-      return filteredRepositories.length;
-    }
-
-    return defaultRepositoriesData.totalCount;
-  }, [isSearching, filteredRepositories, defaultRepositoriesData.totalCount]);
-
   return {
     input,
     setInput,
-    repositories: filteredRepositories,
+    repositories,
     totalCount,
     isLoading,
     isError: !!error,
