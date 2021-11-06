@@ -20,8 +20,8 @@ describe('useNavigation', () => {
     document.body.innerHTML = `
       <div>
         <button>nothing</button>
-        <button id="first" data-focusable>first</button>
-        <button id="second" data-focusable>second</button>
+        <button id="first" data-focusable="true">first</button>
+        <button id="second" data-focusable="true">second</button>
       </div>
     `;
 
@@ -40,8 +40,8 @@ describe('useNavigation', () => {
     document.body.innerHTML = `
       <div>
         <button>nothing</button>
-        <button id="first" data-focusable>first</button>
-        <button id="second" data-focusable>second</button>
+        <button id="first" data-focusable="true">first</button>
+        <button id="second" data-focusable="true"second</button>
       </div>
     `;
 

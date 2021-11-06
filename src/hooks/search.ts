@@ -62,7 +62,7 @@ function useSearch({
   const debouncedInput = useDebounce(input);
 
   const { data: searchData, error } = useSWR(
-    [debouncedInput, page],
+    [debouncedInput, defaultPageData.filters, page],
     SearchService.search,
   );
 
@@ -104,14 +104,6 @@ function useSearch({
     }
   }, [isSearching, defaultPageData.currentPage]);
 
-  const repositories = useMemo(() => {
-    if (isSearching) {
-      return searchData?.repositories || [];
-    }
-
-    return defaultRepositories;
-  }, [isSearching, searchData?.repositories, defaultRepositories]);
-
   const totalCount = useMemo(() => {
     if (isSearching) {
       return searchData?.totalCount || 0;
@@ -119,6 +111,14 @@ function useSearch({
 
     return defaultRepositoriesData.totalCount;
   }, [isSearching, searchData?.totalCount, defaultRepositoriesData.totalCount]);
+
+  const repositories = useMemo(() => {
+    if (isSearching) {
+      return searchData?.repositories || [];
+    }
+
+    return defaultRepositories;
+  }, [isSearching, searchData?.repositories, defaultRepositories]);
 
   const pageCount = useMemo(
     () =>

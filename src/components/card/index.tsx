@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link } from 'gatsby';
 
+import Background from '@/lib/background';
+import useForceUpdate from '@/hooks/update';
 import { Repository } from '@/models/repository';
 
 import Meta from '@/components/meta';
@@ -10,11 +12,32 @@ import './index.scss';
 
 interface Props {
   repository: Repository;
+  activeFilters: Background[];
   onClick?: () => void;
 }
 
-function Card({ repository, onClick }: Props) {
+function Card({ repository, activeFilters, onClick }: Props) {
+  const forceUpdate = useForceUpdate();
+
   const linkLabel = `Go to page: ${repository.title}`;
+
+  const isDarkFilterChecked = useMemo(
+    () => activeFilters.includes(Background.Dark),
+    [activeFilters],
+  );
+
+  const defaultBackground: Background = useMemo(() => {
+    if (isDarkFilterChecked) {
+      return Background.Dark;
+    }
+    return Background.Light;
+  }, [isDarkFilterChecked]);
+
+  useEffect(() => {
+    repository.defaultBackground = defaultBackground;
+    forceUpdate();
+  }, [repository, defaultBackground]);
+
   return (
     <article className="card">
       <Link

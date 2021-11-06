@@ -1,36 +1,37 @@
+import Background from '../lib/background';
 import { APIVimColorScheme, APIVimColorSchemeData } from './api';
-
-export enum Background {
-  Light = 'light',
-  Dark = 'dark',
-}
 
 export class VimColorScheme {
   name: string;
   valid: boolean;
   data: VimColorSchemeData;
+  backgrounds: Background[];
+  private _defaultBackground: Background;
 
   constructor(apiVimColorScheme?: APIVimColorScheme) {
     this.name = apiVimColorScheme?.name || '';
     this.valid = apiVimColorScheme?.valid || false;
     this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
-  }
 
-  get backgrounds(): Background[] {
-    if (!this.data) {
-      return [];
-    }
+    this.backgrounds = apiVimColorScheme?.backgrounds || [];
 
-    return [
-      ...(this.data.dark != null ? [Background.Dark] : []),
-      ...(this.data.light != null ? [Background.Light] : []),
-    ];
+    this._defaultBackground = this.backgrounds.includes(Background.Dark)
+      ? Background.Dark
+      : Background.Light;
+    this.sortBackgrounds();
   }
 
   get defaultBackground(): Background {
-    return this.backgrounds.length === 2
-      ? Background.Dark
-      : this.backgrounds[0];
+    return this._defaultBackground;
+  }
+
+  set defaultBackground(background: Background) {
+    this._defaultBackground = background;
+    this.sortBackgrounds();
+  }
+
+  sortBackgrounds() {
+    this.backgrounds.sort(a => (a === this._defaultBackground ? -1 : 1));
   }
 
   get key(): string {

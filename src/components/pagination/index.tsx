@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 
-import { Action } from '@/lib/actions';
-
 import URLHelper from '@/helpers/url';
+import { Action } from '@/lib/actions';
+import Background from '@/lib/background';
 
 import IconArrow from '@/components/icons/arrow';
 
@@ -48,6 +48,7 @@ function PageLink({ to, onClick, children }: PageLinkProps) {
 
 interface PaginationProps {
   activeAction: Action;
+  activeFilters: Background[];
   currentPage: number;
   onChange?: (page: number) => void;
   pageCount: number;
@@ -55,6 +56,7 @@ interface PaginationProps {
 
 function Pagination({
   activeAction,
+  activeFilters,
   currentPage,
   onChange,
   pageCount,
@@ -64,6 +66,14 @@ function Pagination({
     () => currentPage === pageCount,
     [currentPage, pageCount],
   );
+
+  const routePrefix = useMemo(() => {
+    if (activeFilters.length === 1) {
+      return `/${activeFilters[0]}`;
+    }
+
+    return '';
+  }, [activeFilters]);
 
   return (
     <div className="pagination">
@@ -90,7 +100,10 @@ function Pagination({
           <PageLink
             to={
               !onChange
-                ? URLHelper.paginateRoute(activeAction.route, currentPage + 1)
+                ? URLHelper.paginateRoute(
+                    routePrefix + activeAction.route,
+                    currentPage + 1,
+                  )
                 : undefined
             }
             onClick={onChange ? () => onChange(currentPage + 1) : undefined}

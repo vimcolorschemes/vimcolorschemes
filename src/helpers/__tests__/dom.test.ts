@@ -8,11 +8,11 @@ describe('DOMHelper.getExplicitelyFocusableElements', () => {
   test('should return only elements with the data-focusable attribute', () => {
     const input = document.createElement('input');
     input.type = 'checkbox';
-    input.setAttribute('data-focusable', '');
+    input.setAttribute('data-focusable', 'true');
 
     const focusableButton = document.createElement('button');
     focusableButton.type = 'button';
-    focusableButton.setAttribute('data-focusable', '');
+    focusableButton.setAttribute('data-focusable', 'true');
 
     const nonFocusableButton = document.createElement('button');
     nonFocusableButton.type = 'button';

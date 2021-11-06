@@ -9,6 +9,7 @@ import { RepositoriesPageContext } from '@/models/repository';
 
 import Actions from '@/components/actions';
 import Card from '@/components/card';
+import Filters from '@/components/filters';
 import Grid from '@/components/grid';
 import Page from '@/components/page';
 import Pagination from '@/components/pagination';
@@ -58,8 +59,19 @@ function IndexPage({
         pathname={location.pathname}
       />
       <header className="repositories__header">
-        <Actions activeAction={actionFromURL} />
-        <SearchInput value={search.input} onChange={search.setInput} />
+        <div className="repositories__header-row">
+          <SearchInput value={search.input} onChange={search.setInput} />
+          <Actions
+            activeAction={actionFromURL}
+            activeFilters={pageContext.filters}
+          />
+        </div>
+        <div className="repositories__header-row repositories__header-row--align-end">
+          <Filters
+            activeFilters={pageContext.filters}
+            activeAction={actionFromURL}
+          />
+        </div>
       </header>
       <p className="repositories__search-indicator">
         <span>{search.isLoading ? '_' : search.totalCount} color schemes</span>
@@ -73,11 +85,16 @@ function IndexPage({
       )}
       <Grid>
         {search.repositories.map(repository => (
-          <Card repository={repository} key={repository.key} />
+          <Card
+            key={repository.key}
+            repository={repository}
+            activeFilters={pageContext.filters}
+          />
         ))}
       </Grid>
       <Pagination
         activeAction={actionFromURL}
+        activeFilters={pageContext.filters}
         currentPage={search.page}
         onChange={!!search.input ? search.setPage : undefined}
         pageCount={search.pageCount}
@@ -92,12 +109,15 @@ export const query = graphql`
     $sortOrder: [SortOrderEnum]!
     $skip: Int!
     $limit: Int!
+    $filters: [String] = ["dark", "light"]
   ) {
     repositoriesData: allMongodbVimcolorschemesRepositories(
       filter: {
         updateValid: { eq: true }
         generateValid: { eq: true }
-        vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+        vimColorSchemes: {
+          elemMatch: { valid: { eq: true }, backgrounds: { in: $filters } }
+        }
       }
       sort: { fields: $sortProperty, order: $sortOrder }
       skip: $skip
@@ -118,6 +138,7 @@ export const query = graphql`
         vimColorSchemes {
           name
           valid
+          backgrounds
           data {
             light {
               name

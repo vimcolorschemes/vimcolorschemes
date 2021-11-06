@@ -1,8 +1,9 @@
 import { act } from 'react-test-renderer';
 import { renderHook } from '@testing-library/react-hooks';
 
-import useSearch from '@/hooks/search';
+import Background from '@/lib/background';
 import RequestHelper from '@/helpers/request';
+import useSearch from '@/hooks/search';
 import { Repository } from '@/models/repository';
 
 const defaultRepositoriesData = {
@@ -16,6 +17,7 @@ const defaultPageData = {
   sortOrder: ['DESC'] as ('DESC' | 'ASC')[],
   pageCount: 2,
   currentPage: 1,
+  filters: [Background.Dark, Background.Light],
 };
 
 describe('useSearch', () => {

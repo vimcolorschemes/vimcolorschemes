@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import classnames from 'classnames';
 
-import { VimColorScheme, Background } from '@/models/vimColorScheme';
+import Background from '@/lib/background';
+import { VimColorScheme } from '@/models/vimColorScheme';
 
 import Code from './code';
 import VimRC from './vimRC';
@@ -16,18 +17,20 @@ interface Props {
 }
 
 function Preview({ vimColorSchemes, className }: Props) {
-  const defaultVimColorScheme = vimColorSchemes[0];
   const [index, setIndex] = useState<number>(0);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [background, setBackground] = useState<Background>(
-    defaultVimColorScheme.defaultBackground,
+    vimColorSchemes[0].defaultBackground,
   );
 
   const preview = useRef<HTMLDivElement>(null);
 
-  const vimColorScheme = useMemo(() => vimColorSchemes[index], [index]);
+  const vimColorScheme = useMemo(
+    () => vimColorSchemes[index],
+    [vimColorSchemes, index],
+  );
 
   const canChangeVimColorScheme = useMemo(
     () => vimColorSchemes.length > 1,
@@ -38,6 +41,11 @@ function Preview({ vimColorSchemes, className }: Props) {
     () => vimColorScheme.backgrounds.length > 1,
     [vimColorScheme],
   );
+
+  useEffect(() => {
+    setBackground(vimColorSchemes[0].defaultBackground);
+    setIndex(0);
+  }, [vimColorSchemes]);
 
   useEffect(() => {
     const groups = vimColorScheme.data[background];

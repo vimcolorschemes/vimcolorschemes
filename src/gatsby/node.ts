@@ -1,10 +1,12 @@
 import path from 'path';
 
+import Background from '../lib/background';
 import ElasticSearchClient from '../services/elasticSearch';
+import EnumHelper from '../helpers/enum';
 import URLHelper from '../helpers/url';
 import generatePreviewImages from './preview';
 import { APIRepository } from '../models/api';
-import { Actions } from '../lib/actions';
+import { Action, Actions } from '../lib/actions';
 import {
   Repository,
   RepositoryPageContext,
@@ -71,20 +73,82 @@ function createRepositoriesPages(
   const pageCount = Math.ceil(repositories.length / REPOSITORY_COUNT_PER_PAGE);
   Array.from({ length: pageCount }).forEach((_, index) => {
     const page = index + 1;
-    Object.values(Actions).forEach(action => {
-      createPage({
-        path: URLHelper.paginateRoute(action.route, page),
-        component: path.resolve('src/templates/repositories/index.tsx'),
-        context: {
-          skip: index * REPOSITORY_COUNT_PER_PAGE,
-          limit: REPOSITORY_COUNT_PER_PAGE,
-          sortProperty: [action.property],
-          sortOrder: [action.order],
+    EnumHelper.getKeys(Background).forEach(filterKey => {
+      const filter = Background[filterKey];
+
+      const filteredRepositories = repositories.filter(repository =>
+        repository.vimColorSchemes.some(
+          vimColorScheme =>
+            vimColorScheme.valid &&
+            !!vimColorScheme.backgrounds.includes(filter),
+        ),
+      );
+      const pageCount = Math.ceil(
+        filteredRepositories.length / REPOSITORY_COUNT_PER_PAGE,
+      );
+
+      const filterPath = `/${filter}`;
+      Object.values(Actions).forEach(action => {
+        const pagePath =
+          filterPath + URLHelper.paginateRoute(action.route, page);
+        createRepositoriesPage({
+          createPage,
+          pagePath,
+          index,
+          page,
           pageCount,
-          currentPage: page,
-        },
+          action,
+          filters: [filter],
+        });
       });
     });
+
+    Object.values(Actions).forEach(action => {
+      const pagePath = URLHelper.paginateRoute(action.route, page);
+      createRepositoriesPage({
+        createPage,
+        pagePath,
+        index,
+        pageCount,
+        action,
+        page,
+        filters: [Background.Light, Background.Dark],
+      });
+    });
+  });
+}
+
+interface CreateRepositoriesPageProps {
+  createPage: any;
+  pagePath: string;
+  index: number;
+  page: number;
+  pageCount: number;
+  action: Action;
+  filters: Background[];
+}
+
+function createRepositoriesPage({
+  createPage,
+  pagePath,
+  index,
+  page,
+  pageCount,
+  action,
+  filters,
+}: CreateRepositoriesPageProps) {
+  createPage({
+    path: pagePath,
+    component: path.resolve('src/templates/repositories/index.tsx'),
+    context: {
+      skip: index * REPOSITORY_COUNT_PER_PAGE,
+      limit: REPOSITORY_COUNT_PER_PAGE,
+      sortProperty: [action.property],
+      sortOrder: [action.order],
+      pageCount,
+      currentPage: page,
+      filters,
+    },
   });
 }
 
@@ -111,6 +175,7 @@ const repositoriesQuery = `
       vimColorSchemes {
         name
         valid
+        backgrounds
         data {
           light {
             name

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
+import Background from '@/lib/background';
 import Keys from '@/lib/keys';
 import useShortcut from '@/hooks/shortcut';
-import { Background } from '@/lib/background';
 
 import './index.scss';
 

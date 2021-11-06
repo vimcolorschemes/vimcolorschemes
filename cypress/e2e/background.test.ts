@@ -1,5 +1,5 @@
+import Background from '@/lib/background';
 import Keys from '@/lib/keys';
-import { Background } from '@/lib/background';
 
 describe('Background switch', () => {
   function waitForStateToLoad() {

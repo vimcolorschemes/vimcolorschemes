@@ -64,7 +64,7 @@ button {
   color: var(--link);
 }
 
-*[data-focusable] {
+*[data-focusable='true'] {
   @include focusable-style;
 }
 

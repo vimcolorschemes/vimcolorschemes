@@ -8,7 +8,7 @@ export interface Action {
   order: 'ASC' | 'DESC';
 }
 
-enum ActionNames {
+enum ActionName {
   Trending = 'Trending',
   Top = 'Top',
   RecentlyUpdated = 'RecentlyUpdated',
@@ -16,32 +16,32 @@ enum ActionNames {
   Old = 'Old',
 }
 
-export const Actions: Record<ActionNames, Action> = {
-  [ActionNames.Trending]: {
+export const Actions: Record<ActionName, Action> = {
+  [ActionName.Trending]: {
     label: 'Trending',
     route: Routes.Home,
     property: 'weekStargazersCount',
     order: 'DESC',
   },
-  [ActionNames.Top]: {
+  [ActionName.Top]: {
     label: 'Top',
     route: Routes.Top,
     property: 'stargazersCount',
     order: 'DESC',
   },
-  [ActionNames.RecentlyUpdated]: {
+  [ActionName.RecentlyUpdated]: {
     label: 'Recently updated',
     route: Routes.RecentlyUpdated,
     property: 'lastCommitAt',
     order: 'DESC',
   },
-  [ActionNames.New]: {
+  [ActionName.New]: {
     label: 'New',
     route: Routes.New,
     property: 'githubCreatedAt',
     order: 'DESC',
   },
-  [ActionNames.Old]: {
+  [ActionName.Old]: {
     label: 'Old',
     route: Routes.Old,
     property: 'githubCreatedAt',

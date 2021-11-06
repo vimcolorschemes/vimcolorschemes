@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 import classnames from 'classnames';
 
+import Background from '@/lib/background';
 import { Action, Actions as ActionsEnum } from '@/lib/actions';
 
 import './index.scss';
 
 interface Props {
   activeAction: Action;
+  activeFilters: Background[];
 }
 
-function Actions({ activeAction }: Props) {
+function Actions({ activeAction, activeFilters }: Props) {
+  const routePrefix = useMemo(() => {
+    if (activeFilters.length === 1) {
+      return `/${activeFilters[0]}`;
+    }
+
+    return '';
+  }, [activeFilters]);
+
   return (
     <nav className="actions" aria-label="repository list sort actions">
       <div className="actions__shadow-overlay" />
@@ -22,7 +32,7 @@ function Actions({ activeAction }: Props) {
               ['actions__action--active']: activeAction.route === action.route,
             })}
           >
-            <Link to={action.route} data-focusable>
+            <Link to={routePrefix + action.route} data-focusable>
               {action.label}
             </Link>
           </li>
