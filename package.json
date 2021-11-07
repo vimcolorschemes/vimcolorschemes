@@ -12,6 +12,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{ts,tsx,json,md,css,scss}\"",
+    "format.check": "prettier --check \"**/*.{ts,tsx,json,md,css,scss}\"",
     "test": "npm run test.unit && npm run test.e2e",
     "test.unit": "jest",
     "test.e2e": "npm run cypress.run",

@@ -1,4 +1,4 @@
-name: unit tests
+name: check code format
 
 on:
   push:
@@ -13,5 +13,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: install dependencies
       run: npm ci
-    - name: run unit tests
-      run: npm run test.unit
+    - name: run code format check
+      run: npm run format.check
