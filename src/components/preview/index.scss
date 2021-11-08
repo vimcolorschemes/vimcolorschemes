@@ -16,14 +16,22 @@
     var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
   );
 
+  font-size: var(--standard-font-size);
+
   background: var(--normal-bg);
   color: var(--normal-fg);
   line-height: 1.125rem;
-  border-radius: 0;
+  border-radius: var(--large-border-radius);
   overflow: hidden;
 
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+$header-button-colors: (
+  #ff605c: 0,
+  #ffbd44: 1,
+  #00ca4e: 2,
+);
 
 .preview__header {
   background: var(--vim-StatusLineFg, var(--normal-fg));
@@ -35,37 +43,26 @@
   position: relative;
   font-weight: bold;
 
+  $header-button-size: rem(13px);
   & > div {
     position: absolute;
-    width: rem(15px);
-    height: rem(15px);
+    width: $header-button-size;
+    height: $header-button-size;
     border-radius: 50%;
     left: var(--small-space);
     top: 50%;
     transform: translateY(-50%);
   }
-
-  $colors: (
-    #ff605c: 0,
-    #ffbd44: 1,
-    #00ca4e: 2,
-  );
-  @each $color, $index in $colors {
+  @each $color, $index in $header-button-colors {
     & > div:nth-child(#{$index + 1}) {
       background: $color;
-      margin-left: calc($index * (var(--standard-space) + var(--small-space)));
+      margin-left: calc($index * ($header-button-size + var(--small-space)));
     }
   }
 }
 
 .preview > * {
   margin: 0;
-}
-
-@include breakpoint(medium) {
-  .preview {
-    border-radius: var(--large-border-radius);
-  }
 }
 
 .NormalBg {

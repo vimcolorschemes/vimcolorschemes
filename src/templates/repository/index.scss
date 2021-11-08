@@ -49,8 +49,7 @@
 }
 
 .repository__preview {
-  width: calc(100% + var(--standard-space) * 2);
-  margin: 0 calc(var(--standard-space) * -1);
+  width: 100%;
 }
 
 .repository__preview-title {
@@ -63,11 +62,6 @@
 }
 
 @include breakpoint(medium) {
-  .repository__preview {
-    width: 100%;
-    margin: 0;
-  }
-
   .repository__link-extension {
     display: inline-block;
   }
