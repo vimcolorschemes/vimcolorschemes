@@ -46,6 +46,8 @@ async function search(
 
   const matchQuery = {
     multi_match: {
+  const queryString = {
+    query_string: {
       query: `*${query}*`,
       fields: ['name', 'owner.name', 'description'],
     },
@@ -62,7 +64,7 @@ async function search(
     {
       query: {
         bool: {
-          must: matchQuery,
+          must: queryString,
           filter: filterQuery,
         },
       },
