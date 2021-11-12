@@ -44,30 +44,11 @@ async function search(
     return Promise.reject();
   }
 
-  const matchQuery = {
-    multi_match: {
-  const queryString = {
-    query_string: {
-      query: `*${query}*`,
-      fields: ['name', 'owner.name', 'description'],
-    },
-  };
-
-  const filterQuery = {
-    terms: {
-      'vimColorSchemes.backgrounds': filters,
-    },
-  };
-
   const data = await RequestHelper.post<ElasticSearchResult<APIRepository>>(
     URL,
     {
-      query: {
-        bool: {
-          must: queryString,
-          filter: filterQuery,
-        },
-      },
+      query,
+      filters,
       from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
       size: REPOSITORY_COUNT_PER_PAGE,
     },
