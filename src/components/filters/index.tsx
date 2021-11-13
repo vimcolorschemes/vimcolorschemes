@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import { navigate } from 'gatsby';
 
+import Background from '@/lib/background';
 import Routes from '@/lib/routes';
 import { Action } from '@/lib/actions';
-import Background from '@/lib/background';
+
+import IconCheckboxChecked from '../icons/checkboxChecked';
+import IconCheckboxUnchecked from '../icons/checkboxUnchecked';
 
 import './index.scss';
 
@@ -60,6 +63,11 @@ function Filters({ activeFilters, activeAction }: Props) {
             }
             className="filters__input"
           />
+          {isLightFilterChecked && isDarkFilterChecked ? (
+            <IconCheckboxChecked />
+          ) : (
+            <IconCheckboxUnchecked />
+          )}
           <span>all</span>
         </label>
         <label className="filters__input-container">
@@ -74,6 +82,11 @@ function Filters({ activeFilters, activeAction }: Props) {
             }
             className="filters__input"
           />
+          {isLightFilterChecked && !isDarkFilterChecked ? (
+            <IconCheckboxChecked />
+          ) : (
+            <IconCheckboxUnchecked />
+          )}
           <span>light</span>
         </label>
         <label className="filters__input-container">
@@ -88,6 +101,11 @@ function Filters({ activeFilters, activeAction }: Props) {
             }
             className="filters__input"
           />
+          {isDarkFilterChecked && !isLightFilterChecked ? (
+            <IconCheckboxChecked />
+          ) : (
+            <IconCheckboxUnchecked />
+          )}
           <span>dark</span>
         </label>
       </fieldset>
