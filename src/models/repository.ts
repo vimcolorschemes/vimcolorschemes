@@ -83,8 +83,7 @@ export class Repository {
   }
 
   get title(): string {
-    const name = this.flattenedVimColorSchemes[0]?.name || this.name;
-    return `${name} vim color scheme, by ${this.owner.name}`;
+    return `${this.name}, by ${this.owner.name}`;
   }
 
   get previewRoute(): string {

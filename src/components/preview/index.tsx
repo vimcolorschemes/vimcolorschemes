@@ -15,12 +15,11 @@ interface Props {
   vimColorSchemes: VimColorScheme[];
   title?: React.ReactNode;
   className?: string;
+  onLoad?: () => void;
 }
 
-function Preview({ vimColorSchemes, title, className }: Props) {
+function Preview({ vimColorSchemes, title, className, onLoad }: Props) {
   const [index, setIndex] = useState<number>(0);
-
-  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [background, setBackground] = useState<Background>(
     vimColorSchemes[0].defaultBackground,
@@ -59,7 +58,9 @@ function Preview({ vimColorSchemes, title, className }: Props) {
       preview.current?.style.setProperty(`--vim-${group.name}`, group.hexCode);
     });
 
-    setIsLoading(false);
+    if (onLoad) {
+      onLoad();
+    }
   }, [background, vimColorScheme, preview]);
 
   function changeVimColorScheme() {
@@ -94,7 +95,6 @@ function Preview({ vimColorSchemes, title, className }: Props) {
       className={classnames('preview', className, {
         'preview--light': background === Background.Light,
         'preview--dark': background === Background.Dark,
-        'preview--loaded': !isLoading,
       })}
       ref={preview}
     >
