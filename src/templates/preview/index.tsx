@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { graphql } from 'gatsby';
 import classnames from 'classnames';
 
@@ -19,6 +19,8 @@ interface Props {
 }
 
 function PreviewPage({ data: { apiRepository } }: Props) {
+  const [loadState, setLoadState] = useState<Record<string, boolean>>({});
+
   const repository = new Repository(apiRepository);
 
   const vimColorSchemes = useMemo(
@@ -35,6 +37,8 @@ function PreviewPage({ data: { apiRepository } }: Props) {
     <div
       className={classnames('preview-page', {
         'preview-page--gallery': vimColorSchemes.length > 1,
+        'preview-page--loaded':
+          vimColorSchemes.length === Object.keys(loadState).length,
       })}
     >
       {repository.flattenedVimColorSchemes.map((vimColorScheme, index) => {
@@ -58,6 +62,16 @@ function PreviewPage({ data: { apiRepository } }: Props) {
             <Preview
               vimColorSchemes={[vimColorScheme]}
               className="preview-page__preview"
+              onLoad={() => {
+                if (loadState[vimColorScheme.key]) {
+                  return;
+                }
+
+                setLoadState(state => ({
+                  ...state,
+                  [vimColorScheme.key]: true,
+                }));
+              }}
             />
           </div>
         );

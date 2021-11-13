@@ -54,7 +54,7 @@ async function generatePreviewImages(
       fs.mkdirSync(previewDirectory, { recursive: true });
     }
 
-    await page.waitForSelector('.preview.preview--loaded');
+    await page.waitForSelector('.preview-page.preview-page--loaded');
 
     await page.screenshot({
       path: previewPath,
