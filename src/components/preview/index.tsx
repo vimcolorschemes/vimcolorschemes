@@ -13,10 +13,11 @@ import './index.scss';
 
 interface Props {
   vimColorSchemes: VimColorScheme[];
+  title?: React.ReactNode;
   className?: string;
 }
 
-function Preview({ vimColorSchemes, className }: Props) {
+function Preview({ vimColorSchemes, title, className }: Props) {
   const [index, setIndex] = useState<number>(0);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -101,7 +102,7 @@ function Preview({ vimColorSchemes, className }: Props) {
         <div />
         <div />
         <div />
-        <code data-ignore-a11y>{vimColorScheme.name}</code>
+        <code data-ignore-a11y>{title || vimColorScheme.name}</code>
       </header>
       <VimRC
         vimColorScheme={vimColorScheme}

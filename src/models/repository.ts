@@ -108,6 +108,8 @@ export class Repository {
             const copy = vimColorScheme.copy();
             copy.data = new VimColorSchemeData(null);
             copy.data[background] = vimColorScheme.data[background];
+            copy.backgrounds = [background];
+            copy.defaultBackground = background;
             return copy;
           },
         );

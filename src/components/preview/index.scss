@@ -49,7 +49,7 @@ $header-button-colors: (
   @each $color, $index in $header-button-colors {
     & > div:nth-child(#{$index + 1}) {
       background: $color;
-      margin-left: calc($index * ($header-button-size + var(--small-space)));
+      margin-left: calc($index * ($header-button-size + em(8px)));
     }
   }
 }
