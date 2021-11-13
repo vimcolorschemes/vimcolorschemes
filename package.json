@@ -1,6 +1,6 @@
 {
   "name": "vimcolorschemes",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "The ultimate resource for vim users to find the perfect color scheme to code in.",
   "author": "@reobin",
   "scripts": {
