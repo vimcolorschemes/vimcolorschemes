@@ -7,11 +7,11 @@
   align-items: center;
   text-align: right;
 
-  padding: var(--code-padding) 0;
-  width: var(--gutter-width);
+  padding: em(8px) 0;
+  width: em(32px);
 }
 
 .gutter__number {
-  width: var(--gutter-number-width);
-  padding: 0 var(--gutter-horizontal-padding);
+  width: em(16px);
+  padding: 0 em(8px);
 }

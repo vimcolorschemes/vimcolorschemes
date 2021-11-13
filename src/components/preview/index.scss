@@ -9,18 +9,11 @@
     --normal-bg: var(--vim-NormalBg, white);
   }
 
-  --code-padding: var(--small-space);
-  --gutter-horizontal-padding: var(--small-space);
-  --gutter-number-width: var(--standard-space);
-  --gutter-width: calc(
-    var(--gutter-number-width) + 2 * var(--gutter-horizontal-padding)
-  );
-
   font-size: var(--standard-font-size);
 
   background: var(--normal-bg);
   color: var(--normal-fg);
-  line-height: 1.125rem;
+  line-height: 1.125em;
   border-radius: var(--large-border-radius);
   overflow: hidden;
 
@@ -39,11 +32,11 @@ $header-button-colors: (
   display: flex;
   align-items: center;
   justify-content: center;
-  height: rem(30px);
+  height: em(30px);
   position: relative;
   font-weight: bold;
 
-  $header-button-size: rem(13px);
+  $header-button-size: em(13px);
   & > div {
     position: absolute;
     width: $header-button-size;

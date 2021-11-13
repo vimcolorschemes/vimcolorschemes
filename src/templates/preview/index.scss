@@ -1,5 +1,13 @@
 .preview-page {
-  margin: var(--standard-space);
-  width: calc(100vw - var(--standard-space) * 2) !important;
-  max-width: calc(100vw - var(--standard-space) * 2) !important;
+  width: 1200px !important;
+  height: 627px !important;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-page__preview {
+  font-size: var(--large-font-size);
+  box-shadow: 0 22px 70px 4px rgba(0, 0, 0, 0.56);
 }

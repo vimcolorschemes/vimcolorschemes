@@ -8,8 +8,8 @@ import { Repository } from '../models/repository';
 
 const buildPath = `${process.cwd()}/public`;
 
-const PREVIEW_WIDTH = 800;
-const PREVIEW_HEIGHT = 424;
+const PREVIEW_WIDTH = 1200;
+const PREVIEW_HEIGHT = 627;
 
 export const PREVIEW_PORT = 8080;
 const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
@@ -44,6 +44,7 @@ async function generatePreviewImages(
     const repository = repositories[i];
 
     const page = await browser.newPage();
+    await page.setViewport({ width: PREVIEW_WIDTH, height: PREVIEW_HEIGHT });
     await page.goto(`${PREVIEW_URL}${repository.previewRoute}`);
 
     const previewPath = buildPath + repository.previewImageRoute;

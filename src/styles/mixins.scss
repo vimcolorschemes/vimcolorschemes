@@ -1,5 +1,3 @@
-@use 'sass:math';
-
 @mixin button-reset {
   font-family: var(--standard-font-family);
   font-size: var(--standard-font-size);
@@ -80,6 +78,16 @@
  */
 @function rem($value) {
   @return math.div(strip-units($value), 16) * 1rem;
+}
+
+/**
+ * Returns the value in em
+ *
+ * @param value - The value in px
+ * @returns The value in em
+ */
+@function em($value) {
+  @return math.div(strip-units($value), 16) * 1em;
 }
 
 /**

@@ -16,11 +16,14 @@ interface Props {
 
 function PreviewPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
+
   return (
-    <Preview
-      vimColorSchemes={[repository.defaultVimColorScheme]}
-      className="preview-page"
-    />
+    <div className="preview-page">
+      <Preview
+        vimColorSchemes={[repository.defaultVimColorScheme]}
+        className="preview-page__preview"
+      />
+    </div>
   );
 }
 

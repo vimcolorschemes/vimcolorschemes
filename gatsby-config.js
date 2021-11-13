@@ -30,7 +30,10 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sass',
       options: {
-        additionalData: `@import '${__dirname}/src/styles/mixins';`,
+        additionalData: `
+          @use 'sass:math';
+          @import '${__dirname}/src/styles/mixins';
+        `,
       },
     },
     {
