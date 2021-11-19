@@ -42,11 +42,14 @@ function SEO({ title, description, pathname, image }: Props) {
     return `${description} | ${site.siteMetadata.description}`;
   }, [description, site.siteMetadata.description]);
 
+  const formattedTitle = useMemo(() => {
+    return `${title} | ${site.siteMetadata.title}`;
+  }, [title, site.siteMetadata.title]);
+
   return (
     <Helmet
       htmlAttributes={{ lang: 'en' }}
-      title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      title={formattedTitle}
       meta={[
         {
           name: 'description',
@@ -54,7 +57,7 @@ function SEO({ title, description, pathname, image }: Props) {
         },
         {
           property: 'og:title',
-          content: title,
+          content: formattedTitle,
         },
         {
           property: 'og:description',
@@ -94,7 +97,7 @@ function SEO({ title, description, pathname, image }: Props) {
         },
         {
           name: 'twitter:title',
-          content: title,
+          content: formattedTitle,
         },
         {
           name: 'twitter:description',
