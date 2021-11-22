@@ -67,7 +67,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/emoji-js": "^3.5.0",
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/node-static": "^0.7.7",
     "@types/react-helmet": "^6.1.4",
     "@types/react-test-renderer": "^17.0.1",
