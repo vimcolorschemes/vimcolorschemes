@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@elastic/elasticsearch": "^7.15.0",
-    "@testing-library/cypress": "^8.0.1",
+    "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@types/emoji-js": "^3.5.0",
