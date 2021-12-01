@@ -1,8 +1,7 @@
 /// <reference types="cypress" />
 
 Cypress.Commands.add('getBySelector', (selector, ...args) => {
-  cy.get(`[data-testid=${selector}]`, ...args).should('be.visible');
-  return cy.get(`[data-testid=${selector}]`, ...args);
+  return cy.get(`[data-testid=${selector}]`, ...args).should('be.visible');
 });
 
 Cypress.Commands.add('triggerShortcut', key => {
@@ -17,7 +16,7 @@ declare namespace Cypress {
      * @param {string} selector - The data-testid to look for
      * @returns {Object} The element found
      */
-    getBySelector(selector: string): Chainable<Element>;
+    getBySelector(selector: string): Chainable<JQuery<HTMLElement>>;
 
     /**
      * Triggers a keyboard shortcut on the document
