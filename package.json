@@ -56,7 +56,7 @@
     "react-helmet": "^6.1.0",
     "sass": "^1.43.5",
     "spatial-navigation-polyfill": "^1.3.1",
-    "swr": "^1.1.0",
+    "swr": "^1.1.1",
     "ts-node": "^10.4.0",
     "typeface-source-sans-pro": "^1.1.13",
     "typeface-ubuntu-mono": "^1.1.13"
