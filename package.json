@@ -44,7 +44,7 @@
     "classnames": "^2.3.1",
     "dayjs": "^1.10.7",
     "gatsby": "^4.4.0",
-    "gatsby-plugin-manifest": "^4.4.0",
+    "gatsby-plugin-manifest": "^4.5.1",
     "gatsby-plugin-react-helmet": "^5.4.0",
     "gatsby-plugin-robots-txt": "^1.7.0",
     "gatsby-plugin-sass": "^5.4.0",
