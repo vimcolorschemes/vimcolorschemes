@@ -73,7 +73,7 @@
     "@types/react-test-renderer": "^17.0.1",
     "axe-core": "^4.3.5",
     "babel-jest": "^27.4.6",
-    "babel-preset-gatsby": "^2.5.1",
+    "babel-preset-gatsby": "^2.6.0",
     "chrome-aws-lambda": "^10.1.0",
     "cypress": "^9.3.1",
     "cypress-axe": "^0.14.0",
