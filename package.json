@@ -77,7 +77,7 @@
     "chrome-aws-lambda": "^10.1.0",
     "cypress": "^9.3.1",
     "cypress-axe": "^0.14.0",
-    "dotenv": "^14.2.0",
+    "dotenv": "^14.3.2",
     "emoji-js": "^3.6.0",
     "eslint-config-react-app": "^6.0.0",
     "identity-obj-proxy": "^3.0.0",
