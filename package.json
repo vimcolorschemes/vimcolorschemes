@@ -62,7 +62,7 @@
     "typeface-ubuntu-mono": "^1.1.13"
   },
   "devDependencies": {
-    "@elastic/elasticsearch": "^7.16.0",
+    "@elastic/elasticsearch": "^7.17.0",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
