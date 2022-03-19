@@ -2,6 +2,7 @@ import { Client, ClientOptions } from '@elastic/elasticsearch';
 
 import { ELASTIC_SEARCH_INDEX_NAME } from '.';
 import { Repository } from '@/models/repository';
+import { MappingTypeMapping } from '@elastic/elasticsearch/lib/api/types';
 
 const ELASTIC_SEARCH_CLOUD_ID = process.env.GATSBY_ELASTIC_SEARCH_CLOUD_ID;
 const ELASTIC_SEARCH_URL =
@@ -16,7 +17,7 @@ interface ElasticSearchResult {
   message?: string;
 }
 
-const INDEX_PROPERTY_MAPPINGS = {
+const INDEX_PROPERTY_MAPPINGS: MappingTypeMapping = {
   properties: {
     id: { type: 'keyword' },
     name: { type: 'text' },
@@ -64,9 +65,7 @@ class ElasticSearchClient {
       await this.client.indices.create(
         {
           index: ELASTIC_SEARCH_INDEX_NAME,
-          body: {
-            mappings: INDEX_PROPERTY_MAPPINGS,
-          },
+          mappings: INDEX_PROPERTY_MAPPINGS,
         },
         { ignore: [400] },
       );
@@ -78,33 +77,41 @@ class ElasticSearchClient {
 
       await this.client.bulk({ refresh: true, body });
 
-      const result = await this.client.count({
+      const { count } = await this.client.count({
         index: ELASTIC_SEARCH_INDEX_NAME,
       });
 
       return {
         success: true,
-        message: `Indexed ${result.body.count} repositories`,
+        message: `Indexed ${count} repositories`,
       };
     } catch (error: any) {
       return {
         success: false,
-        message: error || 'undefined error',
+        message: error || 'undefined error creating search index',
       };
     }
   }
 
   private async deleteRepositoryIndex(): Promise<ElasticSearchResult> {
     try {
-      const { body: exists } = await this.client.indices.exists({
+      const exists = await this.client.indices.exists({
         index: ELASTIC_SEARCH_INDEX_NAME,
       });
       if (exists) {
         await this.client.indices.delete({ index: ELASTIC_SEARCH_INDEX_NAME });
       }
-      return { success: true };
+      return {
+        success: true,
+        message: exists
+          ? `Deleted ${ELASTIC_SEARCH_INDEX_NAME} search index`
+          : 'Search index deletion not necessary',
+      };
     } catch (error: any) {
-      return { success: false, message: error || 'undefined error' };
+      return {
+        success: false,
+        message: error || 'undefined error deleting search index',
+      };
     }
   }
 }

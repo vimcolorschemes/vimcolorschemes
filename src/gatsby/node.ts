@@ -206,7 +206,7 @@ export async function createPages({ graphql, actions: { createPage } }) {
   if (isSearchUp) {
     const elasticSearchClient = new ElasticSearchClient();
     const result = await elasticSearchClient.indexRepositories(repositories);
-    console.log('Search Index result:', result);
+    console.log('Create search Index result:', result);
   }
 }
 
