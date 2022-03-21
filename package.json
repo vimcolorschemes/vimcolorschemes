@@ -49,7 +49,7 @@
     "gatsby-plugin-robots-txt": "^1.7.0",
     "gatsby-plugin-sass": "^5.9.0",
     "gatsby-plugin-sitemap": "^5.9.0",
-    "gatsby-source-filesystem": "^4.9.1",
+    "gatsby-source-filesystem": "^4.10.0",
     "gatsby-source-mongodb": "^4.9.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
