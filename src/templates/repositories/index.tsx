@@ -44,6 +44,22 @@ function IndexPage({
     [location.pathname],
   );
 
+  const backgroundLabel: string | null = useMemo(() => {
+    if (pageContext.filters.length > 1) {
+      return null;
+    }
+
+    return pageContext.filters[0];
+  }, [pageContext.filters]);
+
+  const seoTitle: string = useMemo(
+    () =>
+      [actionFromURL.label, backgroundLabel, 'vim color schemes']
+        .filter(Boolean)
+        .join(' '),
+    [actionFromURL, backgroundLabel],
+  );
+
   return (
     <Page
       className="repositories"
@@ -54,7 +70,7 @@ function IndexPage({
       }}
     >
       <SEO
-        title={`${actionFromURL.label} vim color schemes`}
+        title={seoTitle}
         description={`Check out the ${actionFromURL.label} vim color schemes!`}
         pathname={location.pathname}
       />
