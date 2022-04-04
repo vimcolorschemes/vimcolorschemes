@@ -48,7 +48,7 @@
     "gatsby-plugin-react-helmet": "^5.11.0",
     "gatsby-plugin-robots-txt": "^1.7.0",
     "gatsby-plugin-sass": "^5.10.2",
-    "gatsby-plugin-sitemap": "^5.10.2",
+    "gatsby-plugin-sitemap": "^5.11.1",
     "gatsby-source-filesystem": "^4.10.1",
     "gatsby-source-mongodb": "^4.10.0",
     "react": "^17.0.1",
