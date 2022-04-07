@@ -232,6 +232,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "adolenc",
+      "name": "Andrej Dolenc",
+      "avatar_url": "https://avatars.githubusercontent.com/u/9569399?v=4",
+      "profile": "https://github.com/adolenc",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
