@@ -13,7 +13,7 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-24-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-25-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -98,6 +98,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
     <td align="center"><a href="http://leewarnock.io"><img src="https://avatars.githubusercontent.com/u/10902904?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Lee Warnock</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=LeeWarnock" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=LeeWarnock" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/armspkt"><img src="https://avatars.githubusercontent.com/u/49720317?v=4?s=100" width="100px;" alt=""/><br /><sub><b>armspkt</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=armspkt" title="Code">💻</a></td>
     <td align="center"><a href="http://aserputov@myseneca.ca"><img src="https://avatars.githubusercontent.com/u/65831678?v=4?s=100" width="100px;" alt=""/><br /><sub><b>A Serputov</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=aserputov" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/adolenc"><img src="https://avatars.githubusercontent.com/u/9569399?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Andrej Dolenc</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=adolenc" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/issues?q=author%3Aadolenc" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
