@@ -1,11 +1,35 @@
 import { Action, Actions } from '../lib/actions';
 
 /**
+ * Adds query parameters to a URL
+ * @param {string} url - The string value to use as a URL
+ * @param {Object} [queryParams] - The query parameters to append to the URL
+ * @returns {string} The completed formatted URL
+ */
+function applyQueryParams(
+  url: string,
+  queryParams?: Record<string, any>,
+): string {
+  if (!queryParams) {
+    return url;
+  }
+
+  let formattedUrl = new URL(url);
+
+  formattedUrl = Object.keys(queryParams).reduce((url, key) => {
+    url.searchParams.append(key, queryParams[key]);
+    return url;
+  }, formattedUrl);
+
+  return formattedUrl.href;
+}
+
+/**
  * Make a string value safe to use as a URL
  * @param {string} value - The string value to use as a URL
  * @returns {string} The URLified string value
  */
-function URLify(value: string): string {
+function urlify(value: string): string {
   if (!value) {
     return '';
   }
@@ -80,10 +104,11 @@ function getActionFromURL(pathname: string): Action {
 }
 
 const URLHelper = {
-  URLify,
-  paginateRoute,
+  applyQueryParams,
   getActionFromURL,
   getPageFromURL,
+  paginateRoute,
+  urlify,
 };
 
 export default URLHelper;

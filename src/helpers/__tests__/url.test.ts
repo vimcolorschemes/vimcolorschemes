@@ -1,22 +1,22 @@
 import URLHelper from '@/helpers/url';
 import { Actions } from '@/lib/actions';
 
-describe('URLHelper.URLify', () => {
+describe('URLHelper.urlify', () => {
   test('should trim value', () => {
-    expect(URLHelper.URLify('  http://test.com')).toEqual('http://test.com');
-    expect(URLHelper.URLify('http://test.com  ')).toEqual('http://test.com');
-    expect(URLHelper.URLify('  http://test.com  ')).toEqual('http://test.com');
+    expect(URLHelper.urlify('  http://test.com')).toEqual('http://test.com');
+    expect(URLHelper.urlify('http://test.com  ')).toEqual('http://test.com');
+    expect(URLHelper.urlify('  http://test.com  ')).toEqual('http://test.com');
   });
 
   test('should replace spaces with encoded value', () => {
-    expect(URLHelper.URLify('http://test.com?name=first last')).toEqual(
+    expect(URLHelper.urlify('http://test.com?name=first last')).toEqual(
       'http://test.com?name=first%20last',
     );
   });
 
   test('should return empty string if value is undefined', () => {
-    expect(URLHelper.URLify(null as any)).toEqual('');
-    expect(URLHelper.URLify(undefined as any)).toEqual('');
+    expect(URLHelper.urlify(null as any)).toEqual('');
+    expect(URLHelper.urlify(undefined as any)).toEqual('');
   });
 });
 

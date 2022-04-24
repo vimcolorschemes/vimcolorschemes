@@ -1,12 +1,9 @@
-import Background from '@/lib/background';
-import RequestHelper from '@/helpers/request';
-import { APIRepository } from '@/models/api';
-import { ELASTIC_SEARCH_INDEX_NAME } from '.';
-import { Repository, REPOSITORY_COUNT_PER_PAGE } from '@/models/repository';
+import Background from '../lib/background';
+import RequestHelper from '../helpers/request';
+import { Repository } from '../models/repository';
 
-const ELASTIC_SEARCH_PROXY_URL = process.env.GATSBY_ELASTIC_SEARCH_PROXY_URL;
-
-const URL = `${ELASTIC_SEARCH_PROXY_URL}/${ELASTIC_SEARCH_INDEX_NAME}/_search`;
+const SEARCH_INDEX_URL = process.env.GATSBY_SEARCH_INDEX_URL;
+const SEARCH_INDEX_API_KEY = process.env.GATSBY_SEARCH_INDEX_API_KEY;
 
 interface SearchResult {
   repositories: Repository[];
@@ -14,15 +11,8 @@ interface SearchResult {
   totalCount: number;
 }
 
-interface ElasticSearchHit<T> {
-  _source: T;
-}
-
-interface ElasticSearchResult<T> {
-  hits: {
-    hits: ElasticSearchHit<T>[];
-    total: { value: number };
-  };
+interface StoreResult {
+  count: number;
 }
 
 /**
@@ -40,29 +30,44 @@ async function search(
   filters: Background[],
   page: number = 1,
 ): Promise<SearchResult> {
-  if (!query) {
+  if (!query || !SEARCH_INDEX_URL) {
     return Promise.reject();
   }
 
-  const data = await RequestHelper.post<ElasticSearchResult<APIRepository>>(
-    URL,
-    {
-      query,
-      filters,
-      from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
-      size: REPOSITORY_COUNT_PER_PAGE,
-    },
-  );
+  console.log(filters, page);
 
-  const repositories = data.hits.hits.map(hit => new Repository(hit._source));
-  const totalCount = data.hits.total.value;
-  const pageCount = Math.ceil(totalCount / REPOSITORY_COUNT_PER_PAGE);
+  const result = await RequestHelper.get<Repository[]>({
+    url: SEARCH_INDEX_URL,
+    queryParams: { query },
+  });
+
+  const repositories = result.map(hit => new Repository(hit));
+  const totalCount = 10;
+  const pageCount = 1;
 
   return { repositories, pageCount, totalCount };
 }
 
+async function index(repositories: Repository[]): Promise<StoreResult> {
+  if (!SEARCH_INDEX_URL || !SEARCH_INDEX_API_KEY) {
+    return Promise.reject();
+  }
+
+  const response = await RequestHelper.post({
+    url: SEARCH_INDEX_URL,
+    body: repositories,
+    headers: {
+      'x-api-key': SEARCH_INDEX_API_KEY,
+    },
+  });
+  console.log(response);
+
+  return { count: 0 };
+}
+
 const SearchService = {
   search,
+  index,
 };
 
 export default SearchService;

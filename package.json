@@ -51,6 +51,7 @@
     "gatsby-plugin-sitemap": "^5.10.2",
     "gatsby-source-filesystem": "^4.10.0",
     "gatsby-source-mongodb": "^4.10.0",
+    "node-fetch": "^2.6.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
