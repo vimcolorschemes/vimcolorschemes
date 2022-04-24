@@ -14,7 +14,11 @@ interface GetProps {
  * @param {Object} props - The full URL to send the request to, params, and headers
  * @returns {Object} The JSON response
  */
-async function get<T>({ url, queryParams, headers }: GetProps): Promise<T> {
+async function get<T>({
+  url,
+  queryParams,
+  headers,
+}: GetProps): Promise<T | null> {
   const formattedUrl = URLHelper.applyQueryParams(url, queryParams);
 
   const response = await fetch(formattedUrl, {
@@ -25,7 +29,11 @@ async function get<T>({ url, queryParams, headers }: GetProps): Promise<T> {
     },
   });
 
-  return await response.json();
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
 }
 
 interface PostProps {
@@ -38,10 +46,9 @@ interface PostProps {
  * Sends a POST request and returns the JSON response
  *
  * @param {Object} props - The full URL to send the request to, params, and headers
- *
  * @returns {Object} The JSON response
  */
-async function post<T>({ url, body, headers }: PostProps): Promise<T> {
+async function post<T>({ url, body, headers }: PostProps): Promise<T | null> {
   const response = await nodeFetch(url, {
     method: 'POST',
     headers: {
@@ -50,12 +57,14 @@ async function post<T>({ url, body, headers }: PostProps): Promise<T> {
     },
     body: JSON.stringify(body),
   });
-  return await response.json();
+
+  try {
+    return await response.json();
+  } catch {
+    return null;
+  }
 }
 
-const RequestHelper = {
-  get,
-  post,
-};
+const RequestHelper = { get, post };
 
 export default RequestHelper;

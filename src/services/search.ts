@@ -1,18 +1,21 @@
 import Background from '../lib/background';
 import RequestHelper from '../helpers/request';
-import { Repository } from '../models/repository';
+import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
 
 const SEARCH_INDEX_URL = process.env.GATSBY_SEARCH_INDEX_URL;
 const SEARCH_INDEX_API_KEY = process.env.GATSBY_SEARCH_INDEX_API_KEY;
 
-interface SearchResult {
+interface StoreResult {
+  count: number;
+}
+
+interface SearchProxyResult {
   repositories: Repository[];
-  pageCount: number;
   totalCount: number;
 }
 
-interface StoreResult {
-  count: number;
+interface SearchResult extends SearchProxyResult {
+  pageCount: number;
 }
 
 /**
@@ -34,18 +37,21 @@ async function search(
     return Promise.reject();
   }
 
-  console.log(filters, page);
+  console.log(filters);
 
-  const result = await RequestHelper.get<Repository[]>({
+  const result = await RequestHelper.get<SearchProxyResult>({
     url: SEARCH_INDEX_URL,
-    queryParams: { query },
+    queryParams: { query, page, perPage: REPOSITORY_COUNT_PER_PAGE },
   });
 
-  const repositories = result.map(hit => new Repository(hit));
-  const totalCount = 10;
-  const pageCount = 1;
+  if (!result) {
+    return { repositories: [], totalCount: 0, pageCount: 1 };
+  }
 
-  return { repositories, pageCount, totalCount };
+  const repositories = result.repositories.map(hit => new Repository(hit));
+  const pageCount = Math.ceil(result.totalCount / REPOSITORY_COUNT_PER_PAGE);
+
+  return { ...result, repositories, pageCount };
 }
 
 async function index(repositories: Repository[]): Promise<StoreResult> {
@@ -53,16 +59,15 @@ async function index(repositories: Repository[]): Promise<StoreResult> {
     return Promise.reject();
   }
 
-  const response = await RequestHelper.post({
+  await RequestHelper.post({
     url: SEARCH_INDEX_URL,
     body: repositories,
     headers: {
       'x-api-key': SEARCH_INDEX_API_KEY,
     },
   });
-  console.log(response);
 
-  return { count: 0 };
+  return { count: repositories.length };
 }
 
 const SearchService = {
