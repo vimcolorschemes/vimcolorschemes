@@ -1,6 +1,7 @@
 import Background from '../lib/background';
 import RequestHelper from '../helpers/request';
 import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
+import { APIRepository } from '@/models/api';
 
 const SEARCH_INDEX_URL = process.env.GATSBY_SEARCH_INDEX_URL;
 const SEARCH_INDEX_API_KEY = process.env.GATSBY_SEARCH_INDEX_API_KEY;
@@ -10,11 +11,13 @@ interface StoreResult {
 }
 
 interface SearchProxyResult {
-  repositories: Repository[];
+  repositories: APIRepository[];
   totalCount: number;
 }
 
-interface SearchResult extends SearchProxyResult {
+interface SearchResult {
+  repositories: Repository[];
+  totalCount: number;
   pageCount: number;
 }
 
