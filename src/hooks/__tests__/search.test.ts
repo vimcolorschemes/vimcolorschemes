@@ -10,6 +10,7 @@ const defaultRepositoriesData = {
   apiRepositories: [],
   totalCount: 0,
 };
+
 const defaultPageData = {
   skip: 0,
   limit: 20,
@@ -26,16 +27,16 @@ describe('useSearch', () => {
   });
 
   beforeEach(() => {
-    RequestHelper.post = jest.fn();
+    RequestHelper.get = jest.fn();
     localStorage.clear();
   });
 
   test('should not call the search endpoint on load', () => {
     renderHook(() => useSearch({ defaultRepositoriesData, defaultPageData }));
-    expect(RequestHelper.post).not.toHaveBeenCalled();
+    expect(RequestHelper.get).not.toHaveBeenCalled();
   });
 
-  test('should call the search endpoint once after a change in search input and a delay', () => {
+  test('should call the search endpoint once after a change in search input or a page change and a delay', () => {
     const { result, rerender, unmount } = renderHook(() =>
       useSearch({ defaultRepositoriesData, defaultPageData }),
     );
@@ -46,13 +47,21 @@ describe('useSearch', () => {
 
     rerender();
 
-    expect(RequestHelper.post).not.toHaveBeenCalled();
+    expect(RequestHelper.get).not.toHaveBeenCalled();
 
     act(() => {
       jest.advanceTimersByTime(500);
     });
 
-    expect(RequestHelper.post).toHaveBeenCalledTimes(1);
+    expect(RequestHelper.get).toHaveBeenCalledTimes(1);
+
+    act(() => {
+      result.current.setPage(2);
+    });
+
+    rerender();
+
+    expect(RequestHelper.get).toHaveBeenCalledTimes(2);
 
     unmount();
   });
@@ -68,43 +77,13 @@ describe('useSearch', () => {
 
     rerender();
 
-    expect(RequestHelper.post).not.toHaveBeenCalled();
+    expect(RequestHelper.get).not.toHaveBeenCalled();
 
     act(() => {
       jest.advanceTimersByTime(500);
     });
 
-    expect(RequestHelper.post).not.toHaveBeenCalled();
-
-    unmount();
-  });
-
-  test('should call the search endpoint once after a change in current page', () => {
-    const { result, rerender, unmount } = renderHook(() =>
-      useSearch({ defaultRepositoriesData, defaultPageData }),
-    );
-
-    act(() => {
-      result.current.setInput('search');
-    });
-
-    rerender();
-
-    expect(RequestHelper.post).not.toHaveBeenCalled();
-
-    act(() => {
-      jest.advanceTimersByTime(500);
-    });
-
-    expect(RequestHelper.post).toHaveBeenCalledTimes(1);
-
-    act(() => {
-      result.current.setPage(2);
-    });
-
-    rerender();
-
-    expect(RequestHelper.post).toHaveBeenCalledTimes(2);
+    expect(RequestHelper.get).not.toHaveBeenCalled();
 
     unmount();
   });

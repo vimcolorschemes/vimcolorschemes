@@ -3,9 +3,6 @@ import RequestHelper from '../helpers/request';
 import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
 import { APIRepository } from '@/models/api';
 
-const SEARCH_INDEX_URL = process.env.GATSBY_SEARCH_INDEX_URL;
-const SEARCH_INDEX_API_KEY = process.env.GATSBY_SEARCH_INDEX_API_KEY;
-
 interface StoreResult {
   count: number;
 }
@@ -25,7 +22,7 @@ interface SearchResult {
  * Posts a search request to the repository search index and returns the result
  *
  * @param {string} query - The search input to match
- * @param {Background[]} filters - The background filters to apply
+ * @param {Background[]} backgrounds - The background filters to apply
  * @param {number} page - The search page
  *
  * @returns {SearchResult} The repositories, total count and page count matching the
@@ -36,12 +33,12 @@ async function search(
   backgrounds: Background[],
   page: number = 1,
 ): Promise<SearchResult> {
-  if (!query || !SEARCH_INDEX_URL) {
+  if (!query) {
     return Promise.reject();
   }
 
   const result = await RequestHelper.get<SearchProxyResult>({
-    url: SEARCH_INDEX_URL,
+    url: process.env.GATSBY_SEARCH_INDEX_URL!,
     queryParams: {
       query,
       page,
@@ -61,15 +58,18 @@ async function search(
 }
 
 async function index(repositories: Repository[]): Promise<StoreResult> {
-  if (!SEARCH_INDEX_URL || !SEARCH_INDEX_API_KEY) {
+  if (
+    !process.env.GATSBY_SEARCH_INDEX_URL ||
+    !process.env.GATSBY_SEARCH_INDEX_API_KEY
+  ) {
     return Promise.reject();
   }
 
   await RequestHelper.post({
-    url: SEARCH_INDEX_URL,
+    url: process.env.GATSBY_SEARCH_INDEX_URL,
     body: repositories,
     headers: {
-      'x-api-key': SEARCH_INDEX_API_KEY,
+      'x-api-key': process.env.GATSBY_SEARCH_INDEX_API_KEY,
     },
   });
 
