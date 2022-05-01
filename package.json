@@ -70,7 +70,7 @@
     "@types/jest": "^27.4.1",
     "@types/node-static": "^0.7.7",
     "@types/react-helmet": "^6.1.5",
-    "@types/react-test-renderer": "^17.0.1",
+    "@types/react-test-renderer": "^18.0.0",
     "axe-core": "^4.4.1",
     "babel-jest": "^27.5.1",
     "babel-preset-gatsby": "^2.11.1",
