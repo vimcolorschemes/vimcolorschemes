@@ -25,7 +25,7 @@
   <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
   <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=flat-square&logo=testing-library&logoColor=white" alt="Testing library" />
   <img src="https://img.shields.io/badge/Cypress-17202C?style=flat-square&logo=cypress" alt="Cypress" />
-  <img src="https://img.shields.io/badge/ElasticSearch-005571?style=flat-square&logo=elasticsearch&logoColor=white" alt="ElasticSearch" />
+  <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Golang" />
   <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=black" alt="Amazon AWS" />
 </p>
 

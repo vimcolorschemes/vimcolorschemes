@@ -1,6 +1,6 @@
 # Vim color scheme code previews
 
-## Getting the colors
+## Collecting the colors
 
 During the `generate` job of [The Worker](/worker), all potential vim color
 scheme files are searched for.

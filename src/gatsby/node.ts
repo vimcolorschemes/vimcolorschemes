@@ -1,8 +1,8 @@
 import path from 'path';
 
 import Background from '../lib/background';
-import ElasticSearchClient from '../services/elasticSearch';
 import EnumHelper from '../helpers/enum';
+import SearchService from '../services/search';
 import URLHelper from '../helpers/url';
 import generatePreviewImages from './preview';
 import { APIRepository } from '../models/api';
@@ -14,9 +14,9 @@ import {
   REPOSITORY_COUNT_PER_PAGE,
 } from '../models/repository';
 
-const isSearchUp =
-  !!process.env.GATSBY_ELASTIC_SEARCH_URL ||
-  !!process.env.GATSBY_ELASTIC_SEARCH_CLOUD_ID;
+const isSearchActive =
+  !!process.env.GATSBY_SEARCH_INDEX_URL &&
+  !!process.env.GATSBY_SEARCH_INDEX_API_KEY;
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({
@@ -203,10 +203,15 @@ export async function createPages({ graphql, actions: { createPage } }) {
 
   createRepositoriesPages(repositories, createPage);
 
-  if (isSearchUp) {
-    const elasticSearchClient = new ElasticSearchClient();
-    const result = await elasticSearchClient.indexRepositories(repositories);
-    console.log('Create search Index result:', result);
+  if (!isSearchActive) {
+    return;
+  }
+
+  try {
+    const result = await SearchService.index(repositories);
+    console.log(`Indexed ${result.count} repositories`);
+  } catch (error) {
+    console.error('Error indexing repositories', error);
   }
 }
 

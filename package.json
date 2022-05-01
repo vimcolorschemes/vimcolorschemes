@@ -51,6 +51,7 @@
     "gatsby-plugin-sitemap": "^5.13.0",
     "gatsby-source-filesystem": "^4.11.1",
     "gatsby-source-mongodb": "^4.12.1",
+    "node-fetch": "^2.6.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
@@ -62,7 +63,6 @@
     "typeface-ubuntu-mono": "^1.1.13"
   },
   "devDependencies": {
-    "@elastic/elasticsearch": "^8.1.0",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^8.0.0",

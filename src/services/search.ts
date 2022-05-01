@@ -1,35 +1,28 @@
-import Background from '@/lib/background';
-import RequestHelper from '@/helpers/request';
+import Background from '../lib/background';
+import RequestHelper from '../helpers/request';
+import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
 import { APIRepository } from '@/models/api';
-import { ELASTIC_SEARCH_INDEX_NAME } from '.';
-import { Repository, REPOSITORY_COUNT_PER_PAGE } from '@/models/repository';
 
-const ELASTIC_SEARCH_PROXY_URL = process.env.GATSBY_ELASTIC_SEARCH_PROXY_URL;
+interface StoreResult {
+  count: number;
+}
 
-const URL = `${ELASTIC_SEARCH_PROXY_URL}/${ELASTIC_SEARCH_INDEX_NAME}/_search`;
-
-interface SearchResult {
-  repositories: Repository[];
-  pageCount: number;
+interface SearchProxyResult {
+  repositories: APIRepository[];
   totalCount: number;
 }
 
-interface ElasticSearchHit<T> {
-  _source: T;
-}
-
-interface ElasticSearchResult<T> {
-  hits: {
-    hits: ElasticSearchHit<T>[];
-    total: { value: number };
-  };
+interface SearchResult {
+  repositories: Repository[];
+  totalCount: number;
+  pageCount: number;
 }
 
 /**
  * Posts a search request to the repository search index and returns the result
  *
  * @param {string} query - The search input to match
- * @param {Background[]} filters - The background filters to apply
+ * @param {Background[]} backgrounds - The background filters to apply
  * @param {number} page - The search page
  *
  * @returns {SearchResult} The repositories, total count and page count matching the
@@ -37,32 +30,55 @@ interface ElasticSearchResult<T> {
  */
 async function search(
   query: string,
-  filters: Background[],
+  backgrounds: Background[],
   page: number = 1,
 ): Promise<SearchResult> {
   if (!query) {
     return Promise.reject();
   }
 
-  const data = await RequestHelper.post<ElasticSearchResult<APIRepository>>(
-    URL,
-    {
+  const result = await RequestHelper.get<SearchProxyResult>({
+    url: process.env.GATSBY_SEARCH_INDEX_URL!,
+    queryParams: {
       query,
-      filters,
-      from: (page - 1) * REPOSITORY_COUNT_PER_PAGE,
-      size: REPOSITORY_COUNT_PER_PAGE,
+      page,
+      perPage: REPOSITORY_COUNT_PER_PAGE,
+      backgrounds,
     },
-  );
+  });
 
-  const repositories = data.hits.hits.map(hit => new Repository(hit._source));
-  const totalCount = data.hits.total.value;
-  const pageCount = Math.ceil(totalCount / REPOSITORY_COUNT_PER_PAGE);
+  if (!result) {
+    return { repositories: [], totalCount: 0, pageCount: 1 };
+  }
 
-  return { repositories, pageCount, totalCount };
+  const repositories = result.repositories.map(hit => new Repository(hit));
+  const pageCount = Math.ceil(result.totalCount / REPOSITORY_COUNT_PER_PAGE);
+
+  return { repositories, pageCount, totalCount: result.totalCount };
+}
+
+async function index(repositories: Repository[]): Promise<StoreResult> {
+  if (
+    !process.env.GATSBY_SEARCH_INDEX_URL ||
+    !process.env.GATSBY_SEARCH_INDEX_API_KEY
+  ) {
+    return Promise.reject();
+  }
+
+  await RequestHelper.post({
+    url: process.env.GATSBY_SEARCH_INDEX_URL,
+    body: repositories,
+    headers: {
+      'x-api-key': process.env.GATSBY_SEARCH_INDEX_API_KEY,
+    },
+  });
+
+  return { count: repositories.length };
 }
 
 const SearchService = {
   search,
+  index,
 };
 
 export default SearchService;

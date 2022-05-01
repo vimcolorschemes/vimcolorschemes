@@ -39,44 +39,9 @@ database.
 1. Run `npm start`
 1. Start hacking away.
 
-## Setting up the search engine
+## Setting up the Search API
 
-The search feature of vimcolorschemes uses an Elasticsearch engine.
-
-You can choose to install and run it through docker or on locally your machine.
-
-For both, first clone [the search
-repository](https://github.com/vimcolorschemes/search).
-
-### Local
-
-1. [Install elasticsearch locally](https://www.elastic.co/start)
-1. Make sure elasticsearch is running
-1. `cd` into the root of the search repository
-1. Run `npm install`
-1. Run `npm start`
-
-With both running, go back to the main vimcolorschemes repository, and run `npm start` again.
-
-### Docker
-
-1. `cd` into the root of the search repository
-2. Run `npm run docker`
-
-That's it. 2 docker containers will be built and started, 1 for elasticsearch,
-and 1 for the search proxy.
-
-### Communication with the vimcolorschemes app
-
-Once the search engine is ready, the vimcolorschemes app should be built again
-in order for the search data to be uploaded to elasticsearch.
-
-Note that by default, the environment variables are set up to work with one of
-these 3 options:
-
-- Using docker for both app and search
-- Using a local install for both app and search
-- Using a local install for the app and docker for search
+Instructions on how to set up the Search API locally are coming soon...
 
 ## Running into problems?
 

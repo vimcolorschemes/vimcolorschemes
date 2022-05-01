@@ -79,7 +79,7 @@ export class Repository {
   }
 
   get route(): string {
-    return `/${URLHelper.URLify(this.key)}`.toLowerCase();
+    return `/${URLHelper.urlify(this.key)}`.toLowerCase();
   }
 
   get title(): string {
