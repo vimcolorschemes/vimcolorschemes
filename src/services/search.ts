@@ -33,18 +33,21 @@ interface SearchResult {
  */
 async function search(
   query: string,
-  filters: Background[],
+  backgrounds: Background[],
   page: number = 1,
 ): Promise<SearchResult> {
   if (!query || !SEARCH_INDEX_URL) {
     return Promise.reject();
   }
 
-  console.log(filters);
-
   const result = await RequestHelper.get<SearchProxyResult>({
     url: SEARCH_INDEX_URL,
-    queryParams: { query, page, perPage: REPOSITORY_COUNT_PER_PAGE },
+    queryParams: {
+      query,
+      page,
+      perPage: REPOSITORY_COUNT_PER_PAGE,
+      backgrounds,
+    },
   });
 
   if (!result) {
@@ -54,7 +57,7 @@ async function search(
   const repositories = result.repositories.map(hit => new Repository(hit));
   const pageCount = Math.ceil(result.totalCount / REPOSITORY_COUNT_PER_PAGE);
 
-  return { ...result, repositories, pageCount };
+  return { repositories, pageCount, totalCount: result.totalCount };
 }
 
 async function index(repositories: Repository[]): Promise<StoreResult> {
