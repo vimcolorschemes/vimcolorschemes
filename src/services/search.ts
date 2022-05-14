@@ -1,7 +1,9 @@
 import Background from '../lib/background';
+import DateHelper from '../helpers/date';
 import RequestHelper from '../helpers/request';
-import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
+import S3 from '../helpers/s3';
 import { APIRepository } from '@/models/api';
+import { Repository, REPOSITORY_COUNT_PER_PAGE } from '../models/repository';
 
 interface StoreResult {
   count: number;
@@ -60,14 +62,23 @@ async function search(
 async function index(repositories: Repository[]): Promise<StoreResult> {
   if (
     !process.env.GATSBY_SEARCH_INDEX_URL ||
-    !process.env.GATSBY_SEARCH_INDEX_API_KEY
+    !process.env.GATSBY_SEARCH_INDEX_API_KEY ||
+    !process.env.GATSBY_SEARCH_INDEX_S3_BUCKET
   ) {
     return Promise.reject();
   }
 
+  const indexFileKey = DateHelper.toISO8601(new Date());
+
+  await S3.upload(
+    repositories,
+    process.env.GATSBY_SEARCH_INDEX_S3_BUCKET,
+    indexFileKey,
+  );
+
   await RequestHelper.post({
     url: process.env.GATSBY_SEARCH_INDEX_URL,
-    body: repositories,
+    body: { key: indexFileKey },
     headers: {
       'x-api-key': process.env.GATSBY_SEARCH_INDEX_API_KEY,
     },
