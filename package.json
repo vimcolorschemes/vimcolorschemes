@@ -76,7 +76,7 @@
     "babel-jest": "^28.0.3",
     "babel-preset-gatsby": "^2.11.1",
     "chrome-aws-lambda": "^10.1.0",
-    "cypress": "^9.5.3",
+    "cypress": "^9.6.1",
     "cypress-axe": "^0.14.0",
     "dotenv": "^16.0.0",
     "emoji-js": "^3.7.0",
