@@ -86,7 +86,7 @@
     "node-static": "^0.7.11",
     "prettier": "^2.6.2",
     "puppeteer": "^13.5.2",
-    "puppeteer-core": "^13.6.0",
+    "puppeteer-core": "^14.2.1",
     "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^1.14.0",
     "ts-jest": "^27.1.4",
