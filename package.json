@@ -43,7 +43,7 @@
   "dependencies": {
     "classnames": "^2.3.1",
     "dayjs": "^1.11.2",
-    "gatsby": "^4.11.2",
+    "gatsby": "^4.15.2",
     "gatsby-plugin-manifest": "^4.12.1",
     "gatsby-plugin-react-helmet": "^5.12.1",
     "gatsby-plugin-robots-txt": "^1.7.1",
@@ -76,7 +76,7 @@
     "babel-jest": "^28.0.3",
     "babel-preset-gatsby": "^2.11.1",
     "chrome-aws-lambda": "^10.1.0",
-    "cypress": "^9.5.3",
+    "cypress": "^10.0.3",
     "cypress-axe": "^0.14.0",
     "dotenv": "^16.0.1",
     "emoji-js": "^3.7.0",
