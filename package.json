@@ -74,7 +74,7 @@
     "aws-sdk": "^2.1135.0",
     "axe-core": "^4.4.1",
     "babel-jest": "^28.0.3",
-    "babel-preset-gatsby": "^2.11.1",
+    "babel-preset-gatsby": "^2.18.0",
     "chrome-aws-lambda": "^10.1.0",
     "cypress": "^9.5.3",
     "cypress-axe": "^0.14.0",
