@@ -128,7 +128,11 @@ export const query = graphql`
         updateValid: { eq: true }
         generateValid: { eq: true }
         vimColorSchemes: {
-          elemMatch: { valid: { eq: true }, backgrounds: { in: $filters } }
+          elemMatch: {
+            valid: { eq: true }
+            backgrounds: { in: $filters }
+            isLua: { ne: true }
+          }
         }
       }
       sort: { fields: $sortProperty, order: $sortOrder }

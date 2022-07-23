@@ -161,7 +161,12 @@ const repositoriesQuery = `
     filter: {
       updateValid: { eq: true }
       generateValid: { eq: true }
-      vimColorSchemes: { elemMatch: { valid: { eq: true } } }
+      vimColorSchemes: {
+        elemMatch: {
+          valid: { eq: true }
+          isLua: { ne: true }
+        }
+      }
     }
   ) {
     apiRepositories: nodes {
