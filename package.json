@@ -50,7 +50,7 @@
     "gatsby-plugin-sass": "^5.18.0",
     "gatsby-plugin-sitemap": "^5.20.0",
     "gatsby-source-filesystem": "^4.20.0",
-    "gatsby-source-mongodb": "^4.19.0",
+    "gatsby-source-mongodb": "^4.20.0",
     "node-fetch": "^2.6.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
