@@ -47,7 +47,7 @@
     "gatsby-plugin-manifest": "^4.19.0",
     "gatsby-plugin-react-helmet": "^5.20.0",
     "gatsby-plugin-robots-txt": "^1.7.1",
-    "gatsby-plugin-sass": "^5.18.0",
+    "gatsby-plugin-sass": "^5.20.0",
     "gatsby-plugin-sitemap": "^5.20.0",
     "gatsby-source-filesystem": "^4.20.0",
     "gatsby-source-mongodb": "^4.20.0",
@@ -71,7 +71,7 @@
     "@types/node-static": "^0.7.7",
     "@types/react-helmet": "^6.1.5",
     "@types/react-test-renderer": "^18.0.0",
-    "aws-sdk": "^2.1191.0",
+    "aws-sdk": "^2.1194.0",
     "axe-core": "^4.4.3",
     "babel-jest": "^28.0.3",
     "babel-preset-gatsby": "^2.18.0",
@@ -90,7 +90,7 @@
     "puppeteer-core": "^10.1.0",
     "react-test-renderer": "^17.0.2",
     "start-server-and-test": "^1.14.0",
-    "ts-jest": "^28.0.7",
+    "ts-jest": "^28.0.8",
     "typescript": "^4.6.3",
     "util": "^0.12.4"
   }
