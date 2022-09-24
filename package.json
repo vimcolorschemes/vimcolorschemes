@@ -45,7 +45,7 @@
     "dayjs": "^1.11.5",
     "gatsby": "^4.21.1",
     "gatsby-plugin-manifest": "^4.22.0",
-    "gatsby-plugin-react-helmet": "^5.20.0",
+    "gatsby-plugin-react-helmet": "^5.23.0",
     "gatsby-plugin-robots-txt": "^1.7.1",
     "gatsby-plugin-sass": "^5.21.0",
     "gatsby-plugin-sitemap": "^5.21.0",
