@@ -1,5 +1,436 @@
 [
   {
+    "_id": {
+      "$numberLong": "440275140"
+    },
+    "description": "NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai.",
+    "githubCreatedAt": {
+      "$date": {
+        "$numberLong": "1640026282000"
+      }
+    },
+    "githubURL": "https://github.com/rebelot/kanagawa.nvim",
+    "homepageURL": "",
+    "name": "kanagawa.nvim",
+    "owner": {
+      "avatarURL": "https://avatars.githubusercontent.com/u/36300441?v=4",
+      "name": "rebelot"
+    },
+    "size": 4353,
+    "isLua": true,
+    "isVim": false,
+    "lastCommitAt": {
+      "$date": {
+        "$numberLong": "1666874955000"
+      }
+    },
+    "license": "MIT",
+    "stargazersCount": 1508,
+    "stargazersCountHistory": [
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1667088000000"
+          }
+        },
+        "stargazersCount": 1508
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1667001600000"
+          }
+        },
+        "stargazersCount": 1507
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666915200000"
+          }
+        },
+        "stargazersCount": 1505
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666828800000"
+          }
+        },
+        "stargazersCount": 1503
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666742400000"
+          }
+        },
+        "stargazersCount": 1495
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666656000000"
+          }
+        },
+        "stargazersCount": 1485
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666569600000"
+          }
+        },
+        "stargazersCount": 1481
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666483200000"
+          }
+        },
+        "stargazersCount": 1479
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666396800000"
+          }
+        },
+        "stargazersCount": 1478
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666310400000"
+          }
+        },
+        "stargazersCount": 1476
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666224000000"
+          }
+        },
+        "stargazersCount": 1474
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666137600000"
+          }
+        },
+        "stargazersCount": 1473
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1666051200000"
+          }
+        },
+        "stargazersCount": 1472
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1665964800000"
+          }
+        },
+        "stargazersCount": 1468
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1665878400000"
+          }
+        },
+        "stargazersCount": 1465
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1665792000000"
+          }
+        },
+        "stargazersCount": 1462
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1665705600000"
+          }
+        },
+        "stargazersCount": 1459
+      },
+      {
+        "date": {
+          "$date": {
+            "$numberLong": "1665619200000"
+          }
+        },
+        "stargazersCount": 1457
+      }
+    ],
+    "updateValid": true,
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1667145845455"
+      }
+    },
+    "vimColorSchemes": [
+      {
+        "fileURL": "https://raw.githubusercontent.com/rebelot/kanagawa.nvim/master/colors/kanagawa.vim",
+        "name": "kanagawa",
+        "data": {
+          "light": [
+            {
+              "name": "CursorBg",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "vimLineComment",
+              "hexCode": "#8a8980"
+            },
+            {
+              "name": "vimOper",
+              "hexCode": "#836f4a"
+            },
+            {
+              "name": "CursorLineBg",
+              "hexCode": "#eae0ac"
+            },
+            {
+              "name": "CursorLineNrBg",
+              "hexCode": "#000000"
+            },
+            {
+              "name": "CursorLineNrFg",
+              "hexCode": "#e98a00"
+            },
+            {
+              "name": "CursorFg",
+              "hexCode": "#f6f0c8"
+            },
+            {
+              "name": "NormalFg",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "NormalBg",
+              "hexCode": "#f6f0c8"
+            },
+            {
+              "name": "vimOperParen",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "StatusLineFg",
+              "hexCode": "#43436c"
+            },
+            {
+              "name": "vimNotFunc",
+              "hexCode": "#7b5fa3"
+            },
+            {
+              "name": "vimFuncName",
+              "hexCode": "#4f6fa8"
+            },
+            {
+              "name": "vimVar",
+              "hexCode": "#947945"
+            },
+            {
+              "name": "vimFuncBody",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "vimLet",
+              "hexCode": "#7b5fa3"
+            },
+            {
+              "name": "vimNumber",
+              "hexCode": "#b35b79"
+            },
+            {
+              "name": "vimFunction",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "vimSubst",
+              "hexCode": "#7b5fa3"
+            },
+            {
+              "name": "vimParenSep",
+              "hexCode": "#4e8ca2"
+            },
+            {
+              "name": "CursorLineFg",
+              "hexCode": "#000000"
+            },
+            {
+              "name": "StatusLineBg",
+              "hexCode": "#d5cd9d"
+            },
+            {
+              "name": "vimIsCommand",
+              "hexCode": "#545464"
+            },
+            {
+              "name": "vimFuncVar",
+              "hexCode": "#947945"
+            },
+            {
+              "name": "vimString",
+              "hexCode": "#6f894e"
+            },
+            {
+              "name": "vimCommand",
+              "hexCode": "#7b5fa3"
+            },
+            {
+              "name": "LineNrFg",
+              "hexCode": "#a09cac"
+            },
+            {
+              "name": "LineNrBg",
+              "hexCode": "#000000"
+            }
+          ],
+          "dark": [
+            {
+              "name": "CursorBg",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "vimLineComment",
+              "hexCode": "#727169"
+            },
+            {
+              "name": "NormalFg",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "vimOper",
+              "hexCode": "#c0a36e"
+            },
+            {
+              "name": "CursorLineNrBg",
+              "hexCode": "#000000"
+            },
+            {
+              "name": "vimNotFunc",
+              "hexCode": "#957fb8"
+            },
+            {
+              "name": "CursorFg",
+              "hexCode": "#1f1f28"
+            },
+            {
+              "name": "vimFuncBody",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "CursorLineFg",
+              "hexCode": "#000000"
+            },
+            {
+              "name": "vimSubst",
+              "hexCode": "#957fb8"
+            },
+            {
+              "name": "LineNrBg",
+              "hexCode": "#000000"
+            },
+            {
+              "name": "CursorLineNrFg",
+              "hexCode": "#ff9e3b"
+            },
+            {
+              "name": "vimFuncName",
+              "hexCode": "#7e9cd8"
+            },
+            {
+              "name": "vimVar",
+              "hexCode": "#e6c384"
+            },
+            {
+              "name": "vimString",
+              "hexCode": "#98bb6c"
+            },
+            {
+              "name": "vimFunction",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "vimParenSep",
+              "hexCode": "#7fb4ca"
+            },
+            {
+              "name": "vimFuncVar",
+              "hexCode": "#e6c384"
+            },
+            {
+              "name": "vimNumber",
+              "hexCode": "#d27e99"
+            },
+            {
+              "name": "CursorLineBg",
+              "hexCode": "#363646"
+            },
+            {
+              "name": "NormalBg",
+              "hexCode": "#1f1f28"
+            },
+            {
+              "name": "vimCommand",
+              "hexCode": "#957fb8"
+            },
+            {
+              "name": "vimLet",
+              "hexCode": "#957fb8"
+            },
+            {
+              "name": "vimOperParen",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "LineNrFg",
+              "hexCode": "#54546d"
+            },
+            {
+              "name": "StatusLineBg",
+              "hexCode": "#16161d"
+            },
+            {
+              "name": "vimIsCommand",
+              "hexCode": "#dcd7ba"
+            },
+            {
+              "name": "StatusLineFg",
+              "hexCode": "#c8c093"
+            }
+          ]
+        },
+        "valid": true,
+        "backgrounds": ["light", "dark"],
+        "isLua": true,
+        "lastCommitAt": {
+          "$date": {
+            "$numberLong": "1638347407000"
+          }
+        }
+      }
+    ],
+    "weekStargazersCount": 27,
+    "generateValid": true,
+    "generatedAt": {
+      "$date": {
+        "$numberLong": "1666890098081"
+      }
+    }
+  },
+  {
     "_id": 74367471,
     "description": "🎨 themer takes a set of colors and generates themes for your apps (editors, terminals, wallpapers, and more).",
     "githubCreatedAt": {
