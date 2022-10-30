@@ -51,10 +51,10 @@ body {
   }
 
   --standard-space: #{rem(16px)};
-  --small-space: calc(var(--standard-space) / 2);
-  --smallest-space: calc(var(--small-space) / 2);
-  --large-space: calc(var(--standard-space) * 2);
-  --largest-space: calc(var(--large-space) * 2);
+  --small-space: calc(var(--standard-space) / 2); // 8px
+  --smallest-space: calc(var(--small-space) / 2); // 4px
+  --large-space: calc(var(--standard-space) * 2); // 32px
+  --largest-space: calc(var(--large-space) * 2); // 64px
 
   --standard-font-family: 'Source Sans Pro', sans-serif;
   --code-font-family: 'Ubuntu Mono', monospace;

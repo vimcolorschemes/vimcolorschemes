@@ -102,7 +102,12 @@ function Preview({ vimColorSchemes, title, className, onLoad }: Props) {
         <div />
         <div />
         <div />
-        <code data-ignore-a11y>{title || vimColorScheme.name}</code>
+        <code data-ignore-a11y className="preview__header-file-name">
+          {title || vimColorScheme.name}
+        </code>
+        <code data-ignore-a11y className="preview__header-type">
+          {vimColorScheme.isLua ? 'lua' : 'vim'}
+        </code>
       </header>
       <VimRC
         vimColorScheme={vimColorScheme}

@@ -95,6 +95,8 @@ export const query = graphql`
       lastCommitAt
       githubURL
       weekStargazersCount
+      isVim
+      isLua
       owner {
         name
       }
@@ -102,6 +104,7 @@ export const query = graphql`
         name
         valid
         backgrounds
+        isLua
         data {
           light {
             name

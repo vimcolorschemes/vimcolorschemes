@@ -11,6 +11,8 @@ export interface APIRepository {
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
+  isVim: boolean;
+  isLua: boolean;
   vimColorSchemes: APIVimColorScheme[] | null;
 }
 
@@ -18,6 +20,7 @@ export interface APIVimColorScheme {
   name: string;
   valid: boolean;
   data: APIVimColorSchemeData | null;
+  isLua: boolean;
   backgrounds: Background[];
 }
 

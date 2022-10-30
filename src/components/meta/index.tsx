@@ -6,6 +6,7 @@ import { Repository } from '@/models/repository';
 
 import IconStar from '@/components/icons/star';
 import IconTrendingUp from '@/components/icons/trendingUp';
+import Pill from '@/components/pill';
 
 import './index.scss';
 
@@ -58,22 +59,28 @@ export function MetaDescription({ repository, className }: Props) {
 export function MetaFooter({ repository, className }: Props) {
   return (
     <footer className={classnames('meta-footer', className)}>
-      <p className="meta-footer__row">
-        Created{' '}
-        <b>
-          <time dateTime={repository.githubCreatedAt}>
-            {DateHelper.fromNow(repository.githubCreatedAt)}
-          </time>
-        </b>
-      </p>
-      <p className="meta-footer__row">
-        Last commit{' '}
-        <b>
-          <time dateTime={repository.lastCommitAt}>
-            {DateHelper.fromNow(repository.lastCommitAt)}
-          </time>
-        </b>
-      </p>
+      <div className="meta-footer__column">
+        <p className="meta-footer__row">
+          Created{' '}
+          <b>
+            <time dateTime={repository.githubCreatedAt}>
+              {DateHelper.fromNow(repository.githubCreatedAt)}
+            </time>
+          </b>
+        </p>
+        <p className="meta-footer__row">
+          Last commit{' '}
+          <b>
+            <time dateTime={repository.lastCommitAt}>
+              {DateHelper.fromNow(repository.lastCommitAt)}
+            </time>
+          </b>
+        </p>
+      </div>
+      <div className="meta-footer__pills">
+        {repository.isVim && <Pill>vim</Pill>}
+        {repository.isLua && <Pill>lua</Pill>}
+      </div>
     </footer>
   );
 }

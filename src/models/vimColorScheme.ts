@@ -5,6 +5,8 @@ export class VimColorScheme {
   name: string;
   valid: boolean;
   data: VimColorSchemeData;
+  isLua: boolean;
+  isVim: boolean;
   backgrounds: Background[];
   private _defaultBackground: Background;
 
@@ -12,6 +14,8 @@ export class VimColorScheme {
     this.name = apiVimColorScheme?.name || '';
     this.valid = apiVimColorScheme?.valid || false;
     this.data = new VimColorSchemeData(apiVimColorScheme?.data || null);
+    this.isLua = !!apiVimColorScheme?.isLua;
+    this.isVim = !this.isLua;
 
     this.backgrounds = apiVimColorScheme?.backgrounds || [];
 
@@ -43,6 +47,8 @@ export class VimColorScheme {
     copy.name = this.name;
     copy.valid = this.valid;
     copy.data = this.data;
+    copy.isVim = this.isVim;
+    copy.isLua = this.isLua;
     return copy;
   }
 }
