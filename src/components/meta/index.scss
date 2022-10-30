@@ -32,10 +32,24 @@ $row-height: 1.25rem;
 
 .meta-footer {
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  column-gap: var(--standard-space);
+}
+
+.meta-footer__column {
+  display: flex;
   flex-direction: column;
   row-gap: var(--smallest-space);
 }
 
 .meta-footer__row {
   line-height: $row-height;
+}
+
+.meta-footer__pills {
+  display: flex;
+  align-items: center;
+  column-gap: var(--smallest-space);
 }

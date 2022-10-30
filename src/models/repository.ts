@@ -14,6 +14,8 @@ export class Repository {
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
+  isVim: boolean;
+  isLua: boolean;
   vimColorSchemes: VimColorScheme[];
   private _defaultBackground: Background;
 
@@ -26,6 +28,8 @@ export class Repository {
     this.githubURL = apiRepository.githubURL;
     this.stargazersCount = apiRepository.stargazersCount;
     this.weekStargazersCount = apiRepository.weekStargazersCount;
+    this.isVim = apiRepository.isVim;
+    this.isLua = apiRepository.isLua;
 
     let defaultBackground = Background.Light;
 

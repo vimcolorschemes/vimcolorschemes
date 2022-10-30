@@ -177,6 +177,8 @@ const repositoriesQuery = `
       lastCommitAt
       githubURL
       weekStargazersCount
+      isVim
+      isLua
       owner {
         name
       }
@@ -184,6 +186,7 @@ const repositoriesQuery = `
         name
         valid
         backgrounds
+        isLua
         data {
           light {
             name
