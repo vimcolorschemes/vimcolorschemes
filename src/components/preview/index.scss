@@ -54,6 +54,17 @@ $header-button-colors: (
   }
 }
 
+.preview__header-file-name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.preview__header-type {
+  position: absolute;
+  right: var(--small-space);
+}
+
 .preview > * {
   margin: 0;
 }

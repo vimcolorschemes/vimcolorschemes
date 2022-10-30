@@ -20,6 +20,7 @@ export interface APIVimColorScheme {
   name: string;
   valid: boolean;
   data: APIVimColorSchemeData | null;
+  isLua: boolean;
   backgrounds: Background[];
 }
 
