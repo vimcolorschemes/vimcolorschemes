@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import Background from '@/lib/background';
 import { VimColorScheme } from '@/models/vimColorScheme';
@@ -31,28 +31,70 @@ function Button({ onClick, children }: IButtonProps) {
   );
 }
 
-function VimRC({
+function VimRC(props: Props) {
+  const fileName = useMemo(() => {
+    if (props.vimColorScheme.isLua) {
+      return 'init.lua';
+    }
+
+    return '.vimrc';
+  }, [props.vimColorScheme.isLua]);
+
+  return (
+    <Code fileName={fileName} lineCount={2} className="vimrc">
+      {props.vimColorScheme.isLua ? (
+        <InitLuaContent {...props} />
+      ) : (
+        <VimRCContent {...props} />
+      )}
+    </Code>
+  );
+}
+
+function VimRCContent({
   vimColorScheme,
   background,
   onChangeVimColorScheme,
   onToggleBackground,
 }: Props) {
   return (
-    <Code fileName=".vimrc" lineCount={2} className="vimrc">
-      <div className="vimrc__content">
-        <span>
-          <span className="vimCommand">set</span> background
-          <span className="vimOper">=</span>
-          <Button onClick={onToggleBackground}>{background}</Button>
-        </span>
-        <span>
-          <span className="vimCommand">colorscheme </span>
-          <Button onClick={onChangeVimColorScheme}>
-            {vimColorScheme.name}
-          </Button>
-        </span>
-      </div>
-    </Code>
+    <div className="vimrc__content">
+      <span>
+        <span className="vimCommand">set</span> background
+        <span className="vimOper">=</span>
+        <Button onClick={onToggleBackground}>{background}</Button>
+      </span>
+      <span>
+        <span className="vimCommand">colorscheme </span>
+        <Button onClick={onChangeVimColorScheme}>{vimColorScheme.name}</Button>
+      </span>
+    </div>
+  );
+}
+
+function InitLuaContent({
+  vimColorScheme,
+  background,
+  onChangeVimColorScheme,
+  onToggleBackground,
+}: Props) {
+  return (
+    <div className="vimrc__content">
+      <span>
+        <span>vim.</span>
+        <span className="vimCommand">cmd </span>
+        <span className="vimString">[[ set background=</span>
+        <Button onClick={onToggleBackground}>{background}</Button>
+        <span className="vimString"> ]]</span>
+      </span>
+      <span>
+        <span>vim.</span>
+        <span className="vimCommand">cmd </span>
+        <span className="vimString">[[ colorscheme </span>
+        <Button onClick={onChangeVimColorScheme}>{vimColorScheme.name}</Button>
+        <span className="vimString"> ]]</span>
+      </span>
+    </div>
   );
 }
 
