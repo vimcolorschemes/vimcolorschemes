@@ -71,7 +71,7 @@
     "@types/node-static": "^0.7.7",
     "@types/react-helmet": "^6.1.5",
     "@types/react-test-renderer": "^18.0.0",
-    "aws-sdk": "^2.1238.0",
+    "aws-sdk": "^2.1248.0",
     "axe-core": "^4.4.3",
     "babel-jest": "^28.0.3",
     "babel-preset-gatsby": "^2.21.0",
