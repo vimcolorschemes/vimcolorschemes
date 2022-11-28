@@ -19,7 +19,10 @@ That's it. The script will:
 
 ### 0. Requirements
 
-- Running local install of mongodb-community on macOS: `brew install mongodb-community && brew services start mongodb-community`
+- Running local install of mongodb-community on macOS:
+  1. `brew tap mongodb/brew`
+  2. `brew install mongodb-community`
+  3. `brew services start mongodb-community`
 - Node 12+
 - A locally cloned fork of [the repository](https://github.com/vimcolorschemes/vimcolorschemes). Check out [how to.](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
 
