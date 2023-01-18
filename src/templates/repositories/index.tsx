@@ -60,6 +60,11 @@ function IndexPage({
     [actionFromURL, backgroundLabel],
   );
 
+  const isSearchActive: boolean = useMemo(
+    () => process.env.GATSBY_IS_SEARCH_ACTIVE === 'true',
+    [],
+  );
+
   return (
     <Page
       className="repositories"
@@ -76,7 +81,9 @@ function IndexPage({
       />
       <header className="repositories__header">
         <div className="repositories__header-row">
-          <SearchInput value={search.input} onChange={search.setInput} />
+          {isSearchActive && (
+            <SearchInput value={search.input} onChange={search.setInput} />
+          )}
           <Actions
             activeAction={actionFromURL}
             activeFilters={pageContext.filters}
