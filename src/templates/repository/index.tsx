@@ -19,10 +19,9 @@ interface Props {
   data: {
     apiRepository: APIRepository;
   };
-  location: Location;
 }
 
-function RepositoryPage({ data: { apiRepository }, location }: Props) {
+function RepositoryPage({ data: { apiRepository } }: Props) {
   const repository = new Repository(apiRepository);
 
   const previousPath = useMemo(() => {
@@ -35,12 +34,6 @@ function RepositoryPage({ data: { apiRepository }, location }: Props) {
 
   return (
     <Page className="repository">
-      <SEO
-        title={repository.title}
-        description={repository.description}
-        pathname={location.pathname}
-        image={repository.previewImageRoute}
-      />
       <section className="repository__content">
         <nav className="repository__nav">
           <Link to={previousPath} className="repository__link" data-focusable>
@@ -133,3 +126,22 @@ export const query = graphql`
 `;
 
 export default RepositoryPage;
+
+interface HeadProps {
+  data: {
+    apiRepository: APIRepository;
+  };
+  location: Location;
+}
+
+export function Head({ data: { apiRepository }, location }: HeadProps) {
+  const repository = new Repository(apiRepository);
+  return (
+    <SEO
+      title={repository.title}
+      description={repository.description}
+      pathname={location.pathname}
+      image={repository.previewImageRoute}
+    />
+  );
+}

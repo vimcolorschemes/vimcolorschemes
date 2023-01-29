@@ -44,22 +44,6 @@ function IndexPage({
     [location.pathname],
   );
 
-  const backgroundLabel: string | null = useMemo(() => {
-    if (pageContext.filters.length > 1) {
-      return null;
-    }
-
-    return pageContext.filters[0];
-  }, [pageContext.filters]);
-
-  const seoTitle: string = useMemo(
-    () =>
-      [actionFromURL.label, backgroundLabel, 'vim color schemes']
-        .filter(Boolean)
-        .join(' '),
-    [actionFromURL, backgroundLabel],
-  );
-
   const isSearchActive: boolean = useMemo(
     () => process.env.GATSBY_IS_SEARCH_ACTIVE === 'true',
     [],
@@ -74,11 +58,6 @@ function IndexPage({
         search.setPage(1);
       }}
     >
-      <SEO
-        title={seoTitle}
-        description={`Check out the ${actionFromURL.label} vim color schemes!`}
-        pathname={location.pathname}
-      />
       <header className="repositories__header">
         <div className="repositories__header-row">
           {isSearchActive && (
@@ -178,3 +157,39 @@ export const query = graphql`
 `;
 
 export default IndexPage;
+
+interface HeadProps {
+  location: Location;
+  pageContext: RepositoriesPageContext;
+}
+
+export function Head({ location, pageContext }: HeadProps) {
+  const backgroundLabel: string | null = useMemo(() => {
+    if (pageContext.filters.length > 1) {
+      return null;
+    }
+
+    return pageContext.filters[0];
+  }, [pageContext.filters]);
+
+  const actionFromURL: Action = useMemo(
+    () => URLHelper.getActionFromURL(location.pathname),
+    [location.pathname],
+  );
+
+  const seoTitle: string = useMemo(
+    () =>
+      [actionFromURL.label, backgroundLabel, 'vim color schemes']
+        .filter(Boolean)
+        .join(' '),
+    [actionFromURL, backgroundLabel],
+  );
+
+  return (
+    <SEO
+      title={seoTitle}
+      description={`Check out the ${actionFromURL.label} vim color schemes!`}
+      pathname={location.pathname}
+    />
+  );
+}
