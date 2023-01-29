@@ -8,15 +8,9 @@ import SEO from '@/components/seo';
 
 import './index.scss';
 
-interface Props {
-  location: Location;
-}
-
-const AboutPage = ({ location }: Props) => {
+const AboutPage = () => {
   return (
     <Page className="about">
-      <SEO title="About" pathname={location.pathname} />
-
       <h1 className="title" id="about">
         <a href="#about" data-focusable>
           About vimcolorschemes
@@ -132,3 +126,11 @@ const AboutPage = ({ location }: Props) => {
 };
 
 export default AboutPage;
+
+interface HeadProps {
+  location: Location;
+}
+
+export function Head({ location }: HeadProps) {
+  return <SEO title="About" pathname={location.pathname} />;
+}

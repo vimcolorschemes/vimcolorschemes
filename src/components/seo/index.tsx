@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
-import { Helmet } from 'react-helmet';
 
 import './index.scss';
 
@@ -47,68 +46,26 @@ function SEO({ title, description, pathname, image }: Props) {
   }, [title, site.siteMetadata.title]);
 
   return (
-    <Helmet
-      htmlAttributes={{ lang: 'en' }}
-      title={formattedTitle}
-      meta={[
-        {
-          name: 'description',
-          content: fullDescription,
-        },
-        {
-          property: 'og:title',
-          content: formattedTitle,
-        },
-        {
-          property: 'og:description',
-          content: fullDescription,
-        },
-        {
-          property: 'og:type',
-          content: 'website',
-        },
-        {
-          property: 'og:url',
-          content: `${site.siteMetadata.siteUrl}${pathname}`,
-        },
-        {
-          property: 'og:image',
-          content: ogImage,
-        },
-        {
-          property: 'og:image:type',
-          content: 'image/png',
-        },
-        {
-          property: 'og:image:width',
-          content: '400',
-        },
-        {
-          property: 'og:image:height',
-          content: '200',
-        },
-        {
-          name: 'twitter:card',
-          content: 'summary_large_image',
-        },
-        {
-          name: 'twitter:creator',
-          content: '@reobindev',
-        },
-        {
-          name: 'twitter:title',
-          content: formattedTitle,
-        },
-        {
-          name: 'twitter:description',
-          content: fullDescription,
-        },
-        {
-          name: 'twitter:image',
-          content: ogImage,
-        },
-      ]}
-    />
+    <>
+      <title>{formattedTitle}</title>
+      <meta name="description" content={fullDescription} />
+      <meta property="og:title" content={formattedTitle} />
+      <meta property="og:description" content={fullDescription} />
+      <meta property="og:type" content="website" />
+      <meta
+        property="og:url"
+        content={`${site.siteMetadata.siteUrl}${pathname}`}
+      />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:image:type" content="image/png" />
+      <meta property="og:image:width" content="400" />
+      <meta property="og:image:height" content="200" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@reobindev" />
+      <meta name="twitter:title" content={formattedTitle} />
+      <meta name="twitter:description" content={fullDescription} />
+      <meta name="twitter:image" content={ogImage} />
+    </>
   );
 }
 
