@@ -15,6 +15,7 @@ import {
 } from '../models/repository';
 
 const isSearchActive =
+  !!process.env.GATSBY_IS_SEARCH_ACTIVE &&
   !!process.env.GATSBY_SEARCH_INDEX_URL &&
   !!process.env.SEARCH_INDEX_API_KEY &&
   !!process.env.SEARCH_INDEX_S3_BUCKET &&
