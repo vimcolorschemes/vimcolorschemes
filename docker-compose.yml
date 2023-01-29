@@ -11,7 +11,7 @@ services:
       - /usr/src/app/node_modules
     environment:
       GATSBY_SITE_URL: "http://0.0.0.0:8000"
-      GATSBY_DATABASE_CONNECTION_STRING: "mongodb://database:27017"
+      DATABASE_CONNECTION_STRING: "mongodb://database:27017"
   database:
     container_name: vimcolorschemes_database
     image: mongo:latest

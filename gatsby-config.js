@@ -40,9 +40,8 @@ module.exports = {
       resolve: 'gatsby-source-mongodb',
       options: {
         connectionString:
-          process.env.GATSBY_DATABASE_CONNECTION_STRING ||
-          'mongodb://localhost:27017',
-        dbName: process.env.GATSBY_DATABASE_NAME || 'vimcolorschemes',
+          process.env.DATABASE_CONNECTION_STRING || 'mongodb://localhost:27017',
+        dbName: process.env.DATABASE_NAME || 'vimcolorschemes',
         collection: ['repositories'],
       },
     },

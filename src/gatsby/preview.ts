@@ -22,7 +22,7 @@ const PREVIEW_URL = `http://localhost:${PREVIEW_PORT}`;
 async function generatePreviewImages(
   repositories: Repository[],
 ): Promise<void> {
-  if (!process.env.GATSBY_ENABLE_GENERATE_PREVIEW_IMAGES) {
+  if (!process.env.ENABLE_GENERATE_PREVIEW_IMAGES) {
     return;
   }
 
