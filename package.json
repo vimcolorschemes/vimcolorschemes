@@ -65,7 +65,6 @@
     "@types/node-static": "^0.7.7",
     "@types/react-test-renderer": "^18.0.0",
     "aws-sdk": "^2.1253.0",
-    "axe-core": "^4.5.2",
     "babel-jest": "^29.4.1",
     "babel-preset-gatsby": "^3.4.0",
     "chrome-aws-lambda": "^10.1.0",
