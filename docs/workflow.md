@@ -46,7 +46,6 @@ After The Worker's daily jobs, the website is built again using the new data and
 - [MongoDB](https://www.mongodb.com/)
 - [Jest](https://jestjs.io/)
 - [Testing Library](https://testing-library.com/)
-- [Cypress](https://www.cypress.io/)
 - [AWS](https://console.aws.amazon.com/)
 - [ElasticSearch](https://elastic.co)
 

@@ -16,7 +16,6 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     'node_modules',
-    'cypress',
     '\\.cache',
     '<rootDir>.*/public',
   ],
