@@ -16,10 +16,10 @@ import {
 
 const isSearchActive =
   !!process.env.GATSBY_SEARCH_INDEX_URL &&
-  !!process.env.GATSBY_SEARCH_INDEX_API_KEY &&
-  !!process.env.GATSBY_SEARCH_INDEX_S3_BUCKET &&
-  !!process.env.GATSBY_AWS_S3_ACCESS_KEY_ID &&
-  !!process.env.GATSBY_AWS_S3_SECRET_ACCESS_KEY;
+  !!process.env.SEARCH_INDEX_API_KEY &&
+  !!process.env.SEARCH_INDEX_S3_BUCKET &&
+  !!process.env.AWS_S3_ACCESS_KEY_ID &&
+  !!process.env.AWS_S3_SECRET_ACCESS_KEY;
 
 export function onCreateWebpackConfig({ actions }) {
   actions.setWebpackConfig({

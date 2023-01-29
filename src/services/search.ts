@@ -62,8 +62,8 @@ async function search(
 async function index(repositories: Repository[]): Promise<StoreResult> {
   if (
     !process.env.GATSBY_SEARCH_INDEX_URL ||
-    !process.env.GATSBY_SEARCH_INDEX_API_KEY ||
-    !process.env.GATSBY_SEARCH_INDEX_S3_BUCKET
+    !process.env.SEARCH_INDEX_API_KEY ||
+    !process.env.SEARCH_INDEX_S3_BUCKET
   ) {
     return Promise.reject();
   }
@@ -72,7 +72,7 @@ async function index(repositories: Repository[]): Promise<StoreResult> {
 
   await S3.upload(
     repositories,
-    process.env.GATSBY_SEARCH_INDEX_S3_BUCKET,
+    process.env.SEARCH_INDEX_S3_BUCKET,
     indexFileKey,
   );
 
@@ -80,7 +80,7 @@ async function index(repositories: Repository[]): Promise<StoreResult> {
     url: process.env.GATSBY_SEARCH_INDEX_URL,
     body: { key: indexFileKey },
     headers: {
-      'x-api-key': process.env.GATSBY_SEARCH_INDEX_API_KEY,
+      'x-api-key': process.env.SEARCH_INDEX_API_KEY,
     },
   });
 
