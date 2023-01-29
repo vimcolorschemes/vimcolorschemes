@@ -23,7 +23,7 @@ That's it. The script will:
   1. `brew tap mongodb/brew`
   2. `brew install mongodb-community`
   3. `brew services start mongodb-community`
-- Node 12+
+- Node 18+
 - A locally cloned fork of [the repository](https://github.com/vimcolorschemes/vimcolorschemes). Check out [how to.](https://docs.github.com/en/github/getting-started-with-github/fork-a-repo)
 
 ### 1. Set up the local database

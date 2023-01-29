@@ -141,11 +141,12 @@ export interface RepositoryPageContext {
   name: string;
 }
 
+export type SortProperty = { [key in keyof Repository]: 'ASC' | 'DESC' };
+
 export interface RepositoriesPageContext {
   skip: number;
   limit: number;
-  sortProperty: Array<keyof Repository>;
-  sortOrder: Array<'DESC' | 'ASC'>;
+  sort: SortProperty[];
   pageCount: number;
   currentPage: number;
   filters: Background[];

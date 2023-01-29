@@ -1,5 +1,5 @@
 import { act } from 'react-test-renderer';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import useDebounce from '@/hooks/debounce';
 

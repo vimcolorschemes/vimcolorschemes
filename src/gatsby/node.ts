@@ -147,8 +147,7 @@ function createRepositoriesPage({
     context: {
       skip: index * REPOSITORY_COUNT_PER_PAGE,
       limit: REPOSITORY_COUNT_PER_PAGE,
-      sortProperty: [action.property],
-      sortOrder: [action.order],
+      sort: [{ [action.property]: action.order }],
       pageCount,
       currentPage: page,
       filters,
