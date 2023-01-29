@@ -2,6 +2,7 @@
 node_modules/
 .cache/
 public
+.env
 
 # Database
 mongo
