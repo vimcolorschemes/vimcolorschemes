@@ -1,5 +1,4 @@
-import { fireEvent } from '@testing-library/react';
-import { renderHook } from '@testing-library/react-hooks';
+import { fireEvent, renderHook } from '@testing-library/react';
 
 import Keys from '@/lib/keys';
 import useNavigation from '@/hooks/navigation';

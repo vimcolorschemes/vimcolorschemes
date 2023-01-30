@@ -1,10 +1,10 @@
 import { act } from 'react-test-renderer';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook } from '@testing-library/react';
 
 import Background from '@/lib/background';
 import RequestHelper from '@/helpers/request';
 import useSearch from '@/hooks/search';
-import { Repository } from '@/models/repository';
+import { SortProperty } from '@/models/repository';
 
 const defaultRepositoriesData = {
   apiRepositories: [],
@@ -14,8 +14,7 @@ const defaultRepositoriesData = {
 const defaultPageData = {
   skip: 0,
   limit: 20,
-  sortProperty: ['stargazersCount'] as Array<keyof Repository>,
-  sortOrder: ['DESC'] as ('DESC' | 'ASC')[],
+  sort: [{ stargazersCount: 'DESC' }] as SortProperty[],
   pageCount: 2,
   currentPage: 1,
   filters: [Background.Dark, Background.Light],

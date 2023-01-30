@@ -103,8 +103,7 @@ function IndexPage({
 
 export const query = graphql`
   query RepositoriesQuery(
-    $sortProperty: [mongodbVimcolorschemesRepositoriesFieldsEnum]!
-    $sortOrder: [SortOrderEnum]!
+    $sort: [mongodbVimcolorschemesRepositoriesSortInput]
     $skip: Int!
     $limit: Int!
     $filters: [String] = ["dark", "light"]
@@ -117,7 +116,7 @@ export const query = graphql`
           elemMatch: { valid: { eq: true }, backgrounds: { in: $filters } }
         }
       }
-      sort: { fields: $sortProperty, order: $sortOrder }
+      sort: $sort
       skip: $skip
       limit: $limit
     ) {
