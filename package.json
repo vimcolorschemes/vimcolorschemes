@@ -62,7 +62,7 @@
     "@types/node-static": "^0.7.7",
     "@types/react-test-renderer": "^18.0.0",
     "aws-sdk": "^2.1309.0",
-    "babel-jest": "^29.4.1",
+    "babel-jest": "^29.4.2",
     "babel-preset-gatsby": "^3.5.0",
     "chrome-aws-lambda": "^10.1.0",
     "dotenv": "^16.0.3",
