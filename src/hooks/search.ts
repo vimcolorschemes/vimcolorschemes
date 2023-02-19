@@ -33,9 +33,10 @@ interface Search {
 /**
  * Manages what repositories to display based on various inputs
  *
- * @param {Object} defaultRepositoriesData - The repositories data coming from
+ * @param {Object} params
+ * @param {Object} params.defaultRepositoriesData - The repositories data coming from
  * the base GraphQL query
- * @param {Object} defaultPageData - The page context data coming from the base
+ * @param {Object} params.defaultPageData - The page context data coming from the base
  * GraphQL query
  * @returns {Object} Current search and repositories state
  */
@@ -62,12 +63,12 @@ function useSearch({
   const [input, setInput] = useState<string>(storedSearchInput);
   const debouncedInput = useDebounce(input);
 
+  const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
+
   const { data: searchData, error } = useSWR(
-    [debouncedInput, defaultPageData.filters, page],
+    isSearching ? [debouncedInput, defaultPageData.filters, page] : null,
     SearchService.search,
   );
-
-  const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
 
   const isLoading = useMemo(
     () => isSearching && !searchData && !error,
