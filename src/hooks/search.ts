@@ -33,9 +33,10 @@ interface Search {
 /**
  * Manages what repositories to display based on various inputs
  *
- * @param {Object} defaultRepositoriesData - The repositories data coming from
+ * @param {Object} params
+ * @param {Object} params.defaultRepositoriesData - The repositories data coming from
  * the base GraphQL query
- * @param {Object} defaultPageData - The page context data coming from the base
+ * @param {Object} params.defaultPageData - The page context data coming from the base
  * GraphQL query
  * @returns {Object} Current search and repositories state
  */
@@ -60,14 +61,14 @@ function useSearch({
     Number(storedSearchPage) || defaultPageData.currentPage || 1,
   );
   const [input, setInput] = useState<string>(storedSearchInput);
-  const debouncedInput = useDebounce(input);
+  const query = useDebounce(input);
+
+  const isSearching = useMemo(() => !!query.length, [query]);
 
   const { data: searchData, error } = useSWR(
-    [debouncedInput, defaultPageData.filters, page],
+    isSearching ? { query, backgrounds: defaultPageData.filters, page } : null,
     SearchService.search,
   );
-
-  const isSearching = useMemo(() => !!debouncedInput.length, [debouncedInput]);
 
   const isLoading = useMemo(
     () => isSearching && !searchData && !error,
@@ -75,7 +76,7 @@ function useSearch({
   );
 
   function storeSearchData() {
-    LocalStorageHelper.set(LocalStorageKeys.SearchInput, debouncedInput);
+    LocalStorageHelper.set(LocalStorageKeys.SearchInput, query);
     LocalStorageHelper.set(LocalStorageKeys.SearchPage, page.toString());
   }
 
@@ -90,7 +91,7 @@ function useSearch({
     } else {
       resetSearchData();
     }
-  }, [isSearching, debouncedInput, page]);
+  }, [isSearching, query, page]);
 
   useEffect(
     () => setPage(defaultPageData.currentPage),
@@ -136,7 +137,7 @@ function useSearch({
   const pageCount = useMemo(
     () =>
       (isSearching ? searchData?.pageCount : defaultPageData.pageCount) || 1,
-    [debouncedInput, searchData?.pageCount, defaultPageData.pageCount],
+    [query, searchData?.pageCount, defaultPageData.pageCount],
   );
 
   return {

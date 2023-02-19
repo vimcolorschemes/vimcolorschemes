@@ -14,6 +14,12 @@ interface SearchProxyResult {
   totalCount: number;
 }
 
+interface SearchParameters {
+  query: string;
+  backgrounds: Background[];
+  page: number;
+}
+
 interface SearchResult {
   repositories: Repository[];
   totalCount: number;
@@ -23,18 +29,19 @@ interface SearchResult {
 /**
  * Posts a search request to the repository search index and returns the result
  *
- * @param {string} query - The search input to match
- * @param {Background[]} backgrounds - The background filters to apply
- * @param {number} page - The search page
+ * @param {SearchParameters} params
+ * @param {string} params.query - The search input to match
+ * @param {Background[]} params.backgrounds - The background filters to apply
+ * @param {number} params.page - The search page
  *
  * @returns {SearchResult} The repositories, total count and page count matching the
  * search input
  */
-async function search(
-  query: string,
-  backgrounds: Background[],
-  page: number = 1,
-): Promise<SearchResult> {
+async function search({
+  query,
+  backgrounds,
+  page = 1,
+}: SearchParameters): Promise<SearchResult> {
   if (!query) {
     return Promise.reject();
   }
