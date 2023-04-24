@@ -40,7 +40,7 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "dayjs": "^1.11.7",
-    "gatsby": "^5.5.0",
+    "gatsby": "^5.9.0",
     "gatsby-plugin-manifest": "^5.5.0",
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sass": "^6.5.0",
