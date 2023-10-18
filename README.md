@@ -8,6 +8,12 @@
 <br>
 
 <p align="center">
+  <a href="https://docs.vimcolorschemes.com">docs.vimcolorschemes.com</a>
+</p>
+
+<br>
+
+<p align="center">
   <img src="https://img.shields.io/badge/visitors/day-~1k-4f8752?style=flat-square" alt="visitors" />
   <img src="https://img.shields.io/github/stars/vimcolorschemes/vimcolorschemes?style=flat-square&logo=github&color=4f8752" alt="stars" />
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
