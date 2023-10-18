@@ -50,7 +50,7 @@ The **focus** here is always on the **content**. The **simple design** of the we
 ## Key features 🚀
 
 - **Daily updated** list of hundreds of vim color scheme repositories
-- **Awesome vim (or arrows) key bindings** to quickly navigate through the whole site
+- **Awesome vim (h, j, k, l) key bindings** to quickly navigate through the whole site
 
 ## Get Involved
 
