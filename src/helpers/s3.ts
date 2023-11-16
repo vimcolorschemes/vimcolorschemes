@@ -32,6 +32,4 @@ async function remove(bucket: string, key: string) {
   await s3.deleteObject({ Bucket: bucket, Key: key }, () => {});
 }
 
-const S3 = { upload };
-
-export default S3;
+export { upload };
