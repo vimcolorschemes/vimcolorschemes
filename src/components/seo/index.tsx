@@ -11,22 +11,20 @@ interface Props {
 }
 
 function SEO({ title, description, pathname, image }: Props) {
-  const { site, logo } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            siteUrl
-            description
-          }
-        }
-        logo: file(relativePath: { eq: "logo_background.png" }) {
-          publicURL
+  const { site, logo } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          siteUrl
+          description
         }
       }
-    `,
-  );
+      logo: file(relativePath: { eq: "logo_background.png" }) {
+        publicURL
+      }
+    }
+  `);
 
   const ogImage = useMemo(() => {
     const path = !!image ? image : logo.publicURL;
