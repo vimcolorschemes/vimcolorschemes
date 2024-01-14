@@ -102,7 +102,7 @@ describe('DOMHelper.isInViewport', () => {
   test('should return true if the element is completely in the viewport', () => {
     const element = document.createElement('div');
     element.getBoundingClientRect = jest.fn(
-      () => ({ top: 100, right: 200, bottom: 200, left: 100 } as DOMRect),
+      () => ({ top: 100, right: 200, bottom: 200, left: 100 }) as DOMRect,
     );
 
     expect(DOMHelper.isInViewport(element)).toBe(true);
@@ -111,25 +111,25 @@ describe('DOMHelper.isInViewport', () => {
   test('should return false if the element is partially outside the viewport', () => {
     const top = document.createElement('div');
     top.getBoundingClientRect = jest.fn(
-      () => ({ top: -50, right: 200, bottom: 50, left: 100 } as DOMRect),
+      () => ({ top: -50, right: 200, bottom: 50, left: 100 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(top)).toBe(false);
 
     const right = document.createElement('div');
     right.getBoundingClientRect = jest.fn(
-      () => ({ top: 100, right: 550, bottom: 200, left: 450 } as DOMRect),
+      () => ({ top: 100, right: 550, bottom: 200, left: 450 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(right)).toBe(false);
 
     const bottom = document.createElement('div');
     bottom.getBoundingClientRect = jest.fn(
-      () => ({ top: 450, right: 200, bottom: 550, left: 100 } as DOMRect),
+      () => ({ top: 450, right: 200, bottom: 550, left: 100 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(bottom)).toBe(false);
 
     const left = document.createElement('div');
     left.getBoundingClientRect = jest.fn(
-      () => ({ top: 100, right: 50, bottom: 200, left: -50 } as DOMRect),
+      () => ({ top: 100, right: 50, bottom: 200, left: -50 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(left)).toBe(false);
   });
@@ -137,25 +137,25 @@ describe('DOMHelper.isInViewport', () => {
   test('should return false if the element is completely outside the viewport', () => {
     const top = document.createElement('div');
     top.getBoundingClientRect = jest.fn(
-      () => ({ top: -200, right: 200, bottom: -100, left: 100 } as DOMRect),
+      () => ({ top: -200, right: 200, bottom: -100, left: 100 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(top)).toBe(false);
 
     const right = document.createElement('div');
     right.getBoundingClientRect = jest.fn(
-      () => ({ top: 100, right: 900, bottom: 200, left: 800 } as DOMRect),
+      () => ({ top: 100, right: 900, bottom: 200, left: 800 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(right)).toBe(false);
 
     const bottom = document.createElement('div');
     bottom.getBoundingClientRect = jest.fn(
-      () => ({ top: 800, right: 200, bottom: 900, left: 100 } as DOMRect),
+      () => ({ top: 800, right: 200, bottom: 900, left: 100 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(bottom)).toBe(false);
 
     const left = document.createElement('div');
     left.getBoundingClientRect = jest.fn(
-      () => ({ top: 100, right: -100, bottom: 200, left: -200 } as DOMRect),
+      () => ({ top: 100, right: -100, bottom: 200, left: -200 }) as DOMRect,
     );
     expect(DOMHelper.isInViewport(left)).toBe(false);
   });
