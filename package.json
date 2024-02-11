@@ -63,7 +63,7 @@
     "@types/react-test-renderer": "^18.0.7",
     "aws-sdk": "^2.1550.0",
     "babel-jest": "^29.7.0",
-    "babel-preset-gatsby": "^3.13.0",
+    "babel-preset-gatsby": "^3.13.1",
     "chrome-aws-lambda": "^10.1.0",
     "dotenv": "^16.4.1",
     "emoji-js": "^3.8.0",
