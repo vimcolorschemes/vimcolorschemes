@@ -45,7 +45,7 @@
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sass": "^6.13.0",
     "gatsby-plugin-sitemap": "^6.13.1",
-    "gatsby-source-filesystem": "^5.13.0",
+    "gatsby-source-filesystem": "^5.13.1",
     "gatsby-source-mongodb": "^5.13.0",
     "node-fetch": "^2.7.0",
     "sass": "^1.70.0",
