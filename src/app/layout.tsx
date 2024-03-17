@@ -6,7 +6,10 @@ import '@/styles/globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'vimcolorschemes',
+  title: {
+    template: '%s | vimcolorschemes',
+    default: 'vimcolorschemes',
+  },
   description:
     'Check out the Trending vim color schemes! | vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation.',
 };
