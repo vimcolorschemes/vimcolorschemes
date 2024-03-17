@@ -40,7 +40,7 @@
   "dependencies": {
     "classnames": "^2.5.1",
     "dayjs": "^1.11.10",
-    "gatsby": "^5.13.3",
+    "gatsby": "^5.14.0-next.4",
     "gatsby-plugin-manifest": "^5.13.1",
     "gatsby-plugin-robots-txt": "^1.8.0",
     "gatsby-plugin-sass": "^6.13.0",
@@ -82,5 +82,8 @@
     "ts-jest": "^29.1.2",
     "typescript": "^5.3.3",
     "util": "^0.12.5"
+  },
+  "optionalDependencies": {
+    "@parcel/watcher": "^2.4.1"
   }
 }
