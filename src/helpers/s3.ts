@@ -1,7 +1,7 @@
 import { Upload } from '@aws-sdk/lib-storage';
-import { S3 } from '@aws-sdk/client-s3';
+import { S3 as S3Client } from '@aws-sdk/client-s3';
 
-const s3 = new S3({
+const client = new S3Client({
   credentials: {
     accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID || '',
     secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY || '',
@@ -23,13 +23,14 @@ async function upload(
   await remove(bucket, key);
   const body = JSON.stringify(payload);
   await new Upload({
-    client: s3,
+    client,
     params: { Bucket: bucket, Key: key, Body: body },
   }).done();
 }
 
 async function remove(bucket: string, key: string) {
-  await s3.deleteObject({ Bucket: bucket, Key: key }, () => {});
+  await client.deleteObject({ Bucket: bucket, Key: key }, {});
 }
 
-export { upload };
+const S3 = { upload };
+export default S3;
