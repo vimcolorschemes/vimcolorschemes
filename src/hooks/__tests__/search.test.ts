@@ -20,6 +20,8 @@ const defaultPageData = {
   filters: [Background.Dark, Background.Light],
 };
 
+jest.mock('@/helpers/s3', () => {});
+
 describe('useSearch', () => {
   beforeAll(() => {
     jest.useFakeTimers();
