@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xs);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+}
+
+.logo {
+  width: auto;
+  height: 3.125rem;
+}
+
+@media (min-width: 768px) {
+  .logo {
+    height: 5rem;
+  }
+}

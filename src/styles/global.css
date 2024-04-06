@@ -1,6 +1,5 @@
 :root {
-  --max-width: 68.75rem;
-  --border-radius: 0.75rem;
+  --content-max-width: 68.75rem;
   --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
@@ -15,6 +14,11 @@
   --spacing-lg: 2rem;
   --spacing-xl: 3rem;
   --spacing-xxl: 4rem;
+
+  --font-size-sm: 0.625rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 2rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -55,7 +59,7 @@ a {
 
 header,
 footer {
-  padding: var(--spacing-sm);
+  padding: var(--spacing-lg);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,11 +1,9 @@
+import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-
 import { ReactNode } from 'react';
 
 import Footer from '@/app/_components/footer';
 import Header from '@/app/_components/header';
-
-import type { Metadata } from 'next';
 
 import '@/styles/reset.css';
 import '@/styles/global.css';

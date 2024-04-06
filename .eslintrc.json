@@ -11,15 +11,16 @@
           "parent",
           "sibling",
           "index",
-          "object",
-          "type"
+          "object"
         ],
         "pathGroups": [
-          { "pattern": "next/**", "group": "external", "position": "before" },
-          { "pattern": "react", "group": "external", "position": "before" },
+          {
+            "pattern": "**/_components/**",
+            "group": "internal",
+            "position": "after"
+          },
           { "pattern": "@/**", "group": "internal", "position": "before" }
         ],
-        "pathGroupsExcludedImportTypes": ["react"],
         "newlines-between": "always",
         "alphabetize": { "order": "asc", "caseInsensitive": true }
       }
