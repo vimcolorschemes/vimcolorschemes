@@ -1,8 +1,5 @@
 :root {
   --content-max-width: 68.75rem;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --foreground: #333;
   --background: #fff;
@@ -40,6 +37,7 @@ body {
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-standard);
   font-size: 16px;
   min-height: 100%;
   display: flex;
@@ -59,6 +57,8 @@ a {
 
 header,
 footer {
+  width: 100%;
+  max-width: var(--content-max-width);
   padding: var(--spacing-lg);
 }
 

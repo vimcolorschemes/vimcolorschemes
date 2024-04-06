@@ -1,5 +1,6 @@
+import cn from 'classnames';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 
 import Footer from '@/app/_components/footer';
@@ -8,7 +9,16 @@ import Header from '@/app/_components/header';
 import '@/styles/reset.css';
 import '@/styles/global.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const fontStandard = Source_Sans_3({
+  subsets: ['latin'],
+  variable: '--font-standard',
+});
+
+const fontMono = Ubuntu_Mono({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -26,7 +36,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(fontStandard.variable, fontMono.variable)}>
         <Header />
         {children}
         <Footer />
