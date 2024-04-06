@@ -8,7 +8,7 @@ import Header from '@/components/header';
 import type { Metadata } from 'next';
 
 import '@/styles/reset.css';
-import '@/styles/globals.css';
+import '@/styles/global.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
