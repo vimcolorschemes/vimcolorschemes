@@ -15,7 +15,7 @@
         ],
         "pathGroups": [
           {
-            "pattern": "**/_components/**",
+            "pattern": "@/components/**",
             "group": "internal",
             "position": "after"
           },

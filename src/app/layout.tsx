@@ -3,11 +3,11 @@ import type { Metadata } from 'next';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import Footer from '@/app/_components/footer';
-import Header from '@/app/_components/header';
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 
-import '@/styles/reset.css';
-import '@/styles/global.css';
+import './reset.css';
+import './globals.css';
 
 const fontStandard = Source_Sans_3({
   subsets: ['latin'],
@@ -29,11 +29,11 @@ export const metadata: Metadata = {
     'Check out the Trending vim color schemes! | vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation.',
 };
 
-interface RootLayoutProps {
+interface LayoutProps {
   children: ReactNode;
 }
 
-export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
+export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={cn(fontStandard.variable, fontMono.variable)}>

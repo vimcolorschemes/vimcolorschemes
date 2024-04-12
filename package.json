@@ -1,13 +1,23 @@
 {
   "name": "next",
-  "version": "0.1.0",
-  "private": true,
+  "version": "4.0.0",
+  "description": "The ultimate resource for vim/neovim color schemes.",
+  "author": "@reobin",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes"
+  },
+  "bugs": {
+    "url": "https://github.com/vimcolorschemes/vimcolorschemes/issues"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format.check": "prettier --check ."
   },
   "dependencies": {
     "classnames": "^2.5.1",
