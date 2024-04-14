@@ -9,7 +9,7 @@ export default function IconLogo({ className }: IconLogoProps) {
       xmlns="http://www.w3.org/2000/svg"
       fill="#fff"
       stroke="#333"
-      stroke-width="9.4"
+      strokeWidth="9.4"
       width="423"
       height="374"
       viewBox="0 0 423 374"
