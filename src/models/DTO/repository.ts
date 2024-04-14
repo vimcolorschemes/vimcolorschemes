@@ -12,7 +12,6 @@ type RepositoryDTO = {
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
-  isVim: boolean;
   isLua: boolean;
   vimColorSchemes: ColorschemeDTO[] | null;
 };
@@ -26,7 +25,6 @@ const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
   githubURL: String,
   stargazersCount: Number,
   weekStargazersCount: Number,
-  isVim: Boolean,
   isLua: Boolean,
   vimColorSchemes: [
     {

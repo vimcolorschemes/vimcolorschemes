@@ -13,7 +13,12 @@ import DatabaseService from '@/services/database';
 async function getRepositories(): Promise<Repository[]> {
   await DatabaseService.connect();
 
-  const repositoryDTOs = await RepositoryModel.find();
+  const repositoryDTOs = await RepositoryModel.find({
+    updateValid: true,
+    generateValid: true,
+    'vimColorSchemes.valid': true,
+  });
+
   return repositoryDTOs.map(dto => new Repository(dto));
 }
 

@@ -1,23 +1,19 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
+import Engines from '@/lib/engines';
 
 import ColorschemeDTO, { ColorschemeDataDTO } from './DTO/colorscheme';
 
 class Colorscheme {
   name: string;
-  valid: boolean;
   data: ColorschemeData;
-  isLua: boolean;
-  isVim: boolean;
+  engine: Engines;
   backgrounds: Background[];
   private _defaultBackground: Background;
 
   constructor(dto?: ColorschemeDTO) {
     this.name = dto?.name || '';
-    this.valid = dto?.valid || false;
     this.data = new ColorschemeData(dto?.data || null);
-    this.isLua = !!dto?.isLua;
-    this.isVim = !this.isLua;
-
+    this.engine = dto?.isLua ? Engines.Neovim : Engines.Vim;
     this.backgrounds = dto?.backgrounds || [];
 
     this._defaultBackground = this.backgrounds.includes(Backgrounds.Dark)
@@ -46,15 +42,13 @@ class Colorscheme {
   copy(): Colorscheme {
     const copy = new Colorscheme();
     copy.name = this.name;
-    copy.valid = this.valid;
     copy.data = this.data;
-    copy.isVim = this.isVim;
-    copy.isLua = this.isLua;
+    copy.engine = this.engine;
     return copy;
   }
 }
 
-export class ColorschemeData {
+class ColorschemeData {
   light: VimColorSchemeGroup[] | null;
   dark: VimColorSchemeGroup[] | null;
 
@@ -64,8 +58,9 @@ export class ColorschemeData {
   }
 }
 
-export interface VimColorSchemeGroup {
+interface VimColorSchemeGroup {
   name: string;
   hexCode: string;
 }
+
 export default Colorscheme;
