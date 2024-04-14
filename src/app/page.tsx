@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 import RepositoriesService from '@/services/repositories';
 
@@ -14,7 +15,9 @@ export default async function Home() {
       <ul>
         {repositories.map(repository => (
           <li key={repository.key}>
-            <p>{repository.title}</p>
+            <Link href={repository.route}>
+              <p>{repository.title}</p>
+            </Link>
           </li>
         ))}
       </ul>
