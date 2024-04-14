@@ -5,12 +5,12 @@ import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
 import Owner from './owner';
 
-export class Repository {
+class Repository {
   name: string;
   owner: Owner;
   description: string;
-  githubCreatedAt: string;
-  lastCommitAt: string;
+  githubCreatedAt: Date;
+  lastCommitAt: Date;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
@@ -27,7 +27,9 @@ export class Repository {
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
     this.engine = dto.isLua ? Engines.Neovim : Engines.Vim;
-    this.colorschemes = (dto.colorschemes ?? []).map(cs => new Colorscheme(cs));
+    this.colorschemes = (dto.vimColorSchemes ?? []).map(
+      dto => new Colorscheme(dto),
+    );
   }
 
   get key(): string {
@@ -42,3 +44,5 @@ export class Repository {
     return `${this.name}, by ${this.owner.name}`;
   }
 }
+
+export default Repository;
