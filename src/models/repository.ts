@@ -1,5 +1,5 @@
 import URLHelper from '@/helpers/url';
-import Engines from '@/lib/engines';
+import Engines, { Engine } from '@/lib/engines';
 
 import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
@@ -14,7 +14,7 @@ class Repository {
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
-  engine: Engines;
+  engine: Engine;
   colorschemes: Colorscheme[];
 
   constructor(dto: RepositoryDTO) {
@@ -37,7 +37,7 @@ class Repository {
   }
 
   get route(): string {
-    return `/${URLHelper.urlify(this.key)}`.toLowerCase();
+    return `/repositories/${URLHelper.urlify(this.key)}`.toLowerCase();
   }
 
   get title(): string {

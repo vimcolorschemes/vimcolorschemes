@@ -1,7 +1,5 @@
 import Link from 'next/link';
 
-import Routes from '@/lib/routes';
-
 import IconLogo from '@/components/icons/logo';
 
 import styles from './index.module.css';
@@ -9,7 +7,7 @@ import styles from './index.module.css';
 export default function Header() {
   return (
     <header className={styles.container}>
-      <Link href={Routes.Home} className={styles.link}>
+      <Link href="/" className={styles.link}>
         <IconLogo className={styles.logo} />
         <span className={styles.title}>
           <span>vim</span>colorschemes

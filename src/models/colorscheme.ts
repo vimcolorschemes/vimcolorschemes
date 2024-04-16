@@ -1,12 +1,12 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Engines from '@/lib/engines';
+import Engines, { Engine } from '@/lib/engines';
 
 import ColorschemeDTO, { ColorschemeDataDTO } from './DTO/colorscheme';
 
 class Colorscheme {
   name: string;
   data: ColorschemeData;
-  engine: Engines;
+  engine: Engine;
   backgrounds: Background[];
   private _defaultBackground: Background;
 
