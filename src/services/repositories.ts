@@ -1,10 +1,12 @@
+import Filter from '@/lib/filter';
 import Sort from '@/lib/sort';
 import { RepositoryModel } from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 import DatabaseService from '@/services/database';
 
 type GetRepositoriesParams = {
-  sort?: Sort;
+  sort: Sort;
+  filter?: Filter;
 };
 
 /**
@@ -19,13 +21,19 @@ type GetRepositoriesParams = {
  */
 async function getRepositories({
   sort,
+  filter,
 }: GetRepositoriesParams): Promise<Repository[]> {
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.find(
-    { updateValid: true, generateValid: true, 'vimColorSchemes.valid': true },
+    {
+      updateValid: true,
+      generateValid: true,
+      'vimColorSchemes.valid': true,
+      ...filter,
+    },
     null,
-    { sort: sort ? { [sort.property]: sort.order } : null },
+    { sort: { [sort.property]: sort.order } },
   );
 
   return repositoryDTOs.map(dto => new Repository(dto));

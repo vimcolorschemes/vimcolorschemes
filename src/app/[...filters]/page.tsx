@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import Sort, { SortOptionMap, SortOptions } from '@/lib/sort';
+import FiltersHelper from '@/helpers/filters';
+import { SortOptionMap, SortOptions } from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
 
 import styles from './page.module.css';
@@ -16,12 +17,19 @@ type IndexPageProps = {
 export const metadata: Metadata = { title: 'Home | vimcolorschemes' };
 
 export default async function IndexPage({ params }: IndexPageProps) {
-  const sort = SortOptionMap[params.filters[0]];
+  const [sortOption, ...filters] = params.filters;
+
+  const sort = SortOptionMap[sortOption];
   if (sort == null) {
     redirect(`/${SortOptions.Top}`);
   }
 
-  const repositories = await RepositoriesService.getRepositories({ sort });
+  const filter = FiltersHelper.getFilter(filters);
+
+  const repositories = await RepositoriesService.getRepositories({
+    sort,
+    filter,
+  });
 
   return (
     <main className={styles.container}>
@@ -38,8 +46,4 @@ export default async function IndexPage({ params }: IndexPageProps) {
       </ul>
     </main>
   );
-}
-
-function getSort(value: string): Sort | null {
-  return SortOptionMap[value] || null;
 }
