@@ -37,6 +37,10 @@ function getURLFromFilter(filter: Filter): string {
         return null;
       }
 
+      if (urlKey === URLFilterKeys.Page && !isValidPage(value)) {
+        return null;
+      }
+
       return `${urlKey}.${value}`;
     })
     .filter(Boolean)
@@ -78,16 +82,28 @@ function getFilterFromURL(filters: string[]): Filter {
       return filter;
     }
 
+    if (filterKey === 'page' && !isValidPage(value)) {
+      return filter;
+    }
+
     return { ...filter, [filterKey]: value };
-  }, {} as Filter);
+  }, {});
 }
 
-function isValidEngine(value: string): boolean {
+function isValidEngine(value: string | number): boolean {
   return Object.values(Engines).includes(value as Engine);
 }
 
-function isValidBackground(value: string): boolean {
+function isValidBackground(value: string | number): boolean {
   return Object.values(Backgrounds).includes(value as Background);
+}
+
+function isValidPage(value: string | number): boolean {
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return !isNaN(parsed) && parsed >= 1;
+  }
+  return value >= 1;
 }
 
 const FilterHelper = { getFilterFromURL, getURLFromFilter };

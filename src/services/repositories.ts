@@ -1,4 +1,5 @@
 import QueryHelper from '@/helpers/query';
+import Constants from '@/lib/constants';
 import Filter from '@/lib/filter';
 import Sort from '@/lib/sort';
 import { RepositoryModel } from '@/models/DTO/repository';
@@ -34,7 +35,11 @@ async function getRepositories({
       ...QueryHelper.getFilterQuery(filter),
     },
     null,
-    { sort: QueryHelper.getSortQuery(sort) },
+    {
+      sort: QueryHelper.getSortQuery(sort),
+      skip: ((filter.page ?? 1) - 1) * Constants.REPOSITORY_PAGE_SIZE,
+      limit: Constants.REPOSITORY_PAGE_SIZE,
+    },
   );
 
   return repositoryDTOs.map(dto => new Repository(dto));
