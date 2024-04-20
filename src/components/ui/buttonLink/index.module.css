@@ -1,0 +1,21 @@
+.container {
+  width: min-content;
+  background: var(--background);
+  border: 2px solid var(--border-color);
+  border-radius: 5px;
+  padding: var(--spacing-xxs) var(--spacing-md);
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  cursor: pointer;
+  position: relative;
+}
+
+.container:hover,
+.container:focus-visible {
+  outline: none;
+  box-shadow: -2px 2px 0 var(--border-color);
+  transform: translate(2px, -2px);
+}

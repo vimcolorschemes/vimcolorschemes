@@ -1,8 +1,12 @@
 :root {
   --content-max-width: 68.75rem;
 
-  --foreground: #333;
-  --background: #fff;
+  --dark: #333;
+  --light: #fff;
+
+  --foreground: var(--dark);
+  --background: var(--light);
+  --border-color: var(--dark);
 
   --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;

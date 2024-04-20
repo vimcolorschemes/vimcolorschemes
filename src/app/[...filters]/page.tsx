@@ -44,7 +44,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
   );
 
   const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
-  if ((pageContext.filter.page || 1) > pageCount) {
+  if ((pageContext.filter.page || 1) > (pageCount || 1)) {
     delete pageContext.filter.page;
     redirect(`/${sort}/${FilterHelper.getURLFromFilter(pageContext.filter)}`);
   }

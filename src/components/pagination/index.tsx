@@ -1,7 +1,7 @@
-import Link from 'next/link';
-
 import FilterHelper from '@/helpers/filter';
 import PageContext from '@/lib/pageContext';
+
+import ButtonLink from '@/components/ui/buttonLink';
 
 type PaginationProps = {
   pageContext: PageContext;
@@ -22,11 +22,17 @@ export default function Pagination({
     return `${pageContext.sort}/${FilterHelper.getURLFromFilter({ ...newFilter, page })}`;
   }
 
+  if (pageCount <= 1) {
+    return null;
+  }
+
   return (
     <nav>
-      {hasPrevious && <Link href={getPageURL(page - 1)}>Previous</Link>}
+      {hasPrevious && (
+        <ButtonLink href={getPageURL(page - 1)}>Previous</ButtonLink>
+      )}
       {page}
-      {hasNext && <Link href={getPageURL(page + 1)}>Next</Link>}
+      {hasNext && <ButtonLink href={getPageURL(page + 1)}>Next</ButtonLink>}
     </nav>
   );
 }
