@@ -40,6 +40,7 @@ function getURLFromFilter(filter: Filter): string {
       return `${urlKey}.${value}`;
     })
     .filter(Boolean)
+    .sort()
     .join('/');
 }
 

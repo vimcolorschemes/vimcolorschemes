@@ -28,7 +28,7 @@ export default function EngineInput() {
       value={pageContext.filter.engine}
       onChange={onChange}
       options={[
-        { value: undefined, label: 'All' },
+        { value: undefined, label: 'all' },
         ...Object.values(Engines).map(engine => ({
           value: engine,
           label: engine,

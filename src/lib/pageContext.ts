@@ -1,9 +1,9 @@
 import Filter from './filter';
 import Sort from './sort';
 
-type IndexPageContext = {
+type PageContext = {
   sort: Sort;
   filter: Filter;
 };
 
-export default IndexPageContext;
+export default PageContext;

@@ -1,13 +1,14 @@
 import Link from 'next/link';
 
 import FilterHelper from '@/helpers/filter';
-import IndexPageContext from '@/lib/indexPageContext';
+import SortHelper from '@/helpers/sort';
+import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
 import styles from './index.module.css';
 
 type SortInputProps = {
-  pageContext: IndexPageContext;
+  pageContext: PageContext;
 };
 
 export default function SortInput({ pageContext }: SortInputProps) {
@@ -20,7 +21,7 @@ export default function SortInput({ pageContext }: SortInputProps) {
         {Object.values(SortOptions).map(option => (
           <li key={option} className={styles.option}>
             <Link href={`/${option}/${url}`}>
-              <p>{option}</p>
+              <p>{SortHelper.getLabel(option)}</p>
             </Link>
           </li>
         ))}

@@ -28,7 +28,7 @@ export default function BackgroundInput() {
       value={pageContext.filter.background}
       onChange={onChange}
       options={[
-        { value: undefined, label: 'All' },
+        { value: undefined, label: 'all' },
         ...Object.values(Backgrounds).map(background => ({
           value: background,
           label: background,

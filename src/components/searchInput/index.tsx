@@ -29,7 +29,7 @@ export default function SearchInput() {
       <input
         name="search"
         type="search"
-        placeholder="Search"
+        placeholder="search"
         value={value}
         onChange={event => setValue(event.target.value)}
       />

@@ -4,8 +4,7 @@ import { redirect } from 'next/navigation';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
-import IndexPageContext from '@/lib/indexPageContext';
-import Sort, { SortOptions } from '@/lib/sort';
+import Sort from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
 
 import BackgroundInput from '@/components/backgroundInput';
@@ -22,7 +21,12 @@ type IndexPageProps = {
   };
 };
 
-export const metadata: Metadata = { title: 'Home | vimcolorschemes' };
+export async function generateMetadata({
+  params,
+}: IndexPageProps): Promise<Metadata> {
+  const pageContext = PageContextHelper.get(params.filters);
+  return { title: PageContextHelper.getPageTitle(pageContext) };
+}
 
 export default async function IndexPage({ params }: IndexPageProps) {
   const [sort, ...filters] = params.filters as [Sort, ...string[]];
@@ -41,15 +45,13 @@ export default async function IndexPage({ params }: IndexPageProps) {
       <SortInput pageContext={pageContext} />
       <BackgroundInput />
       <EngineInput />
-      <ul className={styles.grid}>
+      <section className={styles.grid}>
         {repositories.map(repository => (
-          <li key={repository.key}>
-            <Link href={repository.route}>
-              <RepositoryCard repository={repository} />
-            </Link>
-          </li>
+          <Link href={repository.route} key={repository.key}>
+            <RepositoryCard repository={repository} />
+          </Link>
         ))}
-      </ul>
+      </section>
     </main>
   );
 }
