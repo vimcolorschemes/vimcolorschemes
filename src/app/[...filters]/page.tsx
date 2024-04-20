@@ -10,6 +10,7 @@ import RepositoriesService from '@/services/repositories';
 
 import BackgroundInput from '@/components/backgroundInput';
 import EngineInput from '@/components/engineInput';
+import RepositoryCard from '@/components/repositoryCard';
 import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
 
@@ -40,13 +41,11 @@ export default async function IndexPage({ params }: IndexPageProps) {
       <SortInput pageContext={pageContext} />
       <BackgroundInput />
       <EngineInput />
-      <ul>
+      <ul className={styles.grid}>
         {repositories.map(repository => (
           <li key={repository.key}>
             <Link href={repository.route}>
-              <p>
-                {repository.title} ({repository.stargazersCount})
-              </p>
+              <RepositoryCard repository={repository} />
             </Link>
           </li>
         ))}

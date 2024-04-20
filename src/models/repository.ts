@@ -1,4 +1,5 @@
 import URLHelper from '@/helpers/url';
+import { Background } from '@/lib/backgrounds';
 import Engines, { Engine } from '@/lib/engines';
 
 import Colorscheme from './colorscheme';
@@ -14,7 +15,6 @@ class Repository {
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
-  engine: Engine;
   colorschemes: Colorscheme[];
 
   constructor(dto: RepositoryDTO) {
@@ -26,7 +26,6 @@ class Repository {
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
-    this.engine = dto.isLua ? Engines.Neovim : Engines.Vim;
     this.colorschemes = (dto.vimColorSchemes ?? []).map(
       dto => new Colorscheme(dto),
     );
@@ -42,6 +41,20 @@ class Repository {
 
   get title(): string {
     return `${this.name}, by ${this.owner.name}`;
+  }
+
+  get backgrounds(): Background[] {
+    return Array.from(
+      new Set(
+        this.colorschemes.flatMap(colorscheme => colorscheme.backgrounds),
+      ),
+    );
+  }
+
+  get engines(): Engine[] {
+    return Array.from(
+      new Set(this.colorschemes.map(colorscheme => colorscheme.engine)),
+    );
   }
 }
 
