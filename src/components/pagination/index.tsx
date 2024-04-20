@@ -20,7 +20,7 @@ export default function Pagination({
   function getPageURL(page: number): string {
     const newFilter = { ...pageContext.filter };
     delete newFilter.page;
-    return `${pageContext.sort}/${FilterHelper.getURLFromFilter({ ...newFilter, page })}`;
+    return `/${pageContext.sort}/${FilterHelper.getURLFromFilter({ ...newFilter, page })}`;
   }
 
   if (pageCount <= 1) {

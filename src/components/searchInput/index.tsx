@@ -20,7 +20,7 @@ export default function SearchInput() {
       ...pageContext.filter,
       search: value,
     });
-    router.push(`${pageContext.sort}/${url}`);
+    router.push(`/${pageContext.sort}/${url}`);
   }
 
   return (
