@@ -2,9 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import FiltersHelper from '@/helpers/filters';
-import { SortOptionMap, SortOptions } from '@/lib/sort';
+import FilterHelper from '@/helpers/filter';
+import Sort, { SortOptions } from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
+
+import Search from '@/components/search';
 
 import styles from './page.module.css';
 
@@ -17,22 +19,26 @@ type IndexPageProps = {
 export const metadata: Metadata = { title: 'Home | vimcolorschemes' };
 
 export default async function IndexPage({ params }: IndexPageProps) {
-  const [sortOption, ...filters] = params.filters;
+  const [sort, ...filters] = params.filters;
 
-  const sort = SortOptionMap[sortOption];
-  if (sort == null) {
-    redirect(`/${SortOptions.Top}`);
+  if (!Object.values(SortOptions).includes(sort as Sort)) {
+    redirect(`/${SortOptions.Trending}`);
   }
 
-  const filter = FiltersHelper.getFilter(filters);
+  const filter = FilterHelper.getFilterFromURL(filters);
+  const validURL = FilterHelper.getURLFromFilter(filter);
+  if (validURL !== filters.join('/')) {
+    redirect(`/${sort}/${validURL}`);
+  }
 
   const repositories = await RepositoriesService.getRepositories({
-    sort,
+    sort: sort as Sort,
     filter,
   });
 
   return (
     <main className={styles.container}>
+      <Search />
       <ul>
         {repositories.map(repository => (
           <li key={repository.key}>

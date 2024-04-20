@@ -37,7 +37,7 @@ class Repository {
   }
 
   get route(): string {
-    return `/repositories/${URLHelper.urlify(this.key)}`.toLowerCase();
+    return `/repositories/${URLHelper.encode(this.key)}`.toLowerCase();
   }
 
   get title(): string {

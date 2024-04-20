@@ -1,10 +1,29 @@
-type Filter = Record<string, string | boolean>;
+import { Background } from './backgrounds';
+import { Engine } from './engines';
 
-export const FilterOptionMap: Record<string, Filter> = {
-  'e.vim': { 'vimColorSchemes.isLua': false },
-  'e.neovim': { 'vimColorSchemes.isLua': true },
-  'b.light': { 'vimColorSchemes.backgrounds': 'light' },
-  'b.dark': { 'vimColorSchemes.backgrounds': 'dark' },
+export const URLFilterKeys = {
+  Engine: 'e',
+  Background: 'b',
+  Search: 's',
+} as const;
+export type URLFilterKey = (typeof URLFilterKeys)[keyof typeof URLFilterKeys];
+
+export const FilterURLKeyMap: Record<keyof Filter, URLFilterKey> = {
+  engine: URLFilterKeys.Engine,
+  background: URLFilterKeys.Background,
+  search: URLFilterKeys.Search,
+};
+
+export const URLKeyFilterMap: Record<URLFilterKey, keyof Filter> = {
+  [URLFilterKeys.Engine]: 'engine',
+  [URLFilterKeys.Background]: 'background',
+  [URLFilterKeys.Search]: 'search',
+};
+
+type Filter = {
+  engine?: Engine;
+  background?: Background;
+  search?: string;
 };
 
 export default Filter;

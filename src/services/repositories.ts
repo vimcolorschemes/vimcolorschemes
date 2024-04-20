@@ -1,3 +1,4 @@
+import QueryHelper from '@/helpers/query';
 import Filter from '@/lib/filter';
 import Sort from '@/lib/sort';
 import { RepositoryModel } from '@/models/DTO/repository';
@@ -6,7 +7,7 @@ import DatabaseService from '@/services/database';
 
 type GetRepositoriesParams = {
   sort: Sort;
-  filter?: Filter;
+  filter: Filter;
 };
 
 /**
@@ -30,10 +31,10 @@ async function getRepositories({
       updateValid: true,
       generateValid: true,
       'vimColorSchemes.valid': true,
-      ...filter,
+      ...QueryHelper.getFilterQuery(filter),
     },
     null,
-    { sort: { [sort.property]: sort.order } },
+    { sort: QueryHelper.getSortQuery(sort) },
   );
 
   return repositoryDTOs.map(dto => new Repository(dto));
