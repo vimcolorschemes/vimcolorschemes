@@ -1,6 +1,5 @@
-import URLHelper from '@/helpers/url';
 import { Background } from '@/lib/backgrounds';
-import Engines, { Engine } from '@/lib/engines';
+import { Engine } from '@/lib/engines';
 
 import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
@@ -36,7 +35,7 @@ class Repository {
   }
 
   get route(): string {
-    return `/repositories/${URLHelper.encode(this.key)}`.toLowerCase();
+    return `/repositories/${this.key}`.toLowerCase();
   }
 
   get title(): string {

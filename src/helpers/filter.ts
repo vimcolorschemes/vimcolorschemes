@@ -7,6 +7,8 @@ import Filter, {
   URLFilterKeys,
 } from '@/lib/filter';
 
+import URLHelper from './url';
+
 /**
  * Generate the URL from a filter object.
  *
@@ -39,6 +41,10 @@ function getURLFromFilter(filter: Filter): string {
 
       if (urlKey === URLFilterKeys.Page && !isValidPage(value)) {
         return null;
+      }
+
+      if (urlKey === URLFilterKeys.Search) {
+        return `${urlKey}.${URLHelper.encode(value)}`;
       }
 
       return `${urlKey}.${value}`;
@@ -86,6 +92,10 @@ function getFilterFromURL(filters: string[]): Filter {
       return isValidPage(value)
         ? { ...filter, page: parseInt(value, 10) }
         : filter;
+    }
+
+    if (filterKey === 'search') {
+      return { ...filter, search: URLHelper.decode(value) };
     }
 
     return { ...filter, [filterKey]: value };

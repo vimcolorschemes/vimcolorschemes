@@ -5,7 +5,7 @@ import { redirect } from 'next/navigation';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 import Constants from '@/lib/constants';
-import Sort from '@/lib/sort';
+import Sort, { SortOptions } from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
 
 import BackgroundInput from '@/components/backgroundInput';
@@ -35,6 +35,11 @@ export default async function IndexPage({ params }: IndexPageProps) {
   const pageContext = PageContextHelper.get(params.filters);
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
+
+  if (!Object.values(SortOptions).includes(sort)) {
+    redirect(`/${SortOptions.Trending}/${validURL}`);
+  }
+
   if (validURL !== filters.join('/')) {
     redirect(`/${sort}/${validURL}`);
   }

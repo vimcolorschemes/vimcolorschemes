@@ -19,7 +19,7 @@ export default function SearchInput() {
     delete pageContext.filter.search;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
-      search: URLHelper.encode(value),
+      search: value,
     });
     router.push(`${pageContext.sort}/${url}`);
   }

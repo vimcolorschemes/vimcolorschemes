@@ -1,15 +1,28 @@
 /**
  * Make a string value safe to use as a URL
- * @param {string} value The string value to use as a URL
- * @returns {string} The URLified string value
+ * @param value The string value to use as a URL
+ * @returns The URLified string value
  */
-function encode(value: string): string {
+function encode(value: string | number): string {
   if (!value) {
     return '';
   }
 
-  return value.trim().replace(/\s/g, '%20').toLowerCase();
+  return encodeURIComponent(value);
 }
 
-const URLHelper = { encode };
+/**
+ * Decode a URLified string value
+ * @param value The URLified string value
+ * @returns The decoded string value
+ */
+function decode(value: string): string {
+  if (!value) {
+    return '';
+  }
+
+  return decodeURIComponent(value);
+}
+
+const URLHelper = { encode, decode };
 export default URLHelper;
