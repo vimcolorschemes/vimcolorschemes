@@ -82,8 +82,10 @@ function getFilterFromURL(filters: string[]): Filter {
       return filter;
     }
 
-    if (filterKey === 'page' && !isValidPage(value)) {
-      return filter;
+    if (filterKey === 'page') {
+      return isValidPage(value)
+        ? { ...filter, page: parseInt(value, 10) }
+        : filter;
     }
 
     return { ...filter, [filterKey]: value };

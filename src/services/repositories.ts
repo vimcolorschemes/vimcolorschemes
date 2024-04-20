@@ -12,12 +12,33 @@ type GetRepositoriesParams = {
 };
 
 /**
- * Get all repositories from the database.
+ * Get the total number of repositories from the database.
  *
  * @example
- * const repositories = await RepositoriesService.getRepositories();
+ * const count = await RepositoriesService.getRepositoryCount({ background: 'dark' });
+ *
+ * @params filter The filter to apply.
+ * @returns The total number of repositories.
+ */
+async function getRepositoryCount(filter: Filter): Promise<number> {
+  await DatabaseService.connect();
+
+  return RepositoryModel.countDocuments({
+    updateValid: true,
+    generateValid: true,
+    'vimColorSchemes.valid': true,
+    ...QueryHelper.getFilterQuery(filter),
+  });
+}
+
+/**
+ * Get paginated repositories from the database.
+ *
+ * @example
+ * const repositories = await RepositoriesService.getRepositories({ sort: 'trending', filter: { engine: 'vim' }});
  *
  * @params params.sort The order and property to sort by.
+ * @params params.filter The filter to apply to the query.
  *
  * @returns The repositories.
  */
@@ -74,5 +95,10 @@ async function getRepository(owner: string, name: string): Promise<Repository> {
   return new Repository(repositoryDTO);
 }
 
-const RepositoriesService = { getRepositories, getRepository };
+const RepositoriesService = {
+  getRepositoryCount,
+  getRepositories,
+  getRepository,
+};
+
 export default RepositoriesService;

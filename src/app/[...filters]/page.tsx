@@ -4,11 +4,13 @@ import { redirect } from 'next/navigation';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
+import Constants from '@/lib/constants';
 import Sort from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
 
 import BackgroundInput from '@/components/backgroundInput';
 import EngineInput from '@/components/engineInput';
+import Pagination from '@/components/pagination';
 import RepositoryCard from '@/components/repositoryCard';
 import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
@@ -37,10 +39,21 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(`/${sort}/${validURL}`);
   }
 
+  const count = await RepositoriesService.getRepositoryCount(
+    pageContext.filter,
+  );
+
+  const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
+  if ((pageContext.filter.page || 1) > pageCount) {
+    delete pageContext.filter.page;
+    redirect(`/${sort}/${FilterHelper.getURLFromFilter(pageContext.filter)}`);
+  }
+
   const repositories = await RepositoriesService.getRepositories(pageContext);
 
   return (
     <main className={styles.container}>
+      {count} repositories
       <SearchInput />
       <SortInput pageContext={pageContext} />
       <BackgroundInput />
@@ -52,6 +65,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
           </Link>
         ))}
       </section>
+      <Pagination pageContext={pageContext} pageCount={pageCount} />
     </main>
   );
 }
