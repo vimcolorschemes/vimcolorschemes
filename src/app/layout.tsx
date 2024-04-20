@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+import Footer from '@/components/ui/footer';
+import Header from '@/components/ui/header';
 
 import './reset.css';
 import './globals.css';

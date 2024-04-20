@@ -3,10 +3,15 @@ import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import FilterHelper from '@/helpers/filter';
+import PageContextHelper from '@/helpers/pageContext';
+import IndexPageContext from '@/lib/indexPageContext';
 import Sort, { SortOptions } from '@/lib/sort';
 import RepositoriesService from '@/services/repositories';
 
-import Search from '@/components/search';
+import BackgroundInput from '@/components/backgroundInput';
+import EngineInput from '@/components/engineInput';
+import SearchInput from '@/components/searchInput';
+import SortInput from '@/components/sortInput';
 
 import styles from './page.module.css';
 
@@ -19,26 +24,22 @@ type IndexPageProps = {
 export const metadata: Metadata = { title: 'Home | vimcolorschemes' };
 
 export default async function IndexPage({ params }: IndexPageProps) {
-  const [sort, ...filters] = params.filters;
+  const [sort, ...filters] = params.filters as [Sort, ...string[]];
+  const pageContext = PageContextHelper.get(params.filters);
 
-  if (!Object.values(SortOptions).includes(sort as Sort)) {
-    redirect(`/${SortOptions.Trending}`);
-  }
-
-  const filter = FilterHelper.getFilterFromURL(filters);
-  const validURL = FilterHelper.getURLFromFilter(filter);
+  const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
   if (validURL !== filters.join('/')) {
     redirect(`/${sort}/${validURL}`);
   }
 
-  const repositories = await RepositoriesService.getRepositories({
-    sort: sort as Sort,
-    filter,
-  });
+  const repositories = await RepositoriesService.getRepositories(pageContext);
 
   return (
     <main className={styles.container}>
-      <Search />
+      <SearchInput />
+      <SortInput pageContext={pageContext} />
+      <BackgroundInput />
+      <EngineInput />
       <ul>
         {repositories.map(repository => (
           <li key={repository.key}>

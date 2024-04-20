@@ -20,7 +20,7 @@ import Filter, {
 function getURLFromFilter(filter: Filter): string {
   return Object.entries(filter)
     .map(([key, value]) => {
-      if (!value) {
+      if (value == null) {
         return null;
       }
 
@@ -47,8 +47,8 @@ function getURLFromFilter(filter: Filter): string {
  * Build a filter object from URL parts.
  *
  * @example
- * FiltersHelper.getFilterFromURL(['e.vim', 'b.dark']) === { engine: 'vim', background: 'dark' }
- * FiltersHelper.getFilterFromURL(['e.vim', 'i.invalid']) === { engine: 'vim' }
+ * FilterHelper.getFilterFromURL(['e.vim', 'b.dark']) === { engine: 'vim', background: 'dark' }
+ * FilterHelper.getFilterFromURL(['e.vim', 'i.invalid']) === { engine: 'vim' }
  *
  * @param filters
  * @returns

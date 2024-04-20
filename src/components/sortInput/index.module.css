@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-md);
+  font-weight: bold;
+  position: relative;
+}
+
+.legend {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-md);
+}
+
+.option {
+  display: flex;
+}
