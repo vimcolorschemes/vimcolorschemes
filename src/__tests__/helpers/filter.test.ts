@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 
-import FilterHelper from '@/helpers/filter';
 import Engines from '@/lib/engines';
+
+import FilterHelper from '@/helpers/filter';
 
 describe('FilterHelper.getURLFromFilter', () => {
   it('should return the engine filter', () => {
@@ -44,7 +45,7 @@ describe('FilterHelper.getURLFromFilter', () => {
         background: 'light',
         search: 'test-search',
       }),
-    ).toBe('e.vim/b.light/s.test-search');
+    ).toBe('b.light/e.vim/s.test-search');
   });
 
   it('should ignore invalid filters with multiple filters', () => {
