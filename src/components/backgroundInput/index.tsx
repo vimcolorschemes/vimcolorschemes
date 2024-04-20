@@ -2,9 +2,10 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
+import Backgrounds, { Background } from '@/lib/backgrounds';
+
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
-import Backgrounds, { Background } from '@/lib/backgrounds';
 
 import Radio from '@/components/ui/radio';
 

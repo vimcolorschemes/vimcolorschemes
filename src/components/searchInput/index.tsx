@@ -5,7 +5,6 @@ import { FormEvent, useState } from 'react';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
-import URLHelper from '@/helpers/url';
 
 export default function SearchInput() {
   const router = useRouter();

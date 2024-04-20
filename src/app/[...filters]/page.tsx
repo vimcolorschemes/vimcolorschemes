@@ -2,11 +2,13 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import FilterHelper from '@/helpers/filter';
-import PageContextHelper from '@/helpers/pageContext';
+import RepositoriesService from '@/services/repositories';
+
 import Constants from '@/lib/constants';
 import Sort, { SortOptions } from '@/lib/sort';
-import RepositoriesService from '@/services/repositories';
+
+import FilterHelper from '@/helpers/filter';
+import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
 import EngineInput from '@/components/engineInput';
