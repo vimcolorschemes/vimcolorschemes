@@ -1,10 +1,7 @@
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
-import RepositoriesService from '@/services/repositories';
-
-import Constants from '@/lib/constants';
 import Sort, { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
@@ -12,8 +9,7 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
 import EngineInput from '@/components/engineInput';
-import Pagination from '@/components/pagination';
-import RepositoryCard from '@/components/repositoryCard';
+import Repositories from '@/components/repositories';
 import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
 
@@ -46,33 +42,15 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(`/${sort}/${validURL}`);
   }
 
-  const count = await RepositoriesService.getRepositoryCount(
-    pageContext.filter,
-  );
-
-  const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
-  if ((pageContext.filter.page || 1) > (pageCount || 1)) {
-    delete pageContext.filter.page;
-    redirect(`/${sort}/${FilterHelper.getURLFromFilter(pageContext.filter)}`);
-  }
-
-  const repositories = await RepositoriesService.getRepositories(pageContext);
-
   return (
     <main className={styles.container}>
-      {count} repositories
       <SearchInput />
       <SortInput pageContext={pageContext} />
       <BackgroundInput />
       <EngineInput />
-      <section className={styles.grid}>
-        {repositories.map(repository => (
-          <Link href={repository.route} key={repository.key}>
-            <RepositoryCard repository={repository} />
-          </Link>
-        ))}
-      </section>
-      <Pagination pageContext={pageContext} pageCount={pageCount} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Repositories pageContext={pageContext} />
+      </Suspense>
     </main>
   );
 }
