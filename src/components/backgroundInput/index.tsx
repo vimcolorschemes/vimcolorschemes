@@ -16,6 +16,7 @@ export default function BackgroundInput() {
 
   function onChange(background?: Background) {
     delete pageContext.filter.background;
+    delete pageContext.filter.page;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       background,

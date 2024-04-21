@@ -16,6 +16,7 @@ export default function SearchInput() {
   function onSubmit(event: FormEvent) {
     event.preventDefault();
     delete pageContext.filter.search;
+    delete pageContext.filter.page;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       search: value,

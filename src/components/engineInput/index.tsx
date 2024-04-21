@@ -16,6 +16,7 @@ export default function EngineInput() {
 
   function onChange(engine?: Engine) {
     delete pageContext.filter.engine;
+    delete pageContext.filter.page;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       engine,
