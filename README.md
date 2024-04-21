@@ -14,7 +14,6 @@
 <br>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/visitors/day-~1k-4f8752?style=flat-square" alt="visitors" />
   <img src="https://img.shields.io/github/stars/vimcolorschemes/vimcolorschemes?style=flat-square&logo=github&color=4f8752" alt="stars" />
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
@@ -23,15 +22,14 @@
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
-  <img src="https://img.shields.io/badge/Gatsby-663399?style=flat-square&logo=gatsby" alt="Gatsby" />
-  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
-  <img src="https://img.shields.io/badge/Typescript-007ACC?style=flat-square&logo=typescript&logoColor=white" alt="Typescript" />
-  <img src="https://img.shields.io/badge/Scss-CC6699?style=flat-square&logo=sass&logoColor=white" alt="Scss" />
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs" alt="next" />
   <img src="https://img.shields.io/badge/MongoDB-C9DDCA?style=flat-square&logo=mongodb" alt="MongoDB" />
-  <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=jest" alt="Jest" />
+  <img src="https://img.shields.io/badge/Vitest-6E9F18?style=flat-square&logo=vitest&logoColor=white" alt="vitest" />
   <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=flat-square&logo=testing-library&logoColor=white" alt="Testing library" />
   <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Golang" />
   <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=black" alt="Amazon AWS" />
+  <img src="https://img.shields.io/badge/vim-019733?style=flat-square&logo=vim&logoColor=white" alt="vim" />
+  <img src="https://img.shields.io/badge/neovim-57A143?style=flat-square&logo=neovim&logoColor=white" alt="neovim" />
 </p>
 
 <br>
