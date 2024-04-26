@@ -1,8 +1,6 @@
 .container {
   --_window-header-spacing: var(--spacing-xs);
 
-  border-top-left-radius: 0.625rem;
-  border-top-right-radius: 0.625rem;
   background: grey;
   height: 1.875rem;
   font-family: var(--font-mono);

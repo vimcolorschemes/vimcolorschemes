@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import Repository from '@/models/repository';
 
 import Preview from '@/components/preview';
@@ -10,13 +12,15 @@ type RepositoryCardProps = {
 export default function RepositoryCard({ repository }: RepositoryCardProps) {
   return (
     <Card>
-      <Preview repository={repository} />
-      <h2>{repository.key}</h2>
-      <p>{repository.description}</p>
-      <p>{repository.stargazersCount} stars</p>
-      <p>{repository.weekStargazersCount}/week</p>
-      <p>{repository.backgrounds.join('/')}</p>
-      <p>{repository.engines.join('/')}</p>
+      <Preview repositoryDTO={repository.toDTO()} />
+      <Link href={repository.route}>
+        <h2>{repository.key}</h2>
+        <p>{repository.description}</p>
+        <p>{repository.stargazersCount} stars</p>
+        <p>{repository.weekStargazersCount}/week</p>
+        <p>{repository.backgrounds.join('/')}</p>
+        <p>{repository.engines.join('/')}</p>
+      </Link>
     </Card>
   );
 }
