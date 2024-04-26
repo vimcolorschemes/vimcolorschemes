@@ -1,5 +1,6 @@
 import Repository from '@/models/repository';
 
+import Preview from '@/components/preview';
 import Card from '@/components/ui/card';
 
 type RepositoryCardProps = {
@@ -9,6 +10,7 @@ type RepositoryCardProps = {
 export default function RepositoryCard({ repository }: RepositoryCardProps) {
   return (
     <Card>
+      <Preview repository={repository} />
       <h2>{repository.key}</h2>
       <p>{repository.description}</p>
       <p>{repository.stargazersCount} stars</p>

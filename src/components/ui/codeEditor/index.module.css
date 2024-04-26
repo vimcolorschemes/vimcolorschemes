@@ -1,0 +1,72 @@
+.container {
+  font-family: var(--font-mono);
+  position: relative;
+
+  --_footer-height: 1.5625rem;
+  --_gutter-width: 2rem;
+  --_code-spacing: var(--spacing-xs);
+}
+
+.gutter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: var(--_footer-height);
+  width: var(--_gutter-width);
+  padding: var(--_code-spacing) 0;
+}
+
+.gutterLine {
+  width: 100%;
+  text-align: right;
+  padding: 0 var(--_code-spacing);
+}
+
+.gutterLine.active {
+  color: var(--background);
+  background: var(--foreground);
+}
+
+.code {
+  transform: translateX(2rem);
+  display: flex;
+  flex-direction: column;
+  padding: var(--_code-spacing);
+}
+
+.code > * {
+  display: inline;
+}
+
+.code,
+.gutter {
+  line-height: 1.25rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  column-gap: var(--_code-spacing);
+  height: var(--_footer-height);
+  padding-right: var(--_code-spacing);
+  background: grey;
+}
+
+.footer > * {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: var(--_code-spacing);
+}
+
+.fileName {
+  flex: 1;
+  margin-left: 0;
+}
+
+.mode {
+  color: var(--background);
+  background: var(--foreground);
+  padding: 0 var(--_code-spacing);
+  margin-left: 0;
+}
