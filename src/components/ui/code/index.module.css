@@ -1,0 +1,83 @@
+.container {
+  font-family: var(--font-mono);
+  position: relative;
+
+  --_gutter-background: var(--code-gutter-background, #000);
+  --_gutter-foreground: var(--code-gutter-foreground, #fff);
+  --_gutter-active-background: var(--code-gutter-active-background, #000);
+  --_gutter-active-foreground: var(--code-gutter-active-foreground, #fff);
+
+  --_status-line-background: var(--code-status-line-background, #000);
+  --_status-line-foreground: var(--code-status-line-foreground, #fff);
+
+  --_status-line-height: 1.5625rem;
+  --_gutter-width: 2rem;
+  --_code-spacing: var(--spacing-xs);
+}
+
+.gutter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: var(--_status-line-height);
+  width: var(--_gutter-width);
+  padding: var(--_code-spacing) 0;
+  background: var(--_gutter-background);
+  color: var(--_gutter-foreground);
+}
+
+.gutterLine {
+  width: 100%;
+  text-align: right;
+  padding: 0 var(--_code-spacing);
+}
+
+.gutterLine.active {
+  background: var(--_gutter-active-background);
+  color: var(--_gutter-active-foreground);
+}
+
+.code {
+  transform: translateX(2rem);
+  display: flex;
+  flex-direction: column;
+  padding: var(--_code-spacing);
+}
+
+.code > * {
+  display: inline;
+}
+
+.code,
+.gutter {
+  line-height: 1.25rem;
+}
+
+.statusLine {
+  display: flex;
+  align-items: center;
+  column-gap: var(--_code-spacing);
+  height: var(--_status-line-height);
+  padding-right: var(--_code-spacing);
+  background: var(--_status-line-background);
+  color: var(--_status-line-foreground);
+}
+
+.statusLine > * {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: var(--_code-spacing);
+}
+
+.fileName {
+  flex: 1;
+  margin-left: 0;
+}
+
+.mode {
+  padding: 0 var(--_code-spacing);
+  margin-left: 0;
+  background: var(--_status-line-foreground);
+  color: var(--_status-line-background);
+}

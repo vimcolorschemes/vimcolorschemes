@@ -5,6 +5,9 @@
   height: 1.875rem;
   font-family: var(--font-mono);
   position: relative;
+
+  background: var(--colorscheme-StatusLineFg, var(--colorscheme-NormalFg));
+  color: var(--colorscheme-StatusLineBg, var(--colorscheme-NormalBg));
 }
 
 .buttons {

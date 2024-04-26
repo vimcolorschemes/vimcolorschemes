@@ -5,4 +5,24 @@
   color: var(--colorscheme-NormalFg);
   border-radius: 0.625rem;
   overflow: hidden;
+
+  --code-status-line-background: var(
+    --colorscheme-StatusLineBg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-status-line-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--colorscheme-NormalFg)
+  );
+
+  --code-gutter-background: var(
+    --colorscheme-LineNrBg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-gutter-foreground: var(
+    --colorscheme-LineNrFg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-gutter-active-background: var(--colorscheme-CursorLineNrBg);
+  --code-gutter-active-foreground: var(--colorscheme-CursorLineNrFg);
 }

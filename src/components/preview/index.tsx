@@ -2,12 +2,11 @@
 
 import { useState } from 'react';
 
-import Colorscheme, { ColorschemeGroup } from '@/models/colorscheme';
+import { ColorschemeGroup } from '@/models/colorscheme';
 import RepositoryDTO from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 
-import { Background } from '@/lib/backgrounds';
-
+import CodeSnippet from './codeSnippet';
 import ColorschemeConfig from './colorschemeConfig';
 import styles from './index.module.css';
 import WindowHeader from './windowHeader';
@@ -42,6 +41,7 @@ export default function Preview({ repositoryDTO }: PreviewProps) {
         onColorschemeChange={setColorscheme}
         onBackgroundChange={setBackground}
       />
+      <CodeSnippet />
     </div>
   );
 }

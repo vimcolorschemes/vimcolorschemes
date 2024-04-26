@@ -4,7 +4,7 @@ import Repository from '@/models/repository';
 import Backgrounds, { Background } from '@/lib/backgrounds';
 import Engines from '@/lib/engines';
 
-import CodeEditor from '@/components/ui/codeEditor';
+import Code from '@/components/ui/code';
 
 type ColorschemeConfigProps = {
   repository: Repository;
@@ -41,31 +41,90 @@ export default function ColorschemeConfig({
     }
   }
 
+  const configProps = {
+    colorscheme,
+    background,
+    toggleColorscheme,
+    isColorschemeDisabled,
+    toggleBackground,
+    isBackgroundDisabled,
+  };
+
   return (
-    <CodeEditor
+    <Code
       fileName={colorscheme.engine === Engines.Vim ? '.vimrc' : 'init.lua'}
       lineCount={2}
     >
+      {colorscheme.engine === Engines.Vim ? (
+        <VimRC {...configProps} />
+      ) : (
+        <InitLua {...configProps} />
+      )}
+    </Code>
+  );
+}
+
+type ConfigProps = {
+  colorscheme: Colorscheme;
+  background: Background;
+  toggleColorscheme: () => void;
+  isColorschemeDisabled: boolean;
+  toggleBackground: () => void;
+  isBackgroundDisabled: boolean;
+};
+
+function VimRC(props: ConfigProps) {
+  return (
+    <>
       <div>
         set background=
         <button
           type="button"
-          onClick={toggleBackground}
-          disabled={isBackgroundDisabled}
+          onClick={props.toggleBackground}
+          disabled={props.isBackgroundDisabled}
         >
-          {background}
+          {props.background}
         </button>
       </div>
       <div>
         colorscheme{' '}
         <button
           type="button"
-          onClick={toggleColorscheme}
-          disabled={isColorschemeDisabled}
+          onClick={props.toggleColorscheme}
+          disabled={props.isColorschemeDisabled}
         >
-          {colorscheme.name}
+          {props.colorscheme.name}
         </button>
       </div>
-    </CodeEditor>
+    </>
+  );
+}
+
+function InitLua(props: ConfigProps) {
+  return (
+    <>
+      <div>
+        {'vim.o.background = "'}
+        <button
+          type="button"
+          onClick={props.toggleBackground}
+          disabled={props.isBackgroundDisabled}
+        >
+          {props.background}
+        </button>
+        {'"'}
+      </div>
+      <div>
+        {'vim.cmd("colorscheme '}
+        <button
+          type="button"
+          onClick={props.toggleColorscheme}
+          disabled={props.isColorschemeDisabled}
+        >
+          {props.colorscheme.name}
+        </button>
+        {'")'}
+      </div>
+    </>
   );
 }
