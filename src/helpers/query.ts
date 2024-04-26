@@ -1,8 +1,6 @@
-import { SortOrder } from 'mongoose';
-
 import Engines from '@/lib/engines';
 import Filter from '@/lib/filter';
-import Sort, { SortOptions, SortOrders } from '@/lib/sort';
+import Sort, { SortOptions } from '@/lib/sort';
 
 type FilterQuery = Record<string, string | number | boolean | object>;
 
@@ -38,22 +36,20 @@ function getSearchFilterQuery(term?: string): FilterQuery {
   };
 }
 
-type SortQuery = { [key: string]: SortOrder };
-
-function getSortQuery(sort: Sort): SortQuery {
+function getSortQuery(sort: Sort): Record<string, 1 | -1> {
   switch (sort) {
     case SortOptions.Trending:
-      return { weekStargazersCount: SortOrders.Descending };
+      return { weekStargazersCount: -1 };
     case SortOptions.Top:
-      return { stargazersCount: SortOrders.Descending };
+      return { stargazersCount: -1 };
     case SortOptions.RecentlyUpdated:
-      return { lastCommitAt: SortOrders.Descending };
+      return { lastCommitAt: -1 };
     case SortOptions.New:
-      return { githubCreatedAt: SortOrders.Descending };
+      return { githubCreatedAt: -1 };
     case SortOptions.Old:
-      return { githubCreatedAt: SortOrders.Ascending };
+      return { githubCreatedAt: 1 };
     default:
-      return { weekStargazersCount: SortOrders.Descending };
+      return { weekStargazersCount: -1 };
   }
 }
 

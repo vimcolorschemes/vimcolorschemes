@@ -51,20 +51,20 @@ async function getRepositories({
 }: GetRepositoriesParams): Promise<Repository[]> {
   await DatabaseService.connect();
 
-  const repositoryDTOs = await RepositoryModel.find(
+  const repositoryDTOs = await RepositoryModel.aggregate([
     {
-      updateValid: true,
-      generateValid: true,
-      'vimColorSchemes.valid': true,
-      ...QueryHelper.getFilterQuery(filter),
+      $match: {
+        updateValid: true,
+        generateValid: true,
+        'vimColorSchemes.valid': true,
+        ...QueryHelper.getFilterQuery(filter),
+      },
     },
-    null,
-    {
-      sort: QueryHelper.getSortQuery(sort),
-      skip: ((filter.page ?? 1) - 1) * Constants.REPOSITORY_PAGE_SIZE,
-      limit: Constants.REPOSITORY_PAGE_SIZE,
-    },
-  );
+    { $addFields: COLORSCHEME_PROPERTY_DEFINITION },
+    { $sort: QueryHelper.getSortQuery(sort) },
+    { $skip: ((filter.page ?? 1) - 1) * Constants.REPOSITORY_PAGE_SIZE },
+    { $limit: Constants.REPOSITORY_PAGE_SIZE },
+  ]);
 
   return repositoryDTOs.map(dto => new Repository(dto));
 }
@@ -83,20 +83,36 @@ async function getRepositories({
 async function getRepository(owner: string, name: string): Promise<Repository> {
   await DatabaseService.connect();
 
-  const repositoryDTO = await RepositoryModel.findOne({
-    'owner.name': { $regex: owner, $options: 'i' },
-    name: { $regex: name, $options: 'i' },
-    updateValid: true,
-    generateValid: true,
-    'vimColorSchemes.valid': true,
-  });
+  const repositoryDTOs = await RepositoryModel.aggregate([
+    {
+      $match: {
+        'owner.name': { $regex: owner, $options: 'i' },
+        name: { $regex: name, $options: 'i' },
+        updateValid: true,
+        generateValid: true,
+        'vimColorSchemes.valid': true,
+      },
+    },
+    { $addFields: COLORSCHEME_PROPERTY_DEFINITION },
+    { $limit: 1 },
+  ]);
 
-  if (!repositoryDTO) {
+  if (!repositoryDTOs.length) {
     throw new Error('Repository not found');
   }
 
-  return new Repository(repositoryDTO);
+  return new Repository(repositoryDTOs[0]);
 }
+
+const COLORSCHEME_PROPERTY_DEFINITION = {
+  colorschemes: {
+    $filter: {
+      input: '$vimColorSchemes',
+      as: 'vimColorScheme',
+      cond: { $eq: ['$$vimColorScheme.valid', true] },
+    },
+  },
+};
 
 const RepositoriesService = {
   getRepositoryCount,

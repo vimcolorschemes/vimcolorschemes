@@ -39,7 +39,10 @@ function getURLFromFilter(filter: Filter): string {
         return null;
       }
 
-      if (urlKey === URLFilterKeys.Page && !isValidPage(value)) {
+      if (
+        urlKey === URLFilterKeys.Page &&
+        (!isValidPage(value) || value === 1)
+      ) {
         return null;
       }
 

@@ -25,7 +25,7 @@ class Repository {
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
-    this.colorschemes = (dto.vimColorSchemes ?? []).map(
+    this.colorschemes = (dto.colorschemes ?? []).map(
       dto => new Colorscheme(dto),
     );
   }
@@ -67,9 +67,7 @@ class Repository {
       stargazersCount: this.stargazersCount,
       weekStargazersCount: this.weekStargazersCount,
       isLua: this.engines.includes(Engines.Neovim),
-      vimColorSchemes: this.colorschemes.map(colorscheme =>
-        colorscheme.toDTO(),
-      ),
+      colorschemes: this.colorschemes.map(colorscheme => colorscheme.toDTO()),
     };
   }
 }
