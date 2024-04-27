@@ -1,3 +1,6 @@
+import cn from 'classnames';
+import { ReactNode } from 'react';
+
 import Colorscheme from '@/models/colorscheme';
 import Repository from '@/models/repository';
 
@@ -5,6 +8,9 @@ import Backgrounds, { Background } from '@/lib/backgrounds';
 import Engines from '@/lib/engines';
 
 import Code from '@/components/ui/code';
+import IconNext from '@/components/ui/icons/next';
+
+import styles from './index.module.css';
 
 type ColorschemeConfigProps = {
   repository: Repository;
@@ -80,24 +86,17 @@ function VimRC({
   return (
     <>
       <div>
-        set background=
-        <button
-          type="button"
-          onClick={toggleBackground}
-          disabled={isBackgroundDisabled}
-        >
+        <span className="vimCommand">set </span>background
+        <span className="vimCommand">=</span>
+        <Button onClick={toggleBackground} disabled={isBackgroundDisabled}>
           {background}
-        </button>
+        </Button>
       </div>
       <div>
-        colorscheme{' '}
-        <button
-          type="button"
-          onClick={toggleColorscheme}
-          disabled={isColorschemeDisabled}
-        >
+        <span className="vimCommand">colorscheme </span>
+        <Button onClick={toggleColorscheme} disabled={isColorschemeDisabled}>
           {colorscheme.name}
-        </button>
+        </Button>
       </div>
     </>
   );
@@ -114,27 +113,47 @@ function InitLua({
   return (
     <>
       <div>
-        {'vim.o.background = "'}
-        <button
-          type="button"
-          onClick={toggleBackground}
-          disabled={isBackgroundDisabled}
-        >
-          {background}
-        </button>
-        {'"'}
+        <span className="vimCommand">{'vim.o.background = '}</span>
+        <span className="vimString">
+          {'"'}
+          <Button onClick={toggleBackground} disabled={isBackgroundDisabled}>
+            {background}
+          </Button>
+          {'"'}
+        </span>
       </div>
       <div>
-        {'vim.cmd("colorscheme '}
-        <button
-          type="button"
-          onClick={toggleColorscheme}
-          disabled={isColorschemeDisabled}
-        >
-          {colorscheme.name}
-        </button>
-        {'")'}
+        <span className="vimCommand">vim.cmd</span>
+        <span className="vimParenSep">{'('}</span>
+        <span className="vimString">
+          {'"colorscheme '}
+          <Button onClick={toggleColorscheme} disabled={isColorschemeDisabled}>
+            {colorscheme.name}
+          </Button>
+          {'"'}
+        </span>
+        <span className="vimParenSep">{')'}</span>
       </div>
     </>
+  );
+}
+
+type ButtonProps = {
+  children: ReactNode;
+  onClick: () => void;
+  disabled: boolean;
+};
+
+function Button({ children, onClick, disabled }: ButtonProps) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={styles.button}
+    >
+      {children}
+      {!disabled && <IconNext />}
+    </button>
   );
 }

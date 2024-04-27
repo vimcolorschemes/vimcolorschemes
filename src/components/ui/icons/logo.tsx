@@ -1,11 +1,10 @@
-interface IconLogoProps {
+type IconLogoProps = {
   className?: string;
-}
+};
 
 export default function IconLogo({ className }: IconLogoProps) {
   return (
     <svg
-      className={className}
       xmlns="http://www.w3.org/2000/svg"
       fill="#fff"
       stroke="#333"
@@ -13,6 +12,7 @@ export default function IconLogo({ className }: IconLogoProps) {
       width="423"
       height="374"
       viewBox="0 0 423 374"
+      className={className}
     >
       <path d="M413 93 212 366 11 93h402Z" />
       <path d="M413 48 212 322 11 48h402Z" />
