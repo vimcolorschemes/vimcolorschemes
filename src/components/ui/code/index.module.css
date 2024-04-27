@@ -41,7 +41,13 @@
   transform: translateX(2rem);
   display: flex;
   flex-direction: column;
-  padding: var(--_code-spacing);
+  padding: var(--_code-spacing) 0;
+  width: calc(100% - var(--_gutter-width));
+  overflow-x: auto;
+}
+
+.code > * {
+  padding: 0 var(--_code-spacing);
 }
 
 .code > * {

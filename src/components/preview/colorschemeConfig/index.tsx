@@ -41,30 +41,26 @@ export default function ColorschemeConfig({
     }
   }
 
-  const configProps = {
-    colorscheme,
-    background,
-    toggleColorscheme,
-    isColorschemeDisabled,
-    toggleBackground,
-    isBackgroundDisabled,
-  };
+  const ConfigContent = colorscheme.engine === Engines.Vim ? VimRC : InitLua;
 
   return (
     <Code
       fileName={colorscheme.engine === Engines.Vim ? '.vimrc' : 'init.lua'}
       lineCount={2}
     >
-      {colorscheme.engine === Engines.Vim ? (
-        <VimRC {...configProps} />
-      ) : (
-        <InitLua {...configProps} />
-      )}
+      <ConfigContent
+        colorscheme={colorscheme}
+        background={background}
+        toggleColorscheme={toggleColorscheme}
+        isColorschemeDisabled={isColorschemeDisabled}
+        toggleBackground={toggleBackground}
+        isBackgroundDisabled={isBackgroundDisabled}
+      />
     </Code>
   );
 }
 
-type ConfigProps = {
+type ConfigContentProps = {
   colorscheme: Colorscheme;
   background: Background;
   toggleColorscheme: () => void;
@@ -73,44 +69,58 @@ type ConfigProps = {
   isBackgroundDisabled: boolean;
 };
 
-function VimRC(props: ConfigProps) {
+function VimRC({
+  colorscheme,
+  background,
+  toggleColorscheme,
+  isColorschemeDisabled,
+  toggleBackground,
+  isBackgroundDisabled,
+}: ConfigContentProps) {
   return (
     <>
       <div>
         set background=
         <button
           type="button"
-          onClick={props.toggleBackground}
-          disabled={props.isBackgroundDisabled}
+          onClick={toggleBackground}
+          disabled={isBackgroundDisabled}
         >
-          {props.background}
+          {background}
         </button>
       </div>
       <div>
         colorscheme{' '}
         <button
           type="button"
-          onClick={props.toggleColorscheme}
-          disabled={props.isColorschemeDisabled}
+          onClick={toggleColorscheme}
+          disabled={isColorschemeDisabled}
         >
-          {props.colorscheme.name}
+          {colorscheme.name}
         </button>
       </div>
     </>
   );
 }
 
-function InitLua(props: ConfigProps) {
+function InitLua({
+  colorscheme,
+  background,
+  toggleColorscheme,
+  isColorschemeDisabled,
+  toggleBackground,
+  isBackgroundDisabled,
+}: ConfigContentProps) {
   return (
     <>
       <div>
         {'vim.o.background = "'}
         <button
           type="button"
-          onClick={props.toggleBackground}
-          disabled={props.isBackgroundDisabled}
+          onClick={toggleBackground}
+          disabled={isBackgroundDisabled}
         >
-          {props.background}
+          {background}
         </button>
         {'"'}
       </div>
@@ -118,10 +128,10 @@ function InitLua(props: ConfigProps) {
         {'vim.cmd("colorscheme '}
         <button
           type="button"
-          onClick={props.toggleColorscheme}
-          disabled={props.isColorschemeDisabled}
+          onClick={toggleColorscheme}
+          disabled={isColorschemeDisabled}
         >
-          {props.colorscheme.name}
+          {colorscheme.name}
         </button>
         {'")'}
       </div>
