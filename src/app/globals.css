@@ -71,3 +71,90 @@ footer {
     color-scheme: dark;
   }
 }
+
+/* Colorscheme color classes */
+.CursorFg {
+  color: var(--colorscheme-CursorFg, rgba(black, 50%));
+}
+.CursorBg {
+  background: var(--colorscheme-CursorBg, rgba(white, 50%));
+}
+.StatusLineFg {
+  color: var(--colorscheme-StatusLineFg);
+}
+.StatusLineBg {
+  background: var(--colorscheme-StatusLineBg);
+}
+.StatusLineFg--inverted {
+  color: var(--colorscheme-StatusLineBg, var(--normal-bg));
+}
+.StatusLineBg--inverted {
+  background: var(--colorscheme-StatusLineFg, var(--normal-fg));
+}
+.LineNrFg {
+  color: var(--colorscheme-LineNrFg);
+}
+.LineNrBg {
+  background: var(--colorscheme-LineNrBg, var(--colorscheme-NormalBg));
+}
+.CursorLineFg {
+  color: var(--colorscheme-CursorLineFg, var(--colorscheme-LineNrFg));
+}
+.CursorLineBg {
+  background: var(--colorscheme-CursorLineBg, var(--colorscheme-LineNrBg));
+}
+.CursorLineNrFg {
+  color: var(--colorscheme-CursorLineNrFg, var(--colorscheme-LineNrFg));
+}
+.CursorLineNrBg {
+  background: var(--colorscheme-CursorLineNrBg, var(--colorscheme-LineNrBg));
+}
+.vimLineComment {
+  font-style: italic;
+  color: var(--colorscheme-vimLineComment);
+}
+.vimCommand {
+  color: var(--colorscheme-vimCommand);
+}
+.vimFunction {
+  color: var(--colorscheme-vimFunction);
+}
+.vimParenSep {
+  color: var(--colorscheme-vimParenSep);
+}
+.vimOperParen {
+  color: var(--colorscheme-vimOperParen);
+}
+.vimFuncBody {
+  color: var(--colorscheme-vimFuncBody);
+}
+.vimIsCommand {
+  color: var(--colorscheme-vimIsCommand);
+}
+.vimLet {
+  color: var(--colorscheme-vimLet);
+}
+.vimVar {
+  color: var(--colorscheme-vimVar);
+}
+.vimOper {
+  color: var(--colorscheme-vimOper);
+}
+.vimFuncName {
+  color: var(--colorscheme-vimFuncName);
+}
+.vimFuncVar {
+  color: var(--colorscheme-vimFuncVar);
+}
+.vimString {
+  color: var(--colorscheme-vimString);
+}
+.vimSubst {
+  color: var(--colorscheme-vimSubst);
+}
+.vimNumber {
+  color: var(--colorscheme-vimNumber);
+}
+.vimNotFunc {
+  color: var(--colorscheme-vimNotFunc);
+}

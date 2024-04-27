@@ -1,5 +1,5 @@
 import { Background } from '@/lib/backgrounds';
-import { Engine } from '@/lib/engines';
+import Engines, { Engine } from '@/lib/engines';
 
 import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
@@ -25,7 +25,7 @@ class Repository {
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
-    this.colorschemes = (dto.vimColorSchemes ?? []).map(
+    this.colorschemes = (dto.colorschemes ?? []).map(
       dto => new Colorscheme(dto),
     );
   }
@@ -54,6 +54,21 @@ class Repository {
     return Array.from(
       new Set(this.colorschemes.map(colorscheme => colorscheme.engine)),
     );
+  }
+
+  toDTO(): RepositoryDTO {
+    return {
+      name: this.name,
+      owner: this.owner,
+      description: this.description,
+      githubCreatedAt: this.githubCreatedAt,
+      lastCommitAt: this.lastCommitAt,
+      githubURL: this.githubURL,
+      stargazersCount: this.stargazersCount,
+      weekStargazersCount: this.weekStargazersCount,
+      isLua: this.engines.includes(Engines.Neovim),
+      colorschemes: this.colorschemes.map(colorscheme => colorscheme.toDTO()),
+    };
   }
 }
 

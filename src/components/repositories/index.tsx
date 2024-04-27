@@ -40,9 +40,7 @@ export default async function Resporitories({
       <p>{count} repositories</p>
       <section className={styles.grid}>
         {repositories.map(repository => (
-          <Link href={repository.route} key={repository.key}>
-            <RepositoryCard repository={repository} />
-          </Link>
+          <RepositoryCard repository={repository} key={repository.key} />
         ))}
       </section>
       <Pagination pageContext={pageContext} pageCount={pageCount} />

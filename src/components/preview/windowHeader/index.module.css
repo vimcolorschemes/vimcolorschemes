@@ -1,0 +1,60 @@
+.container {
+  --_window-header-spacing: var(--spacing-xs);
+
+  background: grey;
+  height: 1.875rem;
+  font-family: var(--font-mono);
+  position: relative;
+
+  background: var(--colorscheme-StatusLineFg, var(--colorscheme-NormalFg));
+  color: var(--colorscheme-StatusLineBg, var(--colorscheme-NormalBg));
+}
+
+.buttons {
+  --_window-button-size: 0.8125rem;
+  --_window-button-spacing: var(--spacing-xs);
+
+  position: absolute;
+  top: 50%;
+  left: var(--_window-header-spacing);
+  transform: translateY(-50%);
+}
+.buttons,
+.buttons::before,
+.buttons::after {
+  width: var(--_window-button-size);
+  height: var(--_window-button-size);
+  border-radius: 50%;
+  background: #ff605c;
+}
+.buttons::before,
+.buttons::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.buttons::before {
+  background: #ffbd44;
+  left: calc(var(--_window-button-size) + var(--_window-button-spacing));
+}
+.buttons::after {
+  background: #00ca4e;
+  left: calc(
+    var(--_window-button-size) * 2 + var(--_window-button-spacing) * 2
+  );
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.engine {
+  position: absolute;
+  top: 50%;
+  right: var(--_window-header-spacing);
+  transform: translateY(-50%);
+}
