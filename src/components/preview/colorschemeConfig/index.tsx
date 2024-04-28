@@ -1,10 +1,8 @@
-import cn from 'classnames';
 import { ReactNode } from 'react';
 
 import Colorscheme from '@/models/colorscheme';
-import Repository from '@/models/repository';
 
-import Backgrounds, { Background } from '@/lib/backgrounds';
+import { Background } from '@/lib/backgrounds';
 import Engines from '@/lib/engines';
 
 import Code from '@/components/ui/code';
@@ -13,40 +11,18 @@ import IconNext from '@/components/ui/icons/next';
 import styles from './index.module.css';
 
 type ColorschemeConfigProps = {
-  repository: Repository;
   colorscheme: Colorscheme;
   background: Background;
-  onColorschemeChange: (colorscheme: Colorscheme) => void;
-  onBackgroundChange: (background: Background) => void;
+  onToggleBackground?: () => void;
+  onToggleColorscheme?: () => void;
 };
 
 export default function ColorschemeConfig({
-  repository,
   colorscheme,
   background,
-  onColorschemeChange,
-  onBackgroundChange,
+  onToggleColorscheme,
+  onToggleBackground,
 }: ColorschemeConfigProps) {
-  const isColorschemeDisabled = repository.colorschemes.length === 1;
-  const isBackgroundDisabled = colorscheme.backgrounds.length === 1;
-
-  function toggleColorscheme() {
-    const index = repository.colorschemes.findIndex(
-      c => c.name === colorscheme.name,
-    );
-    const nextIndex = (index + 1) % repository.colorschemes.length;
-
-    onColorschemeChange(repository.colorschemes[nextIndex]);
-  }
-
-  function toggleBackground() {
-    if (background === Backgrounds.Light) {
-      onBackgroundChange(Backgrounds.Dark);
-    } else {
-      onBackgroundChange(Backgrounds.Light);
-    }
-  }
-
   const ConfigContent = colorscheme.engine === Engines.Vim ? VimRC : InitLua;
 
   return (
@@ -57,46 +33,29 @@ export default function ColorschemeConfig({
       <ConfigContent
         colorscheme={colorscheme}
         background={background}
-        toggleColorscheme={toggleColorscheme}
-        isColorschemeDisabled={isColorschemeDisabled}
-        toggleBackground={toggleBackground}
-        isBackgroundDisabled={isBackgroundDisabled}
+        onToggleColorscheme={onToggleColorscheme}
+        onToggleBackground={onToggleBackground}
       />
     </Code>
   );
 }
 
-type ConfigContentProps = {
-  colorscheme: Colorscheme;
-  background: Background;
-  toggleColorscheme: () => void;
-  isColorschemeDisabled: boolean;
-  toggleBackground: () => void;
-  isBackgroundDisabled: boolean;
-};
-
 function VimRC({
   colorscheme,
   background,
-  toggleColorscheme,
-  isColorschemeDisabled,
-  toggleBackground,
-  isBackgroundDisabled,
-}: ConfigContentProps) {
+  onToggleColorscheme,
+  onToggleBackground,
+}: ColorschemeConfigProps) {
   return (
     <>
       <div>
         <span className="vimCommand">set </span>background
         <span className="vimCommand">=</span>
-        <Button onClick={toggleBackground} disabled={isBackgroundDisabled}>
-          {background}
-        </Button>
+        <Button onClick={onToggleBackground}>{background}</Button>
       </div>
       <div>
         <span className="vimCommand">colorscheme </span>
-        <Button onClick={toggleColorscheme} disabled={isColorschemeDisabled}>
-          {colorscheme.name}
-        </Button>
+        <Button onClick={onToggleColorscheme}>{colorscheme.name}</Button>
       </div>
     </>
   );
@@ -105,20 +64,16 @@ function VimRC({
 function InitLua({
   colorscheme,
   background,
-  toggleColorscheme,
-  isColorschemeDisabled,
-  toggleBackground,
-  isBackgroundDisabled,
-}: ConfigContentProps) {
+  onToggleColorscheme,
+  onToggleBackground,
+}: ColorschemeConfigProps) {
   return (
     <>
       <div>
         <span className="vimCommand">{'vim.o.background = '}</span>
         <span className="vimString">
           {'"'}
-          <Button onClick={toggleBackground} disabled={isBackgroundDisabled}>
-            {background}
-          </Button>
+          <Button onClick={onToggleBackground}>{background}</Button>
           {'"'}
         </span>
       </div>
@@ -127,9 +82,7 @@ function InitLua({
         <span className="vimParenSep">{'('}</span>
         <span className="vimString">
           {'"colorscheme '}
-          <Button onClick={toggleColorscheme} disabled={isColorschemeDisabled}>
-            {colorscheme.name}
-          </Button>
+          <Button onClick={onToggleColorscheme}>{colorscheme.name}</Button>
           {'"'}
         </span>
         <span className="vimParenSep">{')'}</span>
@@ -140,20 +93,19 @@ function InitLua({
 
 type ButtonProps = {
   children: ReactNode;
-  onClick: () => void;
-  disabled: boolean;
+  onClick?: () => void;
 };
 
-function Button({ children, onClick, disabled }: ButtonProps) {
+function Button({ children, onClick }: ButtonProps) {
   return (
     <button
       type="button"
       onClick={onClick}
-      disabled={disabled}
+      disabled={!onClick}
       className={styles.button}
     >
       {children}
-      {!disabled && <IconNext />}
+      {onClick && <IconNext />}
     </button>
   );
 }

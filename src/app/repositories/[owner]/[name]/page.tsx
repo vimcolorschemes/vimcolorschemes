@@ -2,12 +2,9 @@ import { Metadata } from 'next';
 
 import RepositoriesService from '@/services/repositories';
 
-type RepositoryPageProps = {
-  params: {
-    owner: string;
-    name: string;
-  };
-};
+import Preview from '@/components/preview';
+
+type RepositoryPageProps = { params: { owner: string; name: string } };
 
 export async function generateMetadata({
   params,
@@ -17,7 +14,7 @@ export async function generateMetadata({
     params.name,
   );
 
-  return { title: `${repository.title} | vimcolorschemes` };
+  return { title: repository.title };
 }
 
 export default async function RepositoryPage({ params }: RepositoryPageProps) {
@@ -26,5 +23,16 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     params.name,
   );
 
-  return <main>{repository.key}</main>;
+  return (
+    <main>
+      <h1>{repository.key}</h1>
+      {repository.flattenedColorschemes.map((colorscheme, index) => (
+        <Preview
+          key={index}
+          colorscheme={colorscheme}
+          background={colorscheme.backgrounds[0]}
+        />
+      ))}
+    </main>
+  );
 }
