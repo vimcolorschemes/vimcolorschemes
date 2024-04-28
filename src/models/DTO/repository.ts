@@ -13,7 +13,7 @@ type RepositoryDTO = {
   stargazersCount: number;
   weekStargazersCount: number;
   isLua: boolean;
-  colorschemes: ColorschemeDTO[] | null;
+  colorschemes: ColorschemeDTO[];
 };
 
 const RepositorySchema = new mongoose.Schema<RepositoryDTO>({

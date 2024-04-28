@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import Repository from '@/models/repository';
 
-import Preview from '@/components/preview';
+import InteractivePreview from '@/components/interactivePreview';
 import Card from '@/components/ui/card';
 
 type RepositoryCardProps = {
@@ -12,7 +12,7 @@ type RepositoryCardProps = {
 export default function RepositoryCard({ repository }: RepositoryCardProps) {
   return (
     <Card>
-      <Preview repositoryDTO={repository.toDTO()} />
+      <InteractivePreview repositoryDTO={repository.dto} />
       <Link href={repository.route}>
         <h2>{repository.key}</h2>
         <p>{repository.description}</p>

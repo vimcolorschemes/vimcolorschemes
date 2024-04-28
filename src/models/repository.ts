@@ -1,7 +1,7 @@
-import { Background } from '@/lib/backgrounds';
+import Backgrounds, { Background } from '@/lib/backgrounds';
 import Engines, { Engine } from '@/lib/engines';
 
-import Colorscheme from './colorscheme';
+import Colorscheme, { ColorschemeData } from './colorscheme';
 import RepositoryDTO from './DTO/repository';
 import Owner from './owner';
 
@@ -30,18 +30,30 @@ class Repository {
     );
   }
 
+  /**
+   * @returns The unique key of the repository, used to identify it in various contexts.
+   */
   get key(): string {
     return `${this.owner.name}/${this.name}`;
   }
 
+  /**
+   * @returns The route of the repository, used to navigate to the repository page.
+   */
   get route(): string {
     return `/repositories/${this.key}`.toLowerCase();
   }
 
+  /**
+   * @returns The page title of the repository composed by the name and the owner's name.
+   */
   get title(): string {
     return `${this.name}, by ${this.owner.name}`;
   }
 
+  /**
+   * @returns A list of backgrounds used by the colorschemes in this repository.
+   */
   get backgrounds(): Background[] {
     return Array.from(
       new Set(
@@ -50,13 +62,19 @@ class Repository {
     );
   }
 
+  /**
+   * @returns A list of engines used by the colorschemes in this repository.
+   */
   get engines(): Engine[] {
     return Array.from(
       new Set(this.colorschemes.map(colorscheme => colorscheme.engine)),
     );
   }
 
-  toDTO(): RepositoryDTO {
+  /**
+   * @returns The DTO version of this repository. Equivalent of the object that comes from the API.
+   */
+  get dto(): RepositoryDTO {
     return {
       name: this.name,
       owner: this.owner,
@@ -67,8 +85,15 @@ class Repository {
       stargazersCount: this.stargazersCount,
       weekStargazersCount: this.weekStargazersCount,
       isLua: this.engines.includes(Engines.Neovim),
-      colorschemes: this.colorschemes.map(colorscheme => colorscheme.toDTO()),
+      colorschemes: this.colorschemes.map(colorscheme => colorscheme.dto),
     };
+  }
+
+  /**
+   * @returns a list of flat colorschemes, where each colorscheme has only one background.
+   */
+  get flattenedColorschemes(): Colorscheme[] {
+    return this.colorschemes.flatMap(colorscheme => colorscheme.flattened);
   }
 }
 
