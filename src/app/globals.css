@@ -3,8 +3,12 @@
 
   --dark: #333;
   --light: #fff;
+  --grey: #5c5c5c;
+  --blue: #2855b7;
 
   --foreground: var(--dark);
+  --foreground-shade: var(--grey);
+  --foreground-accent: var(--blue);
   --background: var(--light);
   --border-color: var(--dark);
 
