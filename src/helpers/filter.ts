@@ -92,7 +92,7 @@ function getFilterFromURL(filters: string[]): Filter {
     }
 
     if (filterKey === 'page') {
-      return isValidPage(value)
+      return isValidPage(value) && value !== '1'
         ? { ...filter, page: parseInt(value, 10) }
         : filter;
     }

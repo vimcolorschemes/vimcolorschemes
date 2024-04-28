@@ -4,10 +4,6 @@
  * @returns The URLified string value
  */
 function encode(value: string | number): string {
-  if (!value) {
-    return '';
-  }
-
   return encodeURIComponent(value);
 }
 
@@ -17,10 +13,6 @@ function encode(value: string | number): string {
  * @returns The decoded string value
  */
 function decode(value: string): string {
-  if (!value) {
-    return '';
-  }
-
   return decodeURIComponent(value);
 }
 

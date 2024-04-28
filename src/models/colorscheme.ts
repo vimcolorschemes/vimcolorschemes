@@ -77,10 +77,7 @@ export class ColorschemeData {
    * @returns a DTO representation of the colorscheme data.
    */
   get dto(): ColorschemeDataDTO {
-    return {
-      light: this.light || [],
-      dark: this.dark || [],
-    };
+    return { light: this.light, dark: this.dark };
   }
 }
 
