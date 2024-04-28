@@ -27,6 +27,22 @@ export const metadata: Metadata = {
   },
   description:
     'Check out the Trending vim color schemes! | vimcolorschemes is the ultimate resource for vim users to find the perfect color scheme for their favorite development environment. Come for the hundreds of vim color schemes, stay for the awesome hjkl spatial navigation.',
+  openGraph: {
+    url: 'https://vimcolorschemes.com',
+    type: 'website',
+    images: [
+      {
+        url: 'https://vimcolorschemes.com/assets/og-image.png',
+        type: 'image/png',
+        width: 400,
+        height: 200,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    creator: '@reobindotdev',
+  },
 };
 
 interface LayoutProps {
