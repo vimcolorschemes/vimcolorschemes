@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import IconLogo from '@/components/ui/icons/logo';
+import Branding from '@/components/ui/branding';
 
 import styles from './index.module.css';
 
@@ -8,10 +8,7 @@ export default function Header() {
   return (
     <header className={styles.container}>
       <Link href="/" className={styles.link}>
-        <IconLogo className={styles.logo} />
-        <span className={styles.title}>
-          <span>vim</span>colorschemes
-        </span>
+        <Branding />
       </Link>
     </header>
   );

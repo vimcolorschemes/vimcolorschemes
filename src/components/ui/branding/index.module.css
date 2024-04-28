@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+}
+
+@media (min-width: 992px) {
+  .container {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.name {
+  color: var(--foreground-shade);
+}
+.name > span:last-child {
+  color: var(--foreground);
+}
+
+.logo {
+  width: auto;
+  height: 2.5em;
+  flex-shrink: 0;
+}

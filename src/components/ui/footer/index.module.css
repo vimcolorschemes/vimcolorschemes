@@ -1,0 +1,41 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  column-gap: var(--spacing-sm);
+  row-gap: var(--spacing-lg);
+}
+
+.container > *:first-child {
+  flex: 1;
+}
+
+.linkGroup {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: var(--spacing-xl);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xs);
+}
+
+.link.github {
+  color: var(--foreground-accent);
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+
+  .linkGroup {
+    width: auto;
+    justify-content: unset;
+  }
+}
