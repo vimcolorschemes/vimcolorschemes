@@ -29,6 +29,23 @@ class Colorscheme {
   }
 
   /**
+   * @param prioritizedBackground The background to prioritize if it's part of the colorscheme backgrounds.
+   * @returns The default background to display for the colorscheme.
+   */
+  getDefaultBackground(prioritizedBackground?: Background): Background {
+    if (
+      !!prioritizedBackground &&
+      this.backgrounds.includes(prioritizedBackground)
+    ) {
+      return prioritizedBackground;
+    }
+    if (this.backgrounds.includes(Backgrounds.Dark)) {
+      return Backgrounds.Dark;
+    }
+    return this.backgrounds[0];
+  }
+
+  /**
    * @returns a list of flat colorschemes, where each colorscheme has only one background.
    */
   get flattened(): Colorscheme[] {

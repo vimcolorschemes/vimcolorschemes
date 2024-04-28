@@ -1,7 +1,7 @@
-import Backgrounds, { Background } from '@/lib/backgrounds';
+import { Background } from '@/lib/backgrounds';
 import Engines, { Engine } from '@/lib/engines';
 
-import Colorscheme, { ColorschemeData } from './colorscheme';
+import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
 import Owner from './owner';
 

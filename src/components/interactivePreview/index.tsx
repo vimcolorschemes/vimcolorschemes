@@ -5,19 +5,25 @@ import { useState } from 'react';
 import RepositoryDTO from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 
+import PageContext from '@/lib/pageContext';
+
 import Preview from '@/components/preview';
 
 type InteractivePreviewProps = {
   repositoryDTO: RepositoryDTO;
+  pageContext: PageContext;
 };
 
 export default function InteractivePreview({
   repositoryDTO,
+  pageContext,
 }: InteractivePreviewProps) {
   const repository = new Repository(repositoryDTO);
 
   const defaultColorscheme = repository.colorschemes[0];
-  const defaultBackground = defaultColorscheme.backgrounds[0];
+  const defaultBackground = defaultColorscheme.getDefaultBackground(
+    pageContext.filter?.background,
+  );
 
   const [colorscheme, setColorscheme] = useState(defaultColorscheme);
   const [background, setBackground] = useState(defaultBackground);
