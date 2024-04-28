@@ -1,18 +1,18 @@
-import { Engine } from '@/lib/engines';
+import { Editor } from '@/lib/editors';
 
 import styles from './index.module.css';
 
 type WindowHeaderProps = {
   title: string;
-  engine: Engine;
+  editor: Editor;
 };
 
-export default function WindowHeader({ title, engine }: WindowHeaderProps) {
+export default function WindowHeader({ title, editor }: WindowHeaderProps) {
   return (
     <div className={styles.container}>
       <div className={styles.buttons} />
       <div className={styles.title}>{title}</div>
-      <div className={styles.engine}>{engine}</div>
+      <div className={styles.editor}>{editor}</div>
     </div>
   );
 }

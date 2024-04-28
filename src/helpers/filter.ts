@@ -1,5 +1,5 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Engines, { Engine } from '@/lib/engines';
+import Editors, { Editor } from '@/lib/editors';
 import Filter, {
   URLFilterKey,
   URLKeyFilterMap,
@@ -13,8 +13,8 @@ import URLHelper from './url';
  * Generate the URL from a filter object.
  *
  * @example
- * FilterHelper.getURLFromFilter({ engine: 'vim', background: 'dark' }) === 'e.vim/b.dark'
- * FilterHelper.getURLFromFilter({ engine: 'vim', background: 'invalid' }) === 'e.vim'
+ * FilterHelper.getURLFromFilter({ editor: 'vim', background: 'dark' }) === 'e.vim/b.dark'
+ * FilterHelper.getURLFromFilter({ editor: 'vim', background: 'invalid' }) === 'e.vim'
  *
  * @param filter The filter object.
  * @returns The URL.
@@ -31,7 +31,7 @@ function getURLFromFilter(filter: Filter): string {
         return null;
       }
 
-      if (urlKey === URLFilterKeys.Engine && !isValidEngine(value)) {
+      if (urlKey === URLFilterKeys.Editor && !isValidEditor(value)) {
         return null;
       }
 
@@ -61,8 +61,8 @@ function getURLFromFilter(filter: Filter): string {
  * Build a filter object from URL parts.
  *
  * @example
- * FilterHelper.getFilterFromURL(['e.vim', 'b.dark']) === { engine: 'vim', background: 'dark' }
- * FilterHelper.getFilterFromURL(['e.vim', 'i.invalid']) === { engine: 'vim' }
+ * FilterHelper.getFilterFromURL(['e.vim', 'b.dark']) === { editor: 'vim', background: 'dark' }
+ * FilterHelper.getFilterFromURL(['e.vim', 'i.invalid']) === { editor: 'vim' }
  *
  * @param filters
  * @returns
@@ -83,7 +83,7 @@ function getFilterFromURL(filters: string[]): Filter {
       return filter;
     }
 
-    if (filterKey === 'engine' && !isValidEngine(value)) {
+    if (filterKey === 'editor' && !isValidEditor(value)) {
       return filter;
     }
 
@@ -105,8 +105,8 @@ function getFilterFromURL(filters: string[]): Filter {
   }, {});
 }
 
-function isValidEngine(value: string | number): boolean {
-  return Object.values(Engines).includes(value as Engine);
+function isValidEditor(value: string | number): boolean {
+  return Object.values(Editors).includes(value as Editor);
 }
 
 function isValidBackground(value: string | number): boolean {

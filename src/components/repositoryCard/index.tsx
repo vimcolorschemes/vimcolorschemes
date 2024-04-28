@@ -28,7 +28,7 @@ export default function RepositoryCard({
         <p>{repository.stargazersCount} stars</p>
         <p>{repository.weekStargazersCount}/week</p>
         <p>{repository.backgrounds.join('/')}</p>
-        <p>{repository.engines.join('/')}</p>
+        <p>{repository.editors.join('/')}</p>
       </Link>
     </Card>
   );

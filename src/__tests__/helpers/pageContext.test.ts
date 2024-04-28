@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
 import Backgrounds from '@/lib/backgrounds';
-import Engines from '@/lib/engines';
+import Editors from '@/lib/editors';
 import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
@@ -15,12 +15,12 @@ describe('PageContextHelper.get', () => {
     });
   });
 
-  it('should capture the engine filter', () => {
+  it('should capture the editor filter', () => {
     expect(
       PageContextHelper.get([SortOptions.Trending, 'e.vim']),
     ).toEqual<PageContext>({
       sort: SortOptions.Trending,
-      filter: { engine: Engines.Vim },
+      filter: { editor: Editors.Vim },
     });
   });
 
@@ -65,7 +65,7 @@ describe('PageContextHelper.get', () => {
       PageContextHelper.get([SortOptions.Old, 'e.vim', 'b.light', 'p.2']),
     ).toEqual<PageContext>({
       sort: SortOptions.Old,
-      filter: { engine: Engines.Vim, background: Backgrounds.Light, page: 2 },
+      filter: { editor: Editors.Vim, background: Backgrounds.Light, page: 2 },
     });
   });
 });
@@ -89,22 +89,22 @@ describe('PageContextHelper.getPageTitle', () => {
     ).toBe('trending dark colorschemes');
   });
 
-  it('should return the engine filter if it is defined', () => {
+  it('should return the editor filter if it is defined', () => {
     expect(
       PageContextHelper.getPageTitle({
         sort: SortOptions.Trending,
-        filter: { engine: Engines.Neovim },
+        filter: { editor: Editors.Neovim },
       }),
     ).toBe('trending neovim colorschemes');
   });
 
-  it('should only return the background and engine filter if they are defined', () => {
+  it('should only return the background and editor filter if they are defined', () => {
     expect(
       PageContextHelper.getPageTitle({
         sort: SortOptions.Trending,
         filter: {
           background: Backgrounds.Light,
-          engine: Engines.Neovim,
+          editor: Editors.Neovim,
           search: 'test',
           page: 2,
         },

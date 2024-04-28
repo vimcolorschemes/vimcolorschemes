@@ -1,18 +1,18 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Engines, { Engine } from '@/lib/engines';
+import Editors, { Editor } from '@/lib/editors';
 
 import ColorschemeDTO, { ColorschemeDataDTO } from './DTO/colorscheme';
 
 class Colorscheme {
   name: string;
   data: ColorschemeData;
-  engine: Engine;
+  editor: Editor;
   backgrounds: Background[];
 
   constructor(dto?: ColorschemeDTO) {
     this.name = dto?.name || '';
     this.data = new ColorschemeData(dto?.data || null);
-    this.engine = dto?.isLua ? Engines.Neovim : Engines.Vim;
+    this.editor = dto?.isLua ? Editors.Neovim : Editors.Vim;
     this.backgrounds = dto?.backgrounds || [];
   }
 
@@ -23,7 +23,7 @@ class Colorscheme {
     return {
       name: this.name,
       data: this.data.dto,
-      isLua: this.engine === Engines.Neovim,
+      isLua: this.editor === Editors.Neovim,
       backgrounds: this.backgrounds,
     };
   }
@@ -53,7 +53,7 @@ class Colorscheme {
       background =>
         new Colorscheme({
           name: this.name,
-          isLua: this.engine === Engines.Neovim,
+          isLua: this.editor === Editors.Neovim,
           backgrounds: [background],
           data: new ColorschemeData({
             light: background === Backgrounds.Light ? this.data.light : null,

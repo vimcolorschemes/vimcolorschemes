@@ -38,7 +38,7 @@ async function getRepositoryCount(filter: Filter): Promise<number> {
  * Get paginated repositories from the database.
  *
  * @example
- * const repositories = await RepositoriesService.getRepositories({ sort: 'trending', filter: { engine: 'vim' }});
+ * const repositories = await RepositoriesService.getRepositories({ sort: 'trending', filter: { editor: 'vim' }});
  *
  * @params params.sort The order and property to sort by.
  * @params params.filter The filter to apply to the query.

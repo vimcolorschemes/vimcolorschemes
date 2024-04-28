@@ -8,7 +8,7 @@ import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
-import EngineInput from '@/components/engineInput';
+import EditorInput from '@/components/editorInput';
 import Repositories from '@/components/repositories';
 import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
@@ -47,7 +47,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
       <SearchInput />
       <SortInput pageContext={pageContext} />
       <BackgroundInput />
-      <EngineInput />
+      <EditorInput />
       <Suspense fallback={<div>Loading...</div>}>
         <Repositories pageContext={pageContext} />
       </Suspense>

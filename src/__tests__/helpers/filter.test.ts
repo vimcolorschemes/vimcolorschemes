@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest';
 
-import Engines from '@/lib/engines';
+import Editors from '@/lib/editors';
 
 import FilterHelper from '@/helpers/filter';
 
 describe('FilterHelper.getURLFromFilter', () => {
-  it('should return the engine filter', () => {
-    expect(FilterHelper.getURLFromFilter({ engine: Engines.Vim })).toBe(
+  it('should return the editor filter', () => {
+    expect(FilterHelper.getURLFromFilter({ editor: Editors.Vim })).toBe(
       'e.vim',
     );
   });
@@ -28,9 +28,9 @@ describe('FilterHelper.getURLFromFilter', () => {
     expect(FilterHelper.getURLFromFilter({ invalid: 'filter' })).toBe('');
   });
 
-  it('should ignore invalid values for engine', () => {
+  it('should ignore invalid values for editor', () => {
     // @ts-expect-error
-    expect(FilterHelper.getURLFromFilter({ engine: 'invalid' })).toBe('');
+    expect(FilterHelper.getURLFromFilter({ editor: 'invalid' })).toBe('');
   });
 
   it('should ignore invalid values for background', () => {
@@ -41,7 +41,7 @@ describe('FilterHelper.getURLFromFilter', () => {
   it('should allow multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
-        engine: Engines.Vim,
+        editor: Editors.Vim,
         background: 'light',
         search: 'test-search',
       }),
@@ -51,7 +51,7 @@ describe('FilterHelper.getURLFromFilter', () => {
   it('should ignore invalid filters with multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
-        engine: Engines.Vim,
+        editor: Editors.Vim,
         // @ts-expect-error
         invalid: 'filter',
         search: 'test-search',
@@ -61,13 +61,13 @@ describe('FilterHelper.getURLFromFilter', () => {
 });
 
 describe('FilterHelper.getFilterFromURL', () => {
-  it('should return the engine filter', () => {
+  it('should return the editor filter', () => {
     expect(FilterHelper.getFilterFromURL(['e.vim'])).toEqual({
-      engine: Engines.Vim,
+      editor: Editors.Vim,
     });
   });
 
-  it('should ignore invalid values for engine', () => {
+  it('should ignore invalid values for editor', () => {
     expect(FilterHelper.getFilterFromURL(['e.invalid'])).toEqual({});
   });
 
@@ -95,7 +95,7 @@ describe('FilterHelper.getFilterFromURL', () => {
     expect(
       FilterHelper.getFilterFromURL(['e.vim', 'b.light', 's.test-search']),
     ).toEqual({
-      engine: Engines.Vim,
+      editor: Editors.Vim,
       background: 'light',
       search: 'test-search',
     });
@@ -105,7 +105,7 @@ describe('FilterHelper.getFilterFromURL', () => {
     expect(
       FilterHelper.getFilterFromURL(['e.vim', 'i.filter', 's.test-search']),
     ).toEqual({
-      engine: Engines.Vim,
+      editor: Editors.Vim,
       search: 'test-search',
     });
   });
@@ -114,14 +114,14 @@ describe('FilterHelper.getFilterFromURL', () => {
     expect(
       FilterHelper.getFilterFromURL(['e.vim', 'e.neovim', 's.test-search']),
     ).toEqual({
-      engine: Engines.Vim,
+      editor: Editors.Vim,
       search: 'test-search',
     });
 
     expect(
       FilterHelper.getFilterFromURL(['e.invalid', 'e.neovim', 's.test-search']),
     ).toEqual({
-      engine: Engines.Neovim,
+      editor: Editors.Neovim,
       search: 'test-search',
     });
   });

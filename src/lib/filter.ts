@@ -1,8 +1,8 @@
 import { Background } from './backgrounds';
-import { Engine } from './engines';
+import { Editor } from './editors';
 
 export const URLFilterKeys = {
-  Engine: 'e',
+  Editor: 'e',
   Background: 'b',
   Search: 's',
   Page: 'p',
@@ -10,21 +10,21 @@ export const URLFilterKeys = {
 export type URLFilterKey = (typeof URLFilterKeys)[keyof typeof URLFilterKeys];
 
 export const FilterURLKeyMap: Record<keyof Filter, URLFilterKey> = {
-  engine: URLFilterKeys.Engine,
+  editor: URLFilterKeys.Editor,
   background: URLFilterKeys.Background,
   search: URLFilterKeys.Search,
   page: URLFilterKeys.Page,
 };
 
 export const URLKeyFilterMap: Record<URLFilterKey, keyof Filter> = {
-  [URLFilterKeys.Engine]: 'engine',
+  [URLFilterKeys.Editor]: 'editor',
   [URLFilterKeys.Background]: 'background',
   [URLFilterKeys.Search]: 'search',
   [URLFilterKeys.Page]: 'page',
 };
 
 type Filter = {
-  engine?: Engine;
+  editor?: Editor;
   background?: Background;
   search?: string;
   page?: number;

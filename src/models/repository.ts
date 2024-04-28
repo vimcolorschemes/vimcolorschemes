@@ -1,5 +1,5 @@
 import { Background } from '@/lib/backgrounds';
-import Engines, { Engine } from '@/lib/engines';
+import Editors, { Editor } from '@/lib/editors';
 
 import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
@@ -63,11 +63,11 @@ class Repository {
   }
 
   /**
-   * @returns A list of engines used by the colorschemes in this repository.
+   * @returns A list of editors used by the colorschemes in this repository.
    */
-  get engines(): Engine[] {
+  get editors(): Editor[] {
     return Array.from(
-      new Set(this.colorschemes.map(colorscheme => colorscheme.engine)),
+      new Set(this.colorschemes.map(colorscheme => colorscheme.editor)),
     );
   }
 
@@ -84,7 +84,7 @@ class Repository {
       githubURL: this.githubURL,
       stargazersCount: this.stargazersCount,
       weekStargazersCount: this.weekStargazersCount,
-      isLua: this.engines.includes(Engines.Neovim),
+      isLua: this.editors.includes(Editors.Neovim),
       colorschemes: this.colorschemes.map(colorscheme => colorscheme.dto),
     };
   }

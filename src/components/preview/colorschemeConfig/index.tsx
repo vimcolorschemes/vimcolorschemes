@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 import Colorscheme from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
-import Engines from '@/lib/engines';
+import Editors from '@/lib/editors';
 
 import Code from '@/components/ui/code';
 import IconNext from '@/components/ui/icons/next';
@@ -23,11 +23,11 @@ export default function ColorschemeConfig({
   onToggleColorscheme,
   onToggleBackground,
 }: ColorschemeConfigProps) {
-  const ConfigContent = colorscheme.engine === Engines.Vim ? VimRC : InitLua;
+  const ConfigContent = colorscheme.editor === Editors.Vim ? VimRC : InitLua;
 
   return (
     <Code
-      fileName={colorscheme.engine === Engines.Vim ? '.vimrc' : 'init.lua'}
+      fileName={colorscheme.editor === Editors.Vim ? '.vimrc' : 'init.lua'}
       lineCount={2}
     >
       <ConfigContent

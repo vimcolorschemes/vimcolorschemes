@@ -23,7 +23,7 @@ function get(pathnameParams: string[]): PageContext {
  * Generate a page title from the index page context.
  *
  * @example
- * PageContextHelper.getPageTitle({ sort: 'trending', filter: { background: 'dark', engine: 'vim' } }) === 'trending dark vim colorschemes';
+ * PageContextHelper.getPageTitle({ sort: 'trending', filter: { background: 'dark', editor: 'vim' } }) === 'trending dark vim colorschemes';
  *
  * @param pageContext The index page context including the current sort and filter.
  * @returns The page title.
@@ -33,8 +33,8 @@ function getPageTitle({ filter, sort }: PageContext): string {
   if (filter.background) {
     parts.push(filter.background);
   }
-  if (filter.engine) {
-    parts.push(filter.engine);
+  if (filter.editor) {
+    parts.push(filter.editor);
   }
   parts.push('colorschemes');
   return parts.join(' ');

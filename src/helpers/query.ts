@@ -1,4 +1,4 @@
-import Engines from '@/lib/engines';
+import Editors from '@/lib/editors';
 import Filter from '@/lib/filter';
 import Sort, { SortOptions } from '@/lib/sort';
 
@@ -6,10 +6,10 @@ type FilterQuery = Record<string, string | number | boolean | object>;
 
 function getFilterQuery(filter: Filter): FilterQuery {
   const query = getSearchFilterQuery(filter.search);
-  if (filter.engine === Engines.Vim) {
+  if (filter.editor === Editors.Vim) {
     query['vimColorSchemes.isLua'] = false;
   }
-  if (filter.engine === Engines.Neovim) {
+  if (filter.editor === Editors.Neovim) {
     query['vimColorSchemes.isLua'] = true;
   }
 

@@ -27,7 +27,7 @@ export default function Preview(props: PreviewProps) {
     <div className={styles.container} style={style}>
       <WindowHeader
         title={props.colorscheme.name}
-        engine={props.colorscheme.engine}
+        editor={props.colorscheme.editor}
       />
       <ColorschemeConfig
         colorscheme={props.colorscheme}

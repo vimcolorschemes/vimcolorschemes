@@ -2,38 +2,38 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import Engines, { Engine } from '@/lib/engines';
+import Editors, { Editor } from '@/lib/editors';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
 import Radio from '@/components/ui/radio';
 
-export default function EngineInput() {
+export default function EditorInput() {
   const router = useRouter();
   const pathname = usePathname();
   const pageContext = PageContextHelper.get(pathname.split('/').slice(1));
 
-  function onChange(engine?: Engine) {
-    delete pageContext.filter.engine;
+  function onChange(editor?: Editor) {
+    delete pageContext.filter.editor;
     delete pageContext.filter.page;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
-      engine,
+      editor,
     });
     router.push(`/${pageContext.sort}/${url}`);
   }
 
   return (
     <Radio
-      name="engine"
-      value={pageContext.filter.engine}
+      name="editor"
+      value={pageContext.filter.editor}
       onChange={onChange}
       options={[
         { value: undefined, label: 'all' },
-        ...Object.values(Engines).map(engine => ({
-          value: engine,
-          label: engine,
+        ...Object.values(Editors).map(editor => ({
+          value: editor,
+          label: editor,
         })),
       ]}
     />
