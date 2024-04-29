@@ -70,6 +70,26 @@ async function getRepositories({
 }
 
 /**
+ * @returns all repositories from the database.
+ */
+async function getAllRepositories(): Promise<Repository[]> {
+  await DatabaseService.connect();
+
+  const repositoryDTOs = await RepositoryModel.aggregate([
+    {
+      $match: {
+        updateValid: true,
+        generateValid: true,
+        'vimColorSchemes.valid': true,
+      },
+    },
+    { $addFields: COLORSCHEME_PROPERTY_DEFINITION },
+  ]);
+
+  return repositoryDTOs.map(dto => new Repository(dto));
+}
+
+/**
  * Get a repository from the database.
  *
  * @example
@@ -117,6 +137,7 @@ const COLORSCHEME_PROPERTY_DEFINITION = {
 const RepositoriesService = {
   getRepositoryCount,
   getRepositories,
+  getAllRepositories,
   getRepository,
 };
 
