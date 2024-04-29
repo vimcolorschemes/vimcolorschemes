@@ -7,11 +7,8 @@ import Sort, { SortOptions } from '@/lib/sort';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import BackgroundInput from '@/components/backgroundInput';
-import EditorInput from '@/components/editorInput';
+import Filters from '@/components/filters';
 import Repositories from '@/components/repositories';
-import SearchInput from '@/components/searchInput';
-import SortInput from '@/components/sortInput';
 
 import styles from './page.module.css';
 
@@ -44,10 +41,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
 
   return (
     <main className={styles.container}>
-      <SearchInput />
-      <SortInput pageContext={pageContext} />
-      <BackgroundInput />
-      <EditorInput />
+      <Filters pageContext={pageContext} />
       <Suspense fallback={<div>Loading...</div>}>
         <Repositories pageContext={pageContext} />
       </Suspense>

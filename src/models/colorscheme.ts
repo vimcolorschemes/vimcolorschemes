@@ -49,7 +49,7 @@ class Colorscheme {
    * @returns a list of flat colorschemes, where each colorscheme has only one background.
    */
   get flattened(): Colorscheme[] {
-    return this.backgrounds.map(
+    return this.backgrounds.sort().map(
       background =>
         new Colorscheme({
           name: this.name,

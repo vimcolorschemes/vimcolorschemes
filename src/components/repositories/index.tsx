@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
 import RepositoriesService from '@/services/repositories';
@@ -36,7 +35,7 @@ export default async function Resporitories({
   const repositories = await RepositoriesService.getRepositories(pageContext);
 
   return (
-    <>
+    <div className={styles.container}>
       <p>{count} repositories</p>
       <section className={styles.grid}>
         {repositories.map(repository => (
@@ -48,6 +47,6 @@ export default async function Resporitories({
         ))}
       </section>
       <Pagination pageContext={pageContext} pageCount={pageCount} />
-    </>
+    </div>
   );
 }

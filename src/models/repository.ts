@@ -1,4 +1,4 @@
-import { Background } from '@/lib/backgrounds';
+import Backgrounds, { Background } from '@/lib/backgrounds';
 import Editors, { Editor } from '@/lib/editors';
 
 import Colorscheme from './colorscheme';

@@ -4,6 +4,8 @@ import RepositoriesService from '@/services/repositories';
 
 import Preview from '@/components/preview';
 
+import styles from './page.module.css';
+
 type RepositoryPageProps = { params: { owner: string; name: string } };
 
 export async function generateMetadata({
@@ -24,7 +26,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
   );
 
   return (
-    <main>
+    <main className={styles.container}>
       <h1>{repository.key}</h1>
       {repository.flattenedColorschemes.map((colorscheme, index) => (
         <Preview

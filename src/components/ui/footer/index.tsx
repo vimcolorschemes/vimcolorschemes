@@ -23,7 +23,8 @@ export default function Footer() {
           rel="noopener noreferrer"
           className={cn(styles.link, styles.github)}
         >
-          follow vimcolorschemes on Github
+          follow <span className={styles.desktop}>vimcolorschemes </span>on
+          Github
           <IconGithub />
         </a>
         <a
