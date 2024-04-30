@@ -13,7 +13,7 @@ export default function Footer() {
       <Link href="/">
         <Branding />
       </Link>
-      <div className={styles.linkGroup}>
+      <div className={styles.links}>
         <Link href="/about" className={styles.link}>
           about
         </Link>
@@ -21,7 +21,7 @@ export default function Footer() {
           href="https://github.com/vimcolorschemes/vimcolorschemes"
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(styles.link, styles.github)}
+          className={cn(styles.link, styles.accent)}
         >
           follow <span className={styles.desktop}>vimcolorschemes </span>on
           Github

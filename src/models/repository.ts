@@ -95,6 +95,20 @@ class Repository {
   get flattenedColorschemes(): Colorscheme[] {
     return this.colorschemes.flatMap(colorscheme => colorscheme.flattened);
   }
+
+  /**
+   * @param prioritizedBackground The background to prioritize if it's part of the colorscheme backgrounds.
+   * @returns The default colorscheme to display for the repository.
+   */
+  getDefaultColorscheme(prioritizedBackground?: Background): Colorscheme {
+    if (!prioritizedBackground) {
+      prioritizedBackground = Backgrounds.Dark;
+    }
+    const colorsheme = this.colorschemes.find(colorscheme =>
+      colorscheme.backgrounds.includes(prioritizedBackground),
+    );
+    return colorsheme || this.colorschemes[0];
+  }
 }
 
 export default Repository;

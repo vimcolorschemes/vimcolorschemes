@@ -20,7 +20,9 @@ export default function InteractivePreview({
 }: InteractivePreviewProps) {
   const repository = new Repository(repositoryDTO);
 
-  const defaultColorscheme = repository.colorschemes[0];
+  const defaultColorscheme = repository.getDefaultColorscheme(
+    pageContext.filter?.background,
+  );
   const defaultBackground = defaultColorscheme.getDefaultBackground(
     pageContext.filter?.background,
   );
@@ -33,7 +35,12 @@ export default function InteractivePreview({
       c => c.name === colorscheme.name,
     );
     const nextIndex = (index + 1) % repository.colorschemes.length;
-    setColorscheme(repository.colorschemes[nextIndex]);
+    const newColorscheme = repository.colorschemes[nextIndex];
+    setColorscheme(newColorscheme);
+
+    if (!newColorscheme.backgrounds.includes(background)) {
+      setBackground(newColorscheme.backgrounds[0]);
+    }
   }
 
   function onToggleBackground() {

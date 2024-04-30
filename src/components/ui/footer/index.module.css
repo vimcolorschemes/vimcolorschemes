@@ -11,7 +11,7 @@
   flex: 1;
 }
 
-.linkGroup {
+.links {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -26,7 +26,7 @@
   white-space: nowrap;
 }
 
-.link.github {
+.link.accent {
   color: var(--foreground-accent);
 }
 
@@ -39,7 +39,7 @@
     flex-direction: row;
   }
 
-  .linkGroup {
+  .links {
     width: auto;
     justify-content: unset;
     column-gap: var(--spacing-xl);

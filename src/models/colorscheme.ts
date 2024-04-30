@@ -33,14 +33,11 @@ class Colorscheme {
    * @returns The default background to display for the colorscheme.
    */
   getDefaultBackground(prioritizedBackground?: Background): Background {
-    if (
-      !!prioritizedBackground &&
-      this.backgrounds.includes(prioritizedBackground)
-    ) {
-      return prioritizedBackground;
+    if (!prioritizedBackground) {
+      prioritizedBackground = Backgrounds.Dark;
     }
-    if (this.backgrounds.includes(Backgrounds.Dark)) {
-      return Backgrounds.Dark;
+    if (this.backgrounds.includes(prioritizedBackground)) {
+      return prioritizedBackground;
     }
     return this.backgrounds[0];
   }
