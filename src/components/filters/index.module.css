@@ -2,4 +2,10 @@
   width: 100%;
   max-width: var(--content-max-width);
   padding: 0 var(--spacing-lg);
+  display: flex;
+  align-items: center;
+}
+
+.container > *:first-child {
+  margin-right: auto;
 }
