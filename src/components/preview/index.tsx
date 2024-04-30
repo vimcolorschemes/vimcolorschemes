@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import Colorscheme from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
@@ -13,6 +15,7 @@ type PreviewProps = {
   background: Background;
   onToggleColorscheme?: () => void;
   onToggleBackground?: () => void;
+  className?: string;
 };
 
 export default function Preview(props: PreviewProps) {
@@ -28,7 +31,7 @@ export default function Preview(props: PreviewProps) {
     <Window
       title={props.colorscheme.name}
       subtitle={props.colorscheme.editor}
-      className={styles.container}
+      className={cn(styles.container, props.className)}
       style={style}
     >
       <ColorschemeConfig

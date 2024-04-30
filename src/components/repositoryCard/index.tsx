@@ -7,6 +7,8 @@ import PageContext from '@/lib/pageContext';
 import InteractivePreview from '@/components/interactivePreview';
 import Card from '@/components/ui/card';
 
+import styles from './index.module.css';
+
 type RepositoryCardProps = {
   repository: Repository;
   pageContext: PageContext;
@@ -17,13 +19,15 @@ export default function RepositoryCard({
   pageContext,
 }: RepositoryCardProps) {
   return (
-    <Card>
+    <Card className={styles.container}>
       <InteractivePreview
         repositoryDTO={repository.dto}
         pageContext={pageContext}
+        className={styles.preview}
       />
       <Link href={repository.route}>
-        <h2>{repository.key}</h2>
+        <p className={styles.owner}>{repository.owner.name}</p>
+        <h3 className={styles.title}>{repository.name}</h3>
         <p>{repository.description}</p>
         <p>{repository.stargazersCount} stars</p>
         <p>{repository.weekStargazersCount}/week</p>

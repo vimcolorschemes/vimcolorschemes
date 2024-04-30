@@ -1,5 +1,6 @@
 'use client';
 
+import cn from 'classnames';
 import { useState } from 'react';
 
 import RepositoryDTO from '@/models/DTO/repository';
@@ -12,11 +13,13 @@ import Preview from '@/components/preview';
 type InteractivePreviewProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
+  className?: string;
 };
 
 export default function InteractivePreview({
   repositoryDTO,
   pageContext,
+  className,
 }: InteractivePreviewProps) {
   const repository = new Repository(repositoryDTO);
 
@@ -59,6 +62,7 @@ export default function InteractivePreview({
       onToggleBackground={
         colorscheme.backgrounds.length > 1 ? onToggleBackground : undefined
       }
+      className={className}
     />
   );
 }
