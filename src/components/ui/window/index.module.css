@@ -1,4 +1,12 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.625rem;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+}
+
+.topBar {
   --_window-header-spacing: var(--spacing-xs);
 
   background: grey;
@@ -52,7 +60,7 @@
   transform: translate(-50%, -50%);
 }
 
-.editor {
+.subtitle {
   position: absolute;
   top: 50%;
   right: var(--_window-header-spacing);

@@ -2,10 +2,11 @@ import Colorscheme from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
 
+import Window from '@/components/ui/window';
+
 import CodeSnippet from './codeSnippet';
 import ColorschemeConfig from './colorschemeConfig';
 import styles from './index.module.css';
-import WindowHeader from './windowHeader';
 
 type PreviewProps = {
   colorscheme: Colorscheme;
@@ -24,11 +25,12 @@ export default function Preview(props: PreviewProps) {
   );
 
   return (
-    <div className={styles.container} style={style}>
-      <WindowHeader
-        title={props.colorscheme.name}
-        editor={props.colorscheme.editor}
-      />
+    <Window
+      title={props.colorscheme.name}
+      subtitle={props.colorscheme.editor}
+      className={styles.container}
+      style={style}
+    >
       <ColorschemeConfig
         colorscheme={props.colorscheme}
         background={props.background}
@@ -36,6 +38,6 @@ export default function Preview(props: PreviewProps) {
         onToggleBackground={props.onToggleBackground}
       />
       <CodeSnippet />
-    </div>
+    </Window>
   );
 }
