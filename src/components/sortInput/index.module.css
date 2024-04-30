@@ -20,6 +20,6 @@
   column-gap: var(--spacing-md);
 }
 
-.option {
-  display: flex;
+.option.active {
+  color: var(--foreground-accent);
 }
