@@ -1,4 +1,5 @@
 'use client';
+
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
 import { FormEvent, useState } from 'react';
@@ -6,8 +7,8 @@ import { FormEvent, useState } from 'react';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import IconEnter from '../ui/icons/enter';
-import IconForwardSlash from '../ui/icons/forwardSlash';
+import IconEnter from '@/components/ui/icons/enter';
+import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 
 import styles from './index.module.css';
 
@@ -20,13 +21,17 @@ export default function SearchInput() {
 
   function onSubmit(event: FormEvent) {
     event.preventDefault();
+    search(value);
+  }
+
+  function search(value: string) {
     delete pageContext.filter.search;
     delete pageContext.filter.page;
     const url = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       ...(value ? { search: value } : {}),
     });
-    router.push(`/${pageContext.sort}/${url}`);
+    router.replace(`/${pageContext.sort}/${url}`);
   }
 
   return (

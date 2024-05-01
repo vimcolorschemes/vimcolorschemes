@@ -9,6 +9,16 @@
   border: none;
   flex: 1;
   padding: var(--spacing-xs);
+  font-size: var(--font-size-md);
+}
+.input::-webkit-search-cancel-button,
+.input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.input::placeholder {
+  color: var(--foreground);
+  opacity: 0.5;
 }
 
 .input:focus {
