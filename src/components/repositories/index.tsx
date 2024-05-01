@@ -20,9 +20,10 @@ type RepositoryGridProps = {
 export default async function Resporitories({
   pageContext,
 }: RepositoryGridProps) {
-  const count = await RepositoriesService.getRepositoryCount(
-    pageContext.filter,
-  );
+  const [count, repositories] = await Promise.all([
+    RepositoriesService.getRepositoryCount(pageContext.filter),
+    RepositoriesService.getRepositories(pageContext),
+  ]);
 
   const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
   if ((pageContext.filter.page || 1) > (pageCount || 1)) {
@@ -31,8 +32,6 @@ export default async function Resporitories({
       `/${pageContext.sort}/${FilterHelper.getURLFromFilter(pageContext.filter)}`,
     );
   }
-
-  const repositories = await RepositoriesService.getRepositories(pageContext);
 
   return (
     <div className={styles.container}>
