@@ -27,13 +27,6 @@
   --font-size-xl: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #fff;
-    --background: #333;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
