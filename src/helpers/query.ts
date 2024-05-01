@@ -26,12 +26,14 @@ function getFilterQuery(filter: Filter): FilterQuery {
 function getSearchFilterQuery(term?: string): FilterQuery {
   if (!term) return {};
 
+  const search = term.replace(/[^\w\s]/gi, ' ');
+
   return {
     $or: [
-      { name: { $regex: term, $options: 'i' } },
-      { 'owner.name': { $regex: term, $options: 'i' } },
-      { description: { $regex: term, $options: 'i' } },
-      { 'vimColorSchemes.name': { $regex: term, $options: 'i' } },
+      { name: { $regex: search, $options: 'i' } },
+      { 'owner.name': { $regex: search, $options: 'i' } },
+      { description: { $regex: search, $options: 'i' } },
+      { 'vimColorSchemes.name': { $regex: search, $options: 'i' } },
     ],
   };
 }
