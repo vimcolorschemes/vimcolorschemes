@@ -1,3 +1,11 @@
+.notFound {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 .container {
   width: 100%;
   max-width: var(--content-max-width);

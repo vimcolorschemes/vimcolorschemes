@@ -18,6 +18,10 @@ export async function generateMetadata({
     params.name,
   );
 
+  if (!repository) {
+    return {};
+  }
+
   return { title: repository.title };
 }
 
@@ -26,6 +30,24 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     params.owner,
     params.name,
   );
+
+  if (!repository) {
+    return (
+      <>
+        <Header />
+        <main className={styles.notFound}>
+          <p>
+            <strong>404: </strong>
+            repository{' '}
+            <strong>
+              {params.owner}/{params.name}
+            </strong>{' '}
+            not found.
+          </p>
+        </main>
+      </>
+    );
+  }
 
   return (
     <>
