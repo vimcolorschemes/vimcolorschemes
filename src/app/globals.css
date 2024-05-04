@@ -1,5 +1,6 @@
 :root {
   --content-max-width: 80rem;
+  --content-padding: 0 var(--spacing-sm);
 
   --dark: #333;
   --light: #fff;
@@ -16,10 +17,10 @@
   --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2rem;
-  --spacing-xl: 3rem;
-  --spacing-xxl: 4rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 8rem;
+  --spacing-xxl: 16rem;
 
   --font-size-sm: 0.625rem;
   --font-size-md: 1rem;
@@ -40,7 +41,6 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-standard);
-  font-size: 16px;
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -61,12 +61,17 @@ header,
 footer {
   width: 100%;
   max-width: var(--content-max-width);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+@media (min-width: 768px) {
+  :root {
+    --content-padding: 0 var(--spacing-md);
+  }
+
+  header,
+  footer {
+    padding-inline: var(--spacing-md);
   }
 }
 

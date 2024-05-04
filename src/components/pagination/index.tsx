@@ -4,6 +4,8 @@ import FilterHelper from '@/helpers/filter';
 
 import ButtonLink from '@/components/ui/buttonLink';
 
+import styles from './index.module.css';
+
 type PaginationProps = {
   pageContext: PageContext;
   pageCount: number;
@@ -28,12 +30,20 @@ export default function Pagination({
   }
 
   return (
-    <nav>
+    <nav className={styles.container}>
       {hasPrevious && (
-        <ButtonLink href={getPageURL(page - 1)}>Previous</ButtonLink>
+        <ButtonLink href={getPageURL(page - 1)} className={styles.previous}>
+          Previous
+        </ButtonLink>
       )}
-      {page}
-      {hasNext && <ButtonLink href={getPageURL(page + 1)}>Next</ButtonLink>}
+      <span className={styles.page}>
+        {page}/{pageCount}
+      </span>
+      {hasNext && (
+        <ButtonLink href={getPageURL(page + 1)} className={styles.next}>
+          Next
+        </ButtonLink>
+      )}
     </nav>
   );
 }

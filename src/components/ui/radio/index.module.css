@@ -1,0 +1,8 @@
+.container {
+  position: relative;
+}
+
+.legend {
+  display: inline;
+  font-weight: bold;
+}

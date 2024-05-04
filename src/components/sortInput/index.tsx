@@ -5,7 +5,6 @@ import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
-import SortHelper from '@/helpers/sort';
 
 import styles from './index.module.css';
 
@@ -28,7 +27,7 @@ export default function SortInput({ pageContext }: SortInputProps) {
             })}
           >
             <Link href={`/${option}/${url}`}>
-              <p>{SortHelper.getLabel(option)}</p>
+              <p>{option}</p>
             </Link>
           </li>
         ))}

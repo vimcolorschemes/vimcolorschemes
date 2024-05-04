@@ -1,8 +1,7 @@
 import PageContext from '@/lib/pageContext';
 import Sort from '@/lib/sort';
 
-import FilterHelper from './filter';
-import SortHelper from './sort';
+import FilterHelper from '@/helpers/filter';
 
 /**
  * Get the context of the index page from the URL.
@@ -29,7 +28,7 @@ function get(pathnameParams: string[]): PageContext {
  * @returns The page title.
  */
 function getPageTitle({ filter, sort }: PageContext): string {
-  const parts: string[] = [SortHelper.getLabel(sort)];
+  const parts: string[] = [sort];
   if (filter.background) {
     parts.push(filter.background);
   }

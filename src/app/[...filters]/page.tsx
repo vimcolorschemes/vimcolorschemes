@@ -9,6 +9,7 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import Filters from '@/components/filters';
 import Repositories from '@/components/repositories';
+import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
 
@@ -40,11 +41,14 @@ export default async function IndexPage({ params }: IndexPageProps) {
   }
 
   return (
-    <main className={styles.container}>
-      <Filters pageContext={pageContext} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Repositories pageContext={pageContext} />
-      </Suspense>
-    </main>
+    <>
+      <Header pageContext={pageContext} />
+      <main className={styles.container}>
+        <Filters />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Repositories pageContext={pageContext} />
+        </Suspense>
+      </main>
+    </>
   );
 }

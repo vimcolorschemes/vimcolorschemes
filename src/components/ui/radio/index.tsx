@@ -20,8 +20,9 @@ export default function Radio<T extends string>({
 }: RadioProps<T>) {
   return (
     <fieldset className={styles.container}>
+      <legend className={styles.legend}>{name}:</legend>
       {options.map(option => (
-        <label key={option.value ?? 'all'}>
+        <label key={option.value ?? 'any'} className={styles.option}>
           <input
             type="radio"
             name={name}
@@ -29,7 +30,7 @@ export default function Radio<T extends string>({
             checked={value === option.value}
             onChange={() => onChange(option.value)}
           />
-          {option.label}
+          <span className={styles.label}>{option.label}</span>
         </label>
       ))}
     </fieldset>

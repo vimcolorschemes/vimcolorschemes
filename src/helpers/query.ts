@@ -44,8 +44,6 @@ function getSortQuery(sort: Sort): Record<string, 1 | -1> {
       return { weekStargazersCount: -1 };
     case SortOptions.Top:
       return { stargazersCount: -1 };
-    case SortOptions.RecentlyUpdated:
-      return { lastCommitAt: -1 };
     case SortOptions.New:
       return { githubCreatedAt: -1 };
     case SortOptions.Old:

@@ -1,11 +1,21 @@
 .container {
   width: 100%;
-  max-width: var(--content-max-width);
-  padding: 0 var(--spacing-lg);
   display: flex;
+  justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
 }
 
 .container > *:first-child {
-  margin-right: auto;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .container > *:first-child {
+    width: auto;
+    margin-right: auto;
+  }
 }

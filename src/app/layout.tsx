@@ -4,7 +4,6 @@ import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 
 import Footer from '@/components/ui/footer';
-import Header from '@/components/ui/header';
 
 import './reset.css';
 import './globals.css';
@@ -53,7 +52,6 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={cn(fontStandard.variable, fontMono.variable)}>
-        <Header />
         {children}
         <Footer />
       </body>

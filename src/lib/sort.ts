@@ -3,7 +3,6 @@ export const SortOptions = {
   Top: 'top',
   New: 'new',
   Old: 'old',
-  RecentlyUpdated: 'recently-updated',
 } as const;
 type Sort = (typeof SortOptions)[keyof typeof SortOptions];
 

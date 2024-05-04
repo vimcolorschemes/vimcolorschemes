@@ -1,0 +1,26 @@
+.container {
+  width: 100%;
+  position: relative;
+  height: 1.75rem; 
+}
+
+.previous,
+.page,
+.next {
+  position: absolute;
+  top: 50%;
+}
+
+.previous,
+.next {
+  transform: translateY(-50%);
+}
+
+.page {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.next {
+  right: 0;
+}

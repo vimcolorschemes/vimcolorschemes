@@ -3,8 +3,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  column-gap: var(--spacing-lg);
-  row-gap: var(--spacing-lg);
+  column-gap: var(--spacing-sm);
+  row-gap: var(--spacing-sm);
 }
 
 .container > *:first-child {
@@ -42,7 +42,7 @@
   .links {
     width: auto;
     justify-content: unset;
-    column-gap: var(--spacing-xl);
+    column-gap: var(--spacing-md);
   }
 
   .desktop {
