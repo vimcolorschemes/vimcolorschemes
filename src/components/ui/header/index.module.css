@@ -1,4 +1,8 @@
 .container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
+  padding-top: var(--spacing-md);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -5,6 +5,7 @@ import Repository from '@/models/repository';
 import PageContext from '@/lib/pageContext';
 
 import InteractivePreview from '@/components/interactivePreview';
+import RepositoryTitle from '@/components/repositoryTitle';
 import Card from '@/components/ui/card';
 
 import styles from './index.module.css';
@@ -26,8 +27,7 @@ export default function RepositoryCard({
         className={styles.preview}
       />
       <Link href={repository.route}>
-        <p className={styles.owner}>{repository.owner.name}</p>
-        <h3 className={styles.title}>{repository.name}</h3>
+        <RepositoryTitle repository={repository} as="h2" />
         <p>{repository.description}</p>
         <p>{repository.stargazersCount} stars</p>
         <p>{repository.weekStargazersCount}/week</p>

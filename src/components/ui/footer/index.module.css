@@ -1,10 +1,12 @@
 .container {
   width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
+  padding-bottom: var(--spacing-md);
   display: flex;
   flex-direction: column;
   align-items: center;
-  column-gap: var(--spacing-sm);
-  row-gap: var(--spacing-sm);
+  gap: var(--spacing-sm);
 }
 
 .container > *:first-child {

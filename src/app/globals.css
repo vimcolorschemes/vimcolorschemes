@@ -45,6 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  row-gap: var(--spacing-md);
   overflow-x: hidden;
 }
 
@@ -55,13 +56,6 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-header,
-footer {
-  width: 100%;
-  max-width: var(--content-max-width);
-  padding: var(--spacing-sm);
 }
 
 @media (min-width: 768px) {

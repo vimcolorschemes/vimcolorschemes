@@ -7,9 +7,8 @@ import PageContext from '@/lib/pageContext';
 
 import FilterHelper from '@/helpers/filter';
 
+import Pagination from '@/components/pagination';
 import RepositoryCard from '@/components/repositoryCard';
-
-import Pagination from '../pagination';
 
 import styles from './index.module.css';
 
@@ -17,7 +16,7 @@ type RepositoryGridProps = {
   pageContext: PageContext;
 };
 
-export default async function Resporitories({
+export default async function ResporitoryGrid({
   pageContext,
 }: RepositoryGridProps) {
   const [count, repositories] = await Promise.all([

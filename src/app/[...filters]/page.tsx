@@ -8,7 +8,7 @@ import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
 import Filters from '@/components/filters';
-import Repositories from '@/components/repositories';
+import RepositoryGrid from '@/components/repositoryGrid';
 import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
@@ -46,7 +46,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
       <main className={styles.container}>
         <Filters />
         <Suspense fallback={<div>Loading...</div>}>
-          <Repositories pageContext={pageContext} />
+          <RepositoryGrid pageContext={pageContext} />
         </Suspense>
       </main>
     </>

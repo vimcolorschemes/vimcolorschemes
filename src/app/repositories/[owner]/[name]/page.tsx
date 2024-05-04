@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import RepositoriesService from '@/services/repositories';
 
 import Preview from '@/components/preview';
+import RepositoryTitle from '@/components/repositoryTitle';
 import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
@@ -30,14 +31,22 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     <>
       <Header />
       <main className={styles.container}>
-        <h1>{repository.key}</h1>
-        {repository.flattenedColorschemes.map((colorscheme, index) => (
-          <Preview
-            key={index}
-            colorscheme={colorscheme}
-            background={colorscheme.backgrounds[0]}
-          />
-        ))}
+        <RepositoryTitle repository={repository} />
+        <p>{repository.description}</p>
+        {repository.flattenedColorschemes.length > 1 && (
+          <p>
+            {repository.flattenedColorschemes.length} colorscheme variations
+          </p>
+        )}
+        <div className={styles.repositories}>
+          {repository.flattenedColorschemes.map((colorscheme, index) => (
+            <Preview
+              key={index}
+              colorscheme={colorscheme}
+              background={colorscheme.backgrounds[0]}
+            />
+          ))}
+        </div>
       </main>
     </>
   );
