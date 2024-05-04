@@ -1,8 +1,12 @@
+import ColorschemeData from '@/models/colorschemeData';
+import ColorschemeDTO from '@/models/DTO/colorscheme';
+
 import Backgrounds, { Background } from '@/lib/backgrounds';
 import Editors, { Editor } from '@/lib/editors';
 
-import ColorschemeDTO, { ColorschemeDataDTO } from './DTO/colorscheme';
-
+/**
+ * Represents a colorscheme. A colorscheme can have multiple backgrounds, each with its own color data.
+ */
 class Colorscheme {
   name: string;
   data: ColorschemeData;
@@ -60,27 +64,5 @@ class Colorscheme {
     );
   }
 }
-
-export class ColorschemeData {
-  light: ColorschemeGroup[] | null;
-  dark: ColorschemeGroup[] | null;
-
-  constructor(dto: ColorschemeDataDTO | null) {
-    this.light = !!dto?.light?.length ? dto.light : null;
-    this.dark = !!dto?.dark?.length ? dto.dark : null;
-  }
-
-  /**
-   * @returns a DTO representation of the colorscheme data.
-   */
-  get dto(): ColorschemeDataDTO {
-    return { light: this.light, dark: this.dark };
-  }
-}
-
-export type ColorschemeGroup = {
-  name: string;
-  hexCode: string;
-};
 
 export default Colorscheme;

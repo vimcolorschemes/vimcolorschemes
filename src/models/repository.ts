@@ -5,6 +5,9 @@ import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
 import Owner from './owner';
 
+/**
+ * Represents a repository containing one or multiple colorschemes.
+ */
 class Repository {
   name: string;
   owner: Owner;
