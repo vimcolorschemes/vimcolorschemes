@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "classnames": "^2.5.1",
+    "date-fns": "^3.6.0",
     "mongoose": "^8.3.1",
     "next": "^14.1.4",
     "react": "^18",

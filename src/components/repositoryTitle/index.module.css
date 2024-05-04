@@ -1,4 +1,28 @@
-.container > *:last-child {
-  font-size: var(--font-size-xl);
+.container {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow-wrap: break-word;
+}
+
+/* TODO: Make the title wrap */
+
+.title > *:last-child {
   font-weight: 700;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-md);
+  margin-bottom: var(--spacing-xs);
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xxs);
 }

@@ -10,6 +10,7 @@
   flex: 1;
   padding: var(--spacing-xs);
   font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
 }
 .input::-webkit-search-cancel-button,
 .input::-webkit-search-decoration {

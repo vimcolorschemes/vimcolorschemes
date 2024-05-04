@@ -1,5 +1,8 @@
 import Repository from '@/models/repository';
 
+import IconStar from '@/components/ui/icons/star';
+import IconTrending from '@/components/ui/icons/trending';
+
 import styles from './index.module.css';
 
 type RepositoryTitleProps = {
@@ -16,9 +19,23 @@ export default function RepositoryTitle({
 }: RepositoryTitleProps) {
   const Component = (as as keyof JSX.IntrinsicElements) ?? 'h1';
   return (
-    <Component className={styles.container}>
-      <div>{repository.owner.name}</div>
-      <div>{repository.name}</div>
-    </Component>
+    <div className={styles.container}>
+      <Component className={styles.title}>
+        <div>{repository.owner.name}</div>
+        <div>{repository.name}</div>
+      </Component>
+      <div className={styles.stats}>
+        <p className={styles.stat}>
+          <IconStar />
+          <strong>{repository.stargazersCount}</strong>
+        </p>
+        <p className={styles.stat}>
+          <IconTrending />
+          <span>
+            <strong>{repository.weekStargazersCount}</strong>/week
+          </span>
+        </p>
+      </div>
+    </div>
   );
 }

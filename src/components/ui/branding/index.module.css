@@ -3,11 +3,13 @@
   align-items: center;
   column-gap: var(--spacing-xs);
   font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
 }
 
 @media (min-width: 992px) {
   .container {
     font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
   }
 }
 
