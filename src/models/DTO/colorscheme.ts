@@ -1,4 +1,4 @@
-import ColorschemeDataDTO from '@/models/colorschemeData';
+import ColorschemeDataDTO from '@/models/DTO/colorschemeData';
 
 import { Background } from '@/lib/backgrounds';
 
