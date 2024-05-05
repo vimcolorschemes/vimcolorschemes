@@ -21,18 +21,22 @@ export default function Radio<T extends string>({
   return (
     <fieldset className={styles.container}>
       <legend className={styles.legend}>{name}:</legend>
-      {options.map(option => (
-        <label key={option.value ?? 'any'} className={styles.option}>
-          <input
-            type="radio"
-            name={name}
-            value={option.value}
-            checked={value === option.value}
-            onChange={() => onChange(option.value)}
-          />
-          <span className={styles.label}>{option.label}</span>
-        </label>
-      ))}
+      <div className={styles.options}>
+        {options.map(option => (
+          <label key={option.value ?? 'any'} className={styles.option}>
+            <input
+              type="radio"
+              name={name}
+              value={option.value}
+              checked={value === option.value}
+              onChange={() => onChange(option.value)}
+              className={styles.input}
+            />
+            <span className={styles.indicator} />
+            <span className={styles.label}>{option.label}</span>
+          </label>
+        ))}
+      </div>
     </fieldset>
   );
 }

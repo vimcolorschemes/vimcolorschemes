@@ -25,16 +25,14 @@ export default function BackgroundInput() {
   }
 
   return (
-    <Radio
+    <Radio<Background>
       name="background"
       value={pageContext.filter.background}
       onChange={onChange}
       options={[
         { value: undefined, label: 'all' },
-        ...Object.values(Backgrounds).map(background => ({
-          value: background,
-          label: background,
-        })),
+        { value: Backgrounds.Dark, label: 'dark' },
+        { value: Backgrounds.Light, label: 'light' },
       ]}
     />
   );

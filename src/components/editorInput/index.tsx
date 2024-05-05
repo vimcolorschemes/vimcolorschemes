@@ -25,16 +25,14 @@ export default function EditorInput() {
   }
 
   return (
-    <Radio
+    <Radio<Editor>
       name="editor"
       value={pageContext.filter.editor}
       onChange={onChange}
       options={[
         { value: undefined, label: 'all' },
-        ...Object.values(Editors).map(editor => ({
-          value: editor,
-          label: editor,
-        })),
+        { value: Editors.Vim, label: 'vim' },
+        { value: Editors.Neovim, label: 'neovim' },
       ]}
     />
   );
