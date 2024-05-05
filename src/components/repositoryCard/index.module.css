@@ -8,3 +8,10 @@
   flex-direction: column;
   row-gap: var(--spacing-sm);
 }
+
+.info:hover {
+  text-decoration: none;
+}
+.info:hover .title {
+  text-decoration: underline;
+}

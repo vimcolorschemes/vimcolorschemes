@@ -28,10 +28,12 @@ export default function RepositoryCard({
         className={styles.preview}
       />
       <Link href={repository.route} className={styles.info}>
-        <RepositoryTitle repository={repository} as="h2" />
-        <div>
-          <p>{repository.description}</p>
-        </div>
+        <RepositoryTitle
+          repository={repository}
+          as="h2"
+          classNames={{ title: styles.title }}
+        />
+        <p>{repository.description}</p>
         <div>
           <p>
             created{' '}

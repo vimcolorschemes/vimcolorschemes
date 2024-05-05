@@ -28,10 +28,6 @@
   white-space: nowrap;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
 .link.accent {
   color: var(--foreground-accent);
 }

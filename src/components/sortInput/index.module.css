@@ -28,9 +28,3 @@
 .option.active {
   color: var(--foreground-accent);
 }
-
-.option:not(.active):hover,
-.option:not(.active):focus-visible {
-  color: var(--foreground-accent);
-  text-decoration: underline;
-}

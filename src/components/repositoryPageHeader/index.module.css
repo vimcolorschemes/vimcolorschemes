@@ -11,15 +11,15 @@
   cursor: pointer;
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
 .back {
   background: none;
   border: none;
   font-size: inherit;
   line-height: inherit;
+}
+
+.back:hover {
+  text-decoration: underline;
 }
 
 .back > svg {
