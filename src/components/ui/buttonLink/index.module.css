@@ -1,8 +1,0 @@
-.container {
-  width: min-content;
-  background: var(--background);
-  border: 2px solid var(--border-color);
-  border-radius: 5px;
-  padding: var(--spacing-xxs) var(--spacing-md);
-  cursor: pointer;
-}

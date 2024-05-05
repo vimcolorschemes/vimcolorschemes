@@ -1,8 +1,11 @@
+import cn from 'classnames';
+import Link from 'next/link';
+
 import PageContext from '@/lib/pageContext';
 
 import FilterHelper from '@/helpers/filter';
 
-import ButtonLink from '@/components/ui/buttonLink';
+import IconArrow from '@/components/ui/icons/arrow';
 
 import styles from './index.module.css';
 
@@ -32,17 +35,25 @@ export default function Pagination({
   return (
     <nav className={styles.container}>
       {hasPrevious && (
-        <ButtonLink href={getPageURL(page - 1)} className={styles.previous}>
-          Previous
-        </ButtonLink>
+        <Link
+          href={getPageURL(page - 1)}
+          className={cn(styles.button, styles.previous)}
+        >
+          <IconArrow />
+          previous
+        </Link>
       )}
       <span className={styles.page}>
         {page}/{pageCount}
       </span>
       {hasNext && (
-        <ButtonLink href={getPageURL(page + 1)} className={styles.next}>
-          Next
-        </ButtonLink>
+        <Link
+          href={getPageURL(page + 1)}
+          className={cn(styles.button, styles.next)}
+        >
+          next
+          <IconArrow />
+        </Link>
       )}
     </nav>
   );
