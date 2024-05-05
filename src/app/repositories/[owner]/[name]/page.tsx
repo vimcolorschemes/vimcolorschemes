@@ -48,7 +48,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
       <main className={styles.container}>
         <RepositoryPageHeader repositoryKey={repository.key} />
         <RepositoryTitle repository={repository} />
-        <p>{repository.description}</p>
+        <p className={styles.description}>{repository.description}</p>
         <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
       </main>
     </>

@@ -1,8 +1,18 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: 1fr;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-md);
   margin-top: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .container:not(:has(> :only-child)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .container:has(> :only-child) {
+    grid-template-columns: fit-content(50rem);
+  }
 }

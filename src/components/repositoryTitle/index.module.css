@@ -1,12 +1,12 @@
 .container {
-  max-width: 100%;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  overflow-wrap: break-word;
+  column-gap: var(--spacing-xs);
 }
 
-/* TODO: Make the title wrap */
+.title {
+  overflow-wrap: anywhere
+}
 
 .title > *:last-child {
   font-weight: 700;

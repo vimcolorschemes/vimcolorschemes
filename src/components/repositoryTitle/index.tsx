@@ -29,12 +29,14 @@ export default function RepositoryTitle({
           <IconStar />
           <strong>{repository.stargazersCount}</strong>
         </p>
-        <p className={styles.stat}>
-          <IconTrending />
-          <span>
-            <strong>{repository.weekStargazersCount}</strong>/week
-          </span>
-        </p>
+        {repository.weekStargazersCount > 0 && (
+          <p className={styles.stat}>
+            <IconTrending />
+            <span>
+              <strong>{repository.weekStargazersCount}</strong>/week
+            </span>
+          </p>
+        )}
       </div>
     </div>
   );

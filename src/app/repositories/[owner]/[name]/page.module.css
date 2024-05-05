@@ -6,3 +6,7 @@
   flex-direction: column;
   row-gap: var(--spacing-sm);
 }
+
+.description {
+  max-width: 40rem;
+}

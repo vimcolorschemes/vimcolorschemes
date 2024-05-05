@@ -18,6 +18,7 @@ export default function ColorschemesGrid({
           key={index}
           colorscheme={colorscheme}
           background={colorscheme.backgrounds[0]}
+          className={styles.item}
         />
       ))}
     </div>
