@@ -1,29 +1,8 @@
-.notFound {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
 .container {
   width: 100%;
   max-width: var(--content-max-width);
   padding: var(--content-padding);
   display: flex;
   flex-direction: column;
-  row-gap: var(--spacing-md);
-}
-
-.title {
-  font-size: var(--font-size-xl);
-  font-weight: bold;
-}
-
-.repositories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-md);
+  row-gap: var(--spacing-sm);
 }

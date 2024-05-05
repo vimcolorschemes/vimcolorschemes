@@ -24,8 +24,12 @@
 .link {
   display: flex;
   align-items: center;
-  column-gap: var(--spacing-xs);
+  column-gap: var(--spacing-xxs);
   white-space: nowrap;
+}
+
+.link:hover {
+  text-decoration: underline;
 }
 
 .link.accent {

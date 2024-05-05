@@ -2,7 +2,9 @@ import { Metadata } from 'next';
 
 import RepositoriesService from '@/services/repositories';
 
-import Preview from '@/components/preview';
+import ColorschemesGrid from '@/components/colorschemesGrid';
+import RepositoryNotFound from '@/components/repositoryNotFound';
+import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
 import Header from '@/components/ui/header';
 
@@ -35,16 +37,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     return (
       <>
         <Header />
-        <main className={styles.notFound}>
-          <p>
-            <strong>404: </strong>
-            repository{' '}
-            <strong>
-              {params.owner}/{params.name}
-            </strong>{' '}
-            not found.
-          </p>
-        </main>
+        <RepositoryNotFound key={`${params.owner}/${params.name}`} />
       </>
     );
   }
@@ -53,22 +46,10 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     <>
       <Header />
       <main className={styles.container}>
+        <RepositoryPageHeader repositoryKey={repository.key} />
         <RepositoryTitle repository={repository} />
         <p>{repository.description}</p>
-        {repository.flattenedColorschemes.length > 1 && (
-          <p>
-            {repository.flattenedColorschemes.length} colorscheme variations
-          </p>
-        )}
-        <div className={styles.repositories}>
-          {repository.flattenedColorschemes.map((colorscheme, index) => (
-            <Preview
-              key={index}
-              colorscheme={colorscheme}
-              background={colorscheme.backgrounds[0]}
-            />
-          ))}
-        </div>
+        <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
       </main>
     </>
   );

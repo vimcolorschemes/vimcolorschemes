@@ -100,7 +100,10 @@ async function getAllRepositories(): Promise<Repository[]> {
  *
  * @returns The repository.
  */
-async function getRepository(owner: string, name: string): Promise<Repository | null> {
+async function getRepository(
+  owner: string,
+  name: string,
+): Promise<Repository | null> {
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.aggregate([

@@ -1,8 +1,8 @@
-type IconNextProps = {
+type IconArrowProps = {
   className?: string;
 };
 
-export default function IconNext({ className }: IconNextProps) {
+export default function IconArrow({ className }: IconArrowProps) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -16,8 +16,7 @@ export default function IconNext({ className }: IconNextProps) {
       strokeLinejoin="round"
       className={className}
     >
-      <circle cx="12" cy="12" r="10" />
-      <path d="m12 16 4-4-4-4M8 12h8" />
+      <path d="M19 12H5M12 19l-7-7 7-7" />
     </svg>
   );
 }

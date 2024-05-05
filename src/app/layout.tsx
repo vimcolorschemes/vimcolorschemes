@@ -7,6 +7,7 @@ import Footer from '@/components/ui/footer';
 
 import './reset.css';
 import './globals.css';
+import './vim.css';
 
 const fontStandard = Source_Sans_3({
   subsets: ['latin'],

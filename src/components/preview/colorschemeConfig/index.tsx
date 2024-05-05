@@ -6,7 +6,7 @@ import { Background } from '@/lib/backgrounds';
 import Editors from '@/lib/editors';
 
 import Code from '@/components/ui/code';
-import IconNext from '@/components/ui/icons/next';
+import IconCircledArrow from '@/components/ui/icons/circledArrow';
 
 import styles from './index.module.css';
 
@@ -105,7 +105,7 @@ function Button({ children, onClick }: ButtonProps) {
       className={styles.button}
     >
       {children}
-      {onClick && <IconNext />}
+      {onClick && <IconCircledArrow />}
     </button>
   );
 }
