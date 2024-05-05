@@ -19,7 +19,8 @@
     "test": "vitest run",
     "test.watch": "vitest",
     "format": "prettier --write .",
-    "format.check": "prettier --check ."
+    "format.check": "prettier --check .",
+    "seed": "./database/seed"
   },
   "dependencies": {
     "classnames": "^2.5.1",
