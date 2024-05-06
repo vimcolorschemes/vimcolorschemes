@@ -1,7 +1,7 @@
 .github/
 .cache/
 public/
-seed/
+database/
 
 README.md
 
