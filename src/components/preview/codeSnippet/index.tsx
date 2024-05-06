@@ -55,26 +55,26 @@ export default function CodeSnippet() {
         <span className="vimParenSep">)</span>
       </div>
       <div className="CursorLineBg">
-        <span className="vimLet">{'  '}let</span>
-        <span className="vimFuncBody"> </span>
-        <span className="vimVar">l:green</span>
-        <span className="vimFuncBody"> </span>
-        <span className="vimOper">=</span>
-        <span className="vimFuncBody"> </span>
-        <span className="vimFuncName">str2nr</span>
-        <span className="vimParenSep">(</span>
-        <span className="vimSubst">substitute</span>
-        <span className="vimParenSep">(</span>
-        <span className="vimOperParen">l:raw_color, </span>
-        <span className="vimString">{"'.{2}(.{2}).{2}'"}</span>
-        <span className="vimOperParen">, </span>
-        <span className="vimString">{"'1'"}</span>
-        <span className="vimOperParen">, </span>
-        <span className="vimString">{"'g'"}</span>
-        <span className="vimParenSep">)</span>
-        <span className="vimFuncBody">, </span>
-        <span className="vimNumber">16</span>
-        <span className="vimParenSep">)</span>
+        <span className="vimLet CursorLineBg">{'  '}let</span>
+        <span className="vimFuncBody CursorLineBg"> </span>
+        <span className="vimVar CursorLineBg">l:green</span>
+        <span className="vimFuncBody CursorLineBg"> </span>
+        <span className="vimOper CursorLineBg">=</span>
+        <span className="vimFuncBody CursorLineBg"> </span>
+        <span className="vimFuncName CursorLineBg">str2nr</span>
+        <span className="vimParenSep CursorLineBg">(</span>
+        <span className="vimSubst CursorLineBg">substitute</span>
+        <span className="vimParenSep CursorLineBg">(</span>
+        <span className="vimOperParen CursorLineBg">l:raw_color, </span>
+        <span className="vimString CursorLineBg">{"'.{2}(.{2}).{2}'"}</span>
+        <span className="vimOperParen CursorLineBg">, </span>
+        <span className="vimString CursorLineBg">{"'1'"}</span>
+        <span className="vimOperParen CursorLineBg">, </span>
+        <span className="vimString CursorLineBg">{"'g'"}</span>
+        <span className="vimParenSep CursorLineBg">)</span>
+        <span className="vimFuncBody CursorLineBg">, </span>
+        <span className="vimNumber CursorLineBg">16</span>
+        <span className="vimParenSep CursorLineBg">)</span>
       </div>
       <div>
         <span className="vimLet">{'  '}let</span>

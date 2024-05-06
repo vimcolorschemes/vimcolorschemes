@@ -78,14 +78,12 @@ function InitLua({
         </span>
       </div>
       <div>
-        <span className="vimCommand">vim.cmd</span>
-        <span className="vimParenSep">{'('}</span>
+        <span className="vimCommand">{'vim.cmd.colorscheme '}</span>
         <span className="vimString">
-          {'"colorscheme '}
+          {'"'}
           <Button onClick={onToggleColorscheme}>{colorscheme.name}</Button>
           {'"'}
         </span>
-        <span className="vimParenSep">{')'}</span>
       </div>
     </>
   );

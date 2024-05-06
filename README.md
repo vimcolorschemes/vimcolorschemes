@@ -62,7 +62,7 @@ Developers, check out the [development guide](https://docs.vimcolorschemes.com/#
 
 ## Credits ✨
 
-Credit goes to all the creators of vim color schemes around GitHub 🎉
+Credit goes to all the creators of vim color schemes around Github 🎉
 
 Thanks also goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

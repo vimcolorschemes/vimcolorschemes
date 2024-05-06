@@ -9,6 +9,7 @@
   align-items: center;
   column-gap: var(--spacing-xxs);
   cursor: pointer;
+  padding: 0;
 }
 
 .back {
@@ -16,6 +17,7 @@
   border: none;
   font-size: inherit;
   line-height: inherit;
+  color: var(--foreground);
 }
 
 .back:hover {

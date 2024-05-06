@@ -1,7 +1,7 @@
 .container {
   width: 100%;
   max-width: 40rem;
-  padding: 0 var(--spacing-lg);
+  padding: var(--content-padding);
 }
 
 .container h1 {

@@ -60,7 +60,7 @@ export default function AboutPage() {
 
         <h2>Is your colorscheme not showing up?</h2>
         <p>
-          vimcolorschemes scans GitHub every day looking for new colorschemes to
+          vimcolorschemes scans Github every day looking for new colorschemes to
           feature.
         </p>
         <p>
@@ -86,12 +86,12 @@ export default function AboutPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            create an issue on the GitHub repository.
+            create an issue on the Github repository.
           </a>
         </p>
 
         <h2>Credits</h2>
-        <p>All credit goes to the creators of colorschemes around GitHub. 🌞</p>
+        <p>All credit goes to the creators of colorschemes around Github. 🌞</p>
       </main>
     </>
   );

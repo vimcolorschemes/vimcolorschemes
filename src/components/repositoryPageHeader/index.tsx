@@ -42,7 +42,7 @@ export default function RepositoryPageHeader({
         rel="noopener noreferrer"
         className={styles.link}
       >
-        follow <strong className={styles.desktop}>{repositoryKey} </strong>on
+        view <strong className={styles.desktop}>{repositoryKey} </strong>on
         Github
         <IconGithub />
       </a>
