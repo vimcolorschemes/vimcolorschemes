@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  position: relative;
+  height: 1.75rem;
+}
+
+.button,
+.page {
+  position: absolute;
+  top: 50%;
+}
+
+.page {
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xxs);
+  transform: translateY(-50%);
+}
+
+.button > svg {
+  width: 1.25rem;
+}
+
+.button.next {
+  right: 0;
+}
+
+.button.next > svg {
+  transform: rotate(180deg);
+}

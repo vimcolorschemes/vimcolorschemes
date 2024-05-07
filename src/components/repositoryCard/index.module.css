@@ -1,0 +1,17 @@
+.preview {
+  margin-bottom: var(--spacing-sm);
+  overflow-wrap: break-word;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-sm);
+}
+
+.info:hover {
+  text-decoration: none;
+}
+.info:hover .title {
+  text-decoration: underline;
+}

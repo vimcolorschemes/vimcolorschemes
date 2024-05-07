@@ -1,0 +1,12 @@
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-sm);
+}
+
+.description {
+  max-width: 40rem;
+}

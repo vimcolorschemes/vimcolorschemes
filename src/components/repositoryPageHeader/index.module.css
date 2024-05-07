@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xxs);
+  cursor: pointer;
+  padding: 0;
+}
+
+.back {
+  background: none;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  color: var(--foreground);
+}
+
+.back:hover {
+  text-decoration: underline;
+}
+
+.back > svg {
+  width: 1.25rem;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .desktop {
+    display: inline;
+  }
+}

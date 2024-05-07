@@ -1,0 +1,24 @@
+.container {
+  background: var(--colorscheme-NormalBg);
+  color: var(--colorscheme-NormalFg);
+
+  --code-status-line-background: var(
+    --colorscheme-StatusLineBg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-status-line-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--colorscheme-NormalFg)
+  );
+
+  --code-gutter-background: var(
+    --colorscheme-LineNrBg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-gutter-foreground: var(
+    --colorscheme-LineNrFg,
+    var(--colorscheme-NormalBg)
+  );
+  --code-gutter-active-background: var(--colorscheme-CursorLineNrBg);
+  --code-gutter-active-foreground: var(--colorscheme-CursorLineNrFg);
+}

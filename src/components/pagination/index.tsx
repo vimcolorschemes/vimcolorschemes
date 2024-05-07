@@ -1,120 +1,60 @@
-import React, { useMemo } from 'react';
-import { Link } from 'gatsby';
+import cn from 'classnames';
+import Link from 'next/link';
 
-import URLHelper from '@/helpers/url';
-import { Action } from '@/lib/actions';
-import Background from '@/lib/background';
+import PageContext from '@/lib/pageContext';
 
-import IconArrow from '@/components/icons/arrow';
+import FilterHelper from '@/helpers/filter';
 
-import './index.scss';
+import IconArrow from '@/components/ui/icons/arrow';
 
-interface PageLinkProps {
-  to?: string;
-  onClick?: () => void;
-  children: React.ReactNode;
-}
+import styles from './index.module.css';
 
-function PageLink({ to, onClick, children }: PageLinkProps) {
-  if (to) {
-    return (
-      <Link to={to} className="pagination__link" data-focusable>
-        {children}
-      </Link>
-    );
-  }
-
-  function onLinkClick() {
-    if (typeof window !== 'undefined') {
-      scrollTo({ top: 0 });
-    }
-
-    if (onClick) {
-      onClick();
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      className="pagination__link"
-      onClick={onLinkClick}
-      data-focusable
-    >
-      {children}
-    </button>
-  );
-}
-
-interface PaginationProps {
-  activeAction: Action;
-  activeFilters: Background[];
-  currentPage: number;
-  onChange?: (page: number) => void;
+type PaginationProps = {
+  pageContext: PageContext;
   pageCount: number;
-}
+};
 
-function Pagination({
-  activeAction,
-  activeFilters,
-  currentPage,
-  onChange,
+export default function Pagination({
+  pageContext,
   pageCount,
 }: PaginationProps) {
-  const isFirstPage = useMemo(() => currentPage === 1, [currentPage]);
-  const isLastPage = useMemo(
-    () => currentPage === pageCount,
-    [currentPage, pageCount],
-  );
+  const page = pageContext.filter.page || 1;
+  const hasPrevious = page > 1;
+  const hasNext = page < pageCount;
 
-  const routePrefix = useMemo(() => {
-    if (activeFilters.length === 1) {
-      return `/${activeFilters[0]}`;
-    }
+  function getPageURL(page: number): string {
+    const newFilter = { ...pageContext.filter };
+    delete newFilter.page;
+    return `/${pageContext.sort}/${FilterHelper.getURLFromFilter({ ...newFilter, page })}`;
+  }
 
-    return '';
-  }, [activeFilters]);
+  if (pageCount <= 1) {
+    return null;
+  }
 
   return (
-    <div className="pagination">
-      <div>
-        {!isFirstPage && (
-          <PageLink
-            to={
-              !onChange
-                ? URLHelper.paginateRoute(activeAction.route, currentPage - 1)
-                : undefined
-            }
-            onClick={onChange ? () => onChange(currentPage - 1) : undefined}
-          >
-            <IconArrow className="pagination__icon" left />
-            <span>Previous page</span>
-          </PageLink>
-        )}
-      </div>
-      <div>
-        {currentPage}/{pageCount}
-      </div>
-      <div>
-        {!isLastPage && (
-          <PageLink
-            to={
-              !onChange
-                ? URLHelper.paginateRoute(
-                    routePrefix + activeAction.route,
-                    currentPage + 1,
-                  )
-                : undefined
-            }
-            onClick={onChange ? () => onChange(currentPage + 1) : undefined}
-          >
-            <span>Next page</span>
-            <IconArrow className="pagination__icon" />
-          </PageLink>
-        )}
-      </div>
-    </div>
+    <nav className={styles.container}>
+      {hasPrevious && (
+        <Link
+          href={getPageURL(page - 1)}
+          className={cn(styles.button, styles.previous)}
+        >
+          <IconArrow />
+          previous
+        </Link>
+      )}
+      <span className={styles.page}>
+        {page}/{pageCount}
+      </span>
+      {hasNext && (
+        <Link
+          href={getPageURL(page + 1)}
+          className={cn(styles.button, styles.next)}
+        >
+          next
+          <IconArrow />
+        </Link>
+      )}
+    </nav>
   );
 }
-
-export default Pagination;

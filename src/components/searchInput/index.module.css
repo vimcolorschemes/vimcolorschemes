@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px var(--foreground);
+  width: 15rem;
+}
+
+.input {
+  border: none;
+  flex: 1;
+  padding: var(--spacing-xs);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  background: none;
+}
+.input::-webkit-search-cancel-button,
+.input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+.input::placeholder {
+  color: var(--foreground);
+  opacity: 0.5;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.shortcut.inFocus {
+  display: none;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.input:focus ~ .shortcut.inFocus {
+  display: inline;
+}
+.shortcut.outOfFocus {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.input:focus ~ .shortcut.outOfFocus {
+  display: none;
+}

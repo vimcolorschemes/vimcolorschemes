@@ -1,19 +1,19 @@
-# Vim color scheme code previews
+# Colorscheme code previews
 
 ## Collecting the colors
 
-During the `generate` job of [The Worker](/worker), all potential vim color
-scheme files are searched for.
+During the `generate` job of [The Worker](/worker), all potential colorschemes
+are downloaded on the server.
 
-Using those files, a real vim instance is launched and all color scheme a
-variants are tried (color scheme names, and `light` or `dark` backgrounds) on a
-very specific code sample.
+Using those files, a real neovim instance is launched and all colorscheme
+variants are tried (colorscheme names found, as well as `light` and `dark`
+backgrounds) on a very specific code snippet.
 
 Using vim functions, the cursor runs through all the words of the assigned code
-sample, and the color under the cursor is stored. The data is stored into the
-database entry for each color scheme.
+snippet, and the color as well as the group name under the cursor are stored.
+The data is stored into the database entry for each colorscheme.
 
-Here is an example of what the data looks like for a color scheme after a
+Here is an example of what the data looks like for a colorscheme after a
 `generate` job:
 
 ```json

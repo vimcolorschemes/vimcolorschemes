@@ -7,7 +7,7 @@
 
 > The official developer documentation for vimcolorschemes.com
 
-[GitHub](https://github.com/vimcolorschemes/vimcolorschemes)
+[Github](https://github.com/vimcolorschemes/vimcolorschemes)
 [Get Started](#main)
 
 ![color](#f0f0f0)

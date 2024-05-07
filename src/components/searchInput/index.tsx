@@ -1,91 +1,51 @@
-import React, { RefObject, useRef, useState } from 'react';
+'use client';
 
-import Keys from '@/lib/keys';
-import useShortcut from '@/hooks/shortcut';
+import cn from 'classnames';
+import { usePathname, useRouter } from 'next/navigation';
+import { FormEvent, useState } from 'react';
 
-import IconEnter from '@/components/icons/enter';
-import IconForwardSlash from '@/components/icons/forwardSlash';
+import FilterHelper from '@/helpers/filter';
+import PageContextHelper from '@/helpers/pageContext';
 
-import './index.scss';
+import IconEnter from '@/components/ui/icons/enter';
+import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 
-interface Props {
-  value: string;
-  onChange: (value: string) => void;
-}
+import styles from './index.module.css';
 
-type IconName = 'Search' | 'Enter';
+export default function SearchInput() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const pageContext = PageContextHelper.get(pathname.split('/').slice(1));
 
-const Icons: Record<IconName, React.ReactNode> = {
-  Search: (
-    <IconForwardSlash className="search-input__icon search-input__icon--short" />
-  ),
-  Enter: <IconEnter className="search-input__icon" />,
-};
+  const [value, setValue] = useState<string>(pageContext.filter.search || '');
 
-function SearchInput({ value, onChange }: Props) {
-  const [icon, setIcon] = useState<React.ReactNode>(Icons.Search);
-
-  const searchInputWrapperRef = useRef<HTMLButtonElement>(null);
-  const searchInputRef = useRef<HTMLInputElement>(null);
-
-  function focusOnRef(ref: RefObject<HTMLElement>) {
-    ref?.current?.focus();
+  function onSubmit(event: FormEvent) {
+    event.preventDefault();
+    search(value);
   }
 
-  useShortcut({
-    [Keys.Search]: event => {
-      event.preventDefault();
-      focusOnRef(searchInputRef);
-    },
-    [Keys.Undo]: () => onChange(''),
-  });
+  function search(value: string) {
+    delete pageContext.filter.search;
+    delete pageContext.filter.page;
+    const url = FilterHelper.getURLFromFilter({
+      ...pageContext.filter,
+      ...(value ? { search: value } : {}),
+    });
+    router.replace(`/${pageContext.sort}/${url}`);
+  }
 
   return (
-    <div className="search-input">
-      <button
-        type="button"
-        ref={searchInputWrapperRef}
-        className="search-input__overlay-button"
-        aria-label={'Search. Press Enter to focus on search input.'}
-        onClick={() => {
-          focusOnRef(searchInputRef);
-        }}
-        data-focusable
+    <form onSubmit={onSubmit} className={styles.container}>
+      <input
+        name="search"
+        type="search"
+        placeholder="search"
+        value={value}
+        onChange={event => setValue(event.target.value)}
+        className={styles.input}
       />
-      <label className="search-input__input-wrapper">
-        <input
-          type="text"
-          tabIndex={-1}
-          ref={searchInputRef}
-          placeholder="dark, low contrast, ..."
-          aria-label={
-            'Write a search query and press Enter to focus out of input.'
-          }
-          className="search-input__input"
-          value={value}
-          onChange={event => {
-            onChange(event.target.value);
-          }}
-          onFocus={event => {
-            event.target.value = '';
-            event.target.value = value;
-            event.target.select();
-            setIcon(Icons.Enter);
-          }}
-          onBlur={() => setIcon(Icons.Search)}
-          onKeyDown={event => {
-            if (['Enter', 'Escape'].includes(event.key)) {
-              event.preventDefault();
-              focusOnRef(searchInputWrapperRef);
-            }
-          }}
-        />
-        <span className="search-input__icon-wrapper" aria-hidden>
-          {icon}
-        </span>
-      </label>
-    </div>
+      <IconEnter className={cn(styles.shortcut, styles.inFocus)} />
+      <IconForwardSlash className={cn(styles.shortcut, styles.outOfFocus)} />
+    </form>
   );
 }
-
-export default SearchInput;

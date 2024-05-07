@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--content-padding);
+  padding-top: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  justify-content: space-between;
+}
+
+.container.isOnlyBranding {
+  align-items: flex-start;
+}
+
+@media (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+}

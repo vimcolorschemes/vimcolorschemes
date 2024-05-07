@@ -1,6 +1,8 @@
 .github/
 .cache/
 public/
-seed/
+database/
 
 README.md
+
+reset.css

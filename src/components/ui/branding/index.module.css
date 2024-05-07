@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xs);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-lg);
+}
+
+@media (min-width: 992px) {
+  .container {
+    font-size: var(--font-size-xl);
+    line-height: var(--line-height-xl);
+  }
+}
+
+.name {
+  color: var(--foreground-shade);
+}
+.name > span:last-child {
+  color: var(--foreground);
+}
+
+.logo {
+  width: auto;
+  height: 2.5em;
+  flex-shrink: 0;
+}

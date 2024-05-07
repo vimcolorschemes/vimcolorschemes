@@ -1,153 +1,117 @@
-import URLHelper from '../helpers/url';
-import { APIRepository } from './api';
-import Background from '../lib/background';
-import { VimColorScheme, VimColorSchemeData } from './vimColorScheme';
+import Backgrounds, { Background } from '@/lib/backgrounds';
+import Editors, { Editor } from '@/lib/editors';
 
-export const REPOSITORY_COUNT_PER_PAGE = 20;
+import Colorscheme from './colorscheme';
+import RepositoryDTO from './DTO/repository';
+import Owner from './owner';
 
-export class Repository {
+/**
+ * Represents a repository containing one or multiple colorschemes.
+ */
+class Repository {
   name: string;
   owner: Owner;
   description: string;
-  githubCreatedAt: string;
-  lastCommitAt: string;
+  githubCreatedAt: Date;
+  lastCommitAt: Date;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
-  isVim: boolean;
-  isLua: boolean;
-  vimColorSchemes: VimColorScheme[];
-  private _defaultBackground: Background;
+  colorschemes: Colorscheme[];
 
-  constructor(apiRepository: APIRepository) {
-    this.name = apiRepository.name;
-    this.owner = apiRepository.owner;
-    this.description = apiRepository.description;
-    this.githubCreatedAt = apiRepository.githubCreatedAt;
-    this.lastCommitAt = apiRepository.lastCommitAt;
-    this.githubURL = apiRepository.githubURL;
-    this.stargazersCount = apiRepository.stargazersCount;
-    this.weekStargazersCount = apiRepository.weekStargazersCount;
-
-    this.isVim = !!apiRepository.isVim;
-    this.isLua = !!apiRepository.isLua;
-    if (!this.isVim && !this.isLua) {
-      this.isVim = true;
-    }
-
-    let defaultBackground = Background.Light;
-
-    this.vimColorSchemes = (apiRepository.vimColorSchemes || []).reduce(
-      (vimColorSchemes, vimColorScheme) => {
-        if (vimColorScheme.valid) {
-          if (vimColorScheme.backgrounds.includes(Background.Dark)) {
-            defaultBackground = Background.Dark;
-          }
-
-          return [...vimColorSchemes, new VimColorScheme(vimColorScheme)];
-        }
-
-        return vimColorSchemes;
-      },
-      [] as VimColorScheme[],
+  constructor(dto: RepositoryDTO) {
+    this.name = dto.name;
+    this.owner = dto.owner;
+    this.description = dto.description;
+    this.githubCreatedAt = dto.githubCreatedAt;
+    this.lastCommitAt = dto.lastCommitAt;
+    this.githubURL = dto.githubURL;
+    this.stargazersCount = dto.stargazersCount;
+    this.weekStargazersCount = dto.weekStargazersCount;
+    this.colorschemes = (dto.colorschemes ?? []).map(
+      dto => new Colorscheme(dto),
     );
-
-    this._defaultBackground = defaultBackground;
-    this.sortVimColorSchemesByBackground();
   }
 
-  set defaultBackground(background: Background) {
-    this._defaultBackground = background;
-    this.sortVimColorSchemesByBackground();
-  }
-
-  private sortVimColorSchemesByBackground() {
-    this.vimColorSchemes = this.vimColorSchemes
-      .map(vimColorScheme => {
-        if (vimColorScheme.backgrounds.includes(this._defaultBackground)) {
-          vimColorScheme.defaultBackground = this._defaultBackground;
-        }
-        return vimColorScheme;
-      })
-      .sort((a, _b) => {
-        if (a.backgrounds.includes(this._defaultBackground)) {
-          return -1;
-        }
-
-        return 1;
-      });
-  }
-
-  get defaultBackground(): Background {
-    return this._defaultBackground;
-  }
-
+  /**
+   * @returns The unique key of the repository, used to identify it in various contexts.
+   */
   get key(): string {
     return `${this.owner.name}/${this.name}`;
   }
 
+  /**
+   * @returns The route of the repository, used to navigate to the repository page.
+   */
   get route(): string {
-    return `/${URLHelper.urlify(this.key)}`.toLowerCase();
+    return `/repositories/${this.key}`.toLowerCase();
   }
 
+  /**
+   * @returns The page title of the repository composed by the name and the owner's name.
+   */
   get title(): string {
     return `${this.name}, by ${this.owner.name}`;
   }
 
-  get previewRoute(): string {
-    return `${this.route}/preview`;
-  }
-
-  get previewImageRoute(): string {
-    return `/previews/${this.owner.name}.${this.name}.preview.png`;
-  }
-
-  // Return all color scheme variations in a flat list
-  get flattenedVimColorSchemes(): VimColorScheme[] {
-    return this.vimColorSchemes.reduce(
-      (vimColorSchemes: VimColorScheme[], vimColorScheme: VimColorScheme) => {
-        if (!vimColorScheme.valid) {
-          return vimColorSchemes;
-        }
-
-        const copies: VimColorScheme[] = vimColorScheme.backgrounds.map(
-          background => {
-            const copy = vimColorScheme.copy();
-            copy.data = new VimColorSchemeData(null);
-            copy.data[background] = vimColorScheme.data[background];
-            copy.backgrounds = [background];
-            copy.defaultBackground = background;
-            return copy;
-          },
-        );
-
-        return [...vimColorSchemes, ...copies];
-      },
-      [] as VimColorScheme[],
+  /**
+   * @returns A list of backgrounds used by the colorschemes in this repository.
+   */
+  get backgrounds(): Background[] {
+    return Array.from(
+      new Set(
+        this.colorschemes.flatMap(colorscheme => colorscheme.backgrounds),
+      ),
     );
   }
 
-  get defaultVimColorScheme(): VimColorScheme {
-    return this.flattenedVimColorSchemes[0];
+  /**
+   * @returns A list of editors used by the colorschemes in this repository.
+   */
+  get editors(): Editor[] {
+    return Array.from(
+      new Set(this.colorschemes.map(colorscheme => colorscheme.editor)),
+    );
+  }
+
+  /**
+   * @returns The DTO version of this repository. Equivalent of the object that comes from the API.
+   */
+  get dto(): RepositoryDTO {
+    return {
+      name: this.name,
+      owner: this.owner,
+      description: this.description,
+      githubCreatedAt: this.githubCreatedAt,
+      lastCommitAt: this.lastCommitAt,
+      githubURL: this.githubURL,
+      stargazersCount: this.stargazersCount,
+      weekStargazersCount: this.weekStargazersCount,
+      isLua: this.editors.includes(Editors.Neovim),
+      colorschemes: this.colorschemes.map(colorscheme => colorscheme.dto),
+    };
+  }
+
+  /**
+   * @returns a list of flat colorschemes, where each colorscheme has only one background.
+   */
+  get flattenedColorschemes(): Colorscheme[] {
+    return this.colorschemes.flatMap(colorscheme => colorscheme.flattened);
+  }
+
+  /**
+   * @param prioritizedBackground The background to prioritize if it's part of the colorscheme backgrounds.
+   * @returns The default colorscheme to display for the repository.
+   */
+  getDefaultColorscheme(prioritizedBackground?: Background): Colorscheme {
+    if (!prioritizedBackground) {
+      prioritizedBackground = Backgrounds.Dark;
+    }
+    const colorsheme = this.colorschemes.find(colorscheme =>
+      colorscheme.backgrounds.includes(prioritizedBackground),
+    );
+    return colorsheme || this.colorschemes[0];
   }
 }
 
-export interface Owner {
-  name: string;
-}
-
-export interface RepositoryPageContext {
-  ownerName: string;
-  name: string;
-}
-
-export type SortProperty = { [key in keyof Repository]: 'ASC' | 'DESC' };
-
-export interface RepositoriesPageContext {
-  skip: number;
-  limit: number;
-  sort: SortProperty[];
-  pageCount: number;
-  currentPage: number;
-  filters: Background[];
-}
+export default Repository;
