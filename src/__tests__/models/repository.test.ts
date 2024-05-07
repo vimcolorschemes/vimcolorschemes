@@ -101,7 +101,7 @@ describe('repository.flattenedColorschemes', () => {
     expect([
       ...repository.flattenedColorschemes[0].backgrounds,
       ...repository.flattenedColorschemes[1].backgrounds,
-    ]).toEqual(['light', 'dark']);
+    ]).toEqual(['dark', 'light']);
   });
 
   it('should return multiple colorschemes if there are multiple', () => {

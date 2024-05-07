@@ -5,7 +5,7 @@
 }
 
 .title {
-  overflow-wrap: anywhere
+  overflow-wrap: anywhere;
 }
 
 .title > *:last-child {

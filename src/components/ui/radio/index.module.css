@@ -19,7 +19,7 @@
   align-items: center;
   column-gap: var(--spacing-xxs);
   cursor: pointer;
-} 
+}
 
 .option:hover {
   text-decoration: underline;
