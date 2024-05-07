@@ -2,7 +2,7 @@
   <img alt="vimcolorschemes logo" src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/logo_text_horizontal.png" width="400" />
 </h1>
 <p align="center">
-  <b>Find the best vim color schemes around</b>
+  <b>Find the best vim/neovim colorschemes around</b>
 </p>
 
 <br>
@@ -35,20 +35,19 @@
 <br>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_light.png" alt="demo light background" width="49%">
-  <img src="https://raw.githubusercontent.com/vimcolorschemes/vimcolorschemes/main/docs/_media/demo_dark.png" alt="demo dark background" width="49%">
+  <img width="1038" alt="Screenshot 2024-05-06 at 9 31 56 PM" src="https://github.com/vimcolorschemes/vimcolorschemes/assets/5920450/f748a066-6a13-4a42-95c3-54ee635ba207">
 </p>
 
 ## Welcome 🎉
 
-[vimcolorschemes](https://vimcolorschemes.com) is a small constellation of projects working on the common goal of building the **ultimate resource** for vim users to find the **perfect color scheme** for their development environment.
+[vimcolorschemes](https://vimcolorschemes.com) is a small constellation of projects working on the common goal of building the **ultimate resource** for vim/neovim users to find the **perfect colorscheme** for their development environment.
 
-The **focus** here is always on the **content**. The **simple design** of the website makes the color schemes the focal point of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
+The **focus** is on the **content**. The **simple design** of the website make the colorschemes the focal point of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
 
 ## Key features 🚀
 
-- **Daily updated** list of hundreds of vim color scheme repositories
-- **Awesome vim (h, j, k, l) key bindings** to quickly navigate through the whole site
+- **Daily updated** list of thousands of vim/neovim colorscheme repositories
+- **Awesome vim (h, j, k, l) key bindings** to quickly navigate through the whole site (coming back soon™️)
 
 ## Get Involved
 
@@ -62,7 +61,7 @@ Developers, check out the [development guide](https://docs.vimcolorschemes.com/#
 
 ## Credits ✨
 
-Credit goes to all the creators of vim color schemes around Github 🎉
+Credit goes to all the creators of vim/neovim colorschemes around Github 🎉
 
 Thanks also goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
