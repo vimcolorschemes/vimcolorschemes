@@ -1,4 +1,4 @@
-name: unit tests
+name: run tests
 
 on:
   push:
@@ -15,4 +15,4 @@ jobs:
       with:
         node-version: 21
     - run: npm ci
-    - run: npm run test.unit
+    - run: npm test
