@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
@@ -55,6 +57,8 @@ export default function Layout({ children }: LayoutProps) {
       <body className={cn(fontStandard.variable, fontMono.variable)}>
         {children}
         <Footer />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
