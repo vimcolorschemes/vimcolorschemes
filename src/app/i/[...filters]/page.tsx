@@ -33,11 +33,11 @@ export default async function IndexPage({ params }: IndexPageProps) {
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
   if (!Object.values(SortOptions).includes(sort)) {
-    redirect(`/${SortOptions.Trending}/${validURL}`);
+    redirect(`/i/${SortOptions.Trending}/${validURL}`);
   }
 
   if (validURL !== filters.join('/')) {
-    redirect(`/${sort}/${validURL}`);
+    redirect(`/i/${sort}/${validURL}`);
   }
 
   return (
