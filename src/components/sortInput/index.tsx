@@ -26,7 +26,7 @@ export default function SortInput({ pageContext }: SortInputProps) {
               [styles.active]: pageContext.sort === option,
             })}
           >
-            <Link href={`/${option}/${url}`}>
+            <Link href={`/i/${option}/${url}`}>
               <p>{option}</p>
             </Link>
           </li>

@@ -68,7 +68,7 @@ describe('repository.key', () => {
 describe('repository.route', () => {
   it('should return the route of the repository', () => {
     const repository = new Repository(dtoLight);
-    expect(repository.route).toBe('/repositories/owner/repository');
+    expect(repository.route).toBe('/owner/repository');
   });
 });
 

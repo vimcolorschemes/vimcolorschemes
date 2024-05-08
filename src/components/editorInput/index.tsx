@@ -12,7 +12,7 @@ import Radio from '@/components/ui/radio';
 export default function EditorInput() {
   const router = useRouter();
   const pathname = usePathname();
-  const pageContext = PageContextHelper.get(pathname.split('/').slice(1));
+  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
 
   function onChange(editor?: Editor) {
     delete pageContext.filter.editor;
@@ -21,7 +21,7 @@ export default function EditorInput() {
       ...pageContext.filter,
       editor,
     });
-    router.push(`/${pageContext.sort}/${url}`);
+    router.push(`/i/${pageContext.sort}/${url}`);
   }
 
   return (

@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const background of [undefined, ...Object.values(Backgrounds)]) {
       for (const editor of [undefined, ...Object.values(Editors)]) {
         indexURLs.push({
-          url: `${process.env.APP_URL}/${sortOption}/${FilterHelper.getURLFromFilter({ background, editor })}`,
+          url: `${process.env.APP_URL}/i/${sortOption}/${FilterHelper.getURLFromFilter({ background, editor })}`,
           lastModified: new Date(),
           changeFrequency: 'daily' as const,
           priority: 1,
@@ -25,7 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const repositories = await RepositoriesService.getAllRepositories();
   const repositoryURLs = repositories.map(repository => ({
-    url: `${process.env.APP_URL}/repositories/${repository.key}`,
+    url: `${process.env.APP_URL}/${repository.key}`,
     lastModified: repository.lastCommitAt,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
