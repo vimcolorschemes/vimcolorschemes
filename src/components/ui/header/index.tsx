@@ -19,7 +19,7 @@ export default function Header({ pageContext }: HeaderProps) {
         [styles.isOnlyBranding]: !pageContext,
       })}
     >
-      <Link href="/" className={styles.link}>
+      <Link href="/i/trending" className={styles.link}>
         <Branding />
       </Link>
       {pageContext && <SortInput pageContext={pageContext} />}

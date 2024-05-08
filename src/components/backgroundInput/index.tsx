@@ -12,7 +12,7 @@ import Radio from '@/components/ui/radio';
 export default function BackgroundInput() {
   const router = useRouter();
   const pathname = usePathname();
-  const pageContext = PageContextHelper.get(pathname.split('/').slice(1));
+  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
 
   function onChange(background?: Background) {
     delete pageContext.filter.background;
@@ -21,7 +21,7 @@ export default function BackgroundInput() {
       ...pageContext.filter,
       background,
     });
-    router.push(`/${pageContext.sort}/${url}`);
+    router.push(`/i/${pageContext.sort}/${url}`);
   }
 
   return (

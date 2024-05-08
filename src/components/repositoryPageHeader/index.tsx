@@ -22,7 +22,7 @@ export default function RepositoryPageHeader({
       window.history.back();
       return;
     }
-    router.push('/trending');
+    router.push('/i/trending');
   }
 
   return (

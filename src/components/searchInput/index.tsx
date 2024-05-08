@@ -15,7 +15,7 @@ import styles from './index.module.css';
 export default function SearchInput() {
   const router = useRouter();
   const pathname = usePathname();
-  const pageContext = PageContextHelper.get(pathname.split('/').slice(1));
+  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
 
   const [value, setValue] = useState<string>(pageContext.filter.search || '');
 
@@ -31,7 +31,7 @@ export default function SearchInput() {
       ...pageContext.filter,
       ...(value ? { search: value } : {}),
     });
-    router.replace(`/${pageContext.sort}/${url}`);
+    router.replace(`/i/${pageContext.sort}/${url}`);
   }
 
   return (
