@@ -109,8 +109,8 @@ async function getRepository(
   const repositoryDTOs = await RepositoryModel.aggregate([
     {
       $match: {
-        'owner.name': { $regex: owner, $options: 'i' },
-        name: { $regex: name, $options: 'i' },
+        'owner.name': { $regex: `^${owner}$`, $options: 'i' },
+        name: { $regex: `^${name}$`, $options: 'i' },
         updateValid: true,
         generateValid: true,
         'vimColorSchemes.valid': true,
