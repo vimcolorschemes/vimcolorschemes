@@ -1,6 +1,12 @@
+import { Metadata } from 'next';
+
 import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
+
+export const metadata: Metadata = {
+  title: 'about',
+};
 
 export default function AboutPage() {
   return (
