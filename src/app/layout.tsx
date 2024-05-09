@@ -1,4 +1,3 @@
-import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import cn from 'classnames';
 import type { Metadata } from 'next';
@@ -54,10 +53,16 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://analytics.us.umami.is/script.js"
+          data-website-id="0408b924-a714-4a4a-82e6-8bd9c2d3706e"
+        />
+      </head>
       <body className={cn(fontStandard.variable, fontMono.variable)}>
         {children}
         <Footer />
-        <Analytics />
         <SpeedInsights />
       </body>
     </html>
