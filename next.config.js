@@ -5,6 +5,8 @@ const nextConfig = {
   redirects: async () => [
     { source: '/', destination: '/i/trending', permanent: true },
     { source: '/trending', destination: '/i/trending', permanent: true },
+    { source: '/light', destination: '/i/trending/b.light', permanent: true },
+    { source: '/dark', destination: '/i/trending/b.dark', permanent: true },
     {
       source: '/light/trending',
       destination: '/i/trending/b.light',
