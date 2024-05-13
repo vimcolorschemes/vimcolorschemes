@@ -39,7 +39,7 @@
     "@types/react-dom": "^18.2.24",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
-    "eslint-config-next": "^14.1.4",
+    "eslint-config-next": "^14.2.3",
     "eslint-plugin-import": "^2.29.1",
     "jsdom": "^24.0.0",
     "prettier": "^3.2.5",
