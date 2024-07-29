@@ -42,7 +42,7 @@
     "eslint-config-next": "^14.2.5",
     "eslint-plugin-import": "^2.29.1",
     "jsdom": "^24.1.0",
-    "prettier": "^3.3.2",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.4",
     "vitest": "^1.6.0"
   }
