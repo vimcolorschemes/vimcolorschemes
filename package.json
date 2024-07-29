@@ -20,7 +20,8 @@
     "test.watch": "vitest",
     "format": "prettier --write .",
     "format.check": "prettier --check .",
-    "seed": "./database/seed"
+    "seed": "./database/seed",
+    "type.check": "tsc --noEmit"
   },
   "dependencies": {
     "@vercel/analytics": "^1.3.1",
