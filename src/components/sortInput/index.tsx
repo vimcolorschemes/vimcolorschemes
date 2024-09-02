@@ -13,7 +13,7 @@ type SortInputProps = {
 };
 
 export default function SortInput({ pageContext }: SortInputProps) {
-  const url = FilterHelper.getURLFromFilter(pageContext.filter);
+  const url = FilterHelper.getURLFromFilter({ ...pageContext.filter, page: 1 });
 
   return (
     <div className={styles.container}>
