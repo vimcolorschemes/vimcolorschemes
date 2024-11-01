@@ -7,8 +7,11 @@ import Sort, { SortOptions } from '@/lib/sort';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import Filters from '@/components/filters';
+import BackgroundInput from '@/components/backgroundInput';
+import EditorInput from '@/components/editorInput';
 import RepositoryGrid from '@/components/repositoryGrid';
+import RepositoryGridSkeleton from '@/components/repositoryGrid/skeleton';
+import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
 import Header from '@/components/ui/header';
 
@@ -47,8 +50,12 @@ export default async function IndexPage({ params }: IndexPageProps) {
         <SortInput pageContext={pageContext} />
       </Header>
       <main className={styles.container}>
-        <Filters />
-        <Suspense fallback={<div>Loading...</div>}>
+        <div className={styles.inputs}>
+          <SearchInput />
+          <BackgroundInput />
+          <EditorInput />
+        </div>
+        <Suspense fallback={<RepositoryGridSkeleton />}>
           <RepositoryGrid pageContext={pageContext} />
         </Suspense>
       </main>
