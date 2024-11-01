@@ -2,24 +2,36 @@ import Repository from '@/models/repository';
 
 import DateHelper from '@/helpers/date';
 
+import Skeleton from '@/components/ui/skeleton';
+
 import styles from './repositoryInfo.module.css';
 
 type RepositoryInfoProps = {
-  repository: Repository;
+  repository?: Repository;
 };
 
 export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
   return (
     <div className={styles.container}>
-      <p className={styles.description}>{repository.description}</p>
+      <p className={styles.description}>
+        {repository?.description || <Skeleton inline />}
+      </p>
       <div>
-        <p>
-          created{' '}
-          <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
+        <p className={styles.info}>
+          <span>created </span>
+          {repository ? (
+            <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
+          ) : (
+            <Skeleton inline />
+          )}
         </p>
-        <p>
-          last commit{' '}
-          <strong>{DateHelper.format(repository.lastCommitAt)}</strong>
+        <p className={styles.info}>
+          <span>last commit </span>
+          {repository ? (
+            <strong>{DateHelper.format(repository.lastCommitAt)}</strong>
+          ) : (
+            <Skeleton inline />
+          )}
         </p>
       </div>
     </div>

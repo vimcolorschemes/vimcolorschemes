@@ -8,13 +8,23 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-xxs);
-  cursor: pointer;
   padding: 0;
+
+  --skeleton-width: 10rem;
+  --skeleton-height: 1rem;
+}
+
+a.link {
+  cursor: pointer;
+}
+a.link:hover {
+  text-decoration: underline;
 }
 
 .back {
   background: none;
   border: none;
+  font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   color: var(--foreground);

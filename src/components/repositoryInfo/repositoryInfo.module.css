@@ -6,4 +6,13 @@
 
 .description {
   max-width: 40rem;
+  --skeleton-height: 1rem;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25em;
+  --skeleton-width: 6rem;
+  --skeleton-height: 1rem;
 }

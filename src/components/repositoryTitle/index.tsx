@@ -4,11 +4,12 @@ import Repository from '@/models/repository';
 
 import IconStar from '@/components/ui/icons/star';
 import IconTrending from '@/components/ui/icons/trending';
+import Skeleton from '@/components/ui/skeleton';
 
 import styles from './index.module.css';
 
 type RepositoryTitleProps = {
-  repository: Repository;
+  repository?: Repository;
   /**
    * The name of the HTML element to render the title as.
    */
@@ -24,19 +25,25 @@ export default function RepositoryTitle({
   as,
   classNames,
 }: RepositoryTitleProps) {
-  const Component = (as as keyof JSX.IntrinsicElements) ?? 'h1';
+  const Title = (as as keyof JSX.IntrinsicElements) ?? 'h1';
   return (
     <div className={cn(styles.container, classNames?.container)}>
-      <Component className={styles.title}>
-        <div>{repository.owner.name}</div>
-        <div className={classNames?.title}>{repository.name}</div>
-      </Component>
+      <Title className={styles.titleContainer}>
+        <div>{repository?.owner.name ?? <Skeleton inline />}</div>
+        <div className={cn(styles.title, classNames?.title)}>
+          {repository?.name ?? <Skeleton inline />}
+        </div>
+      </Title>
       <div className={styles.stats}>
         <p className={styles.stat}>
           <IconStar />
-          <strong>{repository.stargazersCount}</strong>
+          {repository ? (
+            <strong>{repository.stargazersCount}</strong>
+          ) : (
+            <Skeleton inline />
+          )}
         </p>
-        {repository.weekStargazersCount > 0 && (
+        {!!repository?.weekStargazersCount && (
           <p className={styles.stat}>
             <IconTrending />
             <span>
