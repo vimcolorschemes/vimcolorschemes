@@ -4,9 +4,8 @@ import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
 
-import DateHelper from '@/helpers/date';
-
 import InteractivePreview from '@/components/interactivePreview';
+import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryTitle from '@/components/repositoryTitle';
 
 import styles from './index.module.css';
@@ -33,17 +32,7 @@ export default function RepositoryCard({
           as="h2"
           classNames={{ title: styles.title }}
         />
-        <p>{repository.description}</p>
-        <div>
-          <p>
-            created{' '}
-            <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
-          </p>
-          <p>
-            last commit{' '}
-            <strong>{DateHelper.format(repository.lastCommitAt)}</strong>
-          </p>
-        </div>
+        <RepositoryInfo repository={repository} />
       </Link>
     </article>
   );

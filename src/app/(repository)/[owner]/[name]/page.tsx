@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import RepositoriesService from '@/services/repositories';
 
 import ColorschemesGrid from '@/components/colorschemesGrid';
+import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
 
@@ -48,7 +49,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     <>
       <RepositoryPageHeader repositoryKey={repository.key} />
       <RepositoryTitle repository={repository} />
-      <p className={styles.description}>{repository.description}</p>
+      <RepositoryInfo repository={repository} />
       <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
     </>
   );
