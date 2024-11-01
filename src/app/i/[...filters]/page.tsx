@@ -9,6 +9,7 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import Filters from '@/components/filters';
 import RepositoryGrid from '@/components/repositoryGrid';
+import SortInput from '@/components/sortInput';
 import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
@@ -42,7 +43,9 @@ export default async function IndexPage({ params }: IndexPageProps) {
 
   return (
     <>
-      <Header pageContext={pageContext} />
+      <Header>
+        <SortInput pageContext={pageContext} />
+      </Header>
       <main className={styles.container}>
         <Filters />
         <Suspense fallback={<div>Loading...</div>}>

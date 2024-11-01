@@ -6,7 +6,6 @@ import ColorschemesGrid from '@/components/colorschemesGrid';
 import RepositoryNotFound from '@/components/repositoryNotFound';
 import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
-import Header from '@/components/ui/header';
 
 import styles from './page.module.css';
 
@@ -34,23 +33,15 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
   );
 
   if (!repository) {
-    return (
-      <>
-        <Header />
-        <RepositoryNotFound key={`${params.owner}/${params.name}`} />
-      </>
-    );
+    return <RepositoryNotFound key={`${params.owner}/${params.name}`} />;
   }
 
   return (
-    <>
-      <Header />
-      <main className={styles.container}>
-        <RepositoryPageHeader repositoryKey={repository.key} />
-        <RepositoryTitle repository={repository} />
-        <p className={styles.description}>{repository.description}</p>
-        <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
-      </main>
-    </>
+    <main className={styles.container}>
+      <RepositoryPageHeader repositoryKey={repository.key} />
+      <RepositoryTitle repository={repository} />
+      <p className={styles.description}>{repository.description}</p>
+      <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
+    </main>
   );
 }
