@@ -8,6 +8,7 @@
   gap: var(--spacing-md);
   margin-top: var(--spacing-sm);
 
+  --skeleton-width: 100%;
   --skeleton-height: 24.5rem;
 }
 
@@ -16,6 +17,9 @@
 }
 
 @media (min-width: 768px) {
+  .container {
+    --skeleton-width: 40.5rem;
+  }
   .container:not(:has(> :only-child)) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }

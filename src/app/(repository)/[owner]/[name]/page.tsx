@@ -32,6 +32,8 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
     params.name,
   );
 
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
   if (!repository) {
     return (
       <p className={styles.notFound}>
