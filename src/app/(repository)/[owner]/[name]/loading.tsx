@@ -9,7 +9,7 @@ export default function RepositoryPageLoading() {
       <RepositoryPageHeaderSkeleton />
       <RepositoryTitle />
       <RepositoryInfo />
-      <ColorschemesGridSkeleton count={4} />
+      <ColorschemesGridSkeleton />
     </>
   );
 }
