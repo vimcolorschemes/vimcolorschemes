@@ -3,7 +3,6 @@ import { Metadata } from 'next';
 import RepositoriesService from '@/services/repositories';
 
 import ColorschemesGrid from '@/components/colorschemesGrid';
-import RepositoryNotFound from '@/components/repositoryNotFound';
 import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
 
@@ -33,15 +32,24 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
   );
 
   if (!repository) {
-    return <RepositoryNotFound key={`${params.owner}/${params.name}`} />;
+    return (
+      <p className={styles.notFound}>
+        <strong>404: </strong>
+        repository{' '}
+        <strong>
+          {params.owner}/{params.name}
+        </strong>{' '}
+        not found.
+      </p>
+    );
   }
 
   return (
-    <main className={styles.container}>
+    <>
       <RepositoryPageHeader repositoryKey={repository.key} />
       <RepositoryTitle repository={repository} />
       <p className={styles.description}>{repository.description}</p>
       <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
-    </main>
+    </>
   );
 }

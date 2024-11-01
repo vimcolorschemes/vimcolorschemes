@@ -10,3 +10,7 @@
 .description {
   max-width: 40rem;
 }
+
+.notFound {
+  margin: auto;
+}
