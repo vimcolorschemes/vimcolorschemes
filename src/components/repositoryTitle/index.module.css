@@ -4,15 +4,20 @@
   column-gap: var(--spacing-xs);
 }
 
-.title {
+.titleContainer {
+  height: 3.5rem;
   overflow-wrap: anywhere;
+  --skeleton-width: 5rem;
+  --skeleton-height: 0.75rem;
 }
 
-.title > *:last-child {
+.title {
   font-weight: 700;
   font-size: var(--font-size-xl);
   line-height: var(--line-height-md);
   margin-bottom: var(--spacing-xs);
+  --skeleton-width: 13rem;
+  --skeleton-height: var(--line-height-md);
 }
 
 .stats {
@@ -25,4 +30,6 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-xxs);
+  --skeleton-width: 1.6rem;
+  --skeleton-height: 1rem;
 }

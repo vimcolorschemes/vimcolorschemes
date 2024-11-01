@@ -31,6 +31,8 @@
   --line-height-md: 1.5rem;
   --line-height-lg: 1.875rem;
   --line-height-xl: 3rem;
+
+  --skeleton-background: var(--platinum);
 }
 
 @media (min-width: 768px) {
