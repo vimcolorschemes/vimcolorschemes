@@ -23,18 +23,20 @@ function getFilterQuery(filter: Filter): FilterQuery {
   return query;
 }
 
-function getSearchFilterQuery(term?: string): FilterQuery {
-  if (!term) return {};
+function getSearchFilterQuery(searchTerm?: string): FilterQuery {
+  if (!searchTerm) return {};
 
-  const search = term.replace(/[^\w\s]/gi, ' ');
+  const words = searchTerm.split(/[^\w]/).filter(Boolean);
 
   return {
-    $or: [
-      { name: { $regex: search, $options: 'i' } },
-      { 'owner.name': { $regex: search, $options: 'i' } },
-      { description: { $regex: search, $options: 'i' } },
-      { 'vimColorSchemes.name': { $regex: search, $options: 'i' } },
-    ],
+    $and: words.map(word => ({
+      $or: [
+        { name: { $regex: word, $options: 'i' } },
+        { 'owner.name': { $regex: word, $options: 'i' } },
+        { description: { $regex: word, $options: 'i' } },
+        { 'vimColorSchemes.name': { $regex: word, $options: 'i' } },
+      ],
+    })),
   };
 }
 

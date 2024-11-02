@@ -19,7 +19,7 @@ describe('FilterHelper.getURLFromFilter', () => {
 
   it('should return the search filter', () => {
     expect(FilterHelper.getURLFromFilter({ search: 'test-search' })).toBe(
-      's.test-search',
+      's.test%20search',
     );
   });
 
@@ -45,7 +45,7 @@ describe('FilterHelper.getURLFromFilter', () => {
         background: 'light',
         search: 'test-search',
       }),
-    ).toBe('b.light/e.vim/s.test-search');
+    ).toBe('b.light/e.vim/s.test%20search');
   });
 
   it('should ignore invalid filters with multiple filters', () => {
@@ -56,7 +56,7 @@ describe('FilterHelper.getURLFromFilter', () => {
         invalid: 'filter',
         search: 'test-search',
       }),
-    ).toBe('e.vim/s.test-search');
+    ).toBe('e.vim/s.test%20search');
   });
 });
 

@@ -47,7 +47,7 @@ function getURLFromFilter(filter: Filter): string {
       }
 
       if (urlKey === URLFilterKeys.Search) {
-        return `${urlKey}.${URLHelper.encode(value)}`;
+        return `${urlKey}.${URLHelper.encode(value as string)}`;
       }
 
       return `${urlKey}.${value}`;

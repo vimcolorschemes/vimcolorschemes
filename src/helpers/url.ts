@@ -3,8 +3,8 @@
  * @param value The string value to use as a URL
  * @returns The URLified string value
  */
-function encode(value: string | number): string {
-  return encodeURIComponent(value);
+function encode(value: string): string {
+  return encodeURIComponent(value.replaceAll(/[^\w]/g, ' '));
 }
 
 /**
