@@ -8,22 +8,20 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import RepositoryGrid from '@/components/repositoryGrid';
 
-type IndexPageProps = {
-  params: {
-    filters: string[];
-  };
-};
+type IndexPageProps = { params: Promise<{ filters: string[] }> };
 
 export async function generateMetadata({
   params,
 }: IndexPageProps): Promise<Metadata> {
-  const pageContext = PageContextHelper.get(params.filters);
+  const { filters } = await params;
+  const pageContext = PageContextHelper.get(filters);
   return { title: PageContextHelper.getPageTitle(pageContext) };
 }
 
 export default async function IndexPage({ params }: IndexPageProps) {
-  const [sort, ...filters] = params.filters as [Sort, ...string[]];
-  const pageContext = PageContextHelper.get(params.filters);
+  const { filters } = await params;
+  const [sort, ...rest] = filters as [Sort, ...string[]];
+  const pageContext = PageContextHelper.get(filters);
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
@@ -31,7 +29,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(`/i/${SortOptions.Trending}/${validURL}`);
   }
 
-  if (validURL !== filters.join('/')) {
+  if (validURL !== rest.join('/')) {
     redirect(`/i/${sort}/${validURL}`);
   }
 

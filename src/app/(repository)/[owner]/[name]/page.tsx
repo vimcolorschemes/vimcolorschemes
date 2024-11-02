@@ -9,15 +9,13 @@ import RepositoryTitle from '@/components/repositoryTitle';
 
 import styles from './page.module.css';
 
-type RepositoryPageProps = { params: { owner: string; name: string } };
+type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
 
 export async function generateMetadata({
   params,
 }: RepositoryPageProps): Promise<Metadata> {
-  const repository = await RepositoriesService.getRepository(
-    params.owner,
-    params.name,
-  );
+  const { owner, name } = await params;
+  const repository = await RepositoriesService.getRepository(owner, name);
 
   if (!repository) {
     return {};
@@ -27,10 +25,8 @@ export async function generateMetadata({
 }
 
 export default async function RepositoryPage({ params }: RepositoryPageProps) {
-  const repository = await RepositoriesService.getRepository(
-    params.owner,
-    params.name,
-  );
+  const { owner, name } = await params;
+  const repository = await RepositoriesService.getRepository(owner, name);
 
   if (!repository) {
     return (
@@ -38,7 +34,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
         <strong>404: </strong>
         repository{' '}
         <strong>
-          {params.owner}/{params.name}
+          {owner}/{name}
         </strong>{' '}
         not found.
       </p>

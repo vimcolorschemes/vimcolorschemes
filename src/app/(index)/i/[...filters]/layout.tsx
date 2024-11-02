@@ -12,16 +12,15 @@ import styles from './layout.module.css';
 
 type IndexPageLayoutProps = {
   children: ReactNode;
-  params: {
-    filters: string[];
-  };
+  params: Promise<{ filters: string[] }>;
 };
 
-export default function IndexPageLayout({
+export default async function IndexPageLayout({
   children,
   params,
 }: IndexPageLayoutProps) {
-  const pageContext = PageContextHelper.get(params.filters);
+  const { filters } = await params;
+  const pageContext = PageContextHelper.get(filters);
   return (
     <>
       <Header>
