@@ -1,21 +1,12 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
-import { Suspense } from 'react';
 
 import Sort, { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import BackgroundInput from '@/components/backgroundInput';
-import EditorInput from '@/components/editorInput';
 import RepositoryGrid from '@/components/repositoryGrid';
-import RepositoryGridSkeleton from '@/components/repositoryGrid/skeleton';
-import SearchInput from '@/components/searchInput';
-import SortInput from '@/components/sortInput';
-import Header from '@/components/ui/header';
-
-import styles from './page.module.css';
 
 type IndexPageProps = {
   params: {
@@ -44,21 +35,5 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(`/i/${sort}/${validURL}`);
   }
 
-  return (
-    <>
-      <Header>
-        <SortInput pageContext={pageContext} />
-      </Header>
-      <main className={styles.container}>
-        <div className={styles.inputs}>
-          <SearchInput />
-          <BackgroundInput />
-          <EditorInput />
-        </div>
-        <Suspense fallback={<RepositoryGridSkeleton />}>
-          <RepositoryGrid pageContext={pageContext} />
-        </Suspense>
-      </main>
-    </>
-  );
+  return <RepositoryGrid pageContext={pageContext} />;
 }
