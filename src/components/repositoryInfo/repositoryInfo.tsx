@@ -13,9 +13,11 @@ type RepositoryInfoProps = {
 export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
   return (
     <div className={styles.container}>
-      <p className={styles.description}>
-        {repository?.description || <Skeleton inline />}
-      </p>
+      {(!repository || !!repository.description) && (
+        <p className={styles.description}>
+          {repository?.description || <Skeleton inline />}
+        </p>
+      )}
       <div>
         <p className={styles.info}>
           <span>created </span>
