@@ -47,7 +47,7 @@
     "eslint-plugin-import": "^2.31.0",
     "jsdom": "^25.0.1",
     "prettier": "^3.3.3",
-    "typescript": "^5.6.3",
+    "typescript": "^5.7.3",
     "vitest": "^2.1.4"
   }
 }
