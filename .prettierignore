@@ -2,7 +2,8 @@
 .cache/
 public/
 database/
-
-README.md
+pnpm-lock.yaml
 
 reset.css
+
+README.md
