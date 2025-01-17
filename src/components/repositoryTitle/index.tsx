@@ -10,10 +10,8 @@ import styles from './index.module.css';
 
 type RepositoryTitleProps = {
   repository?: Repository;
-  /**
-   * The name of the HTML element to render the title as.
-   */
-  as?: string;
+  /** The name of the HTML element to render the title as. */
+  as?: 'h1' | 'h2';
   classNames?: {
     container?: string;
     title?: string;
@@ -25,7 +23,7 @@ export default function RepositoryTitle({
   as,
   classNames,
 }: RepositoryTitleProps) {
-  const Title = (as as keyof JSX.IntrinsicElements) ?? 'h1';
+  const Title = as ?? 'h1';
   return (
     <div className={cn(styles.container, classNames?.container)}>
       <Title className={styles.titleContainer}>
