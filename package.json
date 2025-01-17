@@ -23,6 +23,9 @@
     "seed": "./database/seed",
     "type.check": "tsc --noEmit"
   },
+  "engines": {
+    "node": "22"
+  },
   "dependencies": {
     "@vercel/analytics": "^1.4.0",
     "@vercel/speed-insights": "^1.1.0",
