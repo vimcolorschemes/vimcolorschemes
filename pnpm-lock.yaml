@@ -43,7 +43,7 @@ importers:
         specifier: ^19.0.3
         version: 19.0.3(@types/react@19.0.8)
       '@vitejs/plugin-react':
-        specifier: ^4.3.3
+        specifier: ^4.3.4
         version: 4.3.4(vite@5.4.11(@types/node@22.10.10))
       eslint:
         specifier: ^9.19.0
