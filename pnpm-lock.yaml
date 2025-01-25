@@ -31,7 +31,7 @@ importers:
         version: 19.0.0(react@19.0.0)
     devDependencies:
       '@testing-library/react':
-        specifier: ^16.0.1
+        specifier: ^16.2.0
         version: 16.2.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.3(@types/react@19.0.7))(@types/react@19.0.7)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/node':
         specifier: ^22.10.10

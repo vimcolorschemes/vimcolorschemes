@@ -37,7 +37,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.2.0",
     "@types/node": "^22.10.10",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
