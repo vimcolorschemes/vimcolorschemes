@@ -1,6 +1,6 @@
 import cn from 'classnames';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import Branding from '@/components/ui/branding';
 import IconGithub from '@/components/ui/icons/github';
