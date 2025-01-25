@@ -32,7 +32,7 @@
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "mongoose": "^8.9.5",
-    "next": "^15.0.2",
+    "next": "^15.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -43,7 +43,7 @@
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.3",
     "eslint": "^9.14.0",
-    "eslint-config-next": "^15.0.3",
+    "eslint-config-next": "^15.1.6",
     "eslint-plugin-import": "^2.31.0",
     "jsdom": "^26.0.0",
     "prettier": "^3.3.3",
