@@ -31,7 +31,7 @@
     "@vercel/speed-insights": "^1.1.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
-    "mongoose": "^8.8.1",
+    "mongoose": "^8.9.5",
     "next": "^15.0.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
