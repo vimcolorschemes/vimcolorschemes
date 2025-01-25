@@ -42,7 +42,7 @@
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.3",
-    "eslint": "^9.14.0",
+    "eslint": "^9.19.0",
     "eslint-config-next": "^15.1.6",
     "eslint-plugin-import": "^2.31.0",
     "jsdom": "^26.0.0",
