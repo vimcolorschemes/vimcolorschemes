@@ -16,9 +16,10 @@
 .links {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  column-gap: var(--spacing-md);
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
 }
 
 .link {
@@ -36,7 +37,7 @@
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .container {
     flex-direction: row;
   }
@@ -45,6 +46,7 @@
     width: auto;
     justify-content: unset;
     column-gap: var(--spacing-md);
+    flex-wrap: unset;
   }
 
   .desktop {

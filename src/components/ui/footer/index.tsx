@@ -1,9 +1,9 @@
 import cn from 'classnames';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import Branding from '@/components/ui/branding';
-
-import IconGithub from '../icons/github';
+import IconGithub from '@/components/ui/icons/github';
 
 import styles from './index.module.css';
 
@@ -35,6 +35,19 @@ export default function Footer() {
         >
           contact
         </a>
+        <Link
+          href="https://www.buymeacoffee.com/reobin"
+          target="_blank"
+          aria-label="But me a Coffee"
+        >
+          <Image
+            src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png"
+            alt="Buy me a Coffee"
+            width={163}
+            height={45}
+            unoptimized
+          />
+        </Link>
       </div>
     </footer>
   );
