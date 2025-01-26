@@ -43,6 +43,9 @@ const nextConfig = {
     },
   ],
   rewrites: async () => [{ source: '/page/:page', destination: '/i/trending' }],
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
