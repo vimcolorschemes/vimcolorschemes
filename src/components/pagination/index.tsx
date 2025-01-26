@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import Link from 'next/link';
 
 import PageContext from '@/lib/pageContext';
 
@@ -35,25 +34,25 @@ export default function Pagination({
   return (
     <nav className={styles.container}>
       {hasPrevious && (
-        <Link
+        <a
           href={getPageURL(page - 1)}
           className={cn(styles.button, styles.previous)}
         >
           <IconArrow />
           previous
-        </Link>
+        </a>
       )}
       <span className={styles.page}>
         {page}/{pageCount}
       </span>
       {hasNext && (
-        <Link
+        <a
           href={getPageURL(page + 1)}
           className={cn(styles.button, styles.next)}
         >
           next
           <IconArrow />
-        </Link>
+        </a>
       )}
     </nav>
   );
