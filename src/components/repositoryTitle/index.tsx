@@ -41,11 +41,11 @@ export default function RepositoryTitle({
             <Skeleton inline />
           )}
         </p>
-        {!!repository?.weekStargazersCount && (
+        {(repository?.weekStargazersCount || 0) > 0 && (
           <p className={styles.stat}>
             <IconTrending />
             <span>
-              <strong>{repository.weekStargazersCount}</strong>/week
+              <strong>{repository?.weekStargazersCount}</strong>/week
             </span>
           </p>
         )}
