@@ -30,10 +30,10 @@ const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
     {
       name: String,
       isLua: Boolean,
-      backgrounds: Array<String>,
+      backgrounds: Array<string>,
       data: {
-        light: Array<{ name: String; hexCode: String }>,
-        dark: Array<{ name: String; hexCode: String }>,
+        light: Array<{ name: string; hexCode: string }>,
+        dark: Array<{ name: string; hexCode: string }>,
       },
     },
   ],
