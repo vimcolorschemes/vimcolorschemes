@@ -24,17 +24,17 @@ describe('FilterHelper.getURLFromFilter', () => {
   });
 
   it('should ignore invalid keys', () => {
-    // @ts-expect-error
+    // @ts-expect-error invalid key
     expect(FilterHelper.getURLFromFilter({ invalid: 'filter' })).toBe('');
   });
 
   it('should ignore invalid values for editor', () => {
-    // @ts-expect-error
+    // @ts-expect-error invalid value
     expect(FilterHelper.getURLFromFilter({ editor: 'invalid' })).toBe('');
   });
 
   it('should ignore invalid values for background', () => {
-    // @ts-expect-error
+    // @ts-expect-error invalid value
     expect(FilterHelper.getURLFromFilter({ background: 'invalid' })).toBe('');
   });
 
@@ -52,7 +52,7 @@ describe('FilterHelper.getURLFromFilter', () => {
     expect(
       FilterHelper.getURLFromFilter({
         editor: Editors.Vim,
-        // @ts-expect-error
+        // @ts-expect-error invalid key
         invalid: 'filter',
         search: 'test-search',
       }),
