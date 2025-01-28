@@ -1,6 +1,5 @@
 'use client';
 
-import cn from 'classnames';
 import { useState } from 'react';
 
 import RepositoryDTO from '@/models/DTO/repository';
