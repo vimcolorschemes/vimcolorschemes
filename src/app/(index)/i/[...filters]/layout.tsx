@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
-import EditorInput from '@/components/editorInput';
 import SearchInput from '@/components/searchInput';
 import SortInput from '@/components/sortInput';
 import Header from '@/components/ui/header';
@@ -30,7 +29,6 @@ export default async function IndexPageLayout({
         <div className={styles.inputs}>
           <SearchInput />
           <BackgroundInput />
-          <EditorInput />
         </div>
         {children}
       </main>

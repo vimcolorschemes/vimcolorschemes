@@ -2,7 +2,6 @@ import ColorschemeData from '@/models/colorschemeData';
 import ColorschemeDTO from '@/models/DTO/colorscheme';
 
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Editors, { Editor } from '@/lib/editors';
 
 /**
  * Represents a colorscheme. A colorscheme can have multiple backgrounds, each with its own color data.
@@ -10,13 +9,11 @@ import Editors, { Editor } from '@/lib/editors';
 class Colorscheme {
   name: string;
   data: ColorschemeData;
-  editor: Editor;
   backgrounds: Background[];
 
   constructor(dto?: ColorschemeDTO) {
     this.name = dto?.name || '';
     this.data = new ColorschemeData(dto?.data || null);
-    this.editor = dto?.isLua ? Editors.Neovim : Editors.Vim;
     this.backgrounds = dto?.backgrounds || [];
   }
 
@@ -27,7 +24,6 @@ class Colorscheme {
     return {
       name: this.name,
       data: this.data.dto,
-      isLua: this.editor === Editors.Neovim,
       backgrounds: this.backgrounds,
     };
   }
@@ -54,7 +50,6 @@ class Colorscheme {
       background =>
         new Colorscheme({
           name: this.name,
-          isLua: this.editor === Editors.Neovim,
           backgrounds: [background],
           data: new ColorschemeData({
             light: background === Backgrounds.Light ? this.data.light : null,

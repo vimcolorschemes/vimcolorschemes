@@ -1,5 +1,4 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Editors, { Editor } from '@/lib/editors';
 
 import Colorscheme from './colorscheme';
 import RepositoryDTO from './DTO/repository';
@@ -28,7 +27,7 @@ class Repository {
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
-    this.colorschemes = (dto.colorschemes ?? []).map(
+    this.colorschemes = (dto.vimColorSchemes ?? []).map(
       dto => new Colorscheme(dto),
     );
   }
@@ -66,15 +65,6 @@ class Repository {
   }
 
   /**
-   * @returns A list of editors used by the colorschemes in this repository.
-   */
-  get editors(): Editor[] {
-    return Array.from(
-      new Set(this.colorschemes.map(colorscheme => colorscheme.editor)),
-    );
-  }
-
-  /**
    * @returns The DTO version of this repository. Equivalent of the object that comes from the API.
    */
   get dto(): RepositoryDTO {
@@ -87,8 +77,7 @@ class Repository {
       githubURL: this.githubURL,
       stargazersCount: this.stargazersCount,
       weekStargazersCount: this.weekStargazersCount,
-      isLua: this.editors.includes(Editors.Neovim),
-      colorschemes: this.colorschemes.map(colorscheme => colorscheme.dto),
+      vimColorSchemes: this.colorschemes.map(colorscheme => colorscheme.dto),
     };
   }
 

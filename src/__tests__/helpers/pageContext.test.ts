@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
 import Backgrounds from '@/lib/backgrounds';
-import Editors from '@/lib/editors';
 import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
@@ -12,15 +11,6 @@ describe('PageContextHelper.get', () => {
     expect(PageContextHelper.get([SortOptions.Trending])).toEqual<PageContext>({
       sort: SortOptions.Trending,
       filter: {},
-    });
-  });
-
-  it('should capture the editor filter', () => {
-    expect(
-      PageContextHelper.get([SortOptions.Trending, 'e.vim']),
-    ).toEqual<PageContext>({
-      sort: SortOptions.Trending,
-      filter: { editor: Editors.Vim },
     });
   });
 
@@ -62,10 +52,10 @@ describe('PageContextHelper.get', () => {
 
   it('should capture multiple filters', () => {
     expect(
-      PageContextHelper.get([SortOptions.Old, 'e.vim', 'b.light', 'p.2']),
+      PageContextHelper.get([SortOptions.Old, 'b.light', 'p.2']),
     ).toEqual<PageContext>({
       sort: SortOptions.Old,
-      filter: { editor: Editors.Vim, background: Backgrounds.Light, page: 2 },
+      filter: { background: Backgrounds.Light, page: 2 },
     });
   });
 });
@@ -87,28 +77,5 @@ describe('PageContextHelper.getPageTitle', () => {
         filter: { background: Backgrounds.Dark },
       }),
     ).toBe('trending dark colorschemes');
-  });
-
-  it('should return the editor filter if it is defined', () => {
-    expect(
-      PageContextHelper.getPageTitle({
-        sort: SortOptions.Trending,
-        filter: { editor: Editors.Neovim },
-      }),
-    ).toBe('trending neovim colorschemes');
-  });
-
-  it('should only return the background and editor filter if they are defined', () => {
-    expect(
-      PageContextHelper.getPageTitle({
-        sort: SortOptions.Trending,
-        filter: {
-          background: Backgrounds.Light,
-          editor: Editors.Neovim,
-          search: 'test',
-          page: 2,
-        },
-      }),
-    ).toBe('trending light neovim colorschemes');
   });
 });
