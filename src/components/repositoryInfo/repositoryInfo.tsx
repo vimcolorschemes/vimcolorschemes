@@ -20,7 +20,7 @@ export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
       )}
       <div>
         <p className={styles.info}>
-          <span>created </span>
+          <span>published </span>
           {repository ? (
             <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
           ) : (

@@ -1,10 +1,4 @@
 /* vim colorscheme color classes */
-.CursorFg {
-  color: var(--colorscheme-CursorFg, rgba(black, 50%));
-}
-.CursorBg {
-  background: var(--colorscheme-CursorBg, rgba(white, 50%));
-}
 .StatusLineFg {
   color: var(--colorscheme-StatusLineFg);
 }
@@ -12,10 +6,10 @@
   background: var(--colorscheme-StatusLineBg);
 }
 .StatusLineFg--inverted {
-  color: var(--colorscheme-StatusLineBg, var(--normal-bg));
+  color: var(--colorscheme-StatusLineBg, var(--colorscheme-NormalBg));
 }
 .StatusLineBg--inverted {
-  background: var(--colorscheme-StatusLineFg, var(--normal-fg));
+  background: var(--colorscheme-StatusLineFg, var(--colorscheme-NormalFg));
 }
 .LineNrFg {
   color: var(--colorscheme-LineNrFg);
@@ -33,54 +27,57 @@
   color: var(--colorscheme-CursorLineNrFg, var(--colorscheme-LineNrFg));
 }
 .CursorLineNrBg {
-  background: var(--colorscheme-CursorLineNrBg, var(--colorscheme-LineNrBg));
+  background: var(
+    --colorscheme-CursorLineNrBg,
+    var(--colorscheme-CursorLineBg)
+  );
 }
 .vimLineComment {
   font-style: italic;
-  color: var(--colorscheme-vimLineComment);
+  color: var(--colorscheme-vimLineCommentFg);
 }
 .vimCommand {
-  color: var(--colorscheme-vimCommand);
+  color: var(--colorscheme-vimCommandFg);
 }
 .vimFunction {
-  color: var(--colorscheme-vimFunction);
+  color: var(--colorscheme-vimFunctionFg);
 }
 .vimParenSep {
-  color: var(--colorscheme-vimParenSep);
+  color: var(--colorscheme-vimParenSepFg);
 }
 .vimOperParen {
-  color: var(--colorscheme-vimOperParen);
+  color: var(--colorscheme-vimOperParenFg);
 }
 .vimFuncBody {
-  color: var(--colorscheme-vimFuncBody);
+  color: var(--colorscheme-vimFuncBodyFg);
 }
 .vimIsCommand {
-  color: var(--colorscheme-vimIsCommand);
+  color: var(--colorscheme-vimIsCommandFg);
 }
 .vimLet {
-  color: var(--colorscheme-vimLet);
+  color: var(--colorscheme-vimLetFg);
 }
 .vimVar {
-  color: var(--colorscheme-vimVar);
+  color: var(--colorscheme-vimVarFg);
 }
 .vimOper {
-  color: var(--colorscheme-vimOper);
+  color: var(--colorscheme-vimOperFg);
 }
 .vimFuncName {
-  color: var(--colorscheme-vimFuncName);
+  color: var(--colorscheme-vimFuncNameFg);
 }
 .vimFuncVar {
-  color: var(--colorscheme-vimFuncVar);
+  color: var(--colorscheme-vimFuncVarFg);
 }
 .vimString {
-  color: var(--colorscheme-vimString);
+  color: var(--colorscheme-vimStringFg);
 }
 .vimSubst {
-  color: var(--colorscheme-vimSubst);
+  color: var(--colorscheme-vimSubstFg);
 }
 .vimNumber {
-  color: var(--colorscheme-vimNumber);
+  color: var(--colorscheme-vimNumberFg);
 }
 .vimNotFunc {
-  color: var(--colorscheme-vimNotFunc);
+  color: var(--colorscheme-vimNotFuncFg);
 }

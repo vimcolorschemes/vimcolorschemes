@@ -3,7 +3,6 @@ import { MetadataRoute } from 'next';
 import RepositoriesService from '@/services/repositories';
 
 import Backgrounds from '@/lib/backgrounds';
-import Editors from '@/lib/editors';
 import { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
@@ -12,14 +11,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const indexURLs = [];
   for (const sortOption of Object.values(SortOptions)) {
     for (const background of [undefined, ...Object.values(Backgrounds)]) {
-      for (const editor of [undefined, ...Object.values(Editors)]) {
-        indexURLs.push({
-          url: `${process.env.APP_URL}/i/${sortOption}/${FilterHelper.getURLFromFilter({ background, editor })}`,
-          lastModified: new Date(),
-          changeFrequency: 'daily' as const,
-          priority: 1,
-        });
-      }
+      indexURLs.push({
+        url: `${process.env.APP_URL}/i/${sortOption}/${FilterHelper.getURLFromFilter({ background })}`,
+        lastModified: new Date(),
+        changeFrequency: 'daily' as const,
+        priority: 1,
+      });
     }
   }
 

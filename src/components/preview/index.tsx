@@ -30,7 +30,7 @@ export default function Preview(props: PreviewProps) {
   return (
     <Window
       title={props.colorscheme.name}
-      subtitle={props.colorscheme.editor}
+      subtitle="neovim"
       className={cn(styles.container, props.className)}
       style={style}
     >

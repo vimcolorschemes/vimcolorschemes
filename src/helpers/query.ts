@@ -1,4 +1,3 @@
-import Editors from '@/lib/editors';
 import Filter from '@/lib/filter';
 import Sort, { SortOptions } from '@/lib/sort';
 
@@ -6,12 +5,6 @@ type FilterQuery = Record<string, string | number | boolean | object>;
 
 function getFilterQuery(filter: Filter): FilterQuery {
   const query = getSearchFilterQuery(filter.search);
-  if (filter.editor === Editors.Vim) {
-    query['vimColorSchemes.isLua'] = false;
-  }
-  if (filter.editor === Editors.Neovim) {
-    query['vimColorSchemes.isLua'] = true;
-  }
 
   if (filter.background === 'light') {
     query['vimColorSchemes.backgrounds'] = 'light';
@@ -24,7 +17,9 @@ function getFilterQuery(filter: Filter): FilterQuery {
 }
 
 function getSearchFilterQuery(searchTerm?: string): FilterQuery {
-  if (!searchTerm) return {};
+  if (!searchTerm) {
+    return {};
+  }
 
   const words = searchTerm.split(/[^\w]/).filter(Boolean);
 
@@ -34,7 +29,6 @@ function getSearchFilterQuery(searchTerm?: string): FilterQuery {
         { name: { $regex: word, $options: 'i' } },
         { 'owner.name': { $regex: word, $options: 'i' } },
         { description: { $regex: word, $options: 'i' } },
-        { 'vimColorSchemes.name': { $regex: word, $options: 'i' } },
       ],
     })),
   };

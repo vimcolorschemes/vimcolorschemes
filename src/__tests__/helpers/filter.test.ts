@@ -1,16 +1,8 @@
 import { describe, it, expect } from 'vitest';
 
-import Editors from '@/lib/editors';
-
 import FilterHelper from '@/helpers/filter';
 
 describe('FilterHelper.getURLFromFilter', () => {
-  it('should return the editor filter', () => {
-    expect(FilterHelper.getURLFromFilter({ editor: Editors.Vim })).toBe(
-      'e.vim',
-    );
-  });
-
   it('should return the background filter', () => {
     expect(FilterHelper.getURLFromFilter({ background: 'light' })).toBe(
       'b.light',
@@ -28,11 +20,6 @@ describe('FilterHelper.getURLFromFilter', () => {
     expect(FilterHelper.getURLFromFilter({ invalid: 'filter' })).toBe('');
   });
 
-  it('should ignore invalid values for editor', () => {
-    // @ts-expect-error invalid value
-    expect(FilterHelper.getURLFromFilter({ editor: 'invalid' })).toBe('');
-  });
-
   it('should ignore invalid values for background', () => {
     // @ts-expect-error invalid value
     expect(FilterHelper.getURLFromFilter({ background: 'invalid' })).toBe('');
@@ -41,36 +28,24 @@ describe('FilterHelper.getURLFromFilter', () => {
   it('should allow multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
-        editor: Editors.Vim,
         background: 'light',
         search: 'test-search',
       }),
-    ).toBe('b.light/e.vim/s.test%20search');
+    ).toBe('b.light/s.test%20search');
   });
 
   it('should ignore invalid filters with multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
-        editor: Editors.Vim,
         // @ts-expect-error invalid key
         invalid: 'filter',
         search: 'test-search',
       }),
-    ).toBe('e.vim/s.test%20search');
+    ).toBe('s.test%20search');
   });
 });
 
 describe('FilterHelper.getFilterFromURL', () => {
-  it('should return the editor filter', () => {
-    expect(FilterHelper.getFilterFromURL(['e.vim'])).toEqual({
-      editor: Editors.Vim,
-    });
-  });
-
-  it('should ignore invalid values for editor', () => {
-    expect(FilterHelper.getFilterFromURL(['e.invalid'])).toEqual({});
-  });
-
   it('should return the background filter', () => {
     expect(FilterHelper.getFilterFromURL(['b.light'])).toEqual({
       background: 'light',
@@ -92,36 +67,26 @@ describe('FilterHelper.getFilterFromURL', () => {
   });
 
   it('should allow multiple filters', () => {
-    expect(
-      FilterHelper.getFilterFromURL(['e.vim', 'b.light', 's.test-search']),
-    ).toEqual({
-      editor: Editors.Vim,
-      background: 'light',
-      search: 'test-search',
-    });
+    expect(FilterHelper.getFilterFromURL(['b.light', 's.test-search'])).toEqual(
+      {
+        background: 'light',
+        search: 'test-search',
+      },
+    );
   });
 
   it('should ignore invalid filters with multiple filters', () => {
     expect(
-      FilterHelper.getFilterFromURL(['e.vim', 'i.filter', 's.test-search']),
+      FilterHelper.getFilterFromURL(['i.filter', 's.test-search']),
     ).toEqual({
-      editor: Editors.Vim,
       search: 'test-search',
     });
   });
 
   it('should keep the first valid filter with duplicate filters', () => {
     expect(
-      FilterHelper.getFilterFromURL(['e.vim', 'e.neovim', 's.test-search']),
+      FilterHelper.getFilterFromURL(['s.test-search', 's.duplicate']),
     ).toEqual({
-      editor: Editors.Vim,
-      search: 'test-search',
-    });
-
-    expect(
-      FilterHelper.getFilterFromURL(['e.invalid', 'e.neovim', 's.test-search']),
-    ).toEqual({
-      editor: Editors.Neovim,
       search: 'test-search',
     });
   });
