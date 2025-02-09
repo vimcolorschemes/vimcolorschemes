@@ -43,15 +43,15 @@ function getSearchFilterQuery(searchTerm?: string): FilterQuery {
 function getSortQuery(sort: Sort): Record<string, 1 | -1> {
   switch (sort) {
     case SortOptions.Trending:
-      return { weekStargazersCount: -1 };
+      return { weekStargazersCount: -1, _id: 1 };
     case SortOptions.Top:
-      return { stargazersCount: -1 };
+      return { stargazersCount: -1, _id: 1 };
     case SortOptions.New:
-      return { githubCreatedAt: -1 };
+      return { githubCreatedAt: -1, _id: 1 };
     case SortOptions.Old:
-      return { githubCreatedAt: 1 };
+      return { githubCreatedAt: 1, _id: 1 };
     default:
-      return { weekStargazersCount: -1 };
+      return { weekStargazersCount: -1, _id: 1 };
   }
 }
 
