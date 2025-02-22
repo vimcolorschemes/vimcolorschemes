@@ -12,7 +12,7 @@ data for all the repositories of the app.
 The Worker does 3 things:
 
 - [`import`](#import): Search new repositories, update basic info
-- [`update`](#update): Get all repositories from the database, fetch advanced info if needed
+- [`update`](#update): Get all repositories from the database, update timestamps and stargazers count
 - [`generate`](#generate): From the repository files, generate color data used in the [code previews](/previews)
 
 It is currently configured to do all of these things daily to ensure
@@ -36,20 +36,15 @@ Here's an example of a repository at this stage:
 
 ```json
 {
-  "_id": { "$oid": "5f4040c01886e39a30fdc538" },
-  "name": "gruvbox",
+  "_id": "397434315",
   "owner": {
-    "name": "morhetz",
-    "avatar_url": "https://avatars1.githubusercontent.com/u/554231?v=4"
+    "avatarURL": "https://avatars.githubusercontent.com/u/93489351?v=4",
+    "name": "catppuccin"
   },
-  "default_branch": "master",
-  "description": "Retro groove color scheme for Vim",
-  "github_created_at": { "$date": "2012-11-28T00:37:31.000Z" },
-  "github_id": 6893638,
-  "github_url": "https://github.com/morhetz/gruvbox",
-  "homepage_url": "",
-  "pushed_at": { "$date": "2020-07-28T21:26:50.000Z" },
-  "stargazers_count": 7876
+  "name": "nvim",
+  "description": "🍨 Soothing pastel theme for (Neo)vim",
+  "githubCreatedAt": "2021-08-18T01:14:49.000Z",
+  "githubURL": "https://github.com/catppuccin/nvim"
 }
 ```
 
@@ -60,51 +55,46 @@ prove useful for what's displayed on the website.
 
 ### What's added
 
-- vim color schemes: by parsing the vim files in the repository, a list of files that are most likely vim color schemes is built.
-- meta data: the last commit date, the updated startgazers count, among other data, are also fetched
+- the stargazers count history
+- the stargazers count for the last week
+- the last update date
 
 Here's a sample of a valid vim color scheme after this stage:
 
 ```json
 {
-  "_id": 74609695,
-  "description": "An arctic, north-bluish clean and elegant Vim theme.",
-  "githubCreatedAt": { "$date": "2016-11-23T19:59:23.000Z" },
-  "githubURL": "https://github.com/arcticicestudio/nord-vim",
-  "homepageURL": "https://www.nordtheme.com/ports/vim",
-  "name": "nord-vim",
+  "_id": "397434315",
   "owner": {
-    "avatarURL": "https://avatars.githubusercontent.com/u/7836623?v=4",
-    "name": "arcticicestudio"
+    "avatarURL": "https://avatars.githubusercontent.com/u/93489351?v=4",
+    "name": "catppuccin"
   },
-  "lastCommitAt": { "$date": "2021-09-12T21:08:31.000Z" },
-  "license": "MIT",
-  "stargazersCount": 1918,
+  "name": "nvim",
+  "description": "🍨 Soothing pastel theme for (Neo)vim",
+  "githubCreatedAt": "2021-08-18T01:14:49.000Z",
+  "githubURL": "https://github.com/catppuccin/nvim"
+  "githubUpdatedAt": "2025-02-22T19:13:26.000Z",
+  "stargazersCount": 6021,
   "stargazersCountHistory": [
     {
-      "date": { "$date": "2021-10-22T00:00:00.000Z" },
-      "stargazersCount": 1918
+      "date": "2025-02-22T00:00:00.000Z",
+      "stargazersCount": 6021
     },
-    { "date": { "$date": "2021-10-13T00:00:00.000Z" }, "stargazersCount": 1894 }
-  ],
-  "updateValid": true,
-  "updatedAt": { "$date": "2021-10-22T22:11:47.965Z" },
-  "vimColorSchemes": [
     {
-      "fileURL": "https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim",
-      "name": "nord",
-      "data": {},
-      "valid": false
+      "date": "2025-02-21T00:00:00.000Z",
+      "stargazersCount": 6011
     }
   ],
-  "weekStargazersCount": 24
+  "weekStargazersCount": 10,
+  "updateValid": true,
+  "updatedAt": "2025-02-22T22:45:45.525Z"
 }
 ```
 
 ## `generate`
 
-The `generate` uses all vim files to launch a vim instance, apply the color
-scheme, get the colors for all color groups, and store them.
+The `generate` job intalls the [vimcolorschemes/extractor.nvim] plugin, then
+installs each repository as a neovim plugin, lists the possible colorschemes it
+contains, and generates the color data for each one.
 
 Here's a sample of a valid vim color scheme after this stage:
 
@@ -113,46 +103,41 @@ Here's a sample of a valid vim color scheme after this stage:
   ...
   "vimColorSchemes": [
     {
-      "fileURL": "https://raw.githubusercontent.com/arcticicestudio/nord-vim/develop/colors/nord.vim",
-      "name": "nord",
+      "name": "catppuccin-macchiato",
       "data": {
         "dark": [
-          { "name": "LineNrFg", "hexCode": "#4c566a" },
-          { "name": "vimSubst", "hexCode": "#81a1c1" },
-          { "name": "CursorLineNrBg", "hexCode": "#000000" },
-          { "name": "vimFuncName", "hexCode": "#88c0d0" },
-          { "name": "CursorFg", "hexCode": "#2e3440" },
-          { "name": "vimParenSep", "hexCode": "#eceff4" },
-          { "name": "vimIsCommand", "hexCode": "#d8dee9" },
-          { "name": "vimString", "hexCode": "#a3be8c" },
-          { "name": "StatusLineFg", "hexCode": "#88c0d0" },
-          { "name": "CursorBg", "hexCode": "#d8dee9" },
-          { "name": "vimLineComment", "hexCode": "#616e88" },
-          { "name": "vimFunction", "hexCode": "#88c0d0" },
-          { "name": "vimOper", "hexCode": "#81a1c1" },
-          { "name": "vimFuncKey", "hexCode": "#81a1c1" },
-          { "name": "CursorLineNrFg", "hexCode": "#d8dee9" },
-          { "name": "vimLet", "hexCode": "#81a1c1" },
-          { "name": "CursorLineFg", "hexCode": "#000000" },
-          { "name": "vimFuncBody", "hexCode": "#d8dee9" },
-          { "name": "StatusLineBg", "hexCode": "#4c566a" },
-          { "name": "vimOperParen", "hexCode": "#d8dee9" },
-          { "name": "NormalBg", "hexCode": "#2e3440" },
-          { "name": "vimNotFunc", "hexCode": "#81a1c1" },
-          { "name": "LineNrBg", "hexCode": "#000000" },
-          { "name": "CursorLineBg", "hexCode": "#3b4252" },
-          { "name": "vimVar", "hexCode": "#d8dee9" },
-          { "name": "vimFuncVar", "hexCode": "#d8dee9" },
-          { "name": "vimCommand", "hexCode": "#81a1c1" },
-          { "name": "vimNumber", "hexCode": "#b48ead" },
-          { "name": "NormalFg", "hexCode": "#d8dee9" }
+          { "name": "vimLineCommentFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncKeyFg", "hexCode": "#C6A0F6" },
+          { "name": "vimFuncBangFg", "hexCode": "#91D7E3" },
+          { "name": "DelimiterFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncParamFg", "hexCode": "#F0C6C6" },
+          { "name": "vimFuncModFg", "hexCode": "#F5BDE6" },
+          { "name": "vimLetFg", "hexCode": "#C6A0F6" },
+          { "name": "vimVarFg", "hexCode": "#F0C6C6" },
+          { "name": "vimOperFg", "hexCode": "#91D7E3" },
+          { "name": "vimFuncNameFg", "hexCode": "#8AADF4" },
+          { "name": "vimParenSepFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncVarFg", "hexCode": "#F0C6C6" },
+          { "name": "vimStringFg", "hexCode": "#A6DA95" },
+          { "name": "vimNumberFg", "hexCode": "#F5A97F" },
+          { "name": "vimNotFuncFg", "hexCode": "#C6A0F6" },
+          { "name": "vimCommandFg", "hexCode": "#C6A0F6" },
+          { "name": "NormalFg", "hexCode": "#CAD3F5" },
+          { "name": "NormalBg", "hexCode": "#24273A" },
+          { "name": "StatusLineFg", "hexCode": "#CAD3F5" },
+          { "name": "StatusLineBg", "hexCode": "#1E2030" },
+          { "name": "CursorFg", "hexCode": "#24273A" },
+          { "name": "CursorBg", "hexCode": "#CAD3F5" },
+          { "name": "LineNrFg", "hexCode": "#494D64" },
+          { "name": "CursorLineBg", "hexCode": "#303347" },
+          { "name": "CursorLineNrFg", "hexCode": "#B7BDF8" }
         ]
       },
-      "valid": true
-    }
+      "backgrounds": ["dark"]
+    },
   ],
   ...
   "generateValid": true,
-  "generatedAt": { "$date": "2021-10-13T21:12:19.281Z" }
+  "generatedAt": "2021-10-13T21:12:19.281Z"
 }
 ```

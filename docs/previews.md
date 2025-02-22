@@ -9,9 +9,10 @@ Using those files, a real neovim instance is launched and all colorscheme
 variants are tried (colorscheme names found, as well as `light` and `dark`
 backgrounds) on a very specific code snippet.
 
-Using vim functions, the cursor runs through all the words of the assigned code
-snippet, and the color as well as the group name under the cursor are stored.
-The data is stored into the database entry for each colorscheme.
+Using [extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim), the
+cursor runs through all the words of the assigned code snippet, and the color
+as well as the group name under the cursor are stored. The data is stored into
+the database entry for each colorscheme.
 
 Here is an example of what the data looks like for a colorscheme after a
 `generate` job:
@@ -19,52 +20,44 @@ Here is an example of what the data looks like for a colorscheme after a
 ```json
 {
   ...
-  "name": "onedark.vim",
-  "owner": {
-    "name": "joshdick"
-  },
-  ...
   "vimColorSchemes": [
     {
-      "fileURL": "https://raw.githubusercontent.com/joshdick/onedark.vim/main/colors/onedark.vim",
-      "name": "onedark",
+      "name": "catppuccin-macchiato",
       "data": {
         "dark": [
-          { "name": "vimIsCommand", "hexCode": "#abb2bf" },
-          { "name": "vimFuncKey", "hexCode": "#c678dd" },
-          { "name": "vimLet", "hexCode": "#c678dd" },
-          { "name": "vimSubst", "hexCode": "#c678dd" },
-          { "name": "CursorLineNrFg", "hexCode": "#000000" },
-          { "name": "vimFuncBody", "hexCode": "#abb2bf" },
-          { "name": "CursorLineBg", "hexCode": "#2c323c" },
-          { "name": "CursorFg", "hexCode": "#282c34" },
-          { "name": "vimString", "hexCode": "#98c379" },
-          { "name": "vimVar", "hexCode": "#e06c75" },
-          { "name": "LineNrBg", "hexCode": "#000000" },
-          { "name": "vimFunction", "hexCode": "#abb2bf" },
-          { "name": "vimOperParen", "hexCode": "#abb2bf" },
-          { "name": "vimLineComment", "hexCode": "#5c6370" },
-          { "name": "vimNotFunc", "hexCode": "#c678dd" },
-          { "name": "vimFuncName", "hexCode": "#61afef" },
-          { "name": "StatusLineBg", "hexCode": "#2c323c" },
-          { "name": "vimFuncVar", "hexCode": "#e06c75" },
-          { "name": "vimCommand", "hexCode": "#c678dd" },
-          { "name": "CursorBg", "hexCode": "#61afef" },
-          { "name": "vimOper", "hexCode": "#c678dd" },
-          { "name": "NormalBg", "hexCode": "#282c34" },
-          { "name": "vimNumber", "hexCode": "#d19a66" },
-          { "name": "CursorLineNrBg", "hexCode": "#000000" },
-          { "name": "vimParenSep", "hexCode": "#abb2bf" },
-          { "name": "NormalFg", "hexCode": "#abb2bf" },
-          { "name": "CursorLineFg", "hexCode": "#000000" },
-          { "name": "LineNrFg", "hexCode": "#4b5263" },
-          { "name": "StatusLineFg", "hexCode": "#abb2bf" }
+          { "name": "vimLineCommentFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncKeyFg", "hexCode": "#C6A0F6" },
+          { "name": "vimFuncBangFg", "hexCode": "#91D7E3" },
+          { "name": "DelimiterFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncParamFg", "hexCode": "#F0C6C6" },
+          { "name": "vimFuncModFg", "hexCode": "#F5BDE6" },
+          { "name": "vimLetFg", "hexCode": "#C6A0F6" },
+          { "name": "vimVarFg", "hexCode": "#F0C6C6" },
+          { "name": "vimOperFg", "hexCode": "#91D7E3" },
+          { "name": "vimFuncNameFg", "hexCode": "#8AADF4" },
+          { "name": "vimParenSepFg", "hexCode": "#939AB7" },
+          { "name": "vimFuncVarFg", "hexCode": "#F0C6C6" },
+          { "name": "vimStringFg", "hexCode": "#A6DA95" },
+          { "name": "vimNumberFg", "hexCode": "#F5A97F" },
+          { "name": "vimNotFuncFg", "hexCode": "#C6A0F6" },
+          { "name": "vimCommandFg", "hexCode": "#C6A0F6" },
+          { "name": "NormalFg", "hexCode": "#CAD3F5" },
+          { "name": "NormalBg", "hexCode": "#24273A" },
+          { "name": "StatusLineFg", "hexCode": "#CAD3F5" },
+          { "name": "StatusLineBg", "hexCode": "#1E2030" },
+          { "name": "CursorFg", "hexCode": "#24273A" },
+          { "name": "CursorBg", "hexCode": "#CAD3F5" },
+          { "name": "LineNrFg", "hexCode": "#494D64" },
+          { "name": "CursorLineBg", "hexCode": "#303347" },
+          { "name": "CursorLineNrFg", "hexCode": "#B7BDF8" }
         ]
       },
-      "valid": true
-    }
+      "backgrounds": ["dark"]
+    },
   ],
   ...
+  "generateValid": true,
+  "generatedAt": "2021-10-13T21:12:19.281Z"
 }
 ```
 

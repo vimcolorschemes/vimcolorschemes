@@ -13,11 +13,10 @@ The Worker is a series of scripts that run daily. Their main goal is to fetch
 repositories that could ressemble a vim/neovim colorscheme from Github, and
 then store them in a database.
 
-For every repository found, it searches thoroughly for vim files that could be
-used to generate a colorscheme preview presented on the website.
-
-At last, it runs a vim script that generates the color data used in the
-previews and stores it in the database.
+For every repository found, it installs it as a neovim plugin, and uses the
+[vimcolorschemes/extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim/)
+plugin to generate the color data used in the previews. It stores the result in
+the database.
 
 ### Links
 
@@ -29,7 +28,7 @@ previews and stores it in the database.
 - [Golang](https://golang.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Github API](https://docs.github.com/en/rest)
-- vimscript
+- [extractor.nvim](https://github.com/vimcolorschemes/extractor.nvim)
 
 ## The App
 
