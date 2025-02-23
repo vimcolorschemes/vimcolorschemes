@@ -23,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const repositories = await RepositoriesService.getAllRepositories();
   const repositoryURLs = repositories.map(repository => ({
     url: `${process.env.APP_URL}/${repository.key}`,
-    lastModified: repository.lastCommitAt,
+    lastModified: repository.pushedAt,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));

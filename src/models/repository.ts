@@ -12,18 +12,19 @@ class Repository {
   owner: Owner;
   description: string;
   githubCreatedAt: Date;
-  lastCommitAt: Date;
+  pushedAt: Date;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
   colorschemes: Colorscheme[];
 
   constructor(dto: RepositoryDTO) {
+    console.log({ dto });
     this.name = dto.name;
     this.owner = dto.owner;
     this.description = dto.description;
     this.githubCreatedAt = dto.githubCreatedAt;
-    this.lastCommitAt = dto.lastCommitAt;
+    this.pushedAt = dto.pushedAt;
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;
@@ -73,7 +74,7 @@ class Repository {
       owner: this.owner,
       description: this.description,
       githubCreatedAt: this.githubCreatedAt,
-      lastCommitAt: this.lastCommitAt,
+      pushedAt: this.pushedAt,
       githubURL: this.githubURL,
       stargazersCount: this.stargazersCount,
       weekStargazersCount: this.weekStargazersCount,

@@ -27,9 +27,7 @@ async function getRepositoryCount(filter: Filter): Promise<number> {
   await DatabaseService.connect();
 
   return RepositoryModel.countDocuments({
-    updateValid: true,
-    generateValid: true,
-    $expr: { $gt: [{ $size: '$vimColorSchemes' }, 0] },
+    vimColorSchemes: { $exists: true, $ne: null, $not: { $size: 0 } },
     ...QueryHelper.getFilterQuery(filter),
   });
 }
@@ -54,8 +52,7 @@ async function getRepositories({
   const repositoryDTOs = await RepositoryModel.aggregate([
     {
       $match: {
-        updateValid: true,
-        generateValid: true,
+        vimColorSchemes: { $exists: true, $ne: null, $not: { $size: 0 } },
         $expr: { $gt: [{ $size: '$vimColorSchemes' }, 0] },
         ...QueryHelper.getFilterQuery(filter),
       },
@@ -77,9 +74,7 @@ async function getAllRepositories(): Promise<Repository[]> {
   const repositoryDTOs = await RepositoryModel.aggregate([
     {
       $match: {
-        updateValid: true,
-        generateValid: true,
-        $expr: { $gt: [{ $size: '$vimColorSchemes' }, 0] },
+        vimColorSchemes: { $exists: true, $ne: null, $not: { $size: 0 } },
       },
     },
   ]);
@@ -109,9 +104,7 @@ async function getRepository(
       $match: {
         'owner.name': { $regex: `^${owner}$`, $options: 'i' },
         name: { $regex: `^${name}$`, $options: 'i' },
-        updateValid: true,
-        generateValid: true,
-        $expr: { $gt: [{ $size: '$vimColorSchemes' }, 0] },
+        vimColorSchemes: { $exists: true, $ne: null, $not: { $size: 0 } },
       },
     },
     { $limit: 1 },

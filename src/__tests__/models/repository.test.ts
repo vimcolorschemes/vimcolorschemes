@@ -8,7 +8,7 @@ const dtoLight: RepositoryDTO = {
   owner: { name: 'owner' },
   description: 'description',
   githubCreatedAt: new Date(),
-  lastCommitAt: new Date(),
+  pushedAt: new Date(),
   githubURL: 'https://github.com',
   stargazersCount: 100,
   weekStargazersCount: 10,

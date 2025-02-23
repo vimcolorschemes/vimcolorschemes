@@ -8,7 +8,7 @@ type RepositoryDTO = {
   owner: Owner;
   description: string;
   githubCreatedAt: Date;
-  lastCommitAt: Date;
+  pushedAt: Date;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
@@ -20,7 +20,7 @@ const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
   owner: { name: String },
   description: String,
   githubCreatedAt: Date,
-  lastCommitAt: Date,
+  pushedAt: Date,
   githubURL: String,
   stargazersCount: Number,
   weekStargazersCount: Number,
