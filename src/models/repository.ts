@@ -19,7 +19,6 @@ class Repository {
   colorschemes: Colorscheme[];
 
   constructor(dto: RepositoryDTO) {
-    console.log({ dto });
     this.name = dto.name;
     this.owner = dto.owner;
     this.description = dto.description;
