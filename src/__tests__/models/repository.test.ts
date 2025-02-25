@@ -8,26 +8,24 @@ const dtoLight: RepositoryDTO = {
   owner: { name: 'owner' },
   description: 'description',
   githubCreatedAt: new Date(),
-  lastCommitAt: new Date(),
+  pushedAt: new Date(),
   githubURL: 'https://github.com',
   stargazersCount: 100,
   weekStargazersCount: 10,
-  isLua: false,
-  colorschemes: [
+  vimColorSchemes: [
     {
       name: 'colorscheme',
       backgrounds: ['light'],
       data: { light: [{ name: 'test', hexCode: '#ffffff' }], dark: null },
-      isLua: false,
     },
   ],
 };
 
 const dtoDark: RepositoryDTO = {
   ...dtoLight,
-  colorschemes: [
+  vimColorSchemes: [
     {
-      ...dtoLight.colorschemes[0],
+      ...dtoLight.vimColorSchemes[0],
       backgrounds: ['dark'],
       data: { light: null, dark: [{ name: 'test', hexCode: '#ffffff' }] },
     },
@@ -36,9 +34,9 @@ const dtoDark: RepositoryDTO = {
 
 const dtoMixed: RepositoryDTO = {
   ...dtoLight,
-  colorschemes: [
+  vimColorSchemes: [
     {
-      ...dtoLight.colorschemes[0],
+      ...dtoLight.vimColorSchemes[0],
       backgrounds: ['light', 'dark'],
       data: {
         light: [{ name: 'test', hexCode: '#ffffff' }],
@@ -54,7 +52,7 @@ describe('new Repository()', () => {
     expect(repository.name).toBe(dtoLight.name);
     expect(repository.owner).toEqual(dtoLight.owner);
     expect(repository.description).toBe(dtoLight.description);
-    expect(repository.dto.colorschemes).toEqual(dtoLight.colorschemes);
+    expect(repository.dto.vimColorSchemes).toEqual(dtoLight.vimColorSchemes);
   });
 });
 
@@ -106,7 +104,7 @@ describe('repository.flattenedColorschemes', () => {
 
   it('should return multiple colorschemes if there are multiple', () => {
     const dto = { ...dtoMixed };
-    dto.colorschemes.push(dto.colorschemes[0]);
+    dto.vimColorSchemes.push(dto.vimColorSchemes[0]);
     const repository = new Repository(dtoMixed);
     expect(repository.flattenedColorschemes.length).toBe(4);
   });

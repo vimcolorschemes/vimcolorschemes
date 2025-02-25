@@ -20,7 +20,7 @@ export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
       )}
       <div>
         <p className={styles.info}>
-          <span>created </span>
+          <span>published </span>
           {repository ? (
             <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
           ) : (
@@ -28,9 +28,9 @@ export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
           )}
         </p>
         <p className={styles.info}>
-          <span>last commit </span>
+          <span>updated </span>
           {repository ? (
-            <strong>{DateHelper.format(repository.lastCommitAt)}</strong>
+            <strong>{DateHelper.format(repository.pushedAt)}</strong>
           ) : (
             <Skeleton inline />
           )}

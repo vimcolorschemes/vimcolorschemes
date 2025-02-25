@@ -10,7 +10,6 @@ describe('new Colorscheme()', () => {
     const dto: ColorschemeDTO = {
       name: 'colorscheme',
       data: { light: [{ name: 'test', hexCode: '#ffffff' }], dark: null },
-      isLua: false,
       backgrounds: [Backgrounds.Light],
     };
 
@@ -28,7 +27,6 @@ describe('colorscheme.dto', () => {
     const dto: ColorschemeDTO = {
       name: 'colorscheme',
       data: { light: [{ name: 'test', hexCode: '#ffffff' }], dark: null },
-      isLua: false,
       backgrounds: [Backgrounds.Dark],
     };
 
@@ -43,7 +41,6 @@ describe('colorscheme.getDefaultBackground', () => {
     const colorscheme = new Colorscheme({
       name: 'colorscheme',
       data: { light: null, dark: [{ name: 'test', hexCode: '#ffffff' }] },
-      isLua: false,
       backgrounds: [Backgrounds.Dark],
     });
     expect(colorscheme.getDefaultBackground()).toBe(Backgrounds.Dark);
@@ -53,7 +50,6 @@ describe('colorscheme.getDefaultBackground', () => {
     const colorscheme = new Colorscheme({
       name: 'colorscheme',
       data: { light: [{ name: 'test', hexCode: '#ffffff' }], dark: null },
-      isLua: false,
       backgrounds: [Backgrounds.Light],
     });
     expect(colorscheme.getDefaultBackground()).toBe(Backgrounds.Light);
@@ -66,7 +62,6 @@ describe('colorscheme.getDefaultBackground', () => {
         light: [{ name: 'test', hexCode: '#ffffff' }],
         dark: [{ name: 'test', hexCode: '#ffffff' }],
       },
-      isLua: false,
       backgrounds: [Backgrounds.Light, Backgrounds.Dark],
     });
     expect(colorscheme.getDefaultBackground(Backgrounds.Light)).toBe(
@@ -83,7 +78,6 @@ describe('colorscheme.flattened', () => {
         light: [{ name: 'test', hexCode: '#ffffff' }],
         dark: [{ name: 'test', hexCode: '#ffffff' }],
       },
-      isLua: false,
       backgrounds: [Backgrounds.Light, Backgrounds.Dark],
     });
     expect(colorscheme.flattened.length).toBe(2);

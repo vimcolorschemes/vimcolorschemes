@@ -1,5 +1,4 @@
 import Backgrounds, { Background } from '@/lib/backgrounds';
-import Editors, { Editor } from '@/lib/editors';
 import Filter, {
   URLFilterKey,
   URLKeyFilterMap,
@@ -13,8 +12,8 @@ import URLHelper from './url';
  * Generate the URL from a filter object.
  *
  * @example
- * FilterHelper.getURLFromFilter({ editor: 'vim', background: 'dark' }) === 'e.vim/b.dark'
- * FilterHelper.getURLFromFilter({ editor: 'vim', background: 'invalid' }) === 'e.vim'
+ * FilterHelper.getURLFromFilter({ background: 'dark' }) === 'b.dark'
+ * FilterHelper.getURLFromFilter({ background: 'invalid' }) === ''
  *
  * @param filter The filter object.
  * @returns The URL.
@@ -28,10 +27,6 @@ function getURLFromFilter(filter: Filter): string {
 
       const urlKey = FilterURLKeyMap[key as keyof Filter];
       if (!Object.values(URLFilterKeys).includes(urlKey as URLFilterKey)) {
-        return null;
-      }
-
-      if (urlKey === URLFilterKeys.Editor && !isValidEditor(value)) {
         return null;
       }
 
@@ -61,8 +56,8 @@ function getURLFromFilter(filter: Filter): string {
  * Build a filter object from URL parts.
  *
  * @example
- * FilterHelper.getFilterFromURL(['e.vim', 'b.dark']) === { editor: 'vim', background: 'dark' }
- * FilterHelper.getFilterFromURL(['e.vim', 'i.invalid']) === { editor: 'vim' }
+ * FilterHelper.getFilterFromURL(['b.dark']) === { background: 'dark' }
+ * FilterHelper.getFilterFromURL(['i.invalid']) === {}
  *
  * @param filters
  * @returns
@@ -83,10 +78,6 @@ function getFilterFromURL(filters: string[]): Filter {
       return filter;
     }
 
-    if (filterKey === 'editor' && !isValidEditor(value)) {
-      return filter;
-    }
-
     if (filterKey === 'background' && !isValidBackground(value)) {
       return filter;
     }
@@ -103,10 +94,6 @@ function getFilterFromURL(filters: string[]): Filter {
 
     return { ...filter, [filterKey]: value };
   }, {});
-}
-
-function isValidEditor(value: string | number): boolean {
-  return Object.values(Editors).includes(value as Editor);
 }
 
 function isValidBackground(value: string | number): boolean {

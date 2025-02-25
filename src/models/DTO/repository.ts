@@ -8,12 +8,11 @@ type RepositoryDTO = {
   owner: Owner;
   description: string;
   githubCreatedAt: Date;
-  lastCommitAt: Date;
+  pushedAt: Date;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;
-  isLua: boolean;
-  colorschemes: ColorschemeDTO[];
+  vimColorSchemes: ColorschemeDTO[];
 };
 
 const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
@@ -21,15 +20,13 @@ const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
   owner: { name: String },
   description: String,
   githubCreatedAt: Date,
-  lastCommitAt: Date,
+  pushedAt: Date,
   githubURL: String,
   stargazersCount: Number,
   weekStargazersCount: Number,
-  isLua: Boolean,
-  colorschemes: [
+  vimColorSchemes: [
     {
       name: String,
-      isLua: Boolean,
       backgrounds: Array<string>,
       data: {
         light: Array<{ name: string; hexCode: string }>,
