@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
-    "@next/bundle-analyzer": "^15.1.6",
+    "@next/bundle-analyzer": "^15.2.0",
     "@next/eslint-plugin-next": "^15.1.6",
     "@testing-library/react": "^16.2.0",
     "@types/node": "^22.13.1",
