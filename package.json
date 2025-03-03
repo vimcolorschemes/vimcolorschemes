@@ -29,7 +29,7 @@
     "node": "22"
   },
   "dependencies": {
-    "@vercel/speed-insights": "^1.1.0",
+    "@vercel/speed-insights": "^1.2.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "mongoose": "^8.10.0",
