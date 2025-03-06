@@ -6,7 +6,7 @@ import Sort, { SortOptions } from '@/lib/sort';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import RepositoryGrid from '@/components/repositoryGrid';
+import RepositoryGrid from '@/components/repositories';
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
 

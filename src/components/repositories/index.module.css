@@ -1,0 +1,9 @@
+.container {
+  width: 100%;
+  max-width: 120rem;
+  padding: var(--content-padding);
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-md);
+}
