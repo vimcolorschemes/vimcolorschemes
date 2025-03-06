@@ -1,21 +1,11 @@
 .container {
-  width: 100%;
-  max-width: 120rem;
-  padding: var(--content-padding);
-
-  display: flex;
-  flex-direction: column;
-  row-gap: var(--spacing-md);
-}
-
-.grid {
   display: grid;
   grid-template-columns: 100%;
   gap: var(--spacing-lg);
 }
 
 @media (min-width: 992px) {
-  .grid {
+  .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

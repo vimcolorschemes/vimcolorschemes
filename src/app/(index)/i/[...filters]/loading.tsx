@@ -1,4 +1,4 @@
-import RepositoryGridSkeleton from '@/components/repositoryGrid/skeleton';
+import RepositoryGridSkeleton from '@/components/repositories/skeleton';
 
 export default function IndexPageLoading() {
   return <RepositoryGridSkeleton />;
