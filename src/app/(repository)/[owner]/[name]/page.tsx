@@ -11,6 +11,8 @@ import styles from './page.module.css';
 
 type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({
   params,
 }: RepositoryPageProps): Promise<Metadata> {

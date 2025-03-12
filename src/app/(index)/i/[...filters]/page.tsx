@@ -10,6 +10,8 @@ import RepositoryGrid from '@/components/repositories';
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
 
+export const revalidate = 3600;
+
 export async function generateMetadata({
   params,
 }: IndexPageProps): Promise<Metadata> {
