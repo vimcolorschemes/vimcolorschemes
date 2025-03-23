@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import Header from '@/components/ui/header';
 
-import styles from './page.module.css';
+import styles from './layout.module.css';
 
 type RepositoryPageLayoutProps = {
   children: ReactNode;
