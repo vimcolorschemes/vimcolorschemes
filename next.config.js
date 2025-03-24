@@ -46,6 +46,12 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'avatars.githubusercontent.com' },
+      { protocol: 'https', hostname: 'github.com' },
+    ],
+  },
 };
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({

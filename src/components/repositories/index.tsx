@@ -13,7 +13,7 @@ type RepositoriesProps = {
   pageContext: PageContext;
 };
 
-export default function ResporitoryGrid({ pageContext }: RepositoriesProps) {
+export default function Repositories({ pageContext }: RepositoriesProps) {
   return (
     <div className={styles.container}>
       <Suspense fallback={<p>_ repositories</p>}>

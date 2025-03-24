@@ -1,7 +1,7 @@
 .container {
   width: var(--skeleton-width, 100%);
   height: var(--skeleton-height, var(--spacing-sm));
-  border-radius: 0.625rem;
+  border-radius: var(--skeleton-border-radius, 0.625rem);
   background-color: var(--skeleton-background);
   background: linear-gradient(
       100deg,

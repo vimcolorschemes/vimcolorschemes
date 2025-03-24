@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  align-items: center;
+  column-gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  position: relative;
+}
+
+.avatar {
+  border-radius: 50%;
+  --skeleton-width: 3.125rem;
+  --skeleton-height: 3.125rem;
+  --skeleton-border-radius: 50%;
+  background: var(--skeleton-background);
+}
+
+.title {
+  font-weight: 700;
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-md);
+  --skeleton-width: 13rem;
+  --skeleton-height: var(--line-height-md);
+  margin-bottom: 0;
+}

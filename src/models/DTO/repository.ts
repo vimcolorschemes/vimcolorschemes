@@ -17,7 +17,7 @@ type RepositoryDTO = {
 
 const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
   name: String,
-  owner: { name: String },
+  owner: { name: String, avatarURL: String },
   description: String,
   githubCreatedAt: Date,
   pushedAt: Date,

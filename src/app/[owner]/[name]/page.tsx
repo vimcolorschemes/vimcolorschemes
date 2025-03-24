@@ -34,7 +34,7 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
   return (
     <>
       <RepositoryPageHeader repositoryKey={repository.key} />
-      <RepositoryTitle repository={repository} />
+      <RepositoryTitle repository={repository} hasOwnerLink />
       <RepositoryInfo repository={repository} />
       <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
     </>

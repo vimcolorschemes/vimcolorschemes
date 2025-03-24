@@ -12,6 +12,9 @@ function getFilterQuery(filter: Filter): FilterQuery {
   if (filter.background === 'dark') {
     query['vimColorSchemes.backgrounds'] = 'dark';
   }
+  if (filter.owner) {
+    query['owner.name'] = { $regex: `^${filter.owner}$`, $options: 'i' };
+  }
 
   return query;
 }

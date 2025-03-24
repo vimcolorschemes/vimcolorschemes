@@ -26,5 +26,9 @@ export default async function RepositoriesCount({
     );
   }
 
-  return <p>{count} repositories</p>;
+  return (
+    <p>
+      {count} repositor{count === 1 ? 'y' : 'ies'}
+    </p>
+  );
 }

@@ -6,7 +6,7 @@ import Sort, { SortOptions } from '@/lib/sort';
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
 
-import RepositoryGrid from '@/components/repositories';
+import Repositories from '@/components/repositories';
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
 
@@ -33,5 +33,5 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(`/i/${sort}/${validURL}`);
   }
 
-  return <RepositoryGrid pageContext={pageContext} />;
+  return <Repositories pageContext={pageContext} />;
 }
