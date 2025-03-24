@@ -20,6 +20,10 @@
   --skeleton-height: var(--line-height-md);
 }
 
+.owner {
+  position: relative;
+}
+
 .stats {
   display: flex;
   flex-direction: column;

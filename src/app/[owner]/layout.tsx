@@ -1,16 +1,10 @@
-import { ReactNode } from 'react';
-
 import Header from '@/components/ui/header';
 
 import styles from './layout.module.css';
 
-type RepositoryPageLayoutProps = {
-  children: ReactNode;
-};
-
-export default function RepositoryPageLayout({
+export default function ArtistPageLayout({
   children,
-}: RepositoryPageLayoutProps) {
+}: React.PropsWithChildren) {
   return (
     <>
       <Header />

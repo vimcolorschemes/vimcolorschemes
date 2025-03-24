@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import Link from 'next/link';
 
 import Repository from '@/models/repository';
 
@@ -12,6 +13,7 @@ type RepositoryTitleProps = {
   repository?: Repository;
   /** The name of the HTML element to render the title as. */
   as?: 'h1' | 'h2';
+  hasOwnerLink?: boolean;
   classNames?: {
     container?: string;
     title?: string;
@@ -21,13 +23,22 @@ type RepositoryTitleProps = {
 export default function RepositoryTitle({
   repository,
   as,
+  hasOwnerLink,
   classNames,
 }: RepositoryTitleProps) {
   const Title = as ?? 'h1';
   return (
     <div className={cn(styles.container, classNames?.container)}>
       <Title className={styles.titleContainer}>
-        <div>{repository?.owner.name ?? <Skeleton inline />}</div>
+        {repository?.owner.name && hasOwnerLink ? (
+          <Link href={`/${repository.owner.name}`} className={styles.owner}>
+            {repository.owner.name}
+          </Link>
+        ) : (
+          <div className={styles.owner}>
+            {repository?.owner.name ?? <Skeleton inline />}
+          </div>
+        )}
         <div className={cn(styles.title, classNames?.title)}>
           {repository?.name ?? <Skeleton inline />}
         </div>
