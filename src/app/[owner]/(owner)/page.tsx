@@ -11,6 +11,8 @@ import OwnerTitle from '@/components/ownerTitle';
 import Repositories from '@/components/repositories';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
+import styles from './page.module.css';
+
 type OwnerPageProps = { params: Promise<{ owner: string }> };
 
 export async function generateMetadata({
@@ -35,7 +37,7 @@ export default async function OwnerPage({ params }: OwnerPageProps) {
   return (
     <>
       <OwnerPageHeader owner={owner} />
-      <OwnerTitle owner={owner} />
+      <OwnerTitle owner={owner} className={styles.owner} />
       <Suspense fallback={<RepositoriesSkeleton />}>
         <Repositories
           pageContext={{

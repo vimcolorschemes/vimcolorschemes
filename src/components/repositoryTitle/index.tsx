@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import Repository from '@/models/repository';
 
+import OwnerTitle from '@/components/ownerTitle';
 import IconStar from '@/components/ui/icons/star';
 import IconTrending from '@/components/ui/icons/trending';
 import Skeleton from '@/components/ui/skeleton';
@@ -32,12 +33,10 @@ export default function RepositoryTitle({
       <Title className={styles.titleContainer}>
         {repository?.owner.name && hasOwnerLink ? (
           <Link href={`/${repository.owner.name}`} className={styles.owner}>
-            {repository.owner.name}
+            <OwnerTitle owner={repository.owner} />
           </Link>
         ) : (
-          <div className={styles.owner}>
-            {repository?.owner.name ?? <Skeleton inline />}
-          </div>
+          <OwnerTitle owner={repository?.owner} />
         )}
         <div className={cn(styles.title, classNames?.title)}>
           {repository?.name ?? <Skeleton inline />}

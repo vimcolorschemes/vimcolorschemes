@@ -1,3 +1,4 @@
+import cn from 'classnames';
 import Image from 'next/image';
 
 import Owner from '@/models/owner';
@@ -8,11 +9,12 @@ import styles from './index.module.css';
 
 type OwnerTitleProps = {
   owner?: Owner;
+  className?: string;
 };
 
-export default function OwnerTitle({ owner }: OwnerTitleProps) {
+export default function OwnerTitle({ owner, className }: OwnerTitleProps) {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, className)}>
       {!owner && <Skeleton className={styles.avatar} />}
       {!!owner && (
         <Image
@@ -20,8 +22,8 @@ export default function OwnerTitle({ owner }: OwnerTitleProps) {
           alt={owner.name}
           width={50}
           height={50}
-          unoptimized
           className={styles.avatar}
+          unoptimized
         />
       )}
       <h1 className={styles.title}>{owner?.name ?? <Skeleton />}</h1>
