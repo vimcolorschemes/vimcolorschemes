@@ -88,6 +88,8 @@ async function getRepository(
 ): Promise<RepositoryDTO | null> {
   'use cache';
 
+  console.log('getRepository', owner, name, Date.now());
+
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.aggregate([

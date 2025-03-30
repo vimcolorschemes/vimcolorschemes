@@ -8,6 +8,8 @@ const VIM_COLORSCHEMES_FILTER = { vimColorSchemes: { $type: 'array' } };
 async function getOwner(name: string): Promise<Owner | null> {
   'use cache';
 
+  console.log('getOwner', name, Date.now());
+
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.aggregate([
