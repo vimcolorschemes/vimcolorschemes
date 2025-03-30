@@ -1,5 +1,7 @@
 import RepositoriesService from '@/services/repositories';
 
+import Repository from '@/models/repository';
+
 import PageContext from '@/lib/pageContext';
 
 import RepositoryCard from '@/components/repositoryCard';
@@ -13,7 +15,8 @@ type RepositoriesGridProps = {
 export default async function RepositoriesGrid({
   pageContext,
 }: RepositoriesGridProps) {
-  const repositories = await RepositoriesService.getRepositories(pageContext);
+  const dtos = await RepositoriesService.getRepositories(pageContext);
+  const repositories = dtos.map(dto => new Repository(dto));
   return (
     <section className={styles.container}>
       {repositories.map(repository => (

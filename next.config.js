@@ -2,6 +2,7 @@
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: { useCache: true },
   redirects: async () => [
     { source: '/', destination: '/i/trending', permanent: true },
     { source: '/trending', destination: '/i/trending', permanent: true },

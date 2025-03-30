@@ -6,6 +6,8 @@ import Owner from '@/models/owner';
 const VIM_COLORSCHEMES_FILTER = { vimColorSchemes: { $type: 'array' } };
 
 async function getOwner(name: string): Promise<Owner | null> {
+  'use cache';
+
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.aggregate([
