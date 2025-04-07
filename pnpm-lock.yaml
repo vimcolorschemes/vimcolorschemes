@@ -40,8 +40,8 @@ importers:
         specifier: ^15.2.4
         version: 15.2.4
       '@testing-library/react':
-        specifier: ^16.2.0
-        version: 16.2.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+        specifier: ^16.3.0
+        version: 16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/node':
         specifier: ^22.13.12
         version: 22.13.12
@@ -154,10 +154,6 @@ packages:
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
-
-  '@babel/runtime@7.26.0':
-    resolution: {integrity: sha512-FDSOghenHTiToteC/QRlv2q3DhPZ/oOXTBoirfWNx1Cx3TMVcGWQtMMmQcSvb/JjpNeGzx8Pq/b4fKEJuWm1sw==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.27.0':
     resolution: {integrity: sha512-VtPOkrdPHZsKc/clNqyi9WUA8TINkZ4cGk63UUE3u4pmB2k+ZMQRDuIOagv8UVd6j7k0T3+RRIb7beKTebNbcw==}
@@ -749,8 +745,8 @@ packages:
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
     engines: {node: '>=18'}
 
-  '@testing-library/react@16.2.0':
-    resolution: {integrity: sha512-2cSskAvA1QNtKc8Y9VJQRv0tm3hLVgxRGDB+KYhIaPQJ1I+RHbhIXcM+zClKXzMes/wshsMVzf4B9vS4IZpqDQ==}
+  '@testing-library/react@16.3.0':
+    resolution: {integrity: sha512-kFSyxiEDwv1WLl2fgsq6pPBbw5aWKrsY2/noi1Id0TK0UParSF62oFQFGHXIyaG4pp2tEub/Zlel+fjjZILDsw==}
     engines: {node: '>=18'}
     peerDependencies:
       '@testing-library/dom': ^10.0.0
@@ -2702,10 +2698,6 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/helper-plugin-utils': 7.26.5
 
-  '@babel/runtime@7.26.0':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/runtime@7.27.0':
     dependencies:
       regenerator-runtime: 0.14.1
@@ -3144,9 +3136,9 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/react@16.2.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+  '@testing-library/react@16.3.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@babel/runtime': 7.26.0
+      '@babel/runtime': 7.27.0
       '@testing-library/dom': 10.4.0
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
