@@ -53,7 +53,7 @@
     "jsdom": "^26.1.0",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.1"
+    "vitest": "^3.1.2"
   },
   "packageManager": "pnpm@10.8.0",
   "pnpm": {
