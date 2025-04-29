@@ -21,12 +21,6 @@ export default function AboutPage() {
         also part of the core mission of vimcolorschemes.
       </p>
 
-      <h2>Key features</h2>
-      <ul>
-        <li>Daily updated list of hundreds of colorscheme repositories</li>
-        <li>Vim key bindings to navigate quickly through the whole site</li>
-      </ul>
-
       <h2>Get involved</h2>
       <p>
         vimcolorschemes is aimed to be a collaborative project, and you are
@@ -66,8 +60,9 @@ export default function AboutPage() {
         feature.
       </p>
       <p>
-        Make sure words like vim, neovim, and at least one of the following
-        keywords appear on the README or description:
+        Make sure words your colorscheme has <strong>at least 1 star</strong>,
+        and words like &ldquo;vim&rdquo;, &ldquo;neovim&rdquo; and at least one
+        of the following keywords appear on the README or description:
       </p>
       <ul>
         <li>theme</li>
@@ -76,10 +71,6 @@ export default function AboutPage() {
         <li>colorscheme</li>
         <li>colourscheme</li>
       </ul>
-      <blockquote>
-        Note: The words can be in any order. Example: {'"color scheme for vim"'}
-        will work.
-      </blockquote>
       <p>
         Still nothing? Feel free to{' '}
         <a
