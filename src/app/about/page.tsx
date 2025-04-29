@@ -60,9 +60,9 @@ export default function AboutPage() {
         feature.
       </p>
       <p>
-        Make sure words your colorscheme has <strong>at least 1 star</strong>,
-        and words like &ldquo;vim&rdquo;, &ldquo;neovim&rdquo; and at least one
-        of the following keywords appear on the README or description:
+        Make sure your colorscheme has <strong>at least 1 star</strong>, and
+        words like &ldquo;vim&rdquo;, &ldquo;neovim&rdquo; and at least one of
+        the following keywords appear on the README or description:
       </p>
       <ul>
         <li>theme</li>
