@@ -18,12 +18,6 @@
 
 @media (min-width: 768px) {
   .container {
-    --skeleton-width: 40.5rem;
-  }
-  .container:not(:has(> :only-child)) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .container:has(> :only-child) {
-    grid-template-columns: fit-content(50rem);
   }
 }
