@@ -42,7 +42,7 @@
     "@next/bundle-analyzer": "^15.5.0",
     "@next/eslint-plugin-next": "^15.5.0",
     "@testing-library/react": "^16.3.0",
-    "@types/node": "^22.15.3",
+    "@types/node": "^24.3.0",
     "@types/react": "^19.1.11",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.4.1",
