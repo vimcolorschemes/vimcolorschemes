@@ -43,7 +43,7 @@
     "@next/eslint-plugin-next": "^15.5.2",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^22.17.2",
-    "@types/react": "^19.1.11",
+    "@types/react": "^19.1.15",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.1",
     "eslint": "^9.34.0",
