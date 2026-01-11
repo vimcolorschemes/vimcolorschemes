@@ -15,13 +15,12 @@ export default function BackgroundInput() {
   const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
 
   function onChange(background?: Background) {
-    delete pageContext.filter.background;
-    delete pageContext.filter.page;
-    const url = FilterHelper.getURLFromFilter({
+    const filterUrl = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
+      page: undefined,
       background,
     });
-    router.push(`/i/${pageContext.sort}/${url}`);
+    router.push(`/i/${pageContext.sort}/${filterUrl}`);
   }
 
   return (

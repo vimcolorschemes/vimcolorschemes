@@ -20,9 +20,8 @@ export default async function RepositoriesCount({
 
   const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
   if ((pageContext.filter.page || 1) > (pageCount || 1)) {
-    delete pageContext.filter.page;
     redirect(
-      `/${pageContext.sort}/${FilterHelper.getURLFromFilter(pageContext.filter)}`,
+      `/${pageContext.sort}/${FilterHelper.getURLFromFilter({ ...pageContext.filter, page: undefined })}`,
     );
   }
 
