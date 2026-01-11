@@ -33,21 +33,21 @@
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "mongoose": "^9.1.2",
-    "next": "^15.5.9",
-    "react": "^19.1.4",
-    "react-dom": "^19.1.4"
+    "next": "16.1.1",
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
-    "@next/bundle-analyzer": "^15.5.9",
-    "@next/eslint-plugin-next": "^15.5.9",
+    "@next/bundle-analyzer": "16.1.1",
+    "@next/eslint-plugin-next": "16.1.1",
     "@testing-library/react": "^16.3.1",
     "@types/node": "^24.10.7",
-    "@types/react": "^19.2.8",
-    "@types/react-dom": "^19.2.3",
+    "@types/react": "19.2.8",
+    "@types/react-dom": "19.2.3",
     "@vitejs/plugin-react": "^5.1.2",
     "eslint": "^9.39.2",
-    "eslint-config-next": "^15.5.9",
+    "eslint-config-next": "16.1.1",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-hooks": "^7.0.1",
     "jsdom": "^27.4.0",
@@ -59,6 +59,10 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@vercel/speed-insights"
-    ]
+    ],
+    "overrides": {
+      "@types/react": "19.2.8",
+      "@types/react-dom": "19.2.3"
+    }
   }
 }
