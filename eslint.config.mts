@@ -2,10 +2,14 @@ import { defineConfig, globalIgnores } from 'eslint/config';
 import nextVitals from 'eslint-config-next/core-web-vitals';
 import nextTypescript from 'eslint-config-next/typescript';
 import importPlugin from 'eslint-plugin-import';
+import reactHooks from 'eslint-plugin-react-hooks';
 
 export default defineConfig([
   ...nextVitals,
   ...nextTypescript,
+  {
+    rules: reactHooks.configs['recommended-latest'].rules,
+  },
   {
     plugins: {
       import: importPlugin,
