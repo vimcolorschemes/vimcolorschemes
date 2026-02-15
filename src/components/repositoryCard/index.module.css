@@ -25,6 +25,12 @@
   display: none;
 }
 
+.skeleton:hover::before,
+.skeleton:focus-within::before {
+  background-color: transparent;
+  opacity: 0;
+}
+
 .link {
   position: absolute;
   inset: calc(var(--spacing-sm) * -1);
@@ -81,4 +87,9 @@
 .container:hover .title,
 .container:focus-within .title {
   text-decoration: underline;
+}
+
+.skeleton:hover .title,
+.skeleton:focus-within .title {
+  text-decoration: none;
 }
