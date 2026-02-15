@@ -22,7 +22,7 @@ export default function RepositoryCard({
   return (
     <article className={styles.container}>
       <InteractivePreview
-        repositoryDTO={repository.dto}
+        colorschemes={repository.dto.vimColorSchemes}
         pageContext={pageContext}
         className={styles.preview}
       />

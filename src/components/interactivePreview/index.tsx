@@ -2,42 +2,43 @@
 
 import { useState } from 'react';
 
-import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
+import ColorschemeDTO from '@/models/DTO/colorscheme';
+import Colorscheme from '@/models/colorscheme';
 
 import PageContext from '@/lib/pageContext';
 
 import Preview from '@/components/preview';
 
 type InteractivePreviewProps = {
-  repositoryDTO: RepositoryDTO;
+  colorschemes: ColorschemeDTO[];
   pageContext: PageContext;
   className?: string;
 };
 
 export default function InteractivePreview({
-  repositoryDTO,
+  colorschemes,
   pageContext,
   className,
 }: InteractivePreviewProps) {
-  const repository = new Repository(repositoryDTO);
-
-  const defaultColorscheme = repository.getDefaultColorscheme(
-    pageContext.filter?.background,
-  );
-  const defaultBackground = defaultColorscheme.getDefaultBackground(
-    pageContext.filter?.background,
-  );
+  const parsedColorschemes = colorschemes.map(dto => new Colorscheme(dto));
+  const preferredBackground = pageContext.filter?.background;
+  const defaultColorscheme = preferredBackground
+    ? parsedColorschemes.find(colorscheme =>
+        colorscheme.backgrounds.includes(preferredBackground),
+      ) || parsedColorschemes[0]
+    : parsedColorschemes[0];
+  const defaultBackground =
+    defaultColorscheme.getDefaultBackground(preferredBackground);
 
   const [colorscheme, setColorscheme] = useState(defaultColorscheme);
   const [background, setBackground] = useState(defaultBackground);
 
   function onToggleColorscheme() {
-    const index = repository.colorschemes.findIndex(
+    const index = parsedColorschemes.findIndex(
       c => c.name === colorscheme.name,
     );
-    const nextIndex = (index + 1) % repository.colorschemes.length;
-    const newColorscheme = repository.colorschemes[nextIndex];
+    const nextIndex = (index + 1) % parsedColorschemes.length;
+    const newColorscheme = parsedColorschemes[nextIndex];
     setColorscheme(newColorscheme);
 
     if (!newColorscheme.backgrounds.includes(background)) {
@@ -56,7 +57,7 @@ export default function InteractivePreview({
       colorscheme={colorscheme}
       background={background}
       onToggleColorscheme={
-        repository.colorschemes.length > 1 ? onToggleColorscheme : undefined
+        parsedColorschemes.length > 1 ? onToggleColorscheme : undefined
       }
       onToggleBackground={
         colorscheme.backgrounds.length > 1 ? onToggleBackground : undefined
