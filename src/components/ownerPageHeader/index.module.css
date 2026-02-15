@@ -1,4 +1,7 @@
 .container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   padding: 0;
