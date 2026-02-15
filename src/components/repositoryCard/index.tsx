@@ -21,19 +21,28 @@ export default function RepositoryCard({
 }: RepositoryCardProps) {
   return (
     <article className={styles.container}>
-      <InteractivePreview
-        repositoryDTO={repository.dto}
-        pageContext={pageContext}
-        className={styles.preview}
-      />
-      <Link href={repository.route} className={styles.info}>
-        <RepositoryTitle
-          repository={repository}
-          as="h2"
-          classNames={{ title: styles.title }}
-        />
-        <RepositoryInfo repository={repository} />
+      <Link
+        href={repository.route}
+        className={styles.link}
+        aria-label={repository.title}
+      >
+        <span className={styles.linkLabel}>{repository.title}</span>
       </Link>
+      <div className={styles.content}>
+        <InteractivePreview
+          repositoryDTO={repository.dto}
+          pageContext={pageContext}
+          className={styles.preview}
+        />
+        <div className={styles.info}>
+          <RepositoryTitle
+            repository={repository}
+            as="h2"
+            classNames={{ title: styles.title }}
+          />
+          <RepositoryInfo repository={repository} />
+        </div>
+      </div>
     </article>
   );
 }
