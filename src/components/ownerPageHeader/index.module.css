@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: var(--content-max-width);
+  max-width: var(--page-max-width);
   margin: 0 auto;
   display: flex;
   justify-content: space-between;

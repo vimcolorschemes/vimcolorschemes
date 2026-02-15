@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   column-gap: var(--spacing-md);
   row-gap: var(--spacing-sm);
-  max-width: var(--content-max-width);
+  max-width: var(--page-max-width);
   padding: var(--content-padding);
 }
 

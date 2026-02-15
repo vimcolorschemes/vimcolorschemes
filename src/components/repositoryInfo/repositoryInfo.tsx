@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import Repository from '@/models/repository';
 
 import DateHelper from '@/helpers/date';
@@ -8,11 +10,15 @@ import styles from './repositoryInfo.module.css';
 
 type RepositoryInfoProps = {
   repository?: Repository;
+  className?: string;
 };
 
-export default function RepositoryInfo({ repository }: RepositoryInfoProps) {
+export default function RepositoryInfo({
+  repository,
+  className,
+}: RepositoryInfoProps) {
   return (
-    <div className={styles.container}>
+    <div className={cn(styles.container, className)}>
       {(!repository || !!repository.description) && (
         <p className={styles.description}>
           {repository?.description || <Skeleton inline />}

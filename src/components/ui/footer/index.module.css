@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  max-width: var(--content-max-width);
+  max-width: var(--page-max-width);
   padding: var(--content-padding);
   padding-bottom: var(--spacing-md);
   display: flex;

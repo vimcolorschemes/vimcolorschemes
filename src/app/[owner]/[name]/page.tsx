@@ -8,6 +8,8 @@ import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
 
+import styles from './page.module.css';
+
 type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
 
 export async function generateMetadata({
@@ -34,8 +36,12 @@ export default async function RepositoryPage({ params }: RepositoryPageProps) {
   return (
     <>
       <RepositoryPageHeader repositoryKey={repository.key} />
-      <RepositoryTitle repository={repository} hasOwnerLink />
-      <RepositoryInfo repository={repository} />
+      <RepositoryTitle
+        repository={repository}
+        hasOwnerLink
+        classNames={{ container: styles.pageWidth }}
+      />
+      <RepositoryInfo repository={repository} className={styles.pageWidth} />
       <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
     </>
   );
