@@ -96,6 +96,12 @@ a:hover {
   text-decoration: underline;
 }
 
+a:focus-visible {
+  outline: 2px solid var(--foreground-accent);
+  outline-offset: var(--spacing-xs);
+  text-decoration: underline;
+}
+
 strong {
   font-weight: bold;
 }
