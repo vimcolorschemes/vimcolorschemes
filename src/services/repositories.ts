@@ -1,3 +1,5 @@
+import { cache } from 'react';
+
 import DatabaseService from '@/services/database';
 
 import { RepositoryModel } from '@/models/DTO/repository';
@@ -25,14 +27,14 @@ const VIM_COLORSCHEMES_FILTER = { vimColorSchemes: { $type: 'array' } };
  * @params filter The filter to apply.
  * @returns The total number of repositories.
  */
-async function getRepositoryCount(filter: Filter): Promise<number> {
+const getRepositoryCount = cache(async (filter: Filter): Promise<number> => {
   await DatabaseService.connect();
 
   return RepositoryModel.countDocuments({
     ...VIM_COLORSCHEMES_FILTER,
     ...QueryHelper.getFilterQuery(filter),
   });
-}
+});
 
 /**
  * Get paginated repositories from the database.
@@ -45,31 +47,30 @@ async function getRepositoryCount(filter: Filter): Promise<number> {
  *
  * @returns The repositories.
  */
-async function getRepositories({
-  sort,
-  filter,
-}: GetRepositoriesParams): Promise<Repository[]> {
-  await DatabaseService.connect();
+const getRepositories = cache(
+  async ({ sort, filter }: GetRepositoriesParams): Promise<Repository[]> => {
+    await DatabaseService.connect();
 
-  const repositoryDTOs = await RepositoryModel.aggregate([
-    {
-      $match: {
-        ...VIM_COLORSCHEMES_FILTER,
-        ...QueryHelper.getFilterQuery(filter),
+    const repositoryDTOs = await RepositoryModel.aggregate([
+      {
+        $match: {
+          ...VIM_COLORSCHEMES_FILTER,
+          ...QueryHelper.getFilterQuery(filter),
+        },
       },
-    },
-    { $sort: QueryHelper.getSortQuery(sort) },
-    { $skip: ((filter.page ?? 1) - 1) * Constants.REPOSITORY_PAGE_SIZE },
-    { $limit: Constants.REPOSITORY_PAGE_SIZE },
-  ]);
+      { $sort: QueryHelper.getSortQuery(sort) },
+      { $skip: ((filter.page ?? 1) - 1) * Constants.REPOSITORY_PAGE_SIZE },
+      { $limit: Constants.REPOSITORY_PAGE_SIZE },
+    ]);
 
-  return repositoryDTOs.map(dto => new Repository(dto));
-}
+    return repositoryDTOs.map(dto => new Repository(dto));
+  },
+);
 
 /**
  * @returns all repositories from the database.
  */
-async function getAllRepositories(): Promise<Repository[]> {
+const getAllRepositories = cache(async (): Promise<Repository[]> => {
   await DatabaseService.connect();
 
   const repositoryDTOs = await RepositoryModel.aggregate([
@@ -77,7 +78,7 @@ async function getAllRepositories(): Promise<Repository[]> {
   ]);
 
   return repositoryDTOs.map(dto => new Repository(dto));
-}
+});
 
 /**
  * Get a repository from the database.
@@ -90,29 +91,28 @@ async function getAllRepositories(): Promise<Repository[]> {
  *
  * @returns The repository.
  */
-async function getRepository(
-  owner: string,
-  name: string,
-): Promise<Repository | null> {
-  await DatabaseService.connect();
+const getRepository = cache(
+  async (owner: string, name: string): Promise<Repository | null> => {
+    await DatabaseService.connect();
 
-  const repositoryDTOs = await RepositoryModel.aggregate([
-    {
-      $match: {
-        'owner.name': { $regex: `^${owner}$`, $options: 'i' },
-        name: { $regex: `^${name}$`, $options: 'i' },
-        ...VIM_COLORSCHEMES_FILTER,
+    const repositoryDTOs = await RepositoryModel.aggregate([
+      {
+        $match: {
+          'owner.name': { $regex: `^${owner}$`, $options: 'i' },
+          name: { $regex: `^${name}$`, $options: 'i' },
+          ...VIM_COLORSCHEMES_FILTER,
+        },
       },
-    },
-    { $limit: 1 },
-  ]);
+      { $limit: 1 },
+    ]);
 
-  if (!repositoryDTOs.length) {
-    return null;
-  }
+    if (!repositoryDTOs.length) {
+      return null;
+    }
 
-  return new Repository(repositoryDTOs[0]);
-}
+    return new Repository(repositoryDTOs[0]);
+  },
+);
 
 const RepositoriesService = {
   getRepositoryCount,
