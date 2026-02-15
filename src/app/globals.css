@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --content-max-width: 80rem;
   --content-padding: 0 var(--spacing-sm);
 
@@ -33,6 +34,25 @@
   --line-height-xl: 3rem;
 
   --skeleton-background: var(--platinum);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --dark: #e6e6e6;
+    --light: #0f1216;
+    --grey: #a2a8b4;
+    --blue: #79a8ff;
+    --platinum: #1a2028;
+
+    --foreground: var(--dark);
+    --foreground-shade: var(--grey);
+    --foreground-accent: var(--blue);
+    --background: var(--light);
+    --border-color: #2b3340;
+
+    --skeleton-background: #222a35;
+  }
 }
 
 @media (min-width: 768px) {
