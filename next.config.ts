@@ -45,12 +45,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/light/recently-updated',
-        destination: '/i/tending/b.light',
+        destination: '/i/trending/b.light',
         permanent: true,
       },
       {
         source: '/dark/recently-updated',
-        destination: '/i/tending/b.dark',
+        destination: '/i/trending/b.dark',
         permanent: true,
       },
     ];
