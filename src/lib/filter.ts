@@ -12,7 +12,7 @@ export const FilterURLKeyMap: Record<keyof Filter, URLFilterKey> = {
   background: URLFilterKeys.Background,
   search: URLFilterKeys.Search,
   page: URLFilterKeys.Page,
-  owner: URLFilterKeys.Search,
+  owner: URLFilterKeys.Owner,
 };
 
 export const URLKeyFilterMap: Record<URLFilterKey, keyof Filter> = {
