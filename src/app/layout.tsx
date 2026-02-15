@@ -1,8 +1,8 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import cn from 'classnames';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { ReactNode } from 'react';
 
 import Footer from '@/components/ui/footer';
