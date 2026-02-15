@@ -1,4 +1,71 @@
+.container {
+  position: relative;
+  z-index: 0;
+  border-radius: 14px;
+}
+
+.content {
+  position: relative;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--spacing-sm) * -1);
+  border-radius: 16px;
+  background-color: transparent;
+  opacity: 0;
+  transition:
+    opacity 200ms ease,
+    background-color 200ms ease;
+  z-index: -1;
+}
+
+.skeleton::before {
+  display: none;
+}
+
+.link {
+  position: absolute;
+  inset: calc(var(--spacing-sm) * -1);
+  z-index: 1;
+  display: block;
+  border-radius: 20px;
+}
+
+.link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--foreground) 35%, transparent);
+}
+
+.linkLabel {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.container:hover::before,
+.container:focus-within::before {
+  background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container:hover::before,
+  .container:focus-within::before {
+    background-color: color-mix(in srgb, var(--foreground) 7%, transparent);
+  }
+}
+
 .preview {
+  position: relative;
+  z-index: 2;
   margin-bottom: var(--spacing-sm);
   overflow-wrap: break-word;
   --skeleton-height: 24.5rem;
@@ -11,9 +78,7 @@
   row-gap: var(--spacing-sm);
 }
 
-.info:hover {
-  text-decoration: none;
-}
-.info:hover .title {
+.container:hover .title,
+.container:focus-within .title {
   text-decoration: underline;
 }
