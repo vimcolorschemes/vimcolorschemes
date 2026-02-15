@@ -6,6 +6,9 @@ type FilterQuery = Record<string, string | number | boolean | object>;
 function getFilterQuery(filter: Filter): FilterQuery {
   const query = getSearchFilterQuery(filter.search);
 
+  if (filter.background === 'both') {
+    query['vimColorSchemes.backgrounds'] = { $all: ['light', 'dark'] };
+  }
   if (filter.background === 'light') {
     query['vimColorSchemes.backgrounds'] = 'light';
   }

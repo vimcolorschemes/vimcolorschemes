@@ -3,14 +3,20 @@ import { MetadataRoute } from 'next';
 import RepositoriesService from '@/services/repositories';
 
 import Backgrounds from '@/lib/backgrounds';
+import { BackgroundFilter } from '@/lib/filter';
 import { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const indexURLs = [];
+  const backgrounds: Array<BackgroundFilter | undefined> = [
+    undefined,
+    'both',
+    ...Object.values(Backgrounds),
+  ];
   for (const sortOption of Object.values(SortOptions)) {
-    for (const background of [undefined, ...Object.values(Backgrounds)]) {
+    for (const background of backgrounds) {
       indexURLs.push({
         url: `${process.env.APP_URL}/i/${sortOption}/${FilterHelper.getURLFromFilter({ background })}`,
         lastModified: new Date(),

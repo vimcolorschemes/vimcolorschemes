@@ -30,7 +30,11 @@ function get(pathnameParams: string[]): PageContext {
 function getPageTitle({ filter, sort }: PageContext): string {
   const parts: string[] = [sort];
   if (filter.background) {
-    parts.push(filter.background);
+    if (filter.background === 'both') {
+      parts.push('light and dark');
+    } else {
+      parts.push(filter.background);
+    }
   }
   parts.push('colorschemes');
   return parts.join(' ');

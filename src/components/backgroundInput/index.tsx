@@ -2,7 +2,8 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import Backgrounds, { Background } from '@/lib/backgrounds';
+import Backgrounds from '@/lib/backgrounds';
+import { BackgroundFilter } from '@/lib/filter';
 
 import FilterHelper from '@/helpers/filter';
 import PageContextHelper from '@/helpers/pageContext';
@@ -14,7 +15,7 @@ export default function BackgroundInput() {
   const pathname = usePathname();
   const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
 
-  function onChange(background?: Background) {
+  function onChange(background?: BackgroundFilter) {
     const filterUrl = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       page: undefined,
@@ -24,14 +25,15 @@ export default function BackgroundInput() {
   }
 
   return (
-    <Radio<Background>
+    <Radio<BackgroundFilter>
       name="background"
       value={pageContext.filter.background}
       onChange={onChange}
       options={[
-        { value: undefined, label: 'all' },
+        { value: undefined, label: 'any' },
         { value: Backgrounds.Dark, label: 'dark' },
         { value: Backgrounds.Light, label: 'light' },
+        { value: 'both', label: 'both' },
       ]}
     />
   );
