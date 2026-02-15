@@ -9,6 +9,12 @@ describe('FilterHelper.getURLFromFilter', () => {
     );
   });
 
+  it('should return the both background filter', () => {
+    expect(FilterHelper.getURLFromFilter({ background: 'both' })).toBe(
+      'b.both',
+    );
+  });
+
   it('should return the search filter', () => {
     expect(FilterHelper.getURLFromFilter({ search: 'test-search' })).toBe(
       's.test%20search',
@@ -49,6 +55,12 @@ describe('FilterHelper.getFilterFromURL', () => {
   it('should return the background filter', () => {
     expect(FilterHelper.getFilterFromURL(['b.light'])).toEqual({
       background: 'light',
+    });
+  });
+
+  it('should return the both background filter', () => {
+    expect(FilterHelper.getFilterFromURL(['b.both'])).toEqual({
+      background: 'both',
     });
   });
 

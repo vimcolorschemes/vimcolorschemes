@@ -23,6 +23,15 @@ describe('PageContextHelper.get', () => {
     });
   });
 
+  it('should capture the both background filter', () => {
+    expect(
+      PageContextHelper.get([SortOptions.Trending, 'b.both']),
+    ).toEqual<PageContext>({
+      sort: SortOptions.Trending,
+      filter: { background: 'both' },
+    });
+  });
+
   it('should capture the search filter', () => {
     expect(
       PageContextHelper.get([SortOptions.Trending, 's.test']),
@@ -77,5 +86,14 @@ describe('PageContextHelper.getPageTitle', () => {
         filter: { background: Backgrounds.Dark },
       }),
     ).toBe('trending dark colorschemes');
+  });
+
+  it('should return the both background filter if it is defined', () => {
+    expect(
+      PageContextHelper.getPageTitle({
+        sort: SortOptions.Trending,
+        filter: { background: 'both' },
+      }),
+    ).toBe('trending light and dark colorschemes');
   });
 });

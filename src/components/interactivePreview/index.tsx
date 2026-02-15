@@ -22,11 +22,15 @@ export default function InteractivePreview({
 }: InteractivePreviewProps) {
   const repository = new Repository(repositoryDTO);
 
+  const prioritizedBackground =
+    pageContext.filter?.background === 'both'
+      ? undefined
+      : pageContext.filter?.background;
   const defaultColorscheme = repository.getDefaultColorscheme(
-    pageContext.filter?.background,
+    prioritizedBackground,
   );
   const defaultBackground = defaultColorscheme.getDefaultBackground(
-    pageContext.filter?.background,
+    prioritizedBackground,
   );
 
   const [colorscheme, setColorscheme] = useState(defaultColorscheme);

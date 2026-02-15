@@ -22,8 +22,10 @@ export const URLKeyFilterMap: Record<URLFilterKey, keyof Filter> = {
   [URLFilterKeys.Owner]: 'owner',
 };
 
+export type BackgroundFilter = Background | 'both';
+
 type Filter = {
-  background?: Background;
+  background?: BackgroundFilter;
   search?: string;
   page?: number;
   owner?: string;

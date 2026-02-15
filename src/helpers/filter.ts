@@ -97,7 +97,9 @@ function getFilterFromURL(filters: string[]): Filter {
 }
 
 function isValidBackground(value: string | number): boolean {
-  return Object.values(Backgrounds).includes(value as Background);
+  return (
+    value === 'both' || Object.values(Backgrounds).includes(value as Background)
+  );
 }
 
 function isValidPage(value: string | number): boolean {
