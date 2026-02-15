@@ -1,4 +1,5 @@
 import cn from 'classnames';
+import Link from 'next/link';
 
 import RepositoriesService from '@/services/repositories';
 
@@ -38,25 +39,25 @@ export default async function Pagination({ pageContext }: PaginationProps) {
   return (
     <nav className={styles.container}>
       {hasPrevious && (
-        <a
+        <Link
           href={getPageURL(page - 1)}
           className={cn(styles.button, styles.previous)}
         >
           <IconArrow />
           previous
-        </a>
+        </Link>
       )}
       <span className={styles.page}>
         {page}/{pageCount}
       </span>
       {hasNext && (
-        <a
+        <Link
           href={getPageURL(page + 1)}
           className={cn(styles.button, styles.next)}
         >
           next
           <IconArrow />
-        </a>
+        </Link>
       )}
     </nav>
   );
