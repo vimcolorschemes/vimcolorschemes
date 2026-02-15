@@ -1,6 +1,7 @@
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import cn from 'classnames';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import { ReactNode } from 'react';
 
@@ -53,14 +54,12 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
-      <head>
-        <script
-          defer
+      <body className={cn(fontStandard.variable, fontMono.variable)}>
+        <Script
           src="https://analytics.us.umami.is/script.js"
           data-website-id="0408b924-a714-4a4a-82e6-8bd9c2d3706e"
+          strategy="afterInteractive"
         />
-      </head>
-      <body className={cn(fontStandard.variable, fontMono.variable)}>
         {children}
         <Footer />
         <SpeedInsights />
