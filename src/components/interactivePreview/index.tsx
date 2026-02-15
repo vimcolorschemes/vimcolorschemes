@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-import ColorschemeDTO from '@/models/DTO/colorscheme';
 import Colorscheme from '@/models/colorscheme';
+import ColorschemeDTO from '@/models/DTO/colorscheme';
 
 import PageContext from '@/lib/pageContext';
 
