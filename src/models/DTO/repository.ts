@@ -36,6 +36,13 @@ const RepositorySchema = new mongoose.Schema<RepositoryDTO>({
   ],
 });
 
+RepositorySchema.index({ 'owner.name': 1, name: 1 });
+RepositorySchema.index({ 'vimColorSchemes.backgrounds': 1 });
+RepositorySchema.index({ weekStargazersCount: -1, _id: 1 });
+RepositorySchema.index({ stargazersCount: -1, _id: 1 });
+RepositorySchema.index({ githubCreatedAt: -1, _id: 1 });
+RepositorySchema.index({ githubCreatedAt: 1, _id: 1 });
+
 export const RepositoryModel =
   mongoose.models?.repositories ||
   mongoose.model('repositories', RepositorySchema);
