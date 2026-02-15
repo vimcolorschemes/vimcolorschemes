@@ -2,4 +2,7 @@
   font-size: var(--font-size-xl);
   line-height: var(--line-height-xl);
   font-weight: 700;
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
 }
