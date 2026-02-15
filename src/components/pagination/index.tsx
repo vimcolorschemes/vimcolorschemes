@@ -1,7 +1,5 @@
 import cn from 'classnames';
 
-import RepositoriesService from '@/services/repositories';
-
 import Constants from '@/lib/constants';
 import PageContext from '@/lib/pageContext';
 
@@ -13,12 +11,14 @@ import styles from './index.module.css';
 
 type PaginationProps = {
   pageContext: PageContext;
+  countPromise: Promise<number>;
 };
 
-export default async function Pagination({ pageContext }: PaginationProps) {
-  const count = await RepositoriesService.getRepositoryCount(
-    pageContext.filter,
-  );
+export default async function Pagination({
+  pageContext,
+  countPromise,
+}: PaginationProps) {
+  const count = await countPromise;
   const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
 
   const page = pageContext.filter.page || 1;

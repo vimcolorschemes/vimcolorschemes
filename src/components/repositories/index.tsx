@@ -1,5 +1,7 @@
 import { Suspense } from 'react';
 
+import RepositoriesService from '@/services/repositories';
+
 import PageContext from '@/lib/pageContext';
 
 import Pagination from '@/components/pagination';
@@ -14,16 +16,26 @@ type RepositoriesProps = {
 };
 
 export default function Repositories({ pageContext }: RepositoriesProps) {
+  const repositoriesPromise = RepositoriesService.getRepositories(pageContext);
+  const countPromise = RepositoriesService.getRepositoryCount(
+    pageContext.filter,
+  );
   return (
     <div className={styles.container}>
       <Suspense fallback={<p>_ repositories</p>}>
-        <RepositoriesCount pageContext={pageContext} />
+        <RepositoriesCount
+          pageContext={pageContext}
+          countPromise={countPromise}
+        />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
-        <RepositoriesGrid pageContext={pageContext} />
+        <RepositoriesGrid
+          repositoriesPromise={repositoriesPromise}
+          pageContext={pageContext}
+        />
       </Suspense>
       <Suspense>
-        <Pagination pageContext={pageContext} />
+        <Pagination pageContext={pageContext} countPromise={countPromise} />
       </Suspense>
     </div>
   );

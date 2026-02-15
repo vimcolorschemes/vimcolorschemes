@@ -1,7 +1,5 @@
 import { redirect } from 'next/navigation';
 
-import RepositoriesService from '@/services/repositories';
-
 import Constants from '@/lib/constants';
 import PageContext from '@/lib/pageContext';
 
@@ -9,14 +7,14 @@ import FilterHelper from '@/helpers/filter';
 
 type RepositoriesCountProps = {
   pageContext: PageContext;
+  countPromise: Promise<number>;
 };
 
 export default async function RepositoriesCount({
   pageContext,
+  countPromise,
 }: RepositoriesCountProps) {
-  const count = await RepositoriesService.getRepositoryCount(
-    pageContext.filter,
-  );
+  const count = await countPromise;
 
   const pageCount = Math.ceil(count / Constants.REPOSITORY_PAGE_SIZE);
   if ((pageContext.filter.page || 1) > (pageCount || 1)) {
