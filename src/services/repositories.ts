@@ -7,7 +7,7 @@ import Constants from '@/lib/constants';
 import Filter from '@/lib/filter';
 import Sort from '@/lib/sort';
 
-import QueryHelper from '@/helpers/query';
+import QueryHelper, { escapeRegex } from '@/helpers/query';
 
 type GetRepositoriesParams = {
   sort: Sort;
@@ -99,8 +99,8 @@ async function getRepository(
   const repositoryDTOs = await RepositoryModel.aggregate([
     {
       $match: {
-        'owner.name': { $regex: `^${owner}$`, $options: 'i' },
-        name: { $regex: `^${name}$`, $options: 'i' },
+        'owner.name': { $regex: `^${escapeRegex(owner)}$`, $options: 'i' },
+        name: { $regex: `^${escapeRegex(name)}$`, $options: 'i' },
         ...VIM_COLORSCHEMES_FILTER,
       },
     },

@@ -3,6 +3,12 @@ import Sort, { SortOptions } from '@/lib/sort';
 
 type FilterQuery = Record<string, string | number | boolean | object>;
 
+const REGEX_ESCAPE_PATTERN = /[.*+?^${}()|[\]\\]/g;
+
+export function escapeRegex(value: string): string {
+  return value.replace(REGEX_ESCAPE_PATTERN, '\\$&');
+}
+
 function getFilterQuery(filter: Filter): FilterQuery {
   const query = getSearchFilterQuery(filter.search);
 
@@ -13,7 +19,8 @@ function getFilterQuery(filter: Filter): FilterQuery {
     query['vimColorSchemes.backgrounds'] = 'dark';
   }
   if (filter.owner) {
-    query['owner.name'] = { $regex: `^${filter.owner}$`, $options: 'i' };
+    const owner = escapeRegex(filter.owner);
+    query['owner.name'] = { $regex: `^${owner}$`, $options: 'i' };
   }
 
   return query;
@@ -29,9 +36,9 @@ function getSearchFilterQuery(searchTerm?: string): FilterQuery {
   return {
     $and: words.map(word => ({
       $or: [
-        { name: { $regex: word, $options: 'i' } },
-        { 'owner.name': { $regex: word, $options: 'i' } },
-        { description: { $regex: word, $options: 'i' } },
+        { name: { $regex: escapeRegex(word), $options: 'i' } },
+        { 'owner.name': { $regex: escapeRegex(word), $options: 'i' } },
+        { description: { $regex: escapeRegex(word), $options: 'i' } },
       ],
     })),
   };

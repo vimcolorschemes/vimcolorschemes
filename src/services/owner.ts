@@ -2,6 +2,7 @@ import DatabaseService from '@/services/database';
 
 import { RepositoryModel } from '@/models/DTO/repository';
 import Owner from '@/models/owner';
+import { escapeRegex } from '@/helpers/query';
 
 const VIM_COLORSCHEMES_FILTER = { vimColorSchemes: { $type: 'array' } };
 
@@ -11,7 +12,7 @@ async function getOwner(name: string): Promise<Owner | null> {
   const repositoryDTOs = await RepositoryModel.aggregate([
     {
       $match: {
-        'owner.name': { $regex: `^${name}$`, $options: 'i' },
+        'owner.name': { $regex: `^${escapeRegex(name)}$`, $options: 'i' },
         ...VIM_COLORSCHEMES_FILTER,
       },
     },
