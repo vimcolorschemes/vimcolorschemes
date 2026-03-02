@@ -38,7 +38,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.3",
+    "@eslint/eslintrc": "^3.3.4",
     "@next/bundle-analyzer": "16.1.6",
     "@next/eslint-plugin-next": "16.1.6",
     "@testing-library/react": "^16.3.2",
