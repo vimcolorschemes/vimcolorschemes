@@ -18,7 +18,7 @@
   <img src="https://img.shields.io/github/v/release/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="version" />
   <img src="https://img.shields.io/github/license/vimcolorschemes/vimcolorschemes?style=flat-square&color=8595a3" alt="license" />
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-    <img src="https://img.shields.io/badge/all_contributors-27-orange.svg?style=flat-square" alt="All contributors" />
+    <img src="https://img.shields.io/badge/all_contributors-28-orange.svg?style=flat-square" alt="All contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 <p align="center">
@@ -104,6 +104,7 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/adolenc"><img src="https://avatars.githubusercontent.com/u/9569399?v=4?s=100" width="100px;" alt="Andrej Dolenc"/><br /><sub><b>Andrej Dolenc</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=adolenc" title="Code">💻</a> <a href="https://github.com/vimcolorschemes/vimcolorschemes/issues?q=author%3Aadolenc" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://raymondha.com"><img src="https://avatars.githubusercontent.com/u/371507?v=4?s=100" width="100px;" alt="Raymond Ha"/><br /><sub><b>Raymond Ha</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=Shraymonks" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/trivikr"><img src="https://avatars.githubusercontent.com/u/16024985?v=4?s=100" width="100px;" alt="Trivikram Kamat"/><br /><sub><b>Trivikram Kamat</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=trivikr" title="Code">💻</a> <a href="#maintenance-trivikr" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/reillylm"><img src="https://avatars.githubusercontent.com/u/16691386?v=4?s=100" width="100px;" alt="reillylm"/><br /><sub><b>reillylm</b></sub></a><br /><a href="https://github.com/vimcolorschemes/vimcolorschemes/commits?author=reillylm" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
