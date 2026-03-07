@@ -48,10 +48,11 @@
 
 .code > * {
   padding: 0 var(--_code-spacing);
+  display: inline;
 }
 
-.code > * {
-  display: inline;
+.code > *:empty {
+  height: 1lh;
 }
 
 .code,

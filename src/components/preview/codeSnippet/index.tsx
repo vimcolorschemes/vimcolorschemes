@@ -31,7 +31,7 @@ export default function CodeSnippet() {
         <span className="vimString">{"'#'"}</span>
         <span className="vimParenSep">)</span>
       </div>
-      <br />
+      <div />
       <div>
         <span className="vimLet">{'  '}let</span>
         <span className="vimFuncBody"> </span>
@@ -98,7 +98,7 @@ export default function CodeSnippet() {
         <span className="vimNumber">16</span>
         <span className="vimParenSep">)</span>
       </div>
-      <br />
+      <div />
       <div>
         <span className="vimLet">{'  '}let</span>
         <span className="vimFuncBody"> </span>
@@ -127,7 +127,7 @@ export default function CodeSnippet() {
         <span className="vimFuncBody"> / </span>
         <span className="vimNumber">1000</span>
       </div>
-      <br />
+      <div />
       <div>
         <span className="vimNotFunc">{'  '}return</span>
         <span className="vimFuncBody"> </span>
