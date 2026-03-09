@@ -3,6 +3,7 @@
 public/
 database/
 pnpm-lock.yaml
+.all-contributorsrc
 
 reset.css
 
