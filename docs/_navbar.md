@@ -1,1 +1,0 @@
-- [Visit vimcolorschemes.com](https://vimcolorschemes.com)
