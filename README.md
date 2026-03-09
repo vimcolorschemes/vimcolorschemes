@@ -116,10 +116,4 @@ Thanks also goes to these wonderful people ([emoji key](https://allcontributors.
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
-## Supporters 🌞
-
-[![Stargazers repo roster for @vimcolorschemes/vimcolorschemes](https://reporoster.com/stars/vimcolorschemes/vimcolorschemes)](https://github.com/vimcolorschemes/vimcolorschemes/stargazers)
-
-[![Forkers repo roster for @vimcolorschemes/vimcolorschemes](https://reporoster.com/forks/vimcolorschemes/vimcolorschemes)](https://github.com/vimcolorschemes/vimcolorschemes/network/members)
-
 <a href="https://www.buymeacoffee.com/reobin" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;"></a>
