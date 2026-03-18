@@ -1,45 +1,16 @@
-import mongoose, { Mongoose } from 'mongoose';
+import { createClient, type Client } from '@libsql/client';
 
-declare global {
-  var mongoose: { conn: Mongoose | null; promise: Promise<Mongoose> | null };
-}
+let client: Client | null = null;
 
-const CONNECTION_STRING: string = process.env.DATABASE_CONNECTION_STRING!;
-if (!CONNECTION_STRING) {
-  throw new Error(
-    'Please define the DATABASE_CONNECTION_STRING environment variable.',
-  );
-}
-
-let cached = global.mongoose;
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null };
-}
-
-/**
- * Connect to the database.
- * @returns A promise that resolves to the mongoose instance.
- */
-async function connect(): Promise<typeof mongoose> {
-  if (cached.conn) {
-    return cached.conn;
-  }
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(CONNECTION_STRING, {
-      bufferCommands: false,
+function getClient(): Client {
+  if (!client) {
+    client = createClient({
+      url: process.env.DATABASE_URL!,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
   }
-
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
-  }
-
-  return cached.conn;
+  return client;
 }
 
-const DatabaseService = { connect };
+const DatabaseService = { getClient };
 export default DatabaseService;

@@ -1,28 +1,23 @@
 import DatabaseService from '@/services/database';
 
-import { RepositoryModel } from '@/models/DTO/repository';
 import Owner from '@/models/owner';
 
-const VIM_COLORSCHEMES_FILTER = { vimColorSchemes: { $type: 'array' } };
-
 async function getOwner(name: string): Promise<Owner | null> {
-  await DatabaseService.connect();
+  const client = DatabaseService.getClient();
 
-  const repositoryDTOs = await RepositoryModel.aggregate([
-    {
-      $match: {
-        'owner.name': { $regex: `^${name}$`, $options: 'i' },
-        ...VIM_COLORSCHEMES_FILTER,
-      },
-    },
-    { $limit: 1 },
-  ]);
+  const result = await client.execute({
+    sql: `SELECT r.owner_name FROM repositories r
+          WHERE r.owner_name = ? COLLATE NOCASE
+            AND EXISTS (SELECT 1 FROM colorschemes cs WHERE cs.repository_id = r.id)
+          LIMIT 1`,
+    args: [name],
+  });
 
-  if (!repositoryDTOs.length) {
+  if (!result.rows.length) {
     return null;
   }
 
-  return repositoryDTOs[0].owner;
+  return { name: result.rows[0].owner_name as string };
 }
 
 const OwnersService = { getOwner };
