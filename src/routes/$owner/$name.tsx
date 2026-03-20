@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 
 import Preview from '#/components/preview/Preview';
-import DateHelper from '#/helpers/date';
+import { formatDate } from '#/helpers/date';
 import getAppMetaTitle from '#/helpers/pageTitle';
 import Repository from '#/models/repository';
 
@@ -76,11 +76,11 @@ function RepositoryRoute() {
           </div>
           <div>
             <dt>Published</dt>
-            <dd>{DateHelper.format(repository.githubCreatedAt)}</dd>
+            <dd>{formatDate(repository.githubCreatedAt)}</dd>
           </div>
           <div>
             <dt>Updated</dt>
-            <dd>{DateHelper.format(repository.pushedAt)}</dd>
+            <dd>{formatDate(repository.pushedAt)}</dd>
           </div>
         </dl>
       </section>

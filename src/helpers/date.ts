@@ -1,4 +1,7 @@
-function format(date: Date): string {
+/**
+ * Formats a date as a human-readable relative time (e.g. "2 days ago").
+ */
+export function formatDate(date: Date): string {
   const now = Date.now();
   const diffMs = now - date.getTime();
 
@@ -19,7 +22,3 @@ function format(date: Date): string {
   if (diffMs < year) return rtf.format(-Math.floor(diffMs / month), 'month');
   return rtf.format(-Math.floor(diffMs / year), 'year');
 }
-
-const DateHelper = { format };
-
-export default DateHelper;
