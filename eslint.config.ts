@@ -15,6 +15,14 @@ export default [
           groups: [
             ['builtin', 'external'],
             ['internal', 'parent', 'sibling', 'index', 'object'],
+            ['unknown'],
+          ],
+          pathGroups: [
+            {
+              pattern: '**/*.module.css',
+              group: 'unknown',
+              position: 'after',
+            },
           ],
           'newlines-between': 'always',
           alphabetize: { order: 'asc', caseInsensitive: true },

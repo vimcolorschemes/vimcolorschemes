@@ -2,10 +2,11 @@ import clsx from 'clsx';
 
 import CodeSnippet from '#/components/preview/CodeSnippet';
 import ColorschemeConfig from '#/components/preview/ColorschemeConfig';
-import styles from '#/components/preview/Preview.module.css';
 import Window from '#/components/preview/ui/Window';
 import type { Background } from '#/lib/backgrounds';
 import type Colorscheme from '#/models/colorscheme';
+
+import styles from '#/components/preview/Preview.module.css';
 
 type PreviewProps = {
   colorscheme: Colorscheme;

@@ -1,10 +1,11 @@
 import type { ReactNode } from 'react';
 
-import styles from '#/components/preview/ColorschemeConfig.module.css';
 import IconCircledArrow from '#/components/preview/ui/CircledArrow';
 import Code from '#/components/preview/ui/Code';
 import type { Background } from '#/lib/backgrounds';
 import type Colorscheme from '#/models/colorscheme';
+
+import styles from '#/components/preview/ColorschemeConfig.module.css';
 
 type ColorschemeConfigProps = {
   colorscheme: Colorscheme;
