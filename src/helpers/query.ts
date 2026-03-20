@@ -1,59 +1,60 @@
 import Filter from '@/lib/filter';
 import Sort, { SortOptions } from '@/lib/sort';
 
-type FilterQuery = Record<string, string | number | boolean | object>;
+const LIGHT_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'light')`;
+const DARK_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'dark')`;
 
-function getFilterQuery(filter: Filter): FilterQuery {
-  const query = getSearchFilterQuery(filter.search);
+type FilterSQL = {
+  clauses: string[];
+  params: (string | number | null)[];
+};
 
-  if (filter.background === 'both') {
-    query['vimColorSchemes.backgrounds'] = { $all: ['light', 'dark'] };
-  }
+function getFilterSQL(filter: Filter): FilterSQL {
+  const clauses: string[] = [];
+  const params: (string | number | null)[] = [];
+
   if (filter.background === 'light') {
-    query['vimColorSchemes.backgrounds'] = 'light';
+    clauses.push(LIGHT_EXISTS);
+  } else if (filter.background === 'dark') {
+    clauses.push(DARK_EXISTS);
+  } else if (filter.background === 'both') {
+    clauses.push(LIGHT_EXISTS);
+    clauses.push(DARK_EXISTS);
   }
-  if (filter.background === 'dark') {
-    query['vimColorSchemes.backgrounds'] = 'dark';
+
+  if (filter.search) {
+    const words = filter.search.split(/[^\w]/).filter(Boolean);
+    for (const word of words) {
+      clauses.push(
+        `(r.name LIKE ? OR r.owner_name LIKE ? OR r.description LIKE ?)`,
+      );
+      const like = `%${word}%`;
+      params.push(like, like, like);
+    }
   }
+
   if (filter.owner) {
-    query['owner.name'] = { $regex: `^${filter.owner}$`, $options: 'i' };
+    clauses.push(`r.owner_name = ? COLLATE NOCASE`);
+    params.push(filter.owner);
   }
 
-  return query;
+  return { clauses, params };
 }
 
-function getSearchFilterQuery(searchTerm?: string): FilterQuery {
-  if (!searchTerm) {
-    return {};
-  }
-
-  const words = searchTerm.split(/[^\w]/).filter(Boolean);
-
-  return {
-    $and: words.map(word => ({
-      $or: [
-        { name: { $regex: word, $options: 'i' } },
-        { 'owner.name': { $regex: word, $options: 'i' } },
-        { description: { $regex: word, $options: 'i' } },
-      ],
-    })),
-  };
-}
-
-function getSortQuery(sort: Sort): Record<string, 1 | -1> {
+function getSortSQL(sort: Sort): string {
   switch (sort) {
     case SortOptions.Trending:
-      return { weekStargazersCount: -1, _id: 1 };
+      return 'r.week_stargazers_count DESC, r.id';
     case SortOptions.Top:
-      return { stargazersCount: -1, _id: 1 };
+      return 'r.stargazers_count DESC, r.id';
     case SortOptions.New:
-      return { githubCreatedAt: -1, _id: 1 };
+      return 'r.github_created_at DESC, r.id DESC';
     case SortOptions.Old:
-      return { githubCreatedAt: 1, _id: 1 };
+      return 'r.github_created_at ASC, r.id';
     default:
-      return { weekStargazersCount: -1, _id: 1 };
+      return 'r.week_stargazers_count DESC, r.id';
   }
 }
 
-const QueryHelper = { getFilterQuery, getSortQuery };
+const QueryHelper = { getFilterSQL, getSortSQL };
 export default QueryHelper;
