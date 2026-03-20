@@ -1,0 +1,36 @@
+.button {
+  --_border-color: var(--colorscheme-vimCommand, var(--colorscheme-vimOper));
+
+  background: inherit;
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.button:not(:disabled):hover {
+  box-shadow: 0 2px 0 0 var(--_border-color);
+}
+
+.button:not(:disabled):focus-visible {
+  outline: none;
+  border-radius: 2px;
+  box-shadow: 0 0 0 2px var(--_border-color);
+}
+
+.button:disabled {
+  cursor: text;
+}
+
+.button > svg {
+  width: 1rem;
+  height: 1rem;
+}

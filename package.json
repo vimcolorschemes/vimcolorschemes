@@ -26,6 +26,7 @@
     "format.check": "prettier --check ."
   },
   "dependencies": {
+    "@libsql/client": "^0.15.15",
     "@t3-oss/env-core": "^0.13.10",
     "@tailwindcss/vite": "^4.1.18",
     "@tanstack/react-devtools": "latest",

@@ -1,0 +1,31 @@
+import clsx from 'clsx';
+import type { CSSProperties, ReactNode } from 'react';
+
+import styles from '#/components/preview/ui/Window.module.css';
+
+type WindowProps = {
+  title: string;
+  subtitle: string;
+  children: ReactNode;
+  className?: string;
+  style?: CSSProperties;
+};
+
+export default function Window({
+  title,
+  subtitle,
+  children,
+  className,
+  style,
+}: WindowProps) {
+  return (
+    <div className={clsx(styles.container, className)} style={style}>
+      <div className={styles.topBar}>
+        <div className={styles.buttons} />
+        <div className={styles.title}>{title}</div>
+        <div className={styles.subtitle}>{subtitle}</div>
+      </div>
+      {children}
+    </div>
+  );
+}

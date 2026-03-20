@@ -1,0 +1,107 @@
+.StatusLineFg {
+  color: var(--colorscheme-StatusLineFg);
+}
+
+.StatusLineBg {
+  background: var(--colorscheme-StatusLineBg);
+}
+
+.StatusLineFg--inverted {
+  color: var(--colorscheme-StatusLineBg, var(--colorscheme-NormalBg));
+}
+
+.StatusLineBg--inverted {
+  background: var(--colorscheme-StatusLineFg, var(--colorscheme-NormalFg));
+}
+
+.LineNrFg {
+  color: var(--colorscheme-LineNrFg);
+}
+
+.LineNrBg {
+  background: var(--colorscheme-LineNrBg, var(--colorscheme-NormalBg));
+}
+
+.CursorLineFg {
+  color: var(--colorscheme-CursorLineFg, var(--colorscheme-LineNrFg));
+}
+
+.CursorLineBg {
+  background: var(--colorscheme-CursorLineBg, var(--colorscheme-LineNrBg));
+}
+
+.CursorLineNrFg {
+  color: var(--colorscheme-CursorLineNrFg, var(--colorscheme-LineNrFg));
+}
+
+.CursorLineNrBg {
+  background: var(
+    --colorscheme-CursorLineNrBg,
+    var(--colorscheme-CursorLineBg)
+  );
+}
+
+.vimLineComment {
+  color: var(--colorscheme-vimLineCommentFg);
+  font-style: italic;
+}
+
+.vimCommand {
+  color: var(--colorscheme-vimCommandFg);
+}
+
+.vimFunction {
+  color: var(--colorscheme-vimFunctionFg);
+}
+
+.vimParenSep {
+  color: var(--colorscheme-vimParenSepFg);
+}
+
+.vimOperParen {
+  color: var(--colorscheme-vimOperParenFg);
+}
+
+.vimFuncBody {
+  color: var(--colorscheme-vimFuncBodyFg);
+}
+
+.vimIsCommand {
+  color: var(--colorscheme-vimIsCommandFg);
+}
+
+.vimLet {
+  color: var(--colorscheme-vimLetFg);
+}
+
+.vimVar {
+  color: var(--colorscheme-vimVarFg);
+}
+
+.vimOper {
+  color: var(--colorscheme-vimOperFg);
+}
+
+.vimFuncName {
+  color: var(--colorscheme-vimFuncNameFg);
+}
+
+.vimFuncVar {
+  color: var(--colorscheme-vimFuncVarFg);
+}
+
+.vimString {
+  color: var(--colorscheme-vimStringFg);
+}
+
+.vimSubst {
+  color: var(--colorscheme-vimSubstFg);
+}
+
+.vimNumber {
+  color: var(--colorscheme-vimNumberFg);
+}
+
+.vimNotFunc {
+  color: var(--colorscheme-vimNotFuncFg);
+}
