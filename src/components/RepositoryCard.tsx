@@ -47,7 +47,7 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
   }
 
   return (
-    <article className="rounded-md border border-zinc-300 p-4">
+    <article className="space-y-3">
       <h2 className="text-xl font-semibold">
         <Link
           to="/$owner/$name"
@@ -57,14 +57,16 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
         </Link>
       </h2>
       {repository.description ? (
-        <p className="mt-2 text-sm text-zinc-700">{repository.description}</p>
+        <p className="text-sm text-muted-foreground">
+          {repository.description}
+        </p>
       ) : null}
-      <p className="mt-2 text-sm text-zinc-600">
+      <p className="text-sm text-muted-foreground">
         {repository.stargazersCount.toLocaleString()} stars -{' '}
         {repository.weekStargazersCount.toLocaleString()}/week
       </p>
       {colorscheme && background ? (
-        <div className="mt-4 overflow-hidden rounded-md border border-zinc-200">
+        <div className="overflow-hidden rounded-md">
           <Preview
             colorscheme={colorscheme}
             background={background}

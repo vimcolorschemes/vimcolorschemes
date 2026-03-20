@@ -1,12 +1,16 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 
+import BackgroundFilter from '#/components/BackgroundFilter';
 import RepositoryGrid from '#/components/RepositoryGrid';
+import Backgrounds from '#/lib/backgrounds';
+import type { BackgroundFilter as RepositoryBackgroundFilter } from '#/lib/filter';
 import type { RepositoryDTO } from '#/models/DTO/repository';
 import Repository from '#/models/repository';
 
 type IndexSearch = {
   page: number;
+  background?: RepositoryBackgroundFilter;
 };
 
 type IndexResult = {
@@ -18,9 +22,16 @@ type IndexResult = {
 
 function parseSearch(search: Record<string, unknown>): IndexSearch {
   const pageValue = Number(search.page);
+  const background =
+    search.background === Backgrounds.Dark ||
+    search.background === Backgrounds.Light ||
+    search.background === 'both'
+      ? search.background
+      : undefined;
 
   return {
     page: Number.isInteger(pageValue) && pageValue > 0 ? pageValue : 1,
+    background,
   };
 }
 
@@ -30,8 +41,8 @@ const loadRepositories = createServerFn({ method: 'GET' })
     const { getRepositories, getRepositoryCount, REPOSITORY_PAGE_SIZE } =
       await import('#/services/repositories.server');
     const [repositories, total] = await Promise.all([
-      getRepositories({ page: data.page }),
-      getRepositoryCount(),
+      getRepositories({ page: data.page, background: data.background }),
+      getRepositoryCount({ background: data.background }),
     ]);
 
     return {
@@ -61,14 +72,19 @@ function App() {
       params.set('page', String(next.page));
     }
 
+    if (next.background) {
+      params.set('background', next.background);
+    }
+
     const value = params.toString();
     return value ? `/?${value}` : '/';
   };
 
   return (
-    <main>
+    <main className="space-y-4">
       <h1>vimcolorschemes</h1>
       <p>Discover vim and neovim themes from GitHub.</p>
+      <BackgroundFilter value={search.background} />
 
       <p>
         Showing {repositories.length} of {total.toLocaleString()} repositories.

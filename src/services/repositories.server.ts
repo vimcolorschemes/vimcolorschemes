@@ -1,5 +1,6 @@
 import type { Row } from '@libsql/client';
 
+import type { BackgroundFilter } from '#/lib/filter';
 import type { ColorschemeDTO } from '#/models/DTO/colorscheme';
 import type { RepositoryDTO } from '#/models/DTO/repository';
 import DatabaseService from '#/services/database.server';
@@ -11,8 +12,28 @@ const REPO_COLS =
 
 const BASE_CLAUSE =
   'EXISTS (SELECT 1 FROM colorschemes cs WHERE cs.repository_id = r.id)';
+const LIGHT_EXISTS =
+  "EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'light')";
+const DARK_EXISTS =
+  "EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'dark')";
 
 const REPO_ORDER = 'r.week_stargazers_count DESC, r.id';
+
+function getBackgroundClauses(background?: BackgroundFilter): string[] {
+  if (background === 'light') {
+    return [LIGHT_EXISTS];
+  }
+
+  if (background === 'dark') {
+    return [DARK_EXISTS];
+  }
+
+  if (background === 'both') {
+    return [LIGHT_EXISTS, DARK_EXISTS];
+  }
+
+  return [BASE_CLAUSE];
+}
 
 async function loadColorschemes(
   repositoryId: number,
@@ -117,11 +138,16 @@ export async function getRepository(
   return rowToDTO(row, vimColorSchemes);
 }
 
-export async function getRepositoryCount(): Promise<number> {
+export async function getRepositoryCount({
+  background,
+}: {
+  background?: BackgroundFilter;
+} = {}): Promise<number> {
   const client = DatabaseService.getClient();
+  const where = getBackgroundClauses(background).join(' AND ');
 
   const result = await client.execute(
-    `SELECT COUNT(*) as count FROM repositories r WHERE ${BASE_CLAUSE}`,
+    `SELECT COUNT(*) as count FROM repositories r WHERE ${where}`,
   );
 
   return Number(result.rows[0].count);
@@ -129,14 +155,17 @@ export async function getRepositoryCount(): Promise<number> {
 
 export async function getRepositories({
   page,
+  background,
 }: {
   page: number;
+  background?: BackgroundFilter;
 }): Promise<RepositoryDTO[]> {
   const client = DatabaseService.getClient();
   const offset = (page - 1) * REPOSITORY_PAGE_SIZE;
+  const where = getBackgroundClauses(background).join(' AND ');
 
   const result = await client.execute({
-    sql: `SELECT ${REPO_COLS} FROM repositories r WHERE ${BASE_CLAUSE} ORDER BY ${REPO_ORDER} LIMIT ? OFFSET ?`,
+    sql: `SELECT ${REPO_COLS} FROM repositories r WHERE ${where} ORDER BY ${REPO_ORDER} LIMIT ? OFFSET ?`,
     args: [REPOSITORY_PAGE_SIZE, offset],
   });
 
