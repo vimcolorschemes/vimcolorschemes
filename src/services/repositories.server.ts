@@ -4,8 +4,15 @@ import type { ColorschemeDTO } from '#/models/DTO/colorscheme';
 import type { RepositoryDTO } from '#/models/DTO/repository';
 import DatabaseService from '#/services/database.server';
 
+export const REPOSITORY_PAGE_SIZE = 20;
+
 const REPO_COLS =
   'r.id, r.owner_name, r.name, r.description, r.github_url, r.stargazers_count, r.week_stargazers_count, r.github_created_at, r.pushed_at';
+
+const BASE_CLAUSE =
+  'EXISTS (SELECT 1 FROM colorschemes cs WHERE cs.repository_id = r.id)';
+
+const REPO_ORDER = 'r.week_stargazers_count DESC, r.id';
 
 async function loadColorschemes(
   repositoryId: number,
@@ -108,4 +115,35 @@ export async function getRepository(
   const row = result.rows[0];
   const vimColorSchemes = await loadColorschemes(row.id as number);
   return rowToDTO(row, vimColorSchemes);
+}
+
+export async function getRepositoryCount(): Promise<number> {
+  const client = DatabaseService.getClient();
+
+  const result = await client.execute(
+    `SELECT COUNT(*) as count FROM repositories r WHERE ${BASE_CLAUSE}`,
+  );
+
+  return Number(result.rows[0].count);
+}
+
+export async function getRepositories({
+  page,
+}: {
+  page: number;
+}): Promise<RepositoryDTO[]> {
+  const client = DatabaseService.getClient();
+  const offset = (page - 1) * REPOSITORY_PAGE_SIZE;
+
+  const result = await client.execute({
+    sql: `SELECT ${REPO_COLS} FROM repositories r WHERE ${BASE_CLAUSE} ORDER BY ${REPO_ORDER} LIMIT ? OFFSET ?`,
+    args: [REPOSITORY_PAGE_SIZE, offset],
+  });
+
+  return Promise.all(
+    result.rows.map(async row => {
+      const vimColorSchemes = await loadColorschemes(row.id as number);
+      return rowToDTO(row, vimColorSchemes);
+    }),
+  );
 }

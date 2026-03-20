@@ -8,7 +8,7 @@ export default function Header() {
           <Link to="/">vimcolorschemes</Link>
         </p>
         <p>
-          <Link to="/">Home</Link> | <Link to="/about">About</Link>
+          <Link to="/">Home</Link>
         </p>
       </nav>
     </header>

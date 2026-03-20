@@ -1,20 +1,97 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
 
-export const Route = createFileRoute('/')({ component: App });
+import RepositoryGrid from '#/components/RepositoryGrid';
+import type { RepositoryDTO } from '#/models/DTO/repository';
+import Repository from '#/models/repository';
+
+type IndexSearch = {
+  page: number;
+};
+
+type IndexResult = {
+  repositories: RepositoryDTO[];
+  total: number;
+  pageSize: number;
+  search: IndexSearch;
+};
+
+function parseSearch(search: Record<string, unknown>): IndexSearch {
+  const pageValue = Number(search.page);
+
+  return {
+    page: Number.isInteger(pageValue) && pageValue > 0 ? pageValue : 1,
+  };
+}
+
+const loadRepositories = createServerFn({ method: 'GET' })
+  .inputValidator((input: IndexSearch) => input)
+  .handler(async ({ data }): Promise<IndexResult> => {
+    const { getRepositories, getRepositoryCount, REPOSITORY_PAGE_SIZE } =
+      await import('#/services/repositories.server');
+    const [repositories, total] = await Promise.all([
+      getRepositories({ page: data.page }),
+      getRepositoryCount(),
+    ]);
+
+    return {
+      repositories,
+      total,
+      pageSize: REPOSITORY_PAGE_SIZE,
+      search: data,
+    };
+  });
+
+export const Route = createFileRoute('/')({
+  loaderDeps: ({ search }) => parseSearch(search as Record<string, unknown>),
+  loader: ({ deps }) => loadRepositories({ data: deps }),
+  component: App,
+});
 
 function App() {
+  const { repositories: dto, total, pageSize, search } = Route.useLoaderData();
+  const repositories = dto.map(repository => new Repository(repository));
+  const pageCount = Math.max(1, Math.ceil(total / pageSize));
+
+  const toURL = (overrides: Partial<IndexSearch>): string => {
+    const next = { ...search, ...overrides };
+    const params = new URLSearchParams();
+
+    if (next.page > 1) {
+      params.set('page', String(next.page));
+    }
+
+    const value = params.toString();
+    return value ? `/?${value}` : '/';
+  };
+
   return (
     <main>
       <h1>vimcolorschemes</h1>
-      <p>TanStack Start migration in progress.</p>
-      <ul>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/catppuccin/nvim">Example repository page</a>
-        </li>
-      </ul>
+      <p>Discover vim and neovim themes from GitHub.</p>
+
+      <p>
+        Showing {repositories.length} of {total.toLocaleString()} repositories.
+      </p>
+
+      <RepositoryGrid
+        repositories={repositories}
+        emptyMessage="No repositories found."
+      />
+
+      {pageCount > 1 ? (
+        <nav>
+          {search.page > 1 ? (
+            <a href={toURL({ page: search.page - 1 })}>Previous</a>
+          ) : null}{' '}
+          <span>
+            {search.page}/{pageCount}
+          </span>{' '}
+          {search.page < pageCount ? (
+            <a href={toURL({ page: search.page + 1 })}>Next</a>
+          ) : null}
+        </nav>
+      ) : null}
     </main>
   );
 }
