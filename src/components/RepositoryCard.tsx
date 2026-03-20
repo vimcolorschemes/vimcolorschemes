@@ -2,21 +2,39 @@ import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 
 import Preview from '#/components/preview/Preview';
+import Backgrounds from '#/lib/backgrounds';
+import type { Background } from '#/lib/backgrounds';
 import type Repository from '#/models/repository';
 
 type RepositoryCardProps = {
   repository: Repository;
+  preferredBackground?: Background;
 };
 
-export default function RepositoryCard({ repository }: RepositoryCardProps) {
+function getInitialPreview(
+  repository: Repository,
+  preferredBackground?: Background,
+) {
+  const prioritizedBackground = preferredBackground || Backgrounds.Dark;
   const initialColorscheme =
     repository.colorschemes.find(colorscheme =>
-      colorscheme.backgrounds.includes('dark'),
+      colorscheme.backgrounds.includes(prioritizedBackground),
     ) ?? repository.colorschemes.at(0);
-  const initialBackground = initialColorscheme?.getDefaultBackground();
 
-  const [colorscheme, setColorscheme] = useState(initialColorscheme);
-  const [background, setBackground] = useState(initialBackground);
+  return {
+    colorscheme: initialColorscheme,
+    background: initialColorscheme?.getDefaultBackground(preferredBackground),
+  };
+}
+
+export default function RepositoryCard({
+  repository,
+  preferredBackground,
+}: RepositoryCardProps) {
+  const initialPreview = getInitialPreview(repository, preferredBackground);
+
+  const [colorscheme, setColorscheme] = useState(initialPreview.colorscheme);
+  const [background, setBackground] = useState(initialPreview.background);
 
   function onToggleColorscheme() {
     if (!colorscheme) {

@@ -105,6 +105,12 @@ function App() {
       <RepositoryGrid
         repositories={repositories}
         emptyMessage="No repositories found."
+        preferredBackground={
+          search.background === Backgrounds.Light ||
+          search.background === Backgrounds.Dark
+            ? search.background
+            : undefined
+        }
       />
 
       {pageCount > 1 ? (
