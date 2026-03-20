@@ -81,22 +81,26 @@ function App() {
   };
 
   return (
-    <main className="space-y-4">
-      <h1>vimcolorschemes</h1>
-      <p>Discover vim and neovim themes from GitHub.</p>
-      <BackgroundFilter value={search.background} />
+    <main className="mx-auto w-full max-w-[80rem] space-y-6 px-4 py-6 md:px-8 lg:py-10">
+      <header className="space-y-4">
+        <div className="space-y-1">
+          <h1>vimcolorschemes</h1>
+          <p>Discover vim and neovim themes from GitHub.</p>
+        </div>
+        <BackgroundFilter value={search.background} />
 
-      <p className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground">
-        Showing
-        <span className="font-medium text-foreground">
-          {repositories.length.toLocaleString()}
-        </span>
-        of
-        <span className="font-medium text-foreground">
-          {total.toLocaleString()}
-        </span>
-        repositories
-      </p>
+        <p className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground">
+          Showing
+          <span className="font-medium text-foreground">
+            {repositories.length.toLocaleString()}
+          </span>
+          of
+          <span className="font-medium text-foreground">
+            {total.toLocaleString()}
+          </span>
+          repositories
+        </p>
+      </header>
 
       <RepositoryGrid
         repositories={repositories}
@@ -104,7 +108,7 @@ function App() {
       />
 
       {pageCount > 1 ? (
-        <nav>
+        <nav className="pt-2">
           {search.page > 1 ? (
             <a href={toURL({ page: search.page - 1 })}>Previous</a>
           ) : null}{' '}

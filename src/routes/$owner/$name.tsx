@@ -32,7 +32,7 @@ export const Route = createFileRoute('/$owner/$name')({
     ],
   }),
   notFoundComponent: () => (
-    <main>
+    <main className="mx-auto w-full max-w-[80rem] px-4 py-6 md:px-8 lg:py-10">
       <h1>Repository not found</h1>
     </main>
   ),
@@ -43,7 +43,7 @@ function RepositoryRoute() {
   const repository = new Repository(dto);
 
   return (
-    <main>
+    <main className="mx-auto w-full max-w-[80rem] space-y-8 px-4 py-6 md:px-8 lg:py-10">
       <header>
         <p>
           <Link to="/">Back to home</Link>
