@@ -1,5 +1,7 @@
 'use client';
 
+import { useNavigate } from '@tanstack/react-router';
+
 import { Toggle } from '#/components/ui/toggle';
 import type { BackgroundFilter } from '#/lib/filter';
 
@@ -7,19 +9,8 @@ type BackgroundFilterProps = {
   value?: BackgroundFilter;
 };
 
-function toURL(background?: BackgroundFilter): string {
-  const params = new URLSearchParams();
-
-  if (background) {
-    params.set('background', background);
-  }
-
-  const query = params.toString();
-
-  return query ? `/?${query}` : '/';
-}
-
 export default function BackgroundFilter({ value }: BackgroundFilterProps) {
+  const navigate = useNavigate();
   const selected = value ?? 'any';
   const options: Array<{ value: 'any' | BackgroundFilter; label: string }> = [
     { value: 'any', label: 'any' },
@@ -48,7 +39,10 @@ export default function BackgroundFilter({ value }: BackgroundFilterProps) {
               const background =
                 option.value === 'any' ? undefined : option.value;
 
-              window.location.assign(toURL(background));
+              void navigate({
+                to: '/',
+                search: background ? { background } : {},
+              });
             }}
             aria-label={`${option.label} background`}
           >

@@ -38,21 +38,43 @@ function getBackgroundClauses(background?: BackgroundFilter): string[] {
 async function loadColorschemes(
   repositoryId: number,
 ): Promise<ColorschemeDTO[]> {
+  const colorschemesByRepository = await loadColorschemesByRepositoryIds([
+    repositoryId,
+  ]);
+
+  return colorschemesByRepository.get(repositoryId) ?? [];
+}
+
+async function loadColorschemesByRepositoryIds(
+  repositoryIds: number[],
+): Promise<Map<number, ColorschemeDTO[]>> {
+  if (!repositoryIds.length) {
+    return new Map();
+  }
+
   const client = DatabaseService.getClient();
+  const placeholders = repositoryIds.map(() => '?').join(', ');
   const result = await client.execute({
-    sql: `SELECT cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
-          FROM colorschemes cs
-          LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
-          WHERE cs.repository_id = ?
-          ORDER BY cs.id, csg.id`,
-    args: [repositoryId],
+    sql: `SELECT cs.repository_id as repository_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+           FROM colorschemes cs
+           LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
+           WHERE cs.repository_id IN (${placeholders})
+           ORDER BY cs.repository_id, cs.id, csg.id`,
+    args: repositoryIds,
   });
 
-  const colorschemeMap = new Map<number, ColorschemeDTO>();
+  const repositoryMap = new Map<number, Map<number, ColorschemeDTO>>();
 
   for (const row of result.rows) {
+    const repositoryId = row.repository_id as number;
     const id = row.cs_id as number;
     const name = row.cs_name as string;
+    let colorschemeMap = repositoryMap.get(repositoryId);
+
+    if (!colorschemeMap) {
+      colorschemeMap = new Map<number, ColorschemeDTO>();
+      repositoryMap.set(repositoryId, colorschemeMap);
+    }
 
     if (!colorschemeMap.has(id)) {
       colorschemeMap.set(id, {
@@ -98,7 +120,16 @@ async function loadColorschemes(
     }
   }
 
-  return Array.from(colorschemeMap.values());
+  const colorschemesByRepository = new Map<number, ColorschemeDTO[]>();
+
+  for (const [repositoryId, colorschemes] of repositoryMap.entries()) {
+    colorschemesByRepository.set(
+      repositoryId,
+      Array.from(colorschemes.values()),
+    );
+  }
+
+  return colorschemesByRepository;
 }
 
 function rowToDTO(row: Row, vimColorSchemes: ColorschemeDTO[]): RepositoryDTO {
@@ -169,9 +200,14 @@ export async function getRepositories({
     args: [REPOSITORY_PAGE_SIZE, offset],
   });
 
+  const repositoryIds = result.rows.map(row => row.id as number);
+  const colorschemesByRepository =
+    await loadColorschemesByRepositoryIds(repositoryIds);
+
   return Promise.all(
     result.rows.map(async row => {
-      const vimColorSchemes = await loadColorschemes(row.id as number);
+      const vimColorSchemes =
+        colorschemesByRepository.get(row.id as number) ?? [];
       return rowToDTO(row, vimColorSchemes);
     }),
   );

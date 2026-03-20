@@ -1,5 +1,6 @@
 import { createRouter as createTanStackRouter } from '@tanstack/react-router';
 
+import RouteLoading from '#/components/RouteLoading';
 import { getContext } from '#/integrations/tanstack-query/root-provider';
 import { routeTree } from '#/routeTree.gen';
 
@@ -10,6 +11,8 @@ export function getRouter() {
     context: getContext(),
 
     scrollRestoration: true,
+    defaultPendingComponent: RouteLoading,
+    defaultPendingMs: 120,
     defaultPreload: 'intent',
     defaultPreloadStaleTime: 0,
   });
