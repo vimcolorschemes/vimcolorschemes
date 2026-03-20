@@ -11,7 +11,7 @@
 
   height: 1.875rem;
   position: relative;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-mono,);
   font-size: 0.8rem;
 
   background: var(--colorscheme-StatusLineFg, var(--colorscheme-NormalFg));

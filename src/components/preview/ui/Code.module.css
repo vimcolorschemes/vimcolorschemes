@@ -1,5 +1,5 @@
 .container {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-family: var(--font-mono);
   position: relative;
 
   --_gutter-background: var(--code-gutter-background, #111827);
@@ -44,6 +44,12 @@
   padding: var(--_code-spacing) 0;
   width: calc(100% - var(--_gutter-width));
   overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.code::-webkit-scrollbar {
+  display: none;
 }
 
 .code > * {
@@ -65,7 +71,7 @@
   align-items: center;
   column-gap: var(--_code-spacing);
   height: var(--_status-line-height);
-  padding-right: var(--_code-spacing);
+  padding-right: calc(var(--_code-spacing) * 2);
   background: var(--_status-line-background);
   color: var(--_status-line-foreground);
 }
