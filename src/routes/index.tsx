@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 
 import BackgroundFilter from '#/components/BackgroundFilter';
+import Pagination from '#/components/Pagination';
 import RepositoryGrid from '#/components/RepositoryGrid';
 import Backgrounds from '#/lib/backgrounds';
 import type { BackgroundFilter as RepositoryBackgroundFilter } from '#/lib/filter';
@@ -63,6 +64,7 @@ function App() {
   const { repositories: dto, total, pageSize, search } = Route.useLoaderData();
   const repositories = dto.map(repository => new Repository(repository));
   const pageCount = Math.max(1, Math.ceil(total / pageSize));
+  const currentPage = Math.min(search.page, pageCount);
 
   const toURL = (overrides: Partial<IndexSearch>): string => {
     const next = { ...search, ...overrides };
@@ -113,19 +115,11 @@ function App() {
         }
       />
 
-      {pageCount > 1 ? (
-        <nav className="pt-2">
-          {search.page > 1 ? (
-            <a href={toURL({ page: search.page - 1 })}>Previous</a>
-          ) : null}{' '}
-          <span>
-            {search.page}/{pageCount}
-          </span>{' '}
-          {search.page < pageCount ? (
-            <a href={toURL({ page: search.page + 1 })}>Next</a>
-          ) : null}
-        </nav>
-      ) : null}
+      <Pagination
+        currentPage={currentPage}
+        pageCount={pageCount}
+        createHref={page => toURL({ page })}
+      />
     </main>
   );
 }
