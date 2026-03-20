@@ -1,18 +1,20 @@
 # Contributing to vimcolorschemes
 
 Contributions to vimcolorschemes are more than welcome!
-They take many form: 
-  - Code
-  - Bug reports
-  - Feature requests
-  - UI/UX creations
-  - Updates to documentation
+They take many form:
+
+- Code
+- Bug reports
+- Feature requests
+- UI/UX creations
+- Updates to documentation
 
 ## Code of Conduct
 
 Please follow the guidelines in the [Code of Conduct](https://github.com/vimcolorschemes/vimcolorschemes/blob/main/.github/CODE_OF_CONDUCT.md).
 
 ## How Can I Contribute?
+
 If you're new to open source, [read about how to contribute to open source](https://opensource.guide/how-to-contribute/).
 
 ### Beginning Work
@@ -23,5 +25,5 @@ Then, look at the [development guide](https://docs.vimcolorschemes.com) for inst
 
 ### Contribution Guides
 
-* [https://guides.github.com/activities/hello-world/](https://guides.github.com/activities/hello-world/)
-* [https://guides.github.com/activities/forking/](https://guides.github.com/activities/forking/)
+- [https://guides.github.com/activities/hello-world/](https://guides.github.com/activities/hello-world/)
+- [https://guides.github.com/activities/forking/](https://guides.github.com/activities/forking/)

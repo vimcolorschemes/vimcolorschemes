@@ -1,10 +1,3 @@
-.github/
-.cache/
-public/
-database/
+package-lock.json
 pnpm-lock.yaml
-.all-contributorsrc
-
-reset.css
-
-README.md
+yarn.lock
