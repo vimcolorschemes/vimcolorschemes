@@ -86,8 +86,16 @@ function App() {
       <p>Discover vim and neovim themes from GitHub.</p>
       <BackgroundFilter value={search.background} />
 
-      <p>
-        Showing {repositories.length} of {total.toLocaleString()} repositories.
+      <p className="inline-flex items-center gap-2 rounded-full bg-muted px-3 py-1 text-sm text-muted-foreground">
+        Showing
+        <span className="font-medium text-foreground">
+          {repositories.length.toLocaleString()}
+        </span>
+        of
+        <span className="font-medium text-foreground">
+          {total.toLocaleString()}
+        </span>
+        repositories
       </p>
 
       <RepositoryGrid

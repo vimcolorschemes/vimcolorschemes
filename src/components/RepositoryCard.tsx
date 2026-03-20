@@ -47,24 +47,7 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
   }
 
   return (
-    <article className="space-y-3">
-      <h2 className="text-xl font-semibold">
-        <Link
-          to="/$owner/$name"
-          params={{ owner: repository.owner.name, name: repository.name }}
-        >
-          {repository.title}
-        </Link>
-      </h2>
-      {repository.description ? (
-        <p className="text-sm text-muted-foreground">
-          {repository.description}
-        </p>
-      ) : null}
-      <p className="text-sm text-muted-foreground">
-        {repository.stargazersCount.toLocaleString()} stars -{' '}
-        {repository.weekStargazersCount.toLocaleString()}/week
-      </p>
+    <article className="flex h-full flex-col gap-3">
       {colorscheme && background ? (
         <div className="overflow-hidden rounded-md">
           <Preview
@@ -83,6 +66,24 @@ export default function RepositoryCard({ repository }: RepositoryCardProps) {
           />
         </div>
       ) : null}
+
+      <div className="flex flex-1 flex-col gap-2">
+        <h2 className="text-xl font-semibold leading-tight">
+          <Link
+            to="/$owner/$name"
+            params={{ owner: repository.owner.name, name: repository.name }}
+          >
+            {repository.title}
+          </Link>
+        </h2>
+        <p className="flex-1 text-sm text-muted-foreground">
+          {repository.description || 'No description provided.'}
+        </p>
+        <p className="text-sm text-muted-foreground">
+          {repository.stargazersCount.toLocaleString()} stars -{' '}
+          {repository.weekStargazersCount.toLocaleString()}/week
+        </p>
+      </div>
     </article>
   );
 }
