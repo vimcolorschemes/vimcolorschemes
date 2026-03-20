@@ -3,6 +3,7 @@ import { createServerFn } from '@tanstack/react-start';
 
 import Preview from '#/components/preview/Preview';
 import DateHelper from '#/helpers/date';
+import getAppMetaTitle from '#/helpers/pageTitle';
 import Repository from '#/models/repository';
 
 const loadRepository = createServerFn({ method: 'GET' })
@@ -25,9 +26,11 @@ export const Route = createFileRoute('/$owner/$name')({
   head: ({ loaderData }) => ({
     meta: [
       {
-        title: loaderData
-          ? `${loaderData.name}, by ${loaderData.owner.name}`
-          : 'Repository',
+        title: getAppMetaTitle(
+          loaderData
+            ? `${loaderData.name}, by ${loaderData.owner.name}`
+            : 'Repository',
+        ),
       },
     ],
   }),

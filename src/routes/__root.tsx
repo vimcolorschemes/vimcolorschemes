@@ -9,6 +9,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 
 import Footer from '#/components/Footer';
 import Header from '#/components/Header';
+import getAppMetaTitle from '#/helpers/pageTitle';
 import TanStackQueryDevtools from '#/integrations/tanstack-query/devtools';
 import TanStackQueryProvider from '#/integrations/tanstack-query/root-provider';
 import appCss from '#/styles.css?url';
@@ -28,7 +29,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'vimcolorschemes',
+        title: getAppMetaTitle('trending colorschemes'),
       },
     ],
     links: [

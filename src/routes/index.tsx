@@ -4,6 +4,7 @@ import { createServerFn } from '@tanstack/react-start';
 import BackgroundFilter from '#/components/BackgroundFilter';
 import Pagination from '#/components/Pagination';
 import RepositoryGrid from '#/components/RepositoryGrid';
+import getRepositoryListingMetaTitle from '#/helpers/repositoryListingMetaTitle';
 import Backgrounds from '#/lib/backgrounds';
 import type { BackgroundFilter as RepositoryBackgroundFilter } from '#/lib/filter';
 import type { RepositoryDTO } from '#/models/DTO/repository';
@@ -57,6 +58,16 @@ const loadRepositories = createServerFn({ method: 'GET' })
 export const Route = createFileRoute('/')({
   loaderDeps: ({ search }) => parseSearch(search as Record<string, unknown>),
   loader: ({ deps }) => loadRepositories({ data: deps }),
+  head: ({ loaderData }) => ({
+    meta: [
+      {
+        title: getRepositoryListingMetaTitle({
+          page: loaderData?.search.page,
+          background: loaderData?.search.background,
+        }),
+      },
+    ],
+  }),
   component: App,
 });
 
