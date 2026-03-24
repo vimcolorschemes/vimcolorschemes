@@ -4,12 +4,12 @@ import RepositoriesService from '@/services/repositoriesServer';
 
 import PageContext from '@/lib/pageContext';
 
+import RepositoriesCount from '@/components/repositories/count';
 import RepositoriesGrid from '@/components/repositories/grid';
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
+import LoadMore from '@/components/repositories/loadMore';
 
-import RepositoriesCount from './count';
 import styles from './index.module.css';
-import LoadMoreWrapper from './loadMoreWrapper';
 
 type RepositoriesProps = {
   pageContext: PageContext;
@@ -35,7 +35,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
         />
       </Suspense>
       <Suspense>
-        <LoadMoreWrapper
+        <LoadMore
           pageContext={pageContext}
           countPromise={countPromise}
           repositoriesPromise={repositoriesPromise}

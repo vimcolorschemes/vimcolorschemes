@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { use, useCallback, useState } from 'react';
 
 import RepositoriesClientService from '@/services/repositoriesClient';
 
@@ -15,24 +15,29 @@ import styles from './index.module.css';
 
 type LoadMoreProps = {
   pageContext: PageContext;
-  count: number;
-  initialCount: number;
+  countPromise: Promise<number>;
+  repositoriesPromise: Promise<Repository[]>;
 };
 
 export default function LoadMore({
   pageContext,
-  count,
-  initialCount,
+  countPromise,
+  repositoriesPromise,
 }: LoadMoreProps) {
+  const count = use(countPromise);
+  const initialRepositories = use(repositoriesPromise);
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const renderedCount = initialCount + repositories.length;
+  const renderedCount = initialRepositories.length + repositories.length;
   const hasMore = renderedCount < count;
 
   const loadMore = useCallback(async () => {
-    if (loading || !hasMore) return;
+    if (loading || !hasMore) {
+      return;
+    }
+
     setLoading(true);
 
     const nextPage = page + 1;
