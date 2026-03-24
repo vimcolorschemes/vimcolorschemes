@@ -5,6 +5,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useRef,
   useState,
 } from 'react';
 
@@ -40,12 +41,17 @@ function parseRepositoryDTO(dto: RepositoryDTO): Repository {
   });
 }
 
-async function fetchRepositories(params: URLSearchParams) {
-  const response = await fetch(`/api/repositories?${params}`);
+async function fetchRepositories(
+  params: URLSearchParams,
+  signal?: AbortSignal,
+) {
+  const response = await fetch(`/api/repositories?${params}`, { signal });
   return response.json();
 }
 
 export function SearchProvider({ children }: { children: ReactNode }) {
+  const searchAbortControllerRef = useRef<AbortController | null>(null);
+  const searchRequestIdRef = useRef(0);
   const [state, setState] = useState<SearchState>({
     query: '',
     results: null,
@@ -58,6 +64,11 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   const search = useCallback(
     async (query: string, sort: Sort, background?: BackgroundFilter) => {
+      searchRequestIdRef.current += 1;
+      const requestId = searchRequestIdRef.current;
+
+      searchAbortControllerRef.current?.abort();
+
       if (!query.trim()) {
         setState(prev => ({
           ...prev,
@@ -71,6 +82,9 @@ export function SearchProvider({ children }: { children: ReactNode }) {
         }));
         return;
       }
+
+      const abortController = new AbortController();
+      searchAbortControllerRef.current = abortController;
 
       setState(prev => ({
         ...prev,
@@ -87,18 +101,40 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       });
       if (background) params.set('background', background);
 
-      const data = await fetchRepositories(params);
-      const repos = (data.repositories as RepositoryDTO[]).map(
-        parseRepositoryDTO,
-      );
+      try {
+        const data = await fetchRepositories(params, abortController.signal);
 
-      setState(prev => ({
-        ...prev,
-        results: repos,
-        count: data.count,
-        page: 1,
-        isSearching: false,
-      }));
+        if (requestId !== searchRequestIdRef.current) {
+          return;
+        }
+
+        const repos = (data.repositories as RepositoryDTO[]).map(
+          parseRepositoryDTO,
+        );
+
+        setState(prev => ({
+          ...prev,
+          results: repos,
+          count: data.count,
+          page: 1,
+          isSearching: false,
+        }));
+      } catch (error) {
+        if (abortController.signal.aborted) {
+          return;
+        }
+
+        if (requestId !== searchRequestIdRef.current) {
+          return;
+        }
+
+        setState(prev => ({ ...prev, isSearching: false }));
+        throw error;
+      } finally {
+        if (searchAbortControllerRef.current === abortController) {
+          searchAbortControllerRef.current = null;
+        }
+      }
     },
     [],
   );
@@ -137,6 +173,10 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   ]);
 
   const clearSearch = useCallback(() => {
+    searchRequestIdRef.current += 1;
+    searchAbortControllerRef.current?.abort();
+    searchAbortControllerRef.current = null;
+
     setState({
       query: '',
       results: null,
