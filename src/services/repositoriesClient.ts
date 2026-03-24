@@ -57,6 +57,11 @@ async function fetchRepositories({
 }: FetchRepositoriesParams): Promise<FetchRepositoriesResult> {
   const params = buildSearchParams({ sort, filter, page });
   const response = await fetch(`/api/repositories?${params}`, { signal });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch repositories: ${response.status}`);
+  }
+
   const data = (await response.json()) as {
     repositories: RepositoryDTO[];
     count: number;

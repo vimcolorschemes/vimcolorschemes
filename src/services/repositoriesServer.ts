@@ -88,11 +88,11 @@ async function loadAllColorschemes(): Promise<Map<number, ColorschemeDTO[]>> {
     }
   }
 
-  const result2 = new Map<number, ColorschemeDTO[]>();
+  const colorschemesByRepo = new Map<number, ColorschemeDTO[]>();
   for (const [repoId, colorschemeMap] of repoMap) {
-    result2.set(repoId, Array.from(colorschemeMap.values()));
+    colorschemesByRepo.set(repoId, Array.from(colorschemeMap.values()));
   }
-  return result2;
+  return colorschemesByRepo;
 }
 
 function buildColorschemeDTOs(rows: Row[]): ColorschemeDTO[] {

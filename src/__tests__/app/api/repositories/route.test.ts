@@ -72,6 +72,63 @@ describe('GET /api/repositories', () => {
     });
   });
 
+  it('passes search filter to service', async () => {
+    const response = await GET(makeRequest('?search=gruvbox'));
+
+    expect(response.status).toBe(200);
+    expect(repositoriesServiceMock.getRepositories).toHaveBeenCalledWith({
+      sort: SortOptions.Trending,
+      filter: { page: 1, search: 'gruvbox' },
+    });
+  });
+
+  it('passes background filter to service', async () => {
+    const response = await GET(makeRequest('?background=dark'));
+
+    expect(response.status).toBe(200);
+    expect(repositoriesServiceMock.getRepositories).toHaveBeenCalledWith({
+      sort: SortOptions.Trending,
+      filter: { page: 1, background: 'dark' },
+    });
+  });
+
+  it('ignores invalid background values', async () => {
+    const response = await GET(makeRequest('?background=invalid'));
+
+    expect(response.status).toBe(200);
+    expect(repositoriesServiceMock.getRepositories).toHaveBeenCalledWith({
+      sort: SortOptions.Trending,
+      filter: { page: 1 },
+    });
+  });
+
+  it('passes owner filter to service', async () => {
+    const response = await GET(makeRequest('?owner=morhetz'));
+
+    expect(response.status).toBe(200);
+    expect(repositoriesServiceMock.getRepositories).toHaveBeenCalledWith({
+      sort: SortOptions.Trending,
+      filter: { page: 1, owner: 'morhetz' },
+    });
+  });
+
+  it('passes all filters together', async () => {
+    const response = await GET(
+      makeRequest('?sort=new&search=gruvbox&background=light&page=2&owner=morhetz'),
+    );
+
+    expect(response.status).toBe(200);
+    expect(repositoriesServiceMock.getRepositories).toHaveBeenCalledWith({
+      sort: SortOptions.New,
+      filter: {
+        page: 2,
+        search: 'gruvbox',
+        background: 'light',
+        owner: 'morhetz',
+      },
+    });
+  });
+
   it('still rejects invalid page values', async () => {
     const response = await GET(makeRequest('?page=0'));
 

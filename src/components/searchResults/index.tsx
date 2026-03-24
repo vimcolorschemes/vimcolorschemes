@@ -7,6 +7,7 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import { useSearch } from '@/context/searchContext';
 
+import LoadMoreButton from '@/components/repositories/loadMoreButton';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
 import RepositoryCard from '@/components/repositoryCard';
 
@@ -47,13 +48,10 @@ export default function SearchResults({ children }: SearchResultsProps) {
         ))}
       </section>
       {hasMore && (
-        <button
+        <LoadMoreButton
+          loading={isLoadingMore}
           onClick={loadMoreSearchResults}
-          disabled={isLoadingMore}
-          className={styles.button}
-        >
-          {isLoadingMore ? 'loading...' : 'load more'}
-        </button>
+        />
       )}
       {results.length === 0 && !isLoading && <p>no results found</p>}
     </div>

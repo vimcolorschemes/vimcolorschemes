@@ -8,6 +8,7 @@ import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
 
+import LoadMoreButton from '@/components/repositories/loadMoreButton';
 import RepositoryCard from '@/components/repositoryCard';
 
 import styles from './index.module.css';
@@ -63,11 +64,7 @@ export default function LoadMore({
           ))}
         </section>
       )}
-      {hasMore && (
-        <button onClick={loadMore} disabled={loading} className={styles.button}>
-          {loading ? 'loading...' : 'load more'}
-        </button>
-      )}
+      {hasMore && <LoadMoreButton loading={loading} onClick={loadMore} />}
     </>
   );
 }
