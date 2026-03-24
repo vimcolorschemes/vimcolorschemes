@@ -4,9 +4,9 @@ import RepositoryDTO from '@/models/DTO/repository';
 
 import PageContext from '@/lib/pageContext';
 
-import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
 import useRepositorySearch from '@/hooks/useRepositorySearch';
 
+import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
 import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';

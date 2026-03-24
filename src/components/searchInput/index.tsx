@@ -7,9 +7,9 @@ import { FormEvent, useEffect, useRef, useState } from 'react';
 import { getIndexRouteState } from '@/helpers/indexRoute';
 import PageContextHelper from '@/helpers/pageContext';
 
-import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
+import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
 import IconEnter from '@/components/ui/icons/enter';
 import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 

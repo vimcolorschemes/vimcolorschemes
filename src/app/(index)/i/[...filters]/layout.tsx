@@ -8,10 +8,10 @@ import { SortOptions } from '@/lib/sort';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
-import SearchNavigationBoundary from '@/components/searchNavigationBoundary';
 import SearchNavigationProvider from '@/components/providers/searchNavigationProvider';
 import SearchInput from '@/components/searchInput';
 import searchInputStyles from '@/components/searchInput/index.module.css';
+import SearchNavigationBoundary from '@/components/searchNavigationBoundary';
 import SortInput from '@/components/sortInput';
 import sortInputStyles from '@/components/sortInput/index.module.css';
 import Header from '@/components/ui/header';

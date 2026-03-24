@@ -1,6 +1,7 @@
 'use client';
 
-import { use, useCallback, useState } from 'react';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { use } from 'react';
 
 import RepositoriesClientService from '@/services/repositoriesClient';
 
@@ -13,46 +14,58 @@ import LoadMoreButton from '@/components/repositories/loadMoreButton';
 
 type LoadMoreProps = {
   pageContext: PageContext;
+  repositoriesPromise: Promise<Repository[]>;
   countPromise: Promise<number>;
   initialCountPromise: Promise<number>;
 };
 
 export default function LoadMore({
   pageContext,
+  repositoriesPromise,
   countPromise,
   initialCountPromise,
 }: LoadMoreProps) {
+  const initialRepositories = use(repositoriesPromise);
   const count = use(countPromise);
   const initialCount = use(initialCountPromise);
-  const [repositories, setRepositories] = useState<Repository[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
 
-  const renderedCount = initialCount + repositories.length;
-  const hasMore = renderedCount < count;
-
-  const loadMore = useCallback(async () => {
-    if (loading || !hasMore) {
-      return;
-    }
-
-    setLoading(true);
-
-    const nextPage = page + 1;
-
-    try {
-      const data = await RepositoriesClientService.fetchRepositories({
+  const repositoriesQuery = useInfiniteQuery({
+    queryKey: ['repositories', pageContext.sort, pageContext.filter],
+    initialPageParam: 1,
+    queryFn: ({ pageParam, signal }) =>
+      RepositoriesClientService.fetchRepositories({
         sort: pageContext.sort,
         filter: pageContext.filter,
-        page: nextPage,
-      });
+        page: pageParam,
+        signal,
+      }),
+    getNextPageParam: (lastPage, allPages) => {
+      const loadedCount = allPages.reduce(
+        (total, page) => total + page.repositories.length,
+        0,
+      );
 
-      setRepositories(prev => [...prev, ...data.repositories]);
-      setPage(nextPage);
-    } finally {
-      setLoading(false);
-    }
-  }, [loading, hasMore, page, pageContext]);
+      if (loadedCount >= lastPage.count) {
+        return undefined;
+      }
+
+      return allPages.length + 1;
+    },
+    initialData: {
+      pages: [
+        {
+          repositories: initialRepositories,
+          count,
+        },
+      ],
+      pageParams: [1],
+    },
+  });
+
+  const repositories =
+    repositoriesQuery.data?.pages.slice(1).flatMap(page => page.repositories) ??
+    [];
+  const hasMore = initialCount < count && repositoriesQuery.hasNextPage;
 
   return (
     <>
@@ -62,7 +75,12 @@ export default function LoadMore({
           pageContext={pageContext}
         />
       )}
-      {hasMore && <LoadMoreButton loading={loading} onClick={loadMore} />}
+      {hasMore && (
+        <LoadMoreButton
+          loading={repositoriesQuery.isFetchingNextPage}
+          onClick={() => void repositoriesQuery.fetchNextPage()}
+        />
+      )}
     </>
   );
 }

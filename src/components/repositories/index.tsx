@@ -36,6 +36,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
       <Suspense>
         <LoadMore
           pageContext={pageContext}
+          repositoriesPromise={repositoriesPromise}
           countPromise={countPromise}
           initialCountPromise={initialCountPromise}
         />
