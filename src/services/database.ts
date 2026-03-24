@@ -1,6 +1,6 @@
-import path from 'node:path';
-
 import { createClient, type Client } from '@libsql/client';
+
+import path from 'node:path';
 
 let client: Client | null = null;
 
