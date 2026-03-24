@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import RepositoryDTO from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
@@ -9,16 +10,18 @@ import PageContext from '@/lib/pageContext';
 import Preview from '@/components/preview';
 
 type InteractivePreviewProps = {
-  repository: Repository;
+  repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
   className?: string;
 };
 
 export default function InteractivePreview({
-  repository,
+  repositoryDTO,
   pageContext,
   className,
 }: InteractivePreviewProps) {
+  const repository = new Repository(repositoryDTO);
+
   const prioritizedBackground =
     pageContext.filter?.background === 'both'
       ? undefined

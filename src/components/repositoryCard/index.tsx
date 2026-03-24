@@ -33,7 +33,7 @@ export default function RepositoryCard({
       </Link>
       <div className={styles.content}>
         <InteractivePreview
-          repository={repository}
+          repositoryDTO={repositoryDTO}
           pageContext={pageContext}
           className={styles.preview}
         />
