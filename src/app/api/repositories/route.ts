@@ -9,10 +9,6 @@ import type Sort from '@/lib/sort';
 
 const sortOptions = new Set<string>(Object.values(SortOptions));
 
-async function delay(ms: number) {
-  await new Promise(resolve => setTimeout(resolve, ms));
-}
-
 function getSort(sortParam: string | null): Sort {
   if (!sortParam || !sortOptions.has(sortParam)) {
     return SortOptions.Trending;
@@ -23,8 +19,6 @@ function getSort(sortParam: string | null): Sort {
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
-
-  await delay(1000);
 
   const sort = getSort(searchParams.get('sort'));
 
