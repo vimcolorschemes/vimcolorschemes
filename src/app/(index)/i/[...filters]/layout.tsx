@@ -8,6 +8,8 @@ import { SortOptions } from '@/lib/sort';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
+import SearchNavigationBoundary from '@/components/searchNavigationBoundary';
+import SearchNavigationProvider from '@/components/providers/searchNavigationProvider';
 import SearchInput from '@/components/searchInput';
 import searchInputStyles from '@/components/searchInput/index.module.css';
 import SortInput from '@/components/sortInput';
@@ -37,19 +39,21 @@ export default async function IndexPageLayout({
         </Suspense>
       </Header>
       <main className={styles.container}>
-        <div className={styles.inputs}>
-          <div className={styles.searchSlot}>
-            <Suspense fallback={<SearchInputFallback />}>
-              <SearchInput />
+        <SearchNavigationProvider>
+          <div className={styles.inputs}>
+            <div className={styles.searchSlot}>
+              <Suspense fallback={<SearchInputFallback />}>
+                <SearchInput />
+              </Suspense>
+            </div>
+            <Suspense
+              fallback={<BackgroundInputFallback pageContext={pageContext} />}
+            >
+              <BackgroundInput />
             </Suspense>
           </div>
-          <Suspense
-            fallback={<BackgroundInputFallback pageContext={pageContext} />}
-          >
-            <BackgroundInput />
-          </Suspense>
-        </div>
-        {children}
+          <SearchNavigationBoundary>{children}</SearchNavigationBoundary>
+        </SearchNavigationProvider>
       </main>
     </>
   );

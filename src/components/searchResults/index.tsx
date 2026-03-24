@@ -4,6 +4,7 @@ import RepositoryDTO from '@/models/DTO/repository';
 
 import PageContext from '@/lib/pageContext';
 
+import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
 import useRepositorySearch from '@/hooks/useRepositorySearch';
 
 import RepositoriesGrid from '@/components/repositories/grid';
@@ -25,6 +26,7 @@ export default function SearchResults({
   initialRepositories,
   initialCount,
 }: SearchResultsProps) {
+  const { isNavigatingSearch } = useSearchNavigation();
   const {
     results,
     count,
@@ -44,6 +46,10 @@ export default function SearchResults({
           }
         : undefined,
   });
+
+  if (isNavigatingSearch) {
+    return <RepositoriesSkeleton />;
+  }
 
   if (isLoading && results === null) {
     return <RepositoriesSkeleton />;
