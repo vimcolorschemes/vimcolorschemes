@@ -1,46 +1,76 @@
 'use client';
 
+import cn from 'classnames';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import Backgrounds from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
 
-import { getIndexRouteState } from '@/helpers/indexRoute';
-import PageContextHelper from '@/helpers/pageContext';
+import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
-import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
-import Radio from '@/components/ui/radio';
+import { useIndexPending } from '@/components/providers/indexPendingProvider';
+import radioStyles from '@/components/ui/radio/index.module.css';
+
+import styles from './index.module.css';
 
 export default function BackgroundInput() {
   const pathname = usePathname();
-  const { navigateToIndex } = useIndexNavigation();
-  const routeState = getIndexRouteState(pathname);
-  const pageContext = PageContextHelper.get(routeState.filters);
-
-  function onChange(background?: BackgroundFilter) {
-    navigateToIndex(
-      {
-        sort: pageContext.sort,
-        filter: {
-          ...pageContext.filter,
-          background,
-        },
-      },
-      routeState.search,
-    );
-  }
+  const { pageContext, searchQuery, startPending } = useIndexPending();
+  const options: { value: BackgroundFilter | undefined; label: string }[] = [
+    { value: undefined, label: 'any' },
+    { value: Backgrounds.Dark, label: 'dark' },
+    { value: Backgrounds.Light, label: 'light' },
+    { value: 'both', label: 'both' },
+  ];
 
   return (
-    <Radio<BackgroundFilter>
-      name="background"
-      value={pageContext.filter.background}
-      onChange={onChange}
-      options={[
-        { value: undefined, label: 'any' },
-        { value: Backgrounds.Dark, label: 'dark' },
-        { value: Backgrounds.Light, label: 'light' },
-        { value: 'both', label: 'both' },
-      ]}
-    />
+    <fieldset className={radioStyles.container}>
+      <legend className={radioStyles.legend}>background:</legend>
+      <div className={radioStyles.options}>
+        {options.map(option => {
+          const href = buildIndexRoutePath(
+            {
+              sort: pageContext.sort,
+              filter: {
+                ...pageContext.filter,
+                background: option.value,
+              },
+            },
+            searchQuery,
+          );
+
+          return (
+            <Link
+              key={option.label}
+              href={href}
+              onClick={() => {
+                if (searchQuery && href !== pathname) {
+                  startPending(
+                    href,
+                    {
+                      sort: pageContext.sort,
+                      filter: {
+                        ...pageContext.filter,
+                        background: option.value,
+                      },
+                    },
+                    searchQuery,
+                  );
+                }
+              }}
+              scroll={false}
+              className={cn(radioStyles.option, styles.option)}
+            >
+              <span
+                className={styles.indicator}
+                data-active={pageContext.filter.background === option.value}
+              />
+              <span>{option.label}</span>
+            </Link>
+          );
+        })}
+      </div>
+    </fieldset>
   );
 }

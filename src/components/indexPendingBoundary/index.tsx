@@ -2,17 +2,17 @@
 
 import { ReactNode } from 'react';
 
-import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
+import { useIndexPending } from '@/components/providers/indexPendingProvider';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
-export default function IndexNavigationBoundary({
+export default function IndexPendingBoundary({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { isNavigatingIndex } = useIndexNavigation();
+  const { isPending } = useIndexPending();
 
-  if (isNavigatingIndex) {
+  if (isPending) {
     return <RepositoriesSkeleton />;
   }
 

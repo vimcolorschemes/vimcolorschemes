@@ -1,11 +1,11 @@
-import Repository from '@/models/repository';
+import RepositoryDTO from '@/models/DTO/repository';
 
 import PageContext from '@/lib/pageContext';
 
 import RepositoriesGrid from '@/components/repositories/grid';
 
 type RepositoriesContentProps = {
-  repositoriesPromise: Promise<Repository[]>;
+  repositoriesPromise: Promise<RepositoryDTO[]>;
   pageContext: PageContext;
 };
 

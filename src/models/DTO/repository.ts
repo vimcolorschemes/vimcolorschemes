@@ -5,8 +5,8 @@ type RepositoryDTO = {
   name: string;
   owner: Owner;
   description: string;
-  githubCreatedAt: Date;
-  pushedAt: Date;
+  githubCreatedAt: Date | string;
+  pushedAt: Date | string;
   githubURL: string;
   stargazersCount: number;
   weekStargazersCount: number;

@@ -3,9 +3,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { use } from 'react';
 
-import RepositoriesClientService, {
-  parseRepositoryDTO,
-} from '@/services/repositoriesClient';
+import RepositoriesClientService from '@/services/repositoriesClient';
 
 import RepositoryDTO from '@/models/DTO/repository';
 
@@ -18,20 +16,15 @@ type LoadMoreProps = {
   pageContext: PageContext;
   initialRepositoriesPromise: Promise<RepositoryDTO[]>;
   countPromise: Promise<number>;
-  initialCountPromise: Promise<number>;
 };
 
 export default function LoadMore({
   pageContext,
   initialRepositoriesPromise,
   countPromise,
-  initialCountPromise,
 }: LoadMoreProps) {
-  const initialRepositories = use(initialRepositoriesPromise).map(
-    parseRepositoryDTO,
-  );
+  const initialRepositories = use(initialRepositoriesPromise);
   const count = use(countPromise);
-  const initialCount = use(initialCountPromise);
 
   const repositoriesQuery = useInfiniteQuery({
     queryKey: ['repositories', pageContext.sort, pageContext.filter],
@@ -69,7 +62,8 @@ export default function LoadMore({
   const repositories =
     repositoriesQuery.data?.pages.slice(1).flatMap(page => page.repositories) ??
     [];
-  const hasMore = initialCount < count && repositoriesQuery.hasNextPage;
+  const hasMore =
+    initialRepositories.length < count && repositoriesQuery.hasNextPage;
 
   return (
     <>

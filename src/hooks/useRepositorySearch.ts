@@ -2,9 +2,7 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import RepositoriesClientService, {
-  parseRepositoryDTO,
-} from '@/services/repositoriesClient';
+import RepositoriesClientService from '@/services/repositoriesClient';
 
 import RepositoryDTO from '@/models/DTO/repository';
 
@@ -60,7 +58,7 @@ export default function useRepositorySearch({
       ? {
           pages: [
             {
-              repositories: initialData.repositories.map(parseRepositoryDTO),
+              repositories: initialData.repositories,
               count: initialData.count,
             },
           ],

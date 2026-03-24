@@ -17,6 +17,10 @@ type GetRepositoriesParams = {
   filter: Filter;
 };
 
+function hydrateRepository(dto: RepositoryDTO): Repository {
+  return new Repository(dto);
+}
+
 type ColorschemeMap = Map<number, ColorschemeDTO>;
 
 const REPO_COLS = `r.id, r.owner_name, r.name, r.description, r.github_url, r.stargazers_count, r.week_stargazers_count, r.github_created_at, r.pushed_at`;
@@ -187,6 +191,15 @@ async function getRepositories({
   sort,
   filter,
 }: GetRepositoriesParams): Promise<Repository[]> {
+  const repositories = await getRepositoryDTOs({ sort, filter });
+
+  return repositories.map(hydrateRepository);
+}
+
+async function getRepositoryDTOs({
+  sort,
+  filter,
+}: GetRepositoriesParams): Promise<RepositoryDTO[]> {
   const client = DatabaseService.getClient();
   const { clauses, params } = QueryHelper.getFilterSQL(filter);
   const where = buildWhereSQL(filter, clauses);
@@ -205,7 +218,7 @@ async function getRepositories({
 
   return result.rows.map(row => {
     const vimColorSchemes = colorschemesByRepo.get(row.id as number) ?? [];
-    return new Repository(rowToDTO(row, vimColorSchemes));
+    return rowToDTO(row, vimColorSchemes);
   });
 }
 
@@ -213,6 +226,12 @@ async function getRepositories({
  * @returns all repositories from the database.
  */
 async function getAllRepositories(): Promise<Repository[]> {
+  const repositories = await getAllRepositoryDTOs();
+
+  return repositories.map(hydrateRepository);
+}
+
+async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
   const client = DatabaseService.getClient();
 
   const [repoResult, allColorschemes] = await Promise.all([
@@ -224,7 +243,7 @@ async function getAllRepositories(): Promise<Repository[]> {
 
   return repoResult.rows.map(row => {
     const vimColorSchemes = allColorschemes.get(row.id as number) ?? [];
-    return new Repository(rowToDTO(row, vimColorSchemes));
+    return rowToDTO(row, vimColorSchemes);
   });
 }
 
@@ -243,6 +262,15 @@ async function getRepository(
   owner: string,
   name: string,
 ): Promise<Repository | null> {
+  const repository = await getRepositoryDTO(owner, name);
+
+  return repository ? hydrateRepository(repository) : null;
+}
+
+async function getRepositoryDTO(
+  owner: string,
+  name: string,
+): Promise<RepositoryDTO | null> {
   const client = DatabaseService.getClient();
 
   const result = await client.execute({
@@ -259,14 +287,17 @@ async function getRepository(
 
   const row = result.rows[0];
   const vimColorSchemes = await loadColorschemes(row.id as number);
-  return new Repository(rowToDTO(row, vimColorSchemes));
+  return rowToDTO(row, vimColorSchemes);
 }
 
 const RepositoriesService = {
   getRepositoryCount,
   getRepositories,
+  getRepositoryDTOs,
   getAllRepositories,
+  getAllRepositoryDTOs,
   getRepository,
+  getRepositoryDTO,
 };
 
 export default RepositoriesService;

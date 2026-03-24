@@ -1,51 +1,57 @@
 'use client';
 
 import cn from 'classnames';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
-import { getIndexRouteState } from '@/helpers/indexRoute';
+import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
-import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
+import { useIndexPending } from '@/components/providers/indexPendingProvider';
 
 import styles from './index.module.css';
 
-type SortInputProps = {
-  pageContext: PageContext;
-};
-
-export default function SortInput({ pageContext }: SortInputProps) {
+export default function SortInput() {
   const pathname = usePathname();
-  const { navigateToIndex } = useIndexNavigation();
-  const routeState = getIndexRouteState(pathname);
+  const { pageContext, searchQuery, startPending } = useIndexPending();
 
   return (
     <div className={styles.container}>
       <legend className={styles.legend}>Sort</legend>
       <ul className={styles.list}>
-        {Object.values(SortOptions).map(option => (
-          <li
-            key={option}
-            className={cn(styles.option, {
-              [styles.active]: pageContext.sort === option,
-            })}
-          >
-            <button
-              type="button"
-              className={styles.button}
-              onClick={() =>
-                navigateToIndex(
-                  { sort: option, filter: pageContext.filter },
-                  routeState.search,
-                )
-              }
+        {Object.values(SortOptions).map(option => {
+          const href = buildIndexRoutePath(
+            { sort: option, filter: pageContext.filter },
+            searchQuery,
+          );
+
+          return (
+            <li
+              key={option}
+              className={cn(styles.option, {
+                [styles.active]: pageContext.sort === option,
+              })}
             >
-              <p>{option}</p>
-            </button>
-          </li>
-        ))}
+              <Link
+                className={styles.button}
+                href={href}
+                onClick={() => {
+                  if (searchQuery && href !== pathname) {
+                    startPending(
+                      href,
+                      { sort: option, filter: pageContext.filter },
+                      searchQuery,
+                    );
+                  }
+                }}
+                scroll={false}
+              >
+                <p>{option}</p>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

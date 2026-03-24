@@ -18,12 +18,16 @@ class Repository {
   weekStargazersCount: number;
   colorschemes: Colorscheme[];
 
+  private static parseDate(value: Date | string): Date {
+    return value instanceof Date ? value : new Date(value);
+  }
+
   constructor(dto: RepositoryDTO) {
     this.name = dto.name;
     this.owner = dto.owner;
     this.description = dto.description;
-    this.githubCreatedAt = dto.githubCreatedAt;
-    this.pushedAt = dto.pushedAt;
+    this.githubCreatedAt = Repository.parseDate(dto.githubCreatedAt);
+    this.pushedAt = Repository.parseDate(dto.pushedAt);
     this.githubURL = dto.githubURL;
     this.stargazersCount = dto.stargazersCount;
     this.weekStargazersCount = dto.weekStargazersCount;

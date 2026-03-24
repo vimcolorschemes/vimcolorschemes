@@ -73,7 +73,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
 
   if (routeState.search) {
     const [repositories, count] = await Promise.all([
-      RepositoriesService.getRepositories({
+      RepositoriesService.getRepositoryDTOs({
         sort: pageContext.sort,
         filter: {
           ...pageContext.filter,
@@ -90,7 +90,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
       <SearchResults
         query={routeState.search}
         pageContext={pageContext}
-        initialRepositories={repositories.map(repository => repository.dto)}
+        initialRepositories={repositories}
         initialCount={count}
       />
     );

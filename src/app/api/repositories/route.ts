@@ -50,12 +50,12 @@ export async function GET(request: NextRequest) {
   }
 
   const [repositories, count] = await Promise.all([
-    RepositoriesService.getRepositories({ sort, filter }),
+    RepositoriesService.getRepositoryDTOs({ sort, filter }),
     RepositoriesService.getRepositoryCount(filter),
   ]);
 
   return NextResponse.json({
-    repositories: repositories.map(repo => repo.dto),
+    repositories,
     count,
   });
 }

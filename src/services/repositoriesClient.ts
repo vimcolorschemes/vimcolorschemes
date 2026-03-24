@@ -1,5 +1,4 @@
 import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
 
 import type Filter from '@/lib/filter';
 import type Sort from '@/lib/sort';
@@ -12,17 +11,9 @@ type FetchRepositoriesParams = {
 };
 
 type FetchRepositoriesResult = {
-  repositories: Repository[];
+  repositories: RepositoryDTO[];
   count: number;
 };
-
-export function parseRepositoryDTO(dto: RepositoryDTO): Repository {
-  return new Repository({
-    ...dto,
-    githubCreatedAt: new Date(dto.githubCreatedAt),
-    pushedAt: new Date(dto.pushedAt),
-  });
-}
 
 function buildSearchParams({
   sort,
@@ -67,10 +58,7 @@ async function fetchRepositories({
     count: number;
   };
 
-  return {
-    repositories: data.repositories.map(parseRepositoryDTO),
-    count: data.count,
-  };
+  return data;
 }
 
 const RepositoriesClientService = {

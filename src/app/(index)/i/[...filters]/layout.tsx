@@ -8,8 +8,8 @@ import { SortOptions } from '@/lib/sort';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
-import IndexNavigationBoundary from '@/components/indexNavigationBoundary';
-import IndexNavigationProvider from '@/components/providers/indexNavigationProvider';
+import IndexPendingBoundary from '@/components/indexPendingBoundary';
+import IndexPendingProvider from '@/components/providers/indexPendingProvider';
 import SearchInput from '@/components/searchInput';
 import searchInputStyles from '@/components/searchInput/index.module.css';
 import SortInput from '@/components/sortInput';
@@ -32,10 +32,10 @@ export default async function IndexPageLayout({
   const pageContext = PageContextHelper.get(filters);
 
   return (
-    <IndexNavigationProvider>
+    <IndexPendingProvider>
       <Header>
         <Suspense fallback={<SortInputFallback pageContext={pageContext} />}>
-          <SortInput pageContext={pageContext} />
+          <SortInput />
         </Suspense>
       </Header>
       <main className={styles.container}>
@@ -51,9 +51,9 @@ export default async function IndexPageLayout({
             <BackgroundInput />
           </Suspense>
         </div>
-        <IndexNavigationBoundary>{children}</IndexNavigationBoundary>
+        <IndexPendingBoundary>{children}</IndexPendingBoundary>
       </main>
-    </IndexNavigationProvider>
+    </IndexPendingProvider>
   );
 }
 

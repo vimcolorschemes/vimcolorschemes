@@ -1,15 +1,14 @@
 'use client';
 
 import cn from 'classnames';
-import { usePathname } from 'next/navigation';
-import { ChangeEvent, useRef } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
-import { getIndexRouteState } from '@/helpers/indexRoute';
-import PageContextHelper from '@/helpers/pageContext';
+import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
-import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
+import { useIndexPending } from '@/components/providers/indexPendingProvider';
 import IconEnter from '@/components/ui/icons/enter';
 import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 
@@ -17,13 +16,16 @@ import styles from './index.module.css';
 
 export default function SearchInput() {
   const pathname = usePathname();
-  const { navigateToIndex } = useIndexNavigation();
-  const routeState = getIndexRouteState(pathname);
-  const pageContext = PageContextHelper.get(routeState.filters);
-  const searchQuery = routeState.search;
+  const router = useRouter();
+  const { pageContext, searchQuery, startPending } = useIndexPending();
 
   const input = useRef<HTMLInputElement>(null);
   const shouldRestoreFocus = useRef(false);
+  const [value, setValue] = useState(searchQuery);
+
+  useEffect(() => {
+    setValue(searchQuery);
+  }, [searchQuery]);
 
   useKeyboardShortcut({
     '/': event => {
@@ -35,22 +37,28 @@ export default function SearchInput() {
 
   function onSubmit(event: ChangeEvent) {
     event.preventDefault();
-    submitSearch(input.current?.value ?? '');
+    submitSearch(value);
   }
 
   function submitSearch(value: string) {
     shouldRestoreFocus.current = document.activeElement === input.current;
-    navigateToIndex(pageContext, value);
+    const nextPath = buildIndexRoutePath(pageContext, value);
+
+    if (nextPath === pathname) {
+      return;
+    }
+
+    startPending(nextPath, pageContext, value.trim());
+    router.replace(nextPath, { scroll: false });
   }
 
   return (
     <form onSubmit={onSubmit} className={styles.container}>
       <input
-        key={searchQuery}
         name="search"
         type="search"
         placeholder="search"
-        defaultValue={searchQuery}
+        value={value}
         className={styles.input}
         ref={element => {
           input.current = element;
@@ -60,6 +68,7 @@ export default function SearchInput() {
             shouldRestoreFocus.current = false;
           }
         }}
+        onChange={event => setValue(event.currentTarget.value)}
         onKeyDown={event => {
           if (event.key === 'Escape') {
             event.preventDefault();

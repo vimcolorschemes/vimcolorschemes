@@ -2,6 +2,8 @@ import { Suspense } from 'react';
 
 import RepositoriesService from '@/services/repositoriesServer';
 
+import RepositoryDTO from '@/models/DTO/repository';
+
 import PageContext from '@/lib/pageContext';
 
 import RepositoriesContent from '@/components/repositories/content';
@@ -15,13 +17,10 @@ type RepositoriesProps = {
 };
 
 export default function Repositories({ pageContext }: RepositoriesProps) {
-  const repositoriesPromise = RepositoriesService.getRepositories(pageContext);
-  const initialRepositoriesPromise = repositoriesPromise.then(repositories =>
-    repositories.map(repository => repository.dto),
-  );
-  const initialCountPromise = repositoriesPromise.then(
-    repositories => repositories.length,
-  );
+  const repositoriesPromise =
+    RepositoriesService.getRepositoryDTOs(pageContext);
+  const initialRepositoriesPromise: Promise<RepositoryDTO[]> =
+    repositoriesPromise;
   const countPromise = RepositoriesService.getRepositoryCount(
     pageContext.filter,
   );
@@ -41,7 +40,6 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
           pageContext={pageContext}
           initialRepositoriesPromise={initialRepositoriesPromise}
           countPromise={countPromise}
-          initialCountPromise={initialCountPromise}
         />
       </Suspense>
     </div>
