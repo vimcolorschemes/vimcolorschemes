@@ -1,7 +1,4 @@
-import PageContext from '@/lib/pageContext';
-
 type RepositoriesCountProps = {
-  pageContext: PageContext;
   countPromise: Promise<number>;
 };
 

@@ -26,10 +26,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   return (
     <div className={styles.container}>
       <Suspense fallback={<p>_ repositories</p>}>
-        <RepositoriesCount
-          pageContext={pageContext}
-          countPromise={countPromise}
-        />
+        <RepositoriesCount countPromise={countPromise} />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
         <RepositoriesGrid
