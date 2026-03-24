@@ -114,7 +114,9 @@ describe('GET /api/repositories', () => {
 
   it('passes all filters together', async () => {
     const response = await GET(
-      makeRequest('?sort=new&search=gruvbox&background=light&page=2&owner=morhetz'),
+      makeRequest(
+        '?sort=new&search=gruvbox&background=light&page=2&owner=morhetz',
+      ),
     );
 
     expect(response.status).toBe(200);

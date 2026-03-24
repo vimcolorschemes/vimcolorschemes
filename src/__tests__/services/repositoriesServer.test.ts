@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import RepositoriesService from '@/services/repositoriesServer';
+
 import Constants from '@/lib/constants';
 import { SortOptions } from '@/lib/sort';
 
@@ -12,8 +14,6 @@ vi.mock('@/services/database', () => ({
     }),
   },
 }));
-
-import RepositoriesService from '@/services/repositoriesServer';
 
 describe('RepositoriesService', () => {
   beforeEach(() => {
