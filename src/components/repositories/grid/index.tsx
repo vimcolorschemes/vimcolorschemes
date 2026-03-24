@@ -7,15 +7,14 @@ import RepositoryCard from '@/components/repositoryCard';
 import styles from './index.module.css';
 
 type RepositoriesGridProps = {
-  repositoriesPromise: Promise<Repository[]>;
+  repositories: Repository[];
   pageContext: PageContext;
 };
 
-export default async function RepositoriesGrid({
-  repositoriesPromise,
+export default function RepositoriesGrid({
+  repositories,
   pageContext,
 }: RepositoriesGridProps) {
-  const repositories = await repositoriesPromise;
   return (
     <section className={styles.container}>
       {repositories.map(repository => (

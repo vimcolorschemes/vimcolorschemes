@@ -4,8 +4,7 @@ import RepositoriesService from '@/services/repositoriesServer';
 
 import PageContext from '@/lib/pageContext';
 
-import RepositoriesCount from '@/components/repositories/count';
-import RepositoriesGrid from '@/components/repositories/grid';
+import RepositoriesContent from '@/components/repositories/content';
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import LoadMore from '@/components/repositories/loadMore';
 
@@ -29,7 +28,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
         <RepositoriesCount countPromise={countPromise} />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
-        <RepositoriesGrid
+        <RepositoriesContent
           repositoriesPromise={repositoriesPromise}
           pageContext={pageContext}
         />
@@ -42,5 +41,19 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
         />
       </Suspense>
     </div>
+  );
+}
+
+async function RepositoriesCount({
+  countPromise,
+}: {
+  countPromise: Promise<number>;
+}) {
+  const count = await countPromise;
+
+  return (
+    <p>
+      {count} repositor{count === 1 ? 'y' : 'ies'}
+    </p>
   );
 }

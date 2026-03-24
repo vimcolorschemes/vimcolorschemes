@@ -8,10 +8,8 @@ import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
 
+import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
-import RepositoryCard from '@/components/repositoryCard';
-
-import styles from './index.module.css';
 
 type LoadMoreProps = {
   pageContext: PageContext;
@@ -59,15 +57,10 @@ export default function LoadMore({
   return (
     <>
       {repositories.length > 0 && (
-        <section className={styles.grid}>
-          {repositories.map(repository => (
-            <RepositoryCard
-              key={repository.key}
-              repository={repository}
-              pageContext={pageContext}
-            />
-          ))}
-        </section>
+        <RepositoriesGrid
+          repositories={repositories}
+          pageContext={pageContext}
+        />
       )}
       {hasMore && <LoadMoreButton loading={loading} onClick={loadMore} />}
     </>

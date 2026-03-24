@@ -7,9 +7,9 @@ import PageContextHelper from '@/helpers/pageContext';
 
 import { useSearch } from '@/context/searchContext';
 
+import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
-import RepositoryCard from '@/components/repositoryCard';
 
 import styles from './index.module.css';
 
@@ -38,15 +38,7 @@ export default function SearchResults({ children }: SearchResultsProps) {
       <p>
         {count} result{count === 1 ? '' : 's'}
       </p>
-      <section className={styles.grid}>
-        {results.map(repository => (
-          <RepositoryCard
-            key={repository.key}
-            repository={repository}
-            pageContext={pageContext}
-          />
-        ))}
-      </section>
+      <RepositoriesGrid repositories={results} pageContext={pageContext} />
       {hasMore && (
         <LoadMoreButton
           loading={isLoadingMore}
