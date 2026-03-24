@@ -16,7 +16,7 @@ type FetchRepositoriesResult = {
   count: number;
 };
 
-function parseRepositoryDTO(dto: RepositoryDTO): Repository {
+export function parseRepositoryDTO(dto: RepositoryDTO): Repository {
   return new Repository({
     ...dto,
     githubCreatedAt: new Date(dto.githubCreatedAt),

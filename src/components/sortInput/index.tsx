@@ -2,12 +2,12 @@
 
 import cn from 'classnames';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
-import FilterHelper from '@/helpers/filter';
+import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
 
 import styles from './index.module.css';
 
@@ -16,9 +16,8 @@ type SortInputProps = {
 };
 
 export default function SortInput({ pageContext }: SortInputProps) {
-  const searchParams = useSearchParams();
-  const url = FilterHelper.getURLFromFilter(pageContext.filter);
-  const search = searchParams.get('search') ?? '';
+  const pathname = usePathname();
+  const routeState = getIndexRouteState(pathname);
 
   return (
     <div className={styles.container}>
@@ -32,10 +31,10 @@ export default function SortInput({ pageContext }: SortInputProps) {
             })}
           >
             <Link
-              href={{
-                pathname: `/i/${option}/${url}`,
-                query: search ? { search } : undefined,
-              }}
+              href={buildIndexRoutePath(
+                { sort: option, filter: pageContext.filter },
+                routeState.search,
+              )}
             >
               <p>{option}</p>
             </Link>

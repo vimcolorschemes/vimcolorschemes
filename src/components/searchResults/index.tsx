@@ -1,11 +1,10 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
+import RepositoryDTO from '@/models/DTO/repository';
 
-import PageContextHelper from '@/helpers/pageContext';
+import PageContext from '@/lib/pageContext';
 
-import { useSearch } from '@/context/searchContext';
+import useRepositorySearch from '@/hooks/useRepositorySearch';
 
 import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
@@ -14,24 +13,45 @@ import RepositoriesSkeleton from '@/components/repositories/skeleton';
 import styles from './index.module.css';
 
 type SearchResultsProps = {
-  children: ReactNode;
+  query: string;
+  pageContext: PageContext;
+  initialRepositories?: RepositoryDTO[];
+  initialCount?: number;
 };
 
-export default function SearchResults({ children }: SearchResultsProps) {
-  const pathname = usePathname();
-  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
-  const { results, count, isLoading, isLoadingMore, loadMoreSearchResults } =
-    useSearch();
+export default function SearchResults({
+  query,
+  pageContext,
+  initialRepositories,
+  initialCount,
+}: SearchResultsProps) {
+  const {
+    results,
+    count,
+    isLoading,
+    isLoadingMore,
+    hasMore,
+    loadMoreSearchResults,
+  } = useRepositorySearch({
+    query,
+    sort: pageContext.sort,
+    background: pageContext.filter.background,
+    initialData:
+      initialRepositories && initialCount != null
+        ? {
+            repositories: initialRepositories,
+            count: initialCount,
+          }
+        : undefined,
+  });
 
   if (isLoading && results === null) {
     return <RepositoriesSkeleton />;
   }
 
   if (results === null) {
-    return <>{children}</>;
+    return <RepositoriesSkeleton />;
   }
-
-  const hasMore = results.length < count;
 
   return (
     <div className={styles.container}>

@@ -58,18 +58,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
 
-      // Legacy search URLs: /i/{sort}/s.{term} → /i/{sort}?search={term}
-      {
-        source: '/i/:sort/s.:term',
-        destination: '/i/:sort?search=:term',
-        permanent: true,
-      },
-      {
-        source: '/i/:sort/:background/s.:term',
-        destination: '/i/:sort/:background?search=:term',
-        permanent: true,
-      },
-
       // Legacy pagination URLs: /i/{sort}/p.{page} → /i/{sort}
       {
         source: '/i/:sort/p.:page',

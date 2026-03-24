@@ -1,10 +1,12 @@
 'use client';
 
 import cn from 'classnames';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FormEvent, useEffect, useRef, useState } from 'react';
 
-import { useSearch } from '@/context/searchContext';
+import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
+import PageContextHelper from '@/helpers/pageContext';
+
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
 import IconEnter from '@/components/ui/icons/enter';
@@ -13,9 +15,11 @@ import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 import styles from './index.module.css';
 
 export default function SearchInput() {
-  const searchParams = useSearchParams();
-  const { search, clearSearch } = useSearch();
-  const searchQuery = searchParams.get('search') ?? '';
+  const pathname = usePathname();
+  const router = useRouter();
+  const routeState = getIndexRouteState(pathname);
+  const pageContext = PageContextHelper.get(routeState.filters);
+  const searchQuery = routeState.search;
 
   const input = useRef<HTMLInputElement>(null);
   const [value, setValue] = useState<string>(searchQuery);
@@ -38,11 +42,7 @@ export default function SearchInput() {
   }
 
   function submitSearch(value: string) {
-    if (value.trim()) {
-      search(value);
-    } else {
-      clearSearch();
-    }
+    router.replace(buildIndexRoutePath(pageContext, value), { scroll: false });
   }
 
   return (
