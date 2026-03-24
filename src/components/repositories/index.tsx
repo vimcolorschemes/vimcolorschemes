@@ -1,14 +1,15 @@
 import { Suspense } from 'react';
 
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
+
+import RepositoryDTO from '@/models/DTO/repository';
 
 import PageContext from '@/lib/pageContext';
 
-import Pagination from '@/components/pagination';
-import RepositoriesGrid from '@/components/repositories/grid';
+import RepositoriesContent from '@/components/repositories/content';
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
+import LoadMore from '@/components/repositories/loadMore';
 
-import RepositoriesCount from './count';
 import styles from './index.module.css';
 
 type RepositoriesProps = {
@@ -16,27 +17,45 @@ type RepositoriesProps = {
 };
 
 export default function Repositories({ pageContext }: RepositoriesProps) {
-  const repositoriesPromise = RepositoriesService.getRepositories(pageContext);
+  const repositoriesPromise =
+    RepositoriesService.getRepositoryDTOs(pageContext);
+  const initialRepositoriesPromise: Promise<RepositoryDTO[]> =
+    repositoriesPromise;
   const countPromise = RepositoriesService.getRepositoryCount(
     pageContext.filter,
   );
   return (
     <div className={styles.container}>
       <Suspense fallback={<p>_ repositories</p>}>
-        <RepositoriesCount
-          pageContext={pageContext}
-          countPromise={countPromise}
-        />
+        <RepositoriesCount countPromise={countPromise} />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
-        <RepositoriesGrid
+        <RepositoriesContent
           repositoriesPromise={repositoriesPromise}
           pageContext={pageContext}
         />
       </Suspense>
       <Suspense>
-        <Pagination pageContext={pageContext} countPromise={countPromise} />
+        <LoadMore
+          pageContext={pageContext}
+          initialRepositoriesPromise={initialRepositoriesPromise}
+          countPromise={countPromise}
+        />
       </Suspense>
     </div>
+  );
+}
+
+async function RepositoriesCount({
+  countPromise,
+}: {
+  countPromise: Promise<number>;
+}) {
+  const count = await countPromise;
+
+  return (
+    <p>
+      {count} repositor{count === 1 ? 'y' : 'ies'}
+    </p>
   );
 }

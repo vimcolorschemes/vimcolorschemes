@@ -1,0 +1,25 @@
+.option {
+  text-decoration: none;
+  color: inherit;
+}
+
+.indicator {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--foreground);
+  border-radius: 50%;
+}
+
+.indicator[data-active='true']::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0.625em;
+  height: 0.625em;
+  background: var(--foreground);
+  border-radius: 50%;
+}

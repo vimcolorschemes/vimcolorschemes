@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
 
 import ColorschemesGrid from '@/components/colorschemesGrid';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
@@ -9,6 +9,16 @@ import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
 
 import styles from './page.module.css';
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const repositories = await RepositoriesService.getAllRepositories();
+  return repositories.map(repo => ({
+    owner: repo.owner.name.toLowerCase(),
+    name: repo.name.toLowerCase(),
+  }));
+}
 
 type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
 

@@ -8,6 +8,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   reactCompiler: true,
 
+  outputFileTracingIncludes: {
+    '/*': ['./database/**/*.db'],
+  },
+
   async redirects() {
     return [
       { source: '/', destination: '/i/trending', permanent: true },
@@ -53,11 +57,26 @@ const nextConfig: NextConfig = {
         destination: '/i/trending/b.dark',
         permanent: true,
       },
-    ];
-  },
 
-  async rewrites() {
-    return [{ source: '/page/:page', destination: '/i/trending' }];
+      // Legacy pagination URLs: /i/{sort}/p.{page} → /i/{sort}
+      {
+        source: '/i/:sort/p.:page',
+        destination: '/i/:sort',
+        permanent: true,
+      },
+      {
+        source: '/i/:sort/:background/p.:page',
+        destination: '/i/:sort/:background',
+        permanent: true,
+      },
+
+      // Legacy /page/:page URLs
+      {
+        source: '/page/:page',
+        destination: '/i/trending',
+        permanent: true,
+      },
+    ];
   },
 
   images: {

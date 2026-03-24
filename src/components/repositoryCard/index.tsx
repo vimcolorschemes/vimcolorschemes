@@ -1,5 +1,6 @@
 import Link from 'next/link';
 
+import RepositoryDTO from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
@@ -11,14 +12,16 @@ import RepositoryTitle from '@/components/repositoryTitle';
 import styles from './index.module.css';
 
 type RepositoryCardProps = {
-  repository: Repository;
+  repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
 };
 
 export default function RepositoryCard({
-  repository,
+  repositoryDTO,
   pageContext,
 }: RepositoryCardProps) {
+  const repository = new Repository(repositoryDTO);
+
   return (
     <article className={styles.container}>
       <Link
@@ -30,7 +33,7 @@ export default function RepositoryCard({
       </Link>
       <div className={styles.content}>
         <InteractivePreview
-          repositoryDTO={repository.dto}
+          repositoryDTO={repositoryDTO}
           pageContext={pageContext}
           className={styles.preview}
         />

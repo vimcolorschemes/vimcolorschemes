@@ -1,0 +1,8 @@
+.container {
+  width: 100%;
+  max-width: 120rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-md);
+}

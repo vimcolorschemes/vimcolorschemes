@@ -5,6 +5,7 @@ import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
 import Script from 'next/script';
 import { ReactNode } from 'react';
 
+import QueryProvider from '@/components/providers/queryProvider';
 import Footer from '@/components/ui/footer';
 
 import './reset.css';
@@ -55,14 +56,16 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <body className={cn(fontStandard.variable, fontMono.variable)}>
-        <Script
-          src="https://analytics.us.umami.is/script.js"
-          data-website-id="0408b924-a714-4a4a-82e6-8bd9c2d3706e"
-          strategy="afterInteractive"
-        />
-        {children}
-        <Footer />
-        <SpeedInsights />
+        <QueryProvider>
+          <Script
+            src="https://analytics.us.umami.is/script.js"
+            data-website-id="0408b924-a714-4a4a-82e6-8bd9c2d3706e"
+            strategy="afterInteractive"
+          />
+          {children}
+          <Footer />
+          <SpeedInsights />
+        </QueryProvider>
       </body>
     </html>
   );

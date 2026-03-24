@@ -1,5 +1,5 @@
-import RepositoryGridSkeleton from '@/components/repositories/skeleton';
+import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
-export default function IndexPageLoading() {
-  return <RepositoryGridSkeleton />;
+export default function Loading() {
+  return <RepositoriesSkeleton />;
 }

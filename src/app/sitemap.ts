@@ -1,6 +1,6 @@
 import { MetadataRoute } from 'next';
 
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
 
 import Backgrounds from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
