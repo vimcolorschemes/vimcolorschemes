@@ -8,6 +8,10 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig: NextConfig = {
   reactCompiler: true,
 
+  outputFileTracingIncludes: {
+    '/*': ['./database/**/*.db'],
+  },
+
   async redirects() {
     return [
       { source: '/', destination: '/i/trending', permanent: true },
