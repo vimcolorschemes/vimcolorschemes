@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
 
 import PageContext from '@/lib/pageContext';
 

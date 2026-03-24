@@ -12,7 +12,7 @@ const repositoriesServiceMock = vi.hoisted(() => ({
   getRepositoryCount: vi.fn(),
 }));
 
-vi.mock('@/services/repositories', () => ({
+vi.mock('@/services/repositoriesServer', () => ({
   default: {
     getRepositories: repositoriesServiceMock.getRepositories,
     getRepositoryCount: repositoriesServiceMock.getRepositoryCount,

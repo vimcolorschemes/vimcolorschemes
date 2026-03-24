@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import OwnersService from '@/services/owner';
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
 
 import { SortOptions } from '@/lib/sort';
 

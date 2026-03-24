@@ -1,10 +1,11 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 
 import PageContextHelper from '@/helpers/pageContext';
 
 import { SearchProvider } from '@/context/searchContext';
 
 import BackgroundInput from '@/components/backgroundInput';
+import RepositoryGridSkeleton from '@/components/repositories/skeleton';
 import SearchInput from '@/components/searchInput';
 import SearchResults from '@/components/searchResults';
 import SortInput from '@/components/sortInput';
@@ -24,17 +25,31 @@ export default async function IndexPageLayout({
   const { filters } = await params;
   const pageContext = PageContextHelper.get(filters);
   return (
-    <SearchProvider>
-      <Header>
-        <SortInput pageContext={pageContext} />
-      </Header>
+    <Suspense fallback={<IndexPageLayoutFallback />}>
+      <SearchProvider>
+        <Header>
+          <SortInput pageContext={pageContext} />
+        </Header>
+        <main className={styles.container}>
+          <div className={styles.inputs}>
+            <SearchInput />
+            <BackgroundInput />
+          </div>
+          <SearchResults>{children}</SearchResults>
+        </main>
+      </SearchProvider>
+    </Suspense>
+  );
+}
+
+function IndexPageLayoutFallback() {
+  return (
+    <>
+      <Header />
       <main className={styles.container}>
-        <div className={styles.inputs}>
-          <SearchInput />
-          <BackgroundInput />
-        </div>
-        <SearchResults>{children}</SearchResults>
+        <div className={styles.inputs} />
+        <RepositoryGridSkeleton />
       </main>
-    </SearchProvider>
+    </>
   );
 }

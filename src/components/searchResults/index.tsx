@@ -19,9 +19,10 @@ type SearchResultsProps = {
 export default function SearchResults({ children }: SearchResultsProps) {
   const pathname = usePathname();
   const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
-  const { results, count, isSearching, loadMoreSearchResults } = useSearch();
+  const { results, count, isLoading, isLoadingMore, loadMoreSearchResults } =
+    useSearch();
 
-  if (isSearching && results === null) {
+  if (isLoading && results === null) {
     return <RepositoriesSkeleton />;
   }
 
@@ -48,13 +49,13 @@ export default function SearchResults({ children }: SearchResultsProps) {
       {hasMore && (
         <button
           onClick={loadMoreSearchResults}
-          disabled={isSearching}
+          disabled={isLoadingMore}
           className={styles.button}
         >
-          {isSearching ? 'loading...' : 'load more'}
+          {isLoadingMore ? 'loading...' : 'load more'}
         </button>
       )}
-      {results.length === 0 && !isSearching && <p>no results found</p>}
+      {results.length === 0 && !isLoading && <p>no results found</p>}
     </div>
   );
 }

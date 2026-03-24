@@ -1,5 +1,8 @@
+'use client';
+
 import cn from 'classnames';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
@@ -13,7 +16,9 @@ type SortInputProps = {
 };
 
 export default function SortInput({ pageContext }: SortInputProps) {
+  const searchParams = useSearchParams();
   const url = FilterHelper.getURLFromFilter(pageContext.filter);
+  const search = searchParams.get('search') ?? '';
 
   return (
     <div className={styles.container}>
@@ -26,7 +31,12 @@ export default function SortInput({ pageContext }: SortInputProps) {
               [styles.active]: pageContext.sort === option,
             })}
           >
-            <Link href={`/i/${option}/${url}`}>
+            <Link
+              href={{
+                pathname: `/i/${option}/${url}`,
+                query: search ? { search } : undefined,
+              }}
+            >
               <p>{option}</p>
             </Link>
           </li>

@@ -2,7 +2,8 @@
 
 import { useCallback, useState } from 'react';
 
-import RepositoryDTO from '@/models/DTO/repository';
+import RepositoriesClientService from '@/services/repositoriesClient';
+
 import Repository from '@/models/repository';
 
 import PageContext from '@/lib/pageContext';
@@ -34,32 +35,19 @@ export default function LoadMore({
     setLoading(true);
 
     const nextPage = page + 1;
-    const params = new URLSearchParams({
-      sort: pageContext.sort,
-      page: String(nextPage),
-    });
-    if (pageContext.filter.background) {
-      params.set('background', pageContext.filter.background);
+
+    try {
+      const data = await RepositoriesClientService.fetchRepositories({
+        sort: pageContext.sort,
+        filter: pageContext.filter,
+        page: nextPage,
+      });
+
+      setRepositories(prev => [...prev, ...data.repositories]);
+      setPage(nextPage);
+    } finally {
+      setLoading(false);
     }
-    if (pageContext.filter.owner) {
-      params.set('owner', pageContext.filter.owner);
-    }
-
-    const response = await fetch(`/api/repositories?${params}`);
-    const data = await response.json();
-
-    const newRepos = (data.repositories as RepositoryDTO[]).map(
-      dto =>
-        new Repository({
-          ...dto,
-          githubCreatedAt: new Date(dto.githubCreatedAt),
-          pushedAt: new Date(dto.pushedAt),
-        }),
-    );
-
-    setRepositories(prev => [...prev, ...newRepos]);
-    setPage(nextPage);
-    setLoading(false);
   }, [loading, hasMore, page, pageContext]);
 
   return (

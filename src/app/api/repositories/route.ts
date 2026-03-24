@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import RepositoriesService from '@/services/repositories';
+import RepositoriesService from '@/services/repositoriesServer';
 
 import type Filter from '@/lib/filter';
 import type { BackgroundFilter } from '@/lib/filter';

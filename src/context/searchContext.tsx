@@ -1,68 +1,179 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
   createContext,
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
+  useReducer,
   useRef,
-  useState,
 } from 'react';
 
-import RepositoryDTO from '@/models/DTO/repository';
+import RepositoriesClientService from '@/services/repositoriesClient';
+
 import Repository from '@/models/repository';
 
 import { BackgroundFilter } from '@/lib/filter';
 import Sort from '@/lib/sort';
+
+import PageContextHelper from '@/helpers/pageContext';
 
 type SearchState = {
   query: string;
   results: Repository[] | null;
   count: number;
   page: number;
-  isSearching: boolean;
+  isLoading: boolean;
+  isLoadingMore: boolean;
   sort: Sort | null;
   background: BackgroundFilter | undefined;
 };
 
+type SearchAction =
+  | {
+      type: 'search_started';
+      query: string;
+      sort: Sort;
+      background?: BackgroundFilter;
+    }
+  | {
+      type: 'search_succeeded';
+      results: Repository[];
+      count: number;
+    }
+  | {
+      type: 'search_failed';
+    }
+  | {
+      type: 'load_more_started';
+    }
+  | {
+      type: 'load_more_succeeded';
+      results: Repository[];
+      page: number;
+    }
+  | {
+      type: 'load_more_failed';
+    }
+  | {
+      type: 'search_cleared';
+    };
+
 type SearchContextValue = SearchState & {
-  search: (query: string, sort: Sort, background?: BackgroundFilter) => void;
+  search: (query: string) => void;
   loadMoreSearchResults: () => void;
   clearSearch: () => void;
 };
 
 const SearchContext = createContext<SearchContextValue | null>(null);
 
-function parseRepositoryDTO(dto: RepositoryDTO): Repository {
-  return new Repository({
-    ...dto,
-    githubCreatedAt: new Date(dto.githubCreatedAt),
-    pushedAt: new Date(dto.pushedAt),
-  });
+const initialState: SearchState = {
+  query: '',
+  results: null,
+  count: 0,
+  page: 1,
+  isLoading: false,
+  isLoadingMore: false,
+  sort: null,
+  background: undefined,
+};
+
+function createInitialState({
+  query,
+  sort,
+  background,
+}: {
+  query: string;
+  sort: Sort;
+  background?: BackgroundFilter;
+}): SearchState {
+  const trimmedQuery = query.trim();
+
+  if (!trimmedQuery) {
+    return initialState;
+  }
+
+  return {
+    ...initialState,
+    query: trimmedQuery,
+    isLoading: true,
+    sort,
+    background,
+  };
 }
 
-async function fetchRepositories(
-  params: URLSearchParams,
-  signal?: AbortSignal,
-) {
-  const response = await fetch(`/api/repositories?${params}`, { signal });
-  return response.json();
+function searchReducer(state: SearchState, action: SearchAction): SearchState {
+  switch (action.type) {
+    case 'search_started':
+      return {
+        ...state,
+        query: action.query,
+        sort: action.sort,
+        background: action.background,
+        page: 1,
+        isLoading: true,
+        isLoadingMore: false,
+      };
+    case 'search_succeeded':
+      return {
+        ...state,
+        results: action.results,
+        count: action.count,
+        page: 1,
+        isLoading: false,
+        isLoadingMore: false,
+      };
+    case 'search_failed':
+      return {
+        ...state,
+        isLoading: false,
+        isLoadingMore: false,
+      };
+    case 'load_more_started':
+      return {
+        ...state,
+        isLoadingMore: true,
+      };
+    case 'load_more_succeeded':
+      return {
+        ...state,
+        results: [...(state.results || []), ...action.results],
+        page: action.page,
+        isLoadingMore: false,
+      };
+    case 'load_more_failed':
+      return {
+        ...state,
+        isLoadingMore: false,
+      };
+    case 'search_cleared':
+      return initialState;
+    default:
+      return state;
+  }
 }
 
 export function SearchProvider({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
+  const queryParam = searchParams.get('search') ?? '';
   const searchAbortControllerRef = useRef<AbortController | null>(null);
   const searchRequestIdRef = useRef(0);
-  const [state, setState] = useState<SearchState>({
-    query: '',
-    results: null,
-    count: 0,
-    page: 1,
-    isSearching: false,
-    sort: null,
-    background: undefined,
-  });
+  const [state, dispatch] = useReducer(
+    searchReducer,
+    {
+      query: queryParam,
+      sort: pageContext.sort,
+      background: pageContext.filter.background,
+    },
+    createInitialState,
+  );
 
-  const search = useCallback(
+  const runSearch = useCallback(
     async (query: string, sort: Sort, background?: BackgroundFilter) => {
       searchRequestIdRef.current += 1;
       const requestId = searchRequestIdRef.current;
@@ -70,55 +181,39 @@ export function SearchProvider({ children }: { children: ReactNode }) {
       searchAbortControllerRef.current?.abort();
 
       if (!query.trim()) {
-        setState(prev => ({
-          ...prev,
-          query: '',
-          results: null,
-          count: 0,
-          page: 1,
-          isSearching: false,
-          sort: null,
-          background: undefined,
-        }));
+        dispatch({ type: 'search_cleared' });
         return;
       }
 
       const abortController = new AbortController();
       searchAbortControllerRef.current = abortController;
 
-      setState(prev => ({
-        ...prev,
+      dispatch({
+        type: 'search_started',
         query,
-        isSearching: true,
         sort,
         background,
-      }));
-
-      const params = new URLSearchParams({
-        sort,
-        search: query,
-        page: '1',
       });
-      if (background) params.set('background', background);
 
       try {
-        const data = await fetchRepositories(params, abortController.signal);
+        const data = await RepositoriesClientService.fetchRepositories({
+          sort,
+          filter: {
+            search: query,
+            background,
+          },
+          signal: abortController.signal,
+        });
 
         if (requestId !== searchRequestIdRef.current) {
           return;
         }
 
-        const repos = (data.repositories as RepositoryDTO[]).map(
-          parseRepositoryDTO,
-        );
-
-        setState(prev => ({
-          ...prev,
-          results: repos,
+        dispatch({
+          type: 'search_succeeded',
+          results: data.repositories,
           count: data.count,
-          page: 1,
-          isSearching: false,
-        }));
+        });
       } catch (error) {
         if (abortController.signal.aborted) {
           return;
@@ -128,7 +223,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
           return;
         }
 
-        setState(prev => ({ ...prev, isSearching: false }));
+        dispatch({ type: 'search_failed' });
         throw error;
       } finally {
         if (searchAbortControllerRef.current === abortController) {
@@ -139,32 +234,74 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  useEffect(() => {
+    const query = queryParam.trim();
+
+    if (!query) {
+      searchRequestIdRef.current += 1;
+      searchAbortControllerRef.current?.abort();
+      searchAbortControllerRef.current = null;
+      dispatch({ type: 'search_cleared' });
+      return;
+    }
+
+    void runSearch(query, pageContext.sort, pageContext.filter.background);
+  }, [pageContext.filter.background, pageContext.sort, queryParam, runSearch]);
+
+  const search = useCallback(
+    (query: string) => {
+      const value = query.trim();
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (value) {
+        params.set('search', value);
+      } else {
+        params.delete('search');
+      }
+
+      const nextQuery = params.toString();
+      const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+
+      router.replace(nextUrl, { scroll: false });
+    },
+    [pathname, router, searchParams],
+  );
+
   const loadMoreSearchResults = useCallback(async () => {
-    if (state.isSearching || !state.results || !state.sort) return;
+    if (
+      state.isLoading ||
+      state.isLoadingMore ||
+      !state.results ||
+      !state.sort
+    ) {
+      return;
+    }
 
     const nextPage = state.page + 1;
-    setState(prev => ({ ...prev, isSearching: true }));
+    dispatch({ type: 'load_more_started' });
 
-    const params = new URLSearchParams({
-      sort: state.sort,
-      search: state.query,
-      page: String(nextPage),
-    });
-    if (state.background) params.set('background', state.background);
+    try {
+      const data = await RepositoriesClientService.fetchRepositories({
+        sort: state.sort,
+        filter: {
+          search: state.query,
+          background: state.background,
+        },
+        page: nextPage,
+      });
 
-    const data = await fetchRepositories(params);
-    const repos = (data.repositories as RepositoryDTO[]).map(
-      parseRepositoryDTO,
-    );
-
-    setState(prev => ({
-      ...prev,
-      results: [...(prev.results || []), ...repos],
-      page: nextPage,
-      isSearching: false,
-    }));
+      dispatch({
+        type: 'load_more_succeeded',
+        results: data.repositories,
+        page: nextPage,
+      });
+    } catch (error) {
+      dispatch({ type: 'load_more_failed' });
+      throw error;
+    }
   }, [
-    state.isSearching,
+    state.isLoading,
+    state.isLoadingMore,
     state.results,
     state.sort,
     state.page,
@@ -173,20 +310,14 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   ]);
 
   const clearSearch = useCallback(() => {
-    searchRequestIdRef.current += 1;
-    searchAbortControllerRef.current?.abort();
-    searchAbortControllerRef.current = null;
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('search');
 
-    setState({
-      query: '',
-      results: null,
-      count: 0,
-      page: 1,
-      isSearching: false,
-      sort: null,
-      background: undefined,
-    });
-  }, []);
+    const nextQuery = params.toString();
+    const nextUrl = nextQuery ? `${pathname}?${nextQuery}` : pathname;
+
+    router.replace(nextUrl, { scroll: false });
+  }, [pathname, router, searchParams]);
 
   return (
     <SearchContext.Provider

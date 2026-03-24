@@ -1,10 +1,8 @@
 'use client';
 
 import cn from 'classnames';
-import { usePathname } from 'next/navigation';
-import { FormEvent, useRef, useState } from 'react';
-
-import PageContextHelper from '@/helpers/pageContext';
+import { useSearchParams } from 'next/navigation';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 
 import { useSearch } from '@/context/searchContext';
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
@@ -15,12 +13,16 @@ import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 import styles from './index.module.css';
 
 export default function SearchInput() {
-  const pathname = usePathname();
-  const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
+  const searchParams = useSearchParams();
   const { search, clearSearch } = useSearch();
+  const searchQuery = searchParams.get('search') ?? '';
 
   const input = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(searchQuery);
+
+  useEffect(() => {
+    setValue(searchQuery);
+  }, [searchQuery]);
 
   useKeyboardShortcut({
     '/': event => {
@@ -37,7 +39,7 @@ export default function SearchInput() {
 
   function submitSearch(value: string) {
     if (value.trim()) {
-      search(value, pageContext.sort, pageContext.filter.background);
+      search(value);
     } else {
       clearSearch();
     }

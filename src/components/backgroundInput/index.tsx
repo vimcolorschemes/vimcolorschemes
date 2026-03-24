@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import Backgrounds from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
@@ -13,14 +13,25 @@ import Radio from '@/components/ui/radio';
 export default function BackgroundInput() {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const pageContext = PageContextHelper.get(pathname.split('/').slice(2));
+  const search = searchParams.get('search') ?? '';
 
   function onChange(background?: BackgroundFilter) {
     const filterUrl = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
       background,
     });
-    router.push(`/i/${pageContext.sort}/${filterUrl}`);
+
+    const nextPath = `/i/${pageContext.sort}/${filterUrl}`;
+    const params = new URLSearchParams();
+
+    if (search) {
+      params.set('search', search);
+    }
+
+    const nextUrl = params.size > 0 ? `${nextPath}?${params}` : nextPath;
+    router.push(nextUrl);
   }
 
   return (
