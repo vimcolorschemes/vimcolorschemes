@@ -8,10 +8,10 @@ import { SortOptions } from '@/lib/sort';
 import PageContextHelper from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
-import SearchNavigationProvider from '@/components/providers/searchNavigationProvider';
+import IndexNavigationBoundary from '@/components/indexNavigationBoundary';
+import IndexNavigationProvider from '@/components/providers/indexNavigationProvider';
 import SearchInput from '@/components/searchInput';
 import searchInputStyles from '@/components/searchInput/index.module.css';
-import SearchNavigationBoundary from '@/components/searchNavigationBoundary';
 import SortInput from '@/components/sortInput';
 import sortInputStyles from '@/components/sortInput/index.module.css';
 import Header from '@/components/ui/header';
@@ -32,30 +32,28 @@ export default async function IndexPageLayout({
   const pageContext = PageContextHelper.get(filters);
 
   return (
-    <>
+    <IndexNavigationProvider>
       <Header>
         <Suspense fallback={<SortInputFallback pageContext={pageContext} />}>
           <SortInput pageContext={pageContext} />
         </Suspense>
       </Header>
       <main className={styles.container}>
-        <SearchNavigationProvider>
-          <div className={styles.inputs}>
-            <div className={styles.searchSlot}>
-              <Suspense fallback={<SearchInputFallback />}>
-                <SearchInput />
-              </Suspense>
-            </div>
-            <Suspense
-              fallback={<BackgroundInputFallback pageContext={pageContext} />}
-            >
-              <BackgroundInput />
+        <div className={styles.inputs}>
+          <div className={styles.searchSlot}>
+            <Suspense fallback={<SearchInputFallback />}>
+              <SearchInput />
             </Suspense>
           </div>
-          <SearchNavigationBoundary>{children}</SearchNavigationBoundary>
-        </SearchNavigationProvider>
+          <Suspense
+            fallback={<BackgroundInputFallback pageContext={pageContext} />}
+          >
+            <BackgroundInput />
+          </Suspense>
+        </div>
+        <IndexNavigationBoundary>{children}</IndexNavigationBoundary>
       </main>
-    </>
+    </IndexNavigationProvider>
   );
 }
 
