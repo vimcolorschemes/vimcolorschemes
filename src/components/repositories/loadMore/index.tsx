@@ -16,21 +16,21 @@ import styles from './index.module.css';
 type LoadMoreProps = {
   pageContext: PageContext;
   countPromise: Promise<number>;
-  repositoriesPromise: Promise<Repository[]>;
+  initialCountPromise: Promise<number>;
 };
 
 export default function LoadMore({
   pageContext,
   countPromise,
-  repositoriesPromise,
+  initialCountPromise,
 }: LoadMoreProps) {
   const count = use(countPromise);
-  const initialRepositories = use(repositoriesPromise);
+  const initialCount = use(initialCountPromise);
   const [repositories, setRepositories] = useState<Repository[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
 
-  const renderedCount = initialRepositories.length + repositories.length;
+  const renderedCount = initialCount + repositories.length;
   const hasMore = renderedCount < count;
 
   const loadMore = useCallback(async () => {

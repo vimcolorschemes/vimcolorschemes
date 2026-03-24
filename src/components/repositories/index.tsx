@@ -17,6 +17,9 @@ type RepositoriesProps = {
 
 export default function Repositories({ pageContext }: RepositoriesProps) {
   const repositoriesPromise = RepositoriesService.getRepositories(pageContext);
+  const initialCountPromise = repositoriesPromise.then(
+    repositories => repositories.length,
+  );
   const countPromise = RepositoriesService.getRepositoryCount(
     pageContext.filter,
   );
@@ -38,7 +41,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
         <LoadMore
           pageContext={pageContext}
           countPromise={countPromise}
-          repositoriesPromise={repositoriesPromise}
+          initialCountPromise={initialCountPromise}
         />
       </Suspense>
     </div>
