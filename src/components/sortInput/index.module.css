@@ -25,6 +25,15 @@
   white-space: nowrap;
 }
 
+.button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 .option.active {
   color: var(--foreground-accent);
 }

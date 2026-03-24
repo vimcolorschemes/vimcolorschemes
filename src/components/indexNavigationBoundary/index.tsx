@@ -2,17 +2,17 @@
 
 import { ReactNode } from 'react';
 
-import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
+import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
-export default function SearchNavigationBoundary({
+export default function IndexNavigationBoundary({
   children,
 }: {
   children: ReactNode;
 }) {
-  const { isNavigatingSearch } = useSearchNavigation();
+  const { isNavigatingIndex } = useIndexNavigation();
 
-  if (isNavigatingSearch) {
+  if (isNavigatingIndex) {
     return <RepositoriesSkeleton />;
   }
 

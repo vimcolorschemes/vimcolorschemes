@@ -7,15 +7,15 @@ import PageContext from '@/lib/pageContext';
 
 import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
-type SearchNavigationContextValue = {
-  isNavigatingSearch: boolean;
-  navigateToSearch: (pageContext: PageContext, query: string) => void;
+type IndexNavigationContextValue = {
+  isNavigatingIndex: boolean;
+  navigateToIndex: (pageContext: PageContext, query: string) => void;
 };
 
-const SearchNavigationContext =
-  createContext<SearchNavigationContextValue | null>(null);
+const IndexNavigationContext =
+  createContext<IndexNavigationContextValue | null>(null);
 
-export default function SearchNavigationProvider({
+export default function IndexNavigationProvider({
   children,
 }: {
   children: ReactNode;
@@ -25,10 +25,10 @@ export default function SearchNavigationProvider({
   const [isNavigatingSearch, startTransition] = useTransition();
 
   return (
-    <SearchNavigationContext.Provider
+    <IndexNavigationContext.Provider
       value={{
-        isNavigatingSearch,
-        navigateToSearch: (pageContext, query) => {
+        isNavigatingIndex: isNavigatingSearch,
+        navigateToIndex: (pageContext, query) => {
           const nextPathname = buildIndexRoutePath(pageContext, query);
 
           if (nextPathname === pathname) {
@@ -42,16 +42,16 @@ export default function SearchNavigationProvider({
       }}
     >
       {children}
-    </SearchNavigationContext.Provider>
+    </IndexNavigationContext.Provider>
   );
 }
 
-export function useSearchNavigation() {
-  const context = use(SearchNavigationContext);
+export function useIndexNavigation() {
+  const context = use(IndexNavigationContext);
 
   if (!context) {
     throw new Error(
-      'useSearchNavigation must be used within a SearchNavigationProvider',
+      'useIndexNavigation must be used within an IndexNavigationProvider',
     );
   }
 

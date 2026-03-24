@@ -1,13 +1,14 @@
 'use client';
 
 import cn from 'classnames';
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 import PageContext from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
-import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
+import { getIndexRouteState } from '@/helpers/indexRoute';
+
+import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
 
 import styles from './index.module.css';
 
@@ -17,6 +18,7 @@ type SortInputProps = {
 
 export default function SortInput({ pageContext }: SortInputProps) {
   const pathname = usePathname();
+  const { navigateToIndex } = useIndexNavigation();
   const routeState = getIndexRouteState(pathname);
 
   return (
@@ -30,14 +32,18 @@ export default function SortInput({ pageContext }: SortInputProps) {
               [styles.active]: pageContext.sort === option,
             })}
           >
-            <Link
-              href={buildIndexRoutePath(
-                { sort: option, filter: pageContext.filter },
-                routeState.search,
-              )}
+            <button
+              type="button"
+              className={styles.button}
+              onClick={() =>
+                navigateToIndex(
+                  { sort: option, filter: pageContext.filter },
+                  routeState.search,
+                )
+              }
             >
               <p>{option}</p>
-            </Link>
+            </button>
           </li>
         ))}
       </ul>

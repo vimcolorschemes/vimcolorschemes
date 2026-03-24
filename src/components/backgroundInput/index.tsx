@@ -1,33 +1,32 @@
 'use client';
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import Backgrounds from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
 
-import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
+import { getIndexRouteState } from '@/helpers/indexRoute';
 import PageContextHelper from '@/helpers/pageContext';
 
+import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
 import Radio from '@/components/ui/radio';
 
 export default function BackgroundInput() {
-  const router = useRouter();
   const pathname = usePathname();
+  const { navigateToIndex } = useIndexNavigation();
   const routeState = getIndexRouteState(pathname);
   const pageContext = PageContextHelper.get(routeState.filters);
 
   function onChange(background?: BackgroundFilter) {
-    router.push(
-      buildIndexRoutePath(
-        {
-          sort: pageContext.sort,
-          filter: {
-            ...pageContext.filter,
-            background,
-          },
+    navigateToIndex(
+      {
+        sort: pageContext.sort,
+        filter: {
+          ...pageContext.filter,
+          background,
         },
-        routeState.search,
-      ),
+      },
+      routeState.search,
     );
   }
 

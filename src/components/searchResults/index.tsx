@@ -6,7 +6,7 @@ import PageContext from '@/lib/pageContext';
 
 import useRepositorySearch from '@/hooks/useRepositorySearch';
 
-import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
+import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
 import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
@@ -26,7 +26,7 @@ export default function SearchResults({
   initialRepositories,
   initialCount,
 }: SearchResultsProps) {
-  const { isNavigatingSearch } = useSearchNavigation();
+  const { isNavigatingIndex } = useIndexNavigation();
   const {
     results,
     count,
@@ -47,7 +47,7 @@ export default function SearchResults({
         : undefined,
   });
 
-  if (isNavigatingSearch) {
+  if (isNavigatingIndex) {
     return <RepositoriesSkeleton />;
   }
 

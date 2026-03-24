@@ -2,14 +2,14 @@
 
 import cn from 'classnames';
 import { usePathname } from 'next/navigation';
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useRef } from 'react';
 
 import { getIndexRouteState } from '@/helpers/indexRoute';
 import PageContextHelper from '@/helpers/pageContext';
 
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
-import { useSearchNavigation } from '@/components/providers/searchNavigationProvider';
+import { useIndexNavigation } from '@/components/providers/indexNavigationProvider';
 import IconEnter from '@/components/ui/icons/enter';
 import IconForwardSlash from '@/components/ui/icons/forwardSlash';
 
@@ -17,17 +17,13 @@ import styles from './index.module.css';
 
 export default function SearchInput() {
   const pathname = usePathname();
-  const { navigateToSearch } = useSearchNavigation();
+  const { navigateToIndex } = useIndexNavigation();
   const routeState = getIndexRouteState(pathname);
   const pageContext = PageContextHelper.get(routeState.filters);
   const searchQuery = routeState.search;
 
   const input = useRef<HTMLInputElement>(null);
-  const [value, setValue] = useState<string>(searchQuery);
-
-  useEffect(() => {
-    setValue(searchQuery);
-  }, [searchQuery]);
+  const shouldRestoreFocus = useRef(false);
 
   useKeyboardShortcut({
     '/': event => {
@@ -37,29 +33,37 @@ export default function SearchInput() {
     },
   });
 
-  function onSubmit(event: FormEvent) {
+  function onSubmit(event: ChangeEvent) {
     event.preventDefault();
-    submitSearch(value);
+    submitSearch(input.current?.value ?? '');
   }
 
   function submitSearch(value: string) {
-    navigateToSearch(pageContext, value);
+    shouldRestoreFocus.current = document.activeElement === input.current;
+    navigateToIndex(pageContext, value);
   }
 
   return (
     <form onSubmit={onSubmit} className={styles.container}>
       <input
+        key={searchQuery}
         name="search"
         type="search"
         placeholder="search"
-        value={value}
-        onChange={event => setValue(event.target.value)}
+        defaultValue={searchQuery}
         className={styles.input}
-        ref={input}
+        ref={element => {
+          input.current = element;
+
+          if (element && shouldRestoreFocus.current) {
+            element.focus();
+            shouldRestoreFocus.current = false;
+          }
+        }}
         onKeyDown={event => {
           if (event.key === 'Escape') {
             event.preventDefault();
-            submitSearch(value);
+            submitSearch(event.currentTarget.value);
           }
         }}
       />
