@@ -1,0 +1,45 @@
+.container {
+  width: 100%;
+  max-width: 120rem;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: var(--spacing-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--foreground-accent);
+  outline-offset: var(--spacing-xs);
+  text-decoration: underline;
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}

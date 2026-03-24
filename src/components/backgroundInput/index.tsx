@@ -18,7 +18,6 @@ export default function BackgroundInput() {
   function onChange(background?: BackgroundFilter) {
     const filterUrl = FilterHelper.getURLFromFilter({
       ...pageContext.filter,
-      page: undefined,
       background,
     });
     router.push(`/i/${pageContext.sort}/${filterUrl}`);

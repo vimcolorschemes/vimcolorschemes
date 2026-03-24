@@ -32,21 +32,21 @@ describe('PageContextHelper.get', () => {
     });
   });
 
-  it('should capture the search filter', () => {
+  it('should ignore search segments (no longer URL-decoded)', () => {
     expect(
       PageContextHelper.get([SortOptions.Trending, 's.test']),
     ).toEqual<PageContext>({
       sort: SortOptions.Trending,
-      filter: { search: 'test' },
+      filter: {},
     });
   });
 
-  it('should capture the page filter', () => {
+  it('should ignore page segments (no longer URL-decoded)', () => {
     expect(
       PageContextHelper.get([SortOptions.Trending, 'p.3']),
     ).toEqual<PageContext>({
       sort: SortOptions.Trending,
-      filter: { page: 3 },
+      filter: {},
     });
   });
 
@@ -59,12 +59,12 @@ describe('PageContextHelper.get', () => {
     });
   });
 
-  it('should capture multiple filters', () => {
+  it('should capture only background from multiple filters', () => {
     expect(
       PageContextHelper.get([SortOptions.Old, 'b.light', 'p.2']),
     ).toEqual<PageContext>({
       sort: SortOptions.Old,
-      filter: { background: Backgrounds.Light, page: 2 },
+      filter: { background: Backgrounds.Light },
     });
   });
 });

@@ -10,6 +10,16 @@ import RepositoryTitle from '@/components/repositoryTitle';
 
 import styles from './page.module.css';
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const repositories = await RepositoriesService.getAllRepositories();
+  return repositories.map(repo => ({
+    owner: repo.owner.name.toLowerCase(),
+    name: repo.name.toLowerCase(),
+  }));
+}
+
 type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
 
 export async function generateMetadata({

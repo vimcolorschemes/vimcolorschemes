@@ -2,8 +2,11 @@ import { ReactNode } from 'react';
 
 import PageContextHelper from '@/helpers/pageContext';
 
+import { SearchProvider } from '@/context/searchContext';
+
 import BackgroundInput from '@/components/backgroundInput';
 import SearchInput from '@/components/searchInput';
+import SearchResults from '@/components/searchResults';
 import SortInput from '@/components/sortInput';
 import Header from '@/components/ui/header';
 
@@ -21,7 +24,7 @@ export default async function IndexPageLayout({
   const { filters } = await params;
   const pageContext = PageContextHelper.get(filters);
   return (
-    <>
+    <SearchProvider>
       <Header>
         <SortInput pageContext={pageContext} />
       </Header>
@@ -30,8 +33,8 @@ export default async function IndexPageLayout({
           <SearchInput />
           <BackgroundInput />
         </div>
-        {children}
+        <SearchResults>{children}</SearchResults>
       </main>
-    </>
+    </SearchProvider>
   );
 }

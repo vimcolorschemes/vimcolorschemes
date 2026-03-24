@@ -53,11 +53,38 @@ const nextConfig: NextConfig = {
         destination: '/i/trending/b.dark',
         permanent: true,
       },
-    ];
-  },
 
-  async rewrites() {
-    return [{ source: '/page/:page', destination: '/i/trending' }];
+      // Legacy search URLs: /i/{sort}/s.{term} → /i/{sort}
+      {
+        source: '/i/:sort/s.:term',
+        destination: '/i/:sort',
+        permanent: true,
+      },
+      {
+        source: '/i/:sort/:background/s.:term',
+        destination: '/i/:sort/:background',
+        permanent: true,
+      },
+
+      // Legacy pagination URLs: /i/{sort}/p.{page} → /i/{sort}
+      {
+        source: '/i/:sort/p.:page',
+        destination: '/i/:sort',
+        permanent: true,
+      },
+      {
+        source: '/i/:sort/:background/p.:page',
+        destination: '/i/:sort/:background',
+        permanent: true,
+      },
+
+      // Legacy /page/:page URLs
+      {
+        source: '/page/:page',
+        destination: '/i/trending',
+        permanent: true,
+      },
+    ];
   },
 
   images: {

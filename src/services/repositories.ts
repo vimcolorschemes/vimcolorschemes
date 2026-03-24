@@ -38,8 +38,66 @@ async function loadColorschemes(
     args: [repositoryId],
   });
 
-  const colorschemeMap = new Map<number, ColorschemeDTO>();
+  return buildColorschemeDTOs(result.rows);
+}
+
+async function loadAllColorschemes(): Promise<Map<number, ColorschemeDTO[]>> {
+  const client = DatabaseService.getClient();
+  const result = await client.execute(
+    `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+     FROM colorschemes cs
+     LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
+     ORDER BY cs.repository_id, cs.id, csg.id`,
+  );
+
+  const repoMap = new Map<number, Map<number, ColorschemeDTO>>();
   for (const row of result.rows) {
+    const repoId = row.repo_id as number;
+    if (!repoMap.has(repoId)) {
+      repoMap.set(repoId, new Map());
+    }
+    const colorschemeMap = repoMap.get(repoId)!;
+
+    const id = row.cs_id as number;
+    const name = row.cs_name as string;
+
+    if (!colorschemeMap.has(id)) {
+      colorschemeMap.set(id, {
+        name,
+        backgrounds: [],
+        data: { light: null, dark: null },
+      });
+    }
+
+    const cs = colorschemeMap.get(id)!;
+    const background = row.csg_background as string | null;
+    const groupName = row.csg_name as string | null;
+    const hexCode = row.csg_hex_code as string | null;
+
+    if (background && groupName && hexCode) {
+      const group = { name: groupName, hexCode };
+      if (background === 'light') {
+        if (!cs.data!.light) cs.data!.light = [];
+        cs.data!.light.push(group);
+        if (!cs.backgrounds.includes('light')) cs.backgrounds.push('light');
+      } else if (background === 'dark') {
+        if (!cs.data!.dark) cs.data!.dark = [];
+        cs.data!.dark.push(group);
+        if (!cs.backgrounds.includes('dark')) cs.backgrounds.push('dark');
+      }
+    }
+  }
+
+  const result2 = new Map<number, ColorschemeDTO[]>();
+  for (const [repoId, colorschemeMap] of repoMap) {
+    result2.set(repoId, Array.from(colorschemeMap.values()));
+  }
+  return result2;
+}
+
+function buildColorschemeDTOs(rows: Row[]): ColorschemeDTO[] {
+  const colorschemeMap = new Map<number, ColorschemeDTO>();
+  for (const row of rows) {
     const id = row.cs_id as number;
     const name = row.cs_name as string;
 
@@ -150,16 +208,17 @@ async function getRepositories({
 async function getAllRepositories(): Promise<Repository[]> {
   const client = DatabaseService.getClient();
 
-  const result = await client.execute(
-    `SELECT ${REPO_COLS} FROM repositories r WHERE ${BASE_CLAUSE}`,
-  );
+  const [repoResult, allColorschemes] = await Promise.all([
+    client.execute(
+      `SELECT ${REPO_COLS} FROM repositories r WHERE ${BASE_CLAUSE}`,
+    ),
+    loadAllColorschemes(),
+  ]);
 
-  return Promise.all(
-    result.rows.map(async row => {
-      const vimColorSchemes = await loadColorschemes(row.id as number);
-      return new Repository(rowToDTO(row, vimColorSchemes));
-    }),
-  );
+  return repoResult.rows.map(row => {
+    const vimColorSchemes = allColorschemes.get(row.id as number) ?? [];
+    return new Repository(rowToDTO(row, vimColorSchemes));
+  });
 }
 
 /**

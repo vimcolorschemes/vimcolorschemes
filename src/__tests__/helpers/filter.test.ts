@@ -15,10 +15,8 @@ describe('FilterHelper.getURLFromFilter', () => {
     );
   });
 
-  it('should return the search filter', () => {
-    expect(FilterHelper.getURLFromFilter({ search: 'test-search' })).toBe(
-      's.test%20search',
-    );
+  it('should ignore search filter (no longer URL-encoded)', () => {
+    expect(FilterHelper.getURLFromFilter({ search: 'test-search' })).toBe('');
   });
 
   it('should ignore invalid keys', () => {
@@ -31,23 +29,23 @@ describe('FilterHelper.getURLFromFilter', () => {
     expect(FilterHelper.getURLFromFilter({ background: 'invalid' })).toBe('');
   });
 
-  it('should allow multiple filters', () => {
+  it('should only include background in URL with multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
         background: 'light',
         search: 'test-search',
       }),
-    ).toBe('b.light/s.test%20search');
+    ).toBe('b.light');
   });
 
-  it('should ignore invalid filters with multiple filters', () => {
+  it('should ignore non-URL filters with multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
         // @ts-expect-error invalid key
         invalid: 'filter',
         search: 'test-search',
       }),
-    ).toBe('s.test%20search');
+    ).toBe('');
   });
 });
 
@@ -64,10 +62,8 @@ describe('FilterHelper.getFilterFromURL', () => {
     });
   });
 
-  it('should return the search filter', () => {
-    expect(FilterHelper.getFilterFromURL(['s.test-search'])).toEqual({
-      search: 'test-search',
-    });
+  it('should ignore search segments (no longer URL-decoded)', () => {
+    expect(FilterHelper.getFilterFromURL(['s.test-search'])).toEqual({});
   });
 
   it('should ignore invalid keys', () => {
@@ -78,11 +74,10 @@ describe('FilterHelper.getFilterFromURL', () => {
     expect(FilterHelper.getFilterFromURL(['b.invalid'])).toEqual({});
   });
 
-  it('should allow multiple filters', () => {
+  it('should parse background from multiple segments', () => {
     expect(FilterHelper.getFilterFromURL(['b.light', 's.test-search'])).toEqual(
       {
         background: 'light',
-        search: 'test-search',
       },
     );
   });
@@ -90,16 +85,12 @@ describe('FilterHelper.getFilterFromURL', () => {
   it('should ignore invalid filters with multiple filters', () => {
     expect(
       FilterHelper.getFilterFromURL(['i.filter', 's.test-search']),
-    ).toEqual({
-      search: 'test-search',
-    });
+    ).toEqual({});
   });
 
-  it('should keep the first valid filter with duplicate filters', () => {
-    expect(
-      FilterHelper.getFilterFromURL(['s.test-search', 's.duplicate']),
-    ).toEqual({
-      search: 'test-search',
+  it('should keep the first valid background with duplicate filters', () => {
+    expect(FilterHelper.getFilterFromURL(['b.light', 'b.dark'])).toEqual({
+      background: 'light',
     });
   });
 });

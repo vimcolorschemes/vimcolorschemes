@@ -4,7 +4,7 @@ import RepositoryCardSkeleton from '@/components/repositoryCard/skeleton';
 
 import styles from './index.module.css';
 
-export default async function RepositoriesGridSkeleton() {
+export default function RepositoriesGridSkeleton() {
   return (
     <section className={styles.container}>
       {Array.from({ length: Constants.REPOSITORY_PAGE_SIZE }).map(

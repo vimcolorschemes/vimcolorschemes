@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { Suspense } from 'react';
 
 import OwnersService from '@/services/owner';
+import RepositoriesService from '@/services/repositories';
 
 import { SortOptions } from '@/lib/sort';
 
@@ -12,6 +13,16 @@ import Repositories from '@/components/repositories';
 import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
 import styles from './page.module.css';
+
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const repositories = await RepositoriesService.getAllRepositories();
+  const owners = new Set(
+    repositories.map(repo => repo.owner.name.toLowerCase()),
+  );
+  return Array.from(owners).map(owner => ({ owner }));
+}
 
 type OwnerPageProps = { params: Promise<{ owner: string }> };
 
