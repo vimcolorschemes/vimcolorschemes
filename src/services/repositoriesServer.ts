@@ -177,13 +177,42 @@ function rowsToDTOs(
  */
 async function getRepositoryCount(filter: Filter): Promise<number> {
   const client = DatabaseService.getClient();
-  const { clauses, params } = QueryHelper.getFilterSQL(filter);
-  const where = buildWhereSQL(filter, clauses);
+  const { background, ...repositoryFilter } = filter;
+  const { clauses, params } = QueryHelper.getFilterSQL(repositoryFilter);
 
-  const result = await client.execute({
-    sql: `SELECT COUNT(*) as count FROM repositories r ${where}`,
-    args: params,
-  });
+  let sql = `SELECT COUNT(*) as count FROM repositories r ${buildWhereSQL(filter, clauses)}`;
+  let args = params;
+
+  if (background === 'dark' || background === 'light') {
+    const where = clauses.length
+      ? `WHERE ${clauses.join(' AND ')} AND csg.background = ?`
+      : `WHERE csg.background = ?`;
+
+    sql = `SELECT COUNT(DISTINCT cs.repository_id) as count
+           FROM repositories r
+           JOIN colorschemes cs ON cs.repository_id = r.id
+           JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
+           ${where}`;
+    args = [...params, background];
+  } else if (background === 'both') {
+    const where = clauses.length
+      ? `WHERE ${clauses.join(' AND ')} AND csg.background IN (?, ?)`
+      : `WHERE csg.background IN (?, ?)`;
+
+    sql = `SELECT COUNT(*) as count
+           FROM (
+             SELECT cs.repository_id
+             FROM repositories r
+             JOIN colorschemes cs ON cs.repository_id = r.id
+             JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
+             ${where}
+             GROUP BY cs.repository_id
+             HAVING COUNT(DISTINCT csg.background) = 2
+           ) filtered_repositories`;
+    args = [...params, 'light', 'dark'];
+  }
+
+  const result = await client.execute({ sql, args });
 
   return Number(result.rows[0].count);
 }

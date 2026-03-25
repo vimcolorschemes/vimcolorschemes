@@ -163,6 +163,45 @@ describe('RepositoriesService', () => {
     );
   });
 
+  it('counts single-background repositories with a distinct repository query', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 5 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      background: 'dark',
+      owner: 'morhetz',
+      search: 'gruvbox',
+    });
+
+    expect(count).toBe(5);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'SELECT COUNT(DISTINCT cs.repository_id) as count',
+        ),
+        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz', 'dark'],
+      }),
+    );
+  });
+
+  it('counts both-background repositories with grouped repository ids', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 3 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      background: 'both',
+      owner: 'morhetz',
+    });
+
+    expect(count).toBe(3);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'HAVING COUNT(DISTINCT csg.background) = 2',
+        ),
+        args: ['morhetz', 'light', 'dark'],
+      }),
+    );
+  });
+
   it('loads featured repositories ordered by featured rank', async () => {
     executeMock
       .mockResolvedValueOnce({
