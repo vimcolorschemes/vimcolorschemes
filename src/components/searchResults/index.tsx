@@ -54,10 +54,18 @@ export default function SearchResults({
   }
 
   return (
-    <div className={styles.container}>
-      <p>
-        {count} result{count === 1 ? '' : 's'}
-      </p>
+    <section
+      className={styles.container}
+      aria-labelledby="search-results-title"
+    >
+      <div className={styles.header}>
+        <h1 id="search-results-title" className={styles.title}>
+          Results
+          <span className={styles.count}>
+            {count} repositor{count === 1 ? 'y' : 'ies'}
+          </span>
+        </h1>
+      </div>
       <RepositoriesGrid repositories={results} pageContext={pageContext} />
       {hasMore && (
         <LoadMoreButton
@@ -66,6 +74,6 @@ export default function SearchResults({
         />
       )}
       {results.length === 0 && !isLoading && <p>no results found</p>}
-    </div>
+    </section>
   );
 }

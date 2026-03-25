@@ -163,6 +163,156 @@ describe('RepositoriesService', () => {
     );
   });
 
+  it('counts single-background repositories with a distinct repository query', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 5 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      background: 'dark',
+      owner: 'morhetz',
+      search: 'gruvbox',
+    });
+
+    expect(count).toBe(5);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'SELECT COUNT(DISTINCT cs.repository_id) as count',
+        ),
+        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz', 'dark'],
+      }),
+    );
+  });
+
+  it('counts both-background repositories with grouped repository ids', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 3 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      background: 'both',
+      owner: 'morhetz',
+    });
+
+    expect(count).toBe(3);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'HAVING COUNT(DISTINCT csg.background) = 2',
+        ),
+        args: ['morhetz', 'light', 'dark'],
+      }),
+    );
+  });
+
+  it('loads featured repositories ordered by featured rank', async () => {
+    executeMock
+      .mockResolvedValueOnce({
+        rows: [
+          {
+            id: 2,
+            owner_name: 'folke',
+            name: 'tokyonight.nvim',
+            description: 'Tokyo Night',
+            github_url: 'https://github.com/folke/tokyonight.nvim',
+            stargazers_count: 50,
+            week_stargazers_count: 10,
+            github_created_at: '2024-01-01T00:00:00.000Z',
+            pushed_at: '2024-02-01T00:00:00.000Z',
+          },
+          {
+            id: 1,
+            owner_name: 'catppuccin',
+            name: 'nvim',
+            description: 'Catppuccin',
+            github_url: 'https://github.com/catppuccin/nvim',
+            stargazers_count: 60,
+            week_stargazers_count: 11,
+            github_created_at: '2024-01-02T00:00:00.000Z',
+            pushed_at: '2024-02-02T00:00:00.000Z',
+          },
+        ],
+      })
+      .mockResolvedValueOnce({
+        rows: [
+          {
+            repo_id: 2,
+            cs_id: 11,
+            cs_name: 'tokyonight',
+            csg_background: 'dark',
+            csg_name: 'bg',
+            csg_hex_code: '#111111',
+          },
+          {
+            repo_id: 1,
+            cs_id: 22,
+            cs_name: 'catppuccin',
+            csg_background: 'light',
+            csg_name: 'bg',
+            csg_hex_code: '#fafafa',
+          },
+        ],
+      });
+
+    const repositories = await RepositoriesService.getFeaturedRepositoryDTOs();
+
+    expect(executeMock).toHaveBeenCalledTimes(2);
+    expect(executeMock).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        sql: expect.stringContaining('WHERE r.featured_rank IS NOT NULL'),
+        args: [3],
+      }),
+    );
+    expect(executeMock).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        sql: expect.stringContaining('WHERE cs.repository_id IN (?, ?)'),
+        args: [2, 1],
+      }),
+    );
+
+    expect(repositories).toEqual([
+      {
+        name: 'tokyonight.nvim',
+        owner: { name: 'folke' },
+        description: 'Tokyo Night',
+        githubCreatedAt: new Date('2024-01-01T00:00:00.000Z'),
+        pushedAt: new Date('2024-02-01T00:00:00.000Z'),
+        githubURL: 'https://github.com/folke/tokyonight.nvim',
+        stargazersCount: 50,
+        weekStargazersCount: 10,
+        vimColorSchemes: [
+          {
+            name: 'tokyonight',
+            backgrounds: ['dark'],
+            data: {
+              light: null,
+              dark: [{ name: 'bg', hexCode: '#111111' }],
+            },
+          },
+        ],
+      },
+      {
+        name: 'nvim',
+        owner: { name: 'catppuccin' },
+        description: 'Catppuccin',
+        githubCreatedAt: new Date('2024-01-02T00:00:00.000Z'),
+        pushedAt: new Date('2024-02-02T00:00:00.000Z'),
+        githubURL: 'https://github.com/catppuccin/nvim',
+        stargazersCount: 60,
+        weekStargazersCount: 11,
+        vimColorSchemes: [
+          {
+            name: 'catppuccin',
+            backgrounds: ['light'],
+            data: {
+              light: [{ name: 'bg', hexCode: '#fafafa' }],
+              dark: null,
+            },
+          },
+        ],
+      },
+    ]);
+  });
+
   it('loads a single repository with its colorschemes', async () => {
     executeMock
       .mockResolvedValueOnce({

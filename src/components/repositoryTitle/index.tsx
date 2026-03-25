@@ -13,10 +13,11 @@ import styles from './index.module.css';
 type RepositoryTitleProps = {
   repository?: Repository;
   /** The name of the HTML element to render the title as. */
-  as?: 'h1' | 'h2';
+  as?: 'h1' | 'h2' | 'h3';
   hasOwnerLink?: boolean;
   classNames?: {
     container?: string;
+    titleContainer?: string;
     title?: string;
   };
 };
@@ -30,13 +31,16 @@ export default function RepositoryTitle({
   const Title = as ?? 'h1';
   return (
     <div className={cn(styles.container, classNames?.container)}>
-      <Title className={styles.titleContainer}>
+      <Title className={cn(styles.titleContainer, classNames?.titleContainer)}>
         {repository?.owner.name && hasOwnerLink ? (
           <Link href={`/${repository.owner.name}`} className={styles.owner}>
-            <OwnerTitle owner={repository.owner} />
+            <OwnerTitle
+              owner={repository.owner}
+              className={styles.ownerTitle}
+            />
           </Link>
         ) : (
-          <OwnerTitle owner={repository?.owner} />
+          <OwnerTitle owner={repository?.owner} className={styles.ownerTitle} />
         )}
         <div className={cn(styles.title, classNames?.title)}>
           {repository?.name ?? <Skeleton inline />}

@@ -1,5 +1,5 @@
 import PageContext from '@/lib/pageContext';
-import Sort from '@/lib/sort';
+import Sort, { SortOptions } from '@/lib/sort';
 
 import FilterHelper from '@/helpers/filter';
 
@@ -40,5 +40,21 @@ function getPageTitle({ filter, sort }: PageContext): string {
   return parts.join(' ');
 }
 
-const PageContextHelper = { get, getPageTitle };
+function isHomepage(
+  { filter, sort }: PageContext,
+  searchQuery?: string,
+): boolean {
+  return (
+    sort === SortOptions.Trending &&
+    !filter.background &&
+    !filter.owner &&
+    !searchQuery
+  );
+}
+
+const PageContextHelper = {
+  get,
+  getPageTitle,
+  isHomepage,
+};
 export default PageContextHelper;

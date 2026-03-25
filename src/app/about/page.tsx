@@ -54,6 +54,14 @@ export default function AboutPage() {
         Make sure to follow the issue template before posting.
       </p>
 
+      <h2 id="get-featured">Want to get featured?</h2>
+      <p>
+        Featured colorschemes are hand-picked. If you have a great colorscheme
+        and want to support the project while getting it in front of more
+        people, send an email to{' '}
+        <a href="mailto:hey@reobin.dev">hey@reobin.dev</a>.
+      </p>
+
       <h2>Is your colorscheme not showing up?</h2>
       <p>
         vimcolorschemes scans Github every day looking for new colorschemes to

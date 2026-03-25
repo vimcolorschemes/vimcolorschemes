@@ -1,8 +1,24 @@
+import type { ComponentProps } from 'react';
+
 import Code from '@/components/ui/code';
 
-export default function CodeSnippet() {
+type CodeSnippetProps = Pick<
+  ComponentProps<typeof Code>,
+  'className' | 'disableHorizontalScroll'
+>;
+
+export default function CodeSnippet({
+  className,
+  disableHorizontalScroll,
+}: CodeSnippetProps) {
   return (
-    <Code lineCount={12} activeLine={6} fileName="code.vim">
+    <Code
+      lineCount={12}
+      activeLine={6}
+      fileName="code.vim"
+      className={className}
+      disableHorizontalScroll={disableHorizontalScroll}
+    >
       <div>
         <span className="vimLineComment">
           {'" Returns true if the color hex value is light'}

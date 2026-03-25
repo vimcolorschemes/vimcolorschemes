@@ -13,6 +13,7 @@
   --_status-line-height: 1.5625rem;
   --_gutter-width: 2rem;
   --_code-spacing: var(--spacing-xs);
+  --_code-line-height: 1.25rem;
 }
 
 .gutter {
@@ -44,6 +45,16 @@
   padding: var(--_code-spacing) 0;
   width: calc(100% - var(--_gutter-width));
   overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.noHorizontalScroll {
+  overflow-x: hidden;
+}
+
+.code::-webkit-scrollbar {
+  display: none;
 }
 
 .code > * {
@@ -57,7 +68,7 @@
 
 .code,
 .gutter {
-  line-height: 1.25rem;
+  line-height: var(--_code-line-height);
 }
 
 .statusLine {

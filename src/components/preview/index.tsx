@@ -16,10 +16,20 @@ type PreviewProps = {
   onToggleColorscheme?: () => void;
   onToggleBackground?: () => void;
   className?: string;
+  compact?: boolean;
+  disableCodeHorizontalScroll?: boolean;
 };
 
-export default function Preview(props: PreviewProps) {
-  const style = props.colorscheme.data[props.background]?.reduce(
+export default function Preview({
+  colorscheme,
+  background,
+  onToggleColorscheme,
+  onToggleBackground,
+  className,
+  compact,
+  disableCodeHorizontalScroll,
+}: PreviewProps) {
+  const style = colorscheme.data[background]?.reduce(
     (acc, group) => ({
       ...acc,
       [`--colorscheme-${group.name}`]: group.hexCode,
@@ -29,18 +39,23 @@ export default function Preview(props: PreviewProps) {
 
   return (
     <Window
-      title={props.colorscheme.name}
+      title={colorscheme.name}
       subtitle="neovim"
-      className={cn(styles.container, props.className)}
+      className={cn(styles.container, compact && styles.compact, className)}
       style={style}
     >
-      <ColorschemeConfig
-        colorscheme={props.colorscheme}
-        background={props.background}
-        onToggleColorscheme={props.onToggleColorscheme}
-        onToggleBackground={props.onToggleBackground}
+      {!compact && (
+        <ColorschemeConfig
+          colorscheme={colorscheme}
+          background={background}
+          onToggleColorscheme={onToggleColorscheme}
+          onToggleBackground={onToggleBackground}
+        />
+      )}
+      <CodeSnippet
+        className={compact ? styles.compactCode : undefined}
+        disableHorizontalScroll={disableCodeHorizontalScroll}
       />
-      <CodeSnippet />
     </Window>
   );
 }

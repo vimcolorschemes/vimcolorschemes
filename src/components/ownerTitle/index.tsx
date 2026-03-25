@@ -9,10 +9,13 @@ import styles from './index.module.css';
 
 type OwnerTitleProps = {
   owner?: Owner;
+  as?: 'span' | 'p' | 'h1' | 'h2' | 'h3';
   className?: string;
 };
 
-export default function OwnerTitle({ owner, className }: OwnerTitleProps) {
+export default function OwnerTitle({ owner, as, className }: OwnerTitleProps) {
+  const Title = as ?? 'span';
+
   return (
     <div className={cn(styles.container, className)}>
       {!owner && <Skeleton className={styles.avatar} />}
@@ -26,7 +29,7 @@ export default function OwnerTitle({ owner, className }: OwnerTitleProps) {
           unoptimized
         />
       )}
-      <h1 className={styles.title}>{owner?.name ?? <Skeleton />}</h1>
+      <Title className={styles.title}>{owner?.name ?? <Skeleton />}</Title>
     </div>
   );
 }

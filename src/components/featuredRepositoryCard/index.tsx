@@ -1,43 +1,40 @@
 import RepositoryDTO from '@/models/DTO/repository';
 import Repository from '@/models/repository';
 
-import PageContext from '@/lib/pageContext';
-
 import Card, { cardTitleClassName } from '@/components/card';
-import InteractivePreview from '@/components/interactivePreview';
-import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
+import styles from '@/components/featuredRepositories/index.module.css';
+import Preview from '@/components/preview';
 import RepositoryTitle from '@/components/repositoryTitle';
 
-import styles from './index.module.css';
-
-type RepositoryCardProps = {
+type FeaturedRepositoryCardProps = {
   repositoryDTO: RepositoryDTO;
-  pageContext: PageContext;
 };
 
-export default function RepositoryCard({
+export default function FeaturedRepositoryCard({
   repositoryDTO,
-  pageContext,
-}: RepositoryCardProps) {
+}: FeaturedRepositoryCardProps) {
   const repository = new Repository(repositoryDTO);
+  const colorscheme = repository.getDefaultColorscheme();
+  const background = colorscheme.getDefaultBackground();
 
   return (
-    <Card.Root>
+    <Card.Root className={styles.card}>
       <Card.Content>
         <Card.Preview className={styles.preview}>
-          <InteractivePreview
-            repositoryDTO={repositoryDTO}
-            pageContext={pageContext}
+          <Preview
+            compact
+            colorscheme={colorscheme}
+            background={background}
+            disableCodeHorizontalScroll
           />
         </Card.Preview>
-        <Card.Body>
+        <Card.Body className={styles.body}>
           <Card.Link href={repository.route} label={repository.title} />
           <RepositoryTitle
             repository={repository}
-            as="h2"
+            as="h3"
             classNames={{ title: cardTitleClassName }}
           />
-          <RepositoryInfo repository={repository} />
         </Card.Body>
       </Card.Content>
     </Card.Root>
