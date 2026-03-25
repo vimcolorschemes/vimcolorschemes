@@ -1,5 +1,4 @@
-import cn from 'classnames';
-
+import Card, { cardTitleClassName } from '@/components/card';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryTitle from '@/components/repositoryTitle';
 import Skeleton from '@/components/ui/skeleton';
@@ -8,12 +7,14 @@ import styles from './index.module.css';
 
 export default function RepositoryCardSkeleton() {
   return (
-    <article className={cn(styles.container, styles.skeleton)}>
-      <Skeleton className={styles.preview} />
-      <span className={styles.info}>
-        <RepositoryTitle classNames={{ title: styles.title }} />
+    <Card.Root skeleton>
+      <Card.Preview className={styles.preview}>
+        <Skeleton />
+      </Card.Preview>
+      <Card.Body>
+        <RepositoryTitle classNames={{ title: cardTitleClassName }} />
         <RepositoryInfo />
-      </span>
-    </article>
+      </Card.Body>
+    </Card.Root>
   );
 }

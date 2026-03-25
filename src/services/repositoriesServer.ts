@@ -17,6 +17,8 @@ type GetRepositoriesParams = {
   filter: Filter;
 };
 
+const FEATURED_REPOSITORY_LIMIT = 3;
+
 function hydrateRepository(dto: RepositoryDTO): Repository {
   return new Repository(dto);
 }
@@ -154,6 +156,16 @@ function rowToDTO(row: Row, vimColorSchemes: ColorschemeDTO[]): RepositoryDTO {
   };
 }
 
+function rowsToDTOs(
+  rows: Row[],
+  colorschemesByRepo: Map<number, ColorschemeDTO[]>,
+): RepositoryDTO[] {
+  return rows.map(row => {
+    const vimColorSchemes = colorschemesByRepo.get(row.id as number) ?? [];
+    return rowToDTO(row, vimColorSchemes);
+  });
+}
+
 /**
  * Get the total number of repositories from the database.
  *
@@ -216,10 +228,27 @@ async function getRepositoryDTOs({
   const colorschemesByRepo =
     await loadColorschemesForRepositories(repositoryIds);
 
-  return result.rows.map(row => {
-    const vimColorSchemes = colorschemesByRepo.get(row.id as number) ?? [];
-    return rowToDTO(row, vimColorSchemes);
+  return rowsToDTOs(result.rows, colorschemesByRepo);
+}
+
+async function getFeaturedRepositoryDTOs(
+  limit = FEATURED_REPOSITORY_LIMIT,
+): Promise<RepositoryDTO[]> {
+  const client = DatabaseService.getClient();
+  const result = await client.execute({
+    sql: `SELECT ${REPO_COLS} FROM repositories r
+          WHERE r.featured_rank IS NOT NULL
+            AND ${BASE_CLAUSE}
+          ORDER BY r.featured_rank ASC
+          LIMIT ?`,
+    args: [limit],
   });
+
+  const repositoryIds = result.rows.map(row => row.id as number);
+  const colorschemesByRepo =
+    await loadColorschemesForRepositories(repositoryIds);
+
+  return rowsToDTOs(result.rows, colorschemesByRepo);
 }
 
 /**
@@ -241,10 +270,7 @@ async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
     loadAllColorschemes(),
   ]);
 
-  return repoResult.rows.map(row => {
-    const vimColorSchemes = allColorschemes.get(row.id as number) ?? [];
-    return rowToDTO(row, vimColorSchemes);
-  });
+  return rowsToDTOs(repoResult.rows, allColorschemes);
 }
 
 /**
@@ -294,6 +320,7 @@ const RepositoriesService = {
   getRepositoryCount,
   getRepositories,
   getRepositoryDTOs,
+  getFeaturedRepositoryDTOs,
   getAllRepositories,
   getAllRepositoryDTOs,
   getRepository,

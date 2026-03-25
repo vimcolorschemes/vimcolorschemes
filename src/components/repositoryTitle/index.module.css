@@ -2,10 +2,13 @@
   display: flex;
   justify-content: space-between;
   column-gap: var(--spacing-xs);
+  min-width: 0;
 }
 
 .titleContainer {
-  height: 3.5rem;
+  flex: 1;
+  min-width: 0;
+  min-height: 3.5rem;
   overflow-wrap: anywhere;
   --skeleton-width: 5rem;
   --skeleton-height: 0.75rem;
@@ -14,20 +17,27 @@
 .title {
   font-weight: 700;
   font-size: var(--font-size-xl);
-  line-height: var(--line-height-md);
-  margin-bottom: var(--spacing-xs);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-xxs);
   --skeleton-width: 13rem;
-  --skeleton-height: var(--line-height-md);
+  --skeleton-height: 1.1em;
 }
 
 .owner {
   position: relative;
+  display: block;
+  min-width: 0;
+}
+
+.ownerTitle {
+  margin-bottom: 0;
 }
 
 .stats {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  flex-shrink: 0;
 }
 
 .stat {

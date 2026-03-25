@@ -8,7 +8,7 @@ export default function OwnerPageLoading() {
   return (
     <>
       <OwnerPageHeaderSkeleton />
-      <OwnerTitle className={styles.owner} />
+      <OwnerTitle as="h1" className={styles.owner} />
       <RepositoriesSkeleton />
     </>
   );

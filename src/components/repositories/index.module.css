@@ -4,5 +4,45 @@
 
   display: flex;
   flex-direction: column;
-  row-gap: var(--spacing-md);
+  row-gap: var(--spacing-sm);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--spacing-xs);
+  row-gap: var(--spacing-xxs);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  font-weight: 700;
+}
+
+.count {
+  color: var(--foreground-shade);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  font-weight: 400;
+}
+
+.countSkeleton {
+  --skeleton-width: 7rem;
+  --skeleton-height: 0.875rem;
+  margin-left: var(--spacing-xs);
+}
+
+.headerSkeleton {
+  --skeleton-width: 12rem;
+  --skeleton-height: var(--line-height-md);
+}
+
+@media (min-width: 768px) {
+  .header {
+    align-items: center;
+  }
 }

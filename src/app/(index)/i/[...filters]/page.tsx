@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 
 import RepositoriesService from '@/services/repositoriesServer';
 
@@ -11,8 +12,11 @@ import FilterHelper from '@/helpers/filter';
 import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
 import PageContextHelper from '@/helpers/pageContext';
 
+import FeaturedRepositories from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';
 import SearchResults from '@/components/searchResults';
+
+import styles from './page.module.css';
 
 export const dynamicParams = true;
 
@@ -52,6 +56,10 @@ export default async function IndexPage({ params }: IndexPageProps) {
   const routeState = getIndexRouteState(`/i/${filters.join('/')}`);
   const [sort, ...rest] = routeState.filters as [Sort, ...string[]];
   const pageContext = PageContextHelper.get(routeState.filters);
+  const isHomepage = PageContextHelper.isHomepage(
+    pageContext,
+    routeState.search,
+  );
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
@@ -96,5 +104,14 @@ export default async function IndexPage({ params }: IndexPageProps) {
     );
   }
 
-  return <Repositories pageContext={pageContext} />;
+  return (
+    <div className={styles.homepageContent}>
+      {isHomepage && (
+        <Suspense>
+          <FeaturedRepositories />
+        </Suspense>
+      )}
+      <Repositories pageContext={pageContext} />
+    </div>
+  );
 }

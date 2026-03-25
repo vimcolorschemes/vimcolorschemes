@@ -8,6 +8,9 @@ export default defineConfig([
   ...nextVitals,
   ...nextTypescript,
   {
+    plugins: {
+      'react-hooks': reactHooks,
+    },
     rules: reactHooks.configs['recommended-latest'].rules,
   },
   {
@@ -49,6 +52,7 @@ export default defineConfig([
   globalIgnores([
     'node_modules/**',
     '.next/**',
+    '.vercel/**',
     'out/**',
     'build/**',
     'next-env.d.ts',

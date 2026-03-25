@@ -8,13 +8,21 @@ type CodeProps = {
   fileName: string;
   lineCount: number;
   activeLine?: number;
+  className?: string;
+  disableHorizontalScroll?: boolean;
 };
 
 export default function Code(props: CodeProps) {
   return (
-    <pre className={styles.container}>
+    <pre className={cn(styles.container, props.className)}>
       <Gutter {...props} />
-      <code className={styles.code}>{props.children}</code>
+      <code
+        className={cn(styles.code, {
+          [styles.noHorizontalScroll]: props.disableHorizontalScroll,
+        })}
+      >
+        {props.children}
+      </code>
       <StatusLine {...props} />
     </pre>
   );

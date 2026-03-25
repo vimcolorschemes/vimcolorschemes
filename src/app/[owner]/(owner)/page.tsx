@@ -48,7 +48,7 @@ export default async function OwnerPage({ params }: OwnerPageProps) {
   return (
     <>
       <OwnerPageHeader owner={owner} />
-      <OwnerTitle owner={owner} className={styles.owner} />
+      <OwnerTitle owner={owner} as="h1" className={styles.owner} />
       <Suspense fallback={<RepositoriesSkeleton />}>
         <Repositories
           pageContext={{

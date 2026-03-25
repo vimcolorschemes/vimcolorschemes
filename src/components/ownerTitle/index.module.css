@@ -4,6 +4,7 @@
   column-gap: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
   position: relative;
+  min-width: 0;
 }
 
 .avatar {
@@ -17,8 +18,13 @@
 }
 
 .title {
+  flex: 1;
+  min-width: 0;
   --skeleton-width: 5rem;
   --skeleton-height: 1em;
   --skeleton-border-radius: 0.5em;
   margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
