@@ -1,9 +1,9 @@
 {
   "name": "vimcolorschemes",
-  "version": "4.3.0",
+  "version": "5.0.0",
   "description": "The ultimate resource for vim/neovim color schemes.",
   "author": "@reobin",
-  "license": "GPL-3.0-or-later",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/vimcolorschemes/vimcolorschemes"
