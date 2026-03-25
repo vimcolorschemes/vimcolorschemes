@@ -33,7 +33,10 @@ export default function RepositoryTitle({
     <div className={cn(styles.container, classNames?.container)}>
       <Title className={cn(styles.titleContainer, classNames?.titleContainer)}>
         {repository?.owner.name && hasOwnerLink ? (
-          <Link href={`/${repository.owner.name}`} className={styles.owner}>
+          <Link
+            href={`/${repository.owner.name.toLowerCase()}`}
+            className={styles.owner}
+          >
             <OwnerTitle
               owner={repository.owner}
               className={styles.ownerTitle}
