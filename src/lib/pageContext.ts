@@ -1,9 +1,7 @@
-import Filter from './filter';
-import Sort from './sort';
+import type { Filter } from './filter';
+import type { Sort } from './sort';
 
-type PageContext = {
+export type PageContext = {
   sort: Sort;
   filter: Filter;
 };
-
-export default PageContext;

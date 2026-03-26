@@ -1,10 +1,10 @@
 'use client';
 
-import RepositoryDTO from '@/models/DTO/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
 
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
-import useRepositorySearch from '@/hooks/useRepositorySearch';
+import { useRepositorySearch } from '@/hooks/useRepositorySearch';
 
 import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';

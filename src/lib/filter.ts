@@ -18,11 +18,9 @@ export const URLKeyFilterMap: Record<URLFilterKey, keyof Filter> = {
 
 export type BackgroundFilter = Background | 'both';
 
-type Filter = {
+export type Filter = {
   background?: BackgroundFilter;
   search?: string;
   page?: number;
   owner?: string;
 };
-
-export default Filter;

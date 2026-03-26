@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import Colorscheme from '@/models/colorscheme';
+import { Colorscheme } from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
 

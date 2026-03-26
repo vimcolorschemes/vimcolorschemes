@@ -1,8 +1,8 @@
-import Backgrounds, { Background } from '@/lib/backgrounds';
+import { Backgrounds, Background } from '@/lib/backgrounds';
 
-import Colorscheme from './colorscheme';
-import RepositoryDTO from './DTO/repository';
-import Owner from './owner';
+import { Colorscheme } from './colorscheme';
+import { RepositoryDTO } from './DTO/repository';
+import { Owner } from './owner';
 
 /**
  * Represents a repository containing one or multiple colorschemes.
@@ -107,4 +107,4 @@ class Repository {
   }
 }
 
-export default Repository;
+export { Repository };

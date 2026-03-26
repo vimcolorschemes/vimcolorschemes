@@ -4,6 +4,4 @@ export const SortOptions = {
   New: 'new',
   Old: 'old',
 } as const;
-type Sort = (typeof SortOptions)[keyof typeof SortOptions];
-
-export default Sort;
+export type Sort = (typeof SortOptions)[keyof typeof SortOptions];

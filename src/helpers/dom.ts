@@ -17,5 +17,4 @@ function isInput(element: EventTarget | null): boolean {
   );
 }
 
-const DOMHelper = { isInput };
-export default DOMHelper;
+export const DOMHelper = { isInput };

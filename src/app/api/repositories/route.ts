@@ -1,11 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
-import type Filter from '@/lib/filter';
-import type { BackgroundFilter } from '@/lib/filter';
+import type { Filter, BackgroundFilter } from '@/lib/filter';
 import { SortOptions } from '@/lib/sort';
-import type Sort from '@/lib/sort';
+import type { Sort } from '@/lib/sort';
 
 const sortOptions = new Set<string>(Object.values(SortOptions));
 

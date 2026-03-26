@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
 
-import Backgrounds from '@/lib/backgrounds';
-import PageContext from '@/lib/pageContext';
+import { Backgrounds } from '@/lib/backgrounds';
+import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
-import PageContextHelper from '@/helpers/pageContext';
+import { PageContextHelper } from '@/helpers/pageContext';
 
 describe('PageContextHelper.get', () => {
   it('should capture the sort option', () => {

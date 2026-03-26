@@ -1,11 +1,11 @@
 import { ReactNode, Suspense } from 'react';
 
-import Backgrounds from '@/lib/backgrounds';
+import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
-import PageContextHelper from '@/helpers/pageContext';
+import { PageContextHelper } from '@/helpers/pageContext';
 
 import BackgroundInput from '@/components/backgroundInput';
 import IndexPendingBoundary from '@/components/indexPendingBoundary';

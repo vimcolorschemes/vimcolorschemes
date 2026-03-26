@@ -1,6 +1,6 @@
 import cn from 'classnames';
 
-import Colorscheme from '@/models/colorscheme';
+import { Colorscheme } from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
 

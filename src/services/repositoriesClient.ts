@@ -1,7 +1,7 @@
-import RepositoryDTO from '@/models/DTO/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
 
-import type Filter from '@/lib/filter';
-import type Sort from '@/lib/sort';
+import type { Filter } from '@/lib/filter';
+import type { Sort } from '@/lib/sort';
 
 type FetchRepositoriesParams = {
   sort: Sort;
@@ -61,8 +61,6 @@ async function fetchRepositories({
   return data;
 }
 
-const RepositoriesClientService = {
+export const RepositoriesClientService = {
   fetchRepositories,
 };
-
-export default RepositoriesClientService;

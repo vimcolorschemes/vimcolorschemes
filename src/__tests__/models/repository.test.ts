@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
+import { Repository } from '@/models/repository';
 
 const dtoLight: RepositoryDTO = {
   name: 'repository',

@@ -13,5 +13,4 @@ function format(date: Date): string {
   return formatDistanceToNow(date, { addSuffix: true });
 }
 
-const DateHelper = { format };
-export default DateHelper;
+export const DateHelper = { format };

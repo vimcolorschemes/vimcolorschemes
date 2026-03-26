@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
 import FeaturedRepositoryCard from '@/components/featuredRepositoryCard';
 

@@ -2,15 +2,16 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
-import Backgrounds from '@/lib/backgrounds';
+import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
-import Sort, { SortOptions } from '@/lib/sort';
+import type { Sort } from '@/lib/sort';
+import { SortOptions } from '@/lib/sort';
 
-import FilterHelper from '@/helpers/filter';
+import { FilterHelper } from '@/helpers/filter';
 import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
-import PageContextHelper from '@/helpers/pageContext';
+import { PageContextHelper } from '@/helpers/pageContext';
 
 import FeaturedRepositories from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';

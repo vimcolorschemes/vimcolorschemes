@@ -1,7 +1,7 @@
 /**
  * Type for a color group definition.
  */
-type ColorGroup = {
+export type ColorGroup = {
   /**
    * Original vim color group name.
    */
@@ -11,5 +11,3 @@ type ColorGroup = {
    */
   hexCode: string;
 };
-
-export default ColorGroup;

@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
 import ColorschemesGrid from '@/components/colorschemesGrid';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';

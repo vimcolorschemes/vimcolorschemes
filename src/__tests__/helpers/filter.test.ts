@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import FilterHelper from '@/helpers/filter';
+import { FilterHelper } from '@/helpers/filter';
 
 describe('FilterHelper.getURLFromFilter', () => {
   it('should return the background filter', () => {

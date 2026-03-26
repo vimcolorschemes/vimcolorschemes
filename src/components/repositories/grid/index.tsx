@@ -1,6 +1,6 @@
-import RepositoryDTO from '@/models/DTO/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
 
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
 import RepositoryCard from '@/components/repositoryCard';
 

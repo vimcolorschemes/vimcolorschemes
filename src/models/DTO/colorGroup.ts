@@ -1,6 +1,4 @@
-type ColorGroupDTO = {
+export type ColorGroupDTO = {
   name: string;
   hexCode: string;
 };
-
-export default ColorGroupDTO;

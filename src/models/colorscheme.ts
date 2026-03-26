@@ -1,7 +1,7 @@
-import ColorschemeData from '@/models/colorschemeData';
-import ColorschemeDTO from '@/models/DTO/colorscheme';
+import { ColorschemeData } from '@/models/colorschemeData';
+import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 
-import Backgrounds, { Background } from '@/lib/backgrounds';
+import { Backgrounds, Background } from '@/lib/backgrounds';
 
 /**
  * Represents a colorscheme. A colorscheme can have multiple backgrounds, each with its own color data.
@@ -60,4 +60,4 @@ class Colorscheme {
   }
 }
 
-export default Colorscheme;
+export { Colorscheme };

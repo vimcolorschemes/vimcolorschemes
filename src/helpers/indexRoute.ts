@@ -1,6 +1,6 @@
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
-import FilterHelper from '@/helpers/filter';
+import { FilterHelper } from '@/helpers/filter';
 
 type IndexRouteState = {
   filters: string[];

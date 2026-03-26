@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Image from 'next/image';
 
-import Owner from '@/models/owner';
+import { Owner } from '@/models/owner';
 
 import Skeleton from '@/components/ui/skeleton';
 

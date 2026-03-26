@@ -29,5 +29,4 @@ function getClient(): Client {
   return client;
 }
 
-const DatabaseService = { getClient };
-export default DatabaseService;
+export const DatabaseService = { getClient };

@@ -1,7 +1,7 @@
 import { fireEvent, renderHook } from '@testing-library/react';
 import { vitest, describe, it, expect } from 'vitest';
 
-import useEventListener from '@/hooks/useEventListener';
+import { useEventListener } from '@/hooks/useEventListener';
 
 describe('useEvent', () => {
   it('should fire a function when the event is triggered', () => {

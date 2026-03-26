@@ -1,6 +1,7 @@
-import Backgrounds, { Background } from '@/lib/backgrounds';
-import Filter, {
-  URLFilterKey,
+import { Backgrounds, Background } from '@/lib/backgrounds';
+import {
+  type Filter,
+  type URLFilterKey,
   URLKeyFilterMap,
   FilterURLKeyMap,
   URLFilterKeys,
@@ -82,5 +83,4 @@ function isValidBackground(value: string | number): boolean {
   );
 }
 
-const FilterHelper = { getFilterFromURL, getURLFromFilter };
-export default FilterHelper;
+export const FilterHelper = { getFilterFromURL, getURLFromFilter };

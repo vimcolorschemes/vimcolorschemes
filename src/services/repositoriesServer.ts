@@ -1,16 +1,16 @@
 import type { Row } from '@libsql/client';
 
-import DatabaseService from '@/services/database';
+import { DatabaseService } from '@/services/database';
 
-import ColorschemeDTO from '@/models/DTO/colorscheme';
-import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
+import { ColorschemeDTO } from '@/models/DTO/colorscheme';
+import { RepositoryDTO } from '@/models/DTO/repository';
+import { Repository } from '@/models/repository';
 
-import Constants from '@/lib/constants';
-import Filter from '@/lib/filter';
-import Sort from '@/lib/sort';
+import { Constants } from '@/lib/constants';
+import type { Filter } from '@/lib/filter';
+import type { Sort } from '@/lib/sort';
 
-import QueryHelper from '@/helpers/query';
+import { QueryHelper } from '@/helpers/query';
 
 type GetRepositoriesParams = {
   sort: Sort;
@@ -345,7 +345,7 @@ async function getRepositoryDTO(
   return rowToDTO(row, vimColorSchemes);
 }
 
-const RepositoriesService = {
+export const RepositoriesService = {
   getRepositoryCount,
   getRepositories,
   getRepositoryDTOs,
@@ -355,5 +355,3 @@ const RepositoriesService = {
   getRepository,
   getRepositoryDTO,
 };
-
-export default RepositoriesService;

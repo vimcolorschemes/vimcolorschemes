@@ -16,5 +16,4 @@ function decode(value: string): string {
   return decodeURIComponent(value);
 }
 
-const URLHelper = { encode, decode };
-export default URLHelper;
+export const URLHelper = { encode, decode };

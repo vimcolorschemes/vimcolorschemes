@@ -1,6 +1,6 @@
-import DatabaseService from '@/services/database';
+import { DatabaseService } from '@/services/database';
 
-import Owner from '@/models/owner';
+import { Owner } from '@/models/owner';
 
 async function getOwner(name: string): Promise<Owner | null> {
   const client = DatabaseService.getClient();
@@ -20,6 +20,4 @@ async function getOwner(name: string): Promise<Owner | null> {
   return { name: result.rows[0].owner_name as string };
 }
 
-const OwnersService = { getOwner };
-
-export default OwnersService;
+export const OwnersService = { getOwner };

@@ -2,12 +2,12 @@
 
 import { useInfiniteQuery } from '@tanstack/react-query';
 
-import RepositoriesClientService from '@/services/repositoriesClient';
+import { RepositoriesClientService } from '@/services/repositoriesClient';
 
-import RepositoryDTO from '@/models/DTO/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { BackgroundFilter } from '@/lib/filter';
-import type Sort from '@/lib/sort';
+import type { Sort } from '@/lib/sort';
 
 type UseRepositorySearchParams = {
   query: string;
@@ -19,7 +19,7 @@ type UseRepositorySearchParams = {
   };
 };
 
-export default function useRepositorySearch({
+export function useRepositorySearch({
   query,
   sort,
   background,

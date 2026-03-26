@@ -1,7 +1,7 @@
-import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
+import { Repository } from '@/models/repository';
 
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
 import Card, { cardTitleClassName } from '@/components/card';
 import InteractivePreview from '@/components/interactivePreview';

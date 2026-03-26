@@ -1,8 +1,8 @@
 import cn from 'classnames';
 
-import Repository from '@/models/repository';
+import { Repository } from '@/models/repository';
 
-import DateHelper from '@/helpers/date';
+import { DateHelper } from '@/helpers/date';
 
 import Skeleton from '@/components/ui/skeleton';
 

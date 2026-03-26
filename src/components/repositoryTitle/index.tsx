@@ -1,7 +1,7 @@
 import cn from 'classnames';
 import Link from 'next/link';
 
-import Repository from '@/models/repository';
+import { Repository } from '@/models/repository';
 
 import OwnerTitle from '@/components/ownerTitle';
 import IconStar from '@/components/ui/icons/star';

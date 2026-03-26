@@ -1,8 +1,6 @@
-import ColorGroupDTO from '@/models/DTO/colorGroup';
+import { ColorGroupDTO } from '@/models/DTO/colorGroup';
 
-type ColorschemeDataDTO = {
+export type ColorschemeDataDTO = {
   light: ColorGroupDTO[] | null;
   dark: ColorGroupDTO[] | null;
 };
-
-export default ColorschemeDataDTO;

@@ -4,7 +4,7 @@ import cn from 'classnames';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import Backgrounds from '@/lib/backgrounds';
+import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
 
 import { buildIndexRoutePath } from '@/helpers/indexRoute';

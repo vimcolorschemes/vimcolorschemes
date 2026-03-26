@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'vitest';
 
-import Colorscheme from '@/models/colorscheme';
-import ColorschemeDTO from '@/models/DTO/colorscheme';
+import { Colorscheme } from '@/models/colorscheme';
+import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 
-import Backgrounds from '@/lib/backgrounds';
+import { Backgrounds } from '@/lib/backgrounds';
 
 describe('new Colorscheme()', () => {
   it('should create a new colorscheme from a DTO object', () => {

@@ -3,11 +3,11 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { use } from 'react';
 
-import RepositoriesClientService from '@/services/repositoriesClient';
+import { RepositoriesClientService } from '@/services/repositoriesClient';
 
-import RepositoryDTO from '@/models/DTO/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
 
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
 import RepositoriesGrid from '@/components/repositories/grid';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';

@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
-import Constants from '@/lib/constants';
+import { Constants } from '@/lib/constants';
 import { SortOptions } from '@/lib/sort';
 
 const executeMock = vi.hoisted(() => vi.fn());

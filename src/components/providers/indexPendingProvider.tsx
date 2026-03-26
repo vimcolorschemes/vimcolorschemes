@@ -3,10 +3,10 @@
 import { usePathname } from 'next/navigation';
 import { createContext, use, useState } from 'react';
 
-import PageContext from '@/lib/pageContext';
+import type { PageContext } from '@/lib/pageContext';
 
 import { getIndexRouteState } from '@/helpers/indexRoute';
-import PageContextHelper from '@/helpers/pageContext';
+import { PageContextHelper } from '@/helpers/pageContext';
 
 type IndexPendingContextValue = {
   isPending: boolean;

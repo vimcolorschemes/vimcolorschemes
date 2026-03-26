@@ -1,4 +1,4 @@
-import Constants from '@/lib/constants';
+import { Constants } from '@/lib/constants';
 
 import RepositoryCardSkeleton from '@/components/repositoryCard/skeleton';
 

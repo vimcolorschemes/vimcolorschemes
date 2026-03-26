@@ -9,7 +9,7 @@ import { useEffect } from 'react';
  * @param event The name of the event to listen to
  * @param callback Callback function when event has happened
  */
-function useEventListener<EventType extends Event>(
+export function useEventListener<EventType extends Event>(
   event: string,
   callback: (event: EventType) => void,
 ) {
@@ -30,4 +30,4 @@ function useEventListener<EventType extends Event>(
   }, [event, callback]);
 }
 
-export default useEventListener;
+export { useEventListener as useEvent };

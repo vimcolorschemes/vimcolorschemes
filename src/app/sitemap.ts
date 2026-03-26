@@ -1,12 +1,12 @@
 import { MetadataRoute } from 'next';
 
-import RepositoriesService from '@/services/repositoriesServer';
+import { RepositoriesService } from '@/services/repositoriesServer';
 
-import Backgrounds from '@/lib/backgrounds';
+import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
 import { SortOptions } from '@/lib/sort';
 
-import FilterHelper from '@/helpers/filter';
+import { FilterHelper } from '@/helpers/filter';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const indexURLs = [];

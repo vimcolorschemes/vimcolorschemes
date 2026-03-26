@@ -1,6 +1,6 @@
-import DOMHelper from '@/helpers/dom';
+import { DOMHelper } from '@/helpers/dom';
 
-import useEvent from '@/hooks/useEventListener';
+import { useEvent } from '@/hooks/useEventListener';
 
 type KeyboardShortcuts = { [key: string]: (event: KeyboardEvent) => void };
 

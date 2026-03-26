@@ -1,5 +1,5 @@
-import RepositoryDTO from '@/models/DTO/repository';
-import Repository from '@/models/repository';
+import { RepositoryDTO } from '@/models/DTO/repository';
+import { Repository } from '@/models/repository';
 
 import Card, { cardTitleClassName } from '@/components/card';
 import styles from '@/components/featuredRepositories/index.module.css';

@@ -1,5 +1,5 @@
-import ColorGroup from '@/models/colorGroup';
-import ColorschemeDataDTO from '@/models/DTO/colorschemeData';
+import { ColorGroup } from '@/models/colorGroup';
+import { ColorschemeDataDTO } from '@/models/DTO/colorschemeData';
 
 /**
  * Represents the colorscheme color data.
@@ -21,4 +21,4 @@ class ColorschemeData {
   }
 }
 
-export default ColorschemeData;
+export { ColorschemeData };

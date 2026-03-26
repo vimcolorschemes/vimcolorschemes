@@ -3,7 +3,7 @@
 import cn from 'classnames';
 import { useRouter } from 'next/navigation';
 
-import Owner from '@/models/owner';
+import { Owner } from '@/models/owner';
 
 import IconArrow from '@/components/ui/icons/arrow';
 import IconGithub from '@/components/ui/icons/github';

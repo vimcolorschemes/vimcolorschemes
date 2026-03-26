@@ -1,7 +1,8 @@
-import PageContext from '@/lib/pageContext';
-import Sort, { SortOptions } from '@/lib/sort';
+import type { PageContext } from '@/lib/pageContext';
+import type { Sort } from '@/lib/sort';
+import { SortOptions } from '@/lib/sort';
 
-import FilterHelper from '@/helpers/filter';
+import { FilterHelper } from '@/helpers/filter';
 
 /**
  * Get the context of the index page from the URL.
@@ -52,9 +53,8 @@ function isHomepage(
   );
 }
 
-const PageContextHelper = {
+export const PageContextHelper = {
   get,
   getPageTitle,
   isHomepage,
 };
-export default PageContextHelper;

@@ -1,5 +1,6 @@
-import Filter from '@/lib/filter';
-import Sort, { SortOptions } from '@/lib/sort';
+import type { Filter } from '@/lib/filter';
+import type { Sort } from '@/lib/sort';
+import { SortOptions } from '@/lib/sort';
 
 const LIGHT_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'light')`;
 const DARK_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'dark')`;
@@ -56,5 +57,4 @@ function getSortSQL(sort: Sort): string {
   }
 }
 
-const QueryHelper = { getFilterSQL, getSortSQL };
-export default QueryHelper;
+export const QueryHelper = { getFilterSQL, getSortSQL };

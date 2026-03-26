@@ -1,7 +1,7 @@
-import ColorschemeDTO from '@/models/DTO/colorscheme';
-import Owner from '@/models/owner';
+import { ColorschemeDTO } from '@/models/DTO/colorscheme';
+import { Owner } from '@/models/owner';
 
-type RepositoryDTO = {
+export type RepositoryDTO = {
   name: string;
   owner: Owner;
   description: string;
@@ -12,5 +12,3 @@ type RepositoryDTO = {
   weekStargazersCount: number;
   vimColorSchemes: ColorschemeDTO[];
 };
-
-export default RepositoryDTO;
