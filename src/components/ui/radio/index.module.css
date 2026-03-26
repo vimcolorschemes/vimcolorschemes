@@ -51,3 +51,9 @@
   position: absolute;
   pointer-events: none;
 }
+
+@media (hover: none) {
+  .option:hover {
+    text-decoration: none;
+  }
+}

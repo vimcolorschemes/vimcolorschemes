@@ -38,3 +38,9 @@
   width: 1rem;
   height: 1rem;
 }
+
+@media (hover: none) {
+  .button:not(:disabled):hover {
+    box-shadow: none;
+  }
+}
