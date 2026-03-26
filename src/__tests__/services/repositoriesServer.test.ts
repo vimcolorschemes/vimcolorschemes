@@ -8,7 +8,7 @@ import { SortOptions } from '@/lib/sort';
 const executeMock = vi.hoisted(() => vi.fn());
 
 vi.mock('@/services/database', () => ({
-  default: {
+  DatabaseService: {
     getClient: () => ({
       execute: executeMock,
     }),
