@@ -51,3 +51,12 @@ a.link:hover {
     display: inline;
   }
 }
+
+@media (hover: none) {
+  a.link:hover {
+    text-decoration: none;
+  }
+  .back:hover {
+    text-decoration: none;
+  }
+}

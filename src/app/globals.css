@@ -97,6 +97,12 @@ a:hover {
   text-decoration: underline;
 }
 
+@media (hover: none) {
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 a:focus-visible {
   outline: 2px solid var(--foreground-accent);
   outline-offset: var(--spacing-xs);

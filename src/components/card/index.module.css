@@ -69,6 +69,17 @@
   }
 }
 
+@media (hover: none) {
+  .container:hover::before,
+  .container:focus-within::before {
+    opacity: 0;
+  }
+  .container:hover .title,
+  .container:focus-within .title {
+    text-decoration: none;
+  }
+}
+
 .preview {
   position: relative;
   z-index: 2;

@@ -22,3 +22,9 @@
   opacity: 0.5;
   cursor: default;
 }
+
+@media (hover: none) {
+  .button:hover:not(:disabled) {
+    text-decoration: none;
+  }
+}
