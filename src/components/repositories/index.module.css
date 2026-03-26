@@ -21,6 +21,7 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   font-weight: 700;
+  word-break: break-word;
 }
 
 .count {
