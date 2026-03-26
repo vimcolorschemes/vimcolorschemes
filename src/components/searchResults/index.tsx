@@ -53,6 +53,22 @@ export default function SearchResults({
     return <RepositoriesSkeleton />;
   }
 
+  function buildTitle(): string {
+    const parts: string[] = [];
+
+    parts.push(`results for "${query}"`);
+
+    if (pageContext.filter.background) {
+      if (pageContext.filter.background === 'both') {
+        parts.push('with light and dark background');
+      } else {
+        parts.push(`with ${pageContext.filter.background} background`);
+      }
+    }
+
+    return parts.join(' ');
+  }
+
   return (
     <section
       className={styles.container}
@@ -60,7 +76,7 @@ export default function SearchResults({
     >
       <div className={styles.header}>
         <h1 id="search-results-title" className={styles.title}>
-          Results
+          {buildTitle()}
           <span className={styles.count}>
             {count} repositor{count === 1 ? 'y' : 'ies'}
           </span>

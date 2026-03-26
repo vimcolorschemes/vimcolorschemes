@@ -17,11 +17,34 @@ type RepositoriesProps = {
   pageContext: PageContext;
 };
 
+function buildTitle(filter: PageContext['filter']): string {
+  if (!filter.background && !filter.search && !filter.owner) {
+    return 'All';
+  }
+
+  const parts: string[] = [];
+
+  if (filter.search) {
+    parts.push(`results for "${filter.search}"`);
+  }
+
+  if (filter.background) {
+    if (filter.background === 'both') {
+      parts.push('with light and dark background');
+    } else {
+      parts.push(`with ${filter.background} background`);
+    }
+  }
+
+  if (filter.owner) {
+    parts.push(`${filter.owner}'s work`);
+  }
+
+  return parts.join(' ');
+}
+
 export default function Repositories({ pageContext }: RepositoriesProps) {
-  const title =
-    pageContext.filter.background || pageContext.filter.owner
-      ? 'Results'
-      : 'All';
+  const title = buildTitle(pageContext.filter);
   const repositoriesPromise =
     RepositoriesService.getRepositoryDTOs(pageContext);
   const initialRepositoriesPromise: Promise<RepositoryDTO[]> =
