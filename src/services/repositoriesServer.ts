@@ -1,6 +1,5 @@
-import { unstable_cache } from 'next/cache';
-
 import type { Row } from '@libsql/client';
+import { unstable_cache } from 'next/cache';
 
 import { DatabaseService } from '@/services/database';
 
@@ -264,15 +263,6 @@ async function getFeaturedRepositoryDTOs(
   return rowsToDTOs(result.rows, colorschemesByRepo);
 }
 
-/**
- * @returns all repositories from the database.
- */
-async function getAllRepositories(): Promise<Repository[]> {
-  const repositories = await getAllRepositoryDTOs();
-
-  return repositories.map(hydrateRepository);
-}
-
 async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
   const client = DatabaseService.getClient();
 
@@ -284,26 +274,6 @@ async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
   ]);
 
   return rowsToDTOs(repoResult.rows, allColorschemes);
-}
-
-/**
- * Get a repository from the database.
- *
- * @example
- * const repository = await RepositoriesService.getRepository('morhetz', 'gruvbox');
- *
- * @param owner The owner of the repository.
- * @param name The name of the repository.
- *
- * @returns The repository.
- */
-async function getRepository(
-  owner: string,
-  name: string,
-): Promise<Repository | null> {
-  const repository = await getRepositoryDTO(owner, name);
-
-  return repository ? hydrateRepository(repository) : null;
 }
 
 async function getRepositoryDTO(
