@@ -156,7 +156,7 @@ describe('RepositoriesService', () => {
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r WHERE EXISTS',
+          'SELECT COUNT(*) as count FROM repositories r WHERE',
         ),
         args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz'],
       }),
@@ -176,9 +176,9 @@ describe('RepositoriesService', () => {
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(DISTINCT cs.repository_id) as count',
+          'SELECT COUNT(*) as count FROM repositories r WHERE r.has_dark = 1',
         ),
-        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz', 'dark'],
+        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz'],
       }),
     );
   });
@@ -194,10 +194,8 @@ describe('RepositoriesService', () => {
     expect(count).toBe(3);
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
-        sql: expect.stringContaining(
-          'HAVING COUNT(DISTINCT csg.background) = 2',
-        ),
-        args: ['morhetz', 'light', 'dark'],
+        sql: expect.stringContaining('r.has_light = 1 AND r.has_dark = 1'),
+        args: ['morhetz'],
       }),
     );
   });
