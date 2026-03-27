@@ -8,6 +8,8 @@ import { SortOptions } from '@/lib/sort';
 
 import { FilterHelper } from '@/helpers/filter';
 
+export const revalidate = 86400;
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const indexURLs = [];
   const backgrounds: Array<BackgroundFilter | undefined> = [
@@ -26,10 +28,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  const repositories = await RepositoriesService.getAllRepositories();
-  const repositoryURLs = repositories.map(repository => ({
-    url: `${process.env.APP_URL}/${repository.key}`,
-    lastModified: repository.pushedAt,
+  const keys = await RepositoriesService.getAllRepositoryKeys();
+  const repositoryURLs = keys.map(k => ({
+    url: `${process.env.APP_URL}/${k.ownerName}/${k.name}`,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));
