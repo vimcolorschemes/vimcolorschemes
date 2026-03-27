@@ -5,6 +5,7 @@
   display: grid;
   grid-template-columns: 1fr;
   justify-content: center;
+  justify-items: center;
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-md);
@@ -22,4 +23,13 @@
   .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .container:has(:only-child) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item:only-child {
+  max-width: 50rem;
+  width: 100%;
 }
