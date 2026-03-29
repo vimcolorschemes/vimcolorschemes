@@ -304,37 +304,37 @@ const BUILD_ID = process.env.NEXT_BUILD_ID ?? 'dev';
 const cachedGetRepositoryCount = unstable_cache(
   getRepositoryCount,
   [`${BUILD_ID}-repository-count`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 const cachedGetRepositoryDTOs = unstable_cache(
   getRepositoryDTOs,
   [`${BUILD_ID}-repository-dtos`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 const cachedGetFeaturedRepositoryDTOs = unstable_cache(
   getFeaturedRepositoryDTOs,
   [`${BUILD_ID}-featured-repository-dtos`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 const cachedGetAllRepositoryDTOs = unstable_cache(
   getAllRepositoryDTOs,
   [`${BUILD_ID}-all-repository-dtos`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 const cachedGetRepositoryDTO = unstable_cache(
   getRepositoryDTO,
   [`${BUILD_ID}-repository-dto`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 const cachedGetAllRepositoryKeys = unstable_cache(
   getAllRepositoryKeys,
   [`${BUILD_ID}-all-repository-keys`],
-  { tags: ['repositories'], revalidate: 86400 },
+  { tags: ['repositories'] },
 );
 
 async function cachedGetAllRepositories(): Promise<Repository[]> {
