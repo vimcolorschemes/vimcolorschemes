@@ -48,13 +48,13 @@ export async function GET(request: NextRequest) {
     filter.owner = owner;
   }
 
-  const [repositories, count] = await Promise.all([
-    RepositoriesService.getRepositoryDTOs({ sort, filter }),
+  const [{ repositories, hasMore }, count] = await Promise.all([
+    RepositoriesService.getRepositoryDTOPage({ sort, filter }),
     RepositoriesService.getRepositoryCount(filter),
   ]);
 
   return NextResponse.json(
-    { repositories, count },
+    { repositories, count, hasMore },
     {
       headers: {
         'Cache-Control':

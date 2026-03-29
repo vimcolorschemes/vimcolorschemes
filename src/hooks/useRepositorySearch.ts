@@ -16,6 +16,7 @@ type UseRepositorySearchParams = {
   initialData?: {
     repositories: RepositoryDTO[];
     count: number;
+    hasMore: boolean;
   };
 };
 
@@ -43,12 +44,7 @@ export function useRepositorySearch({
         signal,
       }),
     getNextPageParam: (lastPage, allPages) => {
-      const loadedCount = allPages.reduce(
-        (count, page) => count + page.repositories.length,
-        0,
-      );
-
-      if (loadedCount >= lastPage.count) {
+      if (!lastPage.hasMore) {
         return undefined;
       }
 
@@ -60,6 +56,7 @@ export function useRepositorySearch({
             {
               repositories: initialData.repositories,
               count: initialData.count,
+              hasMore: initialData.hasMore,
             },
           ],
           pageParams: [1],

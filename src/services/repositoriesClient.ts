@@ -12,7 +12,8 @@ type FetchRepositoriesParams = {
 
 type FetchRepositoriesResult = {
   repositories: RepositoryDTO[];
-  count: number;
+  hasMore: boolean;
+  count?: number;
 };
 
 function buildSearchParams({
@@ -55,7 +56,8 @@ async function fetchRepositories({
 
   const data = (await response.json()) as {
     repositories: RepositoryDTO[];
-    count: number;
+    hasMore: boolean;
+    count?: number;
   };
 
   return data;

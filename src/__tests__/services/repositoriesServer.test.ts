@@ -89,7 +89,10 @@ describe('RepositoriesService', () => {
         sql: expect.stringContaining(
           'ORDER BY r.week_stargazers_count DESC, r.id LIMIT ? OFFSET ?',
         ),
-        args: [Constants.REPOSITORY_PAGE_SIZE, Constants.REPOSITORY_PAGE_SIZE],
+        args: [
+          Constants.REPOSITORY_PAGE_SIZE + 1,
+          Constants.REPOSITORY_PAGE_SIZE,
+        ],
       }),
     );
     expect(executeMock).toHaveBeenNthCalledWith(
