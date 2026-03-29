@@ -159,9 +159,9 @@ describe('RepositoriesService', () => {
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r WHERE',
+          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
         ),
-        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz'],
+        args: ['gruvbox', 'morhetz'],
       }),
     );
   });
@@ -179,9 +179,42 @@ describe('RepositoriesService', () => {
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r WHERE r.has_dark = 1',
+          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE r.has_dark = 1',
         ),
-        args: ['%gruvbox%', '%gruvbox%', '%gruvbox%', 'morhetz'],
+        args: ['gruvbox', 'morhetz'],
+      }),
+    );
+  });
+
+  it('returns no search results for short search terms', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 2 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      search: 'gr',
+    });
+
+    expect(count).toBe(2);
+    const [query] = executeMock.mock.calls[0];
+    expect(query.sql).toContain('WHERE');
+    expect(query.sql).toContain('0 = 1');
+    expect(query.sql).not.toContain('JOIN repositories_search');
+    expect(query.args).toEqual([]);
+  });
+
+  it('ignores short search terms when longer terms exist', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 4 }] });
+
+    const count = await RepositoriesService.getRepositoryCount({
+      search: 'gr gruvbox',
+    });
+
+    expect(count).toBe(4);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
+        ),
+        args: ['gruvbox'],
       }),
     );
   });

@@ -6,11 +6,20 @@ const LIGHT_EXISTS = `r.has_light = 1`;
 const DARK_EXISTS = `r.has_dark = 1`;
 
 type FilterSQL = {
+  joins: string[];
   clauses: string[];
   params: (string | number | null)[];
 };
 
+const REPOSITORY_SEARCH_JOIN =
+  'JOIN repositories_search ON repositories_search.rowid = r.id';
+
+function getSearchWords(search: string): string[] {
+  return search.split(/[^\w]/).filter(Boolean);
+}
+
 function getFilterSQL(filter: Filter): FilterSQL {
+  const joins: string[] = [];
   const clauses: string[] = [];
   const params: (string | number | null)[] = [];
 
@@ -24,13 +33,16 @@ function getFilterSQL(filter: Filter): FilterSQL {
   }
 
   if (filter.search) {
-    const words = filter.search.split(/[^\w]/).filter(Boolean);
-    for (const word of words) {
-      clauses.push(
-        `(r.name LIKE ? OR r.owner_name LIKE ? OR r.description LIKE ?)`,
-      );
-      const like = `%${word}%`;
-      params.push(like, like, like);
+    const words = getSearchWords(filter.search).filter(
+      word => word.length >= 3,
+    );
+
+    if (words.length === 0) {
+      clauses.push('0 = 1');
+    } else {
+      joins.push(REPOSITORY_SEARCH_JOIN);
+      clauses.push('repositories_search MATCH ?');
+      params.push(words.join(' '));
     }
   }
 
@@ -39,7 +51,7 @@ function getFilterSQL(filter: Filter): FilterSQL {
     params.push(filter.owner);
   }
 
-  return { clauses, params };
+  return { joins, clauses, params };
 }
 
 function getSortSQL(sort: Sort): string {
