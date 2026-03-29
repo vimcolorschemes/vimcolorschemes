@@ -199,8 +199,8 @@ async function getAllRepositoryKeys(): Promise<RepositoryKey[]> {
  */
 async function getRepositoryCount(filter: Filter): Promise<number> {
   const client = DatabaseService.getClient();
-  const { clauses, params } = QueryHelper.getFilterSQL(filter);
-  const sql = `SELECT COUNT(*) as count FROM repositories r ${buildWhereSQL(filter, clauses)}`;
+  const { joins, clauses, params } = QueryHelper.getFilterSQL(filter);
+  const sql = `SELECT COUNT(*) as count FROM repositories r ${joins.join(' ')} ${buildWhereSQL(filter, clauses)}`;
   const result = await client.execute({ sql, args: params });
   return Number(result.rows[0].count);
 }
@@ -238,14 +238,14 @@ async function getRepositoryDTOPage({
   filter,
 }: GetRepositoriesParams): Promise<RepositoryPageDTOs> {
   const client = DatabaseService.getClient();
-  const { clauses, params } = QueryHelper.getFilterSQL(filter);
+  const { joins, clauses, params } = QueryHelper.getFilterSQL(filter);
   const where = buildWhereSQL(filter, clauses);
   const orderBy = QueryHelper.getSortSQL(sort);
   const page = filter.page ?? 1;
   const offset = (page - 1) * Constants.REPOSITORY_PAGE_SIZE;
 
   const result = await client.execute({
-    sql: `SELECT ${REPO_COLS} FROM repositories r ${where} ORDER BY ${orderBy} LIMIT ? OFFSET ?`,
+    sql: `SELECT ${REPO_COLS} FROM repositories r ${joins.join(' ')} ${where} ORDER BY ${orderBy} LIMIT ? OFFSET ?`,
     args: [...params, Constants.REPOSITORY_PAGE_SIZE + 1, offset],
   });
 
