@@ -5,7 +5,9 @@ import styles from './index.module.css';
 export default function ColorschemesGridSkeleton() {
   return (
     <div className={styles.container}>
-      <Skeleton className={styles.skeleton} />
+      {Array.from({ length: 2 }, (_, index) => (
+        <Skeleton key={index} className={styles.skeleton} />
+      ))}
     </div>
   );
 }

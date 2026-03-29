@@ -4,10 +4,6 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
-  justify-content: center;
-  justify-items: center;
-  flex-direction: column;
-  align-items: center;
   gap: var(--spacing-md);
   margin-top: var(--spacing-sm);
 
@@ -23,13 +19,16 @@
   .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-
-  .container:has(:only-child) {
-    grid-template-columns: 1fr;
-  }
 }
 
-.item:only-child {
-  max-width: 50rem;
+.item {
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .item:only-child {
+    grid-column: 1 / -1;
+    width: min(100%, 50rem);
+    justify-self: center;
+  }
 }
