@@ -17,10 +17,8 @@ import styles from './page.module.css';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const repositories = await RepositoriesService.getAllRepositories();
-  const owners = new Set(
-    repositories.map(repo => repo.owner.name.toLowerCase()),
-  );
+  const keys = await RepositoriesService.getAllRepositoryKeys();
+  const owners = new Set(keys.map(k => k.ownerName.toLowerCase()));
   return Array.from(owners).map(owner => ({ owner }));
 }
 

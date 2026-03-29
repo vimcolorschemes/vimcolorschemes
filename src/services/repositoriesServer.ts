@@ -1,4 +1,5 @@
 import type { Row } from '@libsql/client';
+import { unstable_cache } from 'next/cache';
 
 import { DatabaseService } from '@/services/database';
 
@@ -17,6 +18,11 @@ type GetRepositoriesParams = {
   filter: Filter;
 };
 
+type RepositoryKey = {
+  ownerName: string;
+  name: string;
+};
+
 const FEATURED_REPOSITORY_LIMIT = 3;
 
 function hydrateRepository(dto: RepositoryDTO): Repository {
@@ -26,7 +32,7 @@ function hydrateRepository(dto: RepositoryDTO): Repository {
 type ColorschemeMap = Map<number, ColorschemeDTO>;
 
 const REPO_COLS = `r.id, r.owner_name, r.name, r.description, r.github_url, r.stargazers_count, r.week_stargazers_count, r.github_created_at, r.pushed_at`;
-const BASE_CLAUSE = `EXISTS (SELECT 1 FROM colorschemes cs WHERE cs.repository_id = r.id)`;
+const BASE_CLAUSE = `(r.has_dark = 1 OR r.has_light = 1)`;
 
 function buildWhereSQL(filter: Filter, clauses: string[]): string {
   const base = filter.background ? [] : [BASE_CLAUSE];
@@ -166,6 +172,17 @@ function rowsToDTOs(
   });
 }
 
+async function getAllRepositoryKeys(): Promise<RepositoryKey[]> {
+  const client = DatabaseService.getClient();
+  const result = await client.execute(
+    `SELECT r.owner_name, r.name FROM repositories r WHERE ${BASE_CLAUSE}`,
+  );
+  return result.rows.map(row => ({
+    ownerName: row.owner_name as string,
+    name: row.name as string,
+  }));
+}
+
 /**
  * Get the total number of repositories from the database.
  *
@@ -177,43 +194,9 @@ function rowsToDTOs(
  */
 async function getRepositoryCount(filter: Filter): Promise<number> {
   const client = DatabaseService.getClient();
-  const { background, ...repositoryFilter } = filter;
-  const { clauses, params } = QueryHelper.getFilterSQL(repositoryFilter);
-
-  let sql = `SELECT COUNT(*) as count FROM repositories r ${buildWhereSQL(filter, clauses)}`;
-  let args = params;
-
-  if (background === 'dark' || background === 'light') {
-    const where = clauses.length
-      ? `WHERE ${clauses.join(' AND ')} AND csg.background = ?`
-      : `WHERE csg.background = ?`;
-
-    sql = `SELECT COUNT(DISTINCT cs.repository_id) as count
-           FROM repositories r
-           JOIN colorschemes cs ON cs.repository_id = r.id
-           JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
-           ${where}`;
-    args = [...params, background];
-  } else if (background === 'both') {
-    const where = clauses.length
-      ? `WHERE ${clauses.join(' AND ')} AND csg.background IN (?, ?)`
-      : `WHERE csg.background IN (?, ?)`;
-
-    sql = `SELECT COUNT(*) as count
-           FROM (
-             SELECT cs.repository_id
-             FROM repositories r
-             JOIN colorschemes cs ON cs.repository_id = r.id
-             JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
-             ${where}
-             GROUP BY cs.repository_id
-             HAVING COUNT(DISTINCT csg.background) = 2
-           ) filtered_repositories`;
-    args = [...params, 'light', 'dark'];
-  }
-
-  const result = await client.execute({ sql, args });
-
+  const { clauses, params } = QueryHelper.getFilterSQL(filter);
+  const sql = `SELECT COUNT(*) as count FROM repositories r ${buildWhereSQL(filter, clauses)}`;
+  const result = await client.execute({ sql, args: params });
   return Number(result.rows[0].count);
 }
 
@@ -280,15 +263,6 @@ async function getFeaturedRepositoryDTOs(
   return rowsToDTOs(result.rows, colorschemesByRepo);
 }
 
-/**
- * @returns all repositories from the database.
- */
-async function getAllRepositories(): Promise<Repository[]> {
-  const repositories = await getAllRepositoryDTOs();
-
-  return repositories.map(hydrateRepository);
-}
-
 async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
   const client = DatabaseService.getClient();
 
@@ -300,26 +274,6 @@ async function getAllRepositoryDTOs(): Promise<RepositoryDTO[]> {
   ]);
 
   return rowsToDTOs(repoResult.rows, allColorschemes);
-}
-
-/**
- * Get a repository from the database.
- *
- * @example
- * const repository = await RepositoriesService.getRepository('morhetz', 'gruvbox');
- *
- * @param owner The owner of the repository.
- * @param name The name of the repository.
- *
- * @returns The repository.
- */
-async function getRepository(
-  owner: string,
-  name: string,
-): Promise<Repository | null> {
-  const repository = await getRepositoryDTO(owner, name);
-
-  return repository ? hydrateRepository(repository) : null;
 }
 
 async function getRepositoryDTO(
@@ -345,13 +299,65 @@ async function getRepositoryDTO(
   return rowToDTO(row, vimColorSchemes);
 }
 
-export const RepositoriesService = {
+const BUILD_ID = process.env.NEXT_BUILD_ID ?? 'dev';
+
+const cachedGetRepositoryCount = unstable_cache(
   getRepositoryCount,
-  getRepositories,
+  [`${BUILD_ID}-repository-count`],
+  { tags: ['repositories'] },
+);
+
+const cachedGetRepositoryDTOs = unstable_cache(
   getRepositoryDTOs,
+  [`${BUILD_ID}-repository-dtos`],
+  { tags: ['repositories'] },
+);
+
+const cachedGetFeaturedRepositoryDTOs = unstable_cache(
   getFeaturedRepositoryDTOs,
-  getAllRepositories,
+  [`${BUILD_ID}-featured-repository-dtos`],
+  { tags: ['repositories'] },
+);
+
+const cachedGetAllRepositoryDTOs = unstable_cache(
   getAllRepositoryDTOs,
-  getRepository,
+  [`${BUILD_ID}-all-repository-dtos`],
+  { tags: ['repositories'] },
+);
+
+const cachedGetRepositoryDTO = unstable_cache(
   getRepositoryDTO,
+  [`${BUILD_ID}-repository-dto`],
+  { tags: ['repositories'] },
+);
+
+const cachedGetAllRepositoryKeys = unstable_cache(
+  getAllRepositoryKeys,
+  [`${BUILD_ID}-all-repository-keys`],
+  { tags: ['repositories'] },
+);
+
+async function cachedGetAllRepositories(): Promise<Repository[]> {
+  const repositories = await cachedGetAllRepositoryDTOs();
+  return repositories.map(hydrateRepository);
+}
+
+async function cachedGetRepository(
+  owner: string,
+  name: string,
+): Promise<Repository | null> {
+  const dto = await cachedGetRepositoryDTO(owner, name);
+  return dto ? hydrateRepository(dto) : null;
+}
+
+export const RepositoriesService = {
+  getRepositoryCount: cachedGetRepositoryCount,
+  getRepositories,
+  getRepositoryDTOs: cachedGetRepositoryDTOs,
+  getFeaturedRepositoryDTOs: cachedGetFeaturedRepositoryDTOs,
+  getAllRepositories: cachedGetAllRepositories,
+  getAllRepositoryDTOs: cachedGetAllRepositoryDTOs,
+  getAllRepositoryKeys: cachedGetAllRepositoryKeys,
+  getRepository: cachedGetRepository,
+  getRepositoryDTO: cachedGetRepositoryDTO,
 };

@@ -53,8 +53,13 @@ export async function GET(request: NextRequest) {
     RepositoriesService.getRepositoryCount(filter),
   ]);
 
-  return NextResponse.json({
-    repositories,
-    count,
-  });
+  return NextResponse.json(
+    { repositories, count },
+    {
+      headers: {
+        'Cache-Control':
+          'public, max-age=3600, s-maxage=86400, stale-while-revalidate=86400',
+      },
+    },
+  );
 }

@@ -2,8 +2,8 @@ import type { Filter } from '@/lib/filter';
 import type { Sort } from '@/lib/sort';
 import { SortOptions } from '@/lib/sort';
 
-const LIGHT_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'light')`;
-const DARK_EXISTS = `EXISTS (SELECT 1 FROM colorschemes cs JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id WHERE cs.repository_id = r.id AND csg.background = 'dark')`;
+const LIGHT_EXISTS = `r.has_light = 1`;
+const DARK_EXISTS = `r.has_dark = 1`;
 
 type FilterSQL = {
   clauses: string[];

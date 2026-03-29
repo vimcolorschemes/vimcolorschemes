@@ -13,10 +13,10 @@ import styles from './page.module.css';
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
-  const repositories = await RepositoriesService.getAllRepositories();
-  return repositories.map(repo => ({
-    owner: repo.owner.name.toLowerCase(),
-    name: repo.name.toLowerCase(),
+  const keys = await RepositoriesService.getAllRepositoryKeys();
+  return keys.map(k => ({
+    owner: k.ownerName.toLowerCase(),
+    name: k.name.toLowerCase(),
   }));
 }
 
