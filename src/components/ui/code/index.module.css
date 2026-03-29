@@ -39,7 +39,7 @@
 }
 
 .code {
-  transform: translateX(2rem);
+  transform: translateX(var(--_gutter-width));
   display: flex;
   flex-direction: column;
   padding: var(--_code-spacing) 0;
