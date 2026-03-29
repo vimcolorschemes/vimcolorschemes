@@ -8,13 +8,13 @@ function makeRequest(query = '') {
 }
 
 const repositoriesServiceMock = vi.hoisted(() => ({
-  getRepositoryDTOs: vi.fn(),
+  getRepositoryDTOPage: vi.fn(),
   getRepositoryCount: vi.fn(),
 }));
 
 vi.mock('@/services/repositoriesServer', () => ({
   RepositoriesService: {
-    getRepositoryDTOs: repositoriesServiceMock.getRepositoryDTOs,
+    getRepositoryDTOPage: repositoriesServiceMock.getRepositoryDTOPage,
     getRepositoryCount: repositoriesServiceMock.getRepositoryCount,
   },
 }));
@@ -24,19 +24,22 @@ import { GET } from '@/app/api/repositories/route';
 describe('GET /api/repositories', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    repositoriesServiceMock.getRepositoryDTOs.mockResolvedValue([
-      {
-        name: 'repo',
-        owner: { name: 'owner' },
-        description: '',
-        githubCreatedAt: new Date('2024-01-01T00:00:00.000Z'),
-        pushedAt: new Date('2024-01-01T00:00:00.000Z'),
-        githubURL: 'https://github.com/owner/repo',
-        stargazersCount: 1,
-        weekStargazersCount: 1,
-        vimColorSchemes: [],
-      },
-    ]);
+    repositoriesServiceMock.getRepositoryDTOPage.mockResolvedValue({
+      repositories: [
+        {
+          name: 'repo',
+          owner: { name: 'owner' },
+          description: '',
+          githubCreatedAt: new Date('2024-01-01T00:00:00.000Z'),
+          pushedAt: new Date('2024-01-01T00:00:00.000Z'),
+          githubURL: 'https://github.com/owner/repo',
+          stargazersCount: 1,
+          weekStargazersCount: 1,
+          vimColorSchemes: [],
+        },
+      ],
+      hasMore: false,
+    });
     repositoriesServiceMock.getRepositoryCount.mockResolvedValue(1);
   });
 
@@ -44,9 +47,12 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest());
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1 },
+    });
+    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
+      page: 1,
     });
   });
 
@@ -54,7 +60,7 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?sort=wrong'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1 },
     });
@@ -64,7 +70,7 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?sort=top'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Top,
       filter: { page: 1 },
     });
@@ -74,9 +80,13 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?search=gruvbox'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1, search: 'gruvbox' },
+    });
+    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
+      page: 1,
+      search: 'gruvbox',
     });
   });
 
@@ -84,7 +94,7 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?background=dark'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1, background: 'dark' },
     });
@@ -94,7 +104,7 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?background=invalid'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1 },
     });
@@ -104,7 +114,7 @@ describe('GET /api/repositories', () => {
     const response = await GET(makeRequest('?owner=morhetz'));
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
       filter: { page: 1, owner: 'morhetz' },
     });
@@ -118,7 +128,7 @@ describe('GET /api/repositories', () => {
     );
 
     expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOs).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.New,
       filter: {
         page: 2,
@@ -127,6 +137,12 @@ describe('GET /api/repositories', () => {
         owner: 'morhetz',
       },
     });
+    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
+      page: 2,
+      search: 'gruvbox',
+      background: 'light',
+      owner: 'morhetz',
+    });
   });
 
   it('still rejects invalid page values', async () => {
@@ -134,7 +150,7 @@ describe('GET /api/repositories', () => {
 
     expect(response.status).toBe(400);
     await expect(response.json()).resolves.toEqual({ error: 'Invalid page' });
-    expect(repositoriesServiceMock.getRepositoryDTOs).not.toHaveBeenCalled();
+    expect(repositoriesServiceMock.getRepositoryDTOPage).not.toHaveBeenCalled();
     expect(repositoriesServiceMock.getRepositoryCount).not.toHaveBeenCalled();
   });
 });

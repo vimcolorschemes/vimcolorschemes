@@ -37,12 +37,7 @@ export default function LoadMore({
         signal,
       }),
     getNextPageParam: (lastPage, allPages) => {
-      const loadedCount = allPages.reduce(
-        (total, page) => total + page.repositories.length,
-        0,
-      );
-
-      if (loadedCount >= lastPage.count) {
+      if (!lastPage.hasMore) {
         return undefined;
       }
 
@@ -53,6 +48,7 @@ export default function LoadMore({
         {
           repositories: initialRepositories,
           count,
+          hasMore: initialRepositories.length < count,
         },
       ],
       pageParams: [1],
@@ -62,8 +58,7 @@ export default function LoadMore({
   const repositories =
     repositoriesQuery.data?.pages.slice(1).flatMap(page => page.repositories) ??
     [];
-  const hasMore =
-    initialRepositories.length < count && repositoriesQuery.hasNextPage;
+  const hasMore = repositoriesQuery.hasNextPage;
 
   return (
     <>

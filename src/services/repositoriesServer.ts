@@ -18,6 +18,11 @@ type GetRepositoriesParams = {
   filter: Filter;
 };
 
+type RepositoryPageDTOs = {
+  repositories: RepositoryDTO[];
+  hasMore: boolean;
+};
+
 type RepositoryKey = {
   ownerName: string;
   name: string;
@@ -224,6 +229,14 @@ async function getRepositoryDTOs({
   sort,
   filter,
 }: GetRepositoriesParams): Promise<RepositoryDTO[]> {
+  const result = await getRepositoryDTOPage({ sort, filter });
+  return result.repositories;
+}
+
+async function getRepositoryDTOPage({
+  sort,
+  filter,
+}: GetRepositoriesParams): Promise<RepositoryPageDTOs> {
   const client = DatabaseService.getClient();
   const { clauses, params } = QueryHelper.getFilterSQL(filter);
   const where = buildWhereSQL(filter, clauses);
@@ -233,14 +246,19 @@ async function getRepositoryDTOs({
 
   const result = await client.execute({
     sql: `SELECT ${REPO_COLS} FROM repositories r ${where} ORDER BY ${orderBy} LIMIT ? OFFSET ?`,
-    args: [...params, Constants.REPOSITORY_PAGE_SIZE, offset],
+    args: [...params, Constants.REPOSITORY_PAGE_SIZE + 1, offset],
   });
 
-  const repositoryIds = result.rows.map(row => row.id as number);
+  const hasMore = result.rows.length > Constants.REPOSITORY_PAGE_SIZE;
+  const rows = result.rows.slice(0, Constants.REPOSITORY_PAGE_SIZE);
+  const repositoryIds = rows.map(row => row.id as number);
   const colorschemesByRepo =
     await loadColorschemesForRepositories(repositoryIds);
 
-  return rowsToDTOs(result.rows, colorschemesByRepo);
+  return {
+    repositories: rowsToDTOs(rows, colorschemesByRepo),
+    hasMore,
+  };
 }
 
 async function getFeaturedRepositoryDTOs(
@@ -307,6 +325,18 @@ const cachedGetRepositoryCount = unstable_cache(
   { tags: ['repositories'] },
 );
 
+function normalizeCountFilter(filter: Filter): Filter {
+  const countFilter = { ...filter };
+  delete countFilter.page;
+  return countFilter;
+}
+
+async function cachedGetNormalizedRepositoryCount(
+  filter: Filter,
+): Promise<number> {
+  return cachedGetRepositoryCount(normalizeCountFilter(filter));
+}
+
 const cachedGetRepositoryDTOs = unstable_cache(
   getRepositoryDTOs,
   [`${BUILD_ID}-repository-dtos`],
@@ -351,8 +381,9 @@ async function cachedGetRepository(
 }
 
 export const RepositoriesService = {
-  getRepositoryCount: cachedGetRepositoryCount,
+  getRepositoryCount: cachedGetNormalizedRepositoryCount,
   getRepositories,
+  getRepositoryDTOPage,
   getRepositoryDTOs: cachedGetRepositoryDTOs,
   getFeaturedRepositoryDTOs: cachedGetFeaturedRepositoryDTOs,
   getAllRepositories: cachedGetAllRepositories,

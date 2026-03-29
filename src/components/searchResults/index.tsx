@@ -41,6 +41,7 @@ export default function SearchResults({
         ? {
             repositories: initialRepositories,
             count: initialCount,
+            hasMore: initialRepositories.length < initialCount,
           }
         : undefined,
   });
