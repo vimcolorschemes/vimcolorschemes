@@ -1,0 +1,36 @@
+.container {
+  flex: 1;
+  width: 100%;
+  padding: var(--content-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-align: center;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.button,
+.link {
+  font: inherit;
+  text-decoration: underline;
+}
+
+.button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}
+
+.link {
+  display: inline-block;
+}
