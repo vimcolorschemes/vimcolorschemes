@@ -2,8 +2,8 @@
 
 import ErrorFallback from '@/components/errorFallback';
 
-import './globals.css';
 import './reset.css';
+import './globals.css';
 import './vim.css';
 
 import styles from './global-error.module.css';
