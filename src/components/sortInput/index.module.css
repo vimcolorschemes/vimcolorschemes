@@ -7,6 +7,12 @@
   position: relative;
 }
 
+@media (max-width: 599px) {
+  .container {
+    column-gap: var(--spacing-sm);
+  }
+}
+
 .legend {
   opacity: 0;
   position: absolute;
@@ -19,6 +25,12 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-md);
+}
+
+@media (max-width: 599px) {
+  .list {
+    column-gap: var(--spacing-sm);
+  }
 }
 
 .option {

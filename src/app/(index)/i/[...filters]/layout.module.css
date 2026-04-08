@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: var(--spacing-md);
+  row-gap: var(--spacing-sm);
   padding: var(--content-padding);
 }
 
@@ -21,6 +21,7 @@
 
 .searchSlot {
   width: 100%;
+  order: 1;
 }
 
 .searchFallbackShortcut {
@@ -54,5 +55,6 @@
   .searchSlot {
     width: auto;
     margin-right: auto;
+    order: 0;
   }
 }
