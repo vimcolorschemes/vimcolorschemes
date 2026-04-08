@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 
@@ -12,9 +11,7 @@ type HeaderProps = {
 
 export default function Header({ children }: HeaderProps) {
   return (
-    <header
-      className={cn(styles.container, { [styles.isOnlyBranding]: !children })}
-    >
+    <header className={styles.container}>
       <Link href="/i/trending" className={styles.link}>
         <Branding />
       </Link>

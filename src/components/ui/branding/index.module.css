@@ -16,6 +16,12 @@
 .name {
   color: var(--foreground-shade);
 }
+
+@media (max-width: 599px) {
+  .name {
+    display: none;
+  }
+}
 .name > span:last-child {
   color: var(--foreground);
 }
