@@ -1,4 +1,3 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
 import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
@@ -64,7 +63,6 @@ export default function Layout({ children }: LayoutProps) {
           />
           {children}
           <Footer />
-          <SpeedInsights />
         </QueryProvider>
       </body>
     </html>
