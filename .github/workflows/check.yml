@@ -1,4 +1,4 @@
-name: run type check
+name: code quality checks
 
 on:
   push:
@@ -19,4 +19,4 @@ jobs:
       with:
         node-version: 24
         cache: 'pnpm'
-    - run: pnpm tsc
+    - run: pnpm check
