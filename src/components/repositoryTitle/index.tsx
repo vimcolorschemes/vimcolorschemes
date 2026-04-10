@@ -35,6 +35,7 @@ export default function RepositoryTitle({
         {repository?.owner.name && hasOwnerLink ? (
           <Link
             href={`/${repository.owner.name.toLowerCase()}`}
+            prefetch={false}
             className={styles.owner}
           >
             <OwnerTitle

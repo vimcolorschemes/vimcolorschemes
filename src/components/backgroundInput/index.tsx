@@ -44,6 +44,7 @@ export default function BackgroundInput() {
             <Link
               key={option.label}
               href={href}
+              prefetch={false}
               onClick={() => {
                 if (searchQuery && href !== pathname) {
                   startPending(

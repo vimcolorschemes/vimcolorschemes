@@ -21,7 +21,7 @@ export default async function FeaturedRepositories() {
         </h2>
         <p className={styles.note}>
           Hand-picked colorschemes worth a look.{' '}
-          <Link href="/about#get-featured" className={styles.link}>
+          <Link href="/about#get-featured" prefetch={false} className={styles.link}>
             Get yours featured.
           </Link>
         </p>
