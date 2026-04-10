@@ -30,7 +30,12 @@ type LinkProps = Pick<ComponentProps<typeof Link>, 'href'> & {
 
 function CardLink({ href, label, className }: LinkProps) {
   return (
-    <Link href={href} prefetch={false} className={cn(styles.link, className)} aria-label={label}>
+    <Link
+      href={href}
+      prefetch={false}
+      className={cn(styles.link, className)}
+      aria-label={label}
+    >
       <span className={styles.linkLabel}>{label}</span>
     </Link>
   );
