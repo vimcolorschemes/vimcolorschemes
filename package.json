@@ -24,6 +24,8 @@
     "format.check": "prettier --check .",
     "seed": "./database/seed",
     "tsc": "tsc --noEmit",
+    "check": "pnpm run --parallel '/^(lint.check|format.check|tsc|test)$/'",
+    "check.fix": "pnpm lint && pnpm format && pnpm run --parallel '/^(tsc|test)$/'",
     "preinstall": "npx only-allow pnpm"
   },
   "engines": {
