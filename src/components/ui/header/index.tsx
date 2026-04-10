@@ -12,7 +12,7 @@ type HeaderProps = {
 export default function Header({ children }: HeaderProps) {
   return (
     <header className={styles.container}>
-      <Link href="/i/trending" className={styles.link}>
+      <Link href="/i/trending" prefetch={false} className={styles.link}>
         <Branding />
       </Link>
       {children}

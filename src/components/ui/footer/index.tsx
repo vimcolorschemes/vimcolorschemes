@@ -10,11 +10,11 @@ import styles from './index.module.css';
 export default function Footer() {
   return (
     <footer className={styles.container}>
-      <Link href="/">
+      <Link href="/" prefetch={false}>
         <Branding />
       </Link>
       <div className={styles.links}>
-        <Link href="/about" className={styles.link}>
+        <Link href="/about" prefetch={false} className={styles.link}>
           about
         </Link>
         <a

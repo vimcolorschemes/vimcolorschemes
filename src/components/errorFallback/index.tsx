@@ -48,7 +48,7 @@ export default function ErrorFallback({
               try again
             </button>
           )}
-          <Link href="/i/trending" className={styles.link}>
+          <Link href="/i/trending" prefetch={false} className={styles.link}>
             back to trending
           </Link>
         </div>

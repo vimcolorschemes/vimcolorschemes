@@ -12,6 +12,7 @@ export default function OwnerPageHeaderSkeleton() {
     <header className={styles.container}>
       <Link
         href="/i/trending"
+        prefetch={false}
         type="button"
         role="link"
         className={cn(styles.back, styles.link)}

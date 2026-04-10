@@ -36,6 +36,7 @@ export default function SortInput() {
               <Link
                 className={styles.button}
                 href={href}
+                prefetch={false}
                 onClick={() => {
                   if (searchQuery && href !== pathname) {
                     startPending(
