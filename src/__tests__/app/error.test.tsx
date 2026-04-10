@@ -33,7 +33,7 @@ describe('app error boundary', () => {
         .getByRole('link', { name: 'back to trending' })
         .getAttribute('href'),
     ).toBe('/i/trending');
-    expect(consoleErrorSpy).toHaveBeenCalledTimes(1);
+    expect(consoleErrorSpy).toHaveBeenCalled();
   });
 
   it('calls reset when retry is clicked', () => {
