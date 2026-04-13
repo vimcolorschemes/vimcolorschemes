@@ -8,3 +8,9 @@ updates:
       next:
         patterns:
           - '*next*'
+      react:
+        patterns:
+          - 'react'
+          - 'react-dom'
+          - '@types/react'
+          - '@types/react-dom'
