@@ -38,11 +38,6 @@ export async function GET(request: NextRequest) {
   }
   filter.page = page;
 
-  const owner = searchParams.get('owner');
-  if (owner) {
-    filter.owner = owner;
-  }
-
   const [{ repositories, hasMore }, count] = await Promise.all([
     RepositoriesService.getRepositoryDTOPage({ sort, filter }),
     RepositoriesService.getRepositoryCount(filter),
