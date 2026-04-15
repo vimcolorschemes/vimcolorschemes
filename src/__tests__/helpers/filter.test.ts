@@ -15,10 +15,6 @@ describe('FilterHelper.getURLFromFilter', () => {
     );
   });
 
-  it('should ignore search filter (no longer URL-encoded)', () => {
-    expect(FilterHelper.getURLFromFilter({ search: 'test-search' })).toBe('');
-  });
-
   it('should ignore invalid keys', () => {
     // @ts-expect-error invalid key
     expect(FilterHelper.getURLFromFilter({ invalid: 'filter' })).toBe('');
@@ -29,21 +25,11 @@ describe('FilterHelper.getURLFromFilter', () => {
     expect(FilterHelper.getURLFromFilter({ background: 'invalid' })).toBe('');
   });
 
-  it('should only include background in URL with multiple filters', () => {
-    expect(
-      FilterHelper.getURLFromFilter({
-        background: 'light',
-        search: 'test-search',
-      }),
-    ).toBe('b.light');
-  });
-
   it('should ignore non-URL filters with multiple filters', () => {
     expect(
       FilterHelper.getURLFromFilter({
         // @ts-expect-error invalid key
         invalid: 'filter',
-        search: 'test-search',
       }),
     ).toBe('');
   });
@@ -74,18 +60,8 @@ describe('FilterHelper.getFilterFromURL', () => {
     expect(FilterHelper.getFilterFromURL(['b.invalid'])).toEqual({});
   });
 
-  it('should parse background from multiple segments', () => {
-    expect(FilterHelper.getFilterFromURL(['b.light', 's.test-search'])).toEqual(
-      {
-        background: 'light',
-      },
-    );
-  });
-
   it('should ignore invalid filters with multiple filters', () => {
-    expect(
-      FilterHelper.getFilterFromURL(['i.filter', 's.test-search']),
-    ).toEqual({});
+    expect(FilterHelper.getFilterFromURL(['i.filter'])).toEqual({});
   });
 
   it('should keep the first valid background with duplicate filters', () => {

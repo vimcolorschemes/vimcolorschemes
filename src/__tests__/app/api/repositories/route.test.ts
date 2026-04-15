@@ -10,15 +10,12 @@ function makeRequest(query = '') {
 const repositoriesServiceMock = vi.hoisted(() => ({
   getRepositoryDTOPage: vi.fn(),
   getRepositoryCount: vi.fn(),
-  getRepositoryCountUncached: vi.fn(),
 }));
 
 vi.mock('@/services/repositoriesServer', () => ({
   RepositoriesService: {
     getRepositoryDTOPage: repositoriesServiceMock.getRepositoryDTOPage,
     getRepositoryCount: repositoriesServiceMock.getRepositoryCount,
-    getRepositoryCountUncached:
-      repositoriesServiceMock.getRepositoryCountUncached,
   },
 }));
 
@@ -44,7 +41,6 @@ describe('GET /api/repositories', () => {
       hasMore: false,
     });
     repositoriesServiceMock.getRepositoryCount.mockResolvedValue(1);
-    repositoriesServiceMock.getRepositoryCountUncached.mockResolvedValue(1);
   });
 
   it('defaults missing sort to trending', async () => {
@@ -80,21 +76,17 @@ describe('GET /api/repositories', () => {
     });
   });
 
-  it('passes search filter to service', async () => {
+  it('ignores search filter', async () => {
     const response = await GET(makeRequest('?search=gruvbox'));
 
     expect(response.status).toBe(200);
     expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
       sort: SortOptions.Trending,
-      filter: { page: 1, search: 'gruvbox' },
+      filter: { page: 1 },
     });
-    expect(
-      repositoriesServiceMock.getRepositoryCountUncached,
-    ).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
       page: 1,
-      search: 'gruvbox',
     });
-    expect(repositoriesServiceMock.getRepositoryCount).not.toHaveBeenCalled();
   });
 
   it('passes background filter to service', async () => {
@@ -139,20 +131,15 @@ describe('GET /api/repositories', () => {
       sort: SortOptions.New,
       filter: {
         page: 2,
-        search: 'gruvbox',
         background: 'light',
         owner: 'morhetz',
       },
     });
-    expect(
-      repositoriesServiceMock.getRepositoryCountUncached,
-    ).toHaveBeenCalledWith({
+    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
       page: 2,
-      search: 'gruvbox',
       background: 'light',
       owner: 'morhetz',
     });
-    expect(repositoriesServiceMock.getRepositoryCount).not.toHaveBeenCalled();
   });
 
   it('still rejects invalid page values', async () => {

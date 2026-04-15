@@ -26,10 +26,6 @@ function buildSearchParams({
     page: String(page),
   });
 
-  if (filter?.search) {
-    params.set('search', filter.search);
-  }
-
   if (filter?.background) {
     params.set('background', filter.background);
   }

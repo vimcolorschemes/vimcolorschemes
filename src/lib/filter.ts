@@ -20,7 +20,6 @@ export type BackgroundFilter = Background | 'both';
 
 export type Filter = {
   background?: BackgroundFilter;
-  search?: string;
   page?: number;
   owner?: string;
 };

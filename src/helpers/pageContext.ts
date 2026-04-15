@@ -41,16 +41,8 @@ function getPageTitle({ filter, sort }: PageContext): string {
   return parts.join(' ');
 }
 
-function isHomepage(
-  { filter, sort }: PageContext,
-  searchQuery?: string,
-): boolean {
-  return (
-    sort === SortOptions.Trending &&
-    !filter.background &&
-    !filter.owner &&
-    !searchQuery
-  );
+function isHomepage({ filter, sort }: PageContext): boolean {
+  return sort === SortOptions.Trending && !filter.background && !filter.owner;
 }
 
 export const PageContextHelper = {

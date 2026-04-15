@@ -10,8 +10,6 @@ import { PageContextHelper } from '@/helpers/pageContext';
 import BackgroundInput from '@/components/backgroundInput';
 import IndexPendingBoundary from '@/components/indexPendingBoundary';
 import IndexPendingProvider from '@/components/providers/indexPendingProvider';
-import SearchInput from '@/components/searchInput';
-import searchInputStyles from '@/components/searchInput/index.module.css';
 import SortInput from '@/components/sortInput';
 import sortInputStyles from '@/components/sortInput/index.module.css';
 import Header from '@/components/ui/header';
@@ -40,11 +38,6 @@ export default async function IndexPageLayout({
       </Header>
       <main className={styles.container}>
         <div className={styles.inputs}>
-          <div className={styles.searchSlot}>
-            <Suspense fallback={<SearchInputFallback />}>
-              <SearchInput />
-            </Suspense>
-          </div>
           <Suspense
             fallback={<BackgroundInputFallback pageContext={pageContext} />}
           >
@@ -54,24 +47,6 @@ export default async function IndexPageLayout({
         <IndexPendingBoundary>{children}</IndexPendingBoundary>
       </main>
     </IndexPendingProvider>
-  );
-}
-
-function SearchInputFallback() {
-  return (
-    <form className={searchInputStyles.container} aria-hidden="true">
-      <input
-        type="search"
-        placeholder="search"
-        className={searchInputStyles.input}
-        disabled
-      />
-      <span
-        className={`${searchInputStyles.shortcut} ${searchInputStyles.outOfFocus} ${styles.searchFallbackShortcut}`}
-      >
-        /
-      </span>
-    </form>
   );
 }
 

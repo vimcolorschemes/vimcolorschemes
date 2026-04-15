@@ -18,15 +18,11 @@ type RepositoriesProps = {
 };
 
 function buildTitle(filter: PageContext['filter']): string {
-  if (!filter.background && !filter.search && !filter.owner) {
+  if (!filter.background && !filter.owner) {
     return 'All';
   }
 
   const parts: string[] = [];
-
-  if (filter.search) {
-    parts.push(`results for "${filter.search}"`);
-  }
 
   if (filter.background) {
     if (filter.background === 'both') {

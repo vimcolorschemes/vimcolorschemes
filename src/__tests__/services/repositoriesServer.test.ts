@@ -152,36 +152,15 @@ describe('RepositoriesService', () => {
 
     const count = await RepositoriesService.getRepositoryCount({
       owner: 'morhetz',
-      search: 'gruvbox',
     });
 
     expect(count).toBe(7);
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
+          'SELECT COUNT(*) as count FROM repositories r',
         ),
-        args: ['gruvbox', 'morhetz'],
-      }),
-    );
-  });
-
-  it('exposes an uncached count method with normalized filters', async () => {
-    executeMock.mockResolvedValueOnce({ rows: [{ count: 7 }] });
-
-    const count = await RepositoriesService.getRepositoryCountUncached({
-      owner: 'morhetz',
-      search: 'gruvbox',
-      page: 3,
-    });
-
-    expect(count).toBe(7);
-    expect(executeMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
-        ),
-        args: ['gruvbox', 'morhetz'],
+        args: ['morhetz'],
       }),
     );
   });
@@ -192,49 +171,15 @@ describe('RepositoriesService', () => {
     const count = await RepositoriesService.getRepositoryCount({
       background: 'dark',
       owner: 'morhetz',
-      search: 'gruvbox',
     });
 
     expect(count).toBe(5);
     expect(executeMock).toHaveBeenCalledWith(
       expect.objectContaining({
         sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE r.has_dark = 1',
+          'SELECT COUNT(*) as count FROM repositories r',
         ),
-        args: ['gruvbox', 'morhetz'],
-      }),
-    );
-  });
-
-  it('returns no search results for short search terms', async () => {
-    executeMock.mockResolvedValueOnce({ rows: [{ count: 2 }] });
-
-    const count = await RepositoriesService.getRepositoryCount({
-      search: 'gr',
-    });
-
-    expect(count).toBe(2);
-    const [query] = executeMock.mock.calls[0];
-    expect(query.sql).toContain('WHERE');
-    expect(query.sql).toContain('0 = 1');
-    expect(query.sql).not.toContain('JOIN repositories_search');
-    expect(query.args).toEqual([]);
-  });
-
-  it('ignores short search terms when longer terms exist', async () => {
-    executeMock.mockResolvedValueOnce({ rows: [{ count: 4 }] });
-
-    const count = await RepositoriesService.getRepositoryCount({
-      search: 'gr gruvbox',
-    });
-
-    expect(count).toBe(4);
-    expect(executeMock).toHaveBeenCalledWith(
-      expect.objectContaining({
-        sql: expect.stringContaining(
-          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
-        ),
-        args: ['gruvbox'],
+        args: ['morhetz'],
       }),
     );
   });
