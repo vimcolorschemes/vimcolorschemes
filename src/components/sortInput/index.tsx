@@ -2,7 +2,6 @@
 
 import cn from 'classnames';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { SortOptions } from '@/lib/sort';
 
@@ -13,18 +12,17 @@ import { useIndexPending } from '@/components/providers/indexPendingProvider';
 import styles from './index.module.css';
 
 export default function SortInput() {
-  const pathname = usePathname();
-  const { pageContext, searchQuery, startPending } = useIndexPending();
+  const { pageContext } = useIndexPending();
 
   return (
     <div className={styles.container}>
       <legend className={styles.legend}>Sort</legend>
       <ul className={styles.list}>
         {Object.values(SortOptions).map(option => {
-          const href = buildIndexRoutePath(
-            { sort: option, filter: pageContext.filter },
-            searchQuery,
-          );
+          const href = buildIndexRoutePath({
+            sort: option,
+            filter: pageContext.filter,
+          });
 
           return (
             <li
@@ -37,15 +35,6 @@ export default function SortInput() {
                 className={styles.button}
                 href={href}
                 prefetch={false}
-                onClick={() => {
-                  if (searchQuery && href !== pathname) {
-                    startPending(
-                      href,
-                      { sort: option, filter: pageContext.filter },
-                      searchQuery,
-                    );
-                  }
-                }}
                 scroll={false}
               >
                 <p>{option}</p>

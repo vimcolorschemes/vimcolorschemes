@@ -38,23 +38,14 @@ export async function GET(request: NextRequest) {
   }
   filter.page = page;
 
-  const search = searchParams.get('search');
-  if (search) {
-    filter.search = search;
-  }
-
   const owner = searchParams.get('owner');
   if (owner) {
     filter.owner = owner;
   }
 
-  const getRepositoryCount = filter.search
-    ? RepositoriesService.getRepositoryCountUncached
-    : RepositoriesService.getRepositoryCount;
-
   const [{ repositories, hasMore }, count] = await Promise.all([
     RepositoriesService.getRepositoryDTOPage({ sort, filter }),
-    getRepositoryCount(filter),
+    RepositoriesService.getRepositoryCount(filter),
   ]);
 
   return NextResponse.json(

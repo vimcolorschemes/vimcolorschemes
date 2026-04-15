@@ -11,13 +11,6 @@ type FilterSQL = {
   params: (string | number | null)[];
 };
 
-const REPOSITORY_SEARCH_JOIN =
-  'JOIN repositories_search ON repositories_search.rowid = r.id';
-
-function getSearchWords(search: string): string[] {
-  return search.split(/[^\w]/).filter(Boolean);
-}
-
 function getFilterSQL(filter: Filter): FilterSQL {
   const joins: string[] = [];
   const clauses: string[] = [];
@@ -30,20 +23,6 @@ function getFilterSQL(filter: Filter): FilterSQL {
   } else if (filter.background === 'both') {
     clauses.push(LIGHT_EXISTS);
     clauses.push(DARK_EXISTS);
-  }
-
-  if (filter.search) {
-    const words = getSearchWords(filter.search).filter(
-      word => word.length >= 3,
-    );
-
-    if (words.length === 0) {
-      clauses.push('0 = 1');
-    } else {
-      joins.push(REPOSITORY_SEARCH_JOIN);
-      clauses.push('repositories_search MATCH ?');
-      params.push(words.join(' '));
-    }
   }
 
   if (filter.owner) {

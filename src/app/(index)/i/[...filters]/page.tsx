@@ -1,9 +1,6 @@
 import { Metadata } from 'next';
-import { unstable_noStore as noStore } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
-
-import { RepositoriesService } from '@/services/repositoriesServer';
 
 import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
@@ -11,12 +8,11 @@ import type { Sort } from '@/lib/sort';
 import { SortOptions } from '@/lib/sort';
 
 import { FilterHelper } from '@/helpers/filter';
-import { buildIndexRoutePath, getIndexRouteState } from '@/helpers/indexRoute';
+import { buildIndexRoutePath } from '@/helpers/indexRoute';
 import { PageContextHelper } from '@/helpers/pageContext';
 
 import FeaturedRepositories from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';
-import SearchResults from '@/components/searchResults';
 
 import styles from './page.module.css';
 
@@ -48,68 +44,32 @@ export async function generateMetadata({
   params,
 }: IndexPageProps): Promise<Metadata> {
   const { filters } = await params;
-  const routeState = getIndexRouteState(`/i/${filters.join('/')}`);
-  const pageContext = PageContextHelper.get(routeState.filters);
+  const pageContext = PageContextHelper.get(filters);
 
   return {
     title: PageContextHelper.getPageTitle(pageContext),
-    robots: routeState.search ? { index: false, follow: true } : undefined,
   };
 }
 
 export default async function IndexPage({ params }: IndexPageProps) {
   const { filters } = await params;
-  const routeState = getIndexRouteState(`/i/${filters.join('/')}`);
-  const [sort, ...rest] = routeState.filters as [Sort, ...string[]];
-  const pageContext = PageContextHelper.get(routeState.filters);
-  const isHomepage = PageContextHelper.isHomepage(
-    pageContext,
-    routeState.search,
-  );
+  const [sort, ...rest] = filters as [Sort, ...string[]];
+  const pageContext = PageContextHelper.get(filters);
+  const isHomepage = PageContextHelper.isHomepage(pageContext);
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
   if (!Object.values(SortOptions).includes(sort)) {
     redirect(
-      buildIndexRoutePath(
-        {
-          sort: SortOptions.Trending,
-          filter: pageContext.filter,
-        },
-        routeState.search,
-      ),
+      buildIndexRoutePath({
+        sort: SortOptions.Trending,
+        filter: pageContext.filter,
+      }),
     );
   }
 
   if (validURL !== rest.join('/')) {
-    redirect(buildIndexRoutePath(pageContext, routeState.search));
-  }
-
-  if (routeState.search) {
-    noStore();
-
-    const [repositories, count] = await Promise.all([
-      RepositoriesService.getRepositoryDTOsUncached({
-        sort: pageContext.sort,
-        filter: {
-          ...pageContext.filter,
-          search: routeState.search,
-        },
-      }),
-      RepositoriesService.getRepositoryCountUncached({
-        ...pageContext.filter,
-        search: routeState.search,
-      }),
-    ]);
-
-    return (
-      <SearchResults
-        query={routeState.search}
-        pageContext={pageContext}
-        initialRepositories={repositories}
-        initialCount={count}
-      />
-    );
+    redirect(buildIndexRoutePath(pageContext));
   }
 
   return (

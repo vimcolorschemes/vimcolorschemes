@@ -2,7 +2,6 @@
 
 import cn from 'classnames';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { Backgrounds } from '@/lib/backgrounds';
 import { BackgroundFilter } from '@/lib/filter';
@@ -15,8 +14,7 @@ import radioStyles from '@/components/ui/radio/index.module.css';
 import styles from './index.module.css';
 
 export default function BackgroundInput() {
-  const pathname = usePathname();
-  const { pageContext, searchQuery, startPending } = useIndexPending();
+  const { pageContext } = useIndexPending();
   const options: { value: BackgroundFilter | undefined; label: string }[] = [
     { value: undefined, label: 'any' },
     { value: Backgrounds.Dark, label: 'dark' },
@@ -29,37 +27,19 @@ export default function BackgroundInput() {
       <legend className={radioStyles.legend}>background:</legend>
       <div className={radioStyles.options}>
         {options.map(option => {
-          const href = buildIndexRoutePath(
-            {
-              sort: pageContext.sort,
-              filter: {
-                ...pageContext.filter,
-                background: option.value,
-              },
+          const href = buildIndexRoutePath({
+            sort: pageContext.sort,
+            filter: {
+              ...pageContext.filter,
+              background: option.value,
             },
-            searchQuery,
-          );
+          });
 
           return (
             <Link
               key={option.label}
               href={href}
               prefetch={false}
-              onClick={() => {
-                if (searchQuery && href !== pathname) {
-                  startPending(
-                    href,
-                    {
-                      sort: pageContext.sort,
-                      filter: {
-                        ...pageContext.filter,
-                        background: option.value,
-                      },
-                    },
-                    searchQuery,
-                  );
-                }
-              }}
               scroll={false}
               className={cn(radioStyles.option, styles.option)}
             >

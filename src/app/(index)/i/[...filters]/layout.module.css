@@ -19,17 +19,6 @@
   padding: var(--content-padding);
 }
 
-.searchSlot {
-  width: 100%;
-  order: 1;
-}
-
-.searchFallbackShortcut {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .backgroundFallbackIndicator {
   position: relative;
   display: inline-block;
@@ -49,12 +38,4 @@
   height: 0.625em;
   background: var(--foreground);
   border-radius: 50%;
-}
-
-@media (min-width: 768px) {
-  .searchSlot {
-    width: auto;
-    margin-right: auto;
-    order: 0;
-  }
 }
