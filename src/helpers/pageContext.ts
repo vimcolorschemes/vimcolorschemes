@@ -42,7 +42,7 @@ function getPageTitle({ filter, sort }: PageContext): string {
 }
 
 function isHomepage({ filter, sort }: PageContext): boolean {
-  return sort === SortOptions.Trending && !filter.background && !filter.owner;
+  return sort === SortOptions.Trending && !filter.background;
 }
 
 export const PageContextHelper = {

@@ -30,10 +30,6 @@ function buildSearchParams({
     params.set('background', filter.background);
   }
 
-  if (filter?.owner) {
-    params.set('owner', filter.owner);
-  }
-
   return params;
 }
 

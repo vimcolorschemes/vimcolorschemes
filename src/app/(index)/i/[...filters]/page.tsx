@@ -16,7 +16,7 @@ import Repositories from '@/components/repositories';
 
 import styles from './page.module.css';
 
-export const dynamicParams = true;
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   const sorts = Object.values(SortOptions);

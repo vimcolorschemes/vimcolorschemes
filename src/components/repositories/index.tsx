@@ -18,25 +18,15 @@ type RepositoriesProps = {
 };
 
 function buildTitle(filter: PageContext['filter']): string {
-  if (!filter.background && !filter.owner) {
+  if (!filter.background) {
     return 'All';
   }
 
-  const parts: string[] = [];
-
-  if (filter.background) {
-    if (filter.background === 'both') {
-      parts.push('with light and dark background');
-    } else {
-      parts.push(`with ${filter.background} background`);
-    }
+  if (filter.background === 'both') {
+    return 'with light and dark background';
   }
 
-  if (filter.owner) {
-    parts.push(`${filter.owner}'s work`);
-  }
-
-  return parts.join(' ');
+  return `with ${filter.background} background`;
 }
 
 export default function Repositories({ pageContext }: RepositoriesProps) {

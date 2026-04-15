@@ -109,21 +109,9 @@ describe('GET /api/repositories', () => {
     });
   });
 
-  it('passes owner filter to service', async () => {
-    const response = await GET(makeRequest('?owner=morhetz'));
-
-    expect(response.status).toBe(200);
-    expect(repositoriesServiceMock.getRepositoryDTOPage).toHaveBeenCalledWith({
-      sort: SortOptions.Trending,
-      filter: { page: 1, owner: 'morhetz' },
-    });
-  });
-
   it('passes all filters together', async () => {
     const response = await GET(
-      makeRequest(
-        '?sort=new&search=gruvbox&background=light&page=2&owner=morhetz',
-      ),
+      makeRequest('?sort=new&background=light&page=2'),
     );
 
     expect(response.status).toBe(200);
@@ -132,13 +120,11 @@ describe('GET /api/repositories', () => {
       filter: {
         page: 2,
         background: 'light',
-        owner: 'morhetz',
       },
     });
     expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
       page: 2,
       background: 'light',
-      owner: 'morhetz',
     });
   });
 
