@@ -166,6 +166,26 @@ describe('RepositoriesService', () => {
     );
   });
 
+  it('exposes an uncached count method with normalized filters', async () => {
+    executeMock.mockResolvedValueOnce({ rows: [{ count: 7 }] });
+
+    const count = await RepositoriesService.getRepositoryCountUncached({
+      owner: 'morhetz',
+      search: 'gruvbox',
+      page: 3,
+    });
+
+    expect(count).toBe(7);
+    expect(executeMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        sql: expect.stringContaining(
+          'SELECT COUNT(*) as count FROM repositories r JOIN repositories_search ON repositories_search.rowid = r.id WHERE',
+        ),
+        args: ['gruvbox', 'morhetz'],
+      }),
+    );
+  });
+
   it('counts single-background repositories with a distinct repository query', async () => {
     executeMock.mockResolvedValueOnce({ rows: [{ count: 5 }] });
 

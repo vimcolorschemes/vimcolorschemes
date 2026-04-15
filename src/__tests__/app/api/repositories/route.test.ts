@@ -10,12 +10,15 @@ function makeRequest(query = '') {
 const repositoriesServiceMock = vi.hoisted(() => ({
   getRepositoryDTOPage: vi.fn(),
   getRepositoryCount: vi.fn(),
+  getRepositoryCountUncached: vi.fn(),
 }));
 
 vi.mock('@/services/repositoriesServer', () => ({
   RepositoriesService: {
     getRepositoryDTOPage: repositoriesServiceMock.getRepositoryDTOPage,
     getRepositoryCount: repositoriesServiceMock.getRepositoryCount,
+    getRepositoryCountUncached:
+      repositoriesServiceMock.getRepositoryCountUncached,
   },
 }));
 
@@ -41,6 +44,7 @@ describe('GET /api/repositories', () => {
       hasMore: false,
     });
     repositoriesServiceMock.getRepositoryCount.mockResolvedValue(1);
+    repositoriesServiceMock.getRepositoryCountUncached.mockResolvedValue(1);
   });
 
   it('defaults missing sort to trending', async () => {
@@ -84,10 +88,13 @@ describe('GET /api/repositories', () => {
       sort: SortOptions.Trending,
       filter: { page: 1, search: 'gruvbox' },
     });
-    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
+    expect(
+      repositoriesServiceMock.getRepositoryCountUncached,
+    ).toHaveBeenCalledWith({
       page: 1,
       search: 'gruvbox',
     });
+    expect(repositoriesServiceMock.getRepositoryCount).not.toHaveBeenCalled();
   });
 
   it('passes background filter to service', async () => {
@@ -137,12 +144,15 @@ describe('GET /api/repositories', () => {
         owner: 'morhetz',
       },
     });
-    expect(repositoriesServiceMock.getRepositoryCount).toHaveBeenCalledWith({
+    expect(
+      repositoriesServiceMock.getRepositoryCountUncached,
+    ).toHaveBeenCalledWith({
       page: 2,
       search: 'gruvbox',
       background: 'light',
       owner: 'morhetz',
     });
+    expect(repositoriesServiceMock.getRepositoryCount).not.toHaveBeenCalled();
   });
 
   it('still rejects invalid page values', async () => {

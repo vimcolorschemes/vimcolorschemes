@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { unstable_noStore as noStore } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
@@ -49,7 +50,11 @@ export async function generateMetadata({
   const { filters } = await params;
   const routeState = getIndexRouteState(`/i/${filters.join('/')}`);
   const pageContext = PageContextHelper.get(routeState.filters);
-  return { title: PageContextHelper.getPageTitle(pageContext) };
+
+  return {
+    title: PageContextHelper.getPageTitle(pageContext),
+    robots: routeState.search ? { index: false, follow: true } : undefined,
+  };
 }
 
 export default async function IndexPage({ params }: IndexPageProps) {
@@ -81,15 +86,17 @@ export default async function IndexPage({ params }: IndexPageProps) {
   }
 
   if (routeState.search) {
+    noStore();
+
     const [repositories, count] = await Promise.all([
-      RepositoriesService.getRepositoryDTOs({
+      RepositoriesService.getRepositoryDTOsUncached({
         sort: pageContext.sort,
         filter: {
           ...pageContext.filter,
           search: routeState.search,
         },
       }),
-      RepositoriesService.getRepositoryCount({
+      RepositoriesService.getRepositoryCountUncached({
         ...pageContext.filter,
         search: routeState.search,
       }),

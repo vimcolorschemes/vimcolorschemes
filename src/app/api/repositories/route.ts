@@ -48,9 +48,13 @@ export async function GET(request: NextRequest) {
     filter.owner = owner;
   }
 
+  const getRepositoryCount = filter.search
+    ? RepositoriesService.getRepositoryCountUncached
+    : RepositoriesService.getRepositoryCount;
+
   const [{ repositories, hasMore }, count] = await Promise.all([
     RepositoriesService.getRepositoryDTOPage({ sort, filter }),
-    RepositoriesService.getRepositoryCount(filter),
+    getRepositoryCount(filter),
   ]);
 
   return NextResponse.json(

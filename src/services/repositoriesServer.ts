@@ -319,22 +319,24 @@ async function getRepositoryDTO(
 
 const BUILD_ID = process.env.NEXT_BUILD_ID ?? 'dev';
 
-const cachedGetRepositoryCount = unstable_cache(
+const cachedGetRepositoryCountQuery = unstable_cache(
   getRepositoryCount,
   [`${BUILD_ID}-repository-count`],
   { tags: ['repositories'] },
 );
 
-function normalizeCountFilter(filter: Filter): Filter {
+function getRepositoryCountFilter(filter: Filter): Filter {
   const countFilter = { ...filter };
   delete countFilter.page;
   return countFilter;
 }
 
-async function cachedGetNormalizedRepositoryCount(
-  filter: Filter,
-): Promise<number> {
-  return cachedGetRepositoryCount(normalizeCountFilter(filter));
+async function cachedGetRepositoryCount(filter: Filter): Promise<number> {
+  return cachedGetRepositoryCountQuery(getRepositoryCountFilter(filter));
+}
+
+async function getRepositoryCountUncached(filter: Filter): Promise<number> {
+  return getRepositoryCount(getRepositoryCountFilter(filter));
 }
 
 const cachedGetRepositoryDTOs = unstable_cache(
@@ -381,10 +383,12 @@ async function cachedGetRepository(
 }
 
 export const RepositoriesService = {
-  getRepositoryCount: cachedGetNormalizedRepositoryCount,
+  getRepositoryCount: cachedGetRepositoryCount,
+  getRepositoryCountUncached,
   getRepositories,
   getRepositoryDTOPage,
   getRepositoryDTOs: cachedGetRepositoryDTOs,
+  getRepositoryDTOsUncached: getRepositoryDTOs,
   getFeaturedRepositoryDTOs: cachedGetFeaturedRepositoryDTOs,
   getAllRepositories: cachedGetAllRepositories,
   getAllRepositoryDTOs: cachedGetAllRepositoryDTOs,
