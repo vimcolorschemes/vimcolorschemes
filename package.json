@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.17.3",
-    "@tanstack/react-query": "^5.99.0",
+    "@tanstack/react-query": "^5.100.6",
     "classnames": "^2.5.1",
     "date-fns": "^4.1.0",
     "next": "16.2.4",
