@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import styles from './index.module.css';
 
@@ -10,11 +10,18 @@ type CodeProps = {
   activeLine?: number;
   className?: string;
   disableHorizontalScroll?: boolean;
+  hideStatusLine?: boolean;
+  style?: CSSProperties;
 };
 
 export default function Code(props: CodeProps) {
   return (
-    <pre className={cn(styles.container, props.className)}>
+    <pre
+      className={cn(styles.container, props.className, {
+        [styles.hideStatusLine]: props.hideStatusLine,
+      })}
+      style={props.style}
+    >
       <Gutter {...props} />
       <code
         className={cn(styles.code, {
@@ -23,7 +30,7 @@ export default function Code(props: CodeProps) {
       >
         {props.children}
       </code>
-      <StatusLine {...props} />
+      {!props.hideStatusLine && <StatusLine {...props} />}
     </pre>
   );
 }
