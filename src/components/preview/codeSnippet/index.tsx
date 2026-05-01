@@ -19,6 +19,14 @@ export default function CodeSnippet({
       className={className}
       disableHorizontalScroll={disableHorizontalScroll}
     >
+      <CodeSnippetLines />
+    </Code>
+  );
+}
+
+export function CodeSnippetLines() {
+  return (
+    <>
       <div>
         <span className="vimLineComment">
           {'" Returns true if the color hex value is light'}
@@ -156,6 +164,6 @@ export default function CodeSnippet({
       <div>
         <span className="vimCommand">endfunction</span>
       </div>
-    </Code>
+    </>
   );
 }
