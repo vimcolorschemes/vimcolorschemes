@@ -11,13 +11,19 @@ import {
 import styles from './index.module.css';
 
 type RootProps = ComponentPropsWithoutRef<'article'> & {
+  interactive?: boolean;
   skeleton?: boolean;
 };
 
-function Root({ className, skeleton, ...props }: RootProps) {
+function Root({ className, interactive, skeleton, ...props }: RootProps) {
   return (
     <article
-      className={cn(styles.container, skeleton && styles.skeleton, className)}
+      className={cn(
+        styles.container,
+        interactive && styles.interactive,
+        skeleton && styles.skeleton,
+        className,
+      )}
       {...props}
     />
   );

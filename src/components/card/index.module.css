@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.container::before {
+.interactive::before {
   content: '';
   position: absolute;
   inset: var(--card-hover-inset, calc(var(--spacing-sm) * -1));
@@ -56,26 +56,26 @@
   border: 0;
 }
 
-.container:hover::before,
-.container:focus-within::before {
+.interactive:hover::before,
+.interactive:focus-within::before {
   background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
   opacity: 1;
 }
 
 @media (prefers-color-scheme: dark) {
-  .container:hover::before,
-  .container:focus-within::before {
+  .interactive:hover::before,
+  .interactive:focus-within::before {
     background-color: color-mix(in srgb, var(--foreground) 7%, transparent);
   }
 }
 
 @media (hover: none) {
-  .container:hover::before,
-  .container:focus-within::before {
+  .interactive:hover::before,
+  .interactive:focus-within::before {
     opacity: 0;
   }
-  .container:hover .title,
-  .container:focus-within .title {
+  .interactive:hover .title,
+  .interactive:focus-within .title {
     text-decoration: none;
   }
 }
@@ -95,8 +95,8 @@
   border-radius: inherit;
 }
 
-.container:hover .title,
-.container:focus-within .title {
+.interactive:hover .title,
+.interactive:focus-within .title {
   text-decoration: underline;
 }
 
