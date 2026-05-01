@@ -2,7 +2,7 @@
   --featured-card-gap: var(--spacing-md);
   --featured-card-hover-offset: calc(var(--featured-card-gap) / 2);
   width: 100%;
-  max-width: 120rem;
+  max-width: var(--content-max-width);
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-xs);
