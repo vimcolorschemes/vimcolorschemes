@@ -4,17 +4,17 @@
   --page-max-width: var(--content-max-width);
   --content-padding: 0 var(--spacing-sm);
 
-  --dark: #333;
-  --light: #fff;
-  --grey: #5c5c5c;
-  --blue: #2855b7;
-  --platinum: #e3e3e3;
+  --dark: #24221e;
+  --light: #fbf7ed;
+  --grey: #6d675d;
+  --blue: #8a5f24;
+  --platinum: #ece8dd;
 
   --foreground: var(--dark);
   --foreground-shade: var(--grey);
   --foreground-accent: var(--blue);
   --background: var(--light);
-  --border-color: var(--dark);
+  --border-color: #b9ad99;
 
   --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
@@ -40,19 +40,19 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --dark: #e6e6e6;
-    --light: #0f1216;
-    --grey: #a2a8b4;
-    --blue: #79a8ff;
-    --platinum: #1a2028;
+    --dark: #eee5d4;
+    --light: #181613;
+    --grey: #b8aa94;
+    --blue: #d8a657;
+    --platinum: #2a251f;
 
     --foreground: var(--dark);
     --foreground-shade: var(--grey);
     --foreground-accent: var(--blue);
     --background: var(--light);
-    --border-color: #2b3340;
+    --border-color: #4b4136;
 
-    --skeleton-background: #222a35;
+    --skeleton-background: #332c25;
   }
 }
 
