@@ -51,17 +51,13 @@
   min-width: 0;
   scroll-snap-align: start;
   height: 100%;
+
+  --card-border-width: 2px;
+  --card-border-color: var(--foreground-accent);
+  --card-shadow: 0.375rem 0.375rem 0
+    color-mix(in srgb, var(--foreground-accent) 26%, transparent);
 }
 
 .card::before {
   inset: calc(var(--featured-card-hover-offset) * -1);
-}
-
-.preview {
-  width: 100%;
-  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.14);
-}
-
-.body {
-  row-gap: 0;
 }

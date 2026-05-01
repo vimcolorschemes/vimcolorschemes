@@ -76,7 +76,7 @@ export default async function IndexPage({ params }: IndexPageProps) {
     <div className={styles.homepageContent}>
       {isHomepage && (
         <Suspense>
-          <FeaturedRepositories />
+          <FeaturedRepositories pageContext={pageContext} />
         </Suspense>
       )}
       <Repositories pageContext={pageContext} />

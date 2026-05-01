@@ -12,94 +12,6 @@
   --skeleton-border-radius: 0;
 }
 
-.card {
-  border: 1px solid color-mix(in srgb, var(--foreground) 65%, transparent);
-  border-radius: 0;
-  background: #ece8dd;
-  box-shadow: none;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.previewFrame {
-  z-index: 4;
-  margin-bottom: 0;
-}
-
-.preview {
-  background: var(--colorscheme-NormalBg);
-  color: var(--colorscheme-NormalFg);
-  overflow: hidden;
-
-  --_code-line-height: 1.25rem;
-
-  --code-status-line-background: var(
-    --colorscheme-StatusLineBg,
-    var(--colorscheme-NormalBg)
-  );
-  --code-status-line-foreground: var(
-    --colorscheme-StatusLineFg,
-    var(--colorscheme-NormalFg)
-  );
-
-  --code-gutter-background: var(
-    --colorscheme-LineNrBg,
-    var(--colorscheme-NormalBg)
-  );
-  --code-gutter-foreground: var(
-    --colorscheme-LineNrFg,
-    var(--colorscheme-NormalBg)
-  );
-  --code-gutter-active-background: var(
-    --colorscheme-CursorLineNrBg,
-    var(--colorscheme-CursorLineBg, var(--colorscheme-NormalBg))
-  );
-  --code-gutter-active-foreground: var(
-    --colorscheme-CursorLineNrFg,
-    var(--colorscheme-CursorLineFg, var(--colorscheme-NormalFg))
-  );
-}
-
-.footer {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: baseline;
-  gap: var(--spacing-xs);
-  min-width: 0;
-  padding: 0.3125rem var(--spacing-xs);
-  border-top: 1px solid color-mix(in srgb, var(--foreground) 65%, transparent);
-  background: #f3efe4;
-  color: #24221e;
-  font-family: var(--font-mono);
-  font-size: var(--font-size-md);
-  line-height: 1.25rem;
-  user-select: text;
-}
-
-.name,
-.background {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.name {
-  margin: 0;
-  font-size: inherit;
-  font-weight: 700;
-}
-
-.background {
-  color: #6d675d;
-}
-
 @media (min-width: 992px) {
   .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -109,11 +21,5 @@
 @media (min-width: 1440px) {
   .container {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .card {
-    background: #24221e;
   }
 }
