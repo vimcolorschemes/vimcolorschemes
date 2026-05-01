@@ -4,12 +4,12 @@
   border-radius: 14px;
 
   --card-border-width: 1px;
-  --card-border-color: color-mix(in srgb, var(--foreground) 65%, transparent);
-  --card-background: #ece8dd;
+  --card-border-color: color-mix(in srgb, var(--foreground) 46%, transparent);
+  --card-background: #d8dad5;
   --card-shadow: none;
-  --card-footer-background: #f3efe4;
-  --card-footer-color: #24221e;
-  --card-footer-meta-color: #6d675d;
+  --card-footer-background: #e1e3de;
+  --card-footer-color: #1f2328;
+  --card-footer-meta-color: #697077;
 }
 
 .framed {
@@ -261,6 +261,10 @@
 
 @media (prefers-color-scheme: dark) {
   .framed {
-    --card-background: #24221e;
+    --card-border-color: #4a5458;
+    --card-background: #1f2325;
+    --card-footer-background: #292f32;
+    --card-footer-color: #e7e9e4;
+    --card-footer-meta-color: #a0a8aa;
   }
 }
