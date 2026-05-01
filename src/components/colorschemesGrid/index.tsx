@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 
-import Card from '@/components/card';
+import Card, { cardCodePreviewClassName } from '@/components/card';
 import { CodeSnippetLines } from '@/components/preview/codeSnippet';
 import { ColorschemeConfigLines } from '@/components/preview/colorschemeConfig';
 import Code from '@/components/ui/code';
@@ -41,15 +41,15 @@ function ColorschemeCard({ colorscheme }: ColorschemeCardProps) {
   const title = `${colorscheme.name} ${background}`;
 
   return (
-    <Card.Root className={styles.card}>
-      <Card.Content className={styles.content}>
-        <Card.Preview className={styles.previewFrame}>
+    <Card.Root framed>
+      <Card.Content>
+        <Card.Preview flush>
           <Code
             fileName={colorscheme.name}
             lineCount={15}
             activeLine={9}
             hideStatusLine
-            className={styles.preview}
+            className={cardCodePreviewClassName}
             style={style}
           >
             <ColorschemeConfigLines
@@ -60,10 +60,10 @@ function ColorschemeCard({ colorscheme }: ColorschemeCardProps) {
             <CodeSnippetLines />
           </Code>
         </Card.Preview>
-        <footer className={styles.footer} aria-label={title} title={title}>
-          <h2 className={styles.name}>{colorscheme.name}</h2>
-          <span className={styles.background}>{background}</span>
-        </footer>
+        <Card.Footer aria-label={title} title={title}>
+          <Card.FooterTitle>{colorscheme.name}</Card.FooterTitle>
+          <Card.FooterMeta>{background}</Card.FooterMeta>
+        </Card.Footer>
       </Card.Content>
     </Card.Root>
   );

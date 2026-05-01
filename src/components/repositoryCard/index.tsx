@@ -3,65 +3,64 @@ import { Repository } from '@/models/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import Card from '@/components/card';
+import Card, { cardFooterIconClassName } from '@/components/card';
 import IconStar from '@/components/ui/icons/star';
 import IconTrending from '@/components/ui/icons/trending';
 
-import styles from './index.module.css';
-import InteractiveTerminalPreview from './interactiveTerminalPreview';
+import RepositoryCardInteractiveTerminalPreview from './interactiveTerminalPreview';
 
 type RepositoryCardProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
+  className?: string;
+  headingLevel?: 'h2' | 'h3';
 };
 
 export default function RepositoryCard({
   repositoryDTO,
   pageContext,
+  className,
+  headingLevel,
 }: RepositoryCardProps) {
   const repository = new Repository(repositoryDTO);
   const title = `${repository.name} @${repository.owner.name}`;
 
   return (
-    <Card.Root interactive className={styles.card}>
-      <Card.Content className={styles.content}>
+    <Card.Root framed interactive className={className}>
+      <Card.Content>
         <Card.Link href={repository.route} label={repository.title} />
-        <Card.Preview className={styles.previewFrame}>
-          <InteractiveTerminalPreview
+        <Card.Preview flush interactiveControls>
+          <RepositoryCardInteractiveTerminalPreview
             repositoryDTO={repositoryDTO}
             pageContext={pageContext}
           />
         </Card.Preview>
-        <footer className={styles.footer} aria-label={title} title={title}>
-          <div className={styles.identity}>
-            <h2 className={styles.name}>{repository.name}</h2>
-            <span className={styles.owner}>@{repository.owner.name}</span>
-          </div>
-          <dl className={styles.stats}>
-            <div
-              className={styles.stat}
+        <Card.Footer aria-label={title} title={title}>
+          <Card.FooterIdentity>
+            <Card.FooterTitle as={headingLevel}>
+              {repository.name}
+            </Card.FooterTitle>
+            <Card.FooterMeta>@{repository.owner.name}</Card.FooterMeta>
+          </Card.FooterIdentity>
+          <Card.FooterStats>
+            <Card.FooterStat
+              label="stars"
               title={`${repository.stargazersCount} stars`}
             >
-              <dt className={styles.statLabel}>stars</dt>
-              <dd className={styles.statValue}>
-                <IconStar className={styles.icon} />
-                {formatCount(repository.stargazersCount)}
-              </dd>
-            </div>
+              <IconStar className={cardFooterIconClassName} />
+              {formatCount(repository.stargazersCount)}
+            </Card.FooterStat>
             {repository.weekStargazersCount > 0 && (
-              <div
-                className={styles.stat}
+              <Card.FooterStat
+                label="trending"
                 title={`${repository.weekStargazersCount} trending stars`}
               >
-                <dt className={styles.statLabel}>trending</dt>
-                <dd className={styles.statValue}>
-                  <IconTrending className={styles.icon} />
-                  {formatCount(repository.weekStargazersCount)}
-                </dd>
-              </div>
+                <IconTrending className={cardFooterIconClassName} />
+                {formatCount(repository.weekStargazersCount)}
+              </Card.FooterStat>
             )}
-          </dl>
-        </footer>
+          </Card.FooterStats>
+        </Card.Footer>
       </Card.Content>
     </Card.Root>
   );
