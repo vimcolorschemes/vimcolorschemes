@@ -1,7 +1,7 @@
 :root {
   color-scheme: light dark;
-  --content-max-width: 120rem;
-  --page-max-width: 80rem;
+  --content-max-width: 160rem;
+  --page-max-width: var(--content-max-width);
   --content-padding: 0 var(--spacing-sm);
 
   --dark: #333;
