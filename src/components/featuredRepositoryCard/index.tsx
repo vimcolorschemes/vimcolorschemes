@@ -18,7 +18,7 @@ export default function FeaturedRepositoryCard({
   const background = colorscheme.getDefaultBackground();
 
   return (
-    <Card.Root className={styles.card}>
+    <Card.Root interactive className={styles.card}>
       <Card.Content>
         <Card.Preview className={styles.preview}>
           <Preview
