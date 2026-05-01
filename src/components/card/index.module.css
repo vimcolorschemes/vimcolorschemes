@@ -11,8 +11,8 @@
 .container::before {
   content: '';
   position: absolute;
-  inset: calc(var(--spacing-sm) * -1);
-  border-radius: 16px;
+  inset: var(--card-hover-inset, calc(var(--spacing-sm) * -1));
+  border-radius: var(--card-hover-radius, 16px);
   background-color: transparent;
   opacity: 0;
   transition:
