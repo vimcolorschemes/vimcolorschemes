@@ -27,6 +27,10 @@
   color: var(--_gutter-foreground);
 }
 
+.hideStatusLine .gutter {
+  bottom: 0;
+}
+
 .gutterLine {
   width: 100%;
   text-align: right;

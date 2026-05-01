@@ -24,7 +24,7 @@ export default function ColorschemeConfig({
 }: ColorschemeConfigProps) {
   return (
     <Code fileName="init.lua" lineCount={2}>
-      <InitLua
+      <ColorschemeConfigLines
         colorscheme={colorscheme}
         background={background}
         onToggleColorscheme={onToggleColorscheme}
@@ -34,7 +34,7 @@ export default function ColorschemeConfig({
   );
 }
 
-function InitLua({
+export function ColorschemeConfigLines({
   colorscheme,
   background,
   onToggleColorscheme,
