@@ -8,11 +8,11 @@ import { Repository } from '@/models/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import { CodeSnippetLines } from '@/components/preview/codeSnippet';
-import { ColorschemeConfigLines } from '@/components/preview/colorschemeConfig';
-import Code from '@/components/ui/code';
+import { cardCodePreviewClassName } from '@/components/card';
 
-import styles from './index.module.css';
+import { CodeSnippetLines } from '../../preview/codeSnippet';
+import { ColorschemeConfigLines } from '../../preview/colorschemeConfig';
+import Code from '../../ui/code';
 
 type InteractiveTerminalPreviewProps = {
   repositoryDTO: RepositoryDTO;
@@ -20,7 +20,7 @@ type InteractiveTerminalPreviewProps = {
   className?: string;
 };
 
-export default function InteractiveTerminalPreview({
+export default function RepositoryCardInteractiveTerminalPreview({
   repositoryDTO,
   pageContext,
   className,
@@ -74,7 +74,7 @@ export default function InteractiveTerminalPreview({
       lineCount={15}
       activeLine={9}
       hideStatusLine
-      className={cn(styles.preview, className)}
+      className={cn(cardCodePreviewClassName, className)}
       style={style}
     >
       <ColorschemeConfigLines

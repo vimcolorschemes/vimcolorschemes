@@ -2,11 +2,19 @@ import Link from 'next/link';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
-import FeaturedRepositoryCard from '@/components/featuredRepositoryCard';
+import type { PageContext } from '@/lib/pageContext';
+
+import RepositoryCard from '@/components/repositoryCard';
 
 import styles from './index.module.css';
 
-export default async function FeaturedRepositories() {
+type FeaturedRepositoriesProps = {
+  pageContext: PageContext;
+};
+
+export default async function FeaturedRepositories({
+  pageContext,
+}: FeaturedRepositoriesProps) {
   const repositories = await RepositoriesService.getFeaturedRepositoryDTOs();
 
   if (!repositories.length) {
@@ -32,9 +40,12 @@ export default async function FeaturedRepositories() {
       </div>
       <div className={styles.list}>
         {repositories.map(repositoryDTO => (
-          <FeaturedRepositoryCard
+          <RepositoryCard
             key={`${repositoryDTO.owner.name}/${repositoryDTO.name}`}
             repositoryDTO={repositoryDTO}
+            pageContext={pageContext}
+            className={styles.card}
+            headingLevel="h3"
           />
         ))}
       </div>
