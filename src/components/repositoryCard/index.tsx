@@ -23,7 +23,7 @@ export default function RepositoryCard({
   const title = `${repository.name} @${repository.owner.name}`;
 
   return (
-    <Card.Root className={styles.card}>
+    <Card.Root interactive className={styles.card}>
       <Card.Content className={styles.content}>
         <Card.Link href={repository.route} label={repository.title} />
         <Card.Preview className={styles.previewFrame}>
