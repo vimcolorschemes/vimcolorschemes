@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from 'react';
 
+import HoverPrefetchLink from './hoverPrefetchLink';
 import styles from './index.module.css';
 
 type RootProps = ComponentPropsWithoutRef<'article'> & {
@@ -39,14 +40,12 @@ type LinkProps = Pick<ComponentProps<typeof Link>, 'href'> & {
 
 function CardLink({ href, label, className }: LinkProps) {
   return (
-    <Link
+    <HoverPrefetchLink
       href={href}
-      prefetch={false}
       className={cn(styles.link, className)}
-      aria-label={label}
-    >
-      <span className={styles.linkLabel}>{label}</span>
-    </Link>
+      label={label}
+      labelClassName={styles.linkLabel}
+    />
   );
 }
 
