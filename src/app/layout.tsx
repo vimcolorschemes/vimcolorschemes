@@ -49,9 +49,10 @@ export const metadata: Metadata = {
 
 interface LayoutProps {
   children: ReactNode;
+  modal: ReactNode;
 }
 
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children, modal }: LayoutProps) {
   return (
     <html lang="en">
       <body className={cn(fontStandard.variable, fontMono.variable)}>
@@ -62,6 +63,7 @@ export default function Layout({ children }: LayoutProps) {
             strategy="afterInteractive"
           />
           {children}
+          {modal}
           <Footer />
         </QueryProvider>
       </body>
