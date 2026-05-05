@@ -337,7 +337,7 @@ async function cachedGetRepositoryCount(filter: Filter): Promise<number> {
 
 const cachedGetRepositoryDTOs = unstable_cache(
   getRepositoryDTOs,
-  [`${BUILD_ID}-repository-dtos`],
+  [`${BUILD_ID}-repository-dtos-${Constants.REPOSITORY_PAGE_SIZE}`],
   { tags: ['repositories'] },
 );
 

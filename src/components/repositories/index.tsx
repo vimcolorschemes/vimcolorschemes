@@ -6,7 +6,6 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import RepositoriesContent from '@/components/repositories/content';
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import LoadMore from '@/components/repositories/loadMore';
 import Skeleton from '@/components/ui/skeleton';
@@ -31,12 +30,6 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
         <RepositoriesHeader countPromise={countPromise} />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
-        <RepositoriesContent
-          repositoriesPromise={repositoriesPromise}
-          pageContext={pageContext}
-        />
-      </Suspense>
-      <Suspense>
         <LoadMore
           pageContext={pageContext}
           initialRepositoriesPromise={initialRepositoriesPromise}
