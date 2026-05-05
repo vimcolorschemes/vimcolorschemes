@@ -18,10 +18,15 @@
   align-items: baseline;
   column-gap: var(--spacing-xs);
   row-gap: var(--spacing-xxs);
+  font-family: var(--font-mono);
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   font-weight: 700;
   word-break: break-word;
+}
+
+.operator {
+  color: var(--foreground-accent);
 }
 
 .count {
