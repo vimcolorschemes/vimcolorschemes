@@ -17,20 +17,7 @@ type RepositoriesProps = {
   pageContext: PageContext;
 };
 
-function buildTitle(filter: PageContext['filter']): string {
-  if (!filter.background) {
-    return 'All';
-  }
-
-  if (filter.background === 'both') {
-    return 'with light and dark background';
-  }
-
-  return `with ${filter.background} background`;
-}
-
 export default function Repositories({ pageContext }: RepositoriesProps) {
-  const title = buildTitle(pageContext.filter);
   const repositoriesPromise =
     RepositoriesService.getRepositoryDTOs(pageContext);
   const initialRepositoriesPromise: Promise<RepositoryDTO[]> =
@@ -40,8 +27,8 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
   return (
     <section className={styles.container} aria-labelledby="repositories-title">
-      <Suspense fallback={<RepositoriesHeaderFallback title={title} />}>
-        <RepositoriesHeader countPromise={countPromise} title={title} />
+      <Suspense fallback={<RepositoriesHeaderFallback />}>
+        <RepositoriesHeader countPromise={countPromise} />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
         <RepositoriesContent
@@ -60,11 +47,11 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
 }
 
-function RepositoriesHeaderFallback({ title }: { title: string }) {
+function RepositoriesHeaderFallback() {
   return (
     <div className={styles.header}>
       <h2 id="repositories-title" className={styles.title}>
-        {title}
+        <span className={styles.operator}>❯</span> ls ~/.colors/
         <Skeleton inline className={styles.countSkeleton} />
       </h2>
     </div>
@@ -73,17 +60,15 @@ function RepositoriesHeaderFallback({ title }: { title: string }) {
 
 async function RepositoriesHeader({
   countPromise,
-  title,
 }: {
   countPromise: Promise<number>;
-  title: string;
 }) {
   const count = await countPromise;
 
   return (
     <div className={styles.header}>
       <h2 id="repositories-title" className={styles.title}>
-        {title}
+        <span className={styles.operator}>❯</span> ls ~/.colors/
         <span className={styles.count}>
           {count} repositor{count === 1 ? 'y' : 'ies'}
         </span>

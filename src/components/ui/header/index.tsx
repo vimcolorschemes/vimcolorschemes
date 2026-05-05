@@ -7,14 +7,17 @@ import styles from './index.module.css';
 
 type HeaderProps = {
   children?: ReactNode;
+  showBranding?: boolean;
 };
 
-export default function Header({ children }: HeaderProps) {
+export default function Header({ children, showBranding = true }: HeaderProps) {
   return (
     <header className={styles.container}>
-      <Link href="/i/trending" prefetch={false} className={styles.link}>
-        <Branding />
-      </Link>
+      {showBranding && (
+        <Link href="/i/trending" prefetch={false} className={styles.link}>
+          <Branding />
+        </Link>
+      )}
       {children}
     </header>
   );

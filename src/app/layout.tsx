@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import type { Metadata } from 'next';
-import { Source_Sans_3, Ubuntu_Mono } from 'next/font/google';
+import { JetBrains_Mono, Source_Sans_3 } from 'next/font/google';
 import Script from 'next/script';
 import { ReactNode } from 'react';
 
@@ -16,7 +16,7 @@ const fontStandard = Source_Sans_3({
   variable: '--font-standard',
 });
 
-const fontMono = Ubuntu_Mono({
+const fontMono = JetBrains_Mono({
   subsets: ['latin'],
   weight: '400',
   variable: '--font-mono',
