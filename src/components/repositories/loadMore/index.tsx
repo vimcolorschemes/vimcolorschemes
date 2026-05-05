@@ -56,7 +56,7 @@ export default function LoadMore({
   });
 
   const repositories =
-    repositoriesQuery.data?.pages.slice(1).flatMap(page => page.repositories) ??
+    repositoriesQuery.data?.pages.flatMap(page => page.repositories) ??
     [];
   const hasMore = repositoriesQuery.hasNextPage;
 
