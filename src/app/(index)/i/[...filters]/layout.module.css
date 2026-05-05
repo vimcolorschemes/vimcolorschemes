@@ -6,36 +6,3 @@
   row-gap: var(--spacing-sm);
   padding: var(--content-padding);
 }
-
-.inputs {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap: var(--spacing-md);
-  row-gap: var(--spacing-sm);
-  max-width: var(--page-max-width);
-  padding: var(--content-padding);
-}
-
-.backgroundFallbackIndicator {
-  position: relative;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  border: 1px solid var(--foreground);
-  border-radius: 50%;
-}
-
-.backgroundFallbackIndicator[data-active='true']::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0.625em;
-  height: 0.625em;
-  background: var(--foreground);
-  border-radius: 50%;
-}

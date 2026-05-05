@@ -7,13 +7,11 @@ import { SortOptions } from '@/lib/sort';
 
 import { PageContextHelper } from '@/helpers/pageContext';
 
-import BackgroundInput from '@/components/backgroundInput';
+import ExploreCommandInput from '@/components/exploreCommandInput';
+import commandStyles from '@/components/exploreCommandInput/index.module.css';
 import IndexPendingBoundary from '@/components/indexPendingBoundary';
 import IndexPendingProvider from '@/components/providers/indexPendingProvider';
-import SortInput from '@/components/sortInput';
-import sortInputStyles from '@/components/sortInput/index.module.css';
 import Header from '@/components/ui/header';
-import radioStyles from '@/components/ui/radio/index.module.css';
 
 import styles from './layout.module.css';
 
@@ -31,44 +29,21 @@ export default async function IndexPageLayout({
 
   return (
     <IndexPendingProvider>
-      <Header>
-        <Suspense fallback={<SortInputFallback pageContext={pageContext} />}>
-          <SortInput />
+      <Header showBranding={false}>
+        <Suspense
+          fallback={<ExploreCommandInputFallback pageContext={pageContext} />}
+        >
+          <ExploreCommandInput />
         </Suspense>
       </Header>
       <main className={styles.container}>
-        <div className={styles.inputs}>
-          <Suspense
-            fallback={<BackgroundInputFallback pageContext={pageContext} />}
-          >
-            <BackgroundInput />
-          </Suspense>
-        </div>
         <IndexPendingBoundary>{children}</IndexPendingBoundary>
       </main>
     </IndexPendingProvider>
   );
 }
 
-function SortInputFallback({ pageContext }: { pageContext: PageContext }) {
-  return (
-    <div className={sortInputStyles.container} aria-hidden="true">
-      <legend className={sortInputStyles.legend}>Sort</legend>
-      <ul className={sortInputStyles.list}>
-        {Object.values(SortOptions).map(option => (
-          <li
-            key={option}
-            className={`${sortInputStyles.option}${pageContext.sort === option ? ` ${sortInputStyles.active}` : ''}`}
-          >
-            <p>{option}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function BackgroundInputFallback({
+function ExploreCommandInputFallback({
   pageContext,
 }: {
   pageContext: PageContext;
@@ -81,19 +56,36 @@ function BackgroundInputFallback({
   ];
 
   return (
-    <fieldset className={radioStyles.container} aria-hidden="true">
-      <legend className={radioStyles.legend}>background:</legend>
-      <div className={radioStyles.options}>
-        {options.map(option => (
-          <span key={option.label} className={radioStyles.option}>
+    <div className={commandStyles.container} aria-hidden="true">
+      <span className={commandStyles.prompt}>~/vimcolorschemes</span>
+      <span className={commandStyles.operator}>❯</span>
+      <span className={commandStyles.command}>explore</span>
+      <span className={commandStyles.flag}>--sort</span>
+      <span className={commandStyles.group}>
+        {Object.values(SortOptions).map((option, index) => (
+          <span key={option} className={commandStyles.segment}>
+            {index > 0 && <span className={commandStyles.pipe}>|</span>}
             <span
-              className={styles.backgroundFallbackIndicator}
-              data-active={pageContext.filter.background === option.value}
-            />
-            <span>{option.label}</span>
+              className={`${commandStyles.option}${pageContext.sort === option ? ` ${commandStyles.active}` : ''}`}
+            >
+              {option}
+            </span>
           </span>
         ))}
-      </div>
-    </fieldset>
+      </span>
+      <span className={commandStyles.flag}>--background</span>
+      <span className={commandStyles.group}>
+        {options.map((option, index) => (
+          <span key={option.label} className={commandStyles.segment}>
+            {index > 0 && <span className={commandStyles.pipe}>|</span>}
+            <span
+              className={`${commandStyles.option}${pageContext.filter.background === option.value ? ` ${commandStyles.active}` : ''}`}
+            >
+              {option.label}
+            </span>
+          </span>
+        ))}
+      </span>
+    </div>
   );
 }

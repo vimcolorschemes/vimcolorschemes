@@ -25,7 +25,7 @@ export default async function FeaturedRepositories({
     <section className={styles.container} aria-labelledby="featured-title">
       <div className={styles.header}>
         <h2 id="featured-title" className={styles.title}>
-          Featured
+          <span className={styles.operator}>❯</span> head -n 4 ~/featured
         </h2>
         <p className={styles.note}>
           Hand-picked colorschemes worth a look.{' '}
