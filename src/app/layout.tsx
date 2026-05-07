@@ -1,6 +1,6 @@
 import cn from 'classnames';
 import type { Metadata } from 'next';
-import { JetBrains_Mono, Source_Sans_3 } from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import Script from 'next/script';
 import { ReactNode } from 'react';
 
@@ -11,14 +11,15 @@ import './reset.css';
 import './globals.css';
 import './vim.css';
 
-const fontStandard = Source_Sans_3({
+const fontStandard = Geist({
   subsets: ['latin'],
+  weight: ['400', '700'],
   variable: '--font-standard',
 });
 
-const fontMono = JetBrains_Mono({
+const fontMono = Geist_Mono({
   subsets: ['latin'],
-  weight: '400',
+  weight: ['400', '700'],
   variable: '--font-mono',
 });
 

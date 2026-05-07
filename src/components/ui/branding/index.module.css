@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-xs);
+  font-family: var(--font-mono);
   font-size: var(--font-size-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
   line-height: var(--line-height-lg);
 }
 
@@ -14,7 +17,7 @@
 }
 
 .name {
-  color: var(--foreground-shade);
+  color: var(--foreground);
 }
 
 @media (max-width: 599px) {
@@ -22,8 +25,8 @@
     display: none;
   }
 }
-.name > span:last-child {
-  color: var(--foreground);
+.name > span {
+  color: var(--foreground-accent);
 }
 
 .logo {
