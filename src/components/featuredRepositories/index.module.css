@@ -13,8 +13,10 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: space-between;
   column-gap: var(--spacing-xs);
   row-gap: var(--spacing-xxs);
+  width: 100%;
 }
 
 .title {
@@ -28,14 +30,12 @@
   color: var(--foreground-accent);
 }
 
-.note {
-  color: var(--foreground-shade);
+.cta {
+  color: var(--foreground-accent);
+  font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
-}
-
-.link {
-  color: var(--foreground-accent);
+  margin-left: auto;
 }
 
 .list {

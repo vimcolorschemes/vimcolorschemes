@@ -27,16 +27,13 @@ export default async function FeaturedRepositories({
         <h2 id="featured-title" className={styles.title}>
           <span className={styles.operator}>❯</span> head -n 4 ~/featured
         </h2>
-        <p className={styles.note}>
-          Hand-picked colorschemes worth a look.{' '}
-          <Link
-            href="/about#get-featured"
-            prefetch={false}
-            className={styles.link}
-          >
-            Get yours featured.
-          </Link>
-        </p>
+        <Link
+          href="/about#get-featured"
+          prefetch={false}
+          className={styles.cta}
+        >
+          Get your colorscheme featured
+        </Link>
       </div>
       <div className={styles.list}>
         {repositories.map(repositoryDTO => (

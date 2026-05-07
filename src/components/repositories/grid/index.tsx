@@ -2,6 +2,8 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
+import { PageContextHelper } from '@/helpers/pageContext';
+
 import RepositoryCard from '@/components/repositoryCard';
 
 import styles from './index.module.css';
@@ -15,6 +17,10 @@ export default function RepositoriesGrid({
   repositories,
   pageContext,
 }: RepositoriesGridProps) {
+  const cardClassName = PageContextHelper.isHomepage(pageContext)
+    ? styles.homepageCard
+    : undefined;
+
   return (
     <section className={styles.container}>
       {repositories.map(repository => (
@@ -22,6 +28,7 @@ export default function RepositoriesGrid({
           key={`${repository.owner.name}/${repository.name}`}
           repositoryDTO={repository}
           pageContext={pageContext}
+          className={cardClassName}
         />
       ))}
     </section>
