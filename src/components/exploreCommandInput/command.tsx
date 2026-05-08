@@ -38,44 +38,56 @@ export default function ExploreCommand({
       aria-label={interactive ? 'Explore color schemes' : undefined}
     >
       <Prompt interactive={interactive} />
-      <span className={styles.operator}>❯</span>
-      <span className={styles.command}>explore</span>
-      <span className={styles.flag}>--sort</span>
-      <span className={styles.group} aria-label="Sort repositories">
-        {sortOptions.map((option, index) => (
-          <CommandOption
-            key={option}
-            href={buildIndexRoutePath({
-              sort: option,
-              filter: pageContext.filter,
-            })}
-            active={pageContext.sort === option}
-            interactive={interactive}
-            separator={index > 0}
-          >
-            {option}
-          </CommandOption>
-        ))}
-      </span>
-      <span className={styles.flag}>--background</span>
-      <span className={styles.group} aria-label="Filter by background">
-        {backgroundOptions.map((option, index) => (
-          <CommandOption
-            key={option.label}
-            href={buildIndexRoutePath({
-              sort: pageContext.sort,
-              filter: {
-                ...pageContext.filter,
-                background: option.value,
-              },
-            })}
-            active={pageContext.filter.background === option.value}
-            interactive={interactive}
-            separator={index > 0}
-          >
-            {option.label}
-          </CommandOption>
-        ))}
+      <span className={styles.commandLine}>
+        <span className={styles.operator}>❯</span>
+        <span className={styles.command}>explore</span>
+        <span className={styles.argument}>
+          <span className={styles.flag}>
+            <span className={styles.fullFlag}>--sort</span>
+            <span className={styles.shortFlag}>-s</span>
+          </span>
+          <span className={styles.group} aria-label="Sort repositories">
+            {sortOptions.map((option, index) => (
+              <CommandOption
+                key={option}
+                href={buildIndexRoutePath({
+                  sort: option,
+                  filter: pageContext.filter,
+                })}
+                active={pageContext.sort === option}
+                interactive={interactive}
+                separator={index > 0}
+              >
+                {option}
+              </CommandOption>
+            ))}
+          </span>
+        </span>
+        <span className={styles.argument}>
+          <span className={styles.flag}>
+            <span className={styles.fullFlag}>--background</span>
+            <span className={styles.shortFlag}>-b</span>
+          </span>
+          <span className={styles.group} aria-label="Filter by background">
+            {backgroundOptions.map((option, index) => (
+              <CommandOption
+                key={option.label}
+                href={buildIndexRoutePath({
+                  sort: pageContext.sort,
+                  filter: {
+                    ...pageContext.filter,
+                    background: option.value,
+                  },
+                })}
+                active={pageContext.filter.background === option.value}
+                interactive={interactive}
+                separator={index > 0}
+              >
+                {option.label}
+              </CommandOption>
+            ))}
+          </span>
+        </span>
       </span>
     </div>
   );

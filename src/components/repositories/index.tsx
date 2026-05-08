@@ -26,8 +26,13 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
   return (
     <section className={styles.container} aria-labelledby="repositories-title">
-      <Suspense fallback={<RepositoriesHeaderFallback />}>
-        <RepositoriesHeader countPromise={countPromise} />
+      <Suspense
+        fallback={<RepositoriesHeaderFallback pageContext={pageContext} />}
+      >
+        <RepositoriesHeader
+          countPromise={countPromise}
+          pageContext={pageContext}
+        />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
         <LoadMore
@@ -40,11 +45,15 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
 }
 
-function RepositoriesHeaderFallback() {
+function RepositoriesHeaderFallback({
+  pageContext,
+}: {
+  pageContext: PageContext;
+}) {
   return (
     <div className={styles.header}>
       <h2 id="repositories-title" className={styles.title}>
-        <span className={styles.operator}>❯</span> ls ~/.colors/
+        {pageContext.sort}
         <Skeleton inline className={styles.countSkeleton} />
       </h2>
     </div>
@@ -53,15 +62,17 @@ function RepositoriesHeaderFallback() {
 
 async function RepositoriesHeader({
   countPromise,
+  pageContext,
 }: {
   countPromise: Promise<number>;
+  pageContext: PageContext;
 }) {
   const count = await countPromise;
 
   return (
     <div className={styles.header}>
       <h2 id="repositories-title" className={styles.title}>
-        <span className={styles.operator}>❯</span> ls ~/.colors/
+        {pageContext.sort}
         <span className={styles.count}>
           {count} repositor{count === 1 ? 'y' : 'ies'}
         </span>

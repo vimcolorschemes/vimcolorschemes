@@ -1,21 +1,31 @@
 .button {
   background: none;
-  border: none;
-  padding: 0;
-  color: inherit;
-  font: inherit;
+  border: 1px solid var(--border-color);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: var(--foreground-accent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
   font-weight: bold;
   cursor: pointer;
+  align-self: flex-start;
+}
+
+.button::before {
+  content: '$ ';
+  color: currentColor;
 }
 
 .button:hover:not(:disabled) {
-  text-decoration: underline;
+  background: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
 }
 
 .button:focus-visible {
   outline: 2px solid var(--foreground-accent);
   outline-offset: var(--spacing-xs);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .button:disabled {
