@@ -1,6 +1,8 @@
 .container {
+  flex: 1 0 auto;
   width: 100%;
   padding: var(--content-padding);
+  padding-bottom: var(--spacing-sm);
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-sm);

@@ -3,3 +3,267 @@
   max-width: var(--page-max-width);
   margin: 0 auto;
 }
+
+.layout {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--page-max-width);
+  min-height: calc(
+    100dvh - var(--statusline-height) - (var(--spacing-sm) * 2) - 6rem
+  );
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr) minmax(18rem, 23rem);
+  align-items: stretch;
+  gap: var(--spacing-sm);
+}
+
+.variantPane,
+.infoPane,
+.previewCard {
+  min-width: 0;
+}
+
+.variantPane,
+.infoPane {
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--foreground) 4%, var(--background));
+}
+
+.variantPane {
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--background) 78%, transparent);
+  font-family: var(--font-mono);
+}
+
+.variantHeader {
+  padding: var(--spacing-xs);
+  border-bottom: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--background));
+  color: color-mix(in srgb, var(--foreground) 72%, transparent);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.variantList {
+  display: flex;
+  flex-direction: column;
+}
+
+.variantButton {
+  display: grid;
+  grid-template-columns: 0.75rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0 var(--spacing-xxs);
+  padding: var(--spacing-xs);
+  border: 0;
+  border-bottom: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--foreground);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: 1.15;
+  text-align: left;
+  cursor: pointer;
+}
+
+.variantButton:hover,
+.variantButton:focus-visible,
+.variantButtonActive {
+  background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+}
+
+.variantButton:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--foreground) 35%, transparent);
+  outline-offset: -2px;
+}
+
+.variantSwatch {
+  grid-row: span 2;
+  width: 0.75rem;
+  height: 2rem;
+  align-self: stretch;
+  background: var(--colorscheme-NormalBg, var(--background));
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--colorscheme-NormalFg, var(--foreground)) 35%,
+      transparent
+    );
+}
+
+.variantName,
+.variantBackground {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.variantName {
+  font-weight: 700;
+}
+
+.variantButtonActive .variantName::before {
+  content: '> ';
+  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+}
+
+.variantBackground {
+  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+}
+
+.previewPane {
+  min-width: 0;
+  min-height: 24rem;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.previewCard {
+  width: 100%;
+  height: 100%;
+}
+
+.previewCard > div {
+  height: 100%;
+  min-height: 100%;
+}
+
+.codePreview {
+  height: 100%;
+  min-height: 100%;
+}
+
+.previewEmpty {
+  grid-column: 1 / span 2;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.infoPane {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--background) 78%, transparent);
+  font-family: var(--font-mono);
+  line-height: 1.35;
+}
+
+.infoPane * {
+  font-family: inherit;
+}
+
+.infoPane h1 {
+  min-height: 0;
+}
+
+.infoPane h1,
+.infoPane p,
+.infoPane dl,
+.infoPane dd {
+  margin: 0;
+}
+
+.githubLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs) 0;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  text-transform: lowercase;
+}
+
+.githubLink > svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: 0 0 auto;
+}
+
+.repoFacts {
+  display: grid;
+  gap: 0;
+  padding-top: var(--spacing-xs);
+  border-top: 1px solid var(--border-color);
+}
+
+.repoFacts > div {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(6.5rem, auto) minmax(0, 1fr);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xxs) 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--border-color) 60%, transparent);
+}
+
+.repoFacts dt {
+  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  text-transform: lowercase;
+}
+
+.repoFacts dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(6rem, 8rem) minmax(0, 1fr);
+  }
+
+  .infoPane {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .variantPane {
+    max-height: none;
+  }
+
+  .variantList {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .variantButton {
+    width: auto;
+    flex: 1 1 min(100%, 10rem);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 0;
+  }
+
+  .previewPane,
+  .previewEmpty {
+    grid-column: auto;
+  }
+}
+
+@media (hover: none) {
+  .variantButton:hover {
+    background: transparent;
+  }
+
+  .variantButtonActive {
+    background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+  }
+}

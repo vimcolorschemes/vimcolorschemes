@@ -1,6 +1,8 @@
 .container {
   font-family: var(--font-mono);
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   --_gutter-background: var(--code-gutter-background, #000);
   --_gutter-foreground: var(--code-gutter-foreground, #fff);
@@ -43,11 +45,13 @@
 }
 
 .code {
+  flex: 1;
   transform: translateX(var(--_gutter-width));
   display: flex;
   flex-direction: column;
   padding: var(--_code-spacing) 0;
   width: calc(100% - var(--_gutter-width));
+  min-height: 0;
   overflow-x: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;

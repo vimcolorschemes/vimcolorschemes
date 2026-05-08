@@ -10,10 +10,16 @@ import styles from './index.module.css';
 type OwnerTitleProps = {
   owner?: Owner;
   as?: 'span' | 'p' | 'h1' | 'h2' | 'h3';
+  prefix?: string;
   className?: string;
 };
 
-export default function OwnerTitle({ owner, as, className }: OwnerTitleProps) {
+export default function OwnerTitle({
+  owner,
+  as,
+  prefix,
+  className,
+}: OwnerTitleProps) {
   const Title = as ?? 'span';
 
   return (
@@ -30,7 +36,7 @@ export default function OwnerTitle({ owner, as, className }: OwnerTitleProps) {
         />
       )}
       <Title className={styles.title}>
-        {owner?.name ?? <TuiLoadingInline />}
+        {owner ? `${prefix ?? ''}${owner.name}` : <TuiLoadingInline />}
       </Title>
     </div>
   );
