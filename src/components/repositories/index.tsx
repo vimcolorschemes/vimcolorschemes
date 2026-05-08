@@ -6,6 +6,8 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
+import { buildIndexRoutePath } from '@/helpers/indexRoute';
+
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import LoadMore from '@/components/repositories/loadMore';
 import Skeleton from '@/components/ui/skeleton';
@@ -36,6 +38,7 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
         <LoadMore
+          key={buildIndexRoutePath(pageContext)}
           pageContext={pageContext}
           initialRepositoriesPromise={initialRepositoriesPromise}
           countPromise={countPromise}

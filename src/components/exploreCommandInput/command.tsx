@@ -25,11 +25,13 @@ const backgroundOptions: {
 type ExploreCommandProps = {
   interactive?: boolean;
   pageContext: PageContext;
+  startPending?: (pathname: string, pageContext: PageContext) => void;
 };
 
 export default function ExploreCommand({
   interactive = true,
   pageContext,
+  startPending,
 }: ExploreCommandProps) {
   return (
     <div
@@ -47,20 +49,26 @@ export default function ExploreCommand({
             <span className={styles.shortFlag}>-s</span>
           </span>
           <span className={styles.group} aria-label="Sort repositories">
-            {sortOptions.map((option, index) => (
-              <CommandOption
-                key={option}
-                href={buildIndexRoutePath({
-                  sort: option,
-                  filter: pageContext.filter,
-                })}
-                active={pageContext.sort === option}
-                interactive={interactive}
-                separator={index > 0}
-              >
-                {option}
-              </CommandOption>
-            ))}
+            {sortOptions.map((option, index) => {
+              const targetPageContext = {
+                sort: option,
+                filter: pageContext.filter,
+              };
+
+              return (
+                <CommandOption
+                  key={option}
+                  href={buildIndexRoutePath(targetPageContext)}
+                  active={pageContext.sort === option}
+                  interactive={interactive}
+                  pageContext={targetPageContext}
+                  separator={index > 0}
+                  startPending={startPending}
+                >
+                  {option}
+                </CommandOption>
+              );
+            })}
           </span>
         </span>
         <span className={styles.argument}>
@@ -69,23 +77,29 @@ export default function ExploreCommand({
             <span className={styles.shortFlag}>-b</span>
           </span>
           <span className={styles.group} aria-label="Filter by background">
-            {backgroundOptions.map((option, index) => (
-              <CommandOption
-                key={option.label}
-                href={buildIndexRoutePath({
-                  sort: pageContext.sort,
-                  filter: {
-                    ...pageContext.filter,
-                    background: option.value,
-                  },
-                })}
-                active={pageContext.filter.background === option.value}
-                interactive={interactive}
-                separator={index > 0}
-              >
-                {option.label}
-              </CommandOption>
-            ))}
+            {backgroundOptions.map((option, index) => {
+              const targetPageContext = {
+                sort: pageContext.sort,
+                filter: {
+                  ...pageContext.filter,
+                  background: option.value,
+                },
+              };
+
+              return (
+                <CommandOption
+                  key={option.label}
+                  href={buildIndexRoutePath(targetPageContext)}
+                  active={pageContext.filter.background === option.value}
+                  interactive={interactive}
+                  pageContext={targetPageContext}
+                  separator={index > 0}
+                  startPending={startPending}
+                >
+                  {option.label}
+                </CommandOption>
+              );
+            })}
           </span>
         </span>
       </span>
@@ -110,13 +124,17 @@ function CommandOption({
   children,
   href,
   interactive,
+  pageContext,
   separator,
+  startPending,
 }: {
   active: boolean;
   children: ReactNode;
   href: string;
   interactive: boolean;
+  pageContext: PageContext;
   separator: boolean;
+  startPending?: (pathname: string, pageContext: PageContext) => void;
 }) {
   return (
     <span className={styles.segment}>
@@ -128,6 +146,7 @@ function CommandOption({
           scroll={false}
           className={cn(styles.option, { [styles.active]: active })}
           aria-current={active ? 'page' : undefined}
+          onNavigate={() => startPending?.(href, pageContext)}
         >
           {children}
         </Link>
