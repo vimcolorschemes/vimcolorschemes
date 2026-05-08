@@ -1,53 +1,60 @@
 .container {
   --featured-card-gap: var(--spacing-md);
-  --featured-card-hover-offset: calc(var(--featured-card-gap) / 2);
+  --featured-card-hover-offset: var(--spacing-xs);
+  position: relative;
   width: 100%;
   max-width: var(--content-max-width);
   display: flex;
   flex-direction: column;
-  row-gap: var(--spacing-xs);
-  padding-top: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
 }
 
 .header {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  column-gap: var(--spacing-xs);
-  row-gap: var(--spacing-xxs);
-  width: 100%;
+  height: 0;
 }
 
 .title {
+  position: absolute;
+  top: 0;
+  left: var(--spacing-sm);
+  transform: translateY(-50%);
+  display: flex;
+  align-items: baseline;
+  column-gap: var(--spacing-xs);
+  padding: 0 var(--spacing-xs);
+  background: var(--background);
+  color: var(--foreground-accent);
   font-family: var(--font-mono);
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   font-weight: 700;
 }
 
-.operator {
-  color: var(--foreground-accent);
-}
-
 .cta {
+  position: absolute;
+  top: 0;
+  right: var(--spacing-sm);
+  transform: translateY(-50%);
+  padding: 0 var(--spacing-xs);
+  background: var(--background);
   color: var(--foreground-accent);
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
-  margin-left: auto;
 }
 
 .list {
   display: flex;
   align-items: stretch;
-  gap: var(--featured-card-gap);
+  gap: var(--spacing-sm);
   width: calc(100% + (var(--featured-card-hover-offset) * 2));
-  margin-inline: calc(var(--featured-card-hover-offset) * -1);
+  margin: 0 calc(var(--featured-card-hover-offset) * -1);
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  padding: var(--featured-card-hover-offset);
+  padding: 0 var(--featured-card-hover-offset);
   scroll-padding-inline: var(--featured-card-hover-offset);
 }
 
@@ -59,8 +66,7 @@
 
   --card-border-width: 2px;
   --card-border-color: var(--foreground-accent);
-  --card-shadow: 0.375rem 0.375rem 0
-    color-mix(in srgb, var(--foreground-accent) 26%, transparent);
+  --card-shadow: none;
 }
 
 .card::before {

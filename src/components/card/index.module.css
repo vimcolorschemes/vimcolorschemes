@@ -1,15 +1,24 @@
 .container {
   position: relative;
   z-index: 0;
-  border-radius: 14px;
+  border-radius: 0;
 
   --card-border-width: 1px;
   --card-border-color: color-mix(in srgb, var(--foreground) 46%, transparent);
-  --card-background: #d8dad5;
-  --card-shadow: none;
-  --card-footer-background: #e1e3de;
-  --card-footer-color: #1f2328;
-  --card-footer-meta-color: #697077;
+  --card-background: color-mix(
+    in srgb,
+    var(--foreground) 5%,
+    var(--background)
+  );
+  --card-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--background) 80%, transparent);
+  --card-footer-background: var(--foreground);
+  --card-footer-color: var(--background);
+  --card-footer-meta-color: color-mix(
+    in srgb,
+    var(--background) 70%,
+    transparent
+  );
 }
 
 .framed {
@@ -36,9 +45,7 @@
   border-radius: var(--card-hover-radius, 16px);
   background-color: transparent;
   opacity: 0;
-  transition:
-    opacity 200ms ease,
-    background-color 200ms ease;
+  transition: opacity 160ms ease;
   z-index: -1;
 }
 
@@ -79,7 +86,11 @@
 
 .interactive:hover::before,
 .interactive:focus-within::before {
-  background-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--foreground-accent) 12%,
+    transparent
+  );
   opacity: 1;
 }
 
@@ -215,6 +226,7 @@
   margin: 0;
   font-size: inherit;
   font-weight: 700;
+  color: var(--background);
 }
 
 .footerMeta {
@@ -262,9 +274,17 @@
 @media (prefers-color-scheme: dark) {
   .framed {
     --card-border-color: #4a5458;
-    --card-background: #1f2325;
-    --card-footer-background: #292f32;
-    --card-footer-color: #e7e9e4;
-    --card-footer-meta-color: #a0a8aa;
+    --card-background: color-mix(
+      in srgb,
+      var(--foreground) 6%,
+      var(--background)
+    );
+    --card-footer-background: var(--foreground);
+    --card-footer-color: var(--background);
+    --card-footer-meta-color: color-mix(
+      in srgb,
+      var(--background) 72%,
+      transparent
+    );
   }
 }

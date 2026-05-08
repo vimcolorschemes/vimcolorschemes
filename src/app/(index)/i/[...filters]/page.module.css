@@ -3,5 +3,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: calc(var(--spacing-sm) + var(--spacing-xs));
+  row-gap: var(--spacing-sm);
 }
