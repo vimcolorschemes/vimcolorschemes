@@ -1,15 +1,17 @@
 import cn from 'classnames';
-import Image from 'next/image';
 import Link from 'next/link';
-
-import IconGithub from '@/components/ui/icons/github';
 
 import styles from './index.module.css';
 
 export default function Footer() {
   return (
     <footer className={styles.container}>
-      <Link href="/" prefetch={false} className={styles.wordmark}>
+      <Link
+        href="/"
+        prefetch={false}
+        className={styles.wordmark}
+        aria-label="vimcolorschemes home"
+      >
         {String.raw`           ░██                                      ░██                                           ░██                                                         
                                                     ░██                                           ░██                                                         
 ░██    ░██ ░██░█████████████   ░███████   ░███████  ░██  ░███████  ░██░████  ░███████   ░███████  ░████████   ░███████  ░█████████████   ░███████   ░███████  
@@ -18,42 +20,43 @@ export default function Footer() {
   ░██░██   ░██░██   ░██   ░██ ░██    ░██ ░██    ░██ ░██ ░██    ░██ ░██             ░██ ░██    ░██ ░██    ░██ ░██        ░██   ░██   ░██ ░██               ░██ 
    ░███    ░██░██   ░██   ░██  ░███████   ░███████  ░██  ░███████  ░██       ░███████   ░███████  ░██    ░██  ░███████  ░██   ░██   ░██  ░███████   ░███████  `}
       </Link>
-      <div className={styles.links}>
-        <Link href="/about" prefetch={false} className={styles.link}>
-          about
+      <nav className={styles.statusline} aria-label="Footer">
+        <Link href="/" prefetch={false} className={styles.brand}>
+          vimcolorschemes
         </Link>
-        <a
-          href="https://github.com/vimcolorschemes/vimcolorschemes"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(styles.link, styles.accent)}
-        >
-          follow <span className={styles.desktop}>vimcolorschemes </span>on
-          Github
-          <IconGithub />
-        </a>
-        <a
-          href="https://github.com/reobin"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.link}
-        >
-          contact
-        </a>
-        <Link
-          href="https://www.buymeacoffee.com/reobin"
-          target="_blank"
-          aria-label="But me a Coffee"
-        >
-          <Image
-            src="https://cdn.buymeacoffee.com/buttons/v2/arial-blue.png"
-            alt="Buy me a Coffee"
-            width={163}
-            height={45}
-            unoptimized
-          />
-        </Link>
-      </div>
+        <div className={styles.links}>
+          <Link href="/about" prefetch={false} className={styles.link}>
+            <span className={styles.glyph}>?</span>
+            about
+          </Link>
+          <a
+            href="https://github.com/vimcolorschemes/vimcolorschemes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(styles.link, styles.accent)}
+          >
+            <span className={styles.glyph}>#</span>
+            github
+          </a>
+          <a
+            href="https://github.com/reobin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.link}
+          >
+            <span className={styles.glyph}>@</span>
+            contact
+          </a>
+          <Link
+            href="https://www.buymeacoffee.com/reobin"
+            target="_blank"
+            className={styles.link}
+          >
+            <span className={styles.glyph}>★</span>
+            support
+          </Link>
+        </div>
+      </nav>
     </footer>
   );
 }

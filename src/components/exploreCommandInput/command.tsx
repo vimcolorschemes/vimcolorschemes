@@ -25,13 +25,11 @@ const backgroundOptions: {
 type ExploreCommandProps = {
   interactive?: boolean;
   pageContext: PageContext;
-  startPending?: (pathname: string, pageContext: PageContext) => void;
 };
 
 export default function ExploreCommand({
   interactive = true,
   pageContext,
-  startPending,
 }: ExploreCommandProps) {
   return (
     <div
@@ -61,9 +59,7 @@ export default function ExploreCommand({
                   href={buildIndexRoutePath(targetPageContext)}
                   active={pageContext.sort === option}
                   interactive={interactive}
-                  pageContext={targetPageContext}
                   separator={index > 0}
-                  startPending={startPending}
                 >
                   {option}
                 </CommandOption>
@@ -92,9 +88,7 @@ export default function ExploreCommand({
                   href={buildIndexRoutePath(targetPageContext)}
                   active={pageContext.filter.background === option.value}
                   interactive={interactive}
-                  pageContext={targetPageContext}
                   separator={index > 0}
-                  startPending={startPending}
                 >
                   {option.label}
                 </CommandOption>
@@ -124,17 +118,13 @@ function CommandOption({
   children,
   href,
   interactive,
-  pageContext,
   separator,
-  startPending,
 }: {
   active: boolean;
   children: ReactNode;
   href: string;
   interactive: boolean;
-  pageContext: PageContext;
   separator: boolean;
-  startPending?: (pathname: string, pageContext: PageContext) => void;
 }) {
   return (
     <span className={styles.segment}>
@@ -146,7 +136,6 @@ function CommandOption({
           scroll={false}
           className={cn(styles.option, { [styles.active]: active })}
           aria-current={active ? 'page' : undefined}
-          onNavigate={() => startPending?.(href, pageContext)}
         >
           {children}
         </Link>
