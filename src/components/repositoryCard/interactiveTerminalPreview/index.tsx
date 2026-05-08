@@ -73,6 +73,7 @@ export default function RepositoryCardInteractiveTerminalPreview({
       fileName={colorscheme.name}
       lineCount={15}
       activeLine={9}
+      data-background={background}
       hideStatusLine
       className={cn(cardCodePreviewClassName, className)}
       style={style}

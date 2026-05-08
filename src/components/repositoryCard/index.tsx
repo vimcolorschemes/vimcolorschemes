@@ -3,9 +3,7 @@ import { Repository } from '@/models/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import Card, { cardFooterIconClassName } from '@/components/card';
-import IconStar from '@/components/ui/icons/star';
-import IconTrending from '@/components/ui/icons/trending';
+import Card from '@/components/card';
 
 import RepositoryCardInteractiveTerminalPreview from './interactiveTerminalPreview';
 
@@ -47,7 +45,7 @@ export default function RepositoryCard({
               label="stars"
               title={`${repository.stargazersCount} stars`}
             >
-              <IconStar className={cardFooterIconClassName} />
+              <span aria-hidden="true">✶</span>
               {formatCount(repository.stargazersCount)}
             </Card.FooterStat>
             {repository.weekStargazersCount > 0 && (
@@ -55,7 +53,7 @@ export default function RepositoryCard({
                 label="trending"
                 title={`${repository.weekStargazersCount} trending stars`}
               >
-                <IconTrending className={cardFooterIconClassName} />
+                <span aria-hidden="true">↗</span>
                 {formatCount(repository.weekStargazersCount)}
               </Card.FooterStat>
             )}

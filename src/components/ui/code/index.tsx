@@ -9,6 +9,7 @@ type CodeProps = {
   lineCount: number;
   activeLine?: number;
   className?: string;
+  'data-background'?: string;
   disableHorizontalScroll?: boolean;
   hideStatusLine?: boolean;
   style?: CSSProperties;
@@ -20,6 +21,7 @@ export default function Code(props: CodeProps) {
       className={cn(styles.container, props.className, {
         [styles.hideStatusLine]: props.hideStatusLine,
       })}
+      data-background={props['data-background']}
       style={props.style}
     >
       <Gutter {...props} />

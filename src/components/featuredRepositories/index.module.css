@@ -64,8 +64,6 @@
   scroll-snap-align: start;
   height: 100%;
 
-  --card-border-width: 2px;
-  --card-border-color: var(--foreground-accent);
   --card-shadow: none;
 }
 
