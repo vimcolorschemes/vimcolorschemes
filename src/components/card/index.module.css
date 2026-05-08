@@ -4,7 +4,11 @@
   border-radius: 0;
 
   --card-border-width: 1px;
-  --card-border-color: color-mix(in srgb, var(--foreground) 46%, transparent);
+  --card-border-color: color-mix(
+    in srgb,
+    var(--foreground) 14%,
+    var(--background)
+  );
   --card-background: color-mix(
     in srgb,
     var(--foreground) 5%,
@@ -12,18 +16,22 @@
   );
   --card-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--background) 80%, transparent);
-  --card-footer-background: var(--foreground);
-  --card-footer-color: var(--background);
+  --card-footer-background: color-mix(
+    in srgb,
+    var(--foreground) 6%,
+    var(--background)
+  );
+  --card-footer-color: var(--foreground);
   --card-footer-meta-color: color-mix(
     in srgb,
-    var(--background) 70%,
+    var(--foreground) 64%,
     transparent
   );
-  --card-interactive-footer-background: var(--foreground-accent);
-  --card-interactive-footer-color: var(--background);
+  --card-interactive-footer-background: var(--card-border-color);
+  --card-interactive-footer-color: var(--foreground);
   --card-interactive-footer-meta-color: color-mix(
     in srgb,
-    var(--background) 82%,
+    var(--foreground) 68%,
     transparent
   );
   --card-interactive-background: color-mix(
@@ -306,7 +314,11 @@
 
 @media (prefers-color-scheme: dark) {
   .framed {
-    --card-border-color: #4a5458;
+    --card-border-color: color-mix(
+      in srgb,
+      var(--foreground) 22%,
+      var(--background)
+    );
     --card-background: color-mix(
       in srgb,
       var(--foreground) 6%,
@@ -317,18 +329,22 @@
       var(--foreground) 16%,
       var(--background)
     );
-    --card-interactive-footer-background: var(--foreground-accent);
-    --card-interactive-footer-color: var(--background);
+    --card-interactive-footer-background: var(--card-border-color);
+    --card-interactive-footer-color: var(--foreground);
     --card-interactive-footer-meta-color: color-mix(
       in srgb,
-      var(--background) 84%,
+      var(--foreground) 70%,
       transparent
     );
-    --card-footer-background: var(--foreground);
-    --card-footer-color: var(--background);
+    --card-footer-background: color-mix(
+      in srgb,
+      var(--foreground) 12%,
+      var(--background)
+    );
+    --card-footer-color: var(--foreground);
     --card-footer-meta-color: color-mix(
       in srgb,
-      var(--background) 72%,
+      var(--foreground) 66%,
       transparent
     );
   }
