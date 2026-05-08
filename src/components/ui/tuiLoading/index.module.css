@@ -1,0 +1,57 @@
+.container {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: var(--spacing-xxs);
+  min-height: var(--tui-loading-height, auto);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  color: color-mix(in srgb, var(--foreground) 72%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+}
+
+.compact {
+  display: flex;
+  align-items: flex-start;
+  --tui-loading-height: 100%;
+}
+
+.dots::after {
+  content: '.';
+  display: inline-block;
+  width: 3ch;
+  text-align: left;
+  animation: tui-dots 1.2s steps(4, end) infinite;
+}
+
+.inline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.1em;
+  color: color-mix(in srgb, var(--foreground) 72%, transparent);
+  font-family: var(--font-mono);
+}
+
+@keyframes tui-dots {
+  0% {
+    content: '.';
+  }
+
+  33% {
+    content: '.';
+  }
+
+  34% {
+    content: '..';
+  }
+
+  66% {
+    content: '..';
+  }
+
+  67%,
+  100% {
+    content: '...';
+  }
+}

@@ -9,6 +9,11 @@
   border: 1px solid var(--border-color);
 }
 
+.loadingContainer {
+  flex: 1;
+  min-height: 100dvh;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -39,17 +44,6 @@
   font-size: var(--font-size-sm);
   line-height: var(--line-height-sm);
   font-weight: 400;
-}
-
-.countSkeleton {
-  --skeleton-width: 7rem;
-  --skeleton-height: 0.875rem;
-  margin-left: var(--spacing-xs);
-}
-
-.headerSkeleton {
-  --skeleton-width: 12rem;
-  --skeleton-height: var(--line-height-md);
 }
 
 @media (min-width: 768px) {

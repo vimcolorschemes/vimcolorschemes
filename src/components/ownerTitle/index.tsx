@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import { Owner } from '@/models/owner';
 
-import Skeleton from '@/components/ui/skeleton';
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
 import styles from './index.module.css';
 
@@ -18,7 +18,7 @@ export default function OwnerTitle({ owner, as, className }: OwnerTitleProps) {
 
   return (
     <div className={cn(styles.container, className)}>
-      {!owner && <Skeleton className={styles.avatar} />}
+      {!owner && <span className={styles.avatar} aria-hidden="true" />}
       {!!owner && (
         <Image
           src={`https://github.com/${owner.name}.png`}
@@ -29,7 +29,9 @@ export default function OwnerTitle({ owner, as, className }: OwnerTitleProps) {
           unoptimized
         />
       )}
-      <Title className={styles.title}>{owner?.name ?? <Skeleton />}</Title>
+      <Title className={styles.title}>
+        {owner?.name ?? <TuiLoadingInline />}
+      </Title>
     </div>
   );
 }

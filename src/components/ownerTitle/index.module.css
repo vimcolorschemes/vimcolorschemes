@@ -11,18 +11,20 @@
   width: 1.5em;
   height: 1.5em;
   border-radius: 50%;
-  --skeleton-width: 1.5em;
-  --skeleton-height: 1.5em;
-  --skeleton-border-radius: 50%;
-  background: var(--skeleton-background);
+  border: 1px solid color-mix(in srgb, var(--foreground) 18%, var(--background));
+  background:
+    linear-gradient(
+      45deg,
+      transparent 45%,
+      color-mix(in srgb, var(--foreground) 22%, transparent) 45% 55%,
+      transparent 55%
+    ),
+    color-mix(in srgb, var(--foreground) 5%, var(--background));
 }
 
 .title {
   flex: 1;
   min-width: 0;
-  --skeleton-width: 5rem;
-  --skeleton-height: 1em;
-  --skeleton-border-radius: 0.5em;
   margin-bottom: 0;
   overflow: hidden;
   text-overflow: ellipsis;

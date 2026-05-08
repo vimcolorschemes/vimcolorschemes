@@ -33,8 +33,6 @@
   --line-height-md: 1.5rem;
   --line-height-lg: 1.875rem;
   --line-height-xl: 3rem;
-
-  --skeleton-background: var(--platinum);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,8 +49,6 @@
     --foreground-accent: var(--blue);
     --background: var(--light);
     --border-color: #3d464a;
-
-    --skeleton-background: #2c3134;
   }
 }
 

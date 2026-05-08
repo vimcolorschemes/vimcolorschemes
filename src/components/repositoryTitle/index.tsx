@@ -6,7 +6,7 @@ import { Repository } from '@/models/repository';
 import OwnerTitle from '@/components/ownerTitle';
 import IconStar from '@/components/ui/icons/star';
 import IconTrending from '@/components/ui/icons/trending';
-import Skeleton from '@/components/ui/skeleton';
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
 import styles from './index.module.css';
 
@@ -47,7 +47,7 @@ export default function RepositoryTitle({
           <OwnerTitle owner={repository?.owner} className={styles.ownerTitle} />
         )}
         <div className={cn(styles.title, classNames?.title)}>
-          {repository?.name ?? <Skeleton inline />}
+          {repository?.name ?? <TuiLoadingInline />}
         </div>
       </Title>
       <div className={styles.stats}>
@@ -56,7 +56,7 @@ export default function RepositoryTitle({
           {repository ? (
             <strong>{repository.stargazersCount}</strong>
           ) : (
-            <Skeleton inline />
+            <TuiLoadingInline />
           )}
         </p>
         {(repository?.weekStargazersCount || 0) > 0 && (

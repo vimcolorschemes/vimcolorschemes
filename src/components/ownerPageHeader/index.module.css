@@ -12,9 +12,6 @@
   align-items: center;
   column-gap: var(--spacing-xxs);
   padding: 0;
-
-  --skeleton-width: 10rem;
-  --skeleton-height: 1rem;
 }
 
 a.link {
