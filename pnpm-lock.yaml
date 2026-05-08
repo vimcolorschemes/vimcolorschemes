@@ -34,13 +34,7 @@ importers:
         specifier: 19.2.6
         version: 19.2.6(react@19.2.6)
     devDependencies:
-      '@eslint/eslintrc':
-        specifier: ^3.3.3
-        version: 3.3.3
       '@next/bundle-analyzer':
-        specifier: 16.2.5
-        version: 16.2.5
-      '@next/eslint-plugin-next':
         specifier: 16.2.5
         version: 16.2.5
       '@testing-library/react':
@@ -79,6 +73,9 @@ importers:
       jsdom:
         specifier: ^29.1.1
         version: 29.1.1
+      only-allow:
+        specifier: ^1.2.2
+        version: 1.2.2
       prettier:
         specifier: ^3.8.3
         version: 3.8.3
@@ -2211,6 +2208,10 @@ packages:
   obug@2.1.1:
     resolution: {integrity: sha512-uTqF9MuPraAQ+IsnPf366RG4cP9RtUi7MLO1N3KEc+wb0a6yKpeL0lmk2IB1jY5KHPAlTc6T/JRdC/YqxHNwkQ==}
 
+  only-allow@1.2.2:
+    resolution: {integrity: sha512-uxyNYDsCh5YIJ780G7hC5OHjVUr9reHsbZNMM80L9tZlTpb3hUzb36KXgW4ZUGtJKQnGA3xegmWg1BxhWV0jJA==}
+    hasBin: true
+
   opener@1.5.2:
     resolution: {integrity: sha512-ur5UIdyw5Y7yEj9wLzhqXiy6GZ3Mwx0yGI+5sMn2r0N0v3cKJvUmFH5yPP+WXh9e0xfyzyJX95D8l088DNFj7A==}
     hasBin: true
@@ -2730,6 +2731,10 @@ packages:
   which-collection@1.0.2:
     resolution: {integrity: sha512-K4jVyjnBdgvc86Y6BkaLZEN933SwYOuBFkdmBu9ZfkcAbdVbpITnDmjvZ/aQjRXQrv5EPkTnD1s39GiiqbngCw==}
     engines: {node: '>= 0.4'}
+
+  which-pm-runs@1.1.0:
+    resolution: {integrity: sha512-n1brCuqClxfFfq/Rb0ICg9giSZqCS+pLtccdag6C2HyufBrh3fBOiy9nb6ggRMvWOVH5GrdJskj5iGTZNxd7SA==}
+    engines: {node: '>=4'}
 
   which-typed-array@1.1.18:
     resolution: {integrity: sha512-qEcY+KJYlWyLH9vNbsr6/5j59AXk5ni5aakf8ldzBvGde6Iz4sxZGkJyWSAueTG7QhOvNRYb1lDdFmL5Td0QKA==}
@@ -5077,6 +5082,10 @@ snapshots:
 
   obug@2.1.1: {}
 
+  only-allow@1.2.2:
+    dependencies:
+      which-pm-runs: 1.1.0
+
   opener@1.5.2: {}
 
   optionator@0.9.4:
@@ -5711,6 +5720,8 @@ snapshots:
       is-set: 2.0.3
       is-weakmap: 2.0.2
       is-weakset: 2.0.4
+
+  which-pm-runs@1.1.0: {}
 
   which-typed-array@1.1.18:
     dependencies:

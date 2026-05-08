@@ -4,7 +4,6 @@ import { Colorscheme } from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
 
-import Code from '@/components/ui/code';
 import IconCircledArrow from '@/components/ui/icons/circledArrow';
 
 import styles from './index.module.css';
@@ -15,24 +14,6 @@ type ColorschemeConfigProps = {
   onToggleBackground?: () => void;
   onToggleColorscheme?: () => void;
 };
-
-export default function ColorschemeConfig({
-  colorscheme,
-  background,
-  onToggleColorscheme,
-  onToggleBackground,
-}: ColorschemeConfigProps) {
-  return (
-    <Code fileName="init.lua" lineCount={2}>
-      <ColorschemeConfigLines
-        colorscheme={colorscheme}
-        background={background}
-        onToggleColorscheme={onToggleColorscheme}
-        onToggleBackground={onToggleBackground}
-      />
-    </Code>
-  );
-}
 
 export function ColorschemeConfigLines({
   colorscheme,
