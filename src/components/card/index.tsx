@@ -18,7 +18,13 @@ type RootProps = ComponentPropsWithoutRef<'article'> & {
   skeleton?: boolean;
 };
 
-function Root({ className, framed, interactive, skeleton, ...props }: RootProps) {
+function Root({
+  className,
+  framed,
+  interactive,
+  skeleton,
+  ...props
+}: RootProps) {
   return (
     <article
       className={cn(
@@ -62,7 +68,12 @@ type PreviewProps = {
   interactiveControls?: boolean;
 };
 
-function Preview({ children, className, flush, interactiveControls }: PreviewProps) {
+function Preview({
+  children,
+  className,
+  flush,
+  interactiveControls,
+}: PreviewProps) {
   if (!isValidElement(children)) {
     return children;
   }
@@ -100,7 +111,11 @@ type FooterTitleProps = ComponentPropsWithoutRef<'h2'> & {
   as?: 'h2' | 'h3';
 };
 
-function FooterTitle({ as: Component = 'h2', className, ...props }: FooterTitleProps) {
+function FooterTitle({
+  as: Component = 'h2',
+  className,
+  ...props
+}: FooterTitleProps) {
   return <Component className={cn(styles.footerTitle, className)} {...props} />;
 }
 
@@ -144,8 +159,6 @@ const Card = {
   FooterStat,
 };
 
-export const cardTitleClassName = styles.title;
 export const cardCodePreviewClassName = styles.codePreview;
-export const cardFooterIconClassName = styles.footerIcon;
 
 export default Card;
