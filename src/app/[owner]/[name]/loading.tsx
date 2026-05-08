@@ -1,16 +1,19 @@
-import ColorschemesGridSkeleton from '@/components/colorschemesGrid/skeleton';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import styles from '@/components/repositoryPageContent/index.module.css';
-import RepositoryPageHeaderSkeleton from '@/components/repositoryPageHeader/skeleton';
 import RepositoryTitle from '@/components/repositoryTitle';
+import TuiLoading from '@/components/ui/tuiLoading';
 
 export default function RepositoryPageLoading() {
   return (
-    <>
-      <RepositoryPageHeaderSkeleton />
-      <RepositoryTitle classNames={{ container: styles.pageWidth }} />
-      <RepositoryInfo className={styles.pageWidth} />
-      <ColorschemesGridSkeleton />
-    </>
+    <div className={styles.layout}>
+      <aside className={styles.variantPane} />
+      <section className={styles.previewEmpty}>
+        <TuiLoading />
+      </section>
+      <aside className={styles.infoPane}>
+        <RepositoryTitle showStats={false} />
+        <RepositoryInfo />
+      </aside>
+    </div>
   );
 }

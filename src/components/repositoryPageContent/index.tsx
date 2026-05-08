@@ -2,12 +2,12 @@ import { notFound } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
-import ColorschemesGrid from '@/components/colorschemesGrid';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
-import RepositoryPageHeader from '@/components/repositoryPageHeader';
 import RepositoryTitle from '@/components/repositoryTitle';
+import IconGithub from '@/components/ui/icons/github';
 
 import styles from './index.module.css';
+import RepositoryVariantPreview from './variantPreview';
 
 type RepositoryPageContentProps = {
   owner: string;
@@ -25,15 +25,50 @@ export default async function RepositoryPageContent({
   }
 
   return (
-    <>
-      <RepositoryPageHeader repositoryKey={repository.key} />
-      <RepositoryTitle
-        repository={repository}
-        hasOwnerLink
-        classNames={{ container: styles.pageWidth }}
+    <div className={styles.layout}>
+      <RepositoryVariantPreview
+        colorschemes={repository.flattenedColorschemes.map(
+          colorscheme => colorscheme.dto,
+        )}
       />
-      <RepositoryInfo repository={repository} className={styles.pageWidth} />
-      <ColorschemesGrid colorschemes={repository.flattenedColorschemes} />
-    </>
+      <aside className={styles.infoPane} aria-label="Repository information">
+        <RepositoryTitle
+          repository={repository}
+          hasOwnerLink
+          ownerPrefix="@"
+          showStats={false}
+        />
+        <RepositoryInfo repository={repository} />
+        <a
+          href={repository.githubURL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubLink}
+        >
+          view on Github
+          <IconGithub />
+        </a>
+        <dl className={styles.repoFacts}>
+          <div>
+            <dt>colorschemes</dt>
+            <dd>{repository.colorschemes.length}</dd>
+          </div>
+          <div>
+            <dt>variants</dt>
+            <dd>{repository.flattenedColorschemes.length}</dd>
+          </div>
+          <div>
+            <dt>stars</dt>
+            <dd>{repository.stargazersCount}</dd>
+          </div>
+          {repository.weekStargazersCount > 0 && (
+            <div>
+              <dt>trending</dt>
+              <dd>{repository.weekStargazersCount}/week</dd>
+            </div>
+          )}
+        </dl>
+      </aside>
+    </div>
   );
 }
