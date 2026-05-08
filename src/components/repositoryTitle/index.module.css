@@ -10,8 +10,6 @@
   min-width: 0;
   min-height: 3.5rem;
   overflow-wrap: anywhere;
-  --skeleton-width: 5rem;
-  --skeleton-height: 0.75rem;
 }
 
 .title {
@@ -19,8 +17,6 @@
   font-size: var(--font-size-xl);
   line-height: 1.1;
   margin-bottom: var(--spacing-xxs);
-  --skeleton-width: 13rem;
-  --skeleton-height: 1.1em;
 }
 
 .owner {
@@ -44,6 +40,4 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-xxs);
-  --skeleton-width: 1.6rem;
-  --skeleton-height: 1rem;
 }

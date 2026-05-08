@@ -6,8 +6,4 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
   gap: var(--spacing-sm);
   margin-top: var(--spacing-sm);
-
-  --skeleton-width: 100%;
-  --skeleton-height: 20.875rem;
-  --skeleton-border-radius: 0;
 }

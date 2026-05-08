@@ -4,7 +4,7 @@ import { Repository } from '@/models/repository';
 
 import { DateHelper } from '@/helpers/date';
 
-import Skeleton from '@/components/ui/skeleton';
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
 import styles from './repositoryInfo.module.css';
 
@@ -21,7 +21,7 @@ export default function RepositoryInfo({
     <div className={cn(styles.container, className)}>
       {(!repository || !!repository.description) && (
         <p className={styles.description}>
-          {repository?.description || <Skeleton inline />}
+          {repository?.description || <TuiLoadingInline />}
         </p>
       )}
       <div>
@@ -30,7 +30,7 @@ export default function RepositoryInfo({
           {repository ? (
             <strong>{DateHelper.format(repository.githubCreatedAt)}</strong>
           ) : (
-            <Skeleton inline />
+            <TuiLoadingInline />
           )}
         </p>
         <p className={styles.info}>
@@ -38,7 +38,7 @@ export default function RepositoryInfo({
           {repository ? (
             <strong>{DateHelper.format(repository.pushedAt)}</strong>
           ) : (
-            <Skeleton inline />
+            <TuiLoadingInline />
           )}
         </p>
       </div>

@@ -10,7 +10,6 @@ import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import LoadMore from '@/components/repositories/loadMore';
-import Skeleton from '@/components/ui/skeleton';
 
 import styles from './index.module.css';
 
@@ -57,7 +56,6 @@ function RepositoriesHeaderFallback({
     <div className={styles.header}>
       <h2 id="repositories-title" className={styles.title}>
         {pageContext.sort}
-        <Skeleton inline className={styles.countSkeleton} />
       </h2>
     </div>
   );

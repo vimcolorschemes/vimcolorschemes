@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import IconArrow from '@/components/ui/icons/arrow';
 import IconGithub from '@/components/ui/icons/github';
-import Skeleton from '@/components/ui/skeleton';
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
 import styles from './index.module.css';
 
@@ -21,7 +21,7 @@ export default function RepositoryPageHeaderSkeleton() {
         back
       </Link>
       <span className={styles.link}>
-        <Skeleton className={styles.desktop} />
+        <TuiLoadingInline />
         <IconGithub />
       </span>
     </header>
