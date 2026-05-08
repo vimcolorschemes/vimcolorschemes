@@ -19,6 +19,18 @@
     var(--background) 70%,
     transparent
   );
+  --card-interactive-footer-background: var(--foreground-accent);
+  --card-interactive-footer-color: var(--background);
+  --card-interactive-footer-meta-color: color-mix(
+    in srgb,
+    var(--background) 82%,
+    transparent
+  );
+  --card-interactive-background: color-mix(
+    in srgb,
+    var(--foreground) 16%,
+    var(--background)
+  );
 }
 
 .framed {
@@ -26,8 +38,12 @@
   border-radius: 0;
   background: var(--card-background);
   box-shadow: var(--card-shadow);
+  transition:
+    border-color 80ms steps(1, start),
+    background-color 80ms steps(1, start),
+    box-shadow 80ms steps(1, start);
 
-  --card-hover-inset: calc(var(--spacing-xs) * -1);
+  --card-hover-inset: 0;
   --card-hover-radius: 0;
 }
 
@@ -92,6 +108,19 @@
     transparent
   );
   opacity: 1;
+}
+
+.framed.interactive:hover,
+.framed.interactive:focus-within {
+  --card-background: var(--card-interactive-background);
+  --card-footer-background: var(--card-interactive-footer-background);
+  --card-footer-color: var(--card-interactive-footer-color);
+  --card-footer-meta-color: var(--card-interactive-footer-meta-color);
+}
+
+.framed.interactive:hover::before,
+.framed.interactive:focus-within::before {
+  opacity: 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -202,6 +231,10 @@
   font-size: var(--font-size-md);
   line-height: 1.25rem;
   user-select: text;
+  transition:
+    background-color 80ms steps(1, start),
+    border-color 80ms steps(1, start),
+    color 80ms steps(1, start);
 }
 
 .footerIdentity {
@@ -226,7 +259,7 @@
   margin: 0;
   font-size: inherit;
   font-weight: 700;
-  color: var(--background);
+  color: var(--card-footer-color);
 }
 
 .footerMeta {
@@ -278,6 +311,18 @@
       in srgb,
       var(--foreground) 6%,
       var(--background)
+    );
+    --card-interactive-background: color-mix(
+      in srgb,
+      var(--foreground) 16%,
+      var(--background)
+    );
+    --card-interactive-footer-background: var(--foreground-accent);
+    --card-interactive-footer-color: var(--background);
+    --card-interactive-footer-meta-color: color-mix(
+      in srgb,
+      var(--background) 84%,
+      transparent
     );
     --card-footer-background: var(--foreground);
     --card-footer-color: var(--background);
