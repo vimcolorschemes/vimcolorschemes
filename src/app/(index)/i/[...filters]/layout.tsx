@@ -4,8 +4,6 @@ import { PageContextHelper } from '@/helpers/pageContext';
 
 import ExploreCommandInput from '@/components/exploreCommandInput';
 import ExploreCommand from '@/components/exploreCommandInput/command';
-import IndexPendingBoundary from '@/components/indexPendingBoundary';
-import IndexPendingProvider from '@/components/providers/indexPendingProvider';
 import Header from '@/components/ui/header';
 
 import styles from './layout.module.css';
@@ -23,7 +21,7 @@ export default async function IndexPageLayout({
   const pageContext = PageContextHelper.get(filters);
 
   return (
-    <IndexPendingProvider>
+    <>
       <Header showBranding={false}>
         <Suspense
           fallback={
@@ -33,9 +31,7 @@ export default async function IndexPageLayout({
           <ExploreCommandInput />
         </Suspense>
       </Header>
-      <main className={styles.container}>
-        <IndexPendingBoundary>{children}</IndexPendingBoundary>
-      </main>
-    </IndexPendingProvider>
+      <main className={styles.container}>{children}</main>
+    </>
   );
 }

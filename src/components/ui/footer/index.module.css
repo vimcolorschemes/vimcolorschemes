@@ -2,20 +2,50 @@
   width: 100%;
   max-width: var(--page-max-width);
   padding: var(--content-padding);
-  padding-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-lg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-md);
+}
+
+.statusline {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 20;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  min-height: var(--statusline-height);
+  border-top: 1px solid
+    color-mix(in srgb, var(--foreground) 14%, var(--background));
+  background: color-mix(in srgb, var(--foreground) 6%, var(--background));
+  color: var(--foreground);
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-sm);
+  line-height: 1;
+  text-transform: lowercase;
+}
+
+.brand,
+.links {
+  min-height: var(--statusline-height);
+  display: flex;
+  align-items: center;
+}
+
+.brand {
+  padding: 0 var(--spacing-xs);
 }
 
 .links {
+  min-width: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-md);
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-xs);
+  overflow: hidden;
 }
 
 .link {
@@ -25,8 +55,22 @@
   white-space: nowrap;
 }
 
+.glyph {
+  width: 0.75rem;
+  height: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  line-height: 1;
+}
+
 .link.accent {
-  color: var(--foreground-accent);
+  color: inherit;
 }
 
 .wordmark {
@@ -45,17 +89,21 @@
   text-transform: none;
 }
 
-.desktop {
-  display: none;
+.wordmark:hover {
+  text-decoration: none;
 }
 
-@media (min-width: 1024px) {
-  .links {
-    column-gap: var(--spacing-md);
-    flex-wrap: unset;
+@media (max-width: 640px) {
+  .statusline {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .desktop {
-    display: inline;
+  .brand {
+    display: none;
+  }
+
+  .links {
+    justify-content: flex-start;
+    gap: var(--spacing-xs);
   }
 }

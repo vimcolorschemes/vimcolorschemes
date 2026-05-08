@@ -1,13 +1,23 @@
 'use client';
 
-import { useIndexPending } from '@/components/providers/indexPendingProvider';
+import { usePathname } from 'next/navigation';
+
+import { PageContextHelper } from '@/helpers/pageContext';
 
 import ExploreCommand from './command';
 
-export default function ExploreCommandInput() {
-  const { pageContext, startPending } = useIndexPending();
+function getFiltersFromPathname(pathname: string): string[] {
+  const segments = pathname.split('/').filter(Boolean);
+  const indexRouteStart = segments.indexOf('i');
 
-  return (
-    <ExploreCommand pageContext={pageContext} startPending={startPending} />
-  );
+  return indexRouteStart === -1
+    ? segments
+    : segments.slice(indexRouteStart + 1);
+}
+
+export default function ExploreCommandInput() {
+  const pathname = usePathname();
+  const pageContext = PageContextHelper.get(getFiltersFromPathname(pathname));
+
+  return <ExploreCommand pageContext={pageContext} />;
 }

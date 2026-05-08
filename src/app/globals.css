@@ -33,6 +33,7 @@
   --line-height-md: 1.5rem;
   --line-height-lg: 1.875rem;
   --line-height-xl: 3rem;
+  --statusline-height: 1.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -76,6 +77,7 @@ body {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
+  padding-bottom: var(--statusline-height);
   line-height: 1.5em;
 }
 
