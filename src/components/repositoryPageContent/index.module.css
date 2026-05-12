@@ -172,10 +172,11 @@
   text-transform: lowercase;
 }
 
-.githubLink > svg {
-  width: 1.25rem;
-  height: 1.25rem;
-  flex: 0 0 auto;
+.githubLink:hover,
+.githubLink:focus-visible {
+  color: var(--background);
+  background: var(--foreground);
+  border-color: var(--foreground);
 }
 
 .repoFacts {
