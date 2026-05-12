@@ -21,7 +21,7 @@ export default async function IndexPageLayout({
   const pageContext = PageContextHelper.get(filters);
 
   return (
-    <>
+    <div className={styles.viewport}>
       <Header showBranding={false}>
         <Suspense
           fallback={
@@ -32,6 +32,6 @@ export default async function IndexPageLayout({
         </Suspense>
       </Header>
       <main className={styles.container}>{children}</main>
-    </>
+    </div>
   );
 }

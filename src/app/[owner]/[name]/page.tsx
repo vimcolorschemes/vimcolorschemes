@@ -30,6 +30,8 @@ export async function generateMetadata({
 }
 
 export default async function RepositoryPage({ params }: RepositoryPageProps) {
+  await new Promise(resolve => setTimeout(resolve, 5000));
+
   const { owner, name } = await params;
   return <RepositoryPageContent owner={owner} name={name} />;
 }
