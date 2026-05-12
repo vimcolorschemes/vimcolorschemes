@@ -14,6 +14,9 @@
     var(--repository-pane-foreground) 28%,
     transparent
   );
+  --repository-preview-min-height: calc(
+    (15 * 1.25rem) + (var(--spacing-xs) * 2) + 1.5625rem + 4px
+  );
 
   flex: 1 0 auto;
   width: 100%;
@@ -122,7 +125,7 @@
 
 .previewPane {
   min-width: 0;
-  min-height: 24rem;
+  min-height: var(--repository-preview-min-height);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -246,9 +249,13 @@
 @media (max-width: 860px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:
+      auto minmax(var(--repository-preview-min-height), 1fr)
+      auto;
   }
 
   .variantPane {
+    align-self: start;
     max-height: none;
   }
 
