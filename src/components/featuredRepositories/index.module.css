@@ -45,6 +45,13 @@
   line-height: var(--line-height-sm);
 }
 
+.cta:focus-visible {
+  outline: none;
+  background: var(--foreground-accent);
+  color: var(--background);
+  text-decoration: none;
+}
+
 .list {
   display: flex;
   align-items: stretch;
