@@ -32,6 +32,7 @@ export default function HoverPrefetchLink({
     <Link
       href={href}
       prefetch={false}
+      scroll={false}
       className={className}
       aria-label={label}
       onPointerEnter={prefetch}
