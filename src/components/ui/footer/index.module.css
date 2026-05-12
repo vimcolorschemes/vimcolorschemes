@@ -55,6 +55,8 @@
   display: flex;
   align-items: center;
   column-gap: var(--spacing-xxs);
+  min-height: var(--statusline-height);
+  padding: 0 var(--spacing-xs);
   white-space: nowrap;
 }
 
@@ -74,6 +76,14 @@
 
 .link.accent {
   color: inherit;
+}
+
+.brand:focus-visible,
+.link:focus-visible {
+  outline: none;
+  background: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
 }
 
 .wordmark {
@@ -106,7 +116,7 @@
   }
 
   .links {
-    justify-content: flex-start;
+    justify-content: flex-end;
     gap: var(--spacing-xs);
   }
 }
