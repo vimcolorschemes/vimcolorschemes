@@ -9,6 +9,13 @@
     --colorscheme-StatusLineFg,
     var(--repository-pane-background)
   );
+  --repository-pane-link-accent: var(
+    --colorscheme-vimStringFg,
+    var(
+      --colorscheme-vimFuncNameFg,
+      var(--repository-pane-accent-background)
+    )
+  );
   --repository-pane-border: color-mix(
     in srgb,
     var(--repository-pane-foreground) 28%,
@@ -212,37 +219,32 @@
 }
 
 .githubLink {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-xs);
-  padding-block: var(--spacing-xs);
-  border-top: 1px solid var(--repository-pane-border);
-  border-bottom: 1px solid var(--repository-pane-border);
+  width: fit-content;
+  color: var(--repository-pane-link-accent);
   font-family: var(--font-mono);
   text-transform: lowercase;
+  text-decoration: none;
+  text-underline-offset: 0.18em;
 }
 
 .githubLink:hover,
 .githubLink:focus-visible {
-  color: var(--repository-pane-accent-foreground);
-  background: var(--repository-pane-accent-background);
-  border-color: var(--repository-pane-accent-background);
+  text-decoration: underline;
 }
 
 .repoFacts {
   display: grid;
   gap: 0;
-  padding-top: var(--spacing-xs);
   border-top: 1px solid var(--repository-pane-border);
 }
 
 .repoFacts > div {
   min-width: 0;
   display: grid;
-  grid-template-columns: minmax(6.5rem, auto) minmax(0, 1fr);
-  gap: var(--spacing-xs);
-  padding: var(--spacing-xxs) 0;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) 0;
   border-bottom: 1px solid var(--repository-pane-border);
 }
 
@@ -256,6 +258,8 @@
   min-width: 0;
   overflow-wrap: anywhere;
   font-weight: 700;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 1400px) {

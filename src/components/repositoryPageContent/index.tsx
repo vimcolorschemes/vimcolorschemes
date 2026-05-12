@@ -46,7 +46,6 @@ export default async function RepositoryPageContent({
       >
         <RepositoryTitle
           repository={repository}
-          hasOwnerLink
           ownerPrefix="@"
           showStats={false}
         />
