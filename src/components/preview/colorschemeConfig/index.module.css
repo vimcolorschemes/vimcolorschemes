@@ -1,8 +1,9 @@
 .button {
-  --_border-color: var(
+  --_focus-background: var(
     --colorscheme-vimCommand,
     var(--colorscheme-vimOper, var(--colorscheme-NormalFg))
   );
+  --_focus-color: var(--colorscheme-NormalBg, var(--background));
 
   background: none;
   border: none;
@@ -21,13 +22,14 @@
 }
 
 .button:not(:disabled):hover {
-  box-shadow: 0 2px 0 0 var(--_border-color);
+  box-shadow: 0 2px 0 0 var(--_focus-background);
 }
 
 .button:not(:disabled):focus-visible {
   outline: none;
-  border-radius: 2px;
-  box-shadow: 0 0 0 2px var(--_border-color);
+  background: var(--_focus-background);
+  color: var(--_focus-color);
+  box-shadow: none;
 }
 
 .button:disabled {

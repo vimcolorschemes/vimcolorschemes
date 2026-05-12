@@ -43,6 +43,7 @@
     var(--foreground) 16%,
     var(--background)
   );
+  --card-focus-color: var(--foreground-accent);
 }
 
 .framed {
@@ -97,7 +98,6 @@
 
 .link:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px color-mix(in srgb, var(--foreground) 35%, transparent);
 }
 
 .linkLabel {
@@ -120,14 +120,6 @@
     transparent
   );
   opacity: 1;
-}
-
-.framed.interactive:hover,
-.framed.interactive:focus-within {
-  --card-background: var(--card-interactive-background);
-  --card-footer-background: var(--card-interactive-footer-background);
-  --card-footer-color: var(--card-interactive-footer-color);
-  --card-footer-meta-color: var(--card-interactive-footer-meta-color);
 }
 
 .framed.interactive:hover::before,
@@ -270,11 +262,25 @@
     var(--card-interactive-footer-color) 82%,
     var(--card-interactive-footer-background)
   );
+  --card-focus-color: var(--card-interactive-footer-background);
 }
 
 .framed.interactive:hover .footer,
-.framed.interactive:focus-within .footer {
+.framed.interactive:has(:focus-visible) .footer {
   border-color: var(--card-interactive-footer-background);
+}
+
+.framed.interactive:has(:focus-visible) .footer {
+  background: var(--card-interactive-footer-background);
+  color: var(--card-interactive-footer-color);
+}
+
+.framed.interactive:has(:focus-visible) .footerTitle {
+  color: var(--card-interactive-footer-color);
+}
+
+.framed.interactive:has(:focus-visible) .footerMeta {
+  color: var(--card-interactive-footer-meta-color);
 }
 
 .footerIdentity {
