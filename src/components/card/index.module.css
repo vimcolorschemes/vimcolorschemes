@@ -254,7 +254,27 @@
     --colorscheme-StatusLineBg,
     var(--colorscheme-NormalBg, var(--card-default-footer-background))
   );
-  --card-interactive-footer-background: var(--card-footer-background);
+  --card-interactive-footer-background: var(
+    --colorscheme-vimStringFg,
+    var(
+      --colorscheme-vimFuncNameFg,
+      var(--colorscheme-StatusLineFg, var(--foreground-accent))
+    )
+  );
+  --card-interactive-footer-color: var(
+    --colorscheme-NormalBg,
+    var(--background)
+  );
+  --card-interactive-footer-meta-color: color-mix(
+    in srgb,
+    var(--card-interactive-footer-color) 82%,
+    var(--card-interactive-footer-background)
+  );
+}
+
+.framed.interactive:hover .footer,
+.framed.interactive:focus-within .footer {
+  border-color: var(--card-interactive-footer-background);
 }
 
 .footerIdentity {
