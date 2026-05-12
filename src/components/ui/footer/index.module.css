@@ -1,8 +1,11 @@
 .container {
+  position: relative;
+  flex: 0 0 auto;
   width: 100%;
   max-width: var(--page-max-width);
+  margin-top: var(--spacing-sm);
   padding: var(--content-padding);
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: calc(var(--spacing-lg) + var(--statusline-height));
   display: flex;
   flex-direction: column;
   align-items: center;

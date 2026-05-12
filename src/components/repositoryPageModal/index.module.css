@@ -34,12 +34,35 @@
 }
 
 .shortcuts {
+  --modal-shortcuts-background: var(--colorscheme-LineNrBg, var(--background));
+  --modal-shortcuts-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--foreground)
+  );
+  --modal-shortcuts-accent: var(
+    --colorscheme-NormalFg,
+    var(--foreground-accent)
+  );
+  --modal-shortcuts-muted: color-mix(
+    in srgb,
+    var(--modal-shortcuts-foreground) 65%,
+    var(--modal-shortcuts-background)
+  );
+  --modal-shortcuts-border: color-mix(
+    in srgb,
+    var(--modal-shortcuts-foreground) 28%,
+    transparent
+  );
+  --tui-section-background: var(--modal-shortcuts-background);
+  --tui-section-border: 1px solid var(--modal-shortcuts-border);
+  --tui-section-foreground: var(--modal-shortcuts-foreground);
+  --tui-section-padding: 0;
+
   display: flex;
   justify-content: flex-end;
   min-height: var(--statusline-height);
-  border: 1px solid var(--border-color);
-  background: var(--background);
-  color: var(--foreground);
+  color: var(--modal-shortcuts-foreground);
+  box-shadow: inset 0 0 0 1px var(--modal-shortcuts-border);
   font-family: var(--font-mono), monospace;
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
@@ -60,12 +83,12 @@
 
 .shortcut:hover,
 .shortcut:focus-visible {
-  color: var(--foreground-accent);
+  color: var(--modal-shortcuts-accent);
   text-decoration: underline;
 }
 
 .shortcut:focus-visible {
-  outline: 2px solid var(--foreground-accent);
+  outline: 2px solid var(--modal-shortcuts-accent);
   outline-offset: calc(-1 * var(--spacing-xxs));
 }
 
@@ -74,10 +97,10 @@
 }
 
 .shortcutAction {
-  color: var(--foreground-shade);
+  color: var(--modal-shortcuts-muted);
 }
 
 .shortcut:hover .shortcutAction,
 .shortcut:focus-visible .shortcutAction {
-  color: var(--foreground-accent);
+  color: var(--modal-shortcuts-accent);
 }

@@ -40,7 +40,6 @@ export default function RepositoryVariantPreview({
     <>
       <TuiSection
         as="aside"
-        title="variants"
         className={styles.variantPane}
         aria-label="Colorscheme variants"
       >

@@ -1,4 +1,20 @@
 .layout {
+  --repository-pane-background: var(--colorscheme-NormalBg, var(--background));
+  --repository-pane-foreground: var(--colorscheme-NormalFg, var(--foreground));
+  --repository-pane-accent-background: var(
+    --colorscheme-StatusLineBg,
+    var(--repository-pane-foreground)
+  );
+  --repository-pane-accent-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--repository-pane-background)
+  );
+  --repository-pane-border: color-mix(
+    in srgb,
+    var(--repository-pane-foreground) 28%,
+    transparent
+  );
+
   flex: 1 0 auto;
   width: 100%;
   max-width: var(--page-max-width);
@@ -21,9 +37,16 @@
   min-width: 0;
 }
 
-.variantPane {
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--background) 78%, transparent);
+.variantPane,
+.loadingPane,
+.infoPane {
+  --tui-section-background: var(--repository-pane-background);
+  --tui-section-border: 1px solid var(--repository-pane-border);
+  --tui-section-foreground: var(--repository-pane-foreground);
+
+  color: var(--repository-pane-foreground);
+  background: var(--repository-pane-background);
+  box-shadow: inset 0 0 0 1px var(--repository-pane-border);
   font-family: var(--font-mono);
 }
 
@@ -39,9 +62,9 @@
   gap: 0 var(--spacing-xxs);
   padding: var(--spacing-xs);
   border: 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--repository-pane-border);
   background: transparent;
-  color: var(--foreground);
+  color: inherit;
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -52,12 +75,12 @@
 .variantButton:hover,
 .variantButton:focus-visible,
 .variantButtonActive {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--repository-pane-accent-background);
+  color: var(--repository-pane-accent-foreground);
 }
 
 .variantButton:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--foreground) 35%, transparent);
+  outline: 2px solid var(--repository-pane-foreground);
   outline-offset: -2px;
 }
 
@@ -93,7 +116,7 @@
 }
 
 .variantBackground {
-  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  color: color-mix(in srgb, var(--repository-pane-foreground) 65%, transparent);
   font-family: var(--font-mono);
 }
 
@@ -111,7 +134,12 @@
   justify-content: flex-start;
 }
 
-.previewCard {
+.previewPane .previewCard {
+  --card-border-width: 2px;
+  --card-border-color: var(--repository-pane-border);
+  --card-background: var(--repository-pane-background);
+  --card-shadow: none;
+
   width: 100%;
   height: 100%;
   flex: 1;
@@ -138,8 +166,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  box-shadow: inset 0 0 0 1px
-    color-mix(in srgb, var(--background) 78%, transparent);
   font-family: var(--font-mono);
 }
 
@@ -166,24 +192,24 @@
   justify-content: space-between;
   gap: var(--spacing-xs);
   padding-block: var(--spacing-xs);
-  border-top: 1px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--repository-pane-border);
+  border-bottom: 1px solid var(--repository-pane-border);
   font-family: var(--font-mono);
   text-transform: lowercase;
 }
 
 .githubLink:hover,
 .githubLink:focus-visible {
-  color: var(--background);
-  background: var(--foreground);
-  border-color: var(--foreground);
+  color: var(--repository-pane-accent-foreground);
+  background: var(--repository-pane-accent-background);
+  border-color: var(--repository-pane-accent-background);
 }
 
 .repoFacts {
   display: grid;
   gap: 0;
   padding-top: var(--spacing-xs);
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid var(--repository-pane-border);
 }
 
 .repoFacts > div {
@@ -192,12 +218,11 @@
   grid-template-columns: minmax(6.5rem, auto) minmax(0, 1fr);
   gap: var(--spacing-xs);
   padding: var(--spacing-xxs) 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--border-color) 60%, transparent);
+  border-bottom: 1px solid var(--repository-pane-border);
 }
 
 .repoFacts dt {
-  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  color: color-mix(in srgb, var(--repository-pane-foreground) 65%, transparent);
   font-family: var(--font-mono);
   text-transform: lowercase;
 }
@@ -235,7 +260,7 @@
   .variantButton {
     width: auto;
     flex: 1 1 min(100%, 10rem);
-    border-right: 1px solid var(--border-color);
+    border-right: 1px solid var(--repository-pane-border);
     border-bottom: 0;
   }
 
@@ -251,6 +276,6 @@
   }
 
   .variantButtonActive {
-    background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+    background: var(--repository-pane-accent-background);
   }
 }
