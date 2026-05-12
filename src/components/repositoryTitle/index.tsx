@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import Link from 'next/link';
 
 import { Repository } from '@/models/repository';
 
@@ -14,7 +13,6 @@ type RepositoryTitleProps = {
   repository?: Repository;
   /** The name of the HTML element to render the title as. */
   as?: 'h1' | 'h2' | 'h3';
-  hasOwnerLink?: boolean;
   ownerPrefix?: string;
   showStats?: boolean;
   classNames?: {
@@ -27,7 +25,6 @@ type RepositoryTitleProps = {
 export default function RepositoryTitle({
   repository,
   as,
-  hasOwnerLink,
   ownerPrefix,
   showStats = true,
   classNames,
@@ -36,31 +33,12 @@ export default function RepositoryTitle({
   return (
     <div className={cn(styles.container, classNames?.container)}>
       <Title className={cn(styles.titleContainer, classNames?.titleContainer)}>
-        {repository?.owner.name && hasOwnerLink ? (
-          <>
-            <Link
-              href={`/${repository.owner.name.toLowerCase()}`}
-              prefetch={false}
-              className={styles.owner}
-            >
-              <OwnerTitle
-                owner={repository.owner}
-                prefix={ownerPrefix}
-                className={styles.ownerTitle}
-              />
-            </Link>
-            <span className={styles.separator}>/</span>
-          </>
-        ) : (
-          <>
-            <OwnerTitle
-              owner={repository?.owner}
-              prefix={ownerPrefix}
-              className={styles.ownerTitle}
-            />
-            <span className={styles.separator}>/</span>
-          </>
-        )}
+        <OwnerTitle
+          owner={repository?.owner}
+          prefix={ownerPrefix}
+          className={styles.ownerTitle}
+        />
+        <span className={styles.separator}>/</span>
         <div className={cn(styles.title, classNames?.title)}>
           {repository?.name ?? <TuiLoadingInline />}
         </div>
