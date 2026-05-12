@@ -1,7 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-import { CSSProperties, useState } from 'react';
+import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
@@ -19,15 +19,18 @@ import styles from './index.module.css';
 
 type RepositoryVariantPreviewProps = {
   colorschemes: ColorschemeDTO[];
+  activeIndex: number;
+  onActiveIndexChange: (index: number | ((index: number) => number)) => void;
 };
 
 export default function RepositoryVariantPreview({
   colorschemes,
+  activeIndex,
+  onActiveIndexChange,
 }: RepositoryVariantPreviewProps) {
   const variants = colorschemes.map(
     colorscheme => new Colorscheme(colorscheme),
   );
-  const [activeIndex, setActiveIndex] = useState(0);
   const activeVariant = variants[activeIndex];
 
   useKeyboardShortcut({
@@ -36,14 +39,16 @@ export default function RepositoryVariantPreview({
         return;
       }
       event.preventDefault();
-      setActiveIndex(index => (index + 1) % variants.length);
+      onActiveIndexChange(index => (index + 1) % variants.length);
     },
     k: event => {
       if (variants.length === 0) {
         return;
       }
       event.preventDefault();
-      setActiveIndex(index => (index - 1 + variants.length) % variants.length);
+      onActiveIndexChange(
+        index => (index - 1 + variants.length) % variants.length,
+      );
     },
   });
 
@@ -74,7 +79,7 @@ export default function RepositoryVariantPreview({
                 className={cn(styles.variantButton, {
                   [styles.variantButtonActive]: index === activeIndex,
                 })}
-                onClick={() => setActiveIndex(index)}
+                onClick={() => onActiveIndexChange(index)}
                 aria-pressed={index === activeIndex}
                 title={title}
                 style={getColorschemeStyle(colorscheme)}
