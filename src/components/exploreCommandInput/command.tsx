@@ -1,6 +1,4 @@
-import cn from 'classnames';
 import Link from 'next/link';
-import type { ReactNode } from 'react';
 
 import { Backgrounds } from '@/lib/backgrounds';
 import type { BackgroundFilter } from '@/lib/filter';
@@ -9,6 +7,7 @@ import { SortOptions } from '@/lib/sort';
 
 import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
+import CommandMenu from './commandMenu';
 import styles from './index.module.css';
 
 const sortOptions = Object.values(SortOptions);
@@ -37,63 +36,55 @@ export default function ExploreCommand({
       aria-hidden={interactive ? undefined : true}
       aria-label={interactive ? 'Explore color schemes' : undefined}
     >
-      <HomeCommand interactive={interactive} />
-      <span className={styles.commandLine}>
+      <span className={styles.commandLead}>
+        <HomeCommand interactive={interactive} />
         <span className={styles.subcommand}>list</span>
+      </span>
+      <span className={styles.commandLine}>
         <span className={styles.argument}>
           <span className={styles.flag}>
             <span className={styles.fullFlag}>--sort</span>
             <span className={styles.shortFlag}>-s</span>
           </span>
-          <span className={styles.group} aria-label="Sort repositories">
-            {sortOptions.map((option, index) => {
-              const targetPageContext = {
+          <CommandMenu
+            label="Sort repositories"
+            interactive={interactive}
+            selected={pageContext.sort}
+            options={sortOptions.map(option => ({
+              href: buildIndexRoutePath({
                 sort: option,
                 filter: pageContext.filter,
-              };
-
-              return (
-                <CommandOption
-                  key={option}
-                  href={buildIndexRoutePath(targetPageContext)}
-                  active={pageContext.sort === option}
-                  interactive={interactive}
-                  separator={index > 0}
-                >
-                  {option}
-                </CommandOption>
-              );
-            })}
-          </span>
+              }),
+              label: option,
+              active: pageContext.sort === option,
+            }))}
+          />
         </span>
         <span className={styles.argument}>
           <span className={styles.flag}>
             <span className={styles.fullFlag}>--background</span>
             <span className={styles.shortFlag}>-b</span>
           </span>
-          <span className={styles.group} aria-label="Filter by background">
-            {backgroundOptions.map((option, index) => {
-              const targetPageContext = {
+          <CommandMenu
+            label="Filter by background"
+            interactive={interactive}
+            selected={
+              backgroundOptions.find(
+                option => option.value === pageContext.filter.background,
+              )?.label ?? 'any'
+            }
+            options={backgroundOptions.map(option => ({
+              href: buildIndexRoutePath({
                 sort: pageContext.sort,
                 filter: {
                   ...pageContext.filter,
                   background: option.value,
                 },
-              };
-
-              return (
-                <CommandOption
-                  key={option.label}
-                  href={buildIndexRoutePath(targetPageContext)}
-                  active={pageContext.filter.background === option.value}
-                  interactive={interactive}
-                  separator={index > 0}
-                >
-                  {option.label}
-                </CommandOption>
-              );
-            })}
-          </span>
+              }),
+              label: option.label,
+              active: pageContext.filter.background === option.value,
+            }))}
+          />
         </span>
       </span>
     </div>
@@ -117,40 +108,5 @@ function HomeCommand({ interactive }: { interactive: boolean }) {
       <span className={styles.operator}>❯</span>
       <span className={styles.command}>vimcolorschemes</span>
     </Link>
-  );
-}
-
-function CommandOption({
-  active,
-  children,
-  href,
-  interactive,
-  separator,
-}: {
-  active: boolean;
-  children: ReactNode;
-  href: string;
-  interactive: boolean;
-  separator: boolean;
-}) {
-  return (
-    <span className={styles.segment}>
-      {separator && <span className={styles.pipe}>|</span>}
-      {interactive ? (
-        <Link
-          href={href}
-          prefetch={false}
-          scroll={false}
-          className={cn(styles.option, { [styles.active]: active })}
-          aria-current={active ? 'page' : undefined}
-        >
-          {children}
-        </Link>
-      ) : (
-        <span className={cn(styles.option, { [styles.active]: active })}>
-          {children}
-        </span>
-      )}
-    </span>
   );
 }
