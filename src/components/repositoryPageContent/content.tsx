@@ -18,6 +18,19 @@ type RepositoryPageContentClientProps = {
   repositoryDTO: RepositoryDTO;
 };
 
+const swatchGroupPriority = [
+  'NormalBg',
+  'NormalFg',
+  'vimLineCommentFg',
+  'vimStringFg',
+  'vimFuncNameFg',
+  'vimNumberFg',
+  'vimCommandFg',
+  'StatusLineBg',
+  'CursorLineBg',
+  'LineNrFg',
+];
+
 export default function RepositoryPageContentClient({
   repositoryDTO,
 }: RepositoryPageContentClientProps) {
@@ -99,8 +112,14 @@ function getSwatchColors(colorscheme: Colorscheme | undefined): string[] {
     return [];
   }
 
+  const groups = colorscheme.data[background] ?? [];
+  const colorByGroup = new Map(groups.map(group => [group.name, group.hexCode]));
+  const prioritizedColors = swatchGroupPriority
+    .map(groupName => colorByGroup.get(groupName))
+    .filter((color): color is string => Boolean(color));
+
   return Array.from(
-    new Set(colorscheme.data[background]?.map(group => group.hexCode) ?? []),
+    new Set([...prioritizedColors, ...groups.map(group => group.hexCode)]),
   ).slice(0, 6);
 }
 
