@@ -4,6 +4,7 @@ import { RepositoriesService } from '@/services/repositoriesServer';
 
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryTitle from '@/components/repositoryTitle';
+import TuiSection from '@/components/tuiSection';
 import IconGithub from '@/components/ui/icons/github';
 
 import styles from './index.module.css';
@@ -31,7 +32,11 @@ export default async function RepositoryPageContent({
           colorscheme => colorscheme.dto,
         )}
       />
-      <aside className={styles.infoPane} aria-label="Repository information">
+      <TuiSection
+        as="aside"
+        className={styles.infoPane}
+        aria-label="Repository information"
+      >
         <RepositoryTitle
           repository={repository}
           hasOwnerLink
@@ -68,7 +73,7 @@ export default async function RepositoryPageContent({
             </div>
           )}
         </dl>
-      </aside>
+      </TuiSection>
     </div>
   );
 }

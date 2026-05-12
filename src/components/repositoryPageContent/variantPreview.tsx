@@ -9,6 +9,7 @@ import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 import Card, { cardCodePreviewClassName } from '@/components/card';
 import { CodeSnippetLines } from '@/components/preview/codeSnippet';
 import { ColorschemeConfigLines } from '@/components/preview/colorschemeConfig';
+import TuiSection from '@/components/tuiSection';
 import Code from '@/components/ui/code';
 import TuiLoading from '@/components/ui/tuiLoading';
 
@@ -37,8 +38,12 @@ export default function RepositoryVariantPreview({
 
   return (
     <>
-      <aside className={styles.variantPane} aria-label="Colorscheme variants">
-        <div className={styles.variantHeader}>[variants]</div>
+      <TuiSection
+        as="aside"
+        title="variants"
+        className={styles.variantPane}
+        aria-label="Colorscheme variants"
+      >
         <div className={styles.variantList}>
           {variants.map((colorscheme, index) => {
             const background = colorscheme.backgrounds[0];
@@ -63,7 +68,7 @@ export default function RepositoryVariantPreview({
             );
           })}
         </div>
-      </aside>
+      </TuiSection>
       <section
         className={styles.previewPane}
         aria-label="Selected colorscheme preview"

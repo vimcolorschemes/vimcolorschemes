@@ -14,7 +14,7 @@
   position: fixed;
   inset: 0;
   border: 0;
-  background: color-mix(in srgb, var(--background) 45%, transparent);
+  background: color-mix(in srgb, var(--background) 55%, transparent);
   cursor: pointer;
 }
 
