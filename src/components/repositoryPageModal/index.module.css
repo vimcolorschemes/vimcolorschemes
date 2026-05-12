@@ -26,10 +26,6 @@
   display: flex;
 }
 
-.overlay::backdrop {
-  background: color-mix(in srgb, var(--background) 55%, transparent);
-}
-
 .panel {
   position: relative;
   z-index: 1;
