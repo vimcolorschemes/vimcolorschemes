@@ -65,6 +65,12 @@
   scroll-padding-inline: var(--featured-card-hover-offset);
 }
 
+.loadingList {
+  min-height: 12rem;
+  display: flex;
+  align-items: flex-start;
+}
+
 .card {
   flex: 1 0 min(100%, 24rem);
   min-width: 0;
