@@ -6,6 +6,8 @@ import { CSSProperties, useState } from 'react';
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 
+import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
+
 import Card, { cardCodePreviewClassName } from '@/components/card';
 import { CodeSnippetLines } from '@/components/preview/codeSnippet';
 import { ColorschemeConfigLines } from '@/components/preview/colorschemeConfig';
@@ -27,6 +29,23 @@ export default function RepositoryVariantPreview({
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const activeVariant = variants[activeIndex];
+
+  useKeyboardShortcut({
+    j: event => {
+      if (variants.length === 0) {
+        return;
+      }
+      event.preventDefault();
+      setActiveIndex(index => (index + 1) % variants.length);
+    },
+    k: event => {
+      if (variants.length === 0) {
+        return;
+      }
+      event.preventDefault();
+      setActiveIndex(index => (index - 1 + variants.length) % variants.length);
+    },
+  });
 
   if (!activeVariant) {
     return (
