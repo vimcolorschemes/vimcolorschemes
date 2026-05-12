@@ -33,7 +33,20 @@ export default function RepositoryPageModal({
         aria-label="Close repository"
         onClick={() => router.back()}
       />
-      <section className={styles.panel}>{children}</section>
+      <section className={styles.panel}>
+        {children}
+        <footer className={styles.shortcuts} aria-label="Modal shortcuts">
+          <button
+            type="button"
+            className={styles.shortcut}
+            aria-label="Close repository"
+            onClick={() => router.back()}
+          >
+            <span className={styles.shortcutKey}>esc</span>{' '}
+            <span className={styles.shortcutAction}>close</span>
+          </button>
+        </footer>
+      </section>
     </div>
   );
 }

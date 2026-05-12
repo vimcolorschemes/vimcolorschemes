@@ -11,6 +11,8 @@
     );
   align-items: stretch;
   gap: var(--spacing-sm);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
 }
 
 .variantPane,
@@ -41,8 +43,8 @@
   background: transparent;
   color: var(--foreground);
   font-family: inherit;
-  font-size: var(--font-size-sm);
-  line-height: 1.15;
+  font-size: inherit;
+  line-height: inherit;
   text-align: left;
   cursor: pointer;
 }
@@ -93,7 +95,6 @@
 .variantBackground {
   color: color-mix(in srgb, var(--foreground) 65%, transparent);
   font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
 }
 
 .previewPane {
@@ -140,7 +141,6 @@
   box-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--background) 78%, transparent);
   font-family: var(--font-mono);
-  line-height: 1.35;
 }
 
 .infoPane * {
@@ -148,6 +148,8 @@
 }
 
 .infoPane h1 {
+  font-size: inherit;
+  line-height: inherit;
   min-height: 0;
 }
 
@@ -196,7 +198,6 @@
 .repoFacts dt {
   color: color-mix(in srgb, var(--foreground) 65%, transparent);
   font-family: var(--font-mono);
-  font-size: var(--font-size-sm);
   text-transform: lowercase;
 }
 
