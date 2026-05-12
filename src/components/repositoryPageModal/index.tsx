@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { ReactNode, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ReactNode, useCallback, useRef } from 'react';
 
 import TuiSection from '@/components/tuiSection';
 
@@ -15,26 +15,51 @@ export default function RepositoryPageModal({
   children,
 }: RepositoryPageModalProps) {
   const router = useRouter();
+  const pathname = usePathname();
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === 'Escape') {
-        router.back();
-      }
+  const closeModal = useCallback(() => {
+    const dialog = dialogRef.current;
+    const opener = Array.from(
+      document.querySelectorAll<HTMLAnchorElement>('a[href]'),
+    ).find(link => new URL(link.href).pathname === pathname);
+
+    if (dialog?.open) {
+      dialog.close();
     }
 
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
-  }, [router]);
+    if (opener instanceof HTMLElement) {
+      opener.focus({ preventScroll: true });
+    }
+
+    router.back();
+  }, [pathname, router]);
+
+  const setDialogRef = useCallback((dialog: HTMLDialogElement | null) => {
+    dialogRef.current = dialog;
+
+    if (!dialog || dialog.open) {
+      return;
+    }
+
+    dialog.showModal();
+  }, []);
 
   return (
-    <div className={styles.overlay} role="dialog" aria-modal="true">
-      <button
-        type="button"
-        className={styles.backdrop}
-        aria-label="Close repository"
-        onClick={() => router.back()}
-      />
+    <dialog
+      ref={setDialogRef}
+      className={styles.overlay}
+      aria-label="Repository details"
+      onCancel={event => {
+        event.preventDefault();
+        closeModal();
+      }}
+      onClick={event => {
+        if (event.target === event.currentTarget) {
+          closeModal();
+        }
+      }}
+    >
       <section className={styles.panel}>
         {children}
         <TuiSection
@@ -52,13 +77,13 @@ export default function RepositoryPageModal({
             type="button"
             className={styles.shortcut}
             aria-label="Close repository"
-            onClick={() => router.back()}
+            onClick={closeModal}
           >
             <span className={styles.shortcutKey}>esc</span>{' '}
             <span className={styles.shortcutAction}>close</span>
           </button>
         </TuiSection>
       </section>
-    </div>
+    </dialog>
   );
 }
