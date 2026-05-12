@@ -17,6 +17,10 @@
   --tui-loading-height: 100%;
 }
 
+.flush {
+  padding: 0;
+}
+
 .dots::after {
   content: '.';
   display: inline-block;

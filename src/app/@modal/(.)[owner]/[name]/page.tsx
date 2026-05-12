@@ -20,6 +20,8 @@ type RepositoryPageModalRouteProps = {
 export default async function RepositoryPageModalRoute({
   params,
 }: RepositoryPageModalRouteProps) {
+  await new Promise(resolve => setTimeout(resolve, 5000));
+
   const { owner, name } = await params;
 
   return (
