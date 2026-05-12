@@ -1,19 +1,14 @@
-.pageWidth {
-  width: 100%;
-  max-width: var(--page-max-width);
-  margin: 0 auto;
-}
-
 .layout {
   flex: 1 0 auto;
   width: 100%;
   max-width: var(--page-max-width);
-  min-height: calc(
-    100dvh - var(--statusline-height) - (var(--spacing-sm) * 2) - 6rem
-  );
+  min-height: 0;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(7rem, 10rem) minmax(0, 1fr) minmax(18rem, 23rem);
+  grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr) minmax(
+      28rem,
+      36rem
+    );
   align-items: stretch;
   gap: var(--spacing-sm);
 }
@@ -24,27 +19,10 @@
   min-width: 0;
 }
 
-.variantPane,
-.infoPane {
-  border: 1px solid var(--border-color);
-  background: color-mix(in srgb, var(--foreground) 4%, var(--background));
-}
-
 .variantPane {
   box-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--background) 78%, transparent);
   font-family: var(--font-mono);
-}
-
-.variantHeader {
-  padding: var(--spacing-xs);
-  border-bottom: 1px solid var(--border-color);
-  background: color-mix(in srgb, var(--foreground) 6%, var(--background));
-  color: color-mix(in srgb, var(--foreground) 72%, transparent);
-  font-family: inherit;
-  font-size: var(--font-size-sm);
-  line-height: 1;
-  text-transform: lowercase;
 }
 
 .variantList {
@@ -72,7 +50,8 @@
 .variantButton:hover,
 .variantButton:focus-visible,
 .variantButtonActive {
-  background: color-mix(in srgb, var(--foreground) 10%, var(--background));
+  background: var(--foreground);
+  color: var(--background);
 }
 
 .variantButton:focus-visible {
@@ -108,7 +87,7 @@
 
 .variantButtonActive .variantName::before {
   content: '> ';
-  color: color-mix(in srgb, var(--foreground) 65%, transparent);
+  color: inherit;
 }
 
 .variantBackground {
@@ -121,13 +100,20 @@
   min-width: 0;
   min-height: 24rem;
   display: flex;
+  flex-direction: column;
   align-items: stretch;
   justify-content: center;
+}
+
+.loadingPane {
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .previewCard {
   width: 100%;
   height: 100%;
+  flex: 1;
 }
 
 .previewCard > div {
@@ -151,7 +137,6 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm);
   box-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--background) 78%, transparent);
   font-family: var(--font-mono);
@@ -178,7 +163,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-xs);
-  padding: var(--spacing-xs) 0;
+  padding-block: var(--spacing-xs);
   border-top: 1px solid var(--border-color);
   border-bottom: 1px solid var(--border-color);
   font-family: var(--font-mono);
@@ -221,9 +206,9 @@
   font-weight: 700;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1400px) {
   .layout {
-    grid-template-columns: minmax(6rem, 8rem) minmax(0, 1fr);
+    grid-template-columns: minmax(10rem, 14rem) minmax(0, 1fr);
   }
 
   .infoPane {
@@ -231,7 +216,7 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 860px) {
   .layout {
     grid-template-columns: minmax(0, 1fr);
   }

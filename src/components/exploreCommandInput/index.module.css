@@ -8,6 +8,7 @@
   font-family: var(--font-mono);
   font-size: 1.125rem;
   line-height: 1.625rem;
+  min-height: calc(1.625rem + 2px);
 }
 
 .prompt,

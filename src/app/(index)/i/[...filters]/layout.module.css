@@ -1,12 +1,9 @@
 .viewport {
   width: 100%;
-  min-height: calc(
-    100dvh - var(--statusline-height) - var(--spacing-sm)
-  );
+  min-height: calc(100dvh - var(--statusline-height) - var(--spacing-sm));
   display: flex;
   flex-direction: column;
   align-items: center;
-  row-gap: var(--spacing-sm);
 }
 
 .container {

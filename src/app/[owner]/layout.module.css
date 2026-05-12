@@ -1,6 +1,10 @@
 .container {
   flex: 1 0 auto;
   width: 100%;
+  min-height: calc(
+    100dvh - var(--statusline-height) - (1.625rem + 2px) -
+      (var(--spacing-sm) * 2)
+  );
   padding: var(--content-padding);
   padding-bottom: var(--spacing-sm);
   display: flex;

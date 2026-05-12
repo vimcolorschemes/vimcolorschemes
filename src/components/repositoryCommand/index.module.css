@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  column-gap: var(--spacing-xs);
+  row-gap: 0;
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+  min-height: calc(1.625rem + 2px);
+}
+
+.brandingLink {
+  font-family: var(--font-mono);
+}
+
+.prompt {
+  color: var(--foreground);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.operator {
+  color: var(--foreground-accent);
+  font-weight: 700;
+}
+
+.command {
+  color: var(--foreground-shade);
+}
+
+.argument {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.prompt:hover {
+  color: var(--foreground-accent);
+  text-decoration: none;
+}
+
+@media (max-width: 599px) {
+  .container {
+    column-gap: var(--spacing-xxs);
+  }
+}
+
+@media (hover: none) {
+  .prompt:hover {
+    color: inherit;
+  }
+}

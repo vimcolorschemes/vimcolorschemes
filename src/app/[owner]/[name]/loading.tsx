@@ -1,40 +1,31 @@
-import Card, { cardCodePreviewClassName } from '@/components/card';
 import styles from '@/components/repositoryPageContent/index.module.css';
+import TuiSection from '@/components/tuiSection';
 import TuiLoading from '@/components/ui/tuiLoading';
 
 export default function RepositoryPageLoading() {
   return (
     <div className={styles.layout}>
-      <aside
+      <TuiSection
+        as="aside"
+        title="variants"
         className={styles.variantPane}
         aria-label="Loading colorscheme variants"
       >
-        <div className={styles.variantHeader}>[variants]</div>
-        <div className={styles.variantList}>
-          <div className={styles.variantButton}>
-            <TuiLoading flush />
-          </div>
-        </div>
-      </aside>
-      <section
-        className={styles.previewPane}
+        <TuiLoading flush />
+      </TuiSection>
+      <TuiSection
+        className={`${styles.previewPane} ${styles.loadingPane}`}
         aria-label="Loading selected colorscheme preview"
       >
-        <Card.Root framed className={styles.previewCard}>
-          <Card.Content>
-            <Card.Preview flush>
-              <div
-                className={`${cardCodePreviewClassName} ${styles.codePreview}`}
-              >
-                <TuiLoading />
-              </div>
-            </Card.Preview>
-          </Card.Content>
-        </Card.Root>
-      </section>
-      <aside className={styles.infoPane}>
         <TuiLoading flush />
-      </aside>
+      </TuiSection>
+      <TuiSection
+        as="aside"
+        className={styles.infoPane}
+        aria-label="Loading repository information"
+      >
+        <TuiLoading flush />
+      </TuiSection>
     </div>
   );
 }
