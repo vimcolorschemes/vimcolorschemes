@@ -37,10 +37,9 @@ export default function ExploreCommand({
       aria-hidden={interactive ? undefined : true}
       aria-label={interactive ? 'Explore color schemes' : undefined}
     >
-      <Prompt interactive={interactive} />
+      <HomeCommand interactive={interactive} />
       <span className={styles.commandLine}>
-        <span className={styles.operator}>❯</span>
-        <span className={styles.command}>explore</span>
+        <span className={styles.subcommand}>list</span>
         <span className={styles.argument}>
           <span className={styles.flag}>
             <span className={styles.fullFlag}>--sort</span>
@@ -101,14 +100,22 @@ export default function ExploreCommand({
   );
 }
 
-function Prompt({ interactive }: { interactive: boolean }) {
+function HomeCommand({ interactive }: { interactive: boolean }) {
   if (!interactive) {
-    return <span className={styles.prompt}>~/vimcolorschemes</span>;
+    return (
+      <span className={styles.homeCommand}>
+        <span className={styles.prompt}>~</span>
+        <span className={styles.operator}>❯</span>
+        <span className={styles.command}>vimcolorschemes</span>
+      </span>
+    );
   }
 
   return (
-    <Link href="/i/trending" prefetch={false} className={styles.prompt}>
-      ~/vimcolorschemes
+    <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
+      <span className={styles.prompt}>~</span>
+      <span className={styles.operator}>❯</span>
+      <span className={styles.command}>vimcolorschemes</span>
     </Link>
   );
 }
