@@ -8,19 +8,26 @@
   position: fixed;
   inset: 0;
   z-index: 10;
-  display: flex;
+  width: auto;
+  max-width: none;
+  height: auto;
+  max-height: none;
+  margin: 0;
   justify-content: center;
   align-items: flex-start;
+  border: 0;
   padding: var(--spacing-sm) var(--spacing-sm) var(--modal-reserved-bottom);
+  background: transparent;
+  color: inherit;
   overflow-y: auto;
 }
 
-.backdrop {
-  position: fixed;
-  inset: 0;
-  border: 0;
+.overlay[open] {
+  display: flex;
+}
+
+.overlay::backdrop {
   background: color-mix(in srgb, var(--background) 55%, transparent);
-  cursor: pointer;
 }
 
 .panel {
