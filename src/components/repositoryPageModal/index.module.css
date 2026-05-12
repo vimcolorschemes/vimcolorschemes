@@ -1,12 +1,17 @@
 .overlay {
+  --modal-helper-offset: calc(var(--statusline-height) + var(--spacing-sm));
+  --modal-reserved-bottom: calc(
+    var(--statusline-height) + var(--statusline-height) + var(--spacing-sm) +
+      var(--spacing-sm)
+  );
+
   position: fixed;
   inset: 0;
   z-index: 10;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: var(--spacing-sm) var(--spacing-sm)
-    calc(var(--statusline-height) + var(--spacing-sm));
+  padding: var(--spacing-sm) var(--spacing-sm) var(--modal-reserved-bottom);
   overflow-y: auto;
 }
 
@@ -22,7 +27,7 @@
   position: relative;
   z-index: 1;
   width: min(100%, var(--page-max-width));
-  min-height: calc(100dvh - var(--statusline-height) - (var(--spacing-sm) * 2));
+  min-height: calc(100dvh - var(--modal-reserved-bottom) - var(--spacing-sm));
   display: flex;
   flex-direction: column;
   row-gap: var(--spacing-sm);
@@ -58,6 +63,13 @@
   --tui-section-foreground: var(--modal-shortcuts-foreground);
   --tui-section-padding: 0;
 
+  position: fixed;
+  right: var(--spacing-sm);
+  bottom: var(--modal-helper-offset);
+  left: var(--spacing-sm);
+  z-index: 2;
+  width: min(calc(100% - (var(--spacing-sm) * 2)), var(--page-max-width));
+  margin: 0 auto;
   display: flex;
   justify-content: flex-end;
   min-height: var(--statusline-height);
@@ -103,4 +115,16 @@
 .shortcut:hover .shortcutAction,
 .shortcut:focus-visible .shortcutAction {
   color: var(--modal-shortcuts-accent);
+}
+
+@media (max-width: 1400px) {
+  .overlay {
+    padding-top: calc(var(--statusline-height) + (var(--spacing-sm) * 2));
+    padding-bottom: calc(var(--statusline-height) + var(--spacing-sm));
+  }
+
+  .shortcuts {
+    top: var(--spacing-sm);
+    bottom: auto;
+  }
 }
