@@ -1,4 +1,5 @@
 .viewport {
+  flex: 1 0 auto;
   width: 100%;
   min-height: calc(100dvh - var(--statusline-height) - var(--spacing-sm));
   display: flex;

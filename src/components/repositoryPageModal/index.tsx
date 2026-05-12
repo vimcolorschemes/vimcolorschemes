@@ -3,6 +3,8 @@
 import { useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
+import TuiSection from '@/components/tuiSection';
+
 import styles from './index.module.css';
 
 type RepositoryPageModalProps = {
@@ -35,7 +37,11 @@ export default function RepositoryPageModal({
       />
       <section className={styles.panel}>
         {children}
-        <footer className={styles.shortcuts} aria-label="Modal shortcuts">
+        <TuiSection
+          as="footer"
+          className={styles.shortcuts}
+          aria-label="Modal shortcuts"
+        >
           <button
             type="button"
             className={styles.shortcut}
@@ -45,7 +51,7 @@ export default function RepositoryPageModal({
             <span className={styles.shortcutKey}>esc</span>{' '}
             <span className={styles.shortcutAction}>close</span>
           </button>
-        </footer>
+        </TuiSection>
       </section>
     </div>
   );
