@@ -56,14 +56,20 @@
 .variantList {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.variantPane {
+  --tui-section-padding: 0;
 }
 
 .variantButton {
+  position: relative;
   display: grid;
-  grid-template-columns: 0.75rem minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0 var(--spacing-xxs);
-  padding: var(--spacing-xs);
+  grid-template-columns: 0.875rem minmax(0, 1fr);
+  align-items: stretch;
+  gap: 0 var(--spacing-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
   border: 0;
   border-bottom: 1px solid var(--repository-pane-border);
   background: transparent;
@@ -82,6 +88,14 @@
   color: var(--repository-pane-accent-foreground);
 }
 
+.variantButtonActive::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.25rem;
+  background: currentColor;
+}
+
 .variantButton:focus-visible {
   outline: 2px solid var(--repository-pane-foreground);
   outline-offset: -2px;
@@ -89,8 +103,8 @@
 
 .variantSwatch {
   grid-row: span 2;
-  width: 0.75rem;
-  height: 2rem;
+  width: 0.875rem;
+  height: auto;
   align-self: stretch;
   background: var(--colorscheme-NormalBg, var(--background));
   border: 1px solid
@@ -98,6 +112,12 @@
       in srgb,
       var(--colorscheme-NormalFg, var(--foreground)) 35%,
       transparent
+    );
+  box-shadow: inset 0 0 0 1px
+    color-mix(
+      in srgb,
+      var(--colorscheme-NormalBg, var(--background)) 70%,
+      var(--colorscheme-NormalFg, var(--foreground))
     );
 }
 
@@ -113,14 +133,16 @@
   font-weight: 700;
 }
 
-.variantButtonActive .variantName::before {
-  content: '> ';
-  color: inherit;
-}
-
 .variantBackground {
   color: color-mix(in srgb, var(--repository-pane-foreground) 65%, transparent);
   font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.variantButton:hover .variantBackground,
+.variantButton:focus-visible .variantBackground,
+.variantButtonActive .variantBackground {
+  color: inherit;
 }
 
 .previewPane {
