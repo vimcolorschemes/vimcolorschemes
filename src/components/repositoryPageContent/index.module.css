@@ -218,6 +218,25 @@
   margin: 0;
 }
 
+.colorSwatch {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+
+.colorSwatchItem {
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--repository-pane-background) 70%,
+      var(--repository-pane-foreground)
+    );
+}
+
 .githubLink {
   width: fit-content;
   color: var(--repository-pane-link-accent);
