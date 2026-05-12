@@ -5,7 +5,6 @@ import { RepositoriesService } from '@/services/repositoriesServer';
 import RepositoryInfo from '@/components/repositoryInfo/repositoryInfo';
 import RepositoryTitle from '@/components/repositoryTitle';
 import TuiSection from '@/components/tuiSection';
-import IconGithub from '@/components/ui/icons/github';
 
 import styles from './index.module.css';
 import RepositoryVariantPreview from './variantPreview';
@@ -51,7 +50,6 @@ export default async function RepositoryPageContent({
           className={styles.githubLink}
         >
           view on Github
-          <IconGithub />
         </a>
         <dl className={styles.repoFacts}>
           <div>
