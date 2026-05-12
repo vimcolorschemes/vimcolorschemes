@@ -16,23 +16,27 @@
   );
   --card-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--background) 80%, transparent);
-  --card-footer-background: color-mix(
+  --card-default-footer-background: color-mix(
     in srgb,
     var(--foreground) 6%,
     var(--background)
   );
-  --card-footer-color: var(--foreground);
+  --card-footer-background: var(--card-default-footer-background);
+  --card-footer-color: var(
+    --colorscheme-StatusLineFg,
+    var(--colorscheme-NormalFg, var(--foreground))
+  );
   --card-footer-meta-color: color-mix(
     in srgb,
-    var(--foreground) 64%,
-    transparent
+    var(--card-footer-color) 68%,
+    var(--card-footer-background)
   );
-  --card-interactive-footer-background: var(--card-border-color);
-  --card-interactive-footer-color: var(--foreground);
+  --card-interactive-footer-background: var(--card-footer-background);
+  --card-interactive-footer-color: var(--card-footer-color);
   --card-interactive-footer-meta-color: color-mix(
     in srgb,
-    var(--foreground) 68%,
-    transparent
+    var(--card-interactive-footer-color) 76%,
+    var(--card-interactive-footer-background)
   );
   --card-interactive-background: color-mix(
     in srgb,
@@ -245,6 +249,14 @@
     color 80ms steps(1, start);
 }
 
+.container:has(.codePreview) .footer {
+  --card-footer-background: var(
+    --colorscheme-StatusLineBg,
+    var(--colorscheme-NormalBg, var(--card-default-footer-background))
+  );
+  --card-interactive-footer-background: var(--card-footer-background);
+}
+
 .footerIdentity {
   display: flex;
   align-items: baseline;
@@ -330,22 +342,29 @@
       var(--background)
     );
     --card-interactive-footer-background: var(--card-border-color);
-    --card-interactive-footer-color: var(--foreground);
+    --card-interactive-footer-color: var(
+      --colorscheme-StatusLineFg,
+      var(--colorscheme-NormalFg, var(--foreground))
+    );
     --card-interactive-footer-meta-color: color-mix(
       in srgb,
-      var(--foreground) 70%,
-      transparent
+      var(--card-interactive-footer-color) 76%,
+      var(--card-interactive-footer-background)
     );
-    --card-footer-background: color-mix(
+    --card-default-footer-background: color-mix(
       in srgb,
       var(--foreground) 12%,
       var(--background)
     );
-    --card-footer-color: var(--foreground);
+    --card-footer-background: var(--card-default-footer-background);
+    --card-footer-color: var(
+      --colorscheme-StatusLineFg,
+      var(--colorscheme-NormalFg, var(--foreground))
+    );
     --card-footer-meta-color: color-mix(
       in srgb,
-      var(--foreground) 66%,
-      transparent
+      var(--card-footer-color) 68%,
+      var(--card-footer-background)
     );
   }
 }
