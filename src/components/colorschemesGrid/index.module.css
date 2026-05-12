@@ -1,9 +1,0 @@
-.container {
-  width: 100%;
-  max-width: var(--content-max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
-  gap: var(--spacing-sm);
-  margin-top: var(--spacing-sm);
-}
