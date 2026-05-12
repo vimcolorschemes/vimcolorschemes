@@ -109,8 +109,10 @@ button.shortcut:focus-visible {
 }
 
 button.shortcut:focus-visible {
-  outline: 2px solid var(--modal-shortcuts-accent);
-  outline-offset: calc(-1 * var(--spacing-xxs));
+  outline: none;
+  background: var(--modal-shortcuts-foreground);
+  color: var(--modal-shortcuts-background);
+  text-decoration: none;
 }
 
 .shortcutKey {
@@ -124,6 +126,10 @@ button.shortcut:focus-visible {
 button.shortcut:hover .shortcutAction,
 button.shortcut:focus-visible .shortcutAction {
   color: var(--modal-shortcuts-accent);
+}
+
+button.shortcut:focus-visible .shortcutAction {
+  color: var(--modal-shortcuts-background);
 }
 
 @media (max-width: 1400px) {

@@ -34,6 +34,13 @@
   --line-height-lg: 1.875rem;
   --line-height-xl: 3rem;
   --statusline-height: 1.75rem;
+
+  --repository-card-height: calc(
+    18.75rem + (var(--spacing-xs) * 2) + 2rem + 1.25rem + 0.625rem + 3px
+  );
+  --featured-section-height: calc(
+    var(--repository-card-height) + (var(--spacing-sm) * 2) + 2px
+  );
 }
 
 @media (prefers-color-scheme: dark) {

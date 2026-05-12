@@ -259,6 +259,13 @@
   text-decoration: underline;
 }
 
+.githubLink:focus-visible {
+  outline: none;
+  background: var(--repository-pane-link-accent);
+  color: var(--repository-pane-background);
+  text-decoration: none;
+}
+
 .repoFacts {
   display: grid;
   gap: 0;

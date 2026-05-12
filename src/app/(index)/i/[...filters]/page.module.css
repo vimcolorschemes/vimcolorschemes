@@ -18,7 +18,7 @@
 }
 
 .homepageContentWithFeatured {
-  --featured-loading-height: calc(12rem + (var(--spacing-sm) * 2) + 2px);
+  --featured-loading-height: var(--featured-section-height);
   --repositories-loading-min-height: calc(
     var(--homepage-available-height) - var(--featured-loading-height) -
       var(--spacing-sm) - var(--statusline-height) - (var(--spacing-sm) * 2) -
