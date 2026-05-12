@@ -1,10 +1,14 @@
 'use client';
 
 import cn from 'classnames';
-import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
+
+import {
+  type ActiveVariantIndexChange,
+  RepositoryPageHelper,
+} from '@/helpers/repositoryPage';
 
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
@@ -20,7 +24,7 @@ import styles from './index.module.css';
 type RepositoryVariantPreviewProps = {
   colorschemes: ColorschemeDTO[];
   activeIndex: number;
-  onActiveIndexChange: (index: number | ((index: number) => number)) => void;
+  onActiveIndexChange: ActiveVariantIndexChange;
 };
 
 export default function RepositoryVariantPreview({
@@ -39,15 +43,17 @@ export default function RepositoryVariantPreview({
         return;
       }
       event.preventDefault();
-      onActiveIndexChange(index => (index + 1) % variants.length);
+      onActiveIndexChange(index =>
+        RepositoryPageHelper.getNextVariantIndex(index, variants.length),
+      );
     },
     k: event => {
       if (variants.length === 0) {
         return;
       }
       event.preventDefault();
-      onActiveIndexChange(
-        index => (index - 1 + variants.length) % variants.length,
+      onActiveIndexChange(index =>
+        RepositoryPageHelper.getPreviousVariantIndex(index, variants.length),
       );
     },
   });
@@ -82,7 +88,7 @@ export default function RepositoryVariantPreview({
                 onClick={() => onActiveIndexChange(index)}
                 aria-pressed={index === activeIndex}
                 title={title}
-                style={getColorschemeStyle(colorscheme)}
+                style={RepositoryPageHelper.getColorschemeStyle(colorscheme)}
               >
                 <span className={styles.variantSwatch} aria-hidden="true" />
                 <span className={styles.variantName}>{colorscheme.name}</span>
@@ -105,7 +111,7 @@ export default function RepositoryVariantPreview({
                 activeLine={9}
                 data-background={activeVariant.backgrounds[0]}
                 className={cn(cardCodePreviewClassName, styles.codePreview)}
-                style={getColorschemeStyle(activeVariant)}
+                style={RepositoryPageHelper.getColorschemeStyle(activeVariant)}
               >
                 <ColorschemeConfigLines
                   colorscheme={activeVariant}
@@ -120,17 +126,4 @@ export default function RepositoryVariantPreview({
       </section>
     </>
   );
-}
-
-function getColorschemeStyle(
-  colorscheme: Colorscheme,
-): CSSProperties | undefined {
-  const background = colorscheme.backgrounds[0];
-  return colorscheme.data[background]?.reduce(
-    (acc, group) => ({
-      ...acc,
-      [`--colorscheme-${group.name}`]: group.hexCode,
-    }),
-    {},
-  ) as CSSProperties | undefined;
 }

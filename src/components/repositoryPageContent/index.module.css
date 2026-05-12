@@ -11,10 +11,7 @@
   );
   --repository-pane-link-accent: var(
     --colorscheme-vimStringFg,
-    var(
-      --colorscheme-vimFuncNameFg,
-      var(--repository-pane-accent-background)
-    )
+    var(--colorscheme-vimFuncNameFg, var(--repository-pane-accent-background))
   );
   --repository-pane-border: color-mix(
     in srgb,
