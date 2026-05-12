@@ -26,6 +26,7 @@ export default function RepositoryPageContentClient({
   const [activeIndex, setActiveIndex] = useState(0);
   const activeVariant = variants[activeIndex];
   const colorschemeStyle = getColorschemeStyle(activeVariant);
+  const swatchColors = getSwatchColors(activeVariant);
 
   return (
     <div className={styles.layout} style={colorschemeStyle}>
@@ -74,9 +75,33 @@ export default function RepositoryPageContentClient({
             </div>
           )}
         </dl>
+        {swatchColors.length > 0 && (
+          <div className={styles.colorSwatch} aria-label="Colorscheme colors">
+            {swatchColors.map(color => (
+              <span
+                key={color}
+                className={styles.colorSwatchItem}
+                style={{ backgroundColor: color }}
+                title={color}
+              />
+            ))}
+          </div>
+        )}
       </TuiSection>
     </div>
   );
+}
+
+function getSwatchColors(colorscheme: Colorscheme | undefined): string[] {
+  const background = colorscheme?.backgrounds[0];
+
+  if (!colorscheme || !background) {
+    return [];
+  }
+
+  return Array.from(
+    new Set(colorscheme.data[background]?.map(group => group.hexCode) ?? []),
+  ).slice(0, 6);
 }
 
 function getColorschemeStyle(
