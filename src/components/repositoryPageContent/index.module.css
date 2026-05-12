@@ -134,7 +134,14 @@
 }
 
 .variantName {
+  color: var(--repository-pane-foreground);
   font-weight: 700;
+}
+
+.variantButton:hover .variantName,
+.variantButton:focus-visible .variantName,
+.variantButtonActive .variantName {
+  color: var(--repository-pane-accent-foreground);
 }
 
 .variantBackground {
@@ -146,7 +153,11 @@
 .variantButton:hover .variantBackground,
 .variantButton:focus-visible .variantBackground,
 .variantButtonActive .variantBackground {
-  color: inherit;
+  color: color-mix(
+    in srgb,
+    var(--repository-pane-accent-foreground) 65%,
+    transparent
+  );
 }
 
 .previewPane {

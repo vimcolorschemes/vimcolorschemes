@@ -1,4 +1,5 @@
 .grid {
   display: flex;
   justify-content: flex-start;
+  min-height: max(var(--repositories-loading-min-height, 12rem), 12rem);
 }

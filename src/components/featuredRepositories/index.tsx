@@ -5,6 +5,7 @@ import { RepositoriesService } from '@/services/repositoriesServer';
 import type { PageContext } from '@/lib/pageContext';
 
 import RepositoryCard from '@/components/repositoryCard';
+import TuiLoading from '@/components/ui/tuiLoading';
 
 import styles from './index.module.css';
 
@@ -45,6 +46,21 @@ export default async function FeaturedRepositories({
             headingLevel="h3"
           />
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function FeaturedRepositoriesSkeleton() {
+  return (
+    <section className={styles.container} aria-labelledby="featured-title">
+      <div className={styles.header}>
+        <h2 id="featured-title" className={styles.title}>
+          featured
+        </h2>
+      </div>
+      <div className={styles.loadingList}>
+        <TuiLoading />
       </div>
     </section>
   );
