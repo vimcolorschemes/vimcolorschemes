@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react';
+
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
@@ -22,9 +24,22 @@ export default function RepositoryCard({
 }: RepositoryCardProps) {
   const repository = new Repository(repositoryDTO);
   const title = `${repository.name} @${repository.owner.name}`;
+  const prioritizedBackground =
+    pageContext.filter?.background === 'both'
+      ? undefined
+      : pageContext.filter?.background;
+  const colorscheme = repository.getDefaultColorscheme(prioritizedBackground);
+  const background = colorscheme.getDefaultBackground(prioritizedBackground);
+  const style = colorscheme.data[background]?.reduce(
+    (acc, group) => ({
+      ...acc,
+      [`--colorscheme-${group.name}`]: group.hexCode,
+    }),
+    {},
+  ) as CSSProperties | undefined;
 
   return (
-    <Card.Root framed interactive className={className}>
+    <Card.Root framed interactive className={className} style={style}>
       <Card.Content>
         <Card.Link href={repository.route} label={repository.title} />
         <Card.Preview flush interactiveControls>
