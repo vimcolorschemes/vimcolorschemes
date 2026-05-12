@@ -42,6 +42,12 @@ export default function RepositoryPageModal({
           className={styles.shortcuts}
           aria-label="Modal shortcuts"
         >
+          <span className={`${styles.shortcut} ${styles.variantShortcut}`}>
+            <span className={styles.shortcutKey}>j</span>{' '}
+            <span className={styles.shortcutKey}>/</span>{' '}
+            <span className={styles.shortcutKey}>k</span>{' '}
+            <span className={styles.shortcutAction}>variants</span>
+          </span>
           <button
             type="button"
             className={styles.shortcut}

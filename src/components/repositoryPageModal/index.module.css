@@ -39,10 +39,13 @@
 }
 
 .shortcuts {
-  --modal-shortcuts-background: var(--colorscheme-LineNrBg, var(--background));
+  --modal-shortcuts-background: var(
+    --colorscheme-StatusLineBg,
+    var(--colorscheme-NormalBg, var(--background))
+  );
   --modal-shortcuts-foreground: var(
     --colorscheme-StatusLineFg,
-    var(--foreground)
+    var(--colorscheme-NormalFg, var(--foreground))
   );
   --modal-shortcuts-accent: var(
     --colorscheme-NormalFg,
@@ -84,22 +87,25 @@
 .shortcut {
   display: inline-flex;
   align-items: center;
-  column-gap: var(--spacing-xs);
+  column-gap: var(--spacing-xxs);
   padding: 0 var(--spacing-xs);
   border: 0;
   background: transparent;
   color: inherit;
   font: inherit;
+}
+
+button.shortcut {
   cursor: pointer;
 }
 
-.shortcut:hover,
-.shortcut:focus-visible {
+button.shortcut:hover,
+button.shortcut:focus-visible {
   color: var(--modal-shortcuts-accent);
   text-decoration: underline;
 }
 
-.shortcut:focus-visible {
+button.shortcut:focus-visible {
   outline: 2px solid var(--modal-shortcuts-accent);
   outline-offset: calc(-1 * var(--spacing-xxs));
 }
@@ -112,8 +118,8 @@
   color: var(--modal-shortcuts-muted);
 }
 
-.shortcut:hover .shortcutAction,
-.shortcut:focus-visible .shortcutAction {
+button.shortcut:hover .shortcutAction,
+button.shortcut:focus-visible .shortcutAction {
   color: var(--modal-shortcuts-accent);
 }
 
@@ -126,5 +132,11 @@
   .shortcuts {
     top: var(--spacing-sm);
     bottom: auto;
+  }
+}
+
+@media (max-width: 860px) {
+  .variantShortcut {
+    display: none;
   }
 }
