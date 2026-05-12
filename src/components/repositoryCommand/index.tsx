@@ -31,11 +31,12 @@ export default function RepositoryCommand({
 
   return (
     <div className={styles.container} aria-label="Repository command">
-      <Link href="/i/trending" prefetch={false} className={styles.prompt}>
-        ~/vimcolorschemes
+      <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
+        <span className={styles.prompt}>~</span>
+        <span className={styles.operator}>❯</span>
+        <span className={styles.command}>vimcolorschemes</span>
       </Link>
-      <span className={styles.operator}>❯</span>
-      <span className={styles.command}>get</span>
+      <span className={styles.subcommand}>get</span>
       <span className={styles.argument}>
         {repoOwner}/{repoName}
       </span>
