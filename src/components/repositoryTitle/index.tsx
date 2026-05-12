@@ -37,23 +37,29 @@ export default function RepositoryTitle({
     <div className={cn(styles.container, classNames?.container)}>
       <Title className={cn(styles.titleContainer, classNames?.titleContainer)}>
         {repository?.owner.name && hasOwnerLink ? (
-          <Link
-            href={`/${repository.owner.name.toLowerCase()}`}
-            prefetch={false}
-            className={styles.owner}
-          >
+          <>
+            <Link
+              href={`/${repository.owner.name.toLowerCase()}`}
+              prefetch={false}
+              className={styles.owner}
+            >
+              <OwnerTitle
+                owner={repository.owner}
+                prefix={ownerPrefix}
+                className={styles.ownerTitle}
+              />
+            </Link>
+            <span className={styles.separator}>/</span>
+          </>
+        ) : (
+          <>
             <OwnerTitle
-              owner={repository.owner}
+              owner={repository?.owner}
               prefix={ownerPrefix}
               className={styles.ownerTitle}
             />
-          </Link>
-        ) : (
-          <OwnerTitle
-            owner={repository?.owner}
-            prefix={ownerPrefix}
-            className={styles.ownerTitle}
-          />
+            <span className={styles.separator}>/</span>
+          </>
         )}
         <div className={cn(styles.title, classNames?.title)}>
           {repository?.name ?? <TuiLoadingInline />}

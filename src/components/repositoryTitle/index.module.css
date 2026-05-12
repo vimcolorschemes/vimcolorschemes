@@ -6,17 +6,24 @@
 }
 
 .titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 0 var(--spacing-xxs);
   flex: 1;
   min-width: 0;
-  min-height: 3.5rem;
+  min-height: 0;
   overflow-wrap: anywhere;
 }
 
 .title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-weight: 700;
-  font-size: var(--font-size-xl);
-  line-height: 1.1;
-  margin-bottom: var(--spacing-xxs);
+  font-size: inherit;
+  line-height: inherit;
+  margin-bottom: 0;
 }
 
 .owner {
@@ -27,6 +34,10 @@
 
 .ownerTitle {
   margin-bottom: 0;
+}
+
+.separator {
+  color: var(--foreground-shade);
 }
 
 .stats {
