@@ -10,6 +10,20 @@
   border: 1px solid var(--border-color);
 }
 
+@media (max-width: 767px) {
+  .container {
+    padding-inline: 0;
+    border-right: 0;
+    border-bottom: 0;
+    border-left: 0;
+  }
+
+  .title {
+    left: 0;
+    padding-left: 0;
+  }
+}
+
 .loadingContainer {
   flex: 1;
 }
