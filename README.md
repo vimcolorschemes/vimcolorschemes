@@ -41,9 +41,9 @@
 
 ## About
 
-[vimcolorschemes](https://vimcolorschemes.com) helps vim and neovim users compare colorschemes from repositories across GitHub.
+[vimcolorschemes](https://vimcolorschemes.com) is a website for browsing vim and neovim colorschemes from repositories across GitHub.
 
-The app tracks thousands of vim and neovim colorscheme repositories, updates the list daily, and renders generated previews so schemes can be compared visually. Repository metadata, search filters, and preview colors are kept close to the browsing experience so it is easy to move from discovery to evaluation.
+The app tracks thousands of repositories, updates them daily, and renders generated previews for each colorscheme. It includes repository metadata and filters for sorting and browsing the collection.
 
 ## Get involved
 
