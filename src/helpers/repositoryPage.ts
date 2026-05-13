@@ -9,14 +9,18 @@ export type ActiveVariantIndexChange = (
 const swatchGroupPriority = [
   'NormalBg',
   'NormalFg',
-  'vimLineCommentFg',
   'vimStringFg',
   'vimFuncNameFg',
-  'vimNumberFg',
+  'vimFunctionFg',
   'vimCommandFg',
-  'StatusLineBg',
-  'CursorLineBg',
-  'LineNrFg',
+  'vimLetFg',
+  'vimVarFg',
+  'vimNumberFg',
+  'vimOperFg',
+  'vimParenSepFg',
+  'vimFuncBodyFg',
+  'vimIsCommandFg',
+  'vimLineCommentFg',
 ];
 
 function getNextVariantIndex(index: number, length: number): number {
@@ -44,7 +48,7 @@ function getSwatchColors(colorscheme: Colorscheme | undefined): string[] {
 
   return Array.from(
     new Set([...prioritizedColors, ...groups.map(group => group.hexCode)]),
-  ).slice(0, 6);
+  ).slice(0, 10);
 }
 
 function getColorschemeStyle(

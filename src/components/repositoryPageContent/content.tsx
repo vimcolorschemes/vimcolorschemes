@@ -25,22 +25,27 @@ export default function RepositoryPageContentClient({
   const repository = new Repository(repositoryDTO);
   const variants = repository.flattenedColorschemes;
   const [activeIndex, setActiveIndex] = useState(0);
+  const firstVariant = variants[0];
   const activeVariant = variants[activeIndex];
-  const colorschemeStyle =
+  const firstColorschemeStyle =
+    RepositoryPageHelper.getColorschemeStyle(firstVariant);
+  const activeColorschemeStyle =
     RepositoryPageHelper.getColorschemeStyle(activeVariant);
   const swatchColors = RepositoryPageHelper.getSwatchColors(activeVariant);
 
   return (
-    <div className={styles.layout} style={colorschemeStyle}>
-      <RepositoryPageThemeScope style={colorschemeStyle} />
+    <div className={styles.layout} style={firstColorschemeStyle}>
+      <RepositoryPageThemeScope style={firstColorschemeStyle} />
       <RepositoryVariantPreview
         colorschemes={variants.map(colorscheme => colorscheme.dto)}
         activeIndex={activeIndex}
         onActiveIndexChange={setActiveIndex}
+        activeColorschemeStyle={activeColorschemeStyle}
       />
       <TuiSection
         as="aside"
         className={styles.infoPane}
+        style={activeColorschemeStyle}
         aria-label="Repository information"
       >
         <RepositoryTitle

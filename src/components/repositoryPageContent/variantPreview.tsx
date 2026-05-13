@@ -1,7 +1,7 @@
 'use client';
 
 import cn from 'classnames';
-import { useRef } from 'react';
+import { CSSProperties, useRef } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
@@ -26,12 +26,14 @@ type RepositoryVariantPreviewProps = {
   colorschemes: ColorschemeDTO[];
   activeIndex: number;
   onActiveIndexChange: ActiveVariantIndexChange;
+  activeColorschemeStyle: CSSProperties | undefined;
 };
 
 export default function RepositoryVariantPreview({
   colorschemes,
   activeIndex,
   onActiveIndexChange,
+  activeColorschemeStyle,
 }: RepositoryVariantPreviewProps) {
   const variantListRef = useRef<HTMLDivElement>(null);
   const variants = colorschemes.map(
@@ -102,9 +104,12 @@ export default function RepositoryVariantPreview({
                 aria-pressed={index === activeIndex}
                 data-variant-index={index}
                 title={title}
-                style={RepositoryPageHelper.getColorschemeStyle(colorscheme)}
               >
-                <span className={styles.variantSwatch} aria-hidden="true" />
+                <span
+                  className={styles.variantSwatch}
+                  style={RepositoryPageHelper.getColorschemeStyle(colorscheme)}
+                  aria-hidden="true"
+                />
                 <span className={styles.variantName}>{colorscheme.name}</span>
                 <span className={styles.variantBackground}>{background}</span>
               </button>
@@ -115,6 +120,7 @@ export default function RepositoryVariantPreview({
       <section
         className={styles.previewPane}
         aria-label="Selected colorscheme preview"
+        style={activeColorschemeStyle}
       >
         <Card.Root framed className={styles.previewCard}>
           <Card.Content>
@@ -125,7 +131,7 @@ export default function RepositoryVariantPreview({
                 activeLine={9}
                 data-background={activeVariant.backgrounds[0]}
                 className={cn(cardCodePreviewClassName, styles.codePreview)}
-                style={RepositoryPageHelper.getColorschemeStyle(activeVariant)}
+                style={activeColorschemeStyle}
               >
                 <ColorschemeConfigLines
                   colorscheme={activeVariant}
