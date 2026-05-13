@@ -1,0 +1,84 @@
+:global(body:has(.readme-preview-page)) {
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+:global(body:has(.readme-preview-page) footer) {
+  display: none;
+}
+
+.viewport {
+  width: 1280px;
+  height: 720px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background:
+    radial-gradient(circle at 14% 0%, color-mix(in srgb, var(--foreground-accent) 28%, transparent), transparent 30rem),
+    radial-gradient(circle at 82% 16%, rgb(166 227 161 / 0.12), transparent 24rem),
+    linear-gradient(180deg, color-mix(in srgb, var(--foreground) 4%, transparent), transparent 18rem),
+    var(--background);
+  color: var(--foreground);
+}
+
+.header {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  min-height: 4.5rem;
+  padding: var(--spacing-sm);
+  border: 1px solid color-mix(in srgb, var(--foreground) 24%, var(--background));
+  background: color-mix(in srgb, var(--foreground) 5%, var(--background));
+  box-shadow:
+    0 18px 60px rgb(0 0 0 / 0.16),
+    inset 0 0 0 1px color-mix(in srgb, var(--background) 75%, transparent);
+}
+
+.header > div {
+  font-size: 1.55rem;
+  line-height: 2.1rem;
+}
+
+.grid {
+  flex: 0 0 auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, auto);
+  gap: var(--spacing-sm);
+  align-content: start;
+  align-items: start;
+}
+
+.card {
+  align-self: start;
+  min-width: 0;
+  border-color: color-mix(in srgb, var(--foreground) 20%, var(--background));
+  box-shadow: 0 20px 58px rgb(0 0 0 / 0.22);
+}
+
+.card,
+.card > div {
+  height: auto;
+}
+
+.card > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.card pre {
+  flex: 0 0 auto;
+  height: calc((15 * 1.05rem) + (var(--spacing-xs) * 2));
+  font-size: 0.76rem;
+
+  --_code-line-height: 1.05rem;
+}
+
+.card footer {
+  display: none !important;
+}
