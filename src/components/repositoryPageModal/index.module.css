@@ -26,6 +26,19 @@
   display: flex;
 }
 
+.overlay::backdrop {
+  background: transparent;
+}
+
+.overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0 0 var(--statusline-height);
+  z-index: 0;
+  pointer-events: none;
+  backdrop-filter: blur(4px);
+}
+
 .panel {
   position: relative;
   z-index: 1;
