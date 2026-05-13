@@ -6,20 +6,19 @@
   white-space: nowrap;
 }
 
-.option:hover {
-  color: var(--foreground);
-}
+@media (hover: hover) and (pointer: fine) {
+  .option:hover {
+    color: var(--foreground);
+    text-decoration: none;
+  }
 
-.option:hover {
-  text-decoration: none;
-}
-
-.option:focus-visible {
-  outline: none;
-  background: var(--foreground-accent);
-  color: var(--background);
-  box-shadow: inset 0 0 0 1px var(--foreground-accent);
-  text-decoration: none;
+  .option:focus-visible {
+    outline: none;
+    background: var(--foreground-accent);
+    color: var(--background);
+    box-shadow: inset 0 0 0 1px var(--foreground-accent);
+    text-decoration: none;
+  }
 }
 
 .option.active {
@@ -29,10 +28,12 @@
   font-weight: 700;
 }
 
-.option.active:focus-visible {
-  background: var(--foreground-accent);
-  color: var(--background);
-  box-shadow: inset 0 0 0 1px var(--foreground-accent);
+@media (hover: hover) and (pointer: fine) {
+  .option.active:focus-visible {
+    background: var(--foreground-accent);
+    color: var(--background);
+    box-shadow: inset 0 0 0 1px var(--foreground-accent);
+  }
 }
 
 .menu {
@@ -54,14 +55,19 @@
   font-weight: 400;
 }
 
-.menu > summary:hover .disclosure,
-.menu > summary:focus-visible .disclosure,
 .menu.open > summary .disclosure {
   color: var(--foreground);
 }
 
-.menu > summary:focus-visible .disclosure {
-  color: var(--background);
+@media (hover: hover) and (pointer: fine) {
+  .menu > summary:hover .disclosure,
+  .menu > summary:focus-visible .disclosure {
+    color: var(--foreground);
+  }
+
+  .menu > summary:focus-visible .disclosure {
+    color: var(--background);
+  }
 }
 
 .menu > summary::-webkit-details-marker {
@@ -82,18 +88,17 @@
   background: var(--background);
 }
 
-.menu.open .menuList,
-.menu:focus-within .menuList {
+.menu.open .menuList {
   display: flex;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu:has(:focus-visible) .menuList {
+    display: flex;
+  }
 }
 
 .menuOption {
   display: block;
   padding: 0 var(--spacing-xs);
-}
-
-@media (hover: none) {
-  .option:hover {
-    color: inherit;
-  }
 }

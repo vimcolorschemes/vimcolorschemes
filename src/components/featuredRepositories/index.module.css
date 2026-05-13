@@ -45,11 +45,13 @@
   line-height: var(--line-height-sm);
 }
 
-.cta:focus-visible {
-  outline: none;
-  background: var(--foreground-accent);
-  color: var(--background);
-  text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+  .cta:focus-visible {
+    outline: none;
+    background: var(--foreground-accent);
+    color: var(--background);
+    text-decoration: none;
+  }
 }
 
 .list {

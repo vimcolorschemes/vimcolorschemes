@@ -78,12 +78,14 @@
   color: inherit;
 }
 
-.brand:focus-visible,
-.link:focus-visible {
-  outline: none;
-  background: var(--foreground);
-  color: var(--background);
-  text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+  .brand:focus-visible,
+  .link:focus-visible {
+    outline: none;
+    background: var(--foreground);
+    color: var(--background);
+    text-decoration: none;
+  }
 }
 
 .wordmark {
@@ -102,8 +104,10 @@
   text-transform: none;
 }
 
-.wordmark:hover {
-  text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+  .wordmark:hover {
+    text-decoration: none;
+  }
 }
 
 @media (max-width: 640px) {

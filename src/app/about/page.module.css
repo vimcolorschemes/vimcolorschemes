@@ -71,11 +71,13 @@
   text-underline-offset: 0.2em;
 }
 
-.section a:focus-visible {
-  outline: none;
-  background: var(--foreground);
-  color: var(--background);
-  text-decoration: none;
+@media (hover: hover) and (pointer: fine) {
+  .section a:focus-visible {
+    outline: none;
+    background: var(--foreground);
+    color: var(--background);
+    text-decoration: none;
+  }
 }
 
 .section strong {

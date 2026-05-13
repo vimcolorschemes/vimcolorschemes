@@ -82,22 +82,12 @@
   display: none;
 }
 
-.skeleton:hover::before,
-.skeleton:focus-within::before {
-  background-color: transparent;
-  opacity: 0;
-}
-
 .link {
   position: absolute;
   inset: 0;
   z-index: 3;
   display: block;
   border-radius: inherit;
-}
-
-.link:focus-visible {
-  outline: none;
 }
 
 .linkLabel {
@@ -112,32 +102,37 @@
   border: 0;
 }
 
-.interactive:hover::before,
-.interactive:focus-within::before {
-  background-color: color-mix(
-    in srgb,
-    var(--foreground-accent) 12%,
-    transparent
-  );
-  opacity: 1;
-}
-
-.framed.interactive:hover::before,
-.framed.interactive:focus-within::before {
-  opacity: 0;
-}
-
-@media (prefers-color-scheme: dark) {
-  .interactive:hover::before,
-  .interactive:focus-within::before {
-    background-color: color-mix(in srgb, var(--foreground) 7%, transparent);
-  }
-}
-
-@media (hover: none) {
-  .interactive:hover::before,
-  .interactive:focus-within::before {
+@media (hover: hover) and (pointer: fine) {
+  .skeleton:hover::before,
+  .skeleton:has(:focus-visible)::before {
+    background-color: transparent;
     opacity: 0;
+  }
+
+  .link:focus-visible {
+    outline: none;
+  }
+
+  .interactive:hover::before,
+  .interactive:has(:focus-visible)::before {
+    background-color: color-mix(
+      in srgb,
+      var(--foreground-accent) 12%,
+      transparent
+    );
+    opacity: 1;
+  }
+
+  .framed.interactive:hover::before,
+  .framed.interactive:has(:focus-visible)::before {
+    opacity: 0;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .interactive:hover::before,
+    .interactive:has(:focus-visible)::before {
+      background-color: color-mix(in srgb, var(--foreground) 7%, transparent);
+    }
   }
 }
 
@@ -251,22 +246,24 @@
   --card-focus-color: var(--card-interactive-footer-background);
 }
 
-.framed.interactive:hover .footer,
-.framed.interactive:has(:focus-visible) .footer {
-  border-color: var(--card-interactive-footer-background);
-}
+@media (hover: hover) and (pointer: fine) {
+  .framed.interactive:hover .footer,
+  .framed.interactive:has(:focus-visible) .footer {
+    border-color: var(--card-interactive-footer-background);
+  }
 
-.framed.interactive:has(:focus-visible) .footer {
-  background: var(--card-interactive-footer-background);
-  color: var(--card-interactive-footer-color);
-}
+  .framed.interactive:has(:focus-visible) .footer {
+    background: var(--card-interactive-footer-background);
+    color: var(--card-interactive-footer-color);
+  }
 
-.framed.interactive:has(:focus-visible) .footerTitle {
-  color: var(--card-interactive-footer-color);
-}
+  .framed.interactive:has(:focus-visible) .footerTitle {
+    color: var(--card-interactive-footer-color);
+  }
 
-.framed.interactive:has(:focus-visible) .footerMeta {
-  color: var(--card-interactive-footer-meta-color);
+  .framed.interactive:has(:focus-visible) .footerMeta {
+    color: var(--card-interactive-footer-meta-color);
+  }
 }
 
 .footerIdentity {

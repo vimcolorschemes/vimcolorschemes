@@ -85,8 +85,6 @@
   cursor: pointer;
 }
 
-.variantButton:hover,
-.variantButton:focus-visible,
 .variantButtonActive {
   background: var(--repository-pane-accent-background);
   color: var(--repository-pane-accent-foreground);
@@ -100,9 +98,17 @@
   background: currentColor;
 }
 
-.variantButton:focus-visible {
-  outline: 2px solid var(--repository-pane-foreground);
-  outline-offset: -2px;
+@media (hover: hover) and (pointer: fine) {
+  .variantButton:hover,
+  .variantButton:focus-visible {
+    background: var(--repository-pane-accent-background);
+    color: var(--repository-pane-accent-foreground);
+  }
+
+  .variantButton:focus-visible {
+    outline: 2px solid var(--repository-pane-foreground);
+    outline-offset: -2px;
+  }
 }
 
 .variantSwatch {
@@ -138,10 +144,15 @@
   font-weight: 700;
 }
 
-.variantButton:hover .variantName,
-.variantButton:focus-visible .variantName,
 .variantButtonActive .variantName {
   color: var(--repository-pane-accent-foreground);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .variantButton:hover .variantName,
+  .variantButton:focus-visible .variantName {
+    color: var(--repository-pane-accent-foreground);
+  }
 }
 
 .variantBackground {
@@ -150,14 +161,23 @@
   font-size: 0.875em;
 }
 
-.variantButton:hover .variantBackground,
-.variantButton:focus-visible .variantBackground,
 .variantButtonActive .variantBackground {
   color: color-mix(
     in srgb,
     var(--repository-pane-accent-foreground) 65%,
     transparent
   );
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .variantButton:hover .variantBackground,
+  .variantButton:focus-visible .variantBackground {
+    color: color-mix(
+      in srgb,
+      var(--repository-pane-accent-foreground) 65%,
+      transparent
+    );
+  }
 }
 
 .previewPane {
@@ -254,16 +274,18 @@
   text-underline-offset: 0.18em;
 }
 
-.githubLink:hover,
-.githubLink:focus-visible {
-  text-decoration: underline;
-}
+@media (hover: hover) and (pointer: fine) {
+  .githubLink:hover,
+  .githubLink:focus-visible {
+    text-decoration: underline;
+  }
 
-.githubLink:focus-visible {
-  outline: none;
-  background: var(--repository-pane-link-accent);
-  color: var(--repository-pane-background);
-  text-decoration: none;
+  .githubLink:focus-visible {
+    outline: none;
+    background: var(--repository-pane-link-accent);
+    color: var(--repository-pane-background);
+    text-decoration: none;
+  }
 }
 
 .repoFacts {
@@ -334,15 +356,5 @@
   .previewPane,
   .previewEmpty {
     grid-column: auto;
-  }
-}
-
-@media (hover: none) {
-  .variantButton:hover {
-    background: transparent;
-  }
-
-  .variantButtonActive {
-    background: var(--repository-pane-accent-background);
   }
 }
