@@ -97,9 +97,18 @@
 }
 
 .shortcuts {
-  --modal-shortcuts-background: var(--background);
-  --modal-shortcuts-foreground: var(--foreground);
-  --modal-shortcuts-accent: var(--foreground-accent);
+  --modal-shortcuts-background: var(
+    --colorscheme-StatusLineBg,
+    var(--colorscheme-NormalBg, var(--background))
+  );
+  --modal-shortcuts-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--colorscheme-NormalFg, var(--foreground))
+  );
+  --modal-shortcuts-accent: var(
+    --colorscheme-vimStringFg,
+    var(--colorscheme-vimFuncNameFg, var(--modal-shortcuts-foreground))
+  );
   --modal-shortcuts-muted: color-mix(
     in srgb,
     var(--modal-shortcuts-foreground) 65%,
