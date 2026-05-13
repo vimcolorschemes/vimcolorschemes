@@ -90,7 +90,9 @@
 
 .wordmark {
   display: block;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
   margin-top: var(--spacing-md);
   overflow-x: auto;
   color: var(--foreground);
@@ -100,7 +102,7 @@
   letter-spacing: 0;
   line-height: 0.95;
   white-space: pre;
-  text-align: center;
+  text-align: left;
   text-transform: none;
 }
 
