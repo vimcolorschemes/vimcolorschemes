@@ -1,3 +1,0 @@
-.preview {
-  --tui-loading-height: calc((15 * 1.25rem) + (var(--spacing-xs) * 2));
-}

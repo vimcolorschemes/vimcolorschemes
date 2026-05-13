@@ -83,17 +83,3 @@
 .card::before {
   inset: calc(var(--featured-card-hover-offset) * -1);
 }
-
-.loadingCard {
-  position: relative;
-}
-
-.loadingCardSpacer {
-  visibility: hidden;
-}
-
-.loadingCardText {
-  position: absolute;
-  top: 0;
-  left: 0;
-}

@@ -139,10 +139,6 @@
   .interactive:focus-within::before {
     opacity: 0;
   }
-  .interactive:hover .title,
-  .interactive:focus-within .title {
-    text-decoration: none;
-  }
 }
 
 .preview {
@@ -207,16 +203,6 @@
   flex-direction: column;
   row-gap: var(--spacing-sm);
   border-radius: inherit;
-}
-
-.interactive:hover .title,
-.interactive:focus-within .title {
-  text-decoration: underline;
-}
-
-.skeleton:hover .title,
-.skeleton:focus-within .title {
-  text-decoration: none;
 }
 
 .footer {
@@ -343,11 +329,6 @@
   gap: 0.1875rem;
   margin: 0;
   white-space: nowrap;
-}
-
-.footerIcon {
-  width: 0.75rem;
-  height: 0.75rem;
 }
 
 @media (prefers-color-scheme: dark) {
