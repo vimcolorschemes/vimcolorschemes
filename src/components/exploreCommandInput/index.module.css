@@ -4,7 +4,7 @@
   align-items: baseline;
   flex-wrap: wrap;
   column-gap: var(--spacing-xs);
-  row-gap: 0;
+  row-gap: var(--spacing-xxs);
   font-family: var(--font-mono);
   font-size: 1.125rem;
   line-height: 1.625rem;
@@ -45,7 +45,7 @@
   flex-wrap: wrap;
   min-width: 0;
   column-gap: var(--spacing-xs);
-  row-gap: 0;
+  row-gap: var(--spacing-xxs);
 }
 
 .commandLead {
