@@ -54,36 +54,40 @@ export default function RepositoryPageModal({
         event.preventDefault();
         closeModal();
       }}
-      onClick={event => {
-        if (event.target === event.currentTarget) {
-          closeModal();
-        }
-      }}
     >
-      <section className={styles.panel}>
-        {children}
-        <TuiSection
-          as="footer"
-          className={styles.shortcuts}
-          aria-label="Modal shortcuts"
-        >
-          <span className={`${styles.shortcut} ${styles.variantShortcut}`}>
-            <span className={styles.shortcutKey}>j</span>{' '}
-            <span className={styles.shortcutKey}>/</span>{' '}
-            <span className={styles.shortcutKey}>k</span>{' '}
-            <span className={styles.shortcutAction}>variants</span>
-          </span>
-          <button
-            type="button"
-            className={styles.shortcut}
-            aria-label="Close repository"
-            onClick={closeModal}
+      <div
+        className={styles.scroller}
+        onClick={event => {
+          if (event.target === event.currentTarget) {
+            closeModal();
+          }
+        }}
+      >
+        <section className={styles.panel}>
+          {children}
+          <TuiSection
+            as="footer"
+            className={styles.shortcuts}
+            aria-label="Modal shortcuts"
           >
-            <span className={styles.shortcutKey}>esc</span>{' '}
-            <span className={styles.shortcutAction}>close</span>
-          </button>
-        </TuiSection>
-      </section>
+            <span className={`${styles.shortcut} ${styles.variantShortcut}`}>
+              <span className={styles.shortcutKey}>j</span>{' '}
+              <span className={styles.shortcutKey}>/</span>{' '}
+              <span className={styles.shortcutKey}>k</span>{' '}
+              <span className={styles.shortcutAction}>variants</span>
+            </span>
+            <button
+              type="button"
+              className={styles.shortcut}
+              aria-label="Close repository"
+              onClick={closeModal}
+            >
+              <span className={styles.shortcutKey}>esc</span>{' '}
+              <span className={styles.shortcutAction}>close</span>
+            </button>
+          </TuiSection>
+        </section>
+      </div>
     </dialog>
   );
 }

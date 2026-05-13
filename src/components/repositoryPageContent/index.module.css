@@ -28,9 +28,11 @@
   min-height: 0;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(12rem, 18rem) minmax(0, 1fr) minmax(
-      28rem,
-      36rem
+  grid-template-columns:
+    var(--repository-variant-pane-width, minmax(12rem, 18rem))
+    var(--repository-preview-pane-width, minmax(0, 1fr)) var(
+      --repository-info-pane-width,
+      minmax(28rem, 36rem)
     );
   align-items: stretch;
   gap: var(--spacing-sm);
@@ -60,11 +62,17 @@
 .variantList {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 }
 
 .variantPane {
   --tui-section-padding: 0;
+
+  min-height: 0;
+  contain: size;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
 }
 
 .variantButton {
@@ -83,6 +91,7 @@
   line-height: inherit;
   text-align: left;
   cursor: pointer;
+  flex: 0 0 auto;
 }
 
 .variantButtonActive {
@@ -338,7 +347,10 @@
 
   .variantPane {
     align-self: start;
+    contain: none;
     max-height: none;
+    overflow-y: visible;
+    scrollbar-gutter: auto;
   }
 
   .variantList {
