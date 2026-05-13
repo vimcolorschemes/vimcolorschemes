@@ -95,6 +95,7 @@
   margin-inline: auto;
   margin-top: var(--spacing-md);
   overflow-x: auto;
+  overflow-y: hidden;
   color: var(--foreground);
   font-family: var(--font-mono), monospace;
   font-size: clamp(0.18rem, 0.58vw, 0.5rem);

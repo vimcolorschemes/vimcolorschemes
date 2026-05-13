@@ -208,6 +208,12 @@
   justify-content: flex-start;
 }
 
+.loadingState {
+  min-height: min(24rem, 60dvh);
+  display: grid;
+  place-items: center;
+}
+
 .previewPane .previewCard {
   --card-border-width: 2px;
   --card-border-color: var(--repository-pane-border);

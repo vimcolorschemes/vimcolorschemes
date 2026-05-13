@@ -73,6 +73,29 @@
   width: 100%;
 }
 
+.panel:has(:global(.repositoryDetailsLoading)) {
+  --modal-loading-background: var(--background);
+  --modal-loading-foreground: var(--foreground);
+  --modal-loading-border: color-mix(
+    in srgb,
+    var(--modal-loading-foreground) 28%,
+    transparent
+  );
+}
+
+.panel:has(:global(.repositoryDetailsLoading)) .shortcuts {
+  display: none;
+}
+
+.panel :global(.repositoryDetailsLoading) {
+  color: var(--modal-loading-foreground);
+}
+
+.panel :global(.repositoryDetailsLoading) > [role='status'] {
+  background: var(--modal-loading-background);
+  box-shadow: inset 0 0 0 1px var(--modal-loading-border);
+}
+
 .shortcuts {
   --modal-shortcuts-background: var(--background);
   --modal-shortcuts-foreground: var(--foreground);
