@@ -2,7 +2,14 @@
 
 import cn from 'classnames';
 import Link from 'next/link';
-import { KeyboardEvent, MouseEvent, useEffect, useRef, useState } from 'react';
+import {
+  KeyboardEvent,
+  MouseEvent,
+  PointerEvent as ReactPointerEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
 import styles from './index.module.css';
 
@@ -52,6 +59,18 @@ export default function CommandMenu({
     setOpen(currentOpen => !currentOpen);
   }
 
+  function handlePointerEnter(event: ReactPointerEvent<HTMLElement>) {
+    if (event.pointerType === 'mouse') {
+      setOpen(true);
+    }
+  }
+
+  function handlePointerLeave(event: ReactPointerEvent<HTMLElement>) {
+    if (event.pointerType === 'mouse') {
+      setOpen(false);
+    }
+  }
+
   function handleMenuKeyDown(event: KeyboardEvent<HTMLElement>) {
     if (event.key === 'Escape') {
       setOpen(false);
@@ -70,8 +89,8 @@ export default function CommandMenu({
       ref={menuRef}
       className={cn(styles.menu, { [styles.open]: open })}
       open={open}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
       onKeyDown={handleMenuKeyDown}
     >
       <summary
@@ -86,7 +105,7 @@ export default function CommandMenu({
           ▾
         </span>
       </summary>
-      <span className={styles.menuList} role="listbox" aria-label={label}>
+      <span className={styles.menuList} role="group" aria-label={label}>
         {options.map(option => (
           <Link
             key={option.label}
@@ -97,8 +116,6 @@ export default function CommandMenu({
               [styles.active]: option.active,
             })}
             aria-current={option.active ? 'page' : undefined}
-            role="option"
-            aria-selected={option.active}
           >
             {option.label}
           </Link>
