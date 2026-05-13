@@ -7,12 +7,14 @@
   line-height: 1.625rem;
 }
 
-.command:hover {
-  text-decoration: none;
-}
+@media (hover: hover) and (pointer: fine) {
+  .command:hover {
+    text-decoration: none;
+  }
 
-.command:hover span {
-  color: var(--foreground-accent);
+  .command:hover span {
+    color: var(--foreground-accent);
+  }
 }
 
 .prompt {

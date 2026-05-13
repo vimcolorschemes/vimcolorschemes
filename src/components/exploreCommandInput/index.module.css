@@ -69,37 +69,31 @@
   font-weight: bold;
 }
 
-.homeCommand:hover .prompt,
-.homeCommand:hover .operator,
-.homeCommand:hover .command {
-  color: var(--foreground-accent);
-}
+@media (hover: hover) and (pointer: fine) {
+  .homeCommand:hover .prompt,
+  .homeCommand:hover .operator,
+  .homeCommand:hover .command {
+    color: var(--foreground-accent);
+  }
 
-.homeCommand:hover {
-  text-decoration: none;
-}
+  .homeCommand:hover {
+    text-decoration: none;
+  }
 
-.homeCommand:focus-visible {
-  outline: none;
-  background: var(--foreground-accent);
-  color: var(--background);
-  text-decoration: none;
-}
+  .homeCommand:focus-visible {
+    outline: none;
+    background: var(--foreground-accent);
+    color: var(--background);
+    text-decoration: none;
+  }
 
-.homeCommand:focus-visible .prompt,
-.homeCommand:focus-visible .operator,
-.homeCommand:focus-visible .command {
-  color: var(--background);
+  .homeCommand:focus-visible .prompt,
+  .homeCommand:focus-visible .operator,
+  .homeCommand:focus-visible .command {
+    color: var(--background);
+  }
 }
 
 .shortFlag {
   display: none;
-}
-
-@media (hover: none) {
-  .homeCommand:hover .prompt,
-  .homeCommand:hover .operator,
-  .homeCommand:hover .command {
-    color: inherit;
-  }
 }

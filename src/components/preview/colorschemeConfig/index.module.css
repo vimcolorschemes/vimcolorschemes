@@ -21,15 +21,17 @@
   column-gap: var(--spacing-xxs);
 }
 
-.button:not(:disabled):hover {
-  box-shadow: 0 2px 0 0 var(--_focus-background);
-}
+@media (hover: hover) and (pointer: fine) {
+  .button:not(:disabled):hover {
+    box-shadow: 0 2px 0 0 var(--_focus-background);
+  }
 
-.button:not(:disabled):focus-visible {
-  outline: none;
-  background: var(--_focus-background);
-  color: var(--_focus-color);
-  box-shadow: none;
+  .button:not(:disabled):focus-visible {
+    outline: none;
+    background: var(--_focus-background);
+    color: var(--_focus-color);
+    box-shadow: none;
+  }
 }
 
 .button:disabled {
@@ -39,10 +41,4 @@
 .button > svg {
   width: 1rem;
   height: 1rem;
-}
-
-@media (hover: none) {
-  .button:not(:disabled):hover {
-    box-shadow: none;
-  }
 }

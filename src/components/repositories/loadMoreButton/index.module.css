@@ -16,25 +16,21 @@
   color: currentColor;
 }
 
-.button:hover:not(:disabled) {
-  background: var(--foreground);
-  color: var(--background);
-  text-decoration: none;
-}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover:not(:disabled) {
+    background: var(--foreground);
+    color: var(--background);
+    text-decoration: none;
+  }
 
-.button:focus-visible {
-  outline: 2px solid var(--foreground-accent);
-  outline-offset: var(--spacing-xs);
-  text-decoration: none;
+  .button:focus-visible {
+    outline: 2px solid var(--foreground-accent);
+    outline-offset: var(--spacing-xs);
+    text-decoration: none;
+  }
 }
 
 .button:disabled {
   opacity: 0.5;
   cursor: default;
-}
-
-@media (hover: none) {
-  .button:hover:not(:disabled) {
-    text-decoration: none;
-  }
 }

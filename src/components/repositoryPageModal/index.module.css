@@ -115,17 +115,19 @@ button.shortcut {
   cursor: pointer;
 }
 
-button.shortcut:hover,
-button.shortcut:focus-visible {
-  color: var(--modal-shortcuts-accent);
-  text-decoration: underline;
-}
+@media (hover: hover) and (pointer: fine) {
+  button.shortcut:hover,
+  button.shortcut:focus-visible {
+    color: var(--modal-shortcuts-accent);
+    text-decoration: underline;
+  }
 
-button.shortcut:focus-visible {
-  outline: none;
-  background: var(--modal-shortcuts-foreground);
-  color: var(--modal-shortcuts-background);
-  text-decoration: none;
+  button.shortcut:focus-visible {
+    outline: none;
+    background: var(--modal-shortcuts-foreground);
+    color: var(--modal-shortcuts-background);
+    text-decoration: none;
+  }
 }
 
 .shortcutKey {
@@ -136,13 +138,15 @@ button.shortcut:focus-visible {
   color: var(--modal-shortcuts-muted);
 }
 
-button.shortcut:hover .shortcutAction,
-button.shortcut:focus-visible .shortcutAction {
-  color: var(--modal-shortcuts-accent);
-}
+@media (hover: hover) and (pointer: fine) {
+  button.shortcut:hover .shortcutAction,
+  button.shortcut:focus-visible .shortcutAction {
+    color: var(--modal-shortcuts-accent);
+  }
 
-button.shortcut:focus-visible .shortcutAction {
-  color: var(--modal-shortcuts-background);
+  button.shortcut:focus-visible .shortcutAction {
+    color: var(--modal-shortcuts-background);
+  }
 }
 
 @media (max-width: 1400px) {

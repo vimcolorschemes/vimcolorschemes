@@ -17,8 +17,10 @@
 a.link {
   cursor: pointer;
 }
-a.link:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  a.link:hover {
+    text-decoration: underline;
+  }
 }
 
 .back {
@@ -31,8 +33,10 @@ a.link:hover {
   cursor: pointer;
 }
 
-.back:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .back:hover {
+    text-decoration: underline;
+  }
 }
 
 .back > svg {
@@ -46,14 +50,5 @@ a.link:hover {
 @media (min-width: 768px) {
   .desktop {
     display: inline;
-  }
-}
-
-@media (hover: none) {
-  a.link:hover {
-    text-decoration: none;
-  }
-  .back:hover {
-    text-decoration: none;
   }
 }
