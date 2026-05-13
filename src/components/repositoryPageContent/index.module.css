@@ -66,6 +66,11 @@
 }
 
 .variantPane {
+  --repository-pane-background: var(--background);
+  --repository-pane-foreground: var(--foreground);
+  --repository-pane-accent-background: var(--foreground);
+  --repository-pane-accent-foreground: var(--background);
+  --repository-pane-border: var(--border-color);
   --tui-section-padding: 0;
 
   min-height: 0;

@@ -1,6 +1,7 @@
 'use client';
 
 import cn from 'classnames';
+import { useRef } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
@@ -32,10 +33,19 @@ export default function RepositoryVariantPreview({
   activeIndex,
   onActiveIndexChange,
 }: RepositoryVariantPreviewProps) {
+  const variantListRef = useRef<HTMLDivElement>(null);
   const variants = colorschemes.map(
     colorscheme => new Colorscheme(colorscheme),
   );
   const activeVariant = variants[activeIndex];
+
+  function selectVariant(index: number) {
+    variantListRef.current
+      ?.querySelector<HTMLButtonElement>(`[data-variant-index="${index}"]`)
+      ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+
+    onActiveIndexChange(index);
+  }
 
   useKeyboardShortcut({
     j: event => {
@@ -43,8 +53,8 @@ export default function RepositoryVariantPreview({
         return;
       }
       event.preventDefault();
-      onActiveIndexChange(index =>
-        RepositoryPageHelper.getNextVariantIndex(index, variants.length),
+      selectVariant(
+        RepositoryPageHelper.getNextVariantIndex(activeIndex, variants.length),
       );
     },
     k: event => {
@@ -52,8 +62,11 @@ export default function RepositoryVariantPreview({
         return;
       }
       event.preventDefault();
-      onActiveIndexChange(index =>
-        RepositoryPageHelper.getPreviousVariantIndex(index, variants.length),
+      selectVariant(
+        RepositoryPageHelper.getPreviousVariantIndex(
+          activeIndex,
+          variants.length,
+        ),
       );
     },
   });
@@ -73,7 +86,7 @@ export default function RepositoryVariantPreview({
         className={styles.variantPane}
         aria-label="Colorscheme variants"
       >
-        <div className={styles.variantList}>
+        <div ref={variantListRef} className={styles.variantList}>
           {variants.map((colorscheme, index) => {
             const background = colorscheme.backgrounds[0];
             const title = `${colorscheme.name} ${background}`;
@@ -85,8 +98,9 @@ export default function RepositoryVariantPreview({
                 className={cn(styles.variantButton, {
                   [styles.variantButtonActive]: index === activeIndex,
                 })}
-                onClick={() => onActiveIndexChange(index)}
+                onClick={() => selectVariant(index)}
                 aria-pressed={index === activeIndex}
+                data-variant-index={index}
                 title={title}
                 style={RepositoryPageHelper.getColorschemeStyle(colorscheme)}
               >
