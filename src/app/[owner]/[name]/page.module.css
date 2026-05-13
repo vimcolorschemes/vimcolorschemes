@@ -1,0 +1,20 @@
+.page {
+  --repository-variant-pane-width: minmax(10rem, 14rem);
+  --repository-preview-pane-width: minmax(34rem, 1fr);
+  --repository-info-pane-width: minmax(20rem, 24rem);
+
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+}
+
+:global(main:has(.repositoryDetailsPage)) {
+  flex: 0 0 auto;
+  min-height: 0;
+}
+
+@media (max-width: 860px) {
+  .page {
+    --repository-preview-pane-width: minmax(0, 1fr);
+  }
+}

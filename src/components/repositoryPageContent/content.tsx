@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 
+import { Colorscheme } from '@/models/colorscheme';
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
@@ -19,11 +20,28 @@ type RepositoryPageContentClientProps = {
   repositoryDTO: RepositoryDTO;
 };
 
+const SIMULATED_VARIANT_COUNT = 12;
+
+function getSimulatedVariants(variants: Colorscheme[]): Colorscheme[] {
+  if (variants.length === 0 || variants.length >= SIMULATED_VARIANT_COUNT) {
+    return variants;
+  }
+
+  return Array.from({ length: SIMULATED_VARIANT_COUNT }, (_, index) => {
+    const variant = variants[index % variants.length];
+    const copyNumber = Math.floor(index / variants.length) + 1;
+    return new Colorscheme({
+      ...variant.dto,
+      name: copyNumber === 1 ? variant.name : `${variant.name} ${copyNumber}`,
+    });
+  });
+}
+
 export default function RepositoryPageContentClient({
   repositoryDTO,
 }: RepositoryPageContentClientProps) {
   const repository = new Repository(repositoryDTO);
-  const variants = repository.flattenedColorschemes;
+  const variants = getSimulatedVariants(repository.flattenedColorschemes);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeVariant = variants[activeIndex];
   const colorschemeStyle =
@@ -64,7 +82,7 @@ export default function RepositoryPageContentClient({
           </div>
           <div>
             <dt>variants</dt>
-            <dd>{repository.flattenedColorschemes.length}</dd>
+            <dd>{variants.length}</dd>
           </div>
           <div>
             <dt>stars</dt>

@@ -4,6 +4,8 @@ import { RepositoriesService } from '@/services/repositoriesServer';
 
 import RepositoryPageContent from '@/components/repositoryPageContent';
 
+import styles from './page.module.css';
+
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
@@ -31,5 +33,9 @@ export async function generateMetadata({
 
 export default async function RepositoryPage({ params }: RepositoryPageProps) {
   const { owner, name } = await params;
-  return <RepositoryPageContent owner={owner} name={name} />;
+  return (
+    <div className={`${styles.page} repositoryDetailsPage`}>
+      <RepositoryPageContent owner={owner} name={name} />
+    </div>
+  );
 }

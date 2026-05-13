@@ -80,7 +80,7 @@ export default function RepositoryVariantPreview({
 
             return (
               <button
-                key={`${colorscheme.name}-${background}`}
+                key={`${colorscheme.name}-${background}-${index}`}
                 type="button"
                 className={cn(styles.variantButton, {
                   [styles.variantButtonActive]: index === activeIndex,
