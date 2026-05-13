@@ -18,6 +18,10 @@
     var(--repository-pane-foreground) 28%,
     transparent
   );
+  --repository-variant-selection-border: var(
+    --colorscheme-vimStringFg,
+    var(--colorscheme-vimFuncNameFg, var(--repository-pane-foreground))
+  );
   --repository-preview-min-height: calc(
     (15 * 1.25rem) + (var(--spacing-xs) * 2) + 1.5625rem + 4px
   );
@@ -66,11 +70,6 @@
 }
 
 .variantPane {
-  --repository-pane-background: var(--background);
-  --repository-pane-foreground: var(--foreground);
-  --repository-pane-accent-background: var(--foreground);
-  --repository-pane-accent-foreground: var(--background);
-  --repository-pane-border: var(--border-color);
   --tui-section-padding: 0;
 
   min-height: 0;
@@ -81,6 +80,26 @@
 }
 
 .variantButton {
+  --repository-pane-background: var(--colorscheme-NormalBg, var(--background));
+  --repository-pane-foreground: var(--colorscheme-NormalFg, var(--foreground));
+  --repository-pane-accent-background: var(
+    --colorscheme-StatusLineBg,
+    var(--repository-pane-foreground)
+  );
+  --repository-pane-accent-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--repository-pane-background)
+  );
+  --repository-pane-border: color-mix(
+    in srgb,
+    var(--repository-pane-foreground) 28%,
+    transparent
+  );
+  --repository-variant-selection-border: var(
+    --colorscheme-vimStringFg,
+    var(--colorscheme-vimFuncNameFg, var(--repository-pane-foreground))
+  );
+
   position: relative;
   display: grid;
   grid-template-columns: 0.875rem minmax(0, 1fr);
@@ -88,9 +107,10 @@
   gap: 0 var(--spacing-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
   border: 0;
+  border-left: 0.35rem solid transparent;
   border-bottom: 1px solid var(--repository-pane-border);
-  background: transparent;
-  color: inherit;
+  background: var(--repository-pane-background);
+  color: var(--repository-pane-foreground);
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
@@ -100,16 +120,7 @@
 }
 
 .variantButtonActive {
-  background: var(--repository-pane-accent-background);
-  color: var(--repository-pane-accent-foreground);
-}
-
-.variantButtonActive::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 0.25rem;
-  background: currentColor;
+  border-left-color: var(--repository-variant-selection-border);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -158,10 +169,6 @@
   font-weight: 700;
 }
 
-.variantButtonActive .variantName {
-  color: var(--repository-pane-accent-foreground);
-}
-
 @media (hover: hover) and (pointer: fine) {
   .variantButton:hover .variantName,
   .variantButton:focus-visible .variantName {
@@ -173,14 +180,6 @@
   color: color-mix(in srgb, var(--repository-pane-foreground) 65%, transparent);
   font-family: var(--font-mono);
   font-size: 0.875em;
-}
-
-.variantButtonActive .variantBackground {
-  color: color-mix(
-    in srgb,
-    var(--repository-pane-accent-foreground) 65%,
-    transparent
-  );
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -195,6 +194,14 @@
 }
 
 .previewPane {
+  --repository-pane-background: var(--colorscheme-NormalBg, var(--background));
+  --repository-pane-foreground: var(--colorscheme-NormalFg, var(--foreground));
+  --repository-pane-border: color-mix(
+    in srgb,
+    var(--repository-pane-foreground) 28%,
+    transparent
+  );
+
   min-width: 0;
   min-height: var(--repository-preview-min-height);
   display: flex;
@@ -243,6 +250,26 @@
 }
 
 .infoPane {
+  --repository-pane-background: var(--colorscheme-NormalBg, var(--background));
+  --repository-pane-foreground: var(--colorscheme-NormalFg, var(--foreground));
+  --repository-pane-accent-background: var(
+    --colorscheme-StatusLineBg,
+    var(--repository-pane-foreground)
+  );
+  --repository-pane-accent-foreground: var(
+    --colorscheme-StatusLineFg,
+    var(--repository-pane-background)
+  );
+  --repository-pane-link-accent: var(
+    --colorscheme-vimStringFg,
+    var(--colorscheme-vimFuncNameFg, var(--repository-pane-accent-background))
+  );
+  --repository-pane-border: color-mix(
+    in srgb,
+    var(--repository-pane-foreground) 28%,
+    transparent
+  );
+
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
@@ -267,9 +294,10 @@
 }
 
 .colorSwatch {
-  width: fit-content;
+  max-width: 100%;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 3px;
 }
 
