@@ -49,7 +49,7 @@ export default function CommandMenu({
 
   function handleSummaryClick(event: MouseEvent<HTMLElement>) {
     event.preventDefault();
-    setOpen(true);
+    setOpen(currentOpen => !currentOpen);
   }
 
   function handleMenuKeyDown(event: KeyboardEvent<HTMLElement>) {
