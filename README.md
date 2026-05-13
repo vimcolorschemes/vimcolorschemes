@@ -43,12 +43,14 @@
 
 [vimcolorschemes](https://vimcolorschemes.com) is a small constellation of projects working on the common goal of building the **ultimate resource** for vim/neovim users to find the **perfect colorscheme** for their development environment.
 
-The **focus** is on the **content**. The **simple design** of the website make the colorschemes the focal point of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
+The **focus** is on the **content**. The website uses a terminal-inspired browsing experience with command-style filters, responsive cards, modal repository details, and palette-aware previews so the colorschemes stay at the center of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
 
 ## Key features 🚀
 
 - **Daily updated** list of thousands of vim/neovim colorscheme repositories
-- **Awesome vim (h, j, k, l) key bindings** to quickly navigate through the whole site (coming back soon™️)
+- **Terminal-style browsing** with responsive repository and colorscheme cards
+- **Command-style filtering** for exploring by sort order and background
+- **Modal repository details** with variant swatches, syntax previews, and keyboard-friendly navigation
 
 ## Get Involved
 
