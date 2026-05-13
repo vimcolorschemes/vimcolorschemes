@@ -183,8 +183,8 @@
     var(--colorscheme-NormalBg)
   );
   --code-gutter-active-background: var(
-    --colorscheme-CursorLineNrBg,
-    var(--colorscheme-CursorLineBg, var(--colorscheme-NormalBg))
+    --colorscheme-CursorLineBg,
+    var(--colorscheme-CursorLineNrBg, var(--colorscheme-NormalBg))
   );
   --code-gutter-active-foreground: var(
     --colorscheme-CursorLineNrFg,

@@ -36,7 +36,7 @@
 <br>
 
 <p align="center">
-  <img width="1038" alt="Screenshot 2024-05-06 at 9 31 56 PM" src="https://github.com/vimcolorschemes/vimcolorschemes/assets/5920450/f748a066-6a13-4a42-95c3-54ee635ba207">
+  <img width="1038" alt="vimcolorschemes app preview" src="./public/assets/readme-preview.png">
 </p>
 
 ## About
@@ -59,7 +59,7 @@ Developers, check out the [development guide](https://docs.vimcolorschemes.com/#
 
 Credit goes to the creators of vim and neovim colorschemes across GitHub.
 
-Thanks also goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+Thanks also goes to all the contributors ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->

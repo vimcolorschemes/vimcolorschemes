@@ -67,7 +67,8 @@
 
 .code > * {
   padding: 0 var(--_code-spacing);
-  display: inline;
+  display: block;
+  min-height: var(--_code-line-height);
 }
 
 .code > *:empty {
