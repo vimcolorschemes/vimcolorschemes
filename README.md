@@ -39,22 +39,22 @@
   <img width="1038" alt="Screenshot 2024-05-06 at 9 31 56 PM" src="https://github.com/vimcolorschemes/vimcolorschemes/assets/5920450/f748a066-6a13-4a42-95c3-54ee635ba207">
 </p>
 
-## Welcome 🎉
+## About
 
-[vimcolorschemes](https://vimcolorschemes.com) is a small constellation of projects working on the common goal of building the **ultimate resource** for vim/neovim users to find the **perfect colorscheme** for their development environment.
+[vimcolorschemes](https://vimcolorschemes.com) helps vim and neovim users compare colorschemes from repositories across GitHub.
 
-The **focus** is on the **content**. The website uses a terminal-inspired browsing experience with command-style filters, responsive cards, modal repository details, and palette-aware previews so the colorschemes stay at the center of every page. **Speed** and **accessibility** are also part of the core mission of **vimcolorschemes**.
+The site is built around generated previews, repository metadata, and fast browsing. The current interface uses terminal-inspired cards, command-style filters, modal repository details, and palette-aware previews to keep visual comparison front and center.
 
-## Key features 🚀
+## Features
 
-- **Daily updated** list of thousands of vim/neovim colorscheme repositories
-- **Terminal-style browsing** with responsive repository and colorscheme cards
-- **Command-style filtering** for exploring by sort order and background
-- **Modal repository details** with variant swatches, syntax previews, and keyboard-friendly navigation
+- Daily updates for thousands of vim and neovim colorscheme repositories
+- Responsive repository and colorscheme cards with generated previews
+- Command-style filtering by sort order and background
+- Modal repository details with variants, palette swatches, and keyboard-friendly navigation
 
-## Get Involved
+## Get involved
 
-[vimcolorschemes](https://vimcolorschemes.com) is aimed to be a **collaborative** project, and you are invited to help. All types of involvement are welcome!
+[vimcolorschemes](https://vimcolorschemes.com) is a collaborative project. Code, documentation, bug reports, and feature ideas are welcome.
 
 Developers, check out the [development guide](https://docs.vimcolorschemes.com/#/intro) to start writing code and contribute.
 
@@ -62,9 +62,9 @@ Developers, check out the [development guide](https://docs.vimcolorschemes.com/#
 
 [Bugs and feature requests](https://github.com/vimcolorschemes/vimcolorschemes/issues) are welcome. Make sure to follow the issue template before posting.
 
-## Credits ✨
+## Credits
 
-Credit goes to all the creators of vim/neovim colorschemes around Github 🎉
+Credit goes to the creators of vim and neovim colorschemes across GitHub.
 
 Thanks also goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
