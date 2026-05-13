@@ -2,22 +2,35 @@
 
 import { usePathname } from 'next/navigation';
 
+import type { PageContext } from '@/lib/pageContext';
+
 import { PageContextHelper } from '@/helpers/pageContext';
 
 import ExploreCommand from './command';
 
-function getFiltersFromPathname(pathname: string): string[] {
+type ExploreCommandInputProps = {
+  fallbackPageContext: PageContext;
+};
+
+function getFiltersFromPathname(pathname: string): string[] | undefined {
   const segments = pathname.split('/').filter(Boolean);
   const indexRouteStart = segments.indexOf('i');
 
-  return indexRouteStart === -1
-    ? segments
-    : segments.slice(indexRouteStart + 1);
+  if (indexRouteStart === -1) {
+    return undefined;
+  }
+
+  return segments.slice(indexRouteStart + 1);
 }
 
-export default function ExploreCommandInput() {
+export default function ExploreCommandInput({
+  fallbackPageContext,
+}: ExploreCommandInputProps) {
   const pathname = usePathname();
-  const pageContext = PageContextHelper.get(getFiltersFromPathname(pathname));
+  const filters = getFiltersFromPathname(pathname);
+  const pageContext = filters
+    ? PageContextHelper.get(filters)
+    : fallbackPageContext;
 
   return <ExploreCommand pageContext={pageContext} />;
 }

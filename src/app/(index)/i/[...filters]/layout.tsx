@@ -28,7 +28,7 @@ export default async function IndexPageLayout({
             <ExploreCommand interactive={false} pageContext={pageContext} />
           }
         >
-          <ExploreCommandInput />
+          <ExploreCommandInput fallbackPageContext={pageContext} />
         </Suspense>
       </Header>
       <main className={styles.container}>{children}</main>
