@@ -5,6 +5,8 @@ import RepositoryPageModal from '@/components/repositoryPageModal';
 
 export const dynamicParams = false;
 
+export { generateMetadata } from '@/app/[owner]/[name]/page';
+
 export async function generateStaticParams() {
   const keys = await RepositoriesService.getAllRepositoryKeys();
   return keys.map(k => ({
