@@ -1,0 +1,35 @@
+.command {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  line-height: 1.625rem;
+}
+
+.command:hover {
+  text-decoration: none;
+}
+
+.command:hover span {
+  color: var(--foreground-accent);
+}
+
+.prompt {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.operator {
+  color: var(--foreground-accent);
+  font-weight: 700;
+}
+
+.binary {
+  color: var(--foreground);
+  font-weight: 700;
+}
+
+.argument {
+  color: var(--foreground-shade);
+}

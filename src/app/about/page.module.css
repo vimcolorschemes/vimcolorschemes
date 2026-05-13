@@ -1,41 +1,96 @@
 .container {
   width: 100%;
-  max-width: 40rem;
+  max-width: 54rem;
   padding: var(--content-padding);
+  padding-top: var(--spacing-sm);
 }
 
-.container h1 {
-  font-weight: 700;
-  font-size: var(--font-size-xl);
-  line-height: var(--line-height-xl);
-  margin-bottom: var(--spacing-sm);
+.manual {
+  min-height: calc(100dvh - var(--statusline-height) - var(--spacing-lg));
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  background: color-mix(in srgb, var(--foreground) 3%, var(--background));
+  font-family: var(--font-mono), monospace;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
 }
 
-.container h2 {
-  font-weight: 700;
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-lg);
+.manHeader,
+.manFooter {
+  display: flex;
+  justify-content: space-between;
+  color: var(--foreground-shade);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-sm);
+  text-transform: uppercase;
+}
+
+.manHeader {
+  margin-bottom: var(--spacing-md);
+}
+
+.manFooter {
+  margin-top: var(--spacing-lg);
+}
+
+.section + .section {
   margin-top: var(--spacing-md);
-  margin-bottom: var(--spacing-sm);
 }
 
-.container p {
+.section h1,
+.section h2 {
+  font-weight: 700;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-md);
+  margin-bottom: var(--spacing-xs);
+  text-transform: uppercase;
+}
+
+.section p,
+.section ul {
+  margin-left: var(--spacing-md);
+}
+
+.section p {
   margin-bottom: var(--spacing-xs);
 }
 
-.container ul {
-  list-style: circle;
-  padding-left: var(--spacing-sm);
+.section ul {
+  list-style: none;
   margin-bottom: var(--spacing-sm);
 }
 
-.container a {
-  color: var(--foreground-accent);
+.section li::before {
+  content: '- ';
+  color: var(--foreground-shade);
 }
 
-.container blockquote {
-  margin: var(--spacing-sm) 0;
-  padding: var(--spacing-xs);
-  background-color: var(--platinum);
-  border-radius: 5px;
+.section a {
+  color: var(--foreground-accent);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.section a:focus-visible {
+  outline: none;
+  background: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
+}
+
+.section strong {
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .manual {
+    padding: var(--spacing-xs);
+    font-size: 0.875rem;
+    line-height: 1.375rem;
+  }
+
+  .section p,
+  .section ul {
+    margin-left: var(--spacing-sm);
+  }
 }

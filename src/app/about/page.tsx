@@ -9,89 +9,140 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main className={styles.container}>
-      <h1>About vimcolorschemes</h1>
-      <p>
-        vimcolorschemes is a small constellation of projects working on the
-        common goal of building the ultimate resource for vim and neovim users
-        to find the perfect color scheme for their development environment.
-      </p>
-      <p>
-        The focus is on the content. The simple design of the website make the
-        colorschemes the focal point of every page. Speed and accessibility are
-        also part of the core mission of vimcolorschemes.
-      </p>
+      <article className={styles.manual}>
+        <header className={styles.manHeader}>
+          <span>VIMCOLORSCHEMES(7)</span>
+        </header>
 
-      <h2>Get involved</h2>
-      <p>
-        vimcolorschemes is aimed to be a collaborative project, and you are
-        invited to help. All types of involvement are welcome!
-      </p>
-      <p>
-        Developers, check out the{' '}
-        <a
-          href="https://docs.vimcolorschemes.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          development guide
-        </a>{' '}
-        to start coding.
-      </p>
+        <section className={styles.section} aria-labelledby="name">
+          <h1 id="name">NAME</h1>
+          <p>
+            <strong>vimcolorschemes</strong> - a focused catalog of Vim and
+            Neovim color schemes
+          </p>
+        </section>
 
-      <h2>Issues</h2>
-      <p>
-        Having issues with this website? Or do you have a game changing feature
-        idea?
-      </p>
-      <p>
-        <a
-          href="https://github.com/vimcolorschemes/vimcolorschemes/issues"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Bugs and feature requests are welcome.
-        </a>{' '}
-        Make sure to follow the issue template before posting.
-      </p>
+        <section className={styles.section} aria-labelledby="description">
+          <h2 id="description">DESCRIPTION</h2>
+          <p>
+            vimcolorschemes helps Vim and Neovim users find color schemes that
+            fit their editor, terminal, and taste.
+          </p>
+          <p>
+            The site keeps the interface quiet so the themes stay in focus: fast
+            browsing, accessible pages, useful previews, and direct links back
+            to the people building the work.
+          </p>
+        </section>
 
-      <h2 id="get-featured">Want to get featured?</h2>
-      <p>
-        Featured colorschemes are hand-picked. If you have a great colorscheme
-        and want to support the project while getting it in front of more
-        people, send an email to{' '}
-        <a href="mailto:hey@reobin.dev">hey@reobin.dev</a>.
-      </p>
+        <section className={styles.section} aria-labelledby="get-involved">
+          <h2 id="get-involved">GET INVOLVED</h2>
+          <p>
+            vimcolorschemes is a collaborative project. Feedback, code,
+            documentation, design ideas, and theme suggestions are welcome.
+          </p>
+          <p>
+            Developers can start with the{' '}
+            <a
+              href="https://docs.vimcolorschemes.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              development guide
+            </a>
+            .
+          </p>
+        </section>
 
-      <h2>Is your colorscheme not showing up?</h2>
-      <p>
-        vimcolorschemes scans Github every day looking for new colorschemes to
-        feature.
-      </p>
-      <p>
-        Make sure your colorscheme has <strong>at least 1 star</strong>, and
-        words like &ldquo;vim&rdquo;, &ldquo;neovim&rdquo; and at least one of
-        the following keywords appear on the README or description:
-      </p>
-      <ul>
-        <li>theme</li>
-        <li>color scheme</li>
-        <li>colour scheme</li>
-        <li>colorscheme</li>
-        <li>colourscheme</li>
-      </ul>
-      <p>
-        Still nothing? Feel free to{' '}
-        <a
-          href="https://github.com/vimcolorschemes/vimcolorschemes/issues"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          create an issue on the Github repository.
-        </a>
-      </p>
+        <section className={styles.section} aria-labelledby="issues">
+          <h2 id="issues">ISSUES</h2>
+          <p>
+            Found a bug, missing theme, broken preview, or confusing detail?
+            Open an issue on GitHub so it can be tracked.
+          </p>
+          <p>
+            Feature requests are welcome too. Please use the{' '}
+            <a
+              href="https://github.com/vimcolorschemes/vimcolorschemes/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              issue tracker
+            </a>{' '}
+            and follow the template when posting.
+          </p>
+        </section>
 
-      <h2>Credits</h2>
-      <p>All credit goes to the creators of colorschemes around Github. 🌞</p>
+        <section className={styles.section} aria-labelledby="featured">
+          <h2 id="featured">FEATURED</h2>
+          <p>
+            Featured color schemes are hand-picked. If you maintain a great
+            theme and want to support the project while getting it in front of
+            more people, send an email to{' '}
+            <a href="mailto:hey@reobin.dev">hey@reobin.dev</a>.
+          </p>
+        </section>
+
+        <section className={styles.section} aria-labelledby="discovery">
+          <h2 id="discovery">DISCOVERY</h2>
+          <p>
+            vimcolorschemes scans GitHub every day for color schemes to include.
+          </p>
+          <p>
+            If your color scheme is not showing up, make sure the repository has{' '}
+            <strong>at least 1 star</strong>. The README or description should
+            mention &ldquo;vim&rdquo; or &ldquo;neovim&rdquo;, plus at least one
+            of these keywords:
+          </p>
+          <ul>
+            <li>theme</li>
+            <li>color scheme</li>
+            <li>colour scheme</li>
+            <li>colorscheme</li>
+            <li>colourscheme</li>
+          </ul>
+          <p>
+            Still nothing?{' '}
+            <a
+              href="https://github.com/vimcolorschemes/vimcolorschemes/issues"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Create an issue on GitHub
+            </a>{' '}
+            and include a link to the repository.
+          </p>
+        </section>
+
+        <section className={styles.section} aria-labelledby="project">
+          <h2 id="project">PROJECT</h2>
+          <p>
+            Source code, issues, and feature requests live on{' '}
+            <a
+              href="https://github.com/vimcolorschemes/vimcolorschemes"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            . The long-term aim is a useful, fast, and trustworthy archive of
+            Vim color scheme work.
+          </p>
+        </section>
+
+        <section className={styles.section} aria-labelledby="credits">
+          <h2 id="credits">CREDITS</h2>
+          <p>
+            All credit goes to the creators of color schemes around GitHub.
+            vimcolorschemes exists to make their work easier to find, compare,
+            and enjoy.
+          </p>
+        </section>
+
+        <footer className={styles.manFooter}>
+          <span>vimcolorschemes</span>
+        </footer>
+      </article>
     </main>
   );
 }
