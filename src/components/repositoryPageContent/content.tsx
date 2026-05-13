@@ -55,7 +55,7 @@ export default function RepositoryPageContentClient({
           rel="noopener noreferrer"
           className={styles.githubLink}
         >
-          view on Github
+          view on GitHub
         </a>
         <dl className={styles.repoFacts}>
           <div>

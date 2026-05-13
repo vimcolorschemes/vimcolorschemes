@@ -47,14 +47,15 @@ export default function Footer() {
             <span className={styles.glyph}>@</span>
             contact
           </a>
-          <Link
+          <a
             href="https://www.buymeacoffee.com/reobin"
             target="_blank"
+            rel="noopener noreferrer"
             className={styles.link}
           >
             <span className={styles.glyph}>★</span>
             support
-          </Link>
+          </a>
         </div>
       </nav>
     </footer>

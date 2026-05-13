@@ -43,7 +43,7 @@ export default function OwnerPageHeader({ owner }: OwnerPageHeaderProps) {
         className={styles.link}
       >
         follow <strong className={styles.desktop}>{owner.name} </strong>on
-        Github
+        GitHub
         <IconGithub />
       </a>
     </header>

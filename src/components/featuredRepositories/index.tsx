@@ -28,11 +28,7 @@ export default async function FeaturedRepositories({
         <h2 id="featured-title" className={styles.title}>
           featured
         </h2>
-        <Link
-          href="/about#get-featured"
-          prefetch={false}
-          className={styles.cta}
-        >
+        <Link href="/about#featured" prefetch={false} className={styles.cta}>
           get featured
         </Link>
       </div>
