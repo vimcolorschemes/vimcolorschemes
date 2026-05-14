@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: column;
   padding: var(--spacing-sm);
-  padding-bottom: calc(var(--spacing-sm) + var(--statusline-height));
   border: 1px solid var(--border-color);
 }
 

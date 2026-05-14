@@ -1,6 +1,7 @@
 .button {
   background: none;
   border: 1px solid var(--border-color);
+  margin-top: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
   color: var(--foreground-accent);
   font-family: var(--font-mono);
@@ -11,23 +12,20 @@
   align-self: flex-start;
 }
 
-.button::before {
-  content: '$ ';
-  color: currentColor;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .button:hover:not(:disabled) {
-    background: var(--foreground);
-    color: var(--background);
+    border-color: var(--foreground-accent);
+    background: var(--platinum);
     text-decoration: none;
   }
+}
 
-  .button:focus-visible {
-    outline: 2px solid var(--foreground-accent);
-    outline-offset: var(--spacing-xs);
-    text-decoration: none;
-  }
+.button:focus-visible {
+  outline: 2px solid var(--foreground-accent);
+  outline-offset: var(--spacing-xs);
+  background: var(--foreground);
+  color: var(--background);
+  text-decoration: none;
 }
 
 .button:disabled {
