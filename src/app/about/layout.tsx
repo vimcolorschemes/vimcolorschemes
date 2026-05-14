@@ -12,7 +12,7 @@ type AboutPageLayoutProps = {
 export default function AboutPageLayout({ children }: AboutPageLayoutProps) {
   return (
     <>
-      <Header showBranding={false}>
+      <Header>
         <Link
           href="/i/trending"
           prefetch={false}
