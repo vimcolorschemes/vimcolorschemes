@@ -1,6 +1,7 @@
 import { ReactNode, Suspense } from 'react';
 
-import { PageContextHelper } from '@/helpers/pageContext';
+import type { PageContext } from '@/lib/pageContext';
+import { SortOptions } from '@/lib/sort';
 
 import ExploreCommandInput from '@/components/exploreCommandInput';
 import ExploreCommand from '@/components/exploreCommandInput/command';
@@ -8,27 +9,28 @@ import Header from '@/components/ui/header';
 
 import styles from './layout.module.css';
 
-type IndexPageLayoutProps = {
-  children: ReactNode;
-  params: Promise<{ filters: string[] }>;
+const fallbackPageContext: PageContext = {
+  sort: SortOptions.Trending,
+  filter: {},
 };
 
-export default async function IndexPageLayout({
-  children,
-  params,
-}: IndexPageLayoutProps) {
-  const { filters } = await params;
-  const pageContext = PageContextHelper.get(filters);
+type IndexPageLayoutProps = {
+  children: ReactNode;
+};
 
+export default function IndexPageLayout({ children }: IndexPageLayoutProps) {
   return (
     <div className={styles.viewport}>
       <Header>
         <Suspense
           fallback={
-            <ExploreCommand interactive={false} pageContext={pageContext} />
+            <ExploreCommand
+              interactive={false}
+              pageContext={fallbackPageContext}
+            />
           }
         >
-          <ExploreCommandInput fallbackPageContext={pageContext} />
+          <ExploreCommandInput fallbackPageContext={fallbackPageContext} />
         </Suspense>
       </Header>
       <main className={styles.container}>{children}</main>

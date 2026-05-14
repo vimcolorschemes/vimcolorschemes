@@ -1,11 +1,10 @@
-import RepositoryPageLoading from '@/app/[owner]/[name]/loading';
-
+import RepositoryPageLoadingState from '@/components/repositoryPageContent/loadingState';
 import RepositoryPageModal from '@/components/repositoryPageModal';
 
 export default function RepositoryPageModalLoading() {
   return (
     <RepositoryPageModal>
-      <RepositoryPageLoading />
+      <RepositoryPageLoadingState />
     </RepositoryPageModal>
   );
 }
