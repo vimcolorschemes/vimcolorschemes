@@ -3,13 +3,14 @@ import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
 
-import { Backgrounds } from '@/lib/backgrounds';
-import { BackgroundFilter } from '@/lib/filter';
 import type { Sort } from '@/lib/sort';
 import { SortOptions } from '@/lib/sort';
 
 import { FilterHelper } from '@/helpers/filter';
-import { buildIndexRoutePath } from '@/helpers/indexRoute';
+import {
+  buildIndexRoutePath,
+  buildIndexRouteStaticParams,
+} from '@/helpers/indexRoute';
 import { PageContextHelper } from '@/helpers/pageContext';
 
 import FeaturedRepositories, {
@@ -22,23 +23,7 @@ import styles from './page.module.css';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const sorts = Object.values(SortOptions);
-  const backgrounds: (BackgroundFilter | undefined)[] = [
-    undefined,
-    Backgrounds.Dark,
-    Backgrounds.Light,
-    'both',
-  ];
-
-  return sorts.flatMap(sort =>
-    backgrounds.map(background => {
-      const filterURL = FilterHelper.getURLFromFilter(
-        background ? { background } : {},
-      );
-      const filters = filterURL ? [sort, filterURL] : [sort];
-      return { filters };
-    }),
-  );
+  return buildIndexRouteStaticParams();
 }
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
