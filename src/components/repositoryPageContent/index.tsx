@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
-import RepositoryPageContentClient from './content';
+import RepositoryPageContentView from './content';
 
 type RepositoryPageContentProps = {
   owner: string;
@@ -19,5 +19,5 @@ export default async function RepositoryPageContent({
     notFound();
   }
 
-  return <RepositoryPageContentClient repositoryDTO={repository.dto} />;
+  return <RepositoryPageContentView repository={repository} />;
 }

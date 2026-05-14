@@ -1,7 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+
+import HomeCommand from '@/components/homeCommand';
 
 import styles from './index.module.css';
 
@@ -18,24 +19,27 @@ export default function RepositoryCommand({
   const [pathOwner, pathName] = pathname.split('/').filter(Boolean);
   const repoOwner = owner ?? pathOwner;
   const repoName = name ?? pathName;
+  const commandClassNames = {
+    command: styles.command,
+    operator: styles.operator,
+    prompt: styles.prompt,
+  };
 
   if (!repoOwner || !repoName) {
     return (
-      <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
-        <span className={styles.prompt}>~</span>
-        <span className={styles.operator}>❯</span>
-        <span className={styles.command}>vimcolorschemes</span>
-      </Link>
+      <HomeCommand
+        className={styles.homeCommand}
+        classNames={commandClassNames}
+      />
     );
   }
 
   return (
     <div className={styles.container} aria-label="Repository command">
-      <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
-        <span className={styles.prompt}>~</span>
-        <span className={styles.operator}>❯</span>
-        <span className={styles.command}>vimcolorschemes</span>
-      </Link>
+      <HomeCommand
+        className={styles.homeCommand}
+        classNames={commandClassNames}
+      />
       <span className={styles.subcommand}>get</span>
       <span className={styles.argument}>
         {repoOwner}/{repoName}

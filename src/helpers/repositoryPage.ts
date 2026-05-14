@@ -2,10 +2,6 @@ import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 
-export type ActiveVariantIndexChange = (
-  index: number | ((index: number) => number),
-) => void;
-
 const swatchGroupPriority = [
   'NormalBg',
   'NormalFg',

@@ -1,1 +1,1 @@
-export const Constants = { REPOSITORY_PAGE_SIZE: 60 } as const;
+export const Constants = { REPOSITORY_PAGE_SIZE: 24 } as const;

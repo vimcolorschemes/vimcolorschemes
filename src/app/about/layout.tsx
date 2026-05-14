@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { ReactNode } from 'react';
 
+import HomeCommand from '@/components/homeCommand';
 import Header from '@/components/ui/header';
 
 import styles from './layout.module.css';
@@ -13,17 +13,18 @@ export default function AboutPageLayout({ children }: AboutPageLayoutProps) {
   return (
     <>
       <Header>
-        <Link
-          href="/i/trending"
-          prefetch={false}
+        <HomeCommand
           className={styles.command}
+          command="man"
           aria-label="Go home"
+          classNames={{
+            command: styles.binary,
+            operator: styles.operator,
+            prompt: styles.prompt,
+          }}
         >
-          <span className={styles.prompt}>~</span>
-          <span className={styles.operator}>❯</span>
-          <span className={styles.binary}>man</span>
           <span className={styles.argument}>vimcolorschemes</span>
-        </Link>
+        </HomeCommand>
       </Header>
       {children}
     </>
