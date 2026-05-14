@@ -1,15 +1,12 @@
 'use client';
 
 import cn from 'classnames';
-import { CSSProperties, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 
-import {
-  type ActiveVariantIndexChange,
-  RepositoryPageHelper,
-} from '@/helpers/repositoryPage';
+import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
 import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
@@ -24,29 +21,26 @@ import styles from './index.module.css';
 
 type RepositoryVariantPreviewProps = {
   colorschemes: ColorschemeDTO[];
-  activeIndex: number;
-  onActiveIndexChange: ActiveVariantIndexChange;
-  activeColorschemeStyle: CSSProperties | undefined;
 };
 
 export default function RepositoryVariantPreview({
   colorschemes,
-  activeIndex,
-  onActiveIndexChange,
-  activeColorschemeStyle,
 }: RepositoryVariantPreviewProps) {
   const variantListRef = useRef<HTMLDivElement>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
   const variants = colorschemes.map(
     colorscheme => new Colorscheme(colorscheme),
   );
   const activeVariant = variants[activeIndex];
+  const activeColorschemeStyle =
+    RepositoryPageHelper.getColorschemeStyle(activeVariant);
 
   function selectVariant(index: number) {
     variantListRef.current
       ?.querySelector<HTMLButtonElement>(`[data-variant-index="${index}"]`)
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
-    onActiveIndexChange(index);
+    setActiveIndex(index);
   }
 
   useKeyboardShortcut({

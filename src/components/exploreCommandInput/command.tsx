@@ -1,11 +1,11 @@
-import Link from 'next/link';
-
 import { Backgrounds } from '@/lib/backgrounds';
 import type { BackgroundFilter } from '@/lib/filter';
 import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
 import { buildIndexRoutePath } from '@/helpers/indexRoute';
+
+import HomeCommand from '@/components/homeCommand';
 
 import CommandMenu from './commandMenu';
 import styles from './index.module.css';
@@ -37,7 +37,15 @@ export default function ExploreCommand({
       aria-label={interactive ? 'Explore color schemes' : undefined}
     >
       <span className={styles.commandLead}>
-        <HomeCommand interactive={interactive} />
+        <HomeCommand
+          interactive={interactive}
+          className={styles.homeCommand}
+          classNames={{
+            command: styles.command,
+            operator: styles.operator,
+            prompt: styles.prompt,
+          }}
+        />
         <span className={styles.subcommand}>list</span>
       </span>
       <span className={styles.commandLine}>
@@ -88,25 +96,5 @@ export default function ExploreCommand({
         </span>
       </span>
     </div>
-  );
-}
-
-function HomeCommand({ interactive }: { interactive: boolean }) {
-  if (!interactive) {
-    return (
-      <span className={styles.homeCommand}>
-        <span className={styles.prompt}>~</span>
-        <span className={styles.operator}>❯</span>
-        <span className={styles.command}>vimcolorschemes</span>
-      </span>
-    );
-  }
-
-  return (
-    <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
-      <span className={styles.prompt}>~</span>
-      <span className={styles.operator}>❯</span>
-      <span className={styles.command}>vimcolorschemes</span>
-    </Link>
   );
 }

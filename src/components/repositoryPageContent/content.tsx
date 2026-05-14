@@ -1,8 +1,3 @@
-'use client';
-
-import { useState } from 'react';
-
-import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
 import { RepositoryPageHelper } from '@/helpers/repositoryPage';
@@ -15,37 +10,29 @@ import styles from './index.module.css';
 import RepositoryPageThemeScope from './themeScope';
 import RepositoryVariantPreview from './variantPreview';
 
-type RepositoryPageContentClientProps = {
-  repositoryDTO: RepositoryDTO;
+type RepositoryPageContentProps = {
+  repository: Repository;
 };
 
-export default function RepositoryPageContentClient({
-  repositoryDTO,
-}: RepositoryPageContentClientProps) {
-  const repository = new Repository(repositoryDTO);
+export default function RepositoryPageContent({
+  repository,
+}: RepositoryPageContentProps) {
   const variants = repository.flattenedColorschemes;
-  const [activeIndex, setActiveIndex] = useState(0);
   const firstVariant = variants[0];
-  const activeVariant = variants[activeIndex];
   const firstColorschemeStyle =
     RepositoryPageHelper.getColorschemeStyle(firstVariant);
-  const activeColorschemeStyle =
-    RepositoryPageHelper.getColorschemeStyle(activeVariant);
-  const swatchColors = RepositoryPageHelper.getSwatchColors(activeVariant);
+  const swatchColors = RepositoryPageHelper.getSwatchColors(firstVariant);
 
   return (
     <div className={styles.layout} style={firstColorschemeStyle}>
       <RepositoryPageThemeScope style={firstColorschemeStyle} />
       <RepositoryVariantPreview
         colorschemes={variants.map(colorscheme => colorscheme.dto)}
-        activeIndex={activeIndex}
-        onActiveIndexChange={setActiveIndex}
-        activeColorschemeStyle={activeColorschemeStyle}
       />
       <TuiSection
         as="aside"
         className={styles.infoPane}
-        style={activeColorschemeStyle}
+        style={firstColorschemeStyle}
         aria-label="Repository information"
       >
         <RepositoryTitle repository={repository} ownerPrefix="@" />
