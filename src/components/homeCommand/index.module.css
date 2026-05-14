@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: baseline;
   flex: 0 0 auto;
-  gap: var(--spacing-xs);
+  gap: 1ch;
   font-family: var(--font-mono);
   font-size: 1.125rem;
   line-height: 1.625rem;
@@ -34,11 +34,5 @@
 
   .homeCommand:hover {
     text-decoration: none;
-  }
-}
-
-@media (max-width: 599px) {
-  .homeCommand {
-    gap: var(--spacing-xxs);
   }
 }
