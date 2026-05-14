@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="vimcolorschemes">
+  <rect width="64" height="64" fill="#141719" />
+  <text
+    x="6"
+    y="20"
+    fill="#e7e9e4"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace"
+    font-size="8"
+    line-height="0.95"
+    xml:space="preserve"
+  ><tspan x="6" dy="0">░██    ░██</tspan><tspan x="6" dy="8">░██    ░██</tspan><tspan x="6" dy="8"> ░██  ░██</tspan><tspan x="6" dy="8">  ░██░██</tspan><tspan x="6" dy="8">   ░███</tspan></text>
+</svg>
