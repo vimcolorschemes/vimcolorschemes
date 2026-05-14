@@ -22,7 +22,7 @@ export default async function IndexPageLayout({
 
   return (
     <div className={styles.viewport}>
-      <Header showBranding={false}>
+      <Header>
         <Suspense
           fallback={
             <ExploreCommand interactive={false} pageContext={pageContext} />

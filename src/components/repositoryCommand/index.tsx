@@ -3,8 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import Branding from '@/components/ui/branding';
-
 import styles from './index.module.css';
 
 type RepositoryCommandProps = {
@@ -23,8 +21,10 @@ export default function RepositoryCommand({
 
   if (!repoOwner || !repoName) {
     return (
-      <Link href="/i/trending" prefetch={false} className={styles.brandingLink}>
-        <Branding />
+      <Link href="/i/trending" prefetch={false} className={styles.homeCommand}>
+        <span className={styles.prompt}>~</span>
+        <span className={styles.operator}>❯</span>
+        <span className={styles.command}>vimcolorschemes</span>
       </Link>
     );
   }

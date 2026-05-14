@@ -8,7 +8,7 @@ export default function ArtistPageLayout({
 }: React.PropsWithChildren) {
   return (
     <>
-      <Header showBranding={false}>
+      <Header>
         <RepositoryCommand />
       </Header>
       <main className={styles.container}>{children}</main>

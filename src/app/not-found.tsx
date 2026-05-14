@@ -1,3 +1,4 @@
+import HomeCommand from '@/components/homeCommand';
 import Header from '@/components/ui/header';
 
 import styles from './not-found.module.css';
@@ -5,7 +6,9 @@ import styles from './not-found.module.css';
 export default function NotFound() {
   return (
     <>
-      <Header />
+      <Header>
+        <HomeCommand />
+      </Header>
       <main className={styles.container}>
         <p>
           <strong>404: </strong>

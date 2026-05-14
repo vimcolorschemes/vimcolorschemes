@@ -1,20 +1,11 @@
-.container {
-  width: 100%;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  column-gap: var(--spacing-xs);
-  row-gap: 0;
-  font-family: var(--font-mono);
-  font-size: 1.125rem;
-  line-height: 1.625rem;
-  min-height: calc(1.625rem + 2px);
-}
-
 .homeCommand {
   display: inline-flex;
   align-items: baseline;
+  flex: 0 0 auto;
   gap: var(--spacing-xs);
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  line-height: 1.625rem;
   text-decoration: none;
 }
 
@@ -34,15 +25,6 @@
   font-weight: 700;
 }
 
-.subcommand {
-  color: var(--foreground-shade);
-}
-
-.argument {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
 @media (hover: hover) and (pointer: fine) {
   .homeCommand:hover .prompt,
   .homeCommand:hover .operator,
@@ -56,7 +38,6 @@
 }
 
 @media (max-width: 599px) {
-  .container,
   .homeCommand {
     gap: var(--spacing-xxs);
   }
