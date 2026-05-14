@@ -48,11 +48,7 @@ export default function RepositoryPageContentClient({
         style={activeColorschemeStyle}
         aria-label="Repository information"
       >
-        <RepositoryTitle
-          repository={repository}
-          ownerPrefix="@"
-          showStats={false}
-        />
+        <RepositoryTitle repository={repository} ownerPrefix="@" />
         <RepositoryInfo repository={repository} />
         <a
           href={repository.githubURL}
