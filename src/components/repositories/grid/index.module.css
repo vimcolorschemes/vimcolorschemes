@@ -4,32 +4,20 @@
   gap: var(--spacing-sm);
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 57rem) {
   .container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 72rem) {
+@media (min-width: 86rem) {
   .container {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (min-width: 96rem) {
+@media (min-width: 115rem) {
   .container {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 128rem) {
-  .container {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 160rem) {
-  .container {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
   }
 }
