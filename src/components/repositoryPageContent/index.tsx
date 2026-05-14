@@ -26,10 +26,11 @@ export default async function RepositoryPageContent({
     notFound();
   }
 
-  const initialVariantIndex = RepositoryPageHelper.getVariantIndexFromSearchParams(
-    repository.flattenedColorschemes,
-    variantSearchParams,
-  );
+  const initialVariantIndex =
+    RepositoryPageHelper.getVariantIndexFromSearchParams(
+      repository.flattenedColorschemes,
+      variantSearchParams,
+    );
 
   return (
     <RepositoryPageContentView

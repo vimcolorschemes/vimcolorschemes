@@ -19,7 +19,10 @@ type InteractiveTerminalPreviewProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
   className?: string;
-  onVariantChange?: (variant: { colorscheme: string; background: Background }) => void;
+  onVariantChange?: (variant: {
+    colorscheme: string;
+    background: Background;
+  }) => void;
 };
 
 export default function RepositoryCardInteractiveTerminalPreview({
@@ -54,9 +57,7 @@ export default function RepositoryCardInteractiveTerminalPreview({
 
   function onToggleColorscheme() {
     const colorschemes = repository.getOrderedColorschemes();
-    const index = colorschemes.findIndex(
-      c => c.name === colorscheme.name,
-    );
+    const index = colorschemes.findIndex(c => c.name === colorscheme.name);
     const nextIndex = (index + 1) % colorschemes.length;
     const newColorscheme = colorschemes[nextIndex];
     const newBackground = newColorscheme.backgrounds.includes(background)

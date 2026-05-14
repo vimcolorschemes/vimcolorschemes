@@ -37,10 +37,11 @@ export default async function RepositoryPageModalRoute({
   }
 
   const variants = repository.flattenedColorschemes;
-  const initialVariantIndex = RepositoryPageHelper.getVariantIndexFromSearchParams(
-    variants,
-    variantSearchParams,
-  );
+  const initialVariantIndex =
+    RepositoryPageHelper.getVariantIndexFromSearchParams(
+      variants,
+      variantSearchParams,
+    );
   const themeStyle = RepositoryPageHelper.getColorschemeStyle(variants[0]);
 
   return (
