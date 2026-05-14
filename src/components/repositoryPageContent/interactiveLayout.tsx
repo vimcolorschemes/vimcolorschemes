@@ -13,13 +13,15 @@ import RepositoryVariantPreview from './variantPreview';
 type RepositoryPageInteractiveLayoutProps = {
   children: ReactNode;
   colorschemes: ColorschemeDTO[];
+  initialVariantIndex?: number;
 };
 
 export default function RepositoryPageInteractiveLayout({
   children,
   colorschemes,
+  initialVariantIndex = 0,
 }: RepositoryPageInteractiveLayoutProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(initialVariantIndex);
   const variants = colorschemes.map(
     colorscheme => new Colorscheme(colorscheme),
   );

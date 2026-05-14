@@ -86,6 +86,25 @@ describe('colorscheme.flattened', () => {
     expect([
       ...colorscheme.flattened[0].backgrounds,
       ...colorscheme.flattened[1].backgrounds,
-    ]).toEqual(colorscheme.backgrounds);
+    ]).toEqual([Backgrounds.Dark, Backgrounds.Light]);
+  });
+
+  it('should not mutate the colorscheme background order', () => {
+    const colorscheme = new Colorscheme({
+      name: 'colorscheme',
+      data: {
+        light: [{ name: 'test', hexCode: '#ffffff' }],
+        dark: [{ name: 'test', hexCode: '#ffffff' }],
+      },
+      backgrounds: [Backgrounds.Light, Backgrounds.Dark],
+    });
+
+    const flattened = colorscheme.flattened;
+
+    expect(flattened.length).toBe(2);
+    expect(colorscheme.backgrounds).toEqual([
+      Backgrounds.Light,
+      Backgrounds.Dark,
+    ]);
   });
 });

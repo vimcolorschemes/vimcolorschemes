@@ -42,11 +42,27 @@ class Colorscheme {
     return this.backgrounds[0];
   }
 
+  getOrderedBackgrounds(
+    prioritizedBackground: Background = Backgrounds.Dark,
+  ): Background[] {
+    return [...this.backgrounds].sort((a, b) => {
+      if (a === prioritizedBackground) {
+        return -1;
+      }
+
+      if (b === prioritizedBackground) {
+        return 1;
+      }
+
+      return 0;
+    });
+  }
+
   /**
    * @returns a list of flat colorschemes, where each colorscheme has only one background.
    */
   get flattened(): Colorscheme[] {
-    return this.backgrounds.sort().map(
+    return this.getOrderedBackgrounds().map(
       background =>
         new Colorscheme({
           name: this.name,

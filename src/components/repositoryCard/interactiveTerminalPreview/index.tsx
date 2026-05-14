@@ -6,6 +6,7 @@ import { CSSProperties, useState } from 'react';
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
+import { Background } from '@/lib/backgrounds';
 import type { PageContext } from '@/lib/pageContext';
 
 import { cardCodePreviewClassName } from '@/components/card';
@@ -18,12 +19,14 @@ type InteractiveTerminalPreviewProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
   className?: string;
+  onVariantChange?: (variant: { colorscheme: string; background: Background }) => void;
 };
 
 export default function RepositoryCardInteractiveTerminalPreview({
   repositoryDTO,
   pageContext,
   className,
+  onVariantChange,
 }: InteractiveTerminalPreviewProps) {
   const repository = new Repository(repositoryDTO);
 
@@ -50,22 +53,34 @@ export default function RepositoryCardInteractiveTerminalPreview({
   ) as CSSProperties | undefined;
 
   function onToggleColorscheme() {
-    const index = repository.colorschemes.findIndex(
+    const colorschemes = repository.getOrderedColorschemes();
+    const index = colorschemes.findIndex(
       c => c.name === colorscheme.name,
     );
-    const nextIndex = (index + 1) % repository.colorschemes.length;
-    const newColorscheme = repository.colorschemes[nextIndex];
-    setColorscheme(newColorscheme);
+    const nextIndex = (index + 1) % colorschemes.length;
+    const newColorscheme = colorschemes[nextIndex];
+    const newBackground = newColorscheme.backgrounds.includes(background)
+      ? background
+      : newColorscheme.backgrounds[0];
 
-    if (!newColorscheme.backgrounds.includes(background)) {
-      setBackground(newColorscheme.backgrounds[0]);
-    }
+    setColorscheme(newColorscheme);
+    setBackground(newBackground);
+    onVariantChange?.({
+      colorscheme: newColorscheme.name,
+      background: newBackground,
+    });
   }
 
   function onToggleBackground() {
     const index = colorscheme.backgrounds.indexOf(background);
     const nextIndex = (index + 1) % colorscheme.backgrounds.length;
-    setBackground(colorscheme.backgrounds[nextIndex]);
+    const newBackground = colorscheme.backgrounds[nextIndex];
+
+    setBackground(newBackground);
+    onVariantChange?.({
+      colorscheme: colorscheme.name,
+      background: newBackground,
+    });
   }
 
   return (
@@ -82,7 +97,9 @@ export default function RepositoryCardInteractiveTerminalPreview({
         colorscheme={colorscheme}
         background={background}
         onToggleColorscheme={
-          repository.colorschemes.length > 1 ? onToggleColorscheme : undefined
+          repository.getOrderedColorschemes().length > 1
+            ? onToggleColorscheme
+            : undefined
         }
         onToggleBackground={
           colorscheme.backgrounds.length > 1 ? onToggleBackground : undefined

@@ -7,7 +7,7 @@ import type { PageContext } from '@/lib/pageContext';
 
 import Card from '@/components/card';
 
-import RepositoryCardInteractiveTerminalPreview from './interactiveTerminalPreview';
+import RepositoryCardInteractivePreviewLink from './interactivePreviewLink';
 
 type RepositoryCardProps = {
   repositoryDTO: RepositoryDTO;
@@ -41,13 +41,10 @@ export default function RepositoryCard({
   return (
     <Card.Root framed interactive className={className} style={style}>
       <Card.Content>
-        <Card.Link href={repository.route} label={repository.title} />
-        <Card.Preview flush interactiveControls>
-          <RepositoryCardInteractiveTerminalPreview
-            repositoryDTO={repositoryDTO}
-            pageContext={pageContext}
-          />
-        </Card.Preview>
+        <RepositoryCardInteractivePreviewLink
+          repositoryDTO={repositoryDTO}
+          pageContext={pageContext}
+        />
         <Card.Footer aria-label={title} title={title}>
           <Card.FooterIdentity>
             <Card.FooterTitle as={headingLevel}>

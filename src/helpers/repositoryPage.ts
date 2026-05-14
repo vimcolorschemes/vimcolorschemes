@@ -2,6 +2,8 @@ import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 
+import { Background } from '@/lib/backgrounds';
+
 const swatchGroupPriority = [
   'NormalBg',
   'NormalFg',
@@ -65,9 +67,24 @@ function getColorschemeStyle(
   );
 }
 
+function getVariantIndex(
+  variants: Colorscheme[],
+  colorschemeName?: string,
+  background?: Background,
+): number {
+  const index = variants.findIndex(
+    colorscheme =>
+      colorscheme.name === colorschemeName &&
+      colorscheme.backgrounds[0] === background,
+  );
+
+  return index === -1 ? 0 : index;
+}
+
 export const RepositoryPageHelper = {
   getColorschemeStyle,
   getNextVariantIndex,
   getPreviousVariantIndex,
   getSwatchColors,
+  getVariantIndex,
 };

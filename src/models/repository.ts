@@ -89,7 +89,40 @@ class Repository {
    * @returns a list of flat colorschemes, where each colorscheme has only one background.
    */
   get flattenedColorschemes(): Colorscheme[] {
-    return this.colorschemes.flatMap(colorscheme => colorscheme.flattened);
+    return this.getOrderedColorschemes().flatMap(colorscheme =>
+      colorscheme.flattened,
+    );
+  }
+
+  get defaultVariant(): Colorscheme | undefined {
+    return this.flattenedColorschemes[0];
+  }
+
+  getOrderedColorschemes(
+    prioritizedBackground: Background = Backgrounds.Dark,
+  ): Colorscheme[] {
+    return [...this.colorschemes].sort((a, b) => {
+      const aHasBackground = a.backgrounds.includes(prioritizedBackground);
+      const bHasBackground = b.backgrounds.includes(prioritizedBackground);
+
+      if (aHasBackground === bHasBackground) {
+        return 0;
+      }
+
+      return aHasBackground ? -1 : 1;
+    });
+  }
+
+  getDefaultVariant(prioritizedBackground?: Background): Colorscheme | undefined {
+    if (!prioritizedBackground) {
+      return this.defaultVariant;
+    }
+
+    return (
+      this.flattenedColorschemes.find(
+        colorscheme => colorscheme.backgrounds[0] === prioritizedBackground,
+      ) ?? this.defaultVariant
+    );
   }
 
   /**
@@ -100,7 +133,9 @@ class Repository {
     if (!prioritizedBackground) {
       prioritizedBackground = Backgrounds.Dark;
     }
-    const colorsheme = this.colorschemes.find(colorscheme =>
+    const colorsheme = this.getOrderedColorschemes(
+      prioritizedBackground,
+    ).find(colorscheme =>
       colorscheme.backgrounds.includes(prioritizedBackground),
     );
     return colorsheme || this.colorschemes[0];

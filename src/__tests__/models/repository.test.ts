@@ -108,4 +108,33 @@ describe('repository.flattenedColorschemes', () => {
     const repository = new Repository(dtoMixed);
     expect(repository.flattenedColorschemes.length).toBe(4);
   });
+
+  it('should order default-capable colorschemes first', () => {
+    const repository = new Repository({
+      ...dtoLight,
+      vimColorSchemes: [
+        {
+          name: 'koda-light',
+          backgrounds: ['light'],
+          data: {
+            light: [{ name: 'test', hexCode: '#ffffff' }],
+            dark: null,
+          },
+        },
+        {
+          name: 'koda',
+          backgrounds: ['dark', 'light'],
+          data: {
+            light: [{ name: 'test', hexCode: '#ffffff' }],
+            dark: [{ name: 'test', hexCode: '#000000' }],
+          },
+        },
+      ],
+    });
+
+    expect(repository.flattenedColorschemes[0].name).toBe('koda');
+    expect(repository.flattenedColorschemes[0].backgrounds).toEqual(['dark']);
+    expect(repository.defaultVariant?.name).toBe('koda');
+    expect(repository.defaultVariant?.backgrounds).toEqual(['dark']);
+  });
 });

@@ -31,11 +31,25 @@ export async function generateMetadata({
   return { title: repository.title };
 }
 
-export default async function RepositoryPage({ params }: RepositoryPageProps) {
+type RepositoryRouteProps = RepositoryPageProps & {
+  searchParams: Promise<{ colorscheme?: string; background?: string }>;
+};
+
+export default async function RepositoryPage({
+  params,
+  searchParams,
+}: RepositoryRouteProps) {
   const { owner, name } = await params;
+  const variantSearchParams = await searchParams;
+
   return (
     <div className={`${styles.page} repositoryDetailsPage`}>
-      <RepositoryPageContent owner={owner} name={name} />
+      <RepositoryPageContent
+        owner={owner}
+        name={name}
+        colorscheme={variantSearchParams.colorscheme}
+        background={variantSearchParams.background}
+      />
     </div>
   );
 }

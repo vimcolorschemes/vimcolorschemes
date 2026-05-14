@@ -11,10 +11,12 @@ import RepositoryPageInteractiveLayout from './interactiveLayout';
 
 type RepositoryPageContentProps = {
   repository: Repository;
+  initialVariantIndex?: number;
 };
 
 export default function RepositoryPageContent({
   repository,
+  initialVariantIndex = 0,
 }: RepositoryPageContentProps) {
   const variants = repository.flattenedColorschemes;
   const firstVariant = variants[0];
@@ -23,6 +25,7 @@ export default function RepositoryPageContent({
   return (
     <RepositoryPageInteractiveLayout
       colorschemes={variants.map(colorscheme => colorscheme.dto)}
+      initialVariantIndex={initialVariantIndex}
     >
       <TuiSection
         as="aside"
