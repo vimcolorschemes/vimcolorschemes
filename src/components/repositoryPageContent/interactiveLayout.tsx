@@ -29,12 +29,34 @@ export default function RepositoryPageInteractiveLayout({
     variants[activeIndex],
   );
 
+  function selectVariant(index: number) {
+    const params = new URLSearchParams(window.location.search);
+    const variant = variants[index];
+
+    setActiveIndex(index);
+
+    if (index === 0 || !variant) {
+      params.delete('colorscheme');
+      params.delete('background');
+    } else {
+      params.set('colorscheme', variant.name);
+      params.set('background', variant.backgrounds[0]);
+    }
+
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      '',
+      `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`,
+    );
+  }
+
   return (
     <div className={styles.layout} style={activeColorschemeStyle}>
       <RepositoryVariantPreview
         variants={variants}
         activeIndex={activeIndex}
-        onSelectVariant={setActiveIndex}
+        onSelectVariant={selectVariant}
       />
       {children}
     </div>

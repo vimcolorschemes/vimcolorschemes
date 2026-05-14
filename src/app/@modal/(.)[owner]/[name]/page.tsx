@@ -2,8 +2,6 @@ import { notFound } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
-import { Background, Backgrounds } from '@/lib/backgrounds';
-
 import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
 import RepositoryPageContentView from '@/components/repositoryPageContent/content';
@@ -31,7 +29,7 @@ export default async function RepositoryPageModalRoute({
   searchParams,
 }: RepositoryPageModalRouteProps) {
   const { owner, name } = await params;
-  const { colorscheme, background } = await searchParams;
+  const variantSearchParams = await searchParams;
   const repository = await RepositoriesService.getRepository(owner, name);
 
   if (!repository) {
@@ -39,14 +37,11 @@ export default async function RepositoryPageModalRoute({
   }
 
   const variants = repository.flattenedColorschemes;
-  const initialVariantIndex = RepositoryPageHelper.getVariantIndex(
+  const initialVariantIndex = RepositoryPageHelper.getVariantIndexFromSearchParams(
     variants,
-    colorscheme,
-    getBackground(background),
+    variantSearchParams,
   );
-  const themeStyle = RepositoryPageHelper.getColorschemeStyle(
-    variants[initialVariantIndex],
-  );
+  const themeStyle = RepositoryPageHelper.getColorschemeStyle(variants[0]);
 
   return (
     <RepositoryPageModal themeStyle={themeStyle}>
@@ -56,12 +51,4 @@ export default async function RepositoryPageModalRoute({
       />
     </RepositoryPageModal>
   );
-}
-
-function getBackground(value: string | undefined): Background | undefined {
-  if (value === Backgrounds.Dark || value === Backgrounds.Light) {
-    return value;
-  }
-
-  return undefined;
 }

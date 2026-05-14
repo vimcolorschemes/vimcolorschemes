@@ -47,8 +47,7 @@ export default async function RepositoryPage({
       <RepositoryPageContent
         owner={owner}
         name={name}
-        colorscheme={variantSearchParams.colorscheme}
-        background={variantSearchParams.background}
+        variantSearchParams={variantSearchParams}
       />
     </div>
   );

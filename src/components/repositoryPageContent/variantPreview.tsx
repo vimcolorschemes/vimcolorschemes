@@ -34,10 +34,14 @@ export default function RepositoryVariantPreview({
   const activeColorschemeStyle =
     RepositoryPageHelper.getColorschemeStyle(activeVariant);
 
-  function selectVariant(index: number) {
+  function scrollVariantIntoView(index: number) {
     variantListRef.current
       ?.querySelector<HTMLButtonElement>(`[data-variant-index="${index}"]`)
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+
+  function selectVariant(index: number) {
+    scrollVariantIntoView(index);
 
     onSelectVariant(index);
   }
@@ -95,6 +99,16 @@ export default function RepositoryVariantPreview({
                   [styles.variantButtonActive]: index === activeIndex,
                 })}
                 onClick={() => selectVariant(index)}
+                ref={
+                  index === activeIndex
+                    ? button => {
+                        button?.scrollIntoView({
+                          block: 'nearest',
+                          inline: 'nearest',
+                        });
+                      }
+                    : undefined
+                }
                 aria-pressed={index === activeIndex}
                 data-variant-index={index}
                 title={title}

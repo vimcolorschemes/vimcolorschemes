@@ -38,7 +38,13 @@
   cursor: text;
 }
 
-.button > svg {
-  width: 1rem;
-  height: 1rem;
+.icon {
+  display: inline-block;
+  width: 1ch;
+  color: var(
+    --colorscheme-vimCommand,
+    var(--colorscheme-vimOper, var(--colorscheme-NormalFg))
+  );
+  line-height: 1;
+  text-align: center;
 }

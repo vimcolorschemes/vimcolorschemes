@@ -2,8 +2,6 @@ import { notFound } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
-import { Background, Backgrounds } from '@/lib/backgrounds';
-
 import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
 import RepositoryPageContentView from './content';
@@ -11,15 +9,16 @@ import RepositoryPageContentView from './content';
 type RepositoryPageContentProps = {
   owner: string;
   name: string;
-  colorscheme?: string;
-  background?: string;
+  variantSearchParams?: {
+    colorscheme?: string | string[] | null;
+    background?: string | string[] | null;
+  };
 };
 
 export default async function RepositoryPageContent({
   owner,
   name,
-  colorscheme,
-  background,
+  variantSearchParams = {},
 }: RepositoryPageContentProps) {
   const repository = await RepositoriesService.getRepository(owner, name);
 
@@ -27,10 +26,9 @@ export default async function RepositoryPageContent({
     notFound();
   }
 
-  const initialVariantIndex = RepositoryPageHelper.getVariantIndex(
+  const initialVariantIndex = RepositoryPageHelper.getVariantIndexFromSearchParams(
     repository.flattenedColorschemes,
-    colorscheme,
-    getBackground(background),
+    variantSearchParams,
   );
 
   return (
@@ -39,12 +37,4 @@ export default async function RepositoryPageContent({
       initialVariantIndex={initialVariantIndex}
     />
   );
-}
-
-function getBackground(value: string | undefined): Background | undefined {
-  if (value === Backgrounds.Dark || value === Backgrounds.Light) {
-    return value;
-  }
-
-  return undefined;
 }

@@ -4,8 +4,6 @@ import { Colorscheme } from '@/models/colorscheme';
 
 import { Background } from '@/lib/backgrounds';
 
-import IconCircledArrow from '@/components/ui/icons/circledArrow';
-
 import styles from './index.module.css';
 
 type ColorschemeConfigProps = {
@@ -25,19 +23,15 @@ export function ColorschemeConfigLines({
     <>
       <div>
         <span className="vimCommand">{'vim.o.background = '}</span>
-        <span className="vimString">
-          {'"'}
-          <Button onClick={onToggleBackground}>{background}</Button>
-          {'"'}
-        </span>
+        <Button icon="⇄" onClick={onToggleBackground}>
+          {background}
+        </Button>
       </div>
       <div>
         <span className="vimCommand">{'vim.cmd.colorscheme '}</span>
-        <span className="vimString">
-          {'"'}
-          <Button onClick={onToggleColorscheme}>{colorscheme.name}</Button>
-          {'"'}
-        </span>
+        <Button icon="⟳" onClick={onToggleColorscheme}>
+          {colorscheme.name}
+        </Button>
       </div>
     </>
   );
@@ -45,10 +39,11 @@ export function ColorschemeConfigLines({
 
 type ButtonProps = {
   children: ReactNode;
+  icon: string;
   onClick?: () => void;
 };
 
-function Button({ children, onClick }: ButtonProps) {
+function Button({ children, icon, onClick }: ButtonProps) {
   return (
     <button
       type="button"
@@ -56,8 +51,12 @@ function Button({ children, onClick }: ButtonProps) {
       disabled={!onClick}
       className={styles.button}
     >
-      {children}
-      {onClick && <IconCircledArrow />}
+      <span className="vimString">
+        {'"'}
+        {children}
+        {'"'}
+      </span>
+      {onClick && <span className={styles.icon}>{icon}</span>}
     </button>
   );
 }

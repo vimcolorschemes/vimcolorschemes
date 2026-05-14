@@ -2,7 +2,12 @@ import { CSSProperties } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
 
-import { Background } from '@/lib/backgrounds';
+import { Background, Backgrounds } from '@/lib/backgrounds';
+
+type VariantSearchParams = {
+  colorscheme?: string | string[] | null;
+  background?: string | string[] | null;
+};
 
 const swatchGroupPriority = [
   'NormalBg',
@@ -81,10 +86,40 @@ function getVariantIndex(
   return index === -1 ? 0 : index;
 }
 
+function getVariantIndexFromSearchParams(
+  variants: Colorscheme[],
+  searchParams: VariantSearchParams,
+): number {
+  return getVariantIndex(
+    variants,
+    getSearchParamValue(searchParams.colorscheme),
+    getBackground(getSearchParamValue(searchParams.background)),
+  );
+}
+
+function getSearchParamValue(
+  value: string | string[] | null | undefined,
+): string | undefined {
+  if (Array.isArray(value)) {
+    return value[0];
+  }
+
+  return value ?? undefined;
+}
+
+function getBackground(value: string | undefined): Background | undefined {
+  if (value === Backgrounds.Dark || value === Backgrounds.Light) {
+    return value;
+  }
+
+  return undefined;
+}
+
 export const RepositoryPageHelper = {
   getColorschemeStyle,
   getNextVariantIndex,
   getPreviousVariantIndex,
   getSwatchColors,
   getVariantIndex,
+  getVariantIndexFromSearchParams,
 };
