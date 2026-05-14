@@ -1,6 +1,6 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import type { PageContext } from '@/lib/pageContext';
 
@@ -27,13 +27,10 @@ export default function ExploreCommandInput({
   fallbackPageContext,
 }: ExploreCommandInputProps) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const filters = getFiltersFromPathname(pathname);
   const pageContext = filters?.length
     ? PageContextHelper.get(filters)
-    : filters
-      ? PageContextHelper.getFromSearchParams(searchParams)
-      : fallbackPageContext;
+    : fallbackPageContext;
 
   return <ExploreCommand pageContext={pageContext} />;
 }

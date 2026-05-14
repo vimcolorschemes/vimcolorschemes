@@ -7,78 +7,9 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
-
   outputFileTracingIncludes: {
     '/*': ['./database/**/*.db'],
   },
-
-  async redirects() {
-    return [
-      { source: '/', destination: '/i/trending', permanent: true },
-      { source: '/trending', destination: '/i/trending', permanent: true },
-      { source: '/light', destination: '/i/trending/b.light', permanent: true },
-      { source: '/dark', destination: '/i/trending/b.dark', permanent: true },
-
-      {
-        source: '/light/trending',
-        destination: '/i/trending/b.light',
-        permanent: true,
-      },
-      {
-        source: '/dark/trending',
-        destination: '/i/trending/b.dark',
-        permanent: true,
-      },
-
-      { source: '/top', destination: '/i/top', permanent: true },
-      { source: '/light/top', destination: '/i/top/b.light', permanent: true },
-      { source: '/dark/top', destination: '/i/top/b.dark', permanent: true },
-
-      { source: '/new', destination: '/i/new', permanent: true },
-      { source: '/light/new', destination: '/i/new/b.light', permanent: true },
-      { source: '/dark/new', destination: '/i/new/b.dark', permanent: true },
-
-      { source: '/old', destination: '/i/old', permanent: true },
-      { source: '/light/old', destination: '/i/old/b.light', permanent: true },
-      { source: '/dark/old', destination: '/i/old/b.dark', permanent: true },
-
-      {
-        source: '/recently-updated',
-        destination: '/i/trending',
-        permanent: true,
-      },
-      {
-        source: '/light/recently-updated',
-        destination: '/i/trending/b.light',
-        permanent: true,
-      },
-      {
-        source: '/dark/recently-updated',
-        destination: '/i/trending/b.dark',
-        permanent: true,
-      },
-
-      // Legacy pagination URLs: /i/{sort}/p.{page} → /i/{sort}
-      {
-        source: '/i/:sort/p.:page',
-        destination: '/i/:sort',
-        permanent: true,
-      },
-      {
-        source: '/i/:sort/:background/p.:page',
-        destination: '/i/:sort/:background',
-        permanent: true,
-      },
-
-      // Legacy /page/:page URLs
-      {
-        source: '/page/:page',
-        destination: '/i/trending',
-        permanent: true,
-      },
-    ];
-  },
-
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'avatars.githubusercontent.com' },

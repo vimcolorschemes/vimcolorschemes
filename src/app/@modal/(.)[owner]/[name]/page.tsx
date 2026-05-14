@@ -29,6 +29,12 @@ export default async function RepositoryPageModalRoute({
   searchParams,
 }: RepositoryPageModalRouteProps) {
   const { owner, name } = await params;
+
+  // The broad repository interceptor also sees index URLs like /i/old.
+  if (owner === 'i') {
+    return null;
+  }
+
   const variantSearchParams = await searchParams;
   const repository = await RepositoriesService.getRepository(owner, name);
 

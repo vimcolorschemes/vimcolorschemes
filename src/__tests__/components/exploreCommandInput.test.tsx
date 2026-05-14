@@ -8,13 +8,11 @@ import { SortOptions } from '@/lib/sort';
 import ExploreCommandInput from '@/components/exploreCommandInput';
 
 const navigation = vi.hoisted(() => ({
-  pathname: '/i',
-  searchParams: new URLSearchParams(),
+  pathname: '/i/trending',
 }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => navigation.pathname,
-  useSearchParams: () => navigation.searchParams,
 }));
 
 vi.mock('next/link', () => ({
@@ -41,17 +39,12 @@ const fallbackPageContext: PageContext = {
 
 describe('ExploreCommandInput', () => {
   beforeEach(() => {
-    navigation.pathname = '/i';
-    navigation.searchParams = new URLSearchParams();
+    navigation.pathname = '/i/trending';
     document.body.innerHTML = '';
   });
 
-  it('uses search params for the index route', () => {
-    navigation.searchParams = new URLSearchParams({
-      sort: SortOptions.Old,
-      background: Backgrounds.Dark,
-    });
-
+  it('uses path filters for index routes', () => {
+    navigation.pathname = '/i/old/b.dark';
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     expect(
@@ -68,12 +61,8 @@ describe('ExploreCommandInput', () => {
     ).toBeNull();
   });
 
-  it('uses path filters over search params for filtered index routes', () => {
+  it('updates links from the current path filters', () => {
     navigation.pathname = '/i/trending/b.light';
-    navigation.searchParams = new URLSearchParams({
-      sort: SortOptions.Old,
-      background: Backgrounds.Dark,
-    });
 
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
@@ -89,5 +78,18 @@ describe('ExploreCommandInput', () => {
     expect(
       screen.getByRole('link', { name: 'old' }).getAttribute('data-as'),
     ).toBeNull();
+  });
+
+  it('uses fallback context outside filtered index routes', () => {
+    navigation.pathname = '/about';
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen.getByRole('button', { name: 'Sort repositories' }).textContent,
+    ).toBe(SortOptions.Trending);
+    expect(
+      screen.getByRole('button', { name: 'Filter by background' }).textContent,
+    ).toBe('any');
   });
 });

@@ -69,34 +69,6 @@ describe('PageContextHelper.get', () => {
   });
 });
 
-describe('PageContextHelper.getFromSearchParams', () => {
-  it('should capture sort and background from search params', () => {
-    expect(
-      PageContextHelper.getFromSearchParams(
-        new URLSearchParams({
-          sort: SortOptions.Old,
-          background: Backgrounds.Dark,
-        }),
-      ),
-    ).toEqual<PageContext>({
-      sort: SortOptions.Old,
-      filter: { background: Backgrounds.Dark },
-    });
-  });
-
-  it('should fall back to trending and ignore invalid backgrounds', () => {
-    expect(
-      PageContextHelper.getFromSearchParams({
-        sort: 'invalid',
-        background: 'invalid',
-      }),
-    ).toEqual<PageContext>({
-      sort: SortOptions.Trending,
-      filter: {},
-    });
-  });
-});
-
 describe('PageContextHelper.getPageTitle', () => {
   it('should return just the sort indicator if there are no filters', () => {
     expect(
