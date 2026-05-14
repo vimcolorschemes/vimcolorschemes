@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { ReactNode, useCallback, useRef } from 'react';
+import { CSSProperties, ReactNode, useCallback, useRef } from 'react';
 
 import TuiSection from '@/components/tuiSection';
 
@@ -9,10 +9,12 @@ import styles from './index.module.css';
 
 type RepositoryPageModalProps = {
   children: ReactNode;
+  themeStyle?: CSSProperties;
 };
 
 export default function RepositoryPageModal({
   children,
+  themeStyle,
 }: RepositoryPageModalProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -63,7 +65,7 @@ export default function RepositoryPageModal({
           }
         }}
       >
-        <section className={styles.panel}>
+        <section className={styles.panel} style={themeStyle}>
           {children}
           <TuiSection
             as="footer"
