@@ -1,11 +1,11 @@
 .container {
   width: 100%;
-  display: flex;
-  align-items: baseline;
-  flex-wrap: wrap;
-  column-gap: var(--spacing-xs);
-  row-gap: var(--spacing-xxs);
+  display: block;
   font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-feature-settings:
+    'liga' 0,
+    'calt' 0;
   font-size: 1.125rem;
   line-height: 1.625rem;
   min-height: calc(1.625rem + 2px);
@@ -34,32 +34,25 @@
   display: inline-flex;
   align-items: baseline;
   flex: 0 0 auto;
-  gap: var(--spacing-xs);
+  gap: 1ch;
   text-decoration: none;
 }
 
 .commandLine {
-  display: inline-flex;
-  align-items: baseline;
-  flex: 0 1 auto;
-  flex-wrap: wrap;
+  display: inline;
   min-width: 0;
-  column-gap: var(--spacing-xs);
-  row-gap: var(--spacing-xxs);
 }
 
 .commandLead {
   display: inline-flex;
   align-items: baseline;
   flex: 0 0 auto;
-  gap: var(--spacing-xs);
+  gap: 1ch;
   white-space: nowrap;
 }
 
 .argument {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--spacing-xs);
+  display: inline;
   white-space: nowrap;
 }
 

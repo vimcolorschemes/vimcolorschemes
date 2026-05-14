@@ -1,10 +1,9 @@
 'use client';
 
 import cn from 'classnames';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import { Colorscheme } from '@/models/colorscheme';
-import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 
 import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
@@ -20,17 +19,17 @@ import TuiLoading from '@/components/ui/tuiLoading';
 import styles from './index.module.css';
 
 type RepositoryVariantPreviewProps = {
-  colorschemes: ColorschemeDTO[];
+  activeIndex: number;
+  onSelectVariant: (index: number) => void;
+  variants: Colorscheme[];
 };
 
 export default function RepositoryVariantPreview({
-  colorschemes,
+  activeIndex,
+  onSelectVariant,
+  variants,
 }: RepositoryVariantPreviewProps) {
   const variantListRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const variants = colorschemes.map(
-    colorscheme => new Colorscheme(colorscheme),
-  );
   const activeVariant = variants[activeIndex];
   const activeColorschemeStyle =
     RepositoryPageHelper.getColorschemeStyle(activeVariant);
@@ -40,7 +39,7 @@ export default function RepositoryVariantPreview({
       ?.querySelector<HTMLButtonElement>(`[data-variant-index="${index}"]`)
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 
-    setActiveIndex(index);
+    onSelectVariant(index);
   }
 
   useKeyboardShortcut({
@@ -80,6 +79,7 @@ export default function RepositoryVariantPreview({
       <TuiSection
         as="aside"
         className={styles.variantPane}
+        style={RepositoryPageHelper.getColorschemeStyle(variants[0])}
         aria-label="Colorscheme variants"
       >
         <div ref={variantListRef} className={styles.variantList}>

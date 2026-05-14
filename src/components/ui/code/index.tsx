@@ -3,6 +3,10 @@ import { CSSProperties, ReactNode } from 'react';
 
 import styles from './index.module.css';
 
+type CodeStyle = CSSProperties & {
+  '--_active-line-top'?: string;
+};
+
 type CodeProps = {
   children: ReactNode;
   fileName: string;
@@ -16,13 +20,21 @@ type CodeProps = {
 };
 
 export default function Code(props: CodeProps) {
+  const style: CodeStyle = { ...props.style };
+
+  if (props.activeLine) {
+    style['--_active-line-top'] =
+      `calc(var(--_code-spacing) + ${(props.activeLine - 1).toString()}lh)`;
+  }
+
   return (
     <pre
       className={cn(styles.container, props.className, {
+        [styles.hasActiveLine]: props.activeLine,
         [styles.hideStatusLine]: props.hideStatusLine,
       })}
       data-background={props['data-background']}
-      style={props.style}
+      style={style}
     >
       <Gutter {...props} />
       <code

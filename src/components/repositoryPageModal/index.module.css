@@ -30,7 +30,8 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  backdrop-filter: blur(4px);
+  background: color-mix(in srgb, var(--background) 22%, transparent);
+  backdrop-filter: blur(3px) saturate(135%);
 }
 
 .scroller {

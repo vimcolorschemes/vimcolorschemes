@@ -79,6 +79,7 @@
   scrollbar-gutter: stable;
 }
 
+.variantPane,
 .variantButton {
   --repository-pane-background: var(--colorscheme-NormalBg, var(--background));
   --repository-pane-foreground: var(--colorscheme-NormalFg, var(--foreground));
@@ -99,7 +100,9 @@
     --colorscheme-vimStringFg,
     var(--colorscheme-vimFuncNameFg, var(--repository-pane-foreground))
   );
+}
 
+.variantButton {
   position: relative;
   display: grid;
   grid-template-columns: 0.875rem minmax(0, 1fr);

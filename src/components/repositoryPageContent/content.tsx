@@ -7,8 +7,7 @@ import RepositoryTitle from '@/components/repositoryTitle';
 import TuiSection from '@/components/tuiSection';
 
 import styles from './index.module.css';
-import RepositoryPageThemeScope from './themeScope';
-import RepositoryVariantPreview from './variantPreview';
+import RepositoryPageInteractiveLayout from './interactiveLayout';
 
 type RepositoryPageContentProps = {
   repository: Repository;
@@ -19,20 +18,15 @@ export default function RepositoryPageContent({
 }: RepositoryPageContentProps) {
   const variants = repository.flattenedColorschemes;
   const firstVariant = variants[0];
-  const firstColorschemeStyle =
-    RepositoryPageHelper.getColorschemeStyle(firstVariant);
   const swatchColors = RepositoryPageHelper.getSwatchColors(firstVariant);
 
   return (
-    <div className={styles.layout} style={firstColorschemeStyle}>
-      <RepositoryPageThemeScope style={firstColorschemeStyle} />
-      <RepositoryVariantPreview
-        colorschemes={variants.map(colorscheme => colorscheme.dto)}
-      />
+    <RepositoryPageInteractiveLayout
+      colorschemes={variants.map(colorscheme => colorscheme.dto)}
+    >
       <TuiSection
         as="aside"
         className={styles.infoPane}
-        style={firstColorschemeStyle}
         aria-label="Repository information"
       >
         <RepositoryTitle repository={repository} ownerPrefix="@" />
@@ -78,6 +72,6 @@ export default function RepositoryPageContent({
           </div>
         )}
       </TuiSection>
-    </div>
+    </RepositoryPageInteractiveLayout>
   );
 }

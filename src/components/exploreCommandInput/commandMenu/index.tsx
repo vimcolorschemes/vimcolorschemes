@@ -4,7 +4,6 @@ import cn from 'classnames';
 import Link from 'next/link';
 import {
   KeyboardEvent,
-  MouseEvent,
   PointerEvent as ReactPointerEvent,
   useEffect,
   useRef,
@@ -33,7 +32,7 @@ export default function CommandMenu({
   selected,
 }: CommandMenuProps) {
   const [open, setOpen] = useState(false);
-  const menuRef = useRef<HTMLDetailsElement>(null);
+  const menuRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (!open) {
@@ -54,8 +53,7 @@ export default function CommandMenu({
     return <span className={cn(styles.option, styles.active)}>{selected}</span>;
   }
 
-  function handleSummaryClick(event: MouseEvent<HTMLElement>) {
-    event.preventDefault();
+  function handleTriggerClick() {
     setOpen(currentOpen => !currentOpen);
   }
 
@@ -77,34 +75,24 @@ export default function CommandMenu({
     }
   }
 
-  function handleSummaryKeyDown(event: KeyboardEvent<HTMLElement>) {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      setOpen(currentOpen => !currentOpen);
-    }
-  }
-
   return (
-    <details
+    <span
       ref={menuRef}
       className={cn(styles.menu, { [styles.open]: open })}
-      open={open}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
       onKeyDown={handleMenuKeyDown}
     >
-      <summary
+      <button
+        type="button"
         className={cn(styles.option, styles.active)}
         aria-label={label}
         aria-expanded={open}
-        onClick={handleSummaryClick}
-        onKeyDown={handleSummaryKeyDown}
+        aria-haspopup="true"
+        onClick={handleTriggerClick}
       >
         {selected}
-        <span className={styles.disclosure} aria-hidden="true">
-          ▾
-        </span>
-      </summary>
+      </button>
       <span className={styles.menuList} role="group" aria-label={label}>
         {options.map(option => (
           <Link
@@ -121,6 +109,6 @@ export default function CommandMenu({
           </Link>
         ))}
       </span>
-    </details>
+    </span>
   );
 }

@@ -1,6 +1,7 @@
 .container {
   font-family: var(--font-mono);
   position: relative;
+  isolation: isolate;
   display: flex;
   flex-direction: column;
 
@@ -8,6 +9,7 @@
   --_gutter-foreground: var(--code-gutter-foreground, #fff);
   --_gutter-active-background: var(--code-gutter-active-background, #000);
   --_gutter-active-foreground: var(--code-gutter-active-foreground, #fff);
+  --_code-active-background: var(--code-active-background, transparent);
 
   --_status-line-background: var(--code-status-line-background, #000);
   --_status-line-foreground: var(--code-status-line-foreground, #fff);
@@ -16,10 +18,25 @@
   --_gutter-width: 2rem;
   --_code-spacing: var(--spacing-xs);
   --_code-line-height: 1.25rem;
+
+  line-height: var(--_code-line-height);
+}
+
+.hasActiveLine::before {
+  content: '';
+  position: absolute;
+  top: var(--_active-line-top);
+  left: var(--_gutter-width);
+  right: 0;
+  z-index: 0;
+  height: var(--_code-line-height);
+  background: var(--_code-active-background);
+  pointer-events: none;
 }
 
 .gutter {
   position: absolute;
+  z-index: 1;
   top: 0;
   left: 0;
   bottom: var(--_status-line-height);
@@ -34,7 +51,9 @@
 }
 
 .gutterLine {
+  position: relative;
   width: 100%;
+  height: var(--_code-line-height);
   text-align: right;
   padding: 0 var(--_code-spacing);
 }
@@ -45,6 +64,8 @@
 }
 
 .code {
+  position: relative;
+  z-index: 1;
   flex: 1;
   transform: translateX(var(--_gutter-width));
   display: flex;
@@ -66,13 +87,10 @@
 }
 
 .code > * {
+  position: relative;
   padding: 0 var(--_code-spacing);
   display: block;
-  min-height: var(--_code-line-height);
-}
-
-.code > *:empty {
-  height: 1lh;
+  height: var(--_code-line-height);
 }
 
 .code,

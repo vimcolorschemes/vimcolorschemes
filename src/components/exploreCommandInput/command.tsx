@@ -49,11 +49,12 @@ export default function ExploreCommand({
         <span className={styles.subcommand}>list</span>
       </span>
       <span className={styles.commandLine}>
+        {' '}
         <span className={styles.argument}>
           <span className={styles.flag}>
             <span className={styles.fullFlag}>--sort</span>
             <span className={styles.shortFlag}>-s</span>
-          </span>
+          </span>{' '}
           <CommandMenu
             label="Sort repositories"
             interactive={interactive}
@@ -67,12 +68,12 @@ export default function ExploreCommand({
               active: pageContext.sort === option,
             }))}
           />
-        </span>
+        </span>{' '}
         <span className={styles.argument}>
           <span className={styles.flag}>
             <span className={styles.fullFlag}>--background</span>
             <span className={styles.shortFlag}>-b</span>
-          </span>
+          </span>{' '}
           <CommandMenu
             label="Filter by background"
             interactive={interactive}

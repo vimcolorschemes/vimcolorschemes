@@ -45,37 +45,15 @@
   align-items: baseline;
 }
 
-.menu > summary {
+.menu > button {
+  appearance: none;
+  background: transparent;
   display: inline-flex;
   align-items: center;
   border: 0;
   cursor: pointer;
+  font: inherit;
   list-style: none;
-}
-
-.disclosure {
-  margin-left: var(--spacing-xxs);
-  color: var(--foreground-shade);
-  font-weight: 400;
-}
-
-.menu.open > summary .disclosure {
-  color: var(--foreground);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .menu > summary:hover .disclosure,
-  .menu > summary:focus-visible .disclosure {
-    color: var(--foreground);
-  }
-
-  .menu > summary:focus-visible .disclosure {
-    color: var(--background);
-  }
-}
-
-.menu > summary::-webkit-details-marker {
-  display: none;
 }
 
 .menuList {
@@ -88,6 +66,7 @@
   display: none;
   flex-direction: column;
   align-items: stretch;
+  gap: var(--spacing-xxs);
   overflow-y: auto;
   padding: var(--spacing-xs);
   border: 2px solid var(--border-color);
@@ -108,7 +87,7 @@
 .menuOption {
   display: flex;
   width: 100%;
-  min-height: 3rem;
+  min-height: 2.25rem;
   align-items: center;
   padding: 0 var(--spacing-xs);
 }
