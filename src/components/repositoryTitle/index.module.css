@@ -33,16 +33,3 @@
 .separator {
   color: var(--foreground-shade);
 }
-
-.stats {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex-shrink: 0;
-}
-
-.stat {
-  display: flex;
-  align-items: center;
-  column-gap: var(--spacing-xxs);
-}
