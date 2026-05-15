@@ -1,7 +1,6 @@
 .command {
   display: inline-flex;
   align-items: baseline;
-  gap: var(--spacing-xs);
   font-family: var(--font-mono);
   font-size: 1.125rem;
   line-height: 1.625rem;
