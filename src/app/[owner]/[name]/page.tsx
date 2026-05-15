@@ -17,7 +17,9 @@ type LegacyRepositoryRouteProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-function getSearch(searchParams: Record<string, string | string[] | undefined>) {
+function getSearch(
+  searchParams: Record<string, string | string[] | undefined>,
+) {
   const params = new URLSearchParams();
 
   for (const [key, value] of Object.entries(searchParams)) {
