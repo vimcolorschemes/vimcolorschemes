@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const keys = await RepositoriesService.getAllRepositoryKeys();
   const repositoryURLs = keys.map(k => ({
-    url: `${process.env.APP_URL}/${k.ownerName}/${k.name}`,
+    url: `${process.env.APP_URL}/r/${k.ownerName}/${k.name}`,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));

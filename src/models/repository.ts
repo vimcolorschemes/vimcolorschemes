@@ -47,7 +47,7 @@ class Repository {
    * @returns The route of the repository, used to navigate to the repository page.
    */
   get route(): string {
-    return `/${this.key}`.toLowerCase();
+    return `/r/${this.key}`.toLowerCase();
   }
 
   /**

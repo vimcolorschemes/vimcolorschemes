@@ -1,10 +1,6 @@
-import { Metadata } from 'next';
+import { permanentRedirect } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
-
-import RepositoryPageContent from '@/components/repositoryPageContent';
-
-import styles from './page.module.css';
 
 export const dynamicParams = false;
 
@@ -16,39 +12,38 @@ export async function generateStaticParams() {
   }));
 }
 
-type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
-
-export async function generateMetadata({
-  params,
-}: RepositoryPageProps): Promise<Metadata> {
-  const { owner, name } = await params;
-  const repository = await RepositoriesService.getRepository(owner, name);
-
-  if (!repository) {
-    return { title: 'Repository not found' };
-  }
-
-  return { title: repository.title };
-}
-
-type RepositoryRouteProps = RepositoryPageProps & {
-  searchParams: Promise<{ colorscheme?: string; background?: string }>;
+type LegacyRepositoryRouteProps = {
+  params: Promise<{ owner: string; name: string }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
 
-export default async function RepositoryPage({
+function getSearch(searchParams: Record<string, string | string[] | undefined>) {
+  const params = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(searchParams)) {
+    if (!value) {
+      continue;
+    }
+
+    if (Array.isArray(value)) {
+      for (const item of value) {
+        params.append(key, item);
+      }
+    } else {
+      params.set(key, value);
+    }
+  }
+
+  const search = params.toString();
+  return search ? `?${search}` : '';
+}
+
+export default async function LegacyRepositoryRoute({
   params,
   searchParams,
-}: RepositoryRouteProps) {
+}: LegacyRepositoryRouteProps) {
   const { owner, name } = await params;
-  const variantSearchParams = await searchParams;
+  const search = getSearch(await searchParams);
 
-  return (
-    <div className={`${styles.page} repositoryDetailsPage`}>
-      <RepositoryPageContent
-        owner={owner}
-        name={name}
-        variantSearchParams={variantSearchParams}
-      />
-    </div>
-  );
+  permanentRedirect(`/r/${owner}/${name}${search}`);
 }

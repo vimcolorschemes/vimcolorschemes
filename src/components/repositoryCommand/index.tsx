@@ -16,7 +16,9 @@ export default function RepositoryCommand({
   name,
 }: RepositoryCommandProps) {
   const pathname = usePathname();
-  const [pathOwner, pathName] = pathname.split('/').filter(Boolean);
+  const pathSegments = pathname.split('/').filter(Boolean);
+  const [pathOwner, pathName] =
+    pathSegments[0] === 'r' ? pathSegments.slice(1) : pathSegments;
   const repoOwner = owner ?? pathOwner;
   const repoName = name ?? pathName;
   const commandClassNames = {

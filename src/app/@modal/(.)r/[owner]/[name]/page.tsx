@@ -9,7 +9,7 @@ import RepositoryPageModal from '@/components/repositoryPageModal';
 
 export const dynamicParams = false;
 
-export { generateMetadata } from '@/app/[owner]/[name]/page';
+export { generateMetadata } from '@/app/r/[owner]/[name]/page';
 
 export async function generateStaticParams() {
   const keys = await RepositoriesService.getAllRepositoryKeys();
@@ -29,12 +29,6 @@ export default async function RepositoryPageModalRoute({
   searchParams,
 }: RepositoryPageModalRouteProps) {
   const { owner, name } = await params;
-
-  // The broad repository interceptor also sees index URLs like /i/old.
-  if (owner === 'i') {
-    return null;
-  }
-
   const variantSearchParams = await searchParams;
   const repository = await RepositoriesService.getRepository(owner, name);
 

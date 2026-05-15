@@ -1,14 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import RepositoryPageModalRoute from '@/app/@modal/(.)[owner]/[name]/page';
+import RepositoryPageModalRoute from '@/app/@modal/(.)r/[owner]/[name]/page';
 
 const repositoriesServiceMock = vi.hoisted(() => ({
   getAllRepositoryKeys: vi.fn(),
   getRepository: vi.fn(),
 }));
 
-vi.mock('@/app/[owner]/[name]/page', () => ({
+vi.mock('@/app/r/[owner]/[name]/page', () => ({
   generateMetadata: vi.fn(),
+}));
+
+vi.mock('@/helpers/repositoryPage', () => ({
+  RepositoryPageHelper: {
+    getColorschemeStyle: vi.fn(),
+    getVariantIndexFromSearchParams: vi.fn(() => 0),
+  },
 }));
 
 vi.mock('@/services/repositoriesServer', () => ({
@@ -27,13 +34,20 @@ vi.mock('@/components/repositoryPageModal', () => ({
 }));
 
 describe('RepositoryPageModalRoute', () => {
-  it('does not treat index filter routes as repository modals', async () => {
+  it('renders repository modals from the r route', async () => {
+    repositoriesServiceMock.getRepository.mockResolvedValue({
+      flattenedColorschemes: [],
+    });
+
     const result = await RepositoryPageModalRoute({
-      params: Promise.resolve({ owner: 'i', name: 'old' }),
+      params: Promise.resolve({ owner: 'folke', name: 'tokyonight.nvim' }),
       searchParams: Promise.resolve({}),
     });
 
-    expect(result).toBeNull();
-    expect(repositoriesServiceMock.getRepository).not.toHaveBeenCalled();
+    expect(result).not.toBeNull();
+    expect(repositoriesServiceMock.getRepository).toHaveBeenCalledWith(
+      'folke',
+      'tokyonight.nvim',
+    );
   });
 });
