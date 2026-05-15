@@ -62,6 +62,7 @@
   top: 100%;
   left: 0;
   min-width: max(100%, 10rem);
+  max-width: calc(100vw - (2 * var(--spacing-md)));
   max-height: min(18rem, calc(100dvh - var(--statusline-height) - 6rem));
   display: none;
   flex-direction: column;
@@ -72,6 +73,13 @@
   border: 2px solid var(--border-color);
   background: var(--background);
   box-shadow: 0 0 0 1px var(--background);
+}
+
+@media (max-width: 48rem) {
+  .menuList {
+    right: 0;
+    left: auto;
+  }
 }
 
 .menu.open .menuList {
