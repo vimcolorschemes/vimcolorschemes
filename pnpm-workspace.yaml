@@ -1,0 +1,5 @@
+allowBuilds:
+  esbuild: false
+  libsql: true
+  sharp: false
+  unrs-resolver: false
