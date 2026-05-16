@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="vimcolorschemes" src="./public/assets/logo-readme.svg" width="700" />
+  <img alt="vimcolorschemes" src="https://raw.githubusercontent.com/vimcolorschemes/assets/main/out/vimcolorschemes.svg" width="700" />
 </h1>
 <p align="center">
   <b>Find the best vim/neovim colorschemes around</b>
