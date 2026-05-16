@@ -89,22 +89,20 @@
 }
 
 .wordmark {
-  display: block;
-  width: fit-content;
+  display: flex;
+  justify-content: center;
+  width: 100%;
   max-width: 100%;
   margin-inline: auto;
   margin-top: var(--spacing-md);
   overflow-x: auto;
   overflow-y: hidden;
-  color: var(--foreground);
-  font-family: var(--font-mono), monospace;
-  font-size: clamp(0.18rem, 0.58vw, 0.5rem);
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 0.95;
-  white-space: pre;
-  text-align: left;
-  text-transform: none;
+}
+
+.logo {
+  display: block;
+  width: min(100%, 76rem);
+  height: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   },
   description:
     'Check out the Trending vim and neovim color schemes! | vimcolorschemes is the ultimate resource for vim and nvim users to find the perfect color scheme for their favorite editor.',
+  icons: {
+    icon: '/assets/v.svg',
+    shortcut: '/assets/v.svg',
+    apple: '/assets/v.svg',
+  },
   openGraph: {
     url: process.env.APP_URL,
     type: 'website',
