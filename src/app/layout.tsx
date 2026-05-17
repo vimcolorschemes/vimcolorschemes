@@ -40,10 +40,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: `${process.env.APP_URL}/assets/og-image.png`,
+        url: `${process.env.APP_URL}/assets/opengraph.png`,
         type: 'image/png',
-        width: 400,
-        height: 200,
+        width: 1200,
+        height: 630,
       },
     ],
   },
