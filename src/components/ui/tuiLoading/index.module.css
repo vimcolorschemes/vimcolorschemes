@@ -1,61 +1,114 @@
 .container {
+  --tui-loading-cell-size: 0.46rem;
+  --tui-loading-cell-gap: 0.14rem;
+
   display: inline-flex;
-  align-items: baseline;
-  justify-content: flex-start;
-  gap: var(--spacing-xxs);
+  align-items: center;
+  justify-content: center;
   min-height: var(--tui-loading-height, auto);
-  padding: var(--spacing-xs) var(--spacing-sm);
-  color: color-mix(in srgb, var(--foreground) 72%, transparent);
+  color: color-mix(in srgb, var(--foreground) 76%, transparent);
   font-family: var(--font-mono);
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-md);
+  line-height: 1;
 }
 
 .compact {
+  --tui-loading-cell-size: 0.4rem;
+  --tui-loading-cell-gap: 0.12rem;
+  --tui-loading-height: 100%;
+
   display: flex;
   align-items: flex-start;
-  --tui-loading-height: 100%;
 }
 
-.flush {
-  padding: 0;
+.frame,
+.inlineCells {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tui-loading-cell-gap);
 }
 
-.dots::after {
-  content: '.';
-  display: inline-block;
-  width: 3ch;
-  text-align: left;
-  animation: tui-dots 1.2s steps(4, end) infinite;
+.cell,
+.inlineCell {
+  display: block;
+  width: var(--tui-loading-cell-size);
+  height: 1.15rem;
+  background: currentColor;
+  opacity: 0.1;
+  animation: tui-cursor 1.1s steps(1, end) infinite;
+}
+
+.cell:nth-child(2),
+.inlineCell:nth-child(2) {
+  animation-delay: 90ms;
+}
+
+.cell:nth-child(3),
+.inlineCell:nth-child(3) {
+  animation-delay: 180ms;
+}
+
+.cell:nth-child(4),
+.inlineCell:nth-child(4) {
+  animation-delay: 270ms;
+}
+
+.cell:nth-child(5),
+.inlineCell:nth-child(5) {
+  animation-delay: 360ms;
+}
+
+.cell:nth-child(6) {
+  animation-delay: 450ms;
 }
 
 .inline {
+  --tui-loading-cell-size: 0.64em;
+  --tui-loading-cell-gap: 0.16em;
+
   display: inline-flex;
   align-items: baseline;
-  gap: 0.1em;
-  color: color-mix(in srgb, var(--foreground) 72%, transparent);
+  color: color-mix(in srgb, var(--foreground) 76%, transparent);
   font-family: var(--font-mono);
+  line-height: 1;
 }
 
-@keyframes tui-dots {
-  0% {
-    content: '.';
-  }
+.inlineCell {
+  height: 0.95em;
+}
 
-  33% {
-    content: '.';
-  }
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
-  34% {
-    content: '..';
-  }
-
-  66% {
-    content: '..';
-  }
-
-  67%,
+@keyframes tui-cursor {
+  0%,
   100% {
-    content: '...';
+    opacity: 0.1;
+  }
+
+  42%,
+  58% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cell,
+  .inlineCell {
+    animation: none;
+    opacity: 0.62;
+  }
+
+  .cell:nth-child(odd),
+  .inlineCell:nth-child(odd) {
+    opacity: 0.28;
   }
 }

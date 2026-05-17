@@ -5,7 +5,7 @@ import pageStyles from './page.module.css';
 export default function RepositoryPageLoading() {
   return (
     <div className={`${pageStyles.page} repositoryDetailsPage`}>
-      <RepositoryPageLoadingState />
+      <RepositoryPageLoadingState className={pageStyles.loadingState} />
     </div>
   );
 }

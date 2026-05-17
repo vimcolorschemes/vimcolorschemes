@@ -1,3 +1,5 @@
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
+
 import styles from './index.module.css';
 
 type LoadMoreButtonProps = {
@@ -11,7 +13,7 @@ export default function LoadMoreButton({
 }: LoadMoreButtonProps) {
   return (
     <button onClick={onClick} disabled={loading} className={styles.button}>
-      {loading ? 'loading...' : 'load more'}
+      {loading ? <TuiLoadingInline /> : 'load more'}
     </button>
   );
 }

@@ -93,6 +93,7 @@
 }
 
 .panel :global(.repositoryDetailsLoading) > [role='status'] {
+  padding: var(--spacing-xs) var(--spacing-sm);
   background: var(--modal-loading-background);
   box-shadow: inset 0 0 0 1px var(--modal-loading-border);
 }

@@ -2,30 +2,27 @@ import cn from 'classnames';
 
 import styles from './index.module.css';
 
+const LOADING_CELLS = Array.from({ length: 6 });
+const INLINE_CELLS = Array.from({ length: 5 });
+
 type TuiLoadingProps = {
   className?: string;
   compact?: boolean;
-  flush?: boolean;
 };
 
-export default function TuiLoading({
-  className,
-  compact,
-  flush,
-}: TuiLoadingProps) {
+export default function TuiLoading({ className, compact }: TuiLoadingProps) {
   return (
     <div
       role="status"
       aria-busy="true"
-      className={cn(
-        styles.container,
-        compact && styles.compact,
-        flush && styles.flush,
-        className,
-      )}
+      className={cn(styles.container, compact && styles.compact, className)}
     >
-      <span>loading</span>
-      <span className={styles.dots} aria-hidden="true" />
+      <span className={styles.srOnly}>Loading</span>
+      <span className={styles.frame} aria-hidden="true">
+        {LOADING_CELLS.map((_, index) => (
+          <span key={index} className={styles.cell} />
+        ))}
+      </span>
     </div>
   );
 }
@@ -41,8 +38,12 @@ export function TuiLoadingInline({ className }: TuiLoadingInlineProps) {
       aria-busy="true"
       className={cn(styles.inline, className)}
     >
-      <span>loading</span>
-      <span className={styles.dots} aria-hidden="true" />
+      <span className={styles.srOnly}>Loading</span>
+      <span className={styles.inlineCells} aria-hidden="true">
+        {INLINE_CELLS.map((_, index) => (
+          <span key={index} className={styles.inlineCell} />
+        ))}
+      </span>
     </span>
   );
 }

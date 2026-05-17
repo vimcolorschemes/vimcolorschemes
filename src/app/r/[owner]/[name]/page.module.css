@@ -13,6 +13,10 @@
   min-height: 0;
 }
 
+.loadingState {
+  place-items: start;
+}
+
 @media (max-width: 860px) {
   .page {
     --repository-preview-pane-width: minmax(0, 1fr);

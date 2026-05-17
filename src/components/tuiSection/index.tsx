@@ -29,7 +29,7 @@ export default function TuiSection({
       {...props}
     >
       {title && <div className={cn(styles.title, titleClassName)}>{title}</div>}
-      {isLoading ? <TuiLoading flush /> : children}
+      {isLoading ? <TuiLoading /> : children}
     </Component>
   );
 }
