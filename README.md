@@ -2,7 +2,7 @@
   <img alt="vimcolorschemes" src="https://raw.githubusercontent.com/vimcolorschemes/assets/main/out/vimcolorschemes/vimcolorschemes-transparent.svg" width="700" />
 </h1>
 <p align="center">
-  <b>Find the best vim/neovim colorschemes around</b>
+  <b>Find your next vim colorscheme.</b>
 </p>
 
 <br>
