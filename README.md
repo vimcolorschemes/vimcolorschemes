@@ -8,6 +8,10 @@
 <br>
 
 <p align="center">
+  <a href="https://vimcolorschemes.com">vimcolorschemes.com</a>
+</p>
+
+<p align="center">
   <a href="https://docs.vimcolorschemes.com">docs.vimcolorschemes.com</a>
 </p>
 
