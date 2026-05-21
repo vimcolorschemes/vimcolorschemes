@@ -1,10 +1,11 @@
 .button {
   box-sizing: border-box;
-  background: none;
-  border: 1px solid var(--border-color);
+  min-width: 11rem;
+  min-height: calc(var(--line-height-md) + (var(--spacing-xs) * 2) + 2px);
   margin-top: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
-  min-height: calc(var(--line-height-md) + (var(--spacing-xs) * 2) + 2px);
+  border: 1px solid var(--foreground-accent);
+  background: var(--background);
   color: var(--foreground-accent);
   font-family: var(--font-mono);
   font-size: var(--font-size-md);
@@ -20,20 +21,24 @@
 @media (hover: hover) and (pointer: fine) {
   .button:hover:not(:disabled) {
     border-color: var(--foreground-accent);
-    background: var(--platinum);
+    background: var(--foreground-accent);
+    color: var(--background);
     text-decoration: none;
   }
 }
 
 .button:focus-visible {
-  outline: 2px solid var(--foreground-accent);
-  outline-offset: var(--spacing-xs);
-  background: var(--foreground);
+  outline: none;
+  background: var(--foreground-accent);
   color: var(--background);
   text-decoration: none;
 }
 
 .button:disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: default;
+}
+
+.loading {
+  color: currentColor;
 }

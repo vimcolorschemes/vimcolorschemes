@@ -12,8 +12,14 @@ export default function LoadMoreButton({
   onClick,
 }: LoadMoreButtonProps) {
   return (
-    <button onClick={onClick} disabled={loading} className={styles.button}>
-      {loading ? <TuiLoadingInline /> : 'load more'}
+    <button
+      onClick={onClick}
+      disabled={loading}
+      className={styles.button}
+      aria-busy={loading}
+      aria-label={loading ? 'Loading more repositories' : undefined}
+    >
+      {loading ? <TuiLoadingInline className={styles.loading} /> : '[ load more ]'}
     </button>
   );
 }
