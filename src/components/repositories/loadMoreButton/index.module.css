@@ -1,15 +1,17 @@
 .button {
+  box-sizing: border-box;
   background: none;
   border: 1px solid var(--border-color);
   margin-top: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
+  min-height: calc(var(--line-height-md) + (var(--spacing-xs) * 2) + 2px);
   color: var(--foreground-accent);
   font-family: var(--font-mono);
   font-size: var(--font-size-md);
   line-height: var(--line-height-md);
   font-weight: bold;
   cursor: pointer;
-  align-self: flex-start;
+  align-self: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
