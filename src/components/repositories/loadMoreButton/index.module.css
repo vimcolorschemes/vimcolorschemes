@@ -10,6 +10,9 @@
   font-weight: bold;
   cursor: pointer;
   align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (hover: hover) and (pointer: fine) {
