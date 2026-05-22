@@ -19,7 +19,11 @@ export default function LoadMoreButton({
       aria-busy={loading}
       aria-label={loading ? 'Loading more repositories' : undefined}
     >
-      {loading ? <TuiLoadingInline className={styles.loading} /> : '[ load more ]'}
+      {loading ? (
+        <TuiLoadingInline className={styles.loading} />
+      ) : (
+        '[ load more ]'
+      )}
     </button>
   );
 }
