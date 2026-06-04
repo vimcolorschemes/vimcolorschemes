@@ -1,9 +1,9 @@
-import { CSSProperties } from 'react';
-
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
 import type { PageContext } from '@/lib/pageContext';
+
+import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
 import Card from '@/components/card';
 
@@ -30,13 +30,10 @@ export default function RepositoryCard({
       : pageContext.filter?.background;
   const colorscheme = repository.getDefaultColorscheme(prioritizedBackground);
   const background = colorscheme.getDefaultBackground(prioritizedBackground);
-  const style = colorscheme.data[background]?.reduce(
-    (acc, group) => ({
-      ...acc,
-      [`--colorscheme-${group.name}`]: group.hexCode,
-    }),
-    {},
-  ) as CSSProperties | undefined;
+  const style = RepositoryPageHelper.getColorschemeStyle(
+    colorscheme,
+    background,
+  );
 
   return (
     <Card.Root framed interactive className={className} style={style}>

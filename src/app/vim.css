@@ -1,4 +1,30 @@
 /* vim colorscheme color classes */
+.vimLineComment,
+.vimCommand,
+.vimFunction,
+.vimParenSep,
+.vimOperParen,
+.vimFuncBody,
+.vimIsCommand,
+.vimLet,
+.vimVar,
+.vimOper,
+.vimFuncName,
+.vimFuncVar,
+.vimString,
+.vimSubst,
+.vimNumber,
+.vimNotFunc {
+  color: var(--_vim-color);
+  background-color: var(--_vim-background, transparent);
+  font-weight: var(--_vim-font-weight, 400);
+  font-style: var(--_vim-font-style, normal);
+  text-decoration-line: var(--_vim-text-decoration-line, none);
+  text-decoration-style: var(--_vim-text-decoration-style, solid);
+  text-decoration-color: currentColor;
+  text-decoration-thickness: from-font;
+}
+
 .StatusLineFg {
   color: var(--colorscheme-StatusLineFg);
 }
@@ -33,51 +59,271 @@
   );
 }
 .vimLineComment {
-  font-style: italic;
-  color: var(--colorscheme-vimLineCommentFg);
+  --_vim-color: var(
+    --colorscheme-vimLineCommentFg-color,
+    var(--colorscheme-vimLineCommentFg)
+  );
+  --_vim-background: var(
+    --colorscheme-vimLineCommentFg-background,
+    transparent
+  );
+  --_vim-font-weight: var(--colorscheme-vimLineCommentFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimLineCommentFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimLineCommentFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimLineCommentFg-text-decoration-style,
+    solid
+  );
 }
 .vimCommand {
-  color: var(--colorscheme-vimCommandFg);
+  --_vim-color: var(
+    --colorscheme-vimCommandFg-color,
+    var(--colorscheme-vimCommandFg)
+  );
+  --_vim-background: var(--colorscheme-vimCommandFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimCommandFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimCommandFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimCommandFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimCommandFg-text-decoration-style,
+    solid
+  );
 }
 .vimFunction {
-  color: var(--colorscheme-vimFunctionFg);
+  --_vim-color: var(
+    --colorscheme-vimFunctionFg-color,
+    var(--colorscheme-vimFunctionFg)
+  );
+  --_vim-background: var(--colorscheme-vimFunctionFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimFunctionFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimFunctionFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimFunctionFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimFunctionFg-text-decoration-style,
+    solid
+  );
 }
 .vimParenSep {
-  color: var(--colorscheme-vimParenSepFg);
+  --_vim-color: var(
+    --colorscheme-vimParenSepFg-color,
+    var(--colorscheme-vimParenSepFg)
+  );
+  --_vim-background: var(--colorscheme-vimParenSepFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimParenSepFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimParenSepFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimParenSepFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimParenSepFg-text-decoration-style,
+    solid
+  );
 }
 .vimOperParen {
-  color: var(--colorscheme-vimOperParenFg);
+  --_vim-color: var(
+    --colorscheme-vimOperParenFg-color,
+    var(--colorscheme-vimOperParenFg)
+  );
+  --_vim-background: var(--colorscheme-vimOperParenFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimOperParenFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimOperParenFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimOperParenFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimOperParenFg-text-decoration-style,
+    solid
+  );
 }
 .vimFuncBody {
-  color: var(--colorscheme-vimFuncBodyFg);
+  --_vim-color: var(
+    --colorscheme-vimFuncBodyFg-color,
+    var(--colorscheme-vimFuncBodyFg)
+  );
+  --_vim-background: var(--colorscheme-vimFuncBodyFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimFuncBodyFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimFuncBodyFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimFuncBodyFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimFuncBodyFg-text-decoration-style,
+    solid
+  );
 }
 .vimIsCommand {
-  color: var(--colorscheme-vimIsCommandFg);
+  --_vim-color: var(
+    --colorscheme-vimIsCommandFg-color,
+    var(--colorscheme-vimIsCommandFg)
+  );
+  --_vim-background: var(--colorscheme-vimIsCommandFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimIsCommandFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimIsCommandFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimIsCommandFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimIsCommandFg-text-decoration-style,
+    solid
+  );
 }
 .vimLet {
-  color: var(--colorscheme-vimLetFg);
+  --_vim-color: var(--colorscheme-vimLetFg-color, var(--colorscheme-vimLetFg));
+  --_vim-background: var(--colorscheme-vimLetFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimLetFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimLetFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimLetFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimLetFg-text-decoration-style,
+    solid
+  );
 }
 .vimVar {
-  color: var(--colorscheme-vimVarFg);
+  --_vim-color: var(--colorscheme-vimVarFg-color, var(--colorscheme-vimVarFg));
+  --_vim-background: var(--colorscheme-vimVarFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimVarFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimVarFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimVarFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimVarFg-text-decoration-style,
+    solid
+  );
 }
 .vimOper {
-  color: var(--colorscheme-vimOperFg);
+  --_vim-color: var(
+    --colorscheme-vimOperFg-color,
+    var(--colorscheme-vimOperFg)
+  );
+  --_vim-background: var(--colorscheme-vimOperFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimOperFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimOperFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimOperFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimOperFg-text-decoration-style,
+    solid
+  );
 }
 .vimFuncName {
-  color: var(--colorscheme-vimFuncNameFg);
+  --_vim-color: var(
+    --colorscheme-vimFuncNameFg-color,
+    var(--colorscheme-vimFuncNameFg)
+  );
+  --_vim-background: var(--colorscheme-vimFuncNameFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimFuncNameFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimFuncNameFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimFuncNameFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimFuncNameFg-text-decoration-style,
+    solid
+  );
 }
 .vimFuncVar {
-  color: var(--colorscheme-vimFuncVarFg);
+  --_vim-color: var(
+    --colorscheme-vimFuncVarFg-color,
+    var(--colorscheme-vimFuncVarFg)
+  );
+  --_vim-background: var(--colorscheme-vimFuncVarFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimFuncVarFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimFuncVarFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimFuncVarFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimFuncVarFg-text-decoration-style,
+    solid
+  );
 }
 .vimString {
-  color: var(--colorscheme-vimStringFg);
+  --_vim-color: var(
+    --colorscheme-vimStringFg-color,
+    var(--colorscheme-vimStringFg)
+  );
+  --_vim-background: var(--colorscheme-vimStringFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimStringFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimStringFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimStringFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimStringFg-text-decoration-style,
+    solid
+  );
 }
 .vimSubst {
-  color: var(--colorscheme-vimSubstFg);
+  --_vim-color: var(
+    --colorscheme-vimSubstFg-color,
+    var(--colorscheme-vimSubstFg)
+  );
+  --_vim-background: var(--colorscheme-vimSubstFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimSubstFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimSubstFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimSubstFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimSubstFg-text-decoration-style,
+    solid
+  );
 }
 .vimNumber {
-  color: var(--colorscheme-vimNumberFg);
+  --_vim-color: var(
+    --colorscheme-vimNumberFg-color,
+    var(--colorscheme-vimNumberFg)
+  );
+  --_vim-background: var(--colorscheme-vimNumberFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimNumberFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimNumberFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimNumberFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimNumberFg-text-decoration-style,
+    solid
+  );
 }
 .vimNotFunc {
-  color: var(--colorscheme-vimNotFuncFg);
+  --_vim-color: var(
+    --colorscheme-vimNotFuncFg-color,
+    var(--colorscheme-vimNotFuncFg)
+  );
+  --_vim-background: var(--colorscheme-vimNotFuncFg-background, transparent);
+  --_vim-font-weight: var(--colorscheme-vimNotFuncFg-font-weight, 400);
+  --_vim-font-style: var(--colorscheme-vimNotFuncFg-font-style, normal);
+  --_vim-text-decoration-line: var(
+    --colorscheme-vimNotFuncFg-text-decoration-line,
+    none
+  );
+  --_vim-text-decoration-style: var(
+    --colorscheme-vimNotFuncFg-text-decoration-style,
+    solid
+  );
 }

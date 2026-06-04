@@ -1,13 +1,15 @@
 'use client';
 
 import cn from 'classnames';
-import { CSSProperties, useState } from 'react';
+import { useState } from 'react';
 
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
 
 import { Background } from '@/lib/backgrounds';
 import type { PageContext } from '@/lib/pageContext';
+
+import { RepositoryPageHelper } from '@/helpers/repositoryPage';
 
 import { cardCodePreviewClassName } from '@/components/card';
 
@@ -47,13 +49,10 @@ export default function RepositoryCardInteractiveTerminalPreview({
   const [colorscheme, setColorscheme] = useState(defaultColorscheme);
   const [background, setBackground] = useState(defaultBackground);
 
-  const style = colorscheme.data[background]?.reduce(
-    (acc, group) => ({
-      ...acc,
-      [`--colorscheme-${group.name}`]: group.hexCode,
-    }),
-    {},
-  ) as CSSProperties | undefined;
+  const style = RepositoryPageHelper.getColorschemeStyle(
+    colorscheme,
+    background,
+  );
 
   function onToggleColorscheme() {
     const colorschemes = repository.getOrderedColorschemes();
