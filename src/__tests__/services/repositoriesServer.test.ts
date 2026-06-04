@@ -73,6 +73,10 @@ describe('RepositoriesService', () => {
             csg_background: 'dark',
             csg_name: 'fg',
             csg_hex_code: '#eeeeee',
+            csg_bold: 1,
+            csg_italic: true,
+            csg_underdotted: 1,
+            csg_strikethrough: 1,
           },
         ],
       });
@@ -139,7 +143,16 @@ describe('RepositoriesService', () => {
             backgrounds: ['dark'],
             data: {
               light: null,
-              dark: [{ name: 'fg', hexCode: '#eeeeee' }],
+              dark: [
+                {
+                  name: 'fg',
+                  hexCode: '#eeeeee',
+                  bold: true,
+                  italic: true,
+                  underdotted: true,
+                  strikethrough: true,
+                },
+              ],
             },
           },
         ],

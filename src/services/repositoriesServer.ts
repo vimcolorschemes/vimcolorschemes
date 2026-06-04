@@ -3,6 +3,7 @@ import { unstable_cache } from 'next/cache';
 
 import { DatabaseService } from '@/services/database';
 
+import type { ColorGroupDTO } from '@/models/DTO/colorGroup';
 import { ColorschemeDTO } from '@/models/DTO/colorscheme';
 import { RepositoryDTO } from '@/models/DTO/repository';
 import { Repository } from '@/models/repository';
@@ -29,6 +30,20 @@ type RepositoryKey = {
 };
 
 const FEATURED_REPOSITORY_LIMIT = 3;
+const COLORSCHEME_GROUP_COLS = `
+  csg.background as csg_background,
+  csg.name as csg_name,
+  csg.hex_code as csg_hex_code,
+  csg.bold as csg_bold,
+  csg.italic as csg_italic,
+  csg.underline as csg_underline,
+  csg.undercurl as csg_undercurl,
+  csg.underdouble as csg_underdouble,
+  csg.underdotted as csg_underdotted,
+  csg.underdashed as csg_underdashed,
+  csg.strikethrough as csg_strikethrough,
+  csg.reverse as csg_reverse
+`;
 
 function hydrateRepository(dto: RepositoryDTO): Repository {
   return new Repository(dto);
@@ -49,7 +64,7 @@ async function loadColorschemes(
 ): Promise<ColorschemeDTO[]> {
   const client = DatabaseService.getClient();
   const result = await client.execute({
-    sql: `SELECT cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+    sql: `SELECT cs.id as cs_id, cs.name as cs_name, ${COLORSCHEME_GROUP_COLS}
           FROM colorschemes cs
           LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
           WHERE cs.repository_id = ?
@@ -70,7 +85,7 @@ async function loadColorschemesForRepositories(
   const client = DatabaseService.getClient();
   const placeholders = repositoryIds.map(() => '?').join(', ');
   const result = await client.execute({
-    sql: `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+    sql: `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, ${COLORSCHEME_GROUP_COLS}
           FROM colorschemes cs
           LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
           WHERE cs.repository_id IN (${placeholders})
@@ -84,13 +99,52 @@ async function loadColorschemesForRepositories(
 async function loadAllColorschemes(): Promise<Map<number, ColorschemeDTO[]>> {
   const client = DatabaseService.getClient();
   const result = await client.execute(
-    `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+    `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, ${COLORSCHEME_GROUP_COLS}
      FROM colorschemes cs
      LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
      ORDER BY cs.repository_id, cs.id, csg.id`,
   );
 
   return buildColorschemesByRepo(result.rows);
+}
+
+function booleanAttribute(row: Row, key: string): boolean {
+  const value = row[key] as unknown;
+  return value === true || value === 1;
+}
+
+function appendBooleanAttribute(
+  group: ColorGroupDTO,
+  name: keyof Omit<ColorGroupDTO, 'name' | 'hexCode'>,
+  row: Row,
+  key: string,
+): void {
+  if (booleanAttribute(row, key)) {
+    group[name] = true;
+  }
+}
+
+function rowToColorGroup(
+  row: Row,
+  name: string,
+  hexCode: string,
+): ColorGroupDTO {
+  const group: ColorGroupDTO = {
+    name,
+    hexCode,
+  };
+
+  appendBooleanAttribute(group, 'bold', row, 'csg_bold');
+  appendBooleanAttribute(group, 'italic', row, 'csg_italic');
+  appendBooleanAttribute(group, 'underline', row, 'csg_underline');
+  appendBooleanAttribute(group, 'undercurl', row, 'csg_undercurl');
+  appendBooleanAttribute(group, 'underdouble', row, 'csg_underdouble');
+  appendBooleanAttribute(group, 'underdotted', row, 'csg_underdotted');
+  appendBooleanAttribute(group, 'underdashed', row, 'csg_underdashed');
+  appendBooleanAttribute(group, 'strikethrough', row, 'csg_strikethrough');
+  appendBooleanAttribute(group, 'reverse', row, 'csg_reverse');
+
+  return group;
 }
 
 function appendColorschemeRow(colorschemeMap: ColorschemeMap, row: Row): void {
@@ -111,7 +165,7 @@ function appendColorschemeRow(colorschemeMap: ColorschemeMap, row: Row): void {
   const hexCode = row.csg_hex_code as string | null;
 
   if (background && groupName && hexCode) {
-    const group = { name: groupName, hexCode };
+    const group = rowToColorGroup(row, groupName, hexCode);
     if (background === 'light') {
       if (!cs.data!.light) cs.data!.light = [];
       cs.data!.light.push(group);

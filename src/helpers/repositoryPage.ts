@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 
+import { ColorGroup } from '@/models/colorGroup';
 import { Colorscheme } from '@/models/colorscheme';
 
 import { Background, Backgrounds } from '@/lib/backgrounds';
@@ -25,6 +26,8 @@ const swatchGroupPriority = [
   'vimIsCommandFg',
   'vimLineCommentFg',
 ];
+
+type ColorschemeStyle = CSSProperties & Record<string, string>;
 
 function getNextVariantIndex(index: number, length: number): number {
   return (index + 1) % length;
@@ -56,20 +59,70 @@ function getSwatchColors(colorscheme: Colorscheme | undefined): string[] {
 
 function getColorschemeStyle(
   colorscheme: Colorscheme | undefined,
+  selectedBackground?: Background,
 ): CSSProperties | undefined {
-  const background = colorscheme?.backgrounds[0];
+  const background = selectedBackground ?? colorscheme?.backgrounds[0];
 
   if (!colorscheme || !background) {
     return undefined;
   }
 
-  return colorscheme.data[background]?.reduce<CSSProperties>(
+  return colorscheme.data[background]?.reduce<ColorschemeStyle>(
     (acc, group) => ({
       ...acc,
-      [`--colorscheme-${group.name}`]: group.hexCode,
+      ...getColorGroupStyle(group),
     }),
     {},
   );
+}
+
+function getColorGroupStyle(group: ColorGroup): ColorschemeStyle {
+  const style: ColorschemeStyle = {
+    [`--colorscheme-${group.name}`]: group.hexCode,
+  };
+
+  if (group.bold) {
+    style[`--colorscheme-${group.name}-font-weight`] = '700';
+  }
+
+  if (group.italic) {
+    style[`--colorscheme-${group.name}-font-style`] = 'italic';
+  }
+
+  const hasUnderline =
+    group.underline ||
+    group.undercurl ||
+    group.underdouble ||
+    group.underdotted ||
+    group.underdashed;
+  const decorationLine = [
+    hasUnderline ? 'underline' : null,
+    group.strikethrough ? 'line-through' : null,
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  if (decorationLine) {
+    style[`--colorscheme-${group.name}-text-decoration-line`] = decorationLine;
+    style[`--colorscheme-${group.name}-text-decoration-style`] =
+      getTextDecorationStyle(group);
+  }
+
+  if (group.reverse) {
+    style[`--colorscheme-${group.name}-color`] =
+      'var(--colorscheme-NormalBg, var(--background))';
+    style[`--colorscheme-${group.name}-background`] = group.hexCode;
+  }
+
+  return style;
+}
+
+function getTextDecorationStyle(group: ColorGroup): string {
+  if (group.undercurl) return 'wavy';
+  if (group.underdouble) return 'double';
+  if (group.underdotted) return 'dotted';
+  if (group.underdashed) return 'dashed';
+  return 'solid';
 }
 
 function getVariantIndex(
@@ -116,6 +169,7 @@ function getBackground(value: string | undefined): Background | undefined {
 }
 
 export const RepositoryPageHelper = {
+  getColorGroupStyle,
   getColorschemeStyle,
   getNextVariantIndex,
   getPreviousVariantIndex,
