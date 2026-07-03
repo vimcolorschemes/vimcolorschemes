@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
 
@@ -12,9 +12,19 @@ export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
+  const [searchValue, setSearchValue] = useState(query);
+
+  useEffect(() => {
+    setSearchValue(query);
+  }, [query]);
 
   function preloadManifest() {
     void RepositorySearchManifestClient.loadRepositorySearchManifest();
+  }
+
+  function updateSearchValue(event: ChangeEvent<HTMLInputElement>) {
+    setSearchValue(event.currentTarget.value);
+    preloadManifest();
   }
 
   function submitSearch(event: FormEvent<HTMLFormElement>) {
@@ -41,11 +51,11 @@ export default function SearchInput() {
       <input
         aria-label="Search repositories"
         className={styles.searchInput}
-        defaultValue={query}
-        key={query}
         name="q"
+        style={{ inlineSize: `${Math.max(searchValue.length, 1)}ch` }}
         type="search"
-        onChange={preloadManifest}
+        value={searchValue}
+        onChange={updateSearchValue}
         onFocus={preloadManifest}
       />
     </form>
