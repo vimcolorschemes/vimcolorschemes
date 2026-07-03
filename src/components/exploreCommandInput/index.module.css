@@ -63,22 +63,33 @@
   align-items: baseline;
   width: 14ch;
   max-width: 35vw;
+  color: var(--foreground-shade);
+}
+
+.searchForm::before,
+.searchForm::after {
+  content: '"';
+}
+
+.searchForm:focus-within {
+  color: var(--foreground-accent);
 }
 
 .searchInput {
   width: 100%;
   min-width: 0;
   border: 0;
-  border-bottom: 1px solid var(--foreground-shade);
   border-radius: 0;
   background: transparent;
   color: var(--foreground);
   font: inherit;
   outline: 0;
+  caret-color: var(--foreground-accent);
 }
 
 .searchInput:focus-visible {
-  border-color: var(--foreground-accent);
+  background: var(--foreground-accent);
+  color: var(--background);
 }
 
 .prompt {
