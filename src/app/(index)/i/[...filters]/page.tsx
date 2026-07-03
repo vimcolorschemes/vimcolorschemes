@@ -27,6 +27,9 @@ export function generateStaticParams() {
 }
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
+type IndexPageSearchParams = Promise<{
+  q?: string | string[] | undefined;
+}>;
 
 export async function generateMetadata({
   params,
@@ -39,8 +42,12 @@ export async function generateMetadata({
   };
 }
 
-export default async function IndexPage({ params }: IndexPageProps) {
+export default async function IndexPage({
+  params,
+  searchParams,
+}: IndexPageProps & { searchParams: IndexPageSearchParams }) {
   const { filters } = await params;
+  const searchQuery = getSearchQuery(await searchParams);
   const [sort, ...rest] = filters as [Sort, ...string[]];
   const pageContext = PageContextHelper.get(filters);
   const isHomepage = PageContextHelper.isHomepage(pageContext);
@@ -71,7 +78,18 @@ export default async function IndexPage({ params }: IndexPageProps) {
           <FeaturedRepositories pageContext={pageContext} />
         </Suspense>
       )}
-      <Repositories pageContext={pageContext} />
+      <Repositories pageContext={pageContext} searchQuery={searchQuery} />
     </div>
   );
+}
+
+function getSearchQuery(
+  searchParams: Awaited<IndexPageSearchParams>,
+): string | undefined {
+  const value = Array.isArray(searchParams.q)
+    ? searchParams.q[0]
+    : searchParams.q;
+  const trimmedValue = value?.trim();
+
+  return trimmedValue || undefined;
 }

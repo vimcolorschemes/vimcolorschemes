@@ -9,6 +9,17 @@ const outputPath = path.join(
   'search',
   'repositories.json',
 );
+const booleanColorGroupAttributes = [
+  'bold',
+  'italic',
+  'underline',
+  'undercurl',
+  'underdouble',
+  'underdotted',
+  'underdashed',
+  'strikethrough',
+  'reverse',
+];
 
 function getDatabaseURL() {
   const url = process.env.DATABASE_URL ?? 'file:./database/vimcolorschemes.db';
@@ -23,6 +34,23 @@ function getDatabaseURL() {
   }
 
   return `file:${path.join(process.cwd(), filePath)}`;
+}
+
+function booleanAttribute(row, key) {
+  const value = row[key];
+  return value === true || value === 1;
+}
+
+function rowToColorGroup(row, name, hexCode) {
+  const group = { name, hexCode };
+
+  for (const attribute of booleanColorGroupAttributes) {
+    if (booleanAttribute(row, `csg_${attribute}`)) {
+      group[attribute] = true;
+    }
+  }
+
+  return group;
 }
 
 function appendColorschemeRow(colorschemeMap, row) {
@@ -46,7 +74,7 @@ function appendColorschemeRow(colorschemeMap, row) {
     return;
   }
 
-  const group = { name: groupName, hexCode };
+  const group = rowToColorGroup(row, groupName, hexCode);
   if (background === 'light') {
     colorscheme.data.light ??= [];
     colorscheme.data.light.push(group);
@@ -110,7 +138,7 @@ async function main() {
        ORDER BY r.week_stargazers_count DESC, r.id`,
     ),
     client.execute(
-      `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code
+      `SELECT cs.repository_id as repo_id, cs.id as cs_id, cs.name as cs_name, csg.background as csg_background, csg.name as csg_name, csg.hex_code as csg_hex_code, csg.bold as csg_bold, csg.italic as csg_italic, csg.underline as csg_underline, csg.undercurl as csg_undercurl, csg.underdouble as csg_underdouble, csg.underdotted as csg_underdotted, csg.underdashed as csg_underdashed, csg.strikethrough as csg_strikethrough, csg.reverse as csg_reverse
        FROM colorschemes cs
        LEFT JOIN colorscheme_groups csg ON csg.colorscheme_id = cs.id
        ORDER BY cs.repository_id, cs.id, csg.id`,
