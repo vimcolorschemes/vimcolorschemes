@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { Backgrounds } from '@/lib/backgrounds';
 import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
@@ -114,6 +117,18 @@ describe('ExploreCommandInput', () => {
     expect(screen.getByRole('link', { name: 'old' }).getAttribute('href')).toBe(
       '/i/old/b.light?q=tokyo+night',
     );
+  });
+
+  it('keeps spacing between argument flags and values', () => {
+    const commandStyles = readFileSync(
+      join(
+        process.cwd(),
+        'src/components/exploreCommandInput/index.module.css',
+      ),
+      'utf8',
+    );
+
+    expect(commandStyles).toMatch(/\.argument\s*{[\s\S]*?\bgap:\s*1ch;/);
   });
 
   it('writes submitted search query to the current URL', () => {

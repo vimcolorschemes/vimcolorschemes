@@ -54,6 +54,7 @@
 .argument {
   display: inline-flex;
   align-items: baseline;
+  gap: 1ch;
   white-space: nowrap;
 }
 
