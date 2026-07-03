@@ -51,6 +51,7 @@ export default async function IndexPage({
   const [sort, ...rest] = filters as [Sort, ...string[]];
   const pageContext = PageContextHelper.get(filters);
   const isHomepage = PageContextHelper.isHomepage(pageContext);
+  const showFeaturedRepositories = isHomepage && !searchQuery;
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
@@ -70,10 +71,10 @@ export default async function IndexPage({
   return (
     <div
       className={cn(styles.homepageContent, {
-        [styles.homepageContentWithFeatured]: isHomepage,
+        [styles.homepageContentWithFeatured]: showFeaturedRepositories,
       })}
     >
-      {isHomepage && (
+      {showFeaturedRepositories && (
         <Suspense fallback={<FeaturedRepositoriesSkeleton />}>
           <FeaturedRepositories pageContext={pageContext} />
         </Suspense>
