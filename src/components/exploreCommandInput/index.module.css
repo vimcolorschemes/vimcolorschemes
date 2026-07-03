@@ -52,8 +52,32 @@
 }
 
 .argument {
-  display: inline;
+  display: inline-flex;
+  align-items: baseline;
   white-space: nowrap;
+}
+
+.searchForm {
+  display: inline-flex;
+  align-items: baseline;
+  width: 14ch;
+  max-width: 35vw;
+}
+
+.searchInput {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  border-bottom: 1px solid var(--foreground-shade);
+  border-radius: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  outline: 0;
+}
+
+.searchInput:focus-visible {
+  border-color: var(--foreground-accent);
 }
 
 .prompt {

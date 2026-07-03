@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Backgrounds } from '@/lib/backgrounds';
@@ -9,10 +9,14 @@ import ExploreCommandInput from '@/components/exploreCommandInput';
 
 const navigation = vi.hoisted(() => ({
   pathname: '/i/trending',
+  replace: vi.fn(),
+  searchParams: new URLSearchParams(),
 }));
 
 vi.mock('next/navigation', () => ({
   usePathname: () => navigation.pathname,
+  useRouter: () => ({ replace: navigation.replace }),
+  useSearchParams: () => navigation.searchParams,
 }));
 
 vi.mock('next/link', () => ({
@@ -32,6 +36,12 @@ vi.mock('next/link', () => ({
   ),
 }));
 
+vi.mock('@/services/repositorySearchManifestClient', () => ({
+  RepositorySearchManifestClient: {
+    loadRepositorySearchManifest: vi.fn(),
+  },
+}));
+
 const fallbackPageContext: PageContext = {
   sort: SortOptions.Trending,
   filter: {},
@@ -40,6 +50,8 @@ const fallbackPageContext: PageContext = {
 describe('ExploreCommandInput', () => {
   beforeEach(() => {
     navigation.pathname = '/i/trending';
+    navigation.replace.mockClear();
+    navigation.searchParams = new URLSearchParams();
     document.body.innerHTML = '';
   });
 
@@ -91,5 +103,34 @@ describe('ExploreCommandInput', () => {
     expect(
       screen.getByRole('button', { name: 'Filter by background' }).textContent,
     ).toBe('any');
+  });
+
+  it('preserves search query in filter links', () => {
+    navigation.pathname = '/i/trending/b.light';
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(screen.getByRole('link', { name: 'old' }).getAttribute('href')).toBe(
+      '/i/old/b.light?q=tokyo+night',
+    );
+  });
+
+  it('writes submitted search query to the current URL', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    fireEvent.change(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+      {
+        target: { value: 'gruvbox' },
+      },
+    );
+    fireEvent.submit(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+    );
+
+    expect(navigation.replace).toHaveBeenCalledWith('/i/trending?q=gruvbox', {
+      scroll: false,
+    });
   });
 });

@@ -9,6 +9,7 @@ import HomeCommand from '@/components/homeCommand';
 
 import CommandMenu from './commandMenu';
 import styles from './index.module.css';
+import SearchInput from './searchInput';
 
 const sortOptions = Object.values(SortOptions);
 const backgroundOptions: {
@@ -24,11 +25,13 @@ const backgroundOptions: {
 type ExploreCommandProps = {
   interactive?: boolean;
   pageContext: PageContext;
+  searchQuery?: string;
 };
 
 export default function ExploreCommand({
   interactive = true,
   pageContext,
+  searchQuery,
 }: ExploreCommandProps) {
   return (
     <div
@@ -58,6 +61,7 @@ export default function ExploreCommand({
           <CommandMenu
             label="Sort repositories"
             interactive={interactive}
+            preservedQuery={searchQuery}
             selected={pageContext.sort}
             options={sortOptions.map(option => ({
               href: buildIndexRoutePath({
@@ -77,6 +81,7 @@ export default function ExploreCommand({
           <CommandMenu
             label="Filter by background"
             interactive={interactive}
+            preservedQuery={searchQuery}
             selected={
               backgroundOptions.find(
                 option => option.value === pageContext.filter.background,
@@ -94,6 +99,17 @@ export default function ExploreCommand({
               active: pageContext.filter.background === option.value,
             }))}
           />
+        </span>
+        <span className={styles.argument}>
+          <span className={styles.flag}>
+            <span className={styles.fullFlag}>--search</span>
+            <span className={styles.shortFlag}>-q</span>
+          </span>{' '}
+          {interactive ? (
+            <SearchInput />
+          ) : (
+            <span className={styles.searchInput} aria-hidden="true" />
+          )}
         </span>
       </span>
     </div>

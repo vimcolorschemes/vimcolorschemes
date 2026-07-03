@@ -22,6 +22,7 @@ type CommandMenuProps = {
   interactive: boolean;
   label: string;
   options: CommandMenuOption[];
+  preservedQuery?: string;
   selected: string;
 };
 
@@ -29,6 +30,7 @@ export default function CommandMenu({
   interactive,
   label,
   options,
+  preservedQuery,
   selected,
 }: CommandMenuProps) {
   const [open, setOpen] = useState(false);
@@ -75,6 +77,15 @@ export default function CommandMenu({
     }
   }
 
+  function getOptionHref(href: string): string {
+    if (!preservedQuery) {
+      return href;
+    }
+
+    const params = new URLSearchParams({ q: preservedQuery });
+    return `${href}?${params}`;
+  }
+
   return (
     <span
       ref={menuRef}
@@ -97,7 +108,7 @@ export default function CommandMenu({
         {options.map(option => (
           <Link
             key={option.label}
-            href={option.href}
+            href={getOptionHref(option.href)}
             prefetch={false}
             scroll={false}
             className={cn(styles.option, styles.menuOption, {

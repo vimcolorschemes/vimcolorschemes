@@ -6,10 +6,8 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import { buildIndexRoutePath } from '@/helpers/indexRoute';
-
-import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import LoadMore from '@/components/repositories/loadMore';
+import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
 import styles from './index.module.css';
 
@@ -27,57 +25,13 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
   return (
     <section className={styles.container} aria-labelledby="repositories-title">
-      <Suspense
-        fallback={<RepositoriesHeaderFallback pageContext={pageContext} />}
-      >
-        <RepositoriesHeader
-          countPromise={countPromise}
-          pageContext={pageContext}
-        />
-      </Suspense>
-      <Suspense fallback={<RepositoriesGridSkeleton />}>
+      <Suspense fallback={<RepositoriesSkeleton title={pageContext.sort} />}>
         <LoadMore
-          key={buildIndexRoutePath(pageContext)}
           pageContext={pageContext}
           initialRepositoriesPromise={initialRepositoriesPromise}
           countPromise={countPromise}
         />
       </Suspense>
     </section>
-  );
-}
-
-function RepositoriesHeaderFallback({
-  pageContext,
-}: {
-  pageContext: PageContext;
-}) {
-  return (
-    <div className={styles.header}>
-      <h2 id="repositories-title" className={styles.title}>
-        {pageContext.sort}
-      </h2>
-    </div>
-  );
-}
-
-async function RepositoriesHeader({
-  countPromise,
-  pageContext,
-}: {
-  countPromise: Promise<number>;
-  pageContext: PageContext;
-}) {
-  const count = await countPromise;
-
-  return (
-    <div className={styles.header}>
-      <h2 id="repositories-title" className={styles.title}>
-        {pageContext.sort}
-        <span className={styles.count}>
-          {count} repositor{count === 1 ? 'y' : 'ies'}
-        </span>
-      </h2>
-    </div>
   );
 }
