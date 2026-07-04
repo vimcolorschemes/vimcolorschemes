@@ -1,6 +1,9 @@
 .container {
   width: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-sm);
   font-family: var(--font-mono);
   font-variant-ligatures: none;
   font-feature-settings:
@@ -8,15 +11,10 @@
     'calt' 0;
   font-size: 1.125rem;
   line-height: 1.625rem;
-  min-height: calc(1.625rem + 2px);
 }
 
 .prompt,
 .subcommand {
-  color: var(--foreground-shade);
-}
-
-.flag {
   color: var(--foreground-shade);
 }
 
@@ -30,7 +28,8 @@
   font-weight: 700;
 }
 
-.homeCommand {
+.homeCommand,
+.shellLine {
   display: inline-flex;
   align-items: baseline;
   flex: 0 0 auto;
@@ -38,62 +37,117 @@
   text-decoration: none;
 }
 
-.commandLine {
-  display: inline;
-  min-width: 0;
+.shellLine {
+  width: fit-content;
+  white-space: nowrap;
 }
 
-.commandLead {
+.filterPanel {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 2ch;
+  padding: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--foreground) 14%, var(--background));
+}
+
+.filterGroup {
   display: inline-flex;
   align-items: baseline;
   flex: 0 0 auto;
+  gap: 0 2ch;
+  min-width: 0;
+}
+
+.tuiControl {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 1 auto;
   gap: 1ch;
+  min-width: 0;
   white-space: nowrap;
 }
 
-.argument {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 1ch;
-  white-space: nowrap;
+.tuiControl:has(.searchForm) {
+  flex: 1 1 24ch;
+  max-width: 42ch;
 }
 
-.searchForm {
-  display: inline-flex;
-  align-items: baseline;
-  width: auto;
-  max-width: 35vw;
+.tuiLabel {
   color: var(--foreground-shade);
 }
 
-.searchForm::before,
-.searchForm::after {
-  content: '"';
-}
-
-.searchForm:focus-within {
-  color: var(--foreground-accent);
+.searchForm {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  flex: 1 1 18ch;
+  min-width: min(18ch, 100%);
+  padding-inline: 0.5ch;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--foreground) 8%, transparent),
+    color-mix(in srgb, var(--foreground) 5%, transparent)
+  );
 }
 
 .searchInput {
-  max-width: 100%;
-  min-width: 8ch;
+  appearance: none;
+  flex: 1 1 auto;
+  width: auto;
+  min-width: 0;
   border: 0;
   border-radius: 0;
+  padding: 0;
   background: transparent;
   color: var(--foreground);
   font: inherit;
   outline: 0;
   caret-color: var(--foreground-accent);
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+.searchSubmit {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--foreground-shade) 64%, var(--background));
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.95em;
+  font-weight: 400;
+  line-height: 1;
+  min-inline-size: 1.25em;
+  outline: 0;
+  text-align: center;
+  transform: translateY(-0.06em);
   white-space: nowrap;
 }
 
-.searchInput:focus-visible {
+.searchInput::-webkit-search-cancel-button,
+.searchInput::-webkit-search-decoration {
+  appearance: none;
+  display: none;
+}
+
+.searchForm:focus-within {
   background: var(--foreground-accent);
   color: var(--background);
-  text-overflow: clip;
+}
+
+.searchForm:focus-within .searchInput,
+.searchForm:focus-within .searchSubmit {
+  color: inherit;
+}
+
+.searchForm:focus-within .searchInput {
+  caret-color: var(--background);
 }
 
 .prompt {
@@ -125,8 +179,37 @@
   .homeCommand:focus-visible .command {
     color: var(--background);
   }
+
+  .searchForm:hover {
+    background: color-mix(in srgb, var(--foreground-accent) 22%, transparent);
+  }
+
+  .searchForm:focus-within {
+    background: var(--foreground-accent);
+    color: var(--background);
+  }
+
+  .searchSubmit:hover {
+    color: var(--foreground-accent);
+  }
+
+  .searchForm:focus-within .searchSubmit {
+    color: inherit;
+  }
 }
 
-.shortFlag {
-  display: none;
+@media (max-width: 599px) {
+  .container {
+    font-size: 1rem;
+    line-height: var(--line-height-md);
+  }
+
+  .filterPanel {
+    gap: 0.5rem 2ch;
+  }
+
+  .tuiControl:has(.searchForm) {
+    flex-basis: 100%;
+    max-width: none;
+  }
 }

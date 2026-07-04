@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { FormEvent } from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
 
@@ -12,26 +12,16 @@ export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
-  const [searchValue, setSearchValue] = useState(query);
-
-  useEffect(() => {
-    setSearchValue(query);
-  }, [query]);
 
   function preloadManifest() {
     void RepositorySearchManifestClient.loadRepositorySearchManifest();
-  }
-
-  function updateSearchValue(event: ChangeEvent<HTMLInputElement>) {
-    setSearchValue(event.currentTarget.value);
-    preloadManifest();
   }
 
   function submitSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    const nextSearchParams = new URLSearchParams(searchParams);
+    const nextSearchParams = new URLSearchParams();
     const trimmedValue = String(formData.get('q') ?? '').trim();
 
     if (trimmedValue) {
@@ -51,13 +41,20 @@ export default function SearchInput() {
       <input
         aria-label="Search repositories"
         className={styles.searchInput}
+        defaultValue={query}
+        key={query}
         name="q"
-        style={{ inlineSize: `${Math.max(searchValue.length, 1)}ch` }}
         type="search"
-        value={searchValue}
-        onChange={updateSearchValue}
+        onChange={preloadManifest}
         onFocus={preloadManifest}
       />
+      <button
+        aria-label="Submit repository search"
+        className={styles.searchSubmit}
+        type="submit"
+      >
+        ↵
+      </button>
     </form>
   );
 }

@@ -75,11 +75,9 @@
   box-shadow: 0 0 0 1px var(--background);
 }
 
-@media (max-width: 48rem) {
-  .menuList {
-    right: 0;
-    left: auto;
-  }
+.menu.alignEnd .menuList {
+  right: 0;
+  left: auto;
 }
 
 .menu.open .menuList {

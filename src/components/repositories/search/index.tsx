@@ -15,6 +15,8 @@ import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import RepositoriesHeader from '@/components/repositories/header';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
 
+import styles from './index.module.css';
+
 type RepositorySearchProps = {
   pageContext: PageContext;
   query: string;
@@ -65,7 +67,8 @@ export default function RepositorySearch({
     <>
       <RepositoriesHeader
         count={searchResult?.count}
-        title={getSearchTitle(query)}
+        query={query}
+        title="results for"
       />
       {manifestQuery.isPending && <RepositoriesGridSkeleton />}
       {manifestQuery.isError && <p>search failed to load</p>}
@@ -77,7 +80,9 @@ export default function RepositorySearch({
               pageContext={pageContext}
             />
           )}
-          {searchResult.repositories.length === 0 && <p>no results found</p>}
+          {searchResult.repositories.length === 0 && (
+            <p className={styles.emptyState}>no results found</p>
+          )}
           {searchResult.hasMore && (
             <LoadMoreButton
               loading={false}
@@ -96,8 +101,4 @@ export default function RepositorySearch({
       )}
     </>
   );
-}
-
-export function getSearchTitle(query: string): string {
-  return `results for "${query}"`;
 }

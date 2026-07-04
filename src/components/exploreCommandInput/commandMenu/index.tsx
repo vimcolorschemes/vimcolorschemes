@@ -19,6 +19,7 @@ type CommandMenuOption = {
 };
 
 type CommandMenuProps = {
+  alignEnd?: boolean;
   interactive: boolean;
   label: string;
   options: CommandMenuOption[];
@@ -27,6 +28,7 @@ type CommandMenuProps = {
 };
 
 export default function CommandMenu({
+  alignEnd = false,
   interactive,
   label,
   options,
@@ -89,7 +91,10 @@ export default function CommandMenu({
   return (
     <span
       ref={menuRef}
-      className={cn(styles.menu, { [styles.open]: open })}
+      className={cn(styles.menu, {
+        [styles.alignEnd]: alignEnd,
+        [styles.open]: open,
+      })}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
       onKeyDown={handleMenuKeyDown}

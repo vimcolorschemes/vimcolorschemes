@@ -1,11 +1,21 @@
 .homepageContent {
+  --index-command-line-height: 1.625rem;
+  --index-command-header-height: calc(
+    var(--index-command-line-height) + (var(--spacing-sm) * 2)
+  );
+  --index-filter-bar-height: calc(
+    var(--index-command-line-height) + var(--spacing-sm) + 2px
+  );
+  --index-filter-bar-gap: var(--spacing-sm);
+  --index-loading-section-spacing: var(--spacing-sm);
+  --repositories-section-chrome-height: calc((var(--spacing-sm) * 2) + 2px);
   --homepage-available-height: calc(
-    100dvh - var(--statusline-height) - var(--spacing-sm) -
-      (var(--line-height-md) + (var(--spacing-sm) * 2))
+    100dvh - var(--index-command-header-height) - var(--index-filter-bar-gap) -
+      var(--index-filter-bar-height) - var(--statusline-height) -
+      var(--index-loading-section-spacing)
   );
   --repositories-loading-min-height: calc(
-    var(--homepage-available-height) - var(--statusline-height) -
-      (var(--spacing-sm) * 2) - 2px
+    var(--homepage-available-height) - var(--repositories-section-chrome-height)
   );
 
   flex: 1;
@@ -21,7 +31,6 @@
   --featured-loading-height: var(--featured-section-height);
   --repositories-loading-min-height: calc(
     var(--homepage-available-height) - var(--featured-loading-height) -
-      var(--spacing-sm) - var(--statusline-height) - (var(--spacing-sm) * 2) -
-      2px
+      var(--spacing-sm) - var(--repositories-section-chrome-height)
   );
 }
