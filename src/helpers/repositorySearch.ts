@@ -1,15 +1,19 @@
 import { RepositoryDTO } from '@/models/DTO/repository';
 
-import { Background } from '@/lib/backgrounds';
-import type { Filter } from '@/lib/filter';
+import type { Background } from '@/lib/backgrounds';
+import type { BackgroundFilter } from '@/lib/filter';
 import type { Sort } from '@/lib/sort';
 import { SortOptions } from '@/lib/sort';
+
+type RepositorySearchFilter = {
+  background?: BackgroundFilter;
+};
 
 type SearchRepositoriesParams = {
   repositories: RepositoryDTO[];
   query: string;
   sort: Sort;
-  filter: Filter;
+  filter: RepositorySearchFilter;
   page: number;
   pageSize: number;
 };
@@ -25,8 +29,16 @@ type ScoredRepository = {
   score: number;
 };
 
+type RepositorySearchFields = {
+  owner: string;
+  name: string;
+  key: string;
+  description: string;
+  colorschemeNames: string[];
+};
+
 function normalize(value: string): string {
-  return value.toLocaleLowerCase();
+  return value.toLowerCase();
 }
 
 function getSearchTokens(query: string): string[] {
@@ -41,28 +53,42 @@ function getRepositoryBackgrounds(repository: RepositoryDTO): Set<Background> {
   );
 }
 
-function matchesBackground(repository: RepositoryDTO, filter: Filter): boolean {
-  if (!filter.background) {
+function matchesBackground(
+  repository: RepositoryDTO,
+  backgroundFilter?: BackgroundFilter,
+): boolean {
+  if (!backgroundFilter) {
     return true;
   }
 
   const backgrounds = getRepositoryBackgrounds(repository);
 
-  if (filter.background === 'both') {
+  if (backgroundFilter === 'both') {
     return backgrounds.has('light') && backgrounds.has('dark');
   }
 
-  return backgrounds.has(filter.background);
+  return backgrounds.has(backgroundFilter);
 }
 
-function scoreToken(repository: RepositoryDTO, token: string): number {
+function getRepositorySearchFields(
+  repository: RepositoryDTO,
+): RepositorySearchFields {
   const owner = normalize(repository.owner.name);
   const name = normalize(repository.name);
-  const key = `${owner}/${name}`;
-  const description = normalize(repository.description);
-  const colorschemeNames = repository.vimColorSchemes.map(colorscheme =>
-    normalize(colorscheme.name),
-  );
+
+  return {
+    owner,
+    name,
+    key: `${owner}/${name}`,
+    description: normalize(repository.description),
+    colorschemeNames: repository.vimColorSchemes.map(colorscheme =>
+      normalize(colorscheme.name),
+    ),
+  };
+}
+
+function scoreToken(fields: RepositorySearchFields, token: string): number {
+  const { key, owner, name, colorschemeNames, description } = fields;
 
   if (key === token || owner === token || name === token) {
     return 100;
@@ -97,10 +123,11 @@ function scoreRepository(
   repository: RepositoryDTO,
   tokens: string[],
 ): number | null {
+  const fields = getRepositorySearchFields(repository);
   let score = 0;
 
   for (const token of tokens) {
-    const tokenScore = scoreToken(repository, token);
+    const tokenScore = scoreToken(fields, token);
 
     if (tokenScore === 0) {
       return null;
@@ -146,22 +173,20 @@ function searchRepositories({
     return { repositories: [], count: 0, hasMore: false };
   }
 
-  const scoredRepositories = repositories.reduce<ScoredRepository[]>(
-    (matches, repository) => {
-      if (!matchesBackground(repository, filter)) {
-        return matches;
-      }
+  const scoredRepositories: ScoredRepository[] = [];
 
-      const score = scoreRepository(repository, tokens);
-      if (score == null) {
-        return matches;
-      }
+  for (const repository of repositories) {
+    if (!matchesBackground(repository, filter.background)) {
+      continue;
+    }
 
-      matches.push({ repository, score });
-      return matches;
-    },
-    [],
-  );
+    const score = scoreRepository(repository, tokens);
+    if (score == null) {
+      continue;
+    }
+
+    scoredRepositories.push({ repository, score });
+  }
 
   scoredRepositories.sort((a, b) => {
     if (a.score !== b.score) {

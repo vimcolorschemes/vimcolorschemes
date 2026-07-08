@@ -37,6 +37,14 @@ const repositories: RepositoryDTO[] = [
   }),
 ];
 
+describe('RepositorySearchHelper.getSearchTokens', () => {
+  it('normalizes query text into lowercase tokens', () => {
+    expect(
+      RepositorySearchHelper.getSearchTokens('  Folke/TokyoNight.nvim!!  '),
+    ).toEqual(['folke', 'tokyonight', 'nvim']);
+  });
+});
+
 describe('RepositorySearchHelper.searchRepositories', () => {
   it('matches repository owner, name, description, and colorscheme names', () => {
     expect(search('folke')).toEqual(['folke/tokyonight.nvim']);
@@ -48,6 +56,23 @@ describe('RepositorySearchHelper.searchRepositories', () => {
   it('requires every query token to match', () => {
     expect(search('tokyo clean')).toEqual(['folke/tokyonight.nvim']);
     expect(search('tokyo groove')).toEqual([]);
+  });
+
+  it('returns empty results for queries without tokens', () => {
+    const result = RepositorySearchHelper.searchRepositories({
+      repositories,
+      query: ' - / ',
+      sort: 'trending',
+      filter: {},
+      page: 1,
+      pageSize: 24,
+    });
+
+    expect(result).toEqual({
+      repositories: [],
+      count: 0,
+      hasMore: false,
+    });
   });
 
   it('filters by background before returning matches', () => {
@@ -75,6 +100,54 @@ describe('RepositorySearchHelper.searchRepositories', () => {
     ]);
     expect(keys(lightResults.repositories)).toEqual([
       'altercation/vim-colors-solarized',
+    ]);
+  });
+
+  it('only matches both backgrounds when a repository supports light and dark', () => {
+    const result = RepositorySearchHelper.searchRepositories({
+      repositories,
+      query: 'theme',
+      sort: 'trending',
+      filter: { background: 'both' },
+      page: 1,
+      pageSize: 24,
+    });
+
+    expect(keys(result.repositories)).toEqual(['folke/tokyonight.nvim']);
+  });
+
+  it('ranks stronger text matches before the selected sort', () => {
+    const result = RepositorySearchHelper.searchRepositories({
+      repositories: [
+        repository({
+          name: 'theme-machine',
+          owner: 'local',
+          description: 'small repository',
+          stars: 1,
+          weekStars: 1,
+          createdAt: '2024-01-01T00:00:00.000Z',
+          colorschemes: [{ name: 'theme-machine', backgrounds: ['dark'] }],
+        }),
+        repository({
+          name: 'popular',
+          owner: 'local',
+          description: 'popular theme',
+          stars: 5000,
+          weekStars: 5000,
+          createdAt: '2024-01-01T00:00:00.000Z',
+          colorschemes: [{ name: 'popular', backgrounds: ['dark'] }],
+        }),
+      ],
+      query: 'theme',
+      sort: 'top',
+      filter: {},
+      page: 1,
+      pageSize: 24,
+    });
+
+    expect(keys(result.repositories)).toEqual([
+      'local/theme-machine',
+      'local/popular',
     ]);
   });
 

@@ -2,20 +2,27 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 let manifestPromise: Promise<RepositoryDTO[]> | null = null;
 
+async function fetchRepositorySearchManifest(): Promise<RepositoryDTO[]> {
+  try {
+    const response = await fetch('/search/repositories.json');
+
+    if (!response.ok) {
+      throw new Error(`Failed to load search manifest: ${response.status}`);
+    }
+
+    return (await response.json()) as RepositoryDTO[];
+  } catch (error) {
+    manifestPromise = null;
+    throw error;
+  }
+}
+
 async function loadRepositorySearchManifest(): Promise<RepositoryDTO[]> {
-  manifestPromise ??= fetch('/search/repositories.json')
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Failed to load search manifest: ${response.status}`);
-      }
+  if (manifestPromise) {
+    return manifestPromise;
+  }
 
-      return response.json() as Promise<RepositoryDTO[]>;
-    })
-    .catch(error => {
-      manifestPromise = null;
-      throw error;
-    });
-
+  manifestPromise = fetchRepositorySearchManifest();
   return manifestPromise;
 }
 
