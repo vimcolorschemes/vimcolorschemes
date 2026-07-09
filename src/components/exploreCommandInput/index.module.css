@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: var(--spacing-sm);
+  gap: var(--index-filter-bar-spacing, var(--spacing-sm));
   font-family: var(--font-mono);
   font-variant-ligatures: none;
   font-feature-settings:
@@ -198,14 +198,15 @@
   }
 }
 
-@media (max-width: 599px) {
-  .container {
-    font-size: 1rem;
-    line-height: var(--line-height-md);
-  }
-
+@media (max-width: 767px) {
   .filterPanel {
     gap: 0.5rem 2ch;
+  }
+
+  .filterGroup {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
   }
 
   .tuiControl:has(.searchForm) {

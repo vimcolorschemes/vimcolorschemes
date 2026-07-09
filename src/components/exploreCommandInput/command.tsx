@@ -58,6 +58,7 @@ export default function ExploreCommand({
       )}
     </span>
   );
+
   const orderControl = (
     <span className={styles.tuiControl}>
       <span className={styles.tuiLabel}>order</span>

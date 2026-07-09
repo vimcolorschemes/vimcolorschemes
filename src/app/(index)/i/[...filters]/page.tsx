@@ -12,6 +12,7 @@ import {
   buildIndexRouteStaticParams,
 } from '@/helpers/indexRoute';
 import { PageContextHelper } from '@/helpers/pageContext';
+import { SearchParamsHelper } from '@/helpers/searchParams';
 
 import FeaturedRepositories, {
   FeaturedRepositoriesSkeleton,
@@ -47,7 +48,7 @@ export default async function IndexPage({
   searchParams,
 }: IndexPageProps & { searchParams: IndexPageSearchParams }) {
   const { filters } = await params;
-  const searchQuery = getSearchQuery(await searchParams);
+  const searchQuery = SearchParamsHelper.getValue(await searchParams, 'q');
   const [sort, ...rest] = filters as [Sort, ...string[]];
   const pageContext = PageContextHelper.get(filters);
   const isHomepage = PageContextHelper.isHomepage(pageContext);
@@ -82,15 +83,4 @@ export default async function IndexPage({
       <Repositories pageContext={pageContext} searchQuery={searchQuery} />
     </div>
   );
-}
-
-function getSearchQuery(
-  searchParams: Awaited<IndexPageSearchParams>,
-): string | undefined {
-  const value = Array.isArray(searchParams.q)
-    ? searchParams.q[0]
-    : searchParams.q;
-  const trimmedValue = value?.trim();
-
-  return trimmedValue || undefined;
 }

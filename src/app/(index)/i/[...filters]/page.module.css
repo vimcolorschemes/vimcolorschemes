@@ -1,13 +1,13 @@
 .homepageContent {
   --index-command-line-height: 1.625rem;
   --index-command-header-height: calc(
-    var(--index-command-line-height) + (var(--spacing-sm) * 2)
+    var(--index-command-line-height) + var(--spacing-sm)
   );
   --index-filter-bar-height: calc(
     var(--index-command-line-height) + var(--spacing-sm) + 2px
   );
-  --index-filter-bar-gap: var(--spacing-sm);
-  --index-loading-section-spacing: var(--spacing-sm);
+  --index-filter-bar-gap: var(--index-filter-bar-bottom-spacing);
+  --index-loading-section-spacing: var(--index-filter-bar-spacing);
   --repositories-section-chrome-height: calc((var(--spacing-sm) * 2) + 2px);
   --homepage-available-height: calc(
     100dvh - var(--index-command-header-height) - var(--index-filter-bar-gap) -
