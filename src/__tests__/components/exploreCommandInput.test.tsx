@@ -16,6 +16,10 @@ const navigation = vi.hoisted(() => ({
   searchParams: new URLSearchParams(),
 }));
 
+const searchManifestMocks = vi.hoisted(() => ({
+  loadRepositorySearchManifest: vi.fn(() => Promise.resolve([])),
+}));
+
 vi.mock('next/navigation', () => ({
   usePathname: () => navigation.pathname,
   useRouter: () => ({ replace: navigation.replace }),
@@ -41,7 +45,8 @@ vi.mock('next/link', () => ({
 
 vi.mock('@/services/repositorySearchManifestClient', () => ({
   RepositorySearchManifestClient: {
-    loadRepositorySearchManifest: vi.fn(),
+    loadRepositorySearchManifest:
+      searchManifestMocks.loadRepositorySearchManifest,
   },
 }));
 
@@ -55,6 +60,10 @@ describe('ExploreCommandInput', () => {
     navigation.pathname = '/i/trending';
     navigation.replace.mockClear();
     navigation.searchParams = new URLSearchParams();
+    searchManifestMocks.loadRepositorySearchManifest.mockClear();
+    searchManifestMocks.loadRepositorySearchManifest.mockImplementation(() =>
+      Promise.resolve([]),
+    );
     document.body.innerHTML = '';
   });
 
@@ -169,6 +178,22 @@ describe('ExploreCommandInput', () => {
       screen.getByRole('button', { name: 'Submit repository search' })
         .textContent,
     ).toBe('↵');
+  });
+
+  it('handles failures while preloading the search manifest', async () => {
+    const failedPreload = Promise.reject(new Error('manifest unavailable'));
+    const catchSpy = vi.spyOn(failedPreload, 'catch');
+    searchManifestMocks.loadRepositorySearchManifest.mockReturnValueOnce(
+      failedPreload,
+    );
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+    fireEvent.focus(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+    );
+
+    expect(catchSpy).toHaveBeenCalledOnce();
+    await expect(failedPreload).rejects.toThrow('manifest unavailable');
   });
 
   it('keeps spacing between TUI filter labels and values', () => {

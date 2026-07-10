@@ -12,13 +12,13 @@ import {
   buildIndexRouteStaticParams,
 } from '@/helpers/indexRoute';
 import { PageContextHelper } from '@/helpers/pageContext';
-import { SearchParamsHelper } from '@/helpers/searchParams';
 
 import FeaturedRepositories, {
   FeaturedRepositoriesSkeleton,
 } from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';
 
+import IndexPageContent from './content';
 import styles from './page.module.css';
 
 export const dynamicParams = false;
@@ -28,9 +28,6 @@ export function generateStaticParams() {
 }
 
 type IndexPageProps = { params: Promise<{ filters: string[] }> };
-type IndexPageSearchParams = Promise<{
-  q?: string | string[] | undefined;
-}>;
 
 export async function generateMetadata({
   params,
@@ -43,16 +40,11 @@ export async function generateMetadata({
   };
 }
 
-export default async function IndexPage({
-  params,
-  searchParams,
-}: IndexPageProps & { searchParams: IndexPageSearchParams }) {
+export default async function IndexPage({ params }: IndexPageProps) {
   const { filters } = await params;
-  const searchQuery = SearchParamsHelper.getValue(await searchParams, 'q');
   const [sort, ...rest] = filters as [Sort, ...string[]];
   const pageContext = PageContextHelper.get(filters);
   const isHomepage = PageContextHelper.isHomepage(pageContext);
-  const showFeaturedRepositories = isHomepage && !searchQuery;
 
   const validURL = FilterHelper.getURLFromFilter(pageContext.filter);
 
@@ -69,18 +61,32 @@ export default async function IndexPage({
     redirect(buildIndexRoutePath(pageContext));
   }
 
-  return (
-    <div
-      className={cn(styles.homepageContent, {
-        [styles.homepageContentWithFeatured]: showFeaturedRepositories,
-      })}
-    >
-      {showFeaturedRepositories && (
+  const content = (
+    <>
+      {isHomepage && (
         <Suspense fallback={<FeaturedRepositoriesSkeleton />}>
           <FeaturedRepositories pageContext={pageContext} />
         </Suspense>
       )}
-      <Repositories pageContext={pageContext} searchQuery={searchQuery} />
-    </div>
+      <Repositories pageContext={pageContext} />
+    </>
+  );
+
+  return (
+    <Suspense
+      fallback={
+        <div
+          className={cn(styles.homepageContent, {
+            [styles.homepageContentWithFeatured]: isHomepage,
+          })}
+        >
+          {content}
+        </div>
+      }
+    >
+      <IndexPageContent isHomepage={isHomepage} pageContext={pageContext}>
+        {content}
+      </IndexPageContent>
+    </Suspense>
   );
 }

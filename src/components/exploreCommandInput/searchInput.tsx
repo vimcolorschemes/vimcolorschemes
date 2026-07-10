@@ -14,7 +14,9 @@ export default function SearchInput() {
   const query = searchParams.get('q') ?? '';
 
   function preloadManifest() {
-    void RepositorySearchManifestClient.loadRepositorySearchManifest();
+    void RepositorySearchManifestClient.loadRepositorySearchManifest().catch(
+      () => undefined,
+    );
   }
 
   function submitSearch(event: FormEvent<HTMLFormElement>) {
