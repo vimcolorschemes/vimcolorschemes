@@ -10,8 +10,20 @@ describe('RepositoriesHeader', () => {
     );
 
     expect(
-      screen.getByRole('heading', { name: /trending31 repositories/ }),
+      screen.getByRole('heading', { name: 'trending, 31 repositories' }),
     ).toBeTruthy();
     expect(container.querySelector('[aria-hidden="true"]')).toBeTruthy();
+  });
+
+  it('gives search headings natural word boundaries', () => {
+    render(
+      <RepositoriesHeader title="results for" query="tokyo night" count={1} />,
+    );
+
+    expect(
+      screen.getByRole('heading', {
+        name: 'results for "tokyo night", 1 repository',
+      }),
+    ).toBeTruthy();
   });
 });

@@ -6,8 +6,9 @@ import type { ReactNode } from 'react';
 
 import type { PageContext } from '@/lib/pageContext';
 
+import RepositorySearch from '@/components/repositories/search';
+
 import styles from './page.module.css';
-import IndexPageSearchContent from './searchContent';
 
 type IndexPageContentProps = {
   children: ReactNode;
@@ -29,7 +30,7 @@ export default function IndexPageContent({
       })}
     >
       {searchQuery ? (
-        <IndexPageSearchContent pageContext={pageContext} query={searchQuery} />
+        <RepositorySearch pageContext={pageContext} query={searchQuery} />
       ) : (
         children
       )}

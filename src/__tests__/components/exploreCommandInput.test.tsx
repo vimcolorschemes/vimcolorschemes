@@ -31,11 +31,19 @@ vi.mock('next/link', () => ({
     as,
     children,
     href,
+    prefetch,
+    scroll,
     ...props
-  }: React.ComponentProps<'a'> & { as?: string }) => (
+  }: React.ComponentProps<'a'> & {
+    as?: string;
+    prefetch?: boolean;
+    scroll?: boolean;
+  }) => (
     <a
       href={typeof href === 'string' ? href : ''}
       data-as={typeof as === 'string' ? as : undefined}
+      data-prefetch={prefetch ? 'true' : undefined}
+      data-scroll={scroll ? 'true' : undefined}
       {...props}
     >
       {children}
@@ -180,6 +188,23 @@ describe('ExploreCommandInput', () => {
     ).toBe('↵');
   });
 
+  it('uses a valid labelled search form', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const form = screen.getByRole('search');
+    const searchbox = screen.getByRole<HTMLInputElement>('searchbox', {
+      name: 'Search repositories',
+    });
+
+    expect(searchbox.closest('form')).toBe(form);
+    expect(searchbox.labels?.[0]?.textContent).toBe('search repositories');
+    expect(form.parentElement?.tagName).not.toBe('SPAN');
+    expect(form.className).toContain('tuiControl');
+    expect(searchbox.parentElement?.className).toContain('searchForm');
+    expect(form.getAttribute('method')).toBe('get');
+    expect(form.getAttribute('action')).toBe('/i/trending');
+  });
+
   it('handles failures while preloading the search manifest', async () => {
     const failedPreload = Promise.reject(new Error('manifest unavailable'));
     const catchSpy = vi.spyOn(failedPreload, 'catch');
@@ -282,5 +307,20 @@ describe('ExploreCommandInput', () => {
         scroll: false,
       },
     );
+  });
+
+  it('removes the search query when blank text is submitted', () => {
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo' });
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const searchbox = screen.getByRole('searchbox', {
+      name: 'Search repositories',
+    });
+    fireEvent.change(searchbox, { target: { value: '   ' } });
+    fireEvent.submit(searchbox);
+
+    expect(navigation.replace).toHaveBeenCalledWith('/i/trending', {
+      scroll: false,
+    });
   });
 });

@@ -1,26 +1,36 @@
 import classNames from 'classnames';
-import type { ReactNode } from 'react';
 
 import styles from './index.module.css';
 
 type RepositoriesHeaderProps = {
   count?: number;
+  headingId?: string;
   query?: string;
-  title: ReactNode;
+  title: string;
 };
 
 export default function RepositoriesHeader({
   count,
+  headingId = 'repositories-title',
   query,
   title,
 }: RepositoriesHeaderProps) {
+  const repositoryLabel =
+    count == null
+      ? undefined
+      : `${count} repositor${count === 1 ? 'y' : 'ies'}`;
+  const titleLabel = query == null ? title : `${title} "${query}"`;
+  const accessibleLabel = repositoryLabel
+    ? `${titleLabel}, ${repositoryLabel}`
+    : titleLabel;
+
   return (
     <div
       className={classNames(styles.header, {
         [styles.searchHeader]: query != null,
       })}
     >
-      <h2 id="repositories-title" className={styles.title}>
+      <h2 id={headingId} className={styles.title} aria-label={accessibleLabel}>
         <span className={styles.titleSummary}>
           <span>{title}</span>
           {query != null && (

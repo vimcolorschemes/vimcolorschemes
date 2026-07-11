@@ -168,6 +168,63 @@ describe('RepositorySearchHelper.searchRepositories', () => {
     ]);
   });
 
+  it('supports newest and oldest tie-breakers', () => {
+    const newest = RepositorySearchHelper.searchRepositories({
+      repositories,
+      query: 'theme',
+      sort: 'new',
+      filter: {},
+      page: 1,
+      pageSize: 24,
+    });
+    const oldest = RepositorySearchHelper.searchRepositories({
+      repositories,
+      query: 'theme',
+      sort: 'old',
+      filter: {},
+      page: 1,
+      pageSize: 24,
+    });
+
+    expect(keys(newest.repositories)).toEqual([
+      'folke/tokyonight.nvim',
+      'morhetz/gruvbox',
+      'altercation/vim-colors-solarized',
+    ]);
+    expect(keys(oldest.repositories)).toEqual([
+      'altercation/vim-colors-solarized',
+      'morhetz/gruvbox',
+      'folke/tokyonight.nvim',
+    ]);
+  });
+
+  it('uses repository identity as a deterministic final tie-breaker', () => {
+    const tiedRepositories = ['theme-z', 'theme-a'].map(name =>
+      repository({
+        name,
+        owner: 'local',
+        description: '',
+        stars: 1,
+        weekStars: 1,
+        createdAt: '2024-01-01T00:00:00.000Z',
+        colorschemes: [{ name, backgrounds: ['dark'] }],
+      }),
+    );
+    const result = RepositorySearchHelper.searchRepositories({
+      repositories: tiedRepositories,
+      query: 'theme',
+      sort: 'trending',
+      filter: {},
+      page: 1,
+      pageSize: 24,
+    });
+
+    expect(keys(result.repositories)).toEqual([
+      'local/theme-a',
+      'local/theme-z',
+    ]);
+  });
+
   it('paginates results', () => {
     const result = RepositorySearchHelper.searchRepositories({
       repositories,
@@ -181,6 +238,25 @@ describe('RepositorySearchHelper.searchRepositories', () => {
     expect(result.count).toBe(3);
     expect(result.hasMore).toBe(true);
     expect(keys(result.repositories)).toEqual(['folke/tokyonight.nvim']);
+  });
+
+  it('returns cumulative pages and reports the final page', () => {
+    const result = RepositorySearchHelper.searchRepositories({
+      repositories,
+      query: 'theme',
+      sort: 'trending',
+      filter: {},
+      page: 3,
+      pageSize: 1,
+    });
+
+    expect(result.count).toBe(3);
+    expect(result.hasMore).toBe(false);
+    expect(keys(result.repositories)).toEqual([
+      'folke/tokyonight.nvim',
+      'altercation/vim-colors-solarized',
+      'morhetz/gruvbox',
+    ]);
   });
 });
 

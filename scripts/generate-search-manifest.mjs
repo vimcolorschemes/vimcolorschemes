@@ -2,6 +2,7 @@ import { createClient } from '@libsql/client';
 
 import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const outputPath = path.join(
   process.cwd(),
@@ -115,13 +116,21 @@ function rowToDTO(row, vimColorSchemes) {
     name: row.name,
     owner: { name: row.owner_name },
     description: row.description || '',
-    githubCreatedAt: row.github_created_at,
-    pushedAt: row.pushed_at,
+    githubCreatedAt: new Date(row.github_created_at).toJSON(),
+    pushedAt: new Date(row.pushed_at).toJSON(),
     githubURL: row.github_url || '',
     stargazersCount: row.stargazers_count || 0,
     weekStargazersCount: row.week_stargazers_count || 0,
     vimColorSchemes,
   };
+}
+
+export function buildSearchManifest(repositoryRows, colorschemeRows) {
+  const colorschemesByRepo = buildColorschemesByRepo(colorschemeRows);
+
+  return repositoryRows.map(row =>
+    rowToDTO(row, colorschemesByRepo.get(row.id) ?? []),
+  );
 }
 
 async function main() {
@@ -145,9 +154,9 @@ async function main() {
     ),
   ]);
 
-  const colorschemesByRepo = buildColorschemesByRepo(colorschemeResult.rows);
-  const repositories = repositoryResult.rows.map(row =>
-    rowToDTO(row, colorschemesByRepo.get(row.id) ?? []),
+  const repositories = buildSearchManifest(
+    repositoryResult.rows,
+    colorschemeResult.rows,
   );
 
   await mkdir(path.dirname(outputPath), { recursive: true });
@@ -158,7 +167,12 @@ async function main() {
   );
 }
 
-main().catch(error => {
-  console.error(error);
-  process.exit(1);
-});
+if (
+  process.argv[1] &&
+  import.meta.url === pathToFileURL(process.argv[1]).href
+) {
+  main().catch(error => {
+    console.error(error);
+    process.exit(1);
+  });
+}

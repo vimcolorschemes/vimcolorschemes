@@ -48,14 +48,12 @@ export default function ExploreCommand({
     </span>
   );
 
-  const searchControl = (
+  const searchControl = interactive ? (
+    <SearchInput />
+  ) : (
     <span className={styles.tuiControl}>
       <span className={styles.tuiLabel}>search</span>
-      {interactive ? (
-        <SearchInput />
-      ) : (
-        <span className={styles.searchInput} aria-hidden="true" />
-      )}
+      <span className={styles.searchInput} aria-hidden="true" />
     </span>
   );
 

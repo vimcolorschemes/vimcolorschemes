@@ -78,6 +78,15 @@
   color: var(--foreground-shade);
 }
 
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .searchForm {
   display: flex;
   align-items: center;
@@ -148,6 +157,12 @@
 
 .searchForm:focus-within .searchInput {
   caret-color: var(--background);
+}
+
+.searchInput:focus-visible,
+.searchSubmit:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 1px;
 }
 
 .prompt {

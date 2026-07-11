@@ -1,7 +1,7 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { useMemo, useState } from 'react';
+import { useId, useMemo, useState } from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
 
@@ -15,6 +15,8 @@ import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
 import RepositoriesHeader from '@/components/repositories/header';
 import LoadMoreButton from '@/components/repositories/loadMoreButton';
 
+import repositoriesStyles from '../index.module.css';
+
 import styles from './index.module.css';
 
 type RepositorySearchProps = {
@@ -26,6 +28,7 @@ export default function RepositorySearch({
   pageContext,
   query,
 }: RepositorySearchProps) {
+  const headingId = useId();
   const searchKey = `${query}:${pageContext.sort}:${
     pageContext.filter.background ?? ''
   }`;
@@ -63,15 +66,34 @@ export default function RepositorySearch({
     searchPage,
   ]);
 
+  const statusMessage = getStatusMessage({
+    isPending: manifestQuery.isPending,
+    query,
+    searchResult,
+  });
+
   return (
-    <>
+    <section
+      aria-busy={manifestQuery.isPending}
+      aria-labelledby={headingId}
+      className={repositoriesStyles.container}
+    >
       <RepositoriesHeader
         count={searchResult?.count}
+        headingId={headingId}
         query={query}
         title="results for"
       />
-      {manifestQuery.isPending && <RepositoriesGridSkeleton />}
-      {manifestQuery.isError && <p>search failed to load</p>}
+      <p
+        aria-atomic="true"
+        aria-live="polite"
+        className={styles.status}
+        role="status"
+      >
+        {statusMessage}
+      </p>
+      {manifestQuery.isPending && <RepositoriesGridSkeleton announce={false} />}
+      {manifestQuery.isError && <p role="alert">search failed to load</p>}
       {searchResult && (
         <>
           {searchResult.repositories.length > 0 && (
@@ -99,6 +121,36 @@ export default function RepositorySearch({
           )}
         </>
       )}
-    </>
+    </section>
   );
+}
+
+type SearchStatusParams = {
+  isPending: boolean;
+  query: string;
+  searchResult: ReturnType<
+    typeof RepositorySearchHelper.searchRepositories
+  > | null;
+};
+
+function getStatusMessage({
+  isPending,
+  query,
+  searchResult,
+}: SearchStatusParams): string {
+  if (isPending) {
+    return 'searching repositories';
+  }
+
+  if (!searchResult) {
+    return '';
+  }
+
+  if (searchResult.count === 0) {
+    return `no repositories found for "${query}"`;
+  }
+
+  const repositoryLabel = `repositor${searchResult.count === 1 ? 'y' : 'ies'}`;
+
+  return `${searchResult.count} ${repositoryLabel} found for "${query}"; ${searchResult.repositories.length} shown`;
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { FormEvent } from 'react';
+import { type FormEvent, useId } from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
 
@@ -12,6 +12,7 @@ export default function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
+  const inputId = useId();
 
   function preloadManifest() {
     void RepositorySearchManifestClient.loadRepositorySearchManifest().catch(
@@ -39,24 +40,36 @@ export default function SearchInput() {
   }
 
   return (
-    <form className={styles.searchForm} onSubmit={submitSearch}>
-      <input
-        aria-label="Search repositories"
-        className={styles.searchInput}
-        defaultValue={query}
-        key={query}
-        name="q"
-        type="search"
-        onChange={preloadManifest}
-        onFocus={preloadManifest}
-      />
-      <button
-        aria-label="Submit repository search"
-        className={styles.searchSubmit}
-        type="submit"
-      >
-        ↵
-      </button>
+    <form
+      action={pathname}
+      className={styles.tuiControl}
+      method="get"
+      role="search"
+      onSubmit={submitSearch}
+    >
+      <label className={styles.tuiLabel} htmlFor={inputId}>
+        search<span className={styles.visuallyHidden}> repositories</span>
+      </label>
+      <span className={styles.searchForm}>
+        <input
+          aria-label="Search repositories"
+          className={styles.searchInput}
+          defaultValue={query}
+          id={inputId}
+          key={query}
+          name="q"
+          type="search"
+          onChange={preloadManifest}
+          onFocus={preloadManifest}
+        />
+        <button
+          aria-label="Submit repository search"
+          className={styles.searchSubmit}
+          type="submit"
+        >
+          ↵
+        </button>
+      </span>
     </form>
   );
 }
