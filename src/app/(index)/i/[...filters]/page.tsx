@@ -18,6 +18,7 @@ import FeaturedRepositories, {
 } from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';
 
+import IndexPageContent from './content';
 import styles from './page.module.css';
 
 export const dynamicParams = false;
@@ -60,18 +61,32 @@ export default async function IndexPage({ params }: IndexPageProps) {
     redirect(buildIndexRoutePath(pageContext));
   }
 
-  return (
-    <div
-      className={cn(styles.homepageContent, {
-        [styles.homepageContentWithFeatured]: isHomepage,
-      })}
-    >
+  const content = (
+    <>
       {isHomepage && (
         <Suspense fallback={<FeaturedRepositoriesSkeleton />}>
           <FeaturedRepositories pageContext={pageContext} />
         </Suspense>
       )}
       <Repositories pageContext={pageContext} />
-    </div>
+    </>
+  );
+
+  return (
+    <Suspense
+      fallback={
+        <div
+          className={cn(styles.homepageContent, {
+            [styles.homepageContentWithFeatured]: isHomepage,
+          })}
+        >
+          {content}
+        </div>
+      }
+    >
+      <IndexPageContent isHomepage={isHomepage} pageContext={pageContext}>
+        {content}
+      </IndexPageContent>
+    </Suspense>
   );
 }

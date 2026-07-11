@@ -12,7 +12,9 @@
     "url": "https://github.com/vimcolorschemes/vimcolorschemes/issues"
   },
   "scripts": {
+    "predev": "pnpm search.generate",
     "dev": "next dev --turbopack",
+    "prebuild": "pnpm search.generate",
     "build": "next build",
     "analyze": "ANALYZE=true next build",
     "start": "next start",
@@ -23,6 +25,7 @@
     "format": "prettier --write .",
     "format.check": "prettier --check .",
     "seed": "./database/seed",
+    "search.generate": "node scripts/generate-search-manifest.mjs",
     "tc": "tsc --noEmit",
     "check": "pnpm run --parallel '/^(lint.check|format.check|tc|test)$/'",
     "check.fix": "pnpm lint && pnpm format && pnpm run --parallel '/^(tc|test)$/'",

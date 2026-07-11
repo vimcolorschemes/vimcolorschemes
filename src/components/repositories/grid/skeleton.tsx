@@ -2,10 +2,16 @@ import TuiLoading from '@/components/ui/tuiLoading';
 
 import styles from './skeleton.module.css';
 
-export default function RepositoriesGridSkeleton() {
+type RepositoriesGridSkeletonProps = {
+  announce?: boolean;
+};
+
+export default function RepositoriesGridSkeleton({
+  announce = true,
+}: RepositoriesGridSkeletonProps) {
   return (
     <section className={styles.grid}>
-      <TuiLoading />
+      <TuiLoading announce={announce} />
     </section>
   );
 }

@@ -1,4 +1,9 @@
 .viewport {
+  --index-filter-bar-spacing: var(--spacing-sm);
+  --index-filter-bar-bottom-spacing: calc(
+    var(--index-filter-bar-spacing) + var(--spacing-xxs)
+  );
+
   flex: 1 0 auto;
   width: 100%;
   min-height: calc(100dvh - var(--statusline-height) - var(--spacing-sm));
@@ -15,4 +20,9 @@
   align-items: center;
   row-gap: var(--spacing-sm);
   padding: var(--content-padding);
+  padding-top: var(--index-filter-bar-bottom-spacing);
+}
+
+.viewport > :global(header) {
+  padding-bottom: 0;
 }

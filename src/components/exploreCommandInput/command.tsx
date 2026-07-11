@@ -9,6 +9,7 @@ import HomeCommand from '@/components/homeCommand';
 
 import CommandMenu from './commandMenu';
 import styles from './index.module.css';
+import SearchInput from './searchInput';
 
 const sortOptions = Object.values(SortOptions);
 const backgroundOptions: {
@@ -24,78 +25,100 @@ const backgroundOptions: {
 type ExploreCommandProps = {
   interactive?: boolean;
   pageContext: PageContext;
+  searchQuery?: string;
 };
 
 export default function ExploreCommand({
   interactive = true,
   pageContext,
+  searchQuery,
 }: ExploreCommandProps) {
+  const commandLead = (
+    <span className={styles.shellLine}>
+      <HomeCommand
+        interactive={interactive}
+        className={styles.homeCommand}
+        classNames={{
+          command: styles.command,
+          operator: styles.operator,
+          prompt: styles.prompt,
+        }}
+      />
+      <span className={styles.subcommand}>explore</span>
+    </span>
+  );
+
+  const searchControl = interactive ? (
+    <SearchInput />
+  ) : (
+    <span className={styles.tuiControl}>
+      <span className={styles.tuiLabel}>search</span>
+      <span className={styles.searchInput} aria-hidden="true" />
+    </span>
+  );
+
+  const orderControl = (
+    <span className={styles.tuiControl}>
+      <span className={styles.tuiLabel}>order</span>
+      <CommandMenu
+        label="Order repositories"
+        interactive={interactive}
+        preservedQuery={searchQuery}
+        selected={pageContext.sort}
+        options={sortOptions.map(option => ({
+          href: buildIndexRoutePath({
+            sort: option,
+            filter: pageContext.filter,
+          }),
+          label: option,
+          active: pageContext.sort === option,
+        }))}
+      />
+    </span>
+  );
+
+  const backgroundControl = (
+    <span className={styles.tuiControl}>
+      <span className={styles.tuiLabel}>background</span>
+      <CommandMenu
+        alignEnd
+        label="Filter by background"
+        interactive={interactive}
+        preservedQuery={searchQuery}
+        selected={
+          backgroundOptions.find(
+            option => option.value === pageContext.filter.background,
+          )?.label ?? 'any'
+        }
+        options={backgroundOptions.map(option => ({
+          href: buildIndexRoutePath({
+            sort: pageContext.sort,
+            filter: {
+              ...pageContext.filter,
+              background: option.value,
+            },
+          }),
+          label: option.label,
+          active: pageContext.filter.background === option.value,
+        }))}
+      />
+    </span>
+  );
+
   return (
-    <div
+    <section
       className={styles.container}
       aria-hidden={interactive ? undefined : true}
       aria-label={interactive ? 'Explore color schemes' : undefined}
     >
-      <span className={styles.commandLead}>
-        <HomeCommand
-          interactive={interactive}
-          className={styles.homeCommand}
-          classNames={{
-            command: styles.command,
-            operator: styles.operator,
-            prompt: styles.prompt,
-          }}
-        />
-        <span className={styles.subcommand}>list</span>
-      </span>
-      <span className={styles.commandLine}>
-        {' '}
-        <span className={styles.argument}>
-          <span className={styles.flag}>
-            <span className={styles.fullFlag}>--sort</span>
-            <span className={styles.shortFlag}>-s</span>
-          </span>{' '}
-          <CommandMenu
-            label="Sort repositories"
-            interactive={interactive}
-            selected={pageContext.sort}
-            options={sortOptions.map(option => ({
-              href: buildIndexRoutePath({
-                sort: option,
-                filter: pageContext.filter,
-              }),
-              label: option,
-              active: pageContext.sort === option,
-            }))}
-          />
-        </span>{' '}
-        <span className={styles.argument}>
-          <span className={styles.flag}>
-            <span className={styles.fullFlag}>--background</span>
-            <span className={styles.shortFlag}>-b</span>
-          </span>{' '}
-          <CommandMenu
-            label="Filter by background"
-            interactive={interactive}
-            selected={
-              backgroundOptions.find(
-                option => option.value === pageContext.filter.background,
-              )?.label ?? 'any'
-            }
-            options={backgroundOptions.map(option => ({
-              href: buildIndexRoutePath({
-                sort: pageContext.sort,
-                filter: {
-                  ...pageContext.filter,
-                  background: option.value,
-                },
-              }),
-              label: option.label,
-              active: pageContext.filter.background === option.value,
-            }))}
-          />
+      {commandLead}
+      <div className={styles.filterPanel}>
+        {searchControl}
+        <span className={styles.filterGroup}>
+          {orderControl}
+          {backgroundControl}
         </span>
-      </span>
-    </div>
+      </div>
+    </section>
   );
 }

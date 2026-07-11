@@ -6,9 +6,8 @@ import { RepositoryDTO } from '@/models/DTO/repository';
 
 import type { PageContext } from '@/lib/pageContext';
 
-import { buildIndexRoutePath } from '@/helpers/indexRoute';
-
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
+import RepositoriesHeader from '@/components/repositories/header';
 import LoadMore from '@/components/repositories/loadMore';
 
 import styles from './index.module.css';
@@ -27,17 +26,14 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
   return (
     <section className={styles.container} aria-labelledby="repositories-title">
-      <Suspense
-        fallback={<RepositoriesHeaderFallback pageContext={pageContext} />}
-      >
-        <RepositoriesHeader
+      <Suspense fallback={<RepositoriesHeader title={pageContext.sort} />}>
+        <RepositoriesHeaderAsync
           countPromise={countPromise}
-          pageContext={pageContext}
+          title={pageContext.sort}
         />
       </Suspense>
       <Suspense fallback={<RepositoriesGridSkeleton />}>
         <LoadMore
-          key={buildIndexRoutePath(pageContext)}
           pageContext={pageContext}
           initialRepositoriesPromise={initialRepositoriesPromise}
           countPromise={countPromise}
@@ -47,37 +43,14 @@ export default function Repositories({ pageContext }: RepositoriesProps) {
   );
 }
 
-function RepositoriesHeaderFallback({
-  pageContext,
-}: {
-  pageContext: PageContext;
-}) {
-  return (
-    <div className={styles.header}>
-      <h2 id="repositories-title" className={styles.title}>
-        {pageContext.sort}
-      </h2>
-    </div>
-  );
-}
-
-async function RepositoriesHeader({
+async function RepositoriesHeaderAsync({
   countPromise,
-  pageContext,
+  title,
 }: {
   countPromise: Promise<number>;
-  pageContext: PageContext;
+  title: string;
 }) {
   const count = await countPromise;
 
-  return (
-    <div className={styles.header}>
-      <h2 id="repositories-title" className={styles.title}>
-        {pageContext.sort}
-        <span className={styles.count}>
-          {count} repositor{count === 1 ? 'y' : 'ies'}
-        </span>
-      </h2>
-    </div>
-  );
+  return <RepositoriesHeader count={count} title={title} />;
 }

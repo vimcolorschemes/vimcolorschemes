@@ -6,15 +6,21 @@ const LOADING_CELLS = Array.from({ length: 6 });
 const INLINE_CELLS = Array.from({ length: 5 });
 
 type TuiLoadingProps = {
+  announce?: boolean;
   className?: string;
   compact?: boolean;
 };
 
-export default function TuiLoading({ className, compact }: TuiLoadingProps) {
+export default function TuiLoading({
+  announce = true,
+  className,
+  compact,
+}: TuiLoadingProps) {
   return (
     <div
-      role="status"
-      aria-busy="true"
+      role={announce ? 'status' : undefined}
+      aria-busy={announce ? 'true' : undefined}
+      aria-hidden={announce ? undefined : true}
       className={cn(styles.container, compact && styles.compact, className)}
     >
       <span className={styles.srOnly}>Loading</span>

@@ -38,3 +38,6 @@ next-env.d.ts
 # database
 *.db
 !database/vimcolorschemes.db
+
+# generated search manifest
+/public/search/repositories.json

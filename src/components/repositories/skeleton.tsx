@@ -1,6 +1,7 @@
 import cn from 'classnames';
 
 import RepositoriesGridSkeleton from '@/components/repositories/grid/skeleton';
+import RepositoriesHeader from '@/components/repositories/header';
 
 import styles from './index.module.css';
 
@@ -13,11 +14,7 @@ export default function RepositoryGridSkeleton({
 }: RepositoriesSkeletonProps) {
   return (
     <div className={cn(styles.container, styles.loadingContainer)}>
-      {title && (
-        <div className={styles.header}>
-          <h2 className={styles.title}>{title}</h2>
-        </div>
-      )}
+      {title && <RepositoriesHeader title={title} />}
       <RepositoriesGridSkeleton />
     </div>
   );

@@ -11,7 +11,7 @@
   position: absolute;
   top: 0;
   left: var(--spacing-sm);
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 0.09rem));
   padding: 0 var(--spacing-xs);
   background: var(
     --tui-section-title-background,
