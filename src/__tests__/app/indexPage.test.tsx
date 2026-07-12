@@ -33,6 +33,10 @@ vi.mock('@/components/repositories', () => ({
   default: () => <section data-testid="repositories" />,
 }));
 
+vi.mock('@/components/repositories/skeleton', () => ({
+  default: () => <section data-testid="repositories-loading" />,
+}));
+
 vi.mock('@/components/repositories/search', () => ({
   default: ({ query }: { query: string }) => (
     <section data-testid="repository-search" data-query={query} />
@@ -63,14 +67,15 @@ describe('IndexPage', () => {
     ).toBe('tokyo');
   });
 
-  it('uses query-independent static content as the search fallback', async () => {
+  it('uses a loading state while search parameters resolve', async () => {
     const page = await renderIndexPage({ q: 'tokyo' });
     const fallback = page.type === Suspense ? page.props.fallback : null;
 
     render(fallback);
 
-    expect(screen.getByTestId('featured')).toBeDefined();
-    expect(screen.getByTestId('repositories')).toBeDefined();
+    expect(screen.getByTestId('repositories-loading')).toBeDefined();
+    expect(screen.queryByTestId('featured')).toBeNull();
+    expect(screen.queryByTestId('repositories')).toBeNull();
     expect(screen.queryByTestId('repository-search')).toBeNull();
   });
 
