@@ -1,3 +1,5 @@
+import { useId } from 'react';
+
 import { Backgrounds } from '@/lib/backgrounds';
 import type { BackgroundFilter } from '@/lib/filter';
 import type { PageContext } from '@/lib/pageContext';
@@ -34,6 +36,9 @@ export default function ExploreCommand({
   pageContext,
   searchQuery,
 }: ExploreCommandProps) {
+  const orderId = useId();
+  const backgroundId = useId();
+
   const commandLead = (
     <span className={styles.shellLine}>
       <HomeCommand
@@ -64,51 +69,66 @@ export default function ExploreCommand({
   );
 
   const orderControl = (
-    <span className={styles.tuiControl}>
-      <span className={styles.tuiLabel}>order</span>
-      <CommandMenu
-        label="Order repositories"
-        interactive={interactive}
-        preservedQuery={searchQuery}
-        selected={pageContext.sort}
-        options={sortOptions.map(option => ({
-          href: buildIndexRoutePath({
-            sort: option,
-            filter: pageContext.filter,
-          }),
-          label: option,
-          active: pageContext.sort === option,
-        }))}
-      />
-    </span>
+    <CommandMenu
+      className={styles.tuiControl}
+      prefix={
+        interactive ? (
+          <label className={styles.tuiLabel} htmlFor={orderId}>
+            order
+          </label>
+        ) : (
+          <span className={styles.tuiLabel}>order</span>
+        )
+      }
+      id={orderId}
+      label="Order repositories"
+      interactive={interactive}
+      preservedQuery={searchQuery}
+      selected={pageContext.sort}
+      options={sortOptions.map(option => ({
+        href: buildIndexRoutePath({
+          sort: option,
+          filter: pageContext.filter,
+        }),
+        label: option,
+        active: pageContext.sort === option,
+      }))}
+    />
   );
 
   const backgroundControl = (
-    <span className={styles.tuiControl}>
-      <span className={styles.tuiLabel}>background</span>
-      <CommandMenu
-        alignEnd
-        label="Filter by background"
-        interactive={interactive}
-        preservedQuery={searchQuery}
-        selected={
-          backgroundOptions.find(
-            option => option.value === pageContext.filter.background,
-          )?.label ?? 'any'
-        }
-        options={backgroundOptions.map(option => ({
-          href: buildIndexRoutePath({
-            sort: pageContext.sort,
-            filter: {
-              ...pageContext.filter,
-              background: option.value,
-            },
-          }),
-          label: option.label,
-          active: pageContext.filter.background === option.value,
-        }))}
-      />
-    </span>
+    <CommandMenu
+      className={styles.tuiControl}
+      prefix={
+        interactive ? (
+          <label className={styles.tuiLabel} htmlFor={backgroundId}>
+            background
+          </label>
+        ) : (
+          <span className={styles.tuiLabel}>background</span>
+        )
+      }
+      id={backgroundId}
+      label="Filter by background"
+      interactive={interactive}
+      preservedQuery={searchQuery}
+      selected={
+        backgroundOptions.find(
+          option => option.value === pageContext.filter.background,
+        )?.label ?? 'any'
+      }
+      options={backgroundOptions.map(option => ({
+        href: buildIndexRoutePath({
+          sort: pageContext.sort,
+          filter: {
+            ...pageContext.filter,
+            background: option.value,
+          },
+        }),
+        label: option.label,
+        active: pageContext.filter.background === option.value,
+      }))}
+    />
   );
 
   return (

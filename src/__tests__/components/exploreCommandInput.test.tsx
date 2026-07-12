@@ -81,16 +81,19 @@ describe('ExploreCommandInput', () => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     expect(
-      screen.getByRole('button', { name: 'Order repositories' }).textContent,
+      screen.getByRole('button', { name: /Order repositories/ }).textContent,
     ).toBe(SortOptions.Old);
     expect(
-      screen.getByRole('button', { name: 'Filter by background' }).textContent,
+      screen.getByRole('button', { name: /Filter by background/ }).textContent,
     ).toBe(Backgrounds.Dark);
+    fireEvent.click(
+      screen.getByRole('button', { name: /Filter by background/ }),
+    );
     expect(
-      screen.getByRole('link', { name: 'light' }).getAttribute('href'),
+      screen.getByRole('menuitem', { name: 'light' }).getAttribute('href'),
     ).toBe('/i/old/b.light');
     expect(
-      screen.getByRole('link', { name: 'light' }).getAttribute('data-as'),
+      screen.getByRole('menuitem', { name: 'light' }).getAttribute('data-as'),
     ).toBeNull();
   });
 
@@ -100,16 +103,17 @@ describe('ExploreCommandInput', () => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     expect(
-      screen.getByRole('button', { name: 'Order repositories' }).textContent,
+      screen.getByRole('button', { name: /Order repositories/ }).textContent,
     ).toBe(SortOptions.Trending);
     expect(
-      screen.getByRole('button', { name: 'Filter by background' }).textContent,
+      screen.getByRole('button', { name: /Filter by background/ }).textContent,
     ).toBe(Backgrounds.Light);
-    expect(screen.getByRole('link', { name: 'old' }).getAttribute('href')).toBe(
-      '/i/old/b.light',
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Order repositories/ }));
     expect(
-      screen.getByRole('link', { name: 'old' }).getAttribute('data-as'),
+      screen.getByRole('menuitem', { name: 'old' }).getAttribute('href'),
+    ).toBe('/i/old/b.light');
+    expect(
+      screen.getByRole('menuitem', { name: 'old' }).getAttribute('data-as'),
     ).toBeNull();
   });
 
@@ -119,10 +123,10 @@ describe('ExploreCommandInput', () => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     expect(
-      screen.getByRole('button', { name: 'Order repositories' }).textContent,
+      screen.getByRole('button', { name: /Order repositories/ }).textContent,
     ).toBe(SortOptions.Trending);
     expect(
-      screen.getByRole('button', { name: 'Filter by background' }).textContent,
+      screen.getByRole('button', { name: /Filter by background/ }).textContent,
     ).toBe('any');
   });
 
@@ -132,9 +136,10 @@ describe('ExploreCommandInput', () => {
 
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
-    expect(screen.getByRole('link', { name: 'old' }).getAttribute('href')).toBe(
-      '/i/old/b.light?q=tokyo+night',
-    );
+    fireEvent.click(screen.getByRole('button', { name: /Order repositories/ }));
+    expect(
+      screen.getByRole('menuitem', { name: 'old' }).getAttribute('href'),
+    ).toBe('/i/old/b.light?q=tokyo+night');
   });
 
   it('shows filters as part of the TUI after the explore command', () => {
@@ -280,26 +285,48 @@ describe('ExploreCommandInput', () => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     const orderControl = screen
-      .getByRole('button', { name: 'Order repositories' })
+      .getByRole('button', { name: /Order repositories/ })
       .closest('[class*="tuiControl"]');
     const backgroundControl = screen
-      .getByRole('button', { name: 'Filter by background' })
+      .getByRole('button', { name: /Filter by background/ })
       .closest('[class*="tuiControl"]');
 
     expect(orderControl?.parentElement).toBe(backgroundControl?.parentElement);
     expect(orderControl?.parentElement?.className).toContain('filterGroup');
   });
 
-  it('marks the background menu for right alignment', () => {
+  it.each([
+    ['order', 'Order repositories'],
+    ['background', 'Filter by background'],
+  ])('opens the %s menu when its visible label is clicked', (text, name) => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
-    expect(
-      screen.getByRole('button', { name: 'Filter by background' }).parentElement
-        ?.className,
-    ).toContain('alignEnd');
+    const trigger = screen.getByRole('button', { name: new RegExp(name) });
+    const label = screen.getByText(text, { selector: 'label' });
+
+    expect(label.getAttribute('for')).toBe(trigger.id);
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+
+    fireEvent.click(label);
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
   });
 
-  it('right-aligns marked menus', () => {
+  it.each([
+    ['order', 'Order repositories'],
+    ['background', 'Filter by background'],
+  ])('opens the %s menu when its visible label is hovered', (text, name) => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', { name: new RegExp(name) });
+    const label = screen.getByText(text, { selector: 'label' });
+
+    fireEvent.pointerEnter(label, { pointerType: 'mouse' });
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
+  });
+
+  it('sizes menu lists from the complete label and value control', () => {
     const menuStyles = readFileSync(
       join(
         process.cwd(),
@@ -309,8 +336,156 @@ describe('ExploreCommandInput', () => {
     );
 
     expect(menuStyles).toMatch(
-      /\.menu\.alignEnd\s+\.menuList\s*{[\s\S]*?right:\s*0;[\s\S]*?left:\s*auto;/,
+      /\.menuList\s*{[\s\S]*?min-width:\s*max\(100%,\s*10rem\);/,
     );
+  });
+
+  it('left-aligns both filter menus', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const orderMenu = screen.getByRole('button', {
+      name: /Order repositories/,
+    }).parentElement;
+    const backgroundMenu = screen.getByRole('button', {
+      name: /Filter by background/,
+    }).parentElement;
+
+    expect(orderMenu?.className).not.toContain('alignEnd');
+    expect(backgroundMenu?.className).not.toContain('alignEnd');
+  });
+
+  it('exposes the current value and menu relationship', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: 'Order repositories, current: trending',
+    });
+
+    expect(screen.queryByRole('menu')).toBeNull();
+    expect(trigger.hasAttribute('aria-controls')).toBe(false);
+    fireEvent.click(trigger);
+
+    const menu = screen.getByRole('menu', {
+      name: 'Order repositories, current: trending',
+    });
+
+    expect(trigger.getAttribute('aria-haspopup')).toBe('menu');
+    expect(trigger.getAttribute('aria-controls')).toBe(menu.id);
+    expect(menu.getAttribute('aria-labelledby')).toBe(trigger.id);
+    expect(screen.getByRole('menuitem', { name: 'trending' }).tabIndex).toBe(
+      -1,
+    );
+  });
+
+  it.each([
+    ['Enter', 'trending'],
+    [' ', 'trending'],
+    ['ArrowDown', 'trending'],
+    ['ArrowUp', 'old'],
+  ])('opens the order menu with %s and focuses %s', (key, option) => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: /Order repositories/,
+    });
+
+    trigger.focus();
+    fireEvent.keyDown(trigger, { key });
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByRole('menuitem', { name: option })).toBe(
+      document.activeElement,
+    );
+  });
+
+  it('moves focus within a menu with arrow, Home, End, and character keys', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: /Order repositories/,
+    });
+
+    fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+    const trending = screen.getByRole('menuitem', { name: 'trending' });
+    const top = screen.getByRole('menuitem', { name: 'top' });
+    const old = screen.getByRole('menuitem', { name: 'old' });
+
+    fireEvent.keyDown(trending, { key: 'ArrowUp' });
+    expect(old).toBe(document.activeElement);
+
+    fireEvent.keyDown(old, { key: 'ArrowDown' });
+    expect(trending).toBe(document.activeElement);
+
+    fireEvent.keyDown(trending, { key: 'End' });
+    expect(old).toBe(document.activeElement);
+
+    fireEvent.keyDown(old, { key: 'Home' });
+    expect(trending).toBe(document.activeElement);
+
+    fireEvent.keyDown(trending, { key: 't' });
+    expect(top).toBe(document.activeElement);
+  });
+
+  it('closes with Escape and restores focus to the trigger', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: /Order repositories/,
+    });
+
+    fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+    fireEvent.keyDown(document.activeElement as HTMLElement, { key: 'Escape' });
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+    expect(trigger).toBe(document.activeElement);
+  });
+
+  it.each([false, true])(
+    'closes on Tab without trapping focus (shift: %s)',
+    shiftKey => {
+      render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+      const orderTrigger = screen.getByRole('button', {
+        name: /Order repositories/,
+      });
+      const backgroundTrigger = screen.getByRole('button', {
+        name: /Filter by background/,
+      });
+
+      fireEvent.keyDown(orderTrigger, { key: 'ArrowDown' });
+      fireEvent.keyDown(document.activeElement as HTMLElement, {
+        key: 'Tab',
+        shiftKey,
+      });
+      const nextControl = shiftKey ? orderTrigger : backgroundTrigger;
+      nextControl.focus();
+
+      expect(orderTrigger.getAttribute('aria-expanded')).toBe('false');
+      expect(nextControl).toBe(document.activeElement);
+    },
+  );
+
+  it('activates a focused menu link with Space', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: /Order repositories/,
+    });
+
+    fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+    const top = screen.getByRole('menuitem', { name: 'top' });
+    const preventNavigation = (event: Event) => event.preventDefault();
+    top.addEventListener('click', preventNavigation);
+
+    fireEvent.keyDown(document.activeElement as HTMLElement, {
+      key: 'ArrowDown',
+    });
+    fireEvent.keyDown(top, { key: ' ' });
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('false');
+    expect(trigger).toBe(document.activeElement);
+
+    top.removeEventListener('click', preventNavigation);
   });
 
   it('writes submitted search query to the current URL', () => {
