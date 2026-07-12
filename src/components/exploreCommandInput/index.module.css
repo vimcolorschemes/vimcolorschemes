@@ -159,7 +159,6 @@
   caret-color: var(--background);
 }
 
-.searchInput:focus-visible,
 .searchSubmit:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 1px;
