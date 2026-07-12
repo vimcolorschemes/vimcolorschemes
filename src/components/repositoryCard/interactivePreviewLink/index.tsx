@@ -15,11 +15,13 @@ import RepositoryCardInteractiveTerminalPreview from '../interactiveTerminalPrev
 type RepositoryCardInteractivePreviewLinkProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
+  searchQuery?: string;
 };
 
 export default function RepositoryCardInteractivePreviewLink({
   repositoryDTO,
   pageContext,
+  searchQuery,
 }: RepositoryCardInteractivePreviewLinkProps) {
   const repository = new Repository(repositoryDTO);
   const prioritizedBackground =
@@ -36,11 +38,19 @@ export default function RepositoryCardInteractivePreviewLink({
   const isDefaultVariant =
     selectedVariant.colorscheme === defaultVariant?.name &&
     selectedVariant.background === defaultVariant.backgrounds[0];
-  const href = isDefaultVariant
-    ? repository.route
-    : `${repository.route}?colorscheme=${encodeURIComponent(
-        selectedVariant.colorscheme,
-      )}&background=${encodeURIComponent(selectedVariant.background)}`;
+  const searchParams = new URLSearchParams();
+
+  if (!isDefaultVariant) {
+    searchParams.set('colorscheme', selectedVariant.colorscheme);
+    searchParams.set('background', selectedVariant.background);
+  }
+
+  if (searchQuery) {
+    searchParams.set('q', searchQuery);
+  }
+
+  const search = searchParams.toString();
+  const href = `${repository.route}${search ? `?${search}` : ''}`;
 
   const onVariantChange = useCallback(
     (variant: { colorscheme: string; background: Background }) => {

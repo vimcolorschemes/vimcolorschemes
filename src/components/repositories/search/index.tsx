@@ -100,6 +100,7 @@ export default function RepositorySearch({
             <RepositoriesGrid
               repositories={searchResult.repositories}
               pageContext={pageContext}
+              searchQuery={query}
             />
           )}
           {searchResult.repositories.length === 0 && (
