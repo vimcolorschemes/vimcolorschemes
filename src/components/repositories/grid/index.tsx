@@ -11,11 +11,13 @@ import styles from './index.module.css';
 type RepositoriesGridProps = {
   repositories: RepositoryDTO[];
   pageContext: PageContext;
+  searchQuery?: string;
 };
 
 export default function RepositoriesGrid({
   repositories,
   pageContext,
+  searchQuery,
 }: RepositoriesGridProps) {
   const cardClassName = PageContextHelper.isHomepage(pageContext)
     ? styles.homepageCard
@@ -28,6 +30,7 @@ export default function RepositoriesGrid({
           key={`${repository.owner.name}/${repository.name}`}
           repositoryDTO={repository}
           pageContext={pageContext}
+          searchQuery={searchQuery}
           className={cardClassName}
         />
       ))}

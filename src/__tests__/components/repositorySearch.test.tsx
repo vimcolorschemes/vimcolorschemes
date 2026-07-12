@@ -57,6 +57,33 @@ afterEach(() => {
 });
 
 describe('RepositorySearch', () => {
+  it('preserves the active search in repository result links', () => {
+    const result = repository(1);
+    result.vimColorSchemes.push({
+      name: 'palette-alt',
+      backgrounds: ['dark'],
+      data: {
+        light: null,
+        dark: [
+          { name: 'NormalBg', hexCode: '#111111' },
+          { name: 'NormalFg', hexCode: '#eeeeee' },
+        ],
+      },
+    });
+    renderSearch([result], 'searchable palette');
+
+    const link = screen.getByRole('link', { name: 'palette-1, by local' });
+    expect(link.getAttribute('href')).toBe(
+      '/r/local/palette-1?q=searchable+palette',
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /"palette-1".*⟳/ }));
+
+    expect(link.getAttribute('href')).toBe(
+      '/r/local/palette-1?colorscheme=palette-alt&background=dark&q=searchable+palette',
+    );
+  });
+
   it('exposes the result count and visible results as an accessible status', () => {
     renderSearch([repository(1)]);
 

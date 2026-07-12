@@ -12,6 +12,7 @@ import RepositoryCardInteractivePreviewLink from './interactivePreviewLink';
 type RepositoryCardProps = {
   repositoryDTO: RepositoryDTO;
   pageContext: PageContext;
+  searchQuery?: string;
   className?: string;
   headingLevel?: 'h2' | 'h3';
 };
@@ -19,6 +20,7 @@ type RepositoryCardProps = {
 export default function RepositoryCard({
   repositoryDTO,
   pageContext,
+  searchQuery,
   className,
   headingLevel,
 }: RepositoryCardProps) {
@@ -41,6 +43,7 @@ export default function RepositoryCard({
         <RepositoryCardInteractivePreviewLink
           repositoryDTO={repositoryDTO}
           pageContext={pageContext}
+          searchQuery={searchQuery}
         />
         <Card.Footer aria-label={title} title={title}>
           <Card.FooterIdentity>
