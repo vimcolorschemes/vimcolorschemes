@@ -116,6 +116,12 @@
   caret-color: var(--foreground-accent);
 }
 
+.searchLoading {
+  color: var(--foreground-shade);
+  font-size: 0.72em;
+  opacity: 0.64;
+}
+
 .searchSubmit {
   appearance: none;
   display: inline-flex;
@@ -159,7 +165,6 @@
   caret-color: var(--background);
 }
 
-.searchInput:focus-visible,
 .searchSubmit:focus-visible {
   outline: 1px solid currentColor;
   outline-offset: 1px;

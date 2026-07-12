@@ -9,6 +9,7 @@ import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
 import ExploreCommandInput from '@/components/exploreCommandInput';
+import ExploreCommand from '@/components/exploreCommandInput/command';
 
 const navigation = vi.hoisted(() => ({
   pathname: '/i/trending',
@@ -163,6 +164,48 @@ describe('ExploreCommandInput', () => {
         name: 'Search repositories',
       }).style.width,
     ).toBe('');
+  });
+
+  it('does not draw an extra outline around the focused search input', () => {
+    const commandStyles = readFileSync(
+      join(
+        process.cwd(),
+        'src/components/exploreCommandInput/index.module.css',
+      ),
+      'utf8',
+    );
+
+    expect(commandStyles).not.toContain('.searchInput:focus-visible');
+    expect(commandStyles).toContain('.searchSubmit:focus-visible');
+  });
+
+  it('reserves the complete search control geometry in the static fallback', () => {
+    const { container } = render(
+      <ExploreCommand interactive={false} pageContext={fallbackPageContext} />,
+    );
+    const searchForm = Array.from(container.querySelectorAll('span')).find(
+      element => element.className.includes('searchForm'),
+    );
+
+    expect(searchForm).toBeDefined();
+    expect(
+      Array.from(searchForm?.children ?? []).some(element =>
+        element.className.includes('searchInput'),
+      ),
+    ).toBe(true);
+    expect(
+      Array.from(searchForm?.querySelectorAll('span') ?? []).some(
+        element =>
+          element.className.includes('searchLoading') &&
+          element.textContent === 'Loading',
+      ),
+    ).toBe(true);
+    expect(
+      Array.from(searchForm?.children ?? []).some(element =>
+        element.className.includes('searchSubmit'),
+      ),
+    ).toBe(true);
+    expect(searchForm?.textContent).toContain('↵');
   });
 
   it('renders the submitted search value in the normal input', () => {

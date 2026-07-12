@@ -6,6 +6,7 @@ import { SortOptions } from '@/lib/sort';
 import { buildIndexRoutePath } from '@/helpers/indexRoute';
 
 import HomeCommand from '@/components/homeCommand';
+import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
 import CommandMenu from './commandMenu';
 import styles from './index.module.css';
@@ -53,7 +54,12 @@ export default function ExploreCommand({
   ) : (
     <span className={styles.tuiControl}>
       <span className={styles.tuiLabel}>search</span>
-      <span className={styles.searchInput} aria-hidden="true" />
+      <span className={styles.searchForm} aria-hidden="true">
+        <span className={styles.searchInput}>
+          <TuiLoadingInline className={styles.searchLoading} />
+        </span>
+        <span className={styles.searchSubmit}>↵</span>
+      </span>
     </span>
   );
 
