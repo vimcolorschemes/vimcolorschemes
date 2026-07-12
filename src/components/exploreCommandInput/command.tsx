@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useId } from 'react';
 
 import { Backgrounds } from '@/lib/backgrounds';
@@ -6,6 +7,7 @@ import type { PageContext } from '@/lib/pageContext';
 import { SortOptions } from '@/lib/sort';
 
 import { buildIndexRoutePath } from '@/helpers/indexRoute';
+import { PageContextHelper } from '@/helpers/pageContext';
 
 import HomeCommand from '@/components/homeCommand';
 import { TuiLoadingInline } from '@/components/ui/tuiLoading';
@@ -15,6 +17,10 @@ import styles from './index.module.css';
 import SearchInput from './searchInput';
 
 const sortOptions = Object.values(SortOptions);
+const resetHref = buildIndexRoutePath({
+  sort: SortOptions.Trending,
+  filter: {},
+});
 const backgroundOptions: {
   value: BackgroundFilter | undefined;
   label: string;
@@ -38,6 +44,10 @@ export default function ExploreCommand({
 }: ExploreCommandProps) {
   const orderId = useId();
   const backgroundId = useId();
+  const canReset =
+    interactive &&
+    (!PageContextHelper.isHomepage(pageContext) ||
+      Boolean(searchQuery?.trim()));
 
   const commandLead = (
     <span className={styles.shellLine}>
@@ -143,6 +153,17 @@ export default function ExploreCommand({
         <span className={styles.filterGroup}>
           {orderControl}
           {backgroundControl}
+          {canReset && (
+            <Link
+              aria-label="Reset repository search, filters, and sorting"
+              className={styles.resetControl}
+              href={resetHref}
+              prefetch={false}
+              scroll={false}
+            >
+              reset
+            </Link>
+          )}
         </span>
       </div>
     </section>
