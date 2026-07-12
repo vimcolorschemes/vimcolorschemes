@@ -1,5 +1,5 @@
-import { fireEvent, render, screen } from '@testing-library/react';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, fireEvent, render, screen } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -65,6 +65,8 @@ const fallbackPageContext: PageContext = {
 };
 
 describe('ExploreCommandInput', () => {
+  afterEach(() => vi.useRealTimers());
+
   beforeEach(() => {
     navigation.pathname = '/i/trending';
     navigation.replace.mockClear();
@@ -525,6 +527,58 @@ describe('ExploreCommandInput', () => {
         scroll: false,
       },
     );
+  });
+
+  it('shows a loading state as soon as a search is submitted', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    fireEvent.change(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+      {
+        target: { value: 'catppuccin' },
+      },
+    );
+    fireEvent.submit(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+    );
+
+    expect(screen.getByRole('search').getAttribute('aria-busy')).toBe('true');
+    expect(screen.getByRole('status').textContent).toBe(
+      'searching repositories',
+    );
+    expect(
+      screen.getByRole<HTMLButtonElement>('button', {
+        name: 'Submit repository search',
+      }).disabled,
+    ).toBe(true);
+  });
+
+  it('clears the loading state after the submitted search is shown', async () => {
+    vi.useFakeTimers();
+    const { rerender } = render(
+      <ExploreCommandInput fallbackPageContext={fallbackPageContext} />,
+    );
+
+    fireEvent.change(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+      {
+        target: { value: 'catppuccin' },
+      },
+    );
+    fireEvent.submit(
+      screen.getByRole('searchbox', { name: 'Search repositories' }),
+    );
+    navigation.searchParams = new URLSearchParams({ q: 'catppuccin' });
+    rerender(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    await act(() => vi.advanceTimersByTimeAsync(250));
+
+    expect(screen.getByRole('search').getAttribute('aria-busy')).toBe('false');
+    expect(
+      screen.getByRole<HTMLButtonElement>('button', {
+        name: 'Submit repository search',
+      }).disabled,
+    ).toBe(false);
   });
 
   it('removes the search query when blank text is submitted', () => {

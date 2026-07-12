@@ -145,6 +145,11 @@
   white-space: nowrap;
 }
 
+.searchSubmit .searchSubmitLoading {
+  --tui-loading-cell-size: 0.28em;
+  --tui-loading-cell-gap: 0.08em;
+}
+
 .searchInput::-webkit-search-cancel-button,
 .searchInput::-webkit-search-decoration {
   appearance: none;
