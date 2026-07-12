@@ -144,6 +144,89 @@ describe('ExploreCommandInput', () => {
     ).toBe('/i/old/b.light?q=tokyo+night');
   });
 
+  it('resets repository search, filters, and sorting together', () => {
+    navigation.pathname = '/i/old/b.dark';
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const reset = screen.getByRole('link', {
+      name: 'Reset repository search, filters, and sorting',
+    });
+
+    expect(reset.textContent).toBe('reset');
+    expect(reset.getAttribute('href')).toBe('/i/trending');
+  });
+
+  it('does not show reset when repository controls are at their defaults', () => {
+    navigation.searchParams = new URLSearchParams({ q: '   ' });
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen.queryByRole('link', {
+        name: 'Reset repository search, filters, and sorting',
+      }),
+    ).toBeNull();
+  });
+
+  it('shows reset when only repository search is active', () => {
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen.getByRole('link', {
+        name: 'Reset repository search, filters, and sorting',
+      }),
+    ).toBeDefined();
+  });
+
+  it.each(['/i/old', '/i/trending/b.dark'])(
+    'shows reset for non-default path state at %s',
+    pathname => {
+      navigation.pathname = pathname;
+
+      render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+      expect(
+        screen.getByRole('link', {
+          name: 'Reset repository search, filters, and sorting',
+        }),
+      ).toBeDefined();
+    },
+  );
+
+  it('reflects the default controls after reset navigation', () => {
+    navigation.pathname = '/i/old/b.dark';
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+
+    const { rerender } = render(
+      <ExploreCommandInput fallbackPageContext={fallbackPageContext} />,
+    );
+
+    navigation.pathname = '/i/trending';
+    navigation.searchParams = new URLSearchParams();
+    rerender(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen.getByRole('button', { name: /Order repositories/ }).textContent,
+    ).toBe('trending');
+    expect(
+      screen.getByRole('button', { name: /Filter by background/ }).textContent,
+    ).toBe('any');
+    expect(
+      screen.getByRole<HTMLInputElement>('searchbox', {
+        name: 'Search repositories',
+      }).value,
+    ).toBe('');
+    expect(
+      screen.queryByRole('link', {
+        name: 'Reset repository search, filters, and sorting',
+      }),
+    ).toBeNull();
+  });
+
   it('shows filters as part of the TUI after the explore command', () => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
@@ -213,6 +296,11 @@ describe('ExploreCommandInput', () => {
       ),
     ).toBe(true);
     expect(searchForm?.textContent).toContain('↵');
+    expect(
+      screen.queryByRole('link', {
+        name: 'Reset repository search, filters, and sorting',
+      }),
+    ).toBeNull();
   });
 
   it('renders the submitted search value in the normal input', () => {

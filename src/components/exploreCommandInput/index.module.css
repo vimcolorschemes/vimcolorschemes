@@ -78,6 +78,19 @@
   color: var(--foreground-shade);
 }
 
+.resetControl {
+  color: var(--foreground-shade);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.resetControl:focus-visible {
+  outline: none;
+  background: var(--foreground-accent);
+  color: var(--background);
+}
+
 .visuallyHidden {
   position: absolute;
   width: 1px;
@@ -216,6 +229,11 @@
 
   .searchSubmit:hover {
     color: var(--foreground-accent);
+  }
+
+  .resetControl:hover {
+    color: var(--foreground);
+    text-decoration: none;
   }
 
   .searchForm:focus-within .searchSubmit {
