@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import { Suspense } from 'react';
@@ -17,6 +16,7 @@ import FeaturedRepositories, {
   FeaturedRepositoriesSkeleton,
 } from '@/components/featuredRepositories';
 import Repositories from '@/components/repositories';
+import RepositoriesSkeleton from '@/components/repositories/skeleton';
 
 import IndexPageContent from './content';
 import styles from './page.module.css';
@@ -75,12 +75,8 @@ export default async function IndexPage({ params }: IndexPageProps) {
   return (
     <Suspense
       fallback={
-        <div
-          className={cn(styles.homepageContent, {
-            [styles.homepageContentWithFeatured]: isHomepage,
-          })}
-        >
-          {content}
+        <div className={styles.homepageContent}>
+          <RepositoriesSkeleton />
         </div>
       }
     >
