@@ -34,14 +34,19 @@ export default function TuiLoading({
 }
 
 type TuiLoadingInlineProps = {
+  announce?: boolean;
   className?: string;
 };
 
-export function TuiLoadingInline({ className }: TuiLoadingInlineProps) {
+export function TuiLoadingInline({
+  announce = true,
+  className,
+}: TuiLoadingInlineProps) {
   return (
     <span
-      role="status"
-      aria-busy="true"
+      role={announce ? 'status' : undefined}
+      aria-busy={announce ? 'true' : undefined}
+      aria-hidden={announce ? undefined : true}
       className={cn(styles.inline, className)}
     >
       <span className={styles.srOnly}>Loading</span>
