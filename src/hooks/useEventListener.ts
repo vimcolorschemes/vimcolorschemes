@@ -1,33 +1,23 @@
-import { useEffect } from 'react';
+import { useEffect, useEffectEvent } from 'react';
 
 /**
- * Hook to add any event listener to the document.
+ * Subscribes to a document event and forwards it to the current callback.
  *
- * @example
- * useEventListener("mousemove", () => console.log("mouse has moved"));
- *
- * @param event The name of the event to listen to
- * @param callback Callback function when event has happened
+ * @param event The document event name
+ * @param callback The callback invoked when the event occurs
  */
 export function useEventListener<EventType extends Event>(
   event: string,
   callback: (event: EventType) => void,
 ) {
-  useEffect(() => {
-    if (
-      !event ||
-      !callback ||
-      typeof window === 'undefined' ||
-      typeof document === 'undefined'
-    ) {
-      return;
-    }
+  const handleEvent = useEffectEvent(callback);
 
-    const eventListener = (event: Event) => callback(event as EventType);
+  useEffect(() => {
+    const eventListener = (event: Event) => handleEvent(event as EventType);
 
     document.addEventListener(event, eventListener);
     return () => document.removeEventListener(event, eventListener);
-  }, [event, callback]);
+  }, [event]);
 }
 
 export { useEventListener as useEvent };

@@ -12,6 +12,8 @@ import {
   useState,
 } from 'react';
 
+import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
+
 import styles from './index.module.css';
 
 type CommandMenuOption = {
@@ -29,6 +31,7 @@ type CommandMenuProps = {
   prefix?: ReactNode;
   preservedQuery?: string;
   selected: string;
+  shortcutKey: string;
 };
 
 type OpenMode = 'closed' | 'hover' | 'persistent';
@@ -42,6 +45,7 @@ export default function CommandMenu({
   prefix,
   preservedQuery,
   selected,
+  shortcutKey,
 }: CommandMenuProps) {
   const [openMode, setOpenMode] = useState<OpenMode>('closed');
   const menuRef = useRef<HTMLSpanElement>(null);
@@ -66,6 +70,17 @@ export default function CommandMenu({
     return () => document.removeEventListener('pointerdown', handlePointerDown);
   }, [open]);
 
+  useKeyboardShortcut(
+    interactive
+      ? {
+          [shortcutKey]: event => {
+            event.preventDefault();
+            openAndFocus(getSelectedIndex());
+          },
+        }
+      : {},
+  );
+
   if (!interactive) {
     return (
       <span className={className}>
@@ -81,7 +96,7 @@ export default function CommandMenu({
       return;
     }
 
-    openAndFocus(0);
+    openAndFocus(getSelectedIndex());
   }
 
   function handlePointerEnter(event: ReactPointerEvent<HTMLElement>) {
@@ -98,6 +113,15 @@ export default function CommandMenu({
 
   function focusOption(index: number) {
     optionRefs.current[index]?.focus();
+  }
+
+  function getSelectedIndex() {
+    const selectedIndex = options.findIndex(option => option.active);
+    return selectedIndex < 0 ? 0 : selectedIndex;
+  }
+
+  function getRelativeSelectedIndex(offset: number) {
+    return (getSelectedIndex() + offset + options.length) % options.length;
   }
 
   function setOptionRef(index: number, element: HTMLAnchorElement | null) {
@@ -128,7 +152,9 @@ export default function CommandMenu({
   function handleTriggerKeyDown(event: KeyboardEvent<HTMLButtonElement>) {
     if (['Enter', ' ', 'ArrowDown', 'ArrowUp'].includes(event.key)) {
       event.preventDefault();
-      openAndFocus(event.key === 'ArrowUp' ? options.length - 1 : 0);
+      const offset =
+        event.key === 'ArrowDown' ? 1 : event.key === 'ArrowUp' ? -1 : 0;
+      openAndFocus(getRelativeSelectedIndex(offset));
     }
   }
 
@@ -240,6 +266,7 @@ export default function CommandMenu({
         type="button"
         className={cn(styles.option, styles.active)}
         aria-label={`${label}, current: ${selected}`}
+        aria-keyshortcuts={shortcutKey}
         aria-controls={open ? menuId : undefined}
         aria-expanded={open}
         aria-haspopup="menu"

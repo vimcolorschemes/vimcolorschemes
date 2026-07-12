@@ -1,4 +1,10 @@
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  screen,
+} from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { readFileSync } from 'node:fs';
@@ -65,7 +71,10 @@ const fallbackPageContext: PageContext = {
 };
 
 describe('ExploreCommandInput', () => {
-  afterEach(() => vi.useRealTimers());
+  afterEach(() => {
+    cleanup();
+    vi.useRealTimers();
+  });
 
   beforeEach(() => {
     navigation.pathname = '/i/trending';
@@ -75,7 +84,6 @@ describe('ExploreCommandInput', () => {
     searchManifestMocks.loadRepositorySearchManifest.mockImplementation(() =>
       Promise.resolve([]),
     );
-    document.body.innerHTML = '';
   });
 
   it('uses path filters for index routes', () => {
@@ -156,6 +164,48 @@ describe('ExploreCommandInput', () => {
 
     expect(reset.textContent).toBe('reset');
     expect(reset.getAttribute('href')).toBe('/i/trending');
+  });
+
+  it('exposes a reset shortcut when repository controls are active', () => {
+    navigation.pathname = '/i/old/b.dark';
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen
+        .getByRole('link', {
+          name: 'Reset repository search, filters, and sorting',
+        })
+        .getAttribute('aria-keyshortcuts'),
+    ).toBe('r');
+  });
+
+  it('resets repository controls with the r shortcut', () => {
+    navigation.pathname = '/i/old/b.dark';
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    fireEvent.keyDown(document, { key: 'r' });
+
+    expect(navigation.replace).toHaveBeenCalledWith('/i/trending', {
+      scroll: false,
+    });
+  });
+
+  it('does not reset repository controls from an open dialog', () => {
+    navigation.pathname = '/i/old/b.dark';
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const dialog = document.createElement('dialog');
+    const dialogButton = document.createElement('button');
+    dialog.setAttribute('open', '');
+    dialog.append(dialogButton);
+    document.body.append(dialog);
+
+    fireEvent.keyDown(dialogButton, { key: 'r' });
+
+    expect(navigation.replace).not.toHaveBeenCalled();
   });
 
   it('does not show reset when repository controls are at their defaults', () => {
@@ -244,6 +294,43 @@ describe('ExploreCommandInput', () => {
     );
   });
 
+  it('styles shortcut letters without splitting label text', () => {
+    const commandStyles = readFileSync(
+      join(
+        process.cwd(),
+        'src/components/exploreCommandInput/index.module.css',
+      ),
+      'utf8',
+    );
+
+    expect(commandStyles).toMatch(
+      /\.tuiLabel::first-letter\s*{[\s\S]*?color:\s*var\(--foreground\);[\s\S]*?font-weight:\s*700;[\s\S]*?text-decoration:\s*underline;/,
+    );
+    expect(commandStyles).toMatch(
+      /\.resetControl::first-letter\s*{[\s\S]*?color:\s*var\(--foreground\);[\s\S]*?font-weight:\s*700;[\s\S]*?text-decoration:\s*underline;/,
+    );
+  });
+
+  it('exposes keyboard shortcuts on their controls', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    expect(
+      screen
+        .getByRole('searchbox', { name: 'Search repositories' })
+        .getAttribute('aria-keyshortcuts'),
+    ).toBe('s /');
+    expect(
+      screen
+        .getByRole('button', { name: /Order repositories/ })
+        .getAttribute('aria-keyshortcuts'),
+    ).toBe('o');
+    expect(
+      screen
+        .getByRole('button', { name: /Filter by background/ })
+        .getAttribute('aria-keyshortcuts'),
+    ).toBe('b');
+  });
+
   it('uses the standard search input without inline width', () => {
     navigation.searchParams = new URLSearchParams({ q: 'tokyo' });
 
@@ -254,6 +341,16 @@ describe('ExploreCommandInput', () => {
         name: 'Search repositories',
       }).style.width,
     ).toBe('');
+  });
+
+  it.each(['s', '/'])('focuses search with the %s shortcut', key => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    fireEvent.keyDown(document, { key });
+
+    expect(screen.getByRole('searchbox', { name: 'Search repositories' })).toBe(
+      document.activeElement,
+    );
   });
 
   it('does not draw an extra outline around the focused search input', () => {
@@ -391,16 +488,51 @@ describe('ExploreCommandInput', () => {
   ])('opens the %s menu when its visible label is clicked', (text, name) => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
-    const trigger = screen.getByRole('button', { name: new RegExp(name) });
-    const label = screen.getByText(text, { selector: 'label' });
+    const trigger = screen.getByRole<HTMLButtonElement>('button', {
+      name: new RegExp(name),
+    });
+    const label = trigger.labels?.[0];
 
-    expect(label.getAttribute('for')).toBe(trigger.id);
+    expect(label?.textContent).toBe(text);
+    expect(label?.getAttribute('for')).toBe(trigger.id);
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
 
-    fireEvent.click(label);
+    fireEvent.click(label as HTMLLabelElement);
 
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
   });
+
+  it('focuses the selected option when a menu is clicked open', () => {
+    navigation.pathname = '/i/old';
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /Order repositories/ }));
+
+    expect(screen.getByRole('menuitem', { name: 'old' })).toBe(
+      document.activeElement,
+    );
+  });
+
+  it.each([
+    ['o', '/i/old', 'Order repositories', 'old'],
+    ['b', '/i/trending/b.light', 'Filter by background', 'light'],
+  ])(
+    'opens the selected option with the %s shortcut',
+    (key, pathname, triggerName, selectedOption) => {
+      navigation.pathname = pathname;
+      render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+      fireEvent.keyDown(document, { key });
+
+      const trigger = screen.getByRole('button', {
+        name: new RegExp(triggerName),
+      });
+      expect(trigger.getAttribute('aria-expanded')).toBe('true');
+      expect(screen.getByRole('menuitem', { name: selectedOption })).toBe(
+        document.activeElement,
+      );
+    },
+  );
 
   it.each([
     ['order', 'Order repositories'],
@@ -408,12 +540,18 @@ describe('ExploreCommandInput', () => {
   ])('opens the %s menu when its visible label is hovered', (text, name) => {
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
-    const trigger = screen.getByRole('button', { name: new RegExp(name) });
-    const label = screen.getByText(text, { selector: 'label' });
+    const trigger = screen.getByRole<HTMLButtonElement>('button', {
+      name: new RegExp(name),
+    });
+    const label = trigger.labels?.[0];
 
-    fireEvent.pointerEnter(label, { pointerType: 'mouse' });
+    expect(label?.textContent).toBe(text);
+    fireEvent.pointerEnter(label as HTMLLabelElement, { pointerType: 'mouse' });
 
     expect(trigger.getAttribute('aria-expanded')).toBe('true');
+    expect(screen.queryAllByRole('menuitem')).not.toContain(
+      document.activeElement,
+    );
   });
 
   it('sizes menu lists from the complete label and value control', () => {
@@ -468,11 +606,12 @@ describe('ExploreCommandInput', () => {
   });
 
   it.each([
-    ['Enter', 'trending'],
-    [' ', 'trending'],
+    ['Enter', 'old'],
+    [' ', 'old'],
     ['ArrowDown', 'trending'],
-    ['ArrowUp', 'old'],
+    ['ArrowUp', 'new'],
   ])('opens the order menu with %s and focuses %s', (key, option) => {
+    navigation.pathname = '/i/old';
     render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
 
     const trigger = screen.getByRole('button', {
@@ -514,6 +653,21 @@ describe('ExploreCommandInput', () => {
 
     fireEvent.keyDown(trending, { key: 't' });
     expect(top).toBe(document.activeElement);
+  });
+
+  it('keeps menu typeahead authoritative over global shortcuts', () => {
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const trigger = screen.getByRole('button', {
+      name: /Filter by background/,
+    });
+    fireEvent.keyDown(trigger, { key: 'ArrowDown' });
+    fireEvent.keyDown(document.activeElement as HTMLElement, { key: 'b' });
+
+    expect(trigger.getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByRole('menuitem', { name: 'both' })).toBe(
+      document.activeElement,
+    );
   });
 
   it('closes with Escape and restores focus to the trigger', () => {
