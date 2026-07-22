@@ -36,31 +36,31 @@
   },
   "dependencies": {
     "@libsql/client": "^0.17.4",
-    "@tanstack/react-query": "^5.101.0",
+    "@tanstack/react-query": "^5.101.4",
     "classnames": "^2.5.1",
     "date-fns": "^4.4.0",
-    "next": "16.2.9",
+    "next": "16.2.10",
     "react": "19.2.7",
     "react-dom": "19.2.7"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "16.2.9",
+    "@next/bundle-analyzer": "16.2.10",
     "@testing-library/react": "^16.3.2",
-    "@types/node": "^25.9.3",
+    "@types/node": "^25.9.5",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "^5.1.4",
+    "@vitejs/plugin-react": "^5.2.0",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint": "^9.39.3",
-    "eslint-config-next": "16.2.9",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.2.10",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "jiti": "^2.7.0",
     "jsdom": "^29.1.1",
     "only-allow": "^1.2.2",
-    "prettier": "^3.8.4",
+    "prettier": "^3.9.6",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.10"
   },
   "packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499"
 }
