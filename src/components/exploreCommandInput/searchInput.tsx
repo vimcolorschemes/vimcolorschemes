@@ -1,7 +1,14 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type FormEvent, useEffect, useId, useRef, useState } from 'react';
+import {
+  type FormEvent,
+  type KeyboardEvent as ReactKeyboardEvent,
+  useEffect,
+  useId,
+  useRef,
+  useState,
+} from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
 
@@ -61,6 +68,16 @@ export default function SearchInput() {
     inputRef.current?.focus();
   }
 
+  function restoreQuery(event: ReactKeyboardEvent<HTMLInputElement>) {
+    if (event.key !== 'Escape') {
+      return;
+    }
+
+    event.preventDefault();
+    event.currentTarget.value = query;
+    event.currentTarget.blur();
+  }
+
   function preloadManifest() {
     void RepositorySearchManifestClient.loadRepositorySearchManifest().catch(
       () => undefined,
@@ -115,6 +132,7 @@ export default function SearchInput() {
             type="search"
             onChange={preloadManifest}
             onFocus={preloadManifest}
+            onKeyDown={restoreQuery}
           />
           <button
             aria-label="Submit repository search"
