@@ -1,38 +1,45 @@
-import { fireEvent, renderHook } from '@testing-library/react';
-import { vitest, describe, it, expect } from 'vitest';
+import { cleanup, fireEvent, renderHook } from '@testing-library/react';
+import { afterEach, describe, expect, it, vitest } from 'vitest';
 
 import { useEventListener } from '@/hooks/useEventListener';
 
-describe('useEvent', () => {
-  it('should fire a function when the event is triggered', () => {
+describe('useEventListener', () => {
+  afterEach(cleanup);
+
+  it('forwards document events to the callback', () => {
     const callback = vitest.fn();
 
-    renderHook(() => useEventListener('keydown', () => callback()));
+    renderHook(() => useEventListener<KeyboardEvent>('keydown', callback));
 
     fireEvent.keyDown(document, { key: 'k' });
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
 
-  it('should add event listener to document', () => {
-    Document.prototype.addEventListener = vitest.fn();
+  it('forwards events to the current callback after rerendering', () => {
+    const firstCallback = vitest.fn();
+    const currentCallback = vitest.fn();
+    const { rerender } = renderHook(
+      ({ callback }) => useEventListener<KeyboardEvent>('keydown', callback),
+      { initialProps: { callback: firstCallback } },
+    );
 
-    renderHook(() => useEventListener('keydown', () => 'test'));
+    rerender({ callback: currentCallback });
+    fireEvent.keyDown(document, { key: 'k' });
 
-    expect(Document.prototype.addEventListener).toHaveBeenCalledTimes(1);
+    expect(firstCallback).not.toHaveBeenCalled();
+    expect(currentCallback).toHaveBeenCalledTimes(1);
   });
 
-  it('should remove event listener when the hook is unmounted', () => {
-    Document.prototype.addEventListener = vitest.fn();
-    Document.prototype.removeEventListener = vitest.fn();
-
+  it('stops forwarding events after unmounting', () => {
+    const callback = vitest.fn();
     const { unmount } = renderHook(() =>
-      useEventListener('keydown', () => 'test'),
+      useEventListener<KeyboardEvent>('keydown', callback),
     );
 
     unmount();
+    fireEvent.keyDown(document, { key: 'k' });
 
-    expect(Document.prototype.addEventListener).toHaveBeenCalledTimes(1);
-    expect(Document.prototype.removeEventListener).toHaveBeenCalledTimes(1);
+    expect(callback).not.toHaveBeenCalled();
   });
 });

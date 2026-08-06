@@ -75,7 +75,20 @@
 }
 
 .tuiLabel {
+  display: inline-block;
   color: var(--foreground-shade);
+}
+
+.tuiLabel::first-letter {
+  color: var(--foreground);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.resetControl::first-letter {
+  color: var(--foreground);
+  font-weight: 700;
+  text-decoration: underline;
 }
 
 .resetControl {

@@ -46,29 +46,35 @@ export default function RepositoryVariantPreview({
     onSelectVariant(index);
   }
 
-  useKeyboardShortcut({
-    j: event => {
-      if (variants.length === 0) {
-        return;
-      }
-      event.preventDefault();
-      selectVariant(
-        RepositoryPageHelper.getNextVariantIndex(activeIndex, variants.length),
-      );
+  useKeyboardShortcut(
+    {
+      j: event => {
+        if (variants.length === 0) {
+          return;
+        }
+        event.preventDefault();
+        selectVariant(
+          RepositoryPageHelper.getNextVariantIndex(
+            activeIndex,
+            variants.length,
+          ),
+        );
+      },
+      k: event => {
+        if (variants.length === 0) {
+          return;
+        }
+        event.preventDefault();
+        selectVariant(
+          RepositoryPageHelper.getPreviousVariantIndex(
+            activeIndex,
+            variants.length,
+          ),
+        );
+      },
     },
-    k: event => {
-      if (variants.length === 0) {
-        return;
-      }
-      event.preventDefault();
-      selectVariant(
-        RepositoryPageHelper.getPreviousVariantIndex(
-          activeIndex,
-          variants.length,
-        ),
-      );
-    },
-  });
+    { ownerRef: variantListRef },
+  );
 
   if (!activeVariant) {
     return (

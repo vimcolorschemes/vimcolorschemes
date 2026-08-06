@@ -1,9 +1,11 @@
 'use client';
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { type FormEvent, useEffect, useId, useState } from 'react';
+import { type FormEvent, useEffect, useId, useRef, useState } from 'react';
 
 import { RepositorySearchManifestClient } from '@/services/repositorySearchManifestClient';
+
+import useKeyboardShortcut from '@/hooks/useKeyboardShortcut';
 
 import { TuiLoadingInline } from '@/components/ui/tuiLoading';
 
@@ -47,6 +49,17 @@ export default function SearchInput() {
 
     return () => window.clearTimeout(timeout);
   }, [currentURL, pendingSearch]);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useKeyboardShortcut({
+    '/': focusSearch,
+    s: focusSearch,
+  });
+
+  function focusSearch(event: KeyboardEvent) {
+    event.preventDefault();
+    inputRef.current?.focus();
+  }
 
   function preloadManifest() {
     void RepositorySearchManifestClient.loadRepositorySearchManifest().catch(
@@ -91,7 +104,9 @@ export default function SearchInput() {
         </label>
         <span className={styles.searchForm}>
           <input
+            ref={inputRef}
             aria-label="Search repositories"
+            aria-keyshortcuts="s /"
             className={styles.searchInput}
             defaultValue={query}
             id={inputId}
