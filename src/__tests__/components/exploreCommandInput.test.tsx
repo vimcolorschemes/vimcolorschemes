@@ -1,6 +1,7 @@
 import {
   act,
   cleanup,
+  createEvent,
   fireEvent,
   render,
   screen,
@@ -832,6 +833,56 @@ describe('ExploreCommandInput', () => {
     });
     fireEvent.change(searchbox, { target: { value: '   ' } });
     fireEvent.submit(searchbox);
+
+    expect(navigation.replace).toHaveBeenCalledWith('/i/trending', {
+      scroll: false,
+    });
+  });
+
+  it('restores the submitted search query and blurs on Escape', () => {
+    navigation.searchParams = new URLSearchParams({ q: 'gruvbox' });
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const searchbox = screen.getByRole<HTMLInputElement>('searchbox', {
+      name: 'Search repositories',
+    });
+    searchbox.focus();
+    fireEvent.change(searchbox, { target: { value: 'tokyo' } });
+    fireEvent.keyDown(searchbox, { key: 'Escape' });
+
+    expect(searchbox.value).toBe('gruvbox');
+    expect(document.activeElement).not.toBe(searchbox);
+    expect(navigation.replace).not.toHaveBeenCalled();
+  });
+
+  it('prevents the user agent from clearing the search input on Escape', () => {
+    navigation.searchParams = new URLSearchParams({ q: 'gruvbox' });
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const searchbox = screen.getByRole('searchbox', {
+      name: 'Search repositories',
+    });
+    const escape = createEvent.keyDown(searchbox, { key: 'Escape' });
+    fireEvent(searchbox, escape);
+
+    expect(escape.defaultPrevented).toBe(true);
+  });
+
+  it('hands the keyboard back to shortcuts after Escape', () => {
+    navigation.pathname = '/i/old/b.dark';
+    navigation.searchParams = new URLSearchParams({ q: 'tokyo night' });
+    render(<ExploreCommandInput fallbackPageContext={fallbackPageContext} />);
+
+    const searchbox = screen.getByRole('searchbox', {
+      name: 'Search repositories',
+    });
+    searchbox.focus();
+    fireEvent.keyDown(searchbox, { key: 'r' });
+
+    expect(navigation.replace).not.toHaveBeenCalled();
+
+    fireEvent.keyDown(searchbox, { key: 'Escape' });
+    fireEvent.keyDown(document.activeElement as HTMLElement, { key: 'r' });
 
     expect(navigation.replace).toHaveBeenCalledWith('/i/trending', {
       scroll: false,
