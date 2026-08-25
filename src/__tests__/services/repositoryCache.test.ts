@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
+import { Constants } from '@/lib/constants';
+
 const cacheKeyParts = vi.hoisted(() => [] as string[][]);
 
 vi.mock('next/cache', () => ({
@@ -25,6 +27,19 @@ describe('RepositoriesService repository cache', () => {
     expect(
       cacheKeyParts.flat().every(keyPart => keyPart.startsWith('dpl_test-')),
     ).toBe(true);
+
+    vi.unstubAllEnvs();
+  });
+
+  it('caches the paginated query that serves load more', async () => {
+    vi.stubEnv('VERCEL_DEPLOYMENT_ID', 'dpl_test');
+    vi.resetModules();
+
+    await import('@/services/repositoriesServer');
+
+    expect(cacheKeyParts.flat()).toContain(
+      `dpl_test-repository-dto-page-${Constants.REPOSITORY_PAGE_SIZE}`,
+    );
 
     vi.unstubAllEnvs();
   });
