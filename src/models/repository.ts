@@ -1,5 +1,7 @@
 import { Backgrounds, Background } from '@/lib/backgrounds';
 
+import { buildRepositoryPath } from '@/helpers/repositoryRoute';
+
 import { Colorscheme } from './colorscheme';
 import { RepositoryDTO } from './DTO/repository';
 import { Owner } from './owner';
@@ -47,7 +49,7 @@ class Repository {
    * @returns The route of the repository, used to navigate to the repository page.
    */
   get route(): string {
-    return `/r/${this.key}`.toLowerCase();
+    return buildRepositoryPath(this.owner.name, this.name);
   }
 
   /**

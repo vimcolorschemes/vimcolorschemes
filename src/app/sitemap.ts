@@ -7,6 +7,7 @@ import { BackgroundFilter } from '@/lib/filter';
 import { SortOptions } from '@/lib/sort';
 
 import { FilterHelper } from '@/helpers/filter';
+import { buildRepositoryPath } from '@/helpers/repositoryRoute';
 
 export const revalidate = 86400;
 
@@ -30,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const keys = await RepositoriesService.getAllRepositoryKeys();
   const repositoryURLs = keys.map(k => ({
-    url: `${process.env.APP_URL}/r/${k.ownerName}/${k.name}`,
+    url: `${process.env.APP_URL}${buildRepositoryPath(k.ownerName, k.name)}`,
     changeFrequency: 'weekly' as const,
     priority: 0.9,
   }));

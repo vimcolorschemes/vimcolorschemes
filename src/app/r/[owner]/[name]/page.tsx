@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
+import { buildRepositoryStaticParam } from '@/helpers/repositoryRoute';
+
 import RepositoryPageContent from '@/components/repositoryPageContent';
 
 import styles from './page.module.css';
@@ -10,10 +12,7 @@ export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const keys = await RepositoriesService.getAllRepositoryKeys();
-  return keys.map(k => ({
-    owner: k.ownerName.toLowerCase(),
-    name: k.name.toLowerCase(),
-  }));
+  return keys.map(k => buildRepositoryStaticParam(k.ownerName, k.name));
 }
 
 type RepositoryPageProps = { params: Promise<{ owner: string; name: string }> };
