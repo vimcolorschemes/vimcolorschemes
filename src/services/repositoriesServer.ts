@@ -389,11 +389,18 @@ async function cachedGetRepositoryCount(filter: Filter): Promise<number> {
   return cachedGetRepositoryCountQuery(getRepositoryCountFilter(filter));
 }
 
-const cachedGetRepositoryDTOs = unstable_cache(
-  getRepositoryDTOs,
-  [`${BUILD_ID}-repository-dtos-${Constants.REPOSITORY_PAGE_SIZE}`],
+const cachedGetRepositoryDTOPage = unstable_cache(
+  getRepositoryDTOPage,
+  [`${BUILD_ID}-repository-dto-page-${Constants.REPOSITORY_PAGE_SIZE}`],
   { tags: ['repositories'] },
 );
+
+async function cachedGetRepositoryDTOs(
+  params: GetRepositoriesParams,
+): Promise<RepositoryDTO[]> {
+  const { repositories } = await cachedGetRepositoryDTOPage(params);
+  return repositories;
+}
 
 const cachedGetFeaturedRepositoryDTOs = unstable_cache(
   getFeaturedRepositoryDTOs,
@@ -435,7 +442,7 @@ async function cachedGetRepository(
 export const RepositoriesService = {
   getRepositoryCount: cachedGetRepositoryCount,
   getRepositories,
-  getRepositoryDTOPage,
+  getRepositoryDTOPage: cachedGetRepositoryDTOPage,
   getRepositoryDTOs: cachedGetRepositoryDTOs,
   getFeaturedRepositoryDTOs: cachedGetFeaturedRepositoryDTOs,
   getAllRepositories: cachedGetAllRepositories,
