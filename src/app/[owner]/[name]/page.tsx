@@ -2,14 +2,16 @@ import { permanentRedirect } from 'next/navigation';
 
 import { RepositoriesService } from '@/services/repositoriesServer';
 
+import {
+  buildRepositoryPath,
+  buildRepositoryStaticParam,
+} from '@/helpers/repositoryRoute';
+
 export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const keys = await RepositoriesService.getAllRepositoryKeys();
-  return keys.map(k => ({
-    owner: k.ownerName.toLowerCase(),
-    name: k.name.toLowerCase(),
-  }));
+  return keys.map(k => buildRepositoryStaticParam(k.ownerName, k.name));
 }
 
 type LegacyRepositoryRouteProps = {
@@ -47,5 +49,5 @@ export default async function LegacyRepositoryRoute({
   const { owner, name } = await params;
   const search = getSearch(await searchParams);
 
-  permanentRedirect(`/r/${owner}/${name}${search}`);
+  permanentRedirect(`${buildRepositoryPath(owner, name)}${search}`);
 }
