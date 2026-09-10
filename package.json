@@ -35,7 +35,7 @@
     "node": "24"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.4",
+    "@libsql/client": "^0.18.0",
     "@tanstack/react-query": "^5.102.8",
     "classnames": "^2.5.1",
     "date-fns": "^4.4.0",
