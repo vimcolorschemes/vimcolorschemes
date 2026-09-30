@@ -1,6 +1,8 @@
 .github/
 .cache/
 .wt/
+.open-next/
+.wrangler/
 public/
 database/
 pnpm-lock.yaml

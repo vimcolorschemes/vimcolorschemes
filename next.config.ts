@@ -7,9 +7,16 @@ const withBundleAnalyzer = bundleAnalyzer({
 
 const nextConfig: NextConfig = {
   reactCompiler: true,
+  // Cloudflare needs both: workerd-resolved @libsql/client + traced
+  // isomorphic-ws browser builds. Either missing breaks the worker only.
   outputFileTracingIncludes: {
-    '/*': ['./database/**/*.db'],
+    '/*': [
+      './node_modules/@libsql/isomorphic-ws/package.json',
+      './node_modules/@libsql/isomorphic-ws/web.mjs',
+      './node_modules/@libsql/isomorphic-ws/web.cjs',
+    ],
   },
+  serverExternalPackages: ['@libsql/client'],
   async headers() {
     return [
       {

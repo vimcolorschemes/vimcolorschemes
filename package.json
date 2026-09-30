@@ -26,6 +26,10 @@
     "format.check": "prettier --check .",
     "seed": "./database/seed",
     "search.generate": "node scripts/generate-search-manifest.mjs",
+    "preview": "node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare build && node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare preview",
+    "deploy": "node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare build && node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare deploy",
+    "upload": "node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare build && node scripts/with-remote-db.mjs pnpm exec opennextjs-cloudflare upload",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "tc": "tsc --noEmit",
     "check": "pnpm run --parallel '/^(lint.check|format.check|tc|test)$/'",
     "check.fix": "pnpm lint && pnpm format && pnpm run --parallel '/^(tc|test)$/'",
@@ -36,6 +40,7 @@
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
+    "@opennextjs/cloudflare": "^1.20.7",
     "@tanstack/react-query": "^5.102.8",
     "classnames": "^2.5.1",
     "date-fns": "^4.4.0",
@@ -60,7 +65,8 @@
     "only-allow": "^1.2.2",
     "prettier": "^3.9.6",
     "typescript": "^6.0.3",
-    "vitest": "^5.0.1"
+    "vitest": "^5.0.1",
+    "wrangler": "^4.143.0"
   },
   "packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499"
 }

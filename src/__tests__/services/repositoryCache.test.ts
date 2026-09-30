@@ -18,27 +18,38 @@ describe('RepositoriesService repository cache', () => {
   });
 
   it('keys every cache entry on the deployment so a rebuild starts clean', async () => {
+    vi.stubEnv('BUILD_ID', 'bld_test');
+    vi.resetModules();
+
+    await import('@/services/repositoriesServer');
+
+    expect(cacheKeyParts.flat()).toContain('bld_test-repository-dto');
+    expect(
+      cacheKeyParts.flat().every(keyPart => keyPart.startsWith('bld_test-')),
+    ).toBe(true);
+
+    vi.unstubAllEnvs();
+  });
+
+  it('falls back to the Vercel deployment id when BUILD_ID is unset', async () => {
     vi.stubEnv('VERCEL_DEPLOYMENT_ID', 'dpl_test');
     vi.resetModules();
 
     await import('@/services/repositoriesServer');
 
     expect(cacheKeyParts.flat()).toContain('dpl_test-repository-dto');
-    expect(
-      cacheKeyParts.flat().every(keyPart => keyPart.startsWith('dpl_test-')),
-    ).toBe(true);
 
     vi.unstubAllEnvs();
   });
 
   it('caches the paginated query that serves load more', async () => {
-    vi.stubEnv('VERCEL_DEPLOYMENT_ID', 'dpl_test');
+    vi.stubEnv('BUILD_ID', 'bld_test');
     vi.resetModules();
 
     await import('@/services/repositoriesServer');
 
     expect(cacheKeyParts.flat()).toContain(
-      `dpl_test-repository-dto-page-${Constants.REPOSITORY_PAGE_SIZE}`,
+      `bld_test-repository-dto-page-${Constants.REPOSITORY_PAGE_SIZE}`,
     );
 
     vi.unstubAllEnvs();
