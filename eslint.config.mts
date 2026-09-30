@@ -52,6 +52,8 @@ export default defineConfig([
   globalIgnores([
     'node_modules/**',
     '.next/**',
+    '.open-next/**',
+    '.wrangler/**',
     '.wt/**',
     '.vercel/**',
     'out/**',

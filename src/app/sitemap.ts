@@ -9,8 +9,6 @@ import { SortOptions } from '@/lib/sort';
 import { FilterHelper } from '@/helpers/filter';
 import { buildRepositoryPath } from '@/helpers/repositoryRoute';
 
-export const revalidate = 86400;
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const indexURLs = [];
   const backgrounds: Array<BackgroundFilter | undefined> = [
