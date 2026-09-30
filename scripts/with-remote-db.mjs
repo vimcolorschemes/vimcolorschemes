@@ -21,7 +21,11 @@ if (existsSync('.dev.vars')) {
       continue;
     }
     let value = match[2].trim();
-    if (value.length >= 2 && value.startsWith('"') && value.endsWith('"')) {
+    if (
+      value.length >= 2 &&
+      ((value.startsWith('"') && value.endsWith('"')) ||
+        (value.startsWith("'") && value.endsWith("'")))
+    ) {
       value = value.slice(1, -1);
     }
     process.env[match[1]] ??= value;
