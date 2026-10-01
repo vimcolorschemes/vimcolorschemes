@@ -27,7 +27,7 @@ jobs:
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
-      - run: pnpm deploy -- --var "BUILD_ID:${{ github.run_id }}"
+      - run: pnpm cf:deploy -- --var "BUILD_ID:${{ github.run_id }}"
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
