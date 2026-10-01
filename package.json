@@ -65,6 +65,7 @@
     "jsdom": "^30.1.0",
     "only-allow": "^1.2.2",
     "prettier": "^3.9.6",
+    "rclone.js": "^0.6.6",
     "typescript": "^6.0.3",
     "vitest": "^5.0.1",
     "wrangler": "^4.143.0"

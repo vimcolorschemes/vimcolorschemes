@@ -4,6 +4,7 @@ packages:
 allowBuilds:
   esbuild: false
   libsql: true
+  rclone.js: true
   sharp: false
   unrs-resolver: false
   workerd: true
