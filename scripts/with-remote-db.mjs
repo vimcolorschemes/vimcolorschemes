@@ -41,7 +41,11 @@ if (!url || url.startsWith('file:')) {
   process.exit(1);
 }
 
-const result = spawnSync(command[0], command.slice(1).filter(arg => arg !== '--'), {
-  stdio: 'inherit',
-});
+const result = spawnSync(
+  command[0],
+  command.slice(1).filter(arg => arg !== '--'),
+  {
+    stdio: 'inherit',
+  },
+);
 process.exit(result.status ?? 1);
