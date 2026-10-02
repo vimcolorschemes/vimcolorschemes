@@ -23,5 +23,5 @@ Then, look at the [development guide](https://docs.vimcolorschemes.com) for inst
 
 ### Contribution Guides
 
-* [https://guides.github.com/activities/hello-world/](https://guides.github.com/activities/hello-world/)
-* [https://guides.github.com/activities/forking/](https://guides.github.com/activities/forking/)
+* [https://docs.github.com/en/get-started/start-your-journey/hello-world](https://docs.github.com/en/get-started/start-your-journey/hello-world/)
+* [https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)

@@ -31,6 +31,6 @@
 ## Added documentation?
 
 - [ ] JSDoc
-- [ ] docs.vimcolorschemes.com (`./docs`)
+- [ ] docs.vimcolorschemes.com
 - [ ] README
 - [ ] no

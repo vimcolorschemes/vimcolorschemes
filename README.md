@@ -33,6 +33,7 @@
   <img src="https://img.shields.io/badge/Testing%20Library-E33332?style=flat-square&logo=testing-library&logoColor=white" alt="Testing library" />
   <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Golang" />
   <img src="https://img.shields.io/badge/AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=black" alt="Amazon AWS" />
+  <img src="https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white" alt="Cloudflare Workers" />
   <img src="https://img.shields.io/badge/vim-019733?style=flat-square&logo=vim&logoColor=white" alt="vim" />
   <img src="https://img.shields.io/badge/neovim-57A143?style=flat-square&logo=neovim&logoColor=white" alt="neovim" />
 </p>
@@ -53,7 +54,7 @@ The app tracks thousands of repositories, updates them daily, and renders genera
 
 [vimcolorschemes](https://vimcolorschemes.com) is a collaborative project. Code, documentation, bug reports, and feature ideas are welcome.
 
-Developers, check out the [development guide](https://docs.vimcolorschemes.com/#/intro) to start writing code and contribute.
+Developers, check out the [development guide](https://docs.vimcolorschemes.com) to start writing code and contribute.
 
 ## Issues
 
