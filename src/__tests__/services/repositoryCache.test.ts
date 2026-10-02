@@ -31,13 +31,12 @@ describe('RepositoriesService repository cache', () => {
     vi.unstubAllEnvs();
   });
 
-  it('falls back to the Vercel deployment id when BUILD_ID is unset', async () => {
-    vi.stubEnv('VERCEL_DEPLOYMENT_ID', 'dpl_test');
+  it('falls back to dev when BUILD_ID is unset', async () => {
     vi.resetModules();
 
     await import('@/services/repositoriesServer');
 
-    expect(cacheKeyParts.flat()).toContain('dpl_test-repository-dto');
+    expect(cacheKeyParts.flat()).toContain('dev-repository-dto');
 
     vi.unstubAllEnvs();
   });

@@ -371,8 +371,7 @@ async function getRepositoryDTO(
   return rowToDTO(row, vimColorSchemes);
 }
 
-const BUILD_ID =
-  process.env.BUILD_ID ?? process.env.VERCEL_DEPLOYMENT_ID ?? 'dev';
+const BUILD_ID = process.env.BUILD_ID ?? 'dev';
 
 const cachedGetRepositoryCountQuery = unstable_cache(
   getRepositoryCount,

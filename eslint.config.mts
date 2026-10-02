@@ -55,7 +55,6 @@ export default defineConfig([
     '.open-next/**',
     '.wrangler/**',
     '.wt/**',
-    '.vercel/**',
     'out/**',
     'build/**',
     'next-env.d.ts',
