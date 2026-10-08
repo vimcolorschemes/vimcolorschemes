@@ -41,16 +41,16 @@
   },
   "dependencies": {
     "@libsql/client": "^0.18.0",
-    "@opennextjs/cloudflare": "^1.20.7",
+    "@opennextjs/cloudflare": "^1.20.8",
     "@tanstack/react-query": "^5.104.0",
     "classnames": "^2.5.1",
     "date-fns": "^4.4.0",
-    "next": "16.3.7",
+    "next": "16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "16.3.7",
+    "@next/bundle-analyzer": "16.3.8",
     "@testing-library/react": "^16.3.3",
     "@types/node": "^26.6.3",
     "@types/react": "19.3.0",
@@ -58,7 +58,7 @@
     "@vitejs/plugin-react": "^5.2.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^9.39.5",
-    "eslint-config-next": "16.3.7",
+    "eslint-config-next": "16.3.8",
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "jiti": "^2.7.0",
